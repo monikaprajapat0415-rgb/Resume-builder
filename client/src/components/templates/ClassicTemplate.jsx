@@ -58,7 +58,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     <h2 className="text-xl font-semibold mb-3" style={{ color: accentColor }}>
                         PROFESSIONAL SUMMARY
                     </h2>
-                    <p className="text-gray-700 leading-relaxed">{data.professional_summary}</p>
+                    <p className="text-gray-700 leading-relaxed whitespace-pre-line break-words">{data.professional_summary}</p>
                 </section>
             )}
 
@@ -73,7 +73,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                         {data.experience.map((exp, index) => (
                             <div key={index} className="border-l-3 pl-4" style={{ borderColor: accentColor }}>
                                 <div className="flex justify-between items-start mb-2">
-                                    <div>
+                                    <div className="whitespace-pre-line break-words min-w-0">
                                         <h3 className="font-semibold text-gray-900">{exp.position}</h3>
                                         <p className="text-gray-700 font-medium">{exp.company}</p>
                                     </div>
@@ -82,7 +82,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                                     </div>
                                 </div>
                                 {exp.description && (
-                                    <div className="text-gray-700 leading-relaxed whitespace-pre-line">
+                                    <div className="text-gray-700 leading-relaxed whitespace-pre-line break-words">
                                         {exp.description}
                                     </div>
                                 )}
@@ -102,9 +102,9 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     <ul className="space-y-3 ">
                         {data.project.map((proj, index) => (
                             <div key={index} className="flex justify-between items-start border-l-3 border-gray-300 pl-6">
-                                <div>
-                                    <li className="font-semibold text-gray-800 ">{proj.name}</li>
-                                    <p className="text-gray-600">{proj.description}</p>
+                                <div className="min-w-0">
+                                    <li className="font-semibold text-gray-800 whitespace-pre-line break-words">{proj.name}</li>
+                                    <p className="text-gray-600 whitespace-pre-line break-words">{proj.description}</p>
                                 </div>
                             </div>
                         ))}
@@ -122,8 +122,8 @@ const ClassicTemplate = ({ data, accentColor }) => {
                     <div className="space-y-3">
                         {data.education.map((edu, index) => (
                             <div key={index} className="flex justify-between items-start">
-                                <div>
-                                    <h3 className="font-semibold text-gray-900">
+                                <div className="whitespace-pre-line break-words min-w-0">
+                                    <h3 className="font-semibold text-gray-900 ">
                                         {edu.degree} {edu.field && `in ${edu.field}`}
                                     </h3>
                                     <p className="text-gray-700">{edu.institution}</p>
@@ -159,3 +159,179 @@ const ClassicTemplate = ({ data, accentColor }) => {
 }
 
 export default ClassicTemplate;
+// const ClassicTemplate = ({ data, accentColor = "#2563eb" }) => {
+//     const formatDate = (dateStr) => {
+//         if (!dateStr) return "";
+//         const [year, month] = dateStr.split("-");
+//         return new Date(year, month - 1).toLocaleDateString("en-US", {
+//             year: "numeric",
+//             month: "short",
+//         });
+//     };
+
+//     return (
+//         <div
+//             className="mx-auto bg-white text-gray-900"
+//             style={{
+//                 width: "794px", // A4 width
+//                 minHeight: "1123px",
+//                 padding: "40px",
+//                 lineHeight: 1.5,
+//             }}
+//         >
+//             {/* HEADER */}
+//             <header className="mb-6 pb-4 border-b">
+//                 <h1
+//                     className="text-3xl font-bold tracking-tight"
+//                     style={{ color: accentColor }}
+//                 >
+//                     {data.personal_info?.full_name || "Your Name"}
+//                 </h1>
+
+//                 <p className="text-lg text-gray-600 mt-1">
+//                     {data.personal_info?.title || "Professional Title"}
+//                 </p>
+
+//                 <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-600">
+//                     <span>{data.personal_info?.email}</span>
+//                     <span>{data.personal_info?.phone}</span>
+//                     <span>{data.personal_info?.location}</span>
+//                     <span className="break-all">{data.personal_info?.linkedin}</span>
+//                 </div>
+//             </header>
+
+//             {/* SUMMARY */}
+//             {data.professional_summary && (
+//                 <section className="mb-5">
+//                     <h2
+//                         className="text-sm font-bold tracking-widest mb-2"
+//                         style={{ color: accentColor }}
+//                     >
+//                         PROFESSIONAL SUMMARY
+//                     </h2>
+//                     <p className="text-sm text-gray-700 leading-relaxed">
+//                         {data.professional_summary}
+//                     </p>
+//                 </section>
+//             )}
+
+//             {/* EXPERIENCE */}
+//             {data.experience?.length > 0 && (
+//                 <section className="mb-5">
+//                     <h2
+//                         className="text-sm font-bold tracking-widest mb-3"
+//                         style={{ color: accentColor }}
+//                     >
+//                         EXPERIENCE
+//                     </h2>
+
+//                     {data.experience.map((exp, i) => (
+//                         <div key={i} className="mb-4">
+//                             <div className="flex justify-between">
+//                                 <div>
+//                                     <h3 className="font-semibold text-sm">
+//                                         {exp.position}
+//                                     </h3>
+//                                     <p className="text-sm text-gray-600">
+//                                         {exp.company}
+//                                     </p>
+//                                 </div>
+
+//                                 <span className="text-xs text-gray-500">
+//                                     {formatDate(exp.start_date)} –{" "}
+//                                     {exp.is_current
+//                                         ? "Present"
+//                                         : formatDate(exp.end_date)}
+//                                 </span>
+//                             </div>
+
+//                             {/* BULLET POINTS (IMPORTANT UPGRADE) */}
+//                             {exp.description && (
+//                                 <ul className="mt-2 text-sm list-disc ml-5 space-y-1">
+//                                     {exp.description.split("\n").map((line, idx) => (
+//                                         <li key={idx}>{line}</li>
+//                                     ))}
+//                                 </ul>
+//                             )}
+//                         </div>
+//                     ))}
+//                 </section>
+//             )}
+
+//             {/* PROJECTS */}
+//             {data.project?.length > 0 && (
+//                 <section className="mb-5">
+//                     <h2
+//                         className="text-sm font-bold tracking-widest mb-3"
+//                         style={{ color: accentColor }}
+//                     >
+//                         PROJECTS
+//                     </h2>
+
+//                     {data.project.map((proj, i) => (
+//                         <div key={i} className="mb-3">
+//                             <h3 className="font-semibold text-sm">{proj.name}</h3>
+//                             <p className="text-sm text-gray-600">
+//                                 {proj.description}
+//                             </p>
+//                         </div>
+//                     ))}
+//                 </section>
+//             )}
+
+//             {/* EDUCATION */}
+//             {data.education?.length > 0 && (
+//                 <section className="mb-5">
+//                     <h2
+//                         className="text-sm font-bold tracking-widest mb-3"
+//                         style={{ color: accentColor }}
+//                     >
+//                         EDUCATION
+//                     </h2>
+
+//                     {data.education.map((edu, i) => (
+//                         <div key={i} className="flex justify-between mb-2">
+//                             <div>
+//                                 <h3 className="text-sm font-semibold">
+//                                     {edu.degree} {edu.field && `in ${edu.field}`}
+//                                 </h3>
+//                                 <p className="text-sm text-gray-600">
+//                                     {edu.institution}
+//                                 </p>
+//                             </div>
+
+//                             <span className="text-xs text-gray-500">
+//                                 {formatDate(edu.graduation_date)}
+//                             </span>
+//                         </div>
+//                     ))}
+//                 </section>
+//             )}
+
+//             {/* SKILLS (IMPROVED UI) */}
+//             {data.skills?.length > 0 && (
+//                 <section>
+//                     <h2
+//                         className="text-sm font-bold tracking-widest mb-3"
+//                         style={{ color: accentColor }}
+//                     >
+//                         SKILLS
+//                     </h2>
+
+//                     <div className="flex flex-wrap gap-2 text-xs">
+//                         {data.skills.map((skill, i) => (
+//                             <span
+//                                 key={i}
+//                                 className="px-2 py-1 border rounded-md bg-gray-50"
+//                             >
+//                                 {skill}
+//                             </span>
+//                         ))}
+//                     </div>
+//                 </section>
+//             )}
+//         </div>
+//     );
+// };
+
+// export default ClassicTemplate;
