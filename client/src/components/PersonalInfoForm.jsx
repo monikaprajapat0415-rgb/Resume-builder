@@ -11,7 +11,8 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
     const fields = [
         {key:'full_name', label:'Full Name',icon:User, type:'text', required:true},
         // allow any valid email address
-        {key:'email', label:'Email Address', icon:Mail, type:'email', pattern:"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", required:true},
+    // allow any valid email address
+    {key:'email', label:'Email Address', icon:Mail, type:'email', pattern:"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.\-]+\\.[A-Za-z]{2,}$", required:true},
         // allow an optional leading + for international numbers; require 10-13 digits (plus optional leading +)
         {key:'phone', label:'Phone Number', icon: Phone, type:'tel', pattern:"^\\+?[0-9]{10,13}$", required:true,  inputMode:"numeric", maxLength: 14},
         {key:'location', label:'Address', icon: MapPin, type:'text'},    
@@ -82,7 +83,7 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
                     {field.key === 'phone' && (data[field.key] || "") && !/^\\+?[0-9]{10,14}$/.test(data[field.key] || "")
                         // <p className='text-xs text-red-600 mt-1'>Phone must be 10 to 13 digits (optional leading +)</p>
                     }
-                    {field.key === 'email' && (data[field.key] || "") && !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test((data[field.key] || '').trim()) && (
+                    {field.key === 'email' && (data[field.key] || "") && !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/.test((data[field.key] || '').trim()) && (
                         <p className='text-xs text-red-600 mt-1'>Please enter a valid email address</p>
                     )}
                 </div>

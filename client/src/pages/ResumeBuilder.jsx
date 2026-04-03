@@ -62,6 +62,84 @@ const ResumeBuilder = () => {
   ]
   const activeSection = sections[activeSectionIndex]
 
+  const validateSection = (index) => {
+    const sectionId = sections[index].id;
+    // basic validators
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
+    const phoneRegex = /^\+?[0-9]{10,13}$/;
+
+    if (sectionId === 'personal') {
+      const pi = resumeData.personal_info || {};
+      if (!pi.full_name || !pi.full_name.trim()) {
+        toast.error('Full name is required');
+        return false;
+      }
+      if (!pi.email || !emailRegex.test((pi.email || '').trim())) {
+        toast.error('Please enter a valid email address');
+        return false;
+      }
+      if (!pi.phone || !phoneRegex.test((pi.phone || '').trim())) {
+        toast.error('Please enter a valid phone number (10-13 digits, optional leading +)');
+        return false;
+      }
+      return true;
+    }
+
+    if (sectionId === 'experience') {
+      const exps = resumeData.experience || [];
+      for (let i = 0; i < exps.length; i++) {
+        const e = exps[i] || {};
+        // if any data present in this experience, require company and position
+        if ((e.company && e.company.trim()) || (e.position && e.position.trim()) || (e.start_date && e.start_date.trim()) || (e.end_date && e.end_date.trim()) || (e.description && e.description.trim())) {
+          if (!e.company || !e.company.trim()) {
+            toast.error(`Experience #${i + 1}: company is required`);
+            return false;
+          }
+          if (!e.position || !e.position.trim()) {
+            toast.error(`Experience #${i + 1}: position is required`);
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    if (sectionId === 'education') {
+      const eds = resumeData.education || [];
+      for (let i = 0; i < eds.length; i++) {
+        const ed = eds[i] || {};
+        if ((ed.institution && ed.institution.trim()) || (ed.degree && ed.degree.trim()) || (ed.graduation_date && ed.graduation_date.trim())) {
+          if (!ed.institution || !ed.institution.trim()) {
+            toast.error(`Education #${i + 1}: institution is required`);
+            return false;
+          }
+          if (!ed.degree || !ed.degree.trim()) {
+            toast.error(`Education #${i + 1}: degree is required`);
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    if (sectionId === 'project') {
+      const projs = resumeData.project || [];
+      for (let i = 0; i < projs.length; i++) {
+        const p = projs[i] || {};
+        if ((p.name && p.name.trim()) || (p.description && p.description.trim()) || (p.type && p.type.trim())) {
+          if (!p.name || !p.name.trim()) {
+            toast.error(`Project #${i + 1}: name is required`);
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    // default: no validation
+    return true;
+  }
+
   useEffect(() => {
     loadExistingResume();
   }, [])
@@ -156,7 +234,12 @@ const ResumeBuilder = () => {
                       Previous
                     </button>
                   )}
-                  <button onClick={() => setActiveSectionIndex((prevIndex) => Math.min(prevIndex + 1, sections.length - 1))}
+                  <button onClick={() => {
+                      // validate current section before moving next
+                      if (validateSection(activeSectionIndex)) {
+                        setActiveSectionIndex((prevIndex) => Math.min(prevIndex + 1, sections.length - 1));
+                      }
+                    }}
                     className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium
                 text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === sections.length - 1 && 'opacity-50'}`} disabled={activeSectionIndex === sections.length - 1}>
                     Next <ChevronRight className='size-4' />
