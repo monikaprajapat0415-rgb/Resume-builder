@@ -1,7 +1,8 @@
-import { Palette } from 'lucide-react';
+// import { Palette } from 'lucide-react';
+import { LuPalette,LuCheck } from 'react-icons/lu';
 import React from 'react'
 import { useState } from 'react';
-import { Check } from 'lucide-react';
+// import { Check } from 'lucide-react';
 
 const colorPicker = ({selectedColor, onChange}) => {
     const colors = [
@@ -32,7 +33,7 @@ const colorPicker = ({selectedColor, onChange}) => {
         <button className='flex items-center gap-1 text-sm text-purple-600
             bg-gradient-to-br from-purple-50 to-purple-100 ring-purple-300 hover:ring
             transition-all px-3 py-2 rounded-lg' onClick={() => setIsOpen(!isOpen)}>
-             <Palette size={16}/><span className='max-sm:hidden'>Accent</span>
+             <LuPalette size={16}/><span className='max-sm:hidden'>Accent</span>
             </button>
 
             {isOpen && (
@@ -45,7 +46,7 @@ const colorPicker = ({selectedColor, onChange}) => {
                             </div>
                             {selectedColor === color.value && (
                                 <div className='absolute top-0 left-0 right-0 bottom-4.5 flex items-center justify-center'>
-                                    <Check className='size-5 text-white'/>
+                                    <LuCheck className='size-5 text-white'/>
                                 </div>
                             )}
                             <p className='text-xs text-center mt-1 text-gray-600'>{color.name}</p>

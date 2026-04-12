@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import api from "./configs/api";
 import { login, setLoading } from "./app/features/authSlice";
 import{Toaster} from 'react-hot-toast'
+import ResetPassword from "./pages/ResetPasswordPage";
+import ForgotPassword from "./pages/ForgetPassword";
 const App = () => {
 
   const dispatch = useDispatch();
@@ -51,6 +53,9 @@ const App = () => {
         <Route path="view/:resumeId" element={<Preview />} />
 
         <Route path="/logout" element={<Logout />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+
       </Routes>
     </>
   );

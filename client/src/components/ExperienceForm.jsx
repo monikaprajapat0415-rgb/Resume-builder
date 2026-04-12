@@ -1,10 +1,13 @@
-import { Briefcase, Sparkles, Trash2, Plus } from 'lucide-react';
+// import { Briefcase, Sparkles, Trash2, Plus } from 'lucide-react';
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import api from '../configs/api';
 import toast from 'react-hot-toast';
-import { Loader2 } from 'lucide-react';
+// import { Loader2 } from 'lucide-react';
+import { FaBriefcase } from 'react-icons/fa';
+import { BiLoaderAlt } from 'react-icons/bi';
+import { LuSparkles } from 'react-icons/lu';
 const ExperienceForm = ({ data, onChange }) => {
 
     const { token } = useSelector(state => state.auth)
@@ -61,7 +64,7 @@ const ExperienceForm = ({ data, onChange }) => {
             </div>
             {data.length === 0 ? (
                 <div className='text-center py-8 text-gray-500'>
-                    <Briefcase className='w-12 h-12 mx-auto mb-3 text-gray-300' />
+                    <FaBriefcase className='w-12 h-12 mx-auto mb-3 text-gray-300' />
                     <p>No work experience added yet.</p>
                     <p className='text-sm'>Click "Add Experience" to get started.</p>
                 </div>
@@ -93,9 +96,9 @@ const ExperienceForm = ({ data, onChange }) => {
                                     </label>
                                     <button onClick={() => generateDescription(index)} disabled={generatingIndex === index || !exp.position || !exp.company} className='flex items-center gap-1 px-2 py-1
                                     text-xs bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors disabled:opacity-50'>
-                                        {generatingIndex === index ? (<Loader2 className='size-3 animate-spin' />) :
+                                        {generatingIndex === index ? (<BiLoaderAlt className='size-3 animate-spin' />) :
                                             (
-                                                <Sparkles className='w-3 h-3' />
+                                                <LuSparkles className='w-3 h-3' />
                                             )}
                                         Enhance with AI
                                     </button>

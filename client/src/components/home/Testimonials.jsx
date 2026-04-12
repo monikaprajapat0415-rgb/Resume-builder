@@ -1,5 +1,7 @@
 import React from 'react'
-import { BookUserIcon, Zap } from 'lucide-react'
+// import { BookUserIcon, Zap } from 'lucide-react'
+import { LuBookUser, LuZap } from 'react-icons/lu';
+// import { LuZap } from 'react-icons/lu';
 import Title from './Title';
 
 const Testimonials = () => {
@@ -61,7 +63,7 @@ const Testimonials = () => {
         `}</style>
       <div id='testimonials' className='flex flex-col items-center my-10 scroll-mt-12'>
 <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
-            <BookUserIcon className='size-4.5 stroke-green-600'/>
+            <LuBookUser className='size-4.5 stroke-green-600'/>
             <span>Testimonials</span>
         </div>
         <Title title="Don't just take our words" desciption='Hear what our users say about us. We are alway looking for ways to improve. if you have a positive review experience with us, leave a review.'/>
