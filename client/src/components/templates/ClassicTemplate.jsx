@@ -1,4 +1,7 @@
-import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
+// import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { FaLinkedin, FaGithub,FaGlobe } from "react-icons/fa";
+import { LuMail,LuPhone, LuMapPin } from "react-icons/lu";
+
 
 const ClassicTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
@@ -21,31 +24,31 @@ const ClassicTemplate = ({ data, accentColor }) => {
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                     {data.personal_info?.email && (
                         <div className="flex items-center gap-1">
-                            <Mail className="size-4" />
+                            <LuMail className="size-4" />
                             <span>{data.personal_info.email}</span>
                         </div>
                     )}
                     {data.personal_info?.phone && (
                         <div className="flex items-center gap-1">
-                            <Phone className="size-4" />
+                            <LuPhone className="size-4" />
                             <span>{data.personal_info.phone}</span>
                         </div>
                     )}
                     {data.personal_info?.location && (
                         <div className="flex items-center gap-1">
-                            <MapPin className="size-4" />
+                            <LuMapPin className="size-4" />
                             <span>{data.personal_info.location}</span>
                         </div>
                     )}
                     {data.personal_info?.linkedin && (
                         <div className="flex items-center gap-1">
-                            <Linkedin className="size-4" />
+                            <FaLinkedin className="size-4" />
                             <span className="break-all">{data.personal_info.linkedin}</span>
                         </div>
                     )}
                     {data.personal_info?.website && (
                         <div className="flex items-center gap-1">
-                            <Globe className="size-4" />
+                            <FaGlobe className="size-4" />
                             <span className="break-all">{data.personal_info.website}</span>
                         </div>
                     )}

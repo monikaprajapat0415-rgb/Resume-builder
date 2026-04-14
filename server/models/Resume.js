@@ -47,8 +47,7 @@ const ResumeSchema = new mongoose.Schema({
            
 
         }
-    ],
-    raw_ai_output: { type: mongoose.Schema.Types.Mixed, default: null }, // store raw AI output for debugging
+    ]
 
 }, {timestamps:true, minimize: false})
 

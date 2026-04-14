@@ -1,5 +1,6 @@
 import React from 'react'
-import { Zap } from 'lucide-react'  
+// import { Zap } from 'lucide-react'  
+import { LuZap } from 'react-icons/lu';
 import Title from './Title';
 
 
@@ -10,7 +11,7 @@ const Features = () => {
    <div id='feature' className='flex flex-col items-center my-10 scroll-mt-12'>
 
      <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
-            <Zap width={14}/>
+            <LuZap width={14}/>
             <span>Simple process</span>
         </div>
         <Title title='Buid your resume' desciption='Our stremlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.'/>

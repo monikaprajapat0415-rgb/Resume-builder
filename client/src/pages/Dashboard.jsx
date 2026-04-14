@@ -1,5 +1,8 @@
-import { FilePenIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
-import React from 'react'
+// import { FilePenIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
+// import React from 'react'
+import {FaFileSignature,  } from 'react-icons/fa'
+import { BiLoaderAlt } from 'react-icons/bi';
+import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -19,6 +22,8 @@ const Dashboard = () => {
   const [resume, setResume] = useState(null)
   const [editResumeId, setEditResumeId] = useState("")
   const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState('')
+  const [sortOption, setSortOption] = useState('newest')
 
   const navigate = useNavigate();
 
@@ -96,63 +101,129 @@ const Dashboard = () => {
   useEffect(() => {
     loadAllResumes();
   }, [])
+  // derive filtered + sorted list in JS for simpler JSX
+  const q = query.trim().toLowerCase()
+  let filteredResumes = allResumes.filter(r => r.title?.toLowerCase().includes(q) || !q)
+  if (sortOption === 'newest') filteredResumes = filteredResumes.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+  if (sortOption === 'oldest') filteredResumes = filteredResumes.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt))
+  if (sortOption === 'title_asc') filteredResumes = filteredResumes.sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+  if (sortOption === 'title_desc') filteredResumes = filteredResumes.sort((a, b) => (b.title || '').localeCompare(a.title || ''))
+  // compute number of distinct templates used across resumes
+  const templateCount = new Set(allResumes.map(r => (r.template || 'classic'))).size
   return (
     <div>
-      <div className='max-w-7xl mx-auto px-4 py-6'>
-        <p className='text-2xl font-medium mb-6 bg-gradient-to-r from-slate-600 to-slate-700 bg-clip-text 
-        text-transparent sm:hidden'>Welcome, Monika</p>
-        <div className='flex gap-4'>
-          <button onClick={() => setShowCreateResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex 
-          flex-col items-center justify-center rounded-lg gap-2 border group
-          hover:shadow-lg transition-all duration-300 cursor-pointer'>
-            <PlusIcon className='size-11 transition-all duration-300 p-2.5
-            bg-gradient-to-br from-indigo-300 to-indigo-500 text-white rounded-full'/>
+      <div className='max-w-7xl mx-auto px-4 py-6 relative'>
+        {/* soft green background shard */}
+        <div className='absolute top-12 -z-10 right-1/4 rounded-full size-72 sm:size-96 bg-green-300 blur-[100px] opacity-25 transform rotate-12'></div>
+        {/* Header: greeting, summary stats and CTAs */}
+        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6'>
+          <div>
+            <h1 className='text-3xl font-semibold text-slate-800'>
+              Welcome{user?.name ? `, ${user.name.split(' ')[0]}` : ''}
+            </h1>
+            <p className='text-sm text-slate-500 mt-1'>Manage your resumes and export them to PDF.</p>
+            <div className='mt-3 flex items-center gap-3'>
+              <div className='bg-slate-50 px-3 py-1 rounded-md text-sm text-slate-700'>
+                <strong className='mr-1'>{allResumes.length}</strong> resumes
+              </div>
+              <div className='bg-slate-50 px-3 py-1 rounded-md text-sm text-slate-700'>
+                <strong className='mr-1'>{templateCount}</strong> templates used
+              </div>
+            </div>
+          </div>
 
-            <p className='text-sm group-hover:text-indigo-600 transition-all duration-300'>Create Resume</p>
-          </button>
-          <button onClick={() => setShowUploadResume(true)} className='w-full bg-white sm:max-w-36 h-48 flex 
-          flex-col items-center justify-center rounded-lg gap-2 border group
-          hover:shadow-lg transition-all duration-300 cursor-pointer'>
-            <UploadCloudIcon className='size-11 transition-all duration-300 p-2.5
-            bg-gradient-to-br from-purple-300 to-purple-500 text-white rounded-full'/>
-
-            <p className='text-sm group-hover:text-indigo-600 transition-all duration-300'>Upload Existing</p>
-          </button>
-        </div>
-
-        <hr className='border-slate-300 my-6 sm:w-[305px]' />
-
-        <div className='grid grid-cols-2 sm:flex flex-wrap gap-4'>
-          {allResumes.map((resume, index) => {
-            const baseColor = colors[index % colors.length];
-            return (
-              <button key={index} onClick={() => navigate(`/app/builder/${resume._id}`)} className='relative w-full sm:w-36 h-48 flex flex-col 
-            items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 
-            cussor-pointer' style={{
-                  background: `linear-gradient(135deg, ${baseColor}10 0%, ${baseColor}40) 
-            `, borderColor: baseColor + '40'
-                }}>
-                <FilePenIcon className='size-10 group-hover:scale-105 transition-all px-2
-              text-center' style={{ color: baseColor }} />
-                <p className='text-sm group-hover:scale-105 transition-all px-2 text-center' style={{ color: baseColor }}>{resume.title}</p>
-                <p className='absolute bottom-1 text-[11px] text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center' style={{ color: baseColor + '90' }}>
-                  Updated on {new Date(resume.updatedAt).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </p>
-                <div onClick={(e) => e.stopPropagation()} className='absolute top-1 right-1 group-hover:flex items-center hidden'>
-                  <TrashIcon onClick={() => { deleteResume(resume._id) }} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colours duration-300 cursor-pointer' />
-                  <PencilIcon onClick={() => { setEditResumeId(resume._id); setTitle(resume.title) }} className='size-7 p-1.5 hover:bg-white/50 rounded text-slate-700 transition-colours duration-300 cursor-pointer' />
-
-                </div>
+          <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto'>
+            <div className='flex items-center gap-3'>
+              <button onClick={() => setShowCreateResume(true)} className='flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-sm transition'>
+                <LuPlus className='size-4' />
+                Create
               </button>
-            )
+              <button onClick={() => setShowUploadResume(true)} className='flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-full hover:bg-slate-50 transition'>
+                <LuUpload className='size-4' />
+                Upload
+              </button>
+            </div>
 
-          })}
-
+            {/* Search & sort */}
+            <div className='flex items-center gap-2 mt-3 sm:mt-0'>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search resumes...' className='px-3 py-2 border rounded-md text-sm w-48 focus:ring-1 focus:ring-indigo-200' />
+              <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} className='text-sm border rounded-md px-2 py-2'>
+                <option value='newest'>Newest</option>
+                <option value='oldest'>Oldest</option>
+                <option value='title_asc'>Title A→Z</option>
+                <option value='title_desc'>Title Z→A</option>
+              </select>
+            </div>
+          </div>
         </div>
+
+        <hr className='border-slate-200 my-6' />
+
+        {allResumes.length === 0 ? (
+          <div className='rounded-lg border border-dashed border-slate-200 p-10 text-center text-slate-500'>
+            <p className='mb-3 text-lg text-slate-700'>No resumes yet</p>
+            <p className='mb-6'>Start by creating a new resume or upload an existing PDF.</p>
+            <div className='flex items-center justify-center gap-3'>
+              <button onClick={() => setShowCreateResume(true)} className='px-4 py-2 bg-green-600 text-white rounded-md'>Create resume</button>
+              <button onClick={() => setShowUploadResume(true)} className='px-4 py-2 border rounded-md'>Upload PDF</button>
+            </div>
+          </div>
+        ) : filteredResumes.length === 0 ? (
+          <div className='rounded-lg border border-slate-200 p-8 text-center text-slate-600'>
+            <p className='mb-2'>No resumes match "{query}"</p>
+            <p className='text-sm text-slate-500'>Try a different search or clear the filter.</p>
+          </div>
+        ) : (
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+            {filteredResumes.map((resume, index) => {
+              const baseColor = colors[index % colors.length];
+              return (
+                <div key={resume._id} className='relative group bg-white rounded-lg border p-4 shadow-sm hover:shadow-md transition cursor-pointer' onClick={() => navigate(`/app/builder/${resume._id}`)}>
+                  <div className='flex items-start justify-between gap-3'>
+                    <div className='flex items-center gap-3'>
+                      <div className='w-10 h-10 rounded-md flex items-center justify-center' style={{ background: `${baseColor}20` }}>
+                        <LuFileText className='text-lg' style={{ color: baseColor }} />
+                      </div>
+                      <div className='min-w-0'>
+                        <p className='font-medium text-slate-800 truncate'>{resume.title || 'Untitled resume'}</p>
+                        <p className='text-xs text-slate-500'>Updated {new Date(resume.updatedAt).toLocaleDateString()}</p>
+                      </div>
+                    </div>
+                    <div onClick={(e) => e.stopPropagation()} className='flex items-center gap-2 opacity-0 group-hover:opacity-100 transition'>
+                      <button onClick={() => { setEditResumeId(resume._id); setTitle(resume.title) }} aria-label='Edit title' className='p-2 rounded-md hover:bg-slate-100 transition'>
+                        <FaFileSignature className='size-4 text-slate-600' />
+                      </button>
+                      <button onClick={() => deleteResume(resume._id)} aria-label='Delete resume' className='p-2 rounded-md hover:bg-slate-100 transition'>
+                        <LuTrash2 className='size-4 text-red-500' />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className='mt-4 flex items-center justify-between'>
+                    <div className='text-xs text-slate-500'>
+                      {resume.public ? (
+                        <span className='inline-flex items-center gap-2 text-green-600 font-medium text-xs'>
+                          {/* small public badge */}
+                          <svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg' className='inline-block'>
+                            <circle cx='5' cy='5' r='5' fill='#10B981' />
+                          </svg>
+                          Public
+                        </span>
+                      ) : (
+                        <span className='text-xs text-slate-400'>Private</span>
+                      )}
+                    </div>
+                    <div className='text-xs space-x-2 flex items-center'>
+                      {resume.public && (
+                        <button onClick={(e) => { e.stopPropagation(); navigate(`/view/${resume._id}`) }} className='px-3 py-1 text-xs border rounded-md hover:bg-slate-50 transition'>Preview</button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
 
         {showCreateResume && (
           <form onSubmit={createResume} onClick={() => { setShowCreateResume(false); setTitle('') }} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>
@@ -164,7 +235,7 @@ const Dashboard = () => {
               <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
                 Create Resume
               </button>
-              <XIcon className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
+              <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
                 onClick={() => { setShowCreateResume(false); setTitle('') }} />
 
             </div>
@@ -185,7 +256,7 @@ const Dashboard = () => {
                     {resume ? (
                       <p className='text-green-700'>{resume.name}</p>
                     ) : (<>
-                      <UploadCloud className='size-14 stroke-1' />
+                      <LuUpload className='size-14 stroke-1' />
                       <p>Upload resume</p>
                     </>)}
 
@@ -195,11 +266,11 @@ const Dashboard = () => {
                   onChange={(e) => setResume(e.target.files[0])} />
               </div>
               <button disabled={isLoading} className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center justify-center gap-2'>
-                {isLoading && <LoaderCircleIcon className='size-4 animate-spin text-white' />}
+                {isLoading && <BiLoaderAlt className='size-4 animate-spin text-white' />}
                 {isLoading ? "Uploading..." : "Upload Resume"}
 
               </button>
-              <XIcon className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
+              <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
                 onClick={() => { setShowUploadResume(false); setTitle('') }} />
 
             </div>
@@ -216,7 +287,7 @@ const Dashboard = () => {
               <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
                 Update
               </button>
-              <XIcon className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
+              <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
                 onClick={() => { setEditResumeId(''); setTitle('') }} />
 
             </div>

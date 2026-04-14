@@ -2,7 +2,22 @@ import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import api from '../configs/api'
-import { ArrowLeftIcon, Briefcase, ChevronLast, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOffIcon, FileText, FolderIcon, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react';
+// import { LuArrowLeft, Briefcase, ChevronLast, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOffIcon, FileText, LuFileText, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react';
+import { LuArrowLeft,
+LuBriefcase,
+LuChevronLast,
+LuChevronLeft,
+LuChevronRight,
+LuDownload,
+LuEye,
+LuEyeOff,
+LuFileText,
+LuFolder,
+LuGraduationCap,
+LuShare2,
+LuSparkles,
+LuUser
+} from "react-icons/lu";
 import PersonalInfoForm from '../components/PersonalInfoForm';
 import ResumePreview from '../components/resumePreview';
 import TemplateSelector from '../components/TemplateSelector';
@@ -52,12 +67,12 @@ const ResumeBuilder = () => {
   const [removeBackground, setRemoveBackground] = useState(false);
 
   const sections = [
-    { id: 'personal', name: 'Personal Information', icon: User },
-    { id: 'summary', name: 'Professional Summary', icon: FileText },
-    { id: 'experience', name: 'Experience', icon: Briefcase },
-    { id: 'education', name: 'Education', icon: GraduationCap },
-    { id: 'project', name: 'Projects', icon: FolderIcon },
-    { id: 'skills', name: 'Skills', icon: Sparkles },
+    { id: 'personal', name: 'Personal Information', icon: LuUser },
+    { id: 'summary', name: 'Professional Summary', icon: LuFileText },
+    { id: 'experience', name: 'Experience', icon: LuBriefcase },
+    { id: 'education', name: 'Education', icon: LuGraduationCap },
+    { id: 'project', name: 'Projects', icon: LuFileText },
+    { id: 'skills', name: 'Skills', icon: LuSparkles },
 
   ]
   const activeSection = sections[activeSectionIndex]
@@ -205,7 +220,7 @@ const ResumeBuilder = () => {
     <div>
       <div className='max-w-7xl mx-auto px-4 py-6'>
         <Link to={'/app'} className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-all'>
-          <ArrowLeftIcon className='size-4' />Back to Deshboard
+          <LuArrowLeft className='size-4' />Back to Deshboard
         </Link>
       </div>
       <div className='max-w-7xl mx-auto px-4 pb-8'>
@@ -230,7 +245,7 @@ const ResumeBuilder = () => {
                     <button onClick={() => setActiveSectionIndex((prevIndex) => Math.max(prevIndex - 1, 0))}
                       className='flex items-center gap-1 p-3 rounded-lg text-sm
                    font-medium text-gray-600 hover:bg-gray-50 transition-all' disabled={activeSectionIndex === 0}>
-                      <ChevronLeft className='size-4' />
+                      <LuChevronLeft className='size-4' />
                       Previous
                     </button>
                   )}
@@ -242,7 +257,7 @@ const ResumeBuilder = () => {
                     }}
                     className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium
                 text-gray-600 hover:bg-gray-50 transition-all ${activeSectionIndex === sections.length - 1 && 'opacity-50'}`} disabled={activeSectionIndex === sections.length - 1}>
-                    Next <ChevronRight className='size-4' />
+                    Next <LuChevronRight className='size-4' />
                   </button>
                 </div>
 
@@ -295,18 +310,18 @@ const ResumeBuilder = () => {
                 {resumeData.public && (
                   <button onClick={handleShare} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
-                    <Share2Icon className='size-4' />Share
+                    <LuShare2 className='size-4' />Share
                   </button>)}
 
                 <button onClick={changeResumeVisibility} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-purple-100 to-purple-200 text-purple-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
-                  {resumeData.public ? <EyeIcon className='size-4' /> : <EyeOffIcon className='size-4' />}
+                  {resumeData.public ? <LuEye className='size-4' /> : <LuEyeOff className='size-4' />}
                   {resumeData.public ? 'Public' : 'Private'}
                 </button>
                 {/* Download button */}
                 <button onClick={downloadResume} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-green-100 to-green-200 text-green-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
-                  <DownloadIcon className='size-4' />Download
+                  <LuDownload className='size-4' />Download
                 </button>
               </div>
 

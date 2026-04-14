@@ -1,5 +1,7 @@
 import React from 'react'
-import {BriefcaseBusiness, Linkedin, Mail, MapPin, Phone, User,Globe} from 'lucide-react'
+// import {BriefcaseBusiness, Briefcase, Mail, MapPin, Phone, User,Globe} from 'lucide-react'
+import { FaBusinessTime, FaBriefcase, FaEnvelope, FaPhone, FaUser, FaGlobe } from 'react-icons/fa';
+import {LuMapPin} from 'react-icons/lu';
 
 const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground}) => {
   
@@ -9,17 +11,16 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
     }
 
     const fields = [
-        {key:'full_name', label:'Full Name',icon:User, type:'text', required:true},
+        {key:'full_name', label:'Full Name',icon:FaUser, type:'text', required:true},
         // allow any valid email address
     // allow any valid email address
-    {key:'email', label:'Email Address', icon:Mail, type:'email', pattern:"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.\-]+\\.[A-Za-z]{2,}$", required:true},
+    {key:'email', label:'Email Address', icon:FaEnvelope, type:'email', pattern:"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.\-]+\\.[A-Za-z]{2,}$", required:true},
         // allow an optional leading + for international numbers; require 10-13 digits (plus optional leading +)
-        {key:'phone', label:'Phone Number', icon: Phone, type:'tel', pattern:"^\\+?[0-9]{10,13}$", required:true,  inputMode:"numeric", maxLength: 14},
-        {key:'location', label:'Address', icon: MapPin, type:'text'},    
-        {key:'profession', label:'Profession', icon: BriefcaseBusiness, type:'text'},
-        {key:'linkedin', label:'LinkedIn Profile', icon: Linkedin, type:'url'},
-        {key:'website', label:'Personal Website', icon: Globe, type:'url'}
-        
+        {key:'phone', label:'Phone Number', icon: FaPhone, type:'tel', pattern:"^\\+?[0-9]{10,13}$", required:true,  inputMode:"numeric", maxLength: 14},
+        {key:'location', label:'Address', icon: LuMapPin, type:'text'},    
+        {key:'profession', label:'Profession', icon: FaBriefcase, type:'text'},
+        {key:'linkedin', label:'LinkedIn Profile', icon: FaGlobe, type:'url'},
+        {key:'website', label:'Personal Website', icon: FaGlobe, type:'url'}
     ]
   
     return (
@@ -31,7 +32,7 @@ const PersonalInfoForm = ({data, onChange, removeBackground, setRemoveBackground
                 {data.image ? (
                     <img src={typeof data.image === 'string' ? data.image : URL.createObjectURL(data.image)} alt='user-image' className='w-16 h-16 rounded-full object-cover mt-5 ring ring-slate-300 hover:opacity-80'/>)
                     : (<div className='inline-flex items-center gap-2 mt-5 text-slate-600 hover:text-slate-700 cursor-pointer'>
-                        <User className='size-10 p-2.5 border rounded-full'/>
+                        <FaUser className='size-10 p-2.5 border rounded-full'/>
                         upload user image
                     </div>)}
                 <input type='file' accept='image/jpeg, image/png' className='hidden' onChange={(e)=> handleChange('image',e.target.files[0])} />

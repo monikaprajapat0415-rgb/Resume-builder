@@ -6,6 +6,8 @@ import { logout } from '../../app/features/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from '../../configs/api';
+import NavBar from './NavBar';
+
 
 const Hero = () => {
 
@@ -41,7 +43,7 @@ const Hero = () => {
      <>
             <div className="min-h-screen pb-20">
                 {/* Navbar */}
-                <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
+                {/* <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="https://prebuiltui.com">
                         <img src={logo} alt='logo' className='h-11 w-auto'/>
                     </a>
@@ -50,7 +52,8 @@ const Hero = () => {
                         <a href="#" className="hover:text-green-600 transition">Home</a>
                         <a href="#features" className="hover:text-green-600 transition">Features</a>
                         <a href="#testimonials" className="hover:text-green-600 transition">Testimonials</a>
-                        <a href="#cta" className="hover:text-green-600 transition">Contact</a>
+                        {/* <a href="#cta" className="hover:text-green-600 transition">Contact</a> */}
+                        {/* <Link to='/contact-us' className="hover:text-green-600 transition">Contact Us</Link>
                     </div>
 
                     <div className="flex gap-2">
@@ -67,7 +70,7 @@ const Hero = () => {
                             Dashboard
                         </Link>
                         {/* Logout button shown when user is logged in */}
-                        <button onClick={() => { dispatch(logout()); navigate('/'); }} className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={!user}>
+                        {/* <button onClick={() => { dispatch(logout()); navigate('/'); }} className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={!user}>
                             Logout
                         </button>
 
@@ -78,14 +81,16 @@ const Hero = () => {
                             <path d="M4 5h16M4 12h16M4 19h16" />
                         </svg>
                     </button>
-                </nav>
+                // </nav> */}
+                <NavBar />
 
                 {/* Mobile Menu */}
                 <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
-                    <a href="#" className="text-white">Home</a>
-                    <a href="#features" className="text-white">Features</a>
+                    <a href="/" className="text-white">Home</a>
+                    <a href="#feature" className="text-white">Features</a>
                     <a href="#testimonials" className="text-white">Testimonials</a>
-                    <a href="#contact" className="text-white">Contact</a>
+                    {/* <a href="#" className="text-white">Contact</a> */}
+                    <Link to='/contact-us' className="text-white">Contact Us</Link>
                     <button onClick={() => setMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex" >
                         X
                     </button>

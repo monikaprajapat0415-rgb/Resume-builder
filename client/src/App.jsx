@@ -12,6 +12,11 @@ import { useDispatch } from "react-redux";
 import api from "./configs/api";
 import { login, setLoading } from "./app/features/authSlice";
 import{Toaster} from 'react-hot-toast'
+import ResetPassword from "./pages/ResetPasswordPage";
+import ForgotPassword from "./pages/ForgetPassword";
+import ContactUs from "./pages/ContactUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const App = () => {
 
   const dispatch = useDispatch();
@@ -43,6 +48,7 @@ const App = () => {
     <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 
         <Route path="app" element={<Layouts />}>
           <Route index element={<Dashboard />} />
@@ -51,6 +57,11 @@ const App = () => {
         <Route path="view/:resumeId" element={<Preview />} />
 
         <Route path="/logout" element={<Logout />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
       </Routes>
     </>
   );
