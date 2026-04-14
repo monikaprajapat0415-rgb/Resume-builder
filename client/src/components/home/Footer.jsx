@@ -27,7 +27,7 @@ const Footer = () => {
                             <li><a href="/" className="hover:text-green-600 transition">Affiliate</a></li>
                         </ul>
                     </div>
-                    <div>
+                    {/* <div>
                         <p className="text-slate-800 font-semibold">Resources</p>
                         <ul className="mt-2 space-y-2">
                             <li><a href="/" className="hover:text-green-600 transition">Company</a></li>
@@ -36,12 +36,12 @@ const Footer = () => {
                             <li><a href="/" className="hover:text-green-600 transition">Careers<span className="text-xs text-white bg-green-600 rounded-md ml-2 px-2 py-1">We’re hiring!</span></a></li>
                             <li><a href="/" className="hover:text-green-600 transition">About</a></li>
                         </ul>
-                    </div>
+                    </div> */}
                     <div>
                         <p className="text-slate-800 font-semibold">Legal</p>
                         <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Privacy</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Terms</a></li>
+                            <li><a href="/privacy-policy" className="hover:text-green-600 transition">Privacy</a></li>
+                            <li><a href="/terms-and-conditions" className="hover:text-green-600 transition">Terms</a></li>
                         </ul>
                     </div>
                 </div>

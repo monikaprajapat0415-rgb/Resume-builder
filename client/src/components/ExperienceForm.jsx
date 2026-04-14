@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 // import { Loader2 } from 'lucide-react';
 import { FaBriefcase } from 'react-icons/fa';
 import { BiLoaderAlt } from 'react-icons/bi';
-import { LuSparkles } from 'react-icons/lu';
+import { LuSparkles,LuPlus, LuTrash2 } from 'react-icons/lu';
 const ExperienceForm = ({ data, onChange }) => {
 
     const { token } = useSelector(state => state.auth)
@@ -58,7 +58,7 @@ const ExperienceForm = ({ data, onChange }) => {
                 </div>
                 <button onClick={addExperience} className='flex items-center gap-2 px-3 py-1 text-sm bg-green-100 
             text-green-700 rounded-lg hover:bg-green-200 transition-colors'>
-                    <Plus className='size-4' />
+                    <LuPlus className='size-4' />
                     Add Experience
                 </button>
             </div>
@@ -75,7 +75,7 @@ const ExperienceForm = ({ data, onChange }) => {
                             <div className='flex items-start justify-between'>
                                 <h4>Experience #{index + 1}</h4>
                                 <button onClick={() => removeExperience(index)} className='text-red-500 hover:text-red-700 trasition-colors'>
-                                    <Trash2 className='size-4' />
+                                    <LuTrash2 className='size-4' />
                                 </button>
                             </div>
                             <div className='grid md:grid-cols-2 gap-3'>
