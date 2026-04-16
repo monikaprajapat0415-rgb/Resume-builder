@@ -19,7 +19,7 @@ LuSparkles,
 LuUser
 } from "react-icons/lu";
 import PersonalInfoForm from '../components/PersonalInfoForm';
-import ResumePreview from '../components/resumePreview';
+import ResumePreview from '../components/ResumePreview';
 import TemplateSelector from '../components/TemplateSelector';
 import ColorPicker from '../components/ColorPicker';
 import ProfessinalSummaryForm from '../components/ProfessinalSummaryForm';
