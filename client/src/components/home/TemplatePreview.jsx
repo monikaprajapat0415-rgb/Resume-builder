@@ -6,7 +6,7 @@ import { useState } from "react";
 // import MinimalImageTemplate from "../templates/MinimalImageTemplate";
 import classic from '../../assets/Classic.png';
 import modern from '../../assets/modern.png';
-import minimal from '../../assets/minimal.png';
+import minimal from '../../assets/Minimal.png';
 import minimalImage from '../../assets/MinimalwithImage.png';
 import Title from "./Title";
 import { LuBookUser, LuLayers } from "react-icons/lu";
