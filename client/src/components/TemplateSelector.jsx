@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 // import { Check, Layout } from 'lucide-react';
-import { FaCheck,  } from 'react-icons/fa';
+import { FaCheck, } from 'react-icons/fa';
 import { LuLayoutDashboard } from 'react-icons/lu';
 
 const TemplateSelector = ({ selectedTemplate, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
-
     const templates = [
         { id: 'classic', name: 'Classic', preview: 'Clean, timeless layout focused on readability.' },
         { id: 'modern', name: 'Modern', preview: 'Contemporary layout with bold typography and clear sections.' },
@@ -25,8 +24,8 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
                 <span className="hidden sm:inline">Templates</span>
             </button>
 
-                    {isOpen && (
-                        <div className="absolute top-full mt-3 left-0 z-50 origin-top-left w-[360px] max-w-[92vw] bg-white rounded-2xl shadow-xl ring-1 ring-black/5 border border-gray-100 p-4 space-y-3">
+            {isOpen && (
+                <div className="absolute top-full mt-3 left-0 z-50 origin-top-left w-[360px] max-w-[92vw] bg-white rounded-2xl shadow-xl ring-1 ring-black/5 border border-gray-100 p-4 space-y-3">
                     <div className="flex items-center justify-between">
                         <h4 className="text-sm font-semibold text-gray-800">Choose template</h4>
                         <div className="text-xs text-gray-500">{templates.length} options</div>

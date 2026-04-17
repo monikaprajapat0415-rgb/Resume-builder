@@ -65,6 +65,8 @@ const ResumeBuilder = () => {
   }
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
   const [removeBackground, setRemoveBackground] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
+
 
   const sections = [
     { id: 'personal', name: 'Personal Information', icon: LuUser },
@@ -236,8 +238,8 @@ const ResumeBuilder = () => {
               {/* Section Navigation */}
               <div className='flex items-center justify-between mb-6 border-b border-gray-300 py-1'>
                 <div className='flex items-center gap-2'>
-                  <TemplateSelector selectedTemplate={resumeData.template} onChange={(template) => setResumeData(prev => ({ ...prev, template }))} />
-                  <ColorPicker selectedColor={resumeData.accent_color} onChange={(color) => setResumeData(prev => ({ ...prev, accent_color: color }))} />
+                  <TemplateSelector selectedTemplate={resumeData.template} isOpen={activeMenu === "template"} onChange={(template) => setResumeData(prev => ({ ...prev, template }))} />
+                  <ColorPicker selectedColor={resumeData.accent_color} isOpen={activeMenu === "color"} onChange={(color) => setResumeData(prev => ({ ...prev, accent_color: color }))} />
 
                 </div>
                 <div className='flex item-center'>
