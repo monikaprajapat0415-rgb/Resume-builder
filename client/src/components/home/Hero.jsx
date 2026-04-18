@@ -23,7 +23,7 @@ const Hero = () => {
                 api.get('/api/users/count')
                     .then(resp => {
                         if (mounted && resp?.data?.count != null) {
-                            setUserCount(resp.data.count);
+                            setUserCount(resp.data.count*100);
                         }
                     })
                     .catch(() => {
