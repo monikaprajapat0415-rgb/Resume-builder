@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 import api from '../configs/api'
 // import { LuArrowLeft, Briefcase, ChevronLast, ChevronLeft, ChevronRight, DownloadIcon, EyeIcon, EyeOffIcon, FileText, LuFileText, GraduationCap, Share2Icon, Sparkles, User } from 'lucide-react';
 import { LuArrowLeft,
@@ -220,6 +221,10 @@ const ResumeBuilder = () => {
 
   return (
     <div>
+      <SEO
+        title="AI Resume Builder – Create ATS-Friendly Resume in Minutes | Prime Resume AI"
+        description="Build a job-winning resume with AI. Generate, edit, and download ATS-friendly resumes instantly. No design skills needed. Fast, smart, and free."
+      />
       <div className='max-w-7xl mx-auto px-4 py-6'>
         <Link to={'/app'} className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-all'>
           <LuArrowLeft className='size-4' />Back to Deshboard

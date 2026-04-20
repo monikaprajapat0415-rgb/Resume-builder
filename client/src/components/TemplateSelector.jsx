@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { Check, Layout } from 'lucide-react';
 import { FaCheck, } from 'react-icons/fa';
 import { LuLayoutDashboard } from 'react-icons/lu';
+import SEO from './SEO';
 
 const TemplateSelector = ({ selectedTemplate, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,8 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
         { id: 'minimal-image', name: 'Minimal with image', preview: 'Minimal layout that includes a profile image option.' },
     ];
 
-    return (
+    return (<>
+    <SEO title="Choose Resume Template | Prime Resume AI" description="Select from a variety of professional resume templates to create your perfect CV. Our templates are designed to be ATS-friendly and visually appealing, helping you stand out to employers." />
         <div className="relative">
             <button
                 onClick={() => setIsOpen(v => !v)}
@@ -64,6 +66,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
                 </div>
             )}
         </div>
+        </>
     );
 };
 
