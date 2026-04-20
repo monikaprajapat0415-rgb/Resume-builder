@@ -3,6 +3,7 @@ import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import Hero from "../components/home/Hero";
 import NavBar from "../components/home/NavBar";
 import toast from "react-hot-toast";
+import SEO from "../components/SEO";
 
 export default function ContactUs() {
   const [form, setForm] = useState({
@@ -27,6 +28,7 @@ export default function ContactUs() {
 
   return (
     <>
+    <SEO title="Contact Us | Prime Resume AI" description="Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume." />
     {/* <NavBar /> */}
        <div id='contact-us' className='flex flex-col items-center my-10 scroll-mt-12'>
     <section className="py-14 px-4">
@@ -42,7 +44,7 @@ export default function ContactUs() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-green-600" />
-              <span>support@yourapp.com</span>
+              <span>support@primeresumeai.com</span>
             </div>
 
             <div className="flex items-center gap-3">

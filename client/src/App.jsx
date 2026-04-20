@@ -17,6 +17,7 @@ import ForgotPassword from "./pages/ForgetPassword";
 import ContactUs from "./pages/ContactUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import SEO from "./components/SEO";
 const App = () => {
 
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const App = () => {
 
   return (
     <>
+    <SEO title="Prime Resume AI - AI-Powered Resume Builder for Job Seekers" description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI!" />
     <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />

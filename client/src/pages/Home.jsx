@@ -8,10 +8,16 @@ import Footer from '../components/home/Footer'
 import WorkFlowSteps from '../components/home/WorkFlowSteps'
 import TemplatePreview from '../components/home/TemplatePreview'
 import ContactUs from './ContactUs'
+import SEO from '../components/SEO'
 
 const Home = () => {
   return (
    <div>
+    <SEO
+  title="Prime Resume AI – Free AI Resume Builder & CV Maker Online"
+  description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
+/>
+
     <Banner />
     <Hero/>
     <WorkFlowSteps/>
