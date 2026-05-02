@@ -162,8 +162,12 @@ export const enhanceProfessionalSummary = async (req, res) => {
         return res.status(200).json({ enhancedContent })
 
     } catch (error) {
+        if (error.response?.data?.error?.code === 400) {
+            return res.status(500).json({
+                message: "AI service temporarily unavailable"
+            });
+        }
         return res.status(400).json({ message: error.message })
-
     }
 }
 
@@ -285,6 +289,11 @@ export const uploadResume = async (req, res) => {
         res.json({ resumeId: newResume._id })
 
     } catch (error) {
+        if (error.response?.data?.error?.code === 400) {
+            return res.status(500).json({
+                message: "AI service temporarily unavailable"
+            });
+        }
         return res.status(400).json({ message: error.message })
 
     }
