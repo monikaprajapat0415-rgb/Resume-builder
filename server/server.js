@@ -22,16 +22,17 @@ const allowedOrigins = [
   "https://primeresumeai.com",
   "https://www.primeresumeai.com"
 ];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// }));
+app.use(cors());// for local testing, allow all origins. In production, consider restricting to allowedOrigins for better security.
 
 app.get('/', (req, res)=> res.send("Server is live..."))
 app.use('/api/users', userRouter)

@@ -5,7 +5,9 @@ import jwt from 'jsonwebtoken'
 import Resume from "../models/Resume.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
+import { OAuth2Client } from "google-auth-library";
 
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const generateToken = (userId) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' })
@@ -88,6 +90,62 @@ export const loginUser = async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: error.message })
 
+    }
+}
+
+//controller for Google signup/login
+//POST: /api/users/google-auth
+// Expects { credential } - the ID token returned by Google's Sign In With Google button
+export const googleAuth = async (req, res) => {
+    try {
+        const { credential } = req.body;
+        if (!credential) {
+            return res.status(400).json({ message: "Missing Google credential" });
+        }
+
+        // Verify the token with Google - this confirms it was really issued by Google
+        // for OUR client id and hasn't been tampered with, so we can trust the payload.
+        const ticket = await googleClient.verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload();
+        const { sub: googleId, email, name, email_verified } = payload;
+
+        if (!email || !email_verified) {
+            return res.status(400).json({ message: "Google account email is not verified" });
+        }
+
+        // Look up by googleId first, then fall back to email so an existing
+        // password-based account with the same email gets linked instead of duplicated.
+        let user = await User.findOne({ googleId });
+        if (!user) {
+            user = await User.findOne({ email });
+            if (user) {
+                // Link existing account to this Google identity
+                user.googleId = googleId;
+                if (user.authProvider !== 'local' || !user.password) {
+                    user.authProvider = 'google';
+                }
+                await user.save();
+            }
+        }
+
+        if (!user) {
+            user = await User.create({
+                name: name || email.split('@')[0],
+                email,
+                googleId,
+                authProvider: 'google',
+            });
+        }
+
+        const token = generateToken(user._id);
+        user.password = undefined;
+
+        return res.status(200).json({ message: "Logged in with Google successfully", token, user });
+    } catch (error) {
+        return res.status(400).json({ message: error.message || "Google authentication failed" });
     }
 }
 
