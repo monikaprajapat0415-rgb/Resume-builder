@@ -1,10 +1,12 @@
 import express from 'express';
-import { getUserById, getUserResumes, loginUser, registerUser, getUserCount,forgotPassword,resetPassword } from '../controllers/userController.js';
+import { getUserById, getUserResumes, loginUser, registerUser, getUserCount,forgotPassword,resetPassword, googleAuth } from '../controllers/userController.js';
 import protect from '../middlewares/authMiddleware.js';
 
 const userRouter = express.Router();
 userRouter.post('/register', registerUser);
 userRouter.post('/login', loginUser);
+// Google signup/login - accepts { credential } (Google ID token) and returns our own JWT
+userRouter.post('/google-auth', googleAuth);
 userRouter.get('/data',protect, getUserById);
 userRouter.get('/resumes',protect, getUserResumes);
 // public endpoint for total user count
