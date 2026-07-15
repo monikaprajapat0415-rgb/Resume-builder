@@ -8,6 +8,12 @@ import sitemap from 'vite-plugin-sitemap'
 export default defineConfig({
   plugins: [react(), tailwindcss(), sitemap({
       hostname: 'https://primeresumeai.com',
+      server: {
+    headers: {
+      // Tells the browser to allow popup windows to communicate with your app
+      'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    },
+  },
     })],
 })
 
