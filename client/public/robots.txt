@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /app
+Disallow: /view/
+Disallow: /logout
+Disallow: /forgot-password
+Disallow: /reset-password/
 
 Sitemap: https://primeresumeai.com/sitemap.xml

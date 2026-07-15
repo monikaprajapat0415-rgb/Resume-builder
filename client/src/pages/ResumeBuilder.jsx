@@ -222,8 +222,9 @@ const ResumeBuilder = () => {
   return (
     <div>
       <SEO
-        title="AI Resume Builder – Create ATS-Friendly Resume in Minutes | Prime Resume AI"
+        title="AI Resume Builder – Create ATS-Friendly Resume in Minutes"
         description="Build a job-winning resume with AI. Generate, edit, and download ATS-friendly resumes instantly. No design skills needed. Fast, smart, and free."
+        noindex
       />
       <div className='max-w-7xl mx-auto px-4 py-6'>
         <Link to={'/app'} className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-all'>
