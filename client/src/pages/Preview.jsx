@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 // import { ArrowLeftIcon } from 'lucide-react';
 import { LuArrowLeft } from 'react-icons/lu';
 import api from '../configs/api';
+import SEO from '../components/SEO';
 
 const Preview = () => {
 
@@ -30,7 +31,15 @@ const Preview = () => {
   },[])
 
   return (
-    resumeData ?(
+    <>
+    {/* Shared resume links contain personal data and are unique per-user, so they
+        should never be indexed or followed by search engines. */}
+    <SEO
+      title={resumeData ? `${resumeData.personal_info?.full_name || 'Resume'}'s Resume` : 'Resume Preview'}
+      description="View a resume created with Prime Resume AI."
+      noindex
+    />
+    {resumeData ?(
         <div className='bg-slate-100'>
           <div className='max-w-3xl mx-auto py-10'>
             <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color} 
@@ -50,8 +59,8 @@ const Preview = () => {
           </div>
         )}
       </div>
-    )
-    
+    )}
+    </>
   )
 }
 

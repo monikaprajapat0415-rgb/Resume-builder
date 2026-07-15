@@ -28,7 +28,12 @@ export default function ContactUs() {
 
   return (
     <>
-    <SEO title="Contact Us | Prime Resume AI" description="Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume." />
+    <SEO
+      title="Contact Us"
+      description="Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume."
+      keywords="contact prime resume ai, resume builder support"
+      path="/contact-us"
+    />
     {/* <NavBar /> */}
        <div id='contact-us' className='flex flex-col items-center my-10 scroll-mt-12'>
     <section className="py-14 px-4">

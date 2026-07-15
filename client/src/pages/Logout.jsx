@@ -1,8 +1,12 @@
 import React from 'react'
+import SEO from '../components/SEO'
 
 const Logout = () => {
   return (
-    <div>Logout</div>
+    <div>
+      <SEO title="Logout" noindex />
+      Logout
+    </div>
   )
 }
 

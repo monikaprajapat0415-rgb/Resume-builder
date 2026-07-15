@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import { useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Login from './Login'
+import SEO from '../components/SEO'
 
 const Layouts = () => {
 
@@ -21,7 +22,12 @@ const Layouts = () => {
           <Navbar />
           <Outlet />
         </div>)
-          : <Login />
+          : (
+            <>
+              <SEO title="Login or Sign Up" description="Log in or create your free Prime Resume AI account to start building your resume." noindex />
+              <Login />
+            </>
+          )
       }
 
     </div>

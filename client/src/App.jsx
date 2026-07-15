@@ -44,9 +44,38 @@ const App = () => {
   }, [])
 
 
+  const siteStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Prime Resume AI",
+      url: "https://primeresumeai.com",
+      logo: "https://primeresumeai.com/logo.svg",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "Prime Resume AI",
+      url: "https://primeresumeai.com",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      description:
+        "Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly.",
+    },
+  ];
+
   return (
     <>
-    <SEO title="Prime Resume AI - AI-Powered Resume Builder for Job Seekers" description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI!" />
+    <SEO
+      title="Prime Resume AI - AI-Powered Resume Builder for Job Seekers"
+      description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI!"
+      structuredData={siteStructuredData}
+    />
     <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -1,6 +1,13 @@
+import SEO from '../components/SEO'
+
 export default function PrivacyPolicy() {
   return (
     <section className="bg-gray-50 py-14 px-4">
+      <SEO
+        title="Privacy Policy"
+        description="Read Prime Resume AI's Privacy Policy to learn how we collect, use, and protect your information when you use our resume builder."
+        path="/privacy-policy"
+      />
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-6">
 
         <h1 className="text-3xl font-bold text-center">

@@ -42,6 +42,7 @@ import { FaEnvelope } from 'react-icons/fa';
 // import api from '../configs/api'
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import SEO from '../components/SEO'
 const ResetPassword = () => {
   const { token } = useParams();
   const [password, setPassword] = useState("");
@@ -64,6 +65,8 @@ const ResetPassword = () => {
 
   return (
 <div className='flex items-center justify-center min-h-screen bg-gray-50'>
+       {/* noindex: this URL contains a one-time password reset token and must never be indexed */}
+       <SEO title="Reset Password" noindex />
        <form className="sm:w-[450px] w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
                 <h1 className="text-gray-900 text-3xl mt-10 font-medium">Reset Password</h1>
                 <p className="text-gray-500 text-sm mt-2">Please enter your new password</p>

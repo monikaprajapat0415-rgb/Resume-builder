@@ -16,6 +16,8 @@ const Home = () => {
     <SEO
   title="Prime Resume AI – Free AI Resume Builder & CV Maker Online"
   description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
+  keywords="resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume"
+  path="/"
 />
 
     <Banner />
