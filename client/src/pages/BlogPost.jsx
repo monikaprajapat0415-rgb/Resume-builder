@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link, useParams, Navigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
-import { getPostBySlug, blogPosts } from '../content/blogPosts'
+import api from '../configs/api'
 import { LuArrowLeft } from 'react-icons/lu'
 
 const renderBlock = (block, i) => {
@@ -23,10 +23,58 @@ const renderBlock = (block, i) => {
 
 const BlogPost = () => {
   const { slug } = useParams()
-  const post = getPostBySlug(slug)
+  const navigate = useNavigate()
+  const [post, setPost] = useState(null)
+  const [related, setRelated] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
 
-  if (!post) {
-    return <Navigate to='/blog' replace />
+  useEffect(() => {
+    let active = true
+    setLoading(true)
+    setPost(null)
+    setNotFound(false)
+
+    const load = async () => {
+      try {
+        const { data } = await api.get(`/api/blogs/${slug}`)
+        if (!active) return
+        setPost(data.post)
+
+        // Best-effort: a handful of other posts for "More from the blog". Not
+        // worth failing the page over if this second call has a hiccup.
+        try {
+          const { data: listData } = await api.get('/api/blogs')
+          if (active) {
+            setRelated((listData.posts || []).filter((p) => p.slug !== slug).slice(0, 2))
+          }
+        } catch {
+          // ignore - related posts are a nice-to-have
+        }
+      } catch (error) {
+        if (active) setNotFound(true)
+      }
+      if (active) setLoading(false)
+    }
+
+    load()
+    return () => { active = false }
+  }, [slug])
+
+  useEffect(() => {
+    if (notFound) navigate('/blog', { replace: true })
+  }, [notFound, navigate])
+
+  if (loading || !post) {
+    return (
+      <div>
+        <NavBar />
+        <div className='min-h-[40vh] flex items-center justify-center text-slate-400'>
+          {loading ? 'Loading…' : null}
+        </div>
+        <Footer />
+      </div>
+    )
   }
 
   const structuredData = {
@@ -35,7 +83,7 @@ const BlogPost = () => {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updatedAt || post.date,
     author: { '@type': 'Organization', name: 'Prime Resume AI' },
     publisher: {
       '@type': 'Organization',
@@ -44,9 +92,6 @@ const BlogPost = () => {
     },
     mainEntityOfPage: `https://primeresumeai.com/blog/${post.slug}`,
   }
-
-  // Simple related-posts pick: up to 2 other posts, excluding this one.
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 2)
 
   return (
     <div>

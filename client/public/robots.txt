@@ -6,5 +6,6 @@ Disallow: /logout
 Disallow: /forgot-password
 Disallow: /reset-password/
 Disallow: /verify-email/
+Disallow: /admin
 
 Sitemap: https://primeresumeai.com/sitemap.xml

@@ -2,7 +2,7 @@
 // import React from 'react'
 import {FaFileSignature,  } from 'react-icons/fa'
 import { BiLoaderAlt } from 'react-icons/bi';
-import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuTriangleAlert } from 'react-icons/lu';
+import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuTriangleAlert, LuShield } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -150,6 +150,14 @@ const Dashboard = () => {
               Welcome{user?.name ? `, ${user.name.split(' ')[0]}` : ''}
             </h1>
             <p className='text-sm text-slate-500 mt-1'>Manage your resumes and export them to PDF.</p>
+            {user?.role === 'admin' && (
+              <button
+                onClick={() => navigate('/admin/blogs')}
+                className='mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-green-600 transition'
+              >
+                <LuShield className='size-3.5' /> Admin: manage blog posts
+              </button>
+            )}
             <div className='mt-3 flex items-center gap-3'>
               <div className='bg-slate-50 px-3 py-1 rounded-md text-sm text-slate-700'>
                 <strong className='mr-1'>{allResumes.length}</strong> resumes

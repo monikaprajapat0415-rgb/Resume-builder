@@ -1,9 +1,12 @@
-// Blog content, stored as structured data rather than markdown so each post renders
-// through the same BlogPost page without adding a markdown-parsing dependency.
-// Each post's `content` is an array of simple blocks: heading, paragraph, list.
+// Historical seed data only - the live /blog and /blog/:slug pages no longer read
+// from this file. Blog posts are now admin-managed and stored in the database
+// (see server/models/Blog.js, server/controllers/blogController.js, and the
+// /admin/blogs portal). This file is kept only as the source for
+// server/scripts/seedBlogs.js, which migrated these posts into the database -
+// edit or add posts through /admin/blogs from now on, not here.
 //
-// To add a new post: add an object here with a unique `slug`, then it automatically
-// appears on /blog and is reachable at /blog/:slug - no route changes needed.
+// Each post's `content` is an array of simple blocks: heading, paragraph, list -
+// the same shape the admin editor and BlogPost page both use.
 
 export const blogPosts = [
   {
@@ -132,6 +135,131 @@ export const blogPosts = [
       ] },
       { type: 'heading', text: 'What to do when you don’t have a hard number' },
       { type: 'paragraph', text: 'Not every accomplishment comes with a clean metric, especially early in a career. In that case, scope and scale still count: "Supported a team of 8 across three concurrent client projects" or "Served as the primary point of contact for 15+ vendor relationships" both convey weight without a percentage. The goal is specificity — a number is the clearest form of it, but concrete scope is a reasonable substitute.' },
+    ],
+  },
+  {
+    slug: 'resume-vs-cv-difference',
+    title: 'Resume vs. CV: What’s the Difference and Which One Do You Need?',
+    description:
+      'Resume or CV — they’re not interchangeable. Here’s the real difference, which one employers expect in your country and industry, and how to tell which to send.',
+    keywords: 'resume vs cv, difference between resume and cv, cv or resume, what is a cv',
+    excerpt:
+      'Used interchangeably in casual conversation but not in hiring. Sending the wrong one can look like a small miss — or a sign you didn’t research the role.',
+    date: '2026-10-01',
+    readTime: '5 min read',
+    content: [
+      { type: 'paragraph', text: 'In the United States and Canada, "resume" and "CV" get used almost interchangeably in casual speech, but in a hiring context they mean different documents with different expectations. Knowing which one a job wants — and why — matters more than it seems.' },
+      { type: 'heading', text: 'The core difference' },
+      { type: 'paragraph', text: 'A resume is a brief, tailored summary of your relevant experience — typically one to two pages, customized for each job you apply to. A CV (curriculum vitae) is a complete, chronological record of your entire academic and professional history — publications, presentations, every degree, every role — and it grows longer over a career rather than staying fixed at one or two pages.' },
+      { type: 'heading', text: 'Where each one is expected' },
+      { type: 'list', items: [
+        'United States and Canada: "resume" is the standard for nearly all jobs. "CV" is reserved for academic, research, and medical positions.',
+        'United Kingdom, Ireland, and much of Europe: "CV" is the standard term for what Americans call a resume — it is the everyday job-application document, not a long academic record.',
+        'Academia, scientific research, and medicine, globally: a true CV (complete history, publications included) is expected regardless of country.',
+      ] },
+      { type: 'paragraph', text: 'This means a UK job posting asking for a "CV" usually wants exactly what you’d call a resume at home — short, tailored, one to two pages. Don’t send a ten-page academic-style document unless the role is specifically academic or research-based.' },
+      { type: 'heading', text: 'How to tell which one a specific application wants' },
+      { type: 'list', items: [
+        'Check the job posting’s country and industry first — that settles most cases',
+        'If it’s an academic, postdoc, or research role, default to a full CV with publications regardless of location',
+        'If in doubt and nothing in the post clarifies it, a tailored one-to-two-page resume is the safer default for any non-academic role',
+      ] },
+      { type: 'paragraph', text: 'If you do need a lengthy academic CV, most resume builders — including this one — are built around the shorter, tailored resume format, since that’s what the vast majority of job applications require. For a research or faculty position, a dedicated CV template elsewhere may serve you better.' },
+    ],
+  },
+  {
+    slug: 'how-long-should-a-resume-be',
+    title: 'How Long Should a Resume Be? (By Experience Level)',
+    description:
+      'One page or two? Here’s a clear answer by career stage, why recruiters care about length, and how to cut a resume down without losing your best material.',
+    keywords: 'how long should a resume be, one page resume, two page resume, resume length',
+    excerpt:
+      'The honest answer is "it depends" — but not vaguely. Here’s the actual rule by years of experience, and how to cut without losing your strongest material.',
+    date: '2026-10-02',
+    readTime: '5 min read',
+    content: [
+      { type: 'paragraph', text: 'Resume length advice online tends to repeat "keep it to one page" as a universal rule, which is true for some candidates and actively harmful for others. The real answer scales with experience.' },
+      { type: 'heading', text: 'The guideline by career stage' },
+      { type: 'list', items: [
+        'Students and new graduates (0-2 years): one page. There usually isn’t enough relevant experience to justify more, and padding is easy to spot.',
+        'Early-to-mid career (3-10 years): one page is still ideal, but a tight second page is acceptable if every line earns its place.',
+        'Senior and executive (10+ years): two pages is standard and expected. Trying to cram 15 years onto one page usually means cutting the detail that actually demonstrates seniority.',
+        'Academic, medical, or research CVs: length follows the full record — publications and all — rather than this scale.',
+      ] },
+      { type: 'heading', text: 'Why length matters to a recruiter' },
+      { type: 'paragraph', text: 'Recruiters aren’t counting pages out of habit — length is a proxy for editing discipline. A resume that runs long because every job ever held is listed in equal detail signals the candidate hasn’t prioritized what actually matters for this role. A resume that is appropriately long because 12 years of increasing responsibility is laid out clearly signals the opposite.' },
+      { type: 'heading', text: 'How to cut a resume that’s running too long' },
+      { type: 'list', items: [
+        'Drop roles older than 10-15 years, or compress them into a single "Earlier Experience" line with no bullets',
+        'Cut bullet points that describe duties rather than results — if it doesn’t show impact, it’s a candidate for removal',
+        'Limit each role to 3-5 bullet points; older or less relevant roles can have fewer',
+        'Remove an "Objective" statement entirely — a modern resume summary does that job in less space',
+        'Tighten the skills section to what’s actually relevant to the job, not every tool you’ve ever touched',
+      ] },
+      { type: 'paragraph', text: 'When in doubt, favor cutting over keeping. A recruiter spending six to eight seconds on first pass will reward a tight one-page resume over a sprawling two-page one almost every time, unless the extra length is genuinely earned by senior-level experience.' },
+    ],
+  },
+  {
+    slug: 'cover-letter-examples-that-work',
+    title: 'Cover Letter Examples That Actually Get Read',
+    description:
+      'Most cover letters restate the resume and get skipped. Here’s what a cover letter should actually do, with a structure and example that gets read in full.',
+    keywords: 'cover letter examples, how to write a cover letter, cover letter template, cover letter that gets read',
+    excerpt:
+      'A cover letter that just restates the resume gets skimmed and ignored. Here’s the structure of one that actually gets read start to finish.',
+    date: '2026-10-03',
+    readTime: '6 min read',
+    content: [
+      { type: 'paragraph', text: 'Most cover letters fail for the same reason: they summarize the resume in paragraph form. If a hiring manager has already seen the resume, repeating it adds nothing and the letter gets skimmed or skipped entirely. A cover letter earns its place by doing something the resume structurally can’t — telling a short, specific story about why this role, this company, right now.' },
+      { type: 'heading', text: 'The three things a good cover letter does' },
+      { type: 'list', items: [
+        'Names something specific about the company or role — not a generic "I am excited about this opportunity"',
+        'Connects one or two concrete achievements to what the job actually needs, rather than re-listing the whole resume',
+        'Shows a little personality or motivation — the resume can’t convey why you want this job specifically, the letter can',
+      ] },
+      { type: 'heading', text: 'A structure that works' },
+      { type: 'list', items: [
+        'Opening line: a specific, non-generic reason you’re writing — reference the team, product, or a recent company milestone if you can',
+        'Middle paragraph: one or two achievements, chosen because they map directly to what the job posting asks for — not your whole career',
+        'Closing paragraph: a brief, confident note on what you’d bring going forward, plus a clear call to action (happy to discuss further, available for a call this week)',
+      ] },
+      { type: 'heading', text: 'Example' },
+      { type: 'paragraph', text: '"I’ve used [Company]’s product for the past two years as a freelance designer, and when I saw the opening for a Product Designer on your growth team, the overlap with how I already work was hard to ignore. At my current role, I led a redesign of our onboarding flow that increased activation by 22% — the kind of problem your job posting describes as a priority for this team. I’d welcome the chance to talk through how I’d approach it at [Company]. I’m available for a call this week or next."' },
+      { type: 'paragraph', text: 'Notice what it doesn’t do: it doesn’t restate a job history, doesn’t open with "I am writing to apply for," and doesn’t try to cover every qualification. It picks one relevant proof point and makes a direct case.' },
+      { type: 'heading', text: 'A faster way to get there' },
+      { type: 'paragraph', text: 'Writing a tailored letter for every application is real work, which is why Prime Resume AI’s cover letter generator takes your resume and a job description and drafts a first pass in this structure — you edit for tone and specifics rather than starting from a blank page each time.' },
+    ],
+  },
+  {
+    slug: 'how-to-list-skills-on-resume',
+    title: 'How to List Skills on a Resume (With Examples by Industry)',
+    description:
+      'A skills section that actually helps you get past an ATS and impresses a recruiter — how to choose, group, and order skills, with examples across industries.',
+    keywords: 'skills on resume, resume skills section, technical skills resume, soft skills resume examples',
+    excerpt:
+      'A skills section packed with buzzwords in no particular order helps no one. Here’s how to build one that gets past the ATS and makes sense to a human.',
+    date: '2026-10-04',
+    readTime: '6 min read',
+    content: [
+      { type: 'paragraph', text: 'A skills section is one of the most ATS-scanned parts of a resume, which tempts people to pack it with as many keywords as possible. That approach backfires with human reviewers, who scan the same section for signal, not volume. A good skills section is selective and organized, not exhaustive.' },
+      { type: 'heading', text: 'Hard skills vs. soft skills' },
+      { type: 'paragraph', text: 'Hard skills are specific, teachable, and verifiable — a programming language, a certification, a piece of software. Soft skills are behavioral — communication, leadership, adaptability. ATS systems and keyword matching lean almost entirely on hard skills; human interviewers weigh soft skills more, usually through how you describe your experience rather than a bullet list. Most resumes should lead with hard skills in the dedicated skills section, and demonstrate soft skills through achievements in the experience section instead of listing them as adjectives.' },
+      { type: 'heading', text: 'How to choose which skills to include' },
+      { type: 'list', items: [
+        'Pull the exact terms from the job posting first — if it says "Figma", write "Figma", not "design tools"',
+        'Only list skills you could speak to confidently in an interview — an exaggerated skills section is one of the fastest ways to lose credibility',
+        'Group related skills together (e.g. "Languages", "Frameworks", "Tools") if you have more than 8-10, rather than one long unsorted line',
+        'Order by relevance to the job, not alphabetically or by how comfortable you are with each one',
+      ] },
+      { type: 'heading', text: 'Examples by industry' },
+      { type: 'list', items: [
+        'Software engineering: JavaScript, React, Node.js, PostgreSQL, AWS, Git, REST APIs, Docker',
+        'Marketing: SEO, Google Analytics, HubSpot, A/B testing, email automation, paid social (Meta & Google Ads), content strategy',
+        'Finance/accounting: Financial modeling, GAAP, QuickBooks, Excel (advanced), variance analysis, forecasting, SAP',
+        'Nursing/healthcare: Patient assessment, EHR systems (Epic, Cerner), IV therapy, BLS/ACLS certification, care coordination',
+        'Project management: Agile/Scrum, JIRA, stakeholder management, budget tracking, risk management, PMP certification',
+      ] },
+      { type: 'paragraph', text: 'If you’re unsure which of your skills to prioritize for a specific application, Prime Resume AI’s ATS score checker compares your resume against a job description and flags which important keywords from the posting are missing from your skills section.' },
     ],
   },
 ]
