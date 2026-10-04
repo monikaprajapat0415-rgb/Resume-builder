@@ -24,9 +24,9 @@ export default function NavBar() {
 
                 <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
                     <a href="/" className="hover:text-green-600 transition">Home</a>
-                    <Link to="/product" className="hover:text-green-600 transition">Product</Link>
                     <a href="#feature" className="hover:text-green-600 transition">Features</a>
                     <a href="#testimonials" className="hover:text-green-600 transition">Testimonials</a>
+                    <Link to='/blog' className="hover:text-green-600 transition">Blog</Link>
                     {/* <a href="#cta" className="hover:text-green-600 transition">Contact</a> */}
                     <a href='#contact-us' className="hover:text-green-600 transition">Contact Us</a>
                 </div>
@@ -61,9 +61,9 @@ export default function NavBar() {
             {/* Mobile Menu */}
             <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
                 <a href="/" className="text-white">Home</a>
-                <Link to="/product" className="text-white" onClick={() => setMenuOpen(false)}>Product</Link>
                 <a href="#feature" className="text-white">Features</a>
                 <a href="#testimonials" className="text-white">Testimonials</a>
+                <Link to='/blog' className="text-white">Blog</Link>
                 <a href='#contact-us' className="text-white">Contact Us</a>
                 <Link
                     to="/app?state=login"

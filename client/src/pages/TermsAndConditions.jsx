@@ -9,7 +9,7 @@ export default function TermsAndConditions() {
         path="/terms-and-conditions"
       />
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-6">
-        
+
         <h1 className="text-3xl font-bold text-center">
           Terms & Conditions
         </h1>

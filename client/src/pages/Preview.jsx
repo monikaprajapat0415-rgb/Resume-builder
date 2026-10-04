@@ -42,7 +42,7 @@ const Preview = () => {
     {resumeData ?(
         <div className='bg-slate-100'>
           <div className='max-w-3xl mx-auto py-10'>
-            <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color} 
+            <ResumePreview data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color}
             className="py-4 bg-white"/>
             </div>
         </div>

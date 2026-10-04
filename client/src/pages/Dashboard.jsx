@@ -2,7 +2,7 @@
 // import React from 'react'
 import {FaFileSignature,  } from 'react-icons/fa'
 import { BiLoaderAlt } from 'react-icons/bi';
-import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText } from 'react-icons/lu';
+import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuTriangleAlert } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -14,6 +14,18 @@ import SEO from '../components/SEO';
 const Dashboard = () => {
 
   const { user, token } = useSelector(state => state.auth);
+  const [isResendingVerification, setIsResendingVerification] = useState(false);
+
+  const resendVerification = async () => {
+    setIsResendingVerification(true);
+    try {
+      const { data } = await api.post('/api/users/resend-verification', {}, { headers: { Authorization: token } });
+      toast.success(data.message || 'Verification email sent. Please check your inbox.');
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message || 'Could not resend verification email.');
+    }
+    setIsResendingVerification(false);
+  }
 
   const colors = ["#9333EA", "#F43F5E", "#3B82F6", "#10B981", "#8B5CF6", "#EC4899", "#0EA5E9", "#14B8A6"]
   const [allResumes, setAllResumes] = useState([])
@@ -99,6 +111,15 @@ const Dashboard = () => {
       toast.error(error.response?.data?.message || error.message || "An error occurred. Please try again.")
     }
   }
+  const duplicateResume = async (resumeId) => {
+    try {
+      const { data } = await api.post(`/api/resumes/duplicate/${resumeId}`, {}, { headers: { Authorization: token } });
+      setAllResumes([...allResumes, data.resume]);
+      toast.success(data.message || "Resume duplicated successfully.")
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.message || "An error occurred. Please try again.")
+    }
+  }
   useEffect(() => {
     loadAllResumes();
   }, [])
@@ -166,6 +187,18 @@ const Dashboard = () => {
 
         <hr className='border-slate-200 my-6' />
 
+        {user && user.isVerified === false && (
+          <div className='mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3'>
+            <div className='flex items-center gap-2 text-amber-800 text-sm'>
+              <LuTriangleAlert className='size-4 shrink-0' />
+              <span>Please verify your email address to secure your account.</span>
+            </div>
+            <button onClick={resendVerification} disabled={isResendingVerification} className='shrink-0 px-3 py-1.5 text-xs font-medium bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-md transition-colors disabled:opacity-60'>
+              {isResendingVerification ? 'Sending...' : 'Resend verification email'}
+            </button>
+          </div>
+        )}
+
         {allResumes.length === 0 ? (
           <div className='rounded-lg border border-dashed border-slate-200 p-10 text-center text-slate-500'>
             <p className='mb-3 text-lg text-slate-700'>No resumes yet</p>
@@ -200,6 +233,9 @@ const Dashboard = () => {
                       <button onClick={() => { setEditResumeId(resume._id); setTitle(resume.title) }} aria-label='Edit title' className='p-2 rounded-md hover:bg-slate-100 transition'>
                         <FaFileSignature className='size-4 text-slate-600' />
                       </button>
+                      <button onClick={() => duplicateResume(resume._id)} aria-label='Duplicate resume' title='Duplicate as a new version' className='p-2 rounded-md hover:bg-slate-100 transition'>
+                        <LuCopy className='size-4 text-slate-600' />
+                      </button>
                       <button onClick={() => deleteResume(resume._id)} aria-label='Delete resume' className='p-2 rounded-md hover:bg-slate-100 transition'>
                         <LuTrash2 className='size-4 text-red-500' />
                       </button>
@@ -207,7 +243,7 @@ const Dashboard = () => {
                   </div>
 
                   <div className='mt-4 flex items-center justify-between'>
-                    <div className='text-xs text-slate-500'>
+                    <div className='text-xs text-slate-500 flex items-center gap-3'>
                       {resume.public ? (
                         <span className='inline-flex items-center gap-2 text-green-600 font-medium text-xs'>
                           {/* small public badge */}
@@ -218,6 +254,11 @@ const Dashboard = () => {
                         </span>
                       ) : (
                         <span className='text-xs text-slate-400'>Private</span>
+                      )}
+                      {resume.public && (
+                        <span className='inline-flex items-center gap-1 text-slate-400' title='Times this resume link has been viewed'>
+                          <LuEye className='size-3' />{resume.views || 0}
+                        </span>
                       )}
                     </div>
                     <div className='text-xs space-x-2 flex items-center'>
