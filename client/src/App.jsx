@@ -1,5 +1,5 @@
 import React, { use, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 // import Login from "./pages/Login";
@@ -20,6 +20,11 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import VerifyEmail from "./pages/VerifyEmail";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import TemplatesIndex from "./pages/TemplatesIndex";
+import TemplateLanding from "./pages/TemplateLanding";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminBlogList from "./pages/admin/AdminBlogList";
+import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
 import SEO from "./components/SEO";
 const App = () => {
 
@@ -85,6 +90,15 @@ const App = () => {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/templates" element={<TemplatesIndex />} />
+        <Route path="/templates/:slug" element={<TemplateLanding />} />
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="/admin/blogs" replace />} />
+          <Route path="blogs" element={<AdminBlogList />} />
+          <Route path="blogs/new" element={<AdminBlogEditor />} />
+          <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
+        </Route>
 
         <Route path="app" element={<Layouts />}>
           <Route index element={<Dashboard />} />

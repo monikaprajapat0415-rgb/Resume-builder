@@ -9,6 +9,9 @@ const UserSchema = new mongoose.Schema({
     // set for users who sign up / log in with Google; used to avoid duplicate accounts for the same Google identity
     googleId:{type : String, unique:true, sparse:true},
     authProvider:{type : String, enum:['local', 'google'], default:'local'},
+    // 'admin' can access /admin and manage blog posts. New accounts are always
+    // 'user'; promote one with `node scripts/makeAdmin.js <email>` on the server.
+    role:{type : String, enum:['user', 'admin'], default:'user'},
     // Google accounts are auto-verified since Google already confirmed the email.
     isVerified:{type : Boolean, default:false},
     verificationToken: {type : String},

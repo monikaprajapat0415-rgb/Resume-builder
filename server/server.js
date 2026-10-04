@@ -5,6 +5,8 @@ import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRouter.js";
 import resumeRouter from "./routes/resumeRoutes.js";
 import aiRouter from "./routes/aiRoutes.js";
+import blogRouter from "./routes/blogRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 
 const app = express();
@@ -38,6 +40,8 @@ app.get('/', (req, res)=> res.send("Server is live..."))
 app.use('/api/users', userRouter)
 app.use('/api/resumes', resumeRouter)
 app.use('/api/ai', aiRouter)
+app.use('/api/blogs', blogRouter)
+app.use('/api/admin', adminRouter)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
