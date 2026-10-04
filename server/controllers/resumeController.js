@@ -70,7 +70,12 @@ export const getResumePublicById = async (req, res)=>{
     try {
         const {resumeId} = req.params;
         //return user resumes
-        const resume = await Resume.findOne({public: true, _id:resumeId});
+        // increment the view counter atomically so simultaneous requests don't clobber each other
+        const resume = await Resume.findOneAndUpdate(
+            {public: true, _id:resumeId},
+            {$inc: {views: 1}},
+            {new: true}
+        );
         if(!resume){
             return res.status(404).json({message:'Resume not found'})
         }
@@ -78,11 +83,41 @@ export const getResumePublicById = async (req, res)=>{
         // resume.createdAt = undefined;
         // resume.updatedAt = undefined;
         return res.status(200).json({resume})
-        
+
     } catch (error) {
         return res.status(400).json({message :error.message})
-        
-    }   
+
+    }
+}
+
+// controller for duplicating a resume - lets users keep a base resume and tailor
+// copies per job application without losing the original.
+//POST: /api/resumes/duplicate/:resumeId
+export const duplicateResume = async (req, res) => {
+    try {
+        const userId = req.userId;
+        const { resumeId } = req.params;
+
+        const original = await Resume.findOne({ userId, _id: resumeId }).lean();
+        if (!original) {
+            return res.status(404).json({ message: 'Resume not found' });
+        }
+
+        // strip fields that must be unique/fresh on the copy
+        const { _id, createdAt, updatedAt, __v, views, ...resumeData } = original;
+
+        const duplicate = await Resume.create({
+            ...resumeData,
+            userId,
+            title: `${original.title || 'Untitled Resume'} (Copy)`,
+            public: false,
+            views: 0,
+        });
+
+        return res.status(201).json({ message: 'Resume duplicated successfully', resume: duplicate });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
 }
 
 //controller for updating a resume

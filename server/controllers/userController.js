@@ -4,34 +4,19 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import Resume from "../models/Resume.js";
 import crypto from "crypto";
-import nodemailer from "nodemailer";
 import { OAuth2Client } from "google-auth-library";
+import { sendEmail } from "../thirdPartyAPIs/userEmail.js";
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// Base URL of the frontend app (NOT the API) - used to build links that go in emails.
+// Falls back to the Vite dev server default so local dev keeps working out of the box.
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 
 const generateToken = (userId) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' })
     return token;
 }
-
-
-const sendEmail = async (to, link) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: "your@gmail.com",
-      pass: "your_app_password",
-    },
-  });
-
-  await transporter.sendMail({
-    to,
-    subject: "Password Reset",
-    html: `<p>Click below to reset password:</p>
-           <a href="${link}">${link}</a>`,
-  });
-};
-
 
 //controller for user registeration
 //POST:/api/users/register
@@ -51,9 +36,26 @@ export const registerUser = async (req, res) => {
         }
         //create new user
         const hashedPassword = await bcrypt.hash(password, 10)
+        const verificationToken = crypto.randomBytes(32).toString("hex");
         const newUser = await User.create({
-            name, email, password: hashedPassword
+            name, email, password: hashedPassword,
+            verificationToken,
+            verificationTokenExpire: Date.now() + 24 * 60 * 60 * 1000, // 24 hours
         })
+
+        // Best-effort: don't fail signup if the email provider hiccups, just log it.
+        try {
+            const verifyLink = `${CLIENT_URL}/verify-email/${verificationToken}`;
+            await sendEmail(
+                newUser.email,
+                verifyLink,
+                "Verify your email - Prime Resume AI",
+                `<h3>Welcome to Prime Resume AI!</h3><p>Please verify your email address to activate your account:</p><a href="${verifyLink}">${verifyLink}</a><p>This link expires in 24 hours.</p>`
+            );
+        } catch (emailError) {
+            console.error("Failed to send verification email:", emailError.message);
+        }
+
         //return success message
         const token = generateToken(newUser._id)
         newUser.password = undefined;
@@ -124,6 +126,7 @@ export const googleAuth = async (req, res) => {
             if (user) {
                 // Link existing account to this Google identity
                 user.googleId = googleId;
+                user.isVerified = true;
                 if (user.authProvider !== 'local' || !user.password) {
                     user.authProvider = 'google';
                 }
@@ -137,6 +140,7 @@ export const googleAuth = async (req, res) => {
                 email,
                 googleId,
                 authProvider: 'google',
+                isVerified: true,
             });
         }
 
@@ -179,7 +183,7 @@ export const getUserResumes = async(req, res)=>{
         return res.status(200).json({resumes})
     } catch (error) {
         return res.status(400).json({message:error.message})
-        
+
     }
 }
 
@@ -207,10 +211,10 @@ export const forgotPassword = async (req, res) => {
   user.resetTokenExpire = Date.now() + 15 * 60 * 1000; // 15 min
   await user.save();
 
-  const resetLink = `http://localhost:3000/reset-password/${token}`;
+  const resetLink = `${CLIENT_URL}/reset-password/${token}`;
 
   // Send email (example below)
-  await sendEmail(user.email, resetLink);
+  await sendEmail(user.email, resetLink, "Reset your password - Prime Resume AI");
 
   res.json({ msg: "Reset link sent to email" });
 };
@@ -241,4 +245,61 @@ export const resetPassword = async (req, res) => {
   res.json({ msg: "Password reset successful" });
 };
 
+// Controller for verifying a user's email via the link sent on signup
+// GET: /api/users/verify-email/:token
+export const verifyEmail = async (req, res) => {
+  try {
+    const { token } = req.params;
 
+    const user = await User.findOne({
+      verificationToken: token,
+      verificationTokenExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired verification link" });
+    }
+
+    user.isVerified = true;
+    user.verificationToken = undefined;
+    user.verificationTokenExpire = undefined;
+    await user.save();
+
+    return res.status(200).json({ message: "Email verified successfully" });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};
+
+// Controller for resending the verification email (e.g. if the original expired
+// or landed in spam). Requires the user to be logged in.
+// POST: /api/users/resend-verification
+export const resendVerificationEmail = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    if (user.isVerified) {
+      return res.status(400).json({ message: "Email is already verified" });
+    }
+
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+    user.verificationToken = verificationToken;
+    user.verificationTokenExpire = Date.now() + 24 * 60 * 60 * 1000;
+    await user.save();
+
+    const verifyLink = `${CLIENT_URL}/verify-email/${verificationToken}`;
+    await sendEmail(
+      user.email,
+      verifyLink,
+      "Verify your email - Prime Resume AI",
+      `<h3>Verify your email</h3><p>Click below to verify your Prime Resume AI account:</p><a href="${verifyLink}">${verifyLink}</a><p>This link expires in 24 hours.</p>`
+    );
+
+    return res.status(200).json({ message: "Verification email sent" });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+};

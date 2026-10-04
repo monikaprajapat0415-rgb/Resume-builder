@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     // set for users who sign up / log in with Google; used to avoid duplicate accounts for the same Google identity
     googleId:{type : String, unique:true, sparse:true},
     authProvider:{type : String, enum:['local', 'google'], default:'local'},
+    // Google accounts are auto-verified since Google already confirmed the email.
+    isVerified:{type : Boolean, default:false},
+    verificationToken: {type : String},
+    verificationTokenExpire: {type : Date},
     resetToken: {type : String, },
   resetTokenExpire:{type : Date }
 },
