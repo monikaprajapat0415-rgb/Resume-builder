@@ -40,12 +40,36 @@ export const getPublishedBlogBySlug = async (req, res) => {
     }
 }
 
-// GET /api/blogs/sitemap/slugs - just the slugs + lastmod, for the backend-generated
-// sitemap entries so new admin posts get discovered without a frontend rebuild.
+// GET /api/blogs/sitemap/slugs - just the slugs + lastmod, as JSON (kept for any
+// other tooling that wants the raw list rather than XML).
 export const getPublishedBlogSlugs = async (req, res) => {
     try {
         const posts = await Blog.find({ published: true }).select('slug updatedAt');
         return res.status(200).json({ posts });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// GET /api/blogs/sitemap.xml - a real XML sitemap covering every published post.
+// The frontend's build-time sitemap.xml can't list these (they're created live
+// through /admin/blogs, long after the last `npm run build`), so this one is
+// generated fresh on every request straight from the database instead. Referenced
+// as a second Sitemap: line in client/public/robots.txt.
+export const getBlogSitemapXml = async (req, res) => {
+    try {
+        const posts = await Blog.find({ published: true }).select('slug updatedAt date');
+        const siteUrl = process.env.CLIENT_URL || 'https://primeresumeai.com';
+
+        const urls = posts.map((post) => {
+            const lastmod = new Date(post.updatedAt || post.date).toISOString().slice(0, 10);
+            return `  <url>\n    <loc>${siteUrl}/blog/${post.slug}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>`;
+        }).join('\n');
+
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+
+        res.set('Content-Type', 'application/xml');
+        return res.status(200).send(xml);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

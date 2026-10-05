@@ -1,10 +1,11 @@
 import express from 'express';
-import { getPublishedBlogs, getPublishedBlogBySlug, getPublishedBlogSlugs } from '../controllers/blogController.js';
+import { getPublishedBlogs, getPublishedBlogBySlug, getPublishedBlogSlugs, getBlogSitemapXml } from '../controllers/blogController.js';
 
 const blogRouter = express.Router();
 
-// Public - no auth. Order matters: /sitemap/slugs must be registered before
-// /:slug so it isn't swallowed by the slug param route.
+// Public - no auth. Order matters: the sitemap/slug routes must be registered
+// before /:slug so they aren't swallowed by the slug param route.
+blogRouter.get('/sitemap.xml', getBlogSitemapXml);
 blogRouter.get('/sitemap/slugs', getPublishedBlogSlugs);
 blogRouter.get('/', getPublishedBlogs);
 blogRouter.get('/:slug', getPublishedBlogBySlug);
