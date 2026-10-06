@@ -5,7 +5,7 @@ import rateLimit from "express-rate-limit";
 // so it can't be bypassed just by rotating IP.
 export const aiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 30, // 30 AI requests per user per 15 minutes
+    max: 10, // 30 AI requests per user per 15 minutes
     standardHeaders: true,
     legacyHeaders: false,
     keyGenerator: (req) => req.userId || req.ip,
@@ -16,7 +16,7 @@ export const aiLimiter = rateLimit({
 // credential-stuffing targets. Keyed by IP since there's no authenticated user yet.
 export const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 20, // 20 attempts per IP per 15 minutes
+    max: 10, // 20 attempts per IP per 15 minutes
     standardHeaders: true,
     legacyHeaders: false,
     message: { message: "Too many attempts. Please wait a few minutes and try again." },
