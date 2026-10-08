@@ -6,6 +6,7 @@ import Resume from "../models/Resume.js";
 import crypto from "crypto";
 import { OAuth2Client } from "google-auth-library";
 import { sendEmail } from "../thirdPartyAPIs/userEmail.js";
+import { applyAdminEmail } from "../utils/adminEmail.js";
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -83,6 +84,8 @@ export const loginUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password" });
         }
 
+        await applyAdminEmail(user);
+
         //return success message
         const token = generateToken(user._id)
         user.password = undefined;
@@ -143,6 +146,8 @@ export const googleAuth = async (req, res) => {
                 isVerified: true,
             });
         }
+
+        await applyAdminEmail(user);
 
         const token = generateToken(user._id);
         user.password = undefined;
@@ -264,6 +269,7 @@ export const verifyEmail = async (req, res) => {
     user.verificationToken = undefined;
     user.verificationTokenExpire = undefined;
     await user.save();
+    await applyAdminEmail(user);
 
     return res.status(200).json({ message: "Email verified successfully" });
   } catch (error) {
