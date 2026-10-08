@@ -7,6 +7,7 @@ import resumeRouter from "./routes/resumeRoutes.js";
 import aiRouter from "./routes/aiRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
+import { promoteAdminOnStartup } from "./utils/adminEmail.js";
 
 
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 //DB connection
 await connectDB();
+await promoteAdminOnStartup();
 
 // increase request size to allow large resume text payloads (client may send full PDF-extracted text)
 app.use(express.json({ limit: '10mb' }));
