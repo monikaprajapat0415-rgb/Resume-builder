@@ -5,10 +5,10 @@
 // images, which esbuild can't resolve inside vite.config.js) — keep the `slug` values
 // below in sync with templateSlugs.js if either one changes.
 
-import classicImg from '../assets/Classic.png'
-import modernImg from '../assets/modern.png'
-import minimalImg from '../assets/Minimal.png'
-import minimalImageImg from '../assets/MinimalwithImage.png'
+import classicImg from '../assets/Classic.webp'
+import modernImg from '../assets/modern.webp'
+import minimalImg from '../assets/Minimal.webp'
+import minimalImageImg from '../assets/MinimalwithImage.webp'
 
 export const resumeTemplates = [
   {

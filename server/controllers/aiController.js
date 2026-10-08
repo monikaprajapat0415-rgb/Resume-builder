@@ -213,7 +213,7 @@ export const uploadResume = async (req, res) => {
 
         const systemPrompt = 'You are an expert AI agent to extract structured data from resumes.'
         const userPropmt = `Extract structured data from the following resume text and return ONLY a single valid JSON object — nothing else (no explanation, no markdown, no leading/trailing text).\nResume text:\n${resumeText}\n\nThe JSON must follow this example shape exactly (use empty strings/arrays when data is missing):{  "professional_summary": "",  "skills": [],  "personal_info": {    "image": "",    "full_name": "",    "profession": "",    "email": "",    "phone": "",    "location": "",    "linkedin": "",    "website": ""  },  "experience": [    {      "company": "",      "position": "",      "start_date": "",      "end_date": "",      "description": "",      "is_current": false    }  ],  "project": [    {      "name": "",      "type": "",      "description": ""    }  ],  "education": [    {      "institution": "",      "degree": "",      "field": "",      "graduation_date": "",      "gpa": ""    }  ]}`
-        console.log("userPrompt:", userPropmt);
+       // console.log("userPrompt:", userPropmt);
         //console.log("systemPrompt:", systemPrompt);
         //console.log("OPENAI_MODEL:", process.env.OPENAI_MODEL);
 
