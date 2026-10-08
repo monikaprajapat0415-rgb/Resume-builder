@@ -4,26 +4,34 @@ import Hero from "../components/home/Hero";
 import NavBar from "../components/home/NavBar";
 import toast from "react-hot-toast";
 import SEO from "../components/SEO";
+import api from "../configs/api";
+import { useSiteContent } from "../utils/siteContent";
 
 export default function ContactUs() {
   const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
+    website: "", // honeypot: hidden from people, bots fill it in
   });
+  const [sending, setSending] = useState(false);
+  const site = useSiteContent();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-   toast.success("Message sent successfully! We will get back to you shortly.");
-    setForm({
-      name: "",
-      email: "",
-      message: "",
-    });
+    setSending(true);
+    try {
+      await api.post("/api/contact", form);
+      toast.success("Message sent successfully! We will get back to you shortly.");
+      setForm({ name: "", email: "", message: "", website: "" });
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Could not send your message. Please try again.");
+    }
+    setSending(false);
   };
 
   return (
@@ -49,23 +57,23 @@ export default function ContactUs() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-green-600" />
-              <span>support@primeresumeai.com</span>
+              <span>{site.contact_email}</span>
             </div>
 
             <div className="flex items-center gap-3">
               <FaPhoneAlt className="text-green-600" />
-              <span>+91 7976204889</span>
+              <span>{site.contact_phone}</span>
             </div>
 
             <div className="flex items-center gap-3">
               <FaMapMarkerAlt className="text-green-600" />
-              <span>New Delhi, India</span>
+              <span>{site.contact_address}</span>
             </div>
           </div>
         </div>
 
         {/* RIGHT: Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5 relative">
           
           <div>
             <label className="text-sm text-gray-600">Full Name</label>
@@ -106,11 +114,19 @@ export default function ContactUs() {
             />
           </div>
 
+          {/* Honeypot field - off-screen and skipped by keyboards/screen readers */}
+          <input
+            type="text" name="website" value={form.website} onChange={handleChange}
+            tabIndex={-1} autoComplete="off" aria-hidden="true"
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
+
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition"
+            disabled={sending}
+            className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition disabled:opacity-60"
           >
-            Send Message
+            {sending ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>

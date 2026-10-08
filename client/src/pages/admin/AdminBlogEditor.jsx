@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
-import { LuTrash2, LuArrowUp, LuArrowDown } from 'react-icons/lu'
+import BlockEditor from '../../components/admin/BlockEditor'
 
-const emptyBlock = (type) => (type === 'list' ? { type, items: [''] } : { type, text: '' })
 const todayStr = () => new Date().toISOString().slice(0, 10)
 
 const AdminBlogEditor = () => {
@@ -22,9 +21,17 @@ const AdminBlogEditor = () => {
   const [readTime, setReadTime] = useState('')
   const [date, setDate] = useState(todayStr)
   const [published, setPublished] = useState(true)
+  const [category, setCategory] = useState('')
+  const [categories, setCategories] = useState([])
   const [blocks, setBlocks] = useState([{ type: 'paragraph', text: '' }])
   const [loading, setLoading] = useState(isEdit)
   const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    api.get('/api/admin/categories?type=blog', { headers: { Authorization: token } })
+      .then(({ data }) => setCategories(data.categories || []))
+      .catch(() => {})
+  }, [])
 
   useEffect(() => {
     if (!isEdit) return
@@ -40,6 +47,7 @@ const AdminBlogEditor = () => {
         setReadTime(post.readTime || '')
         setDate(post.date ? new Date(post.date).toISOString().slice(0, 10) : todayStr())
         setPublished(post.published !== false)
+        setCategory(post.category || '')
         setBlocks(post.content && post.content.length > 0 ? post.content : [{ type: 'paragraph', text: '' }])
       } catch (error) {
         toast.error(error.response?.data?.message || error.message || 'Could not load post.')
@@ -49,19 +57,6 @@ const AdminBlogEditor = () => {
     }
     load()
   }, [id])
-
-  const addBlock = (type) => setBlocks((prev) => [...prev, emptyBlock(type)])
-  const removeBlock = (index) => setBlocks((prev) => prev.filter((_, i) => i !== index))
-  const moveBlock = (index, dir) => {
-    setBlocks((prev) => {
-      const target = index + dir
-      if (target < 0 || target >= prev.length) return prev
-      const next = [...prev]
-      ;[next[index], next[target]] = [next[target], next[index]]
-      return next
-    })
-  }
-  const updateBlock = (index, patch) => setBlocks((prev) => prev.map((b, i) => (i === index ? { ...b, ...patch } : b)))
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -73,7 +68,7 @@ const AdminBlogEditor = () => {
           : { type: b.type, text: (b.text || '').trim() }))
         .filter((b) => (b.type === 'list' ? b.items.length > 0 : b.text.length > 0))
 
-      const payload = { title, slug, description, keywords, excerpt, readTime, date, published, content }
+      const payload = { title, slug, description, keywords, excerpt, readTime, date, published, category, content }
 
       if (isEdit) {
         await api.put(`/api/admin/blogs/${id}`, payload, { headers: { Authorization: token } })
@@ -131,6 +126,15 @@ const AdminBlogEditor = () => {
               <input type='date' value={date} onChange={(e) => setDate(e.target.value)} className={inputClass} />
             </div>
           </div>
+          <div>
+            <label className='block text-sm font-medium text-slate-700 mb-1'>
+              Category <span className='text-slate-400 font-normal'>(<Link to='/admin/categories' className='text-green-600 hover:underline'>manage categories</Link>)</span>
+            </label>
+            <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputClass}>
+              <option value=''>Uncategorised</option>
+              {categories.map((c) => <option key={c._id} value={c.slug}>{c.name}</option>)}
+            </select>
+          </div>
           <label className='flex items-center gap-2 text-sm text-slate-700'>
             <input type='checkbox' checked={published} onChange={(e) => setPublished(e.target.checked)} className='rounded border-slate-300' />
             Published <span className='text-slate-400'>(unpublished posts are saved as drafts and won't appear on the public blog)</span>
@@ -138,50 +142,7 @@ const AdminBlogEditor = () => {
         </div>
 
         <div className='bg-white rounded-xl border border-slate-200 p-5'>
-          <div className='flex items-center justify-between mb-4 flex-wrap gap-2'>
-            <h2 className='text-sm font-semibold text-slate-800'>Content</h2>
-            <div className='flex items-center gap-2'>
-              <button type='button' onClick={() => addBlock('heading')} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 transition'>+ Heading</button>
-              <button type='button' onClick={() => addBlock('paragraph')} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 transition'>+ Paragraph</button>
-              <button type='button' onClick={() => addBlock('list')} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 transition'>+ List</button>
-            </div>
-          </div>
-
-          <div className='space-y-4'>
-            {blocks.map((block, i) => (
-              <div key={i} className='border border-slate-100 rounded-lg p-3'>
-                <div className='flex items-center justify-between mb-2'>
-                  <span className='text-xs font-medium uppercase text-slate-400'>{block.type}</span>
-                  <div className='flex items-center gap-1'>
-                    <button type='button' onClick={() => moveBlock(i, -1)} className='p-1.5 rounded hover:bg-slate-100 transition' title='Move up'>
-                      <LuArrowUp className='size-3.5 text-slate-500' />
-                    </button>
-                    <button type='button' onClick={() => moveBlock(i, 1)} className='p-1.5 rounded hover:bg-slate-100 transition' title='Move down'>
-                      <LuArrowDown className='size-3.5 text-slate-500' />
-                    </button>
-                    <button type='button' onClick={() => removeBlock(i)} className='p-1.5 rounded hover:bg-slate-100 transition' title='Remove'>
-                      <LuTrash2 className='size-3.5 text-red-500' />
-                    </button>
-                  </div>
-                </div>
-                {block.type === 'heading' && (
-                  <input value={block.text} onChange={(e) => updateBlock(i, { text: e.target.value })} placeholder='Section heading' className={inputClass} />
-                )}
-                {block.type === 'paragraph' && (
-                  <textarea value={block.text} onChange={(e) => updateBlock(i, { text: e.target.value })} placeholder='Paragraph text' rows={4} className={inputClass} />
-                )}
-                {block.type === 'list' && (
-                  <textarea
-                    value={(block.items || []).join('\n')}
-                    onChange={(e) => updateBlock(i, { items: e.target.value.split('\n') })}
-                    placeholder='One list item per line'
-                    rows={4}
-                    className={inputClass}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+          <BlockEditor blocks={blocks} setBlocks={setBlocks} />
         </div>
 
         <div className='flex items-center gap-3'>

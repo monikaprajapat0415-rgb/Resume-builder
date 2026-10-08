@@ -152,10 +152,10 @@ const Dashboard = () => {
             <p className='text-sm text-slate-500 mt-1'>Manage your resumes and export them to PDF.</p>
             {user?.role === 'admin' && (
               <button
-                onClick={() => navigate('/admin/blogs')}
+                onClick={() => navigate('/admin')}
                 className='mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-md transition'
               >
-                <LuShield className='size-3.5' /> Admin: manage blog posts
+                <LuShield className='size-3.5' /> Open admin panel
               </button>
             )}
             <div className='mt-3 flex items-center gap-3'>

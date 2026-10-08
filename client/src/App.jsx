@@ -25,25 +25,45 @@ import TemplateLanding from "./pages/TemplateLanding";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminBlogList from "./pages/admin/AdminBlogList";
 import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminProductList from "./pages/admin/AdminProductList";
+import AdminProductEditor from "./pages/admin/AdminProductEditor";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminMenus from "./pages/admin/AdminMenus";
+import AdminMessages from "./pages/admin/AdminMessages";
+import AdminPages from "./pages/admin/AdminPages";
+import AdminPageEditor from "./pages/admin/AdminPageEditor";
+import AdminSiteContent from "./pages/admin/AdminSiteContent";
+import CustomPage from "./pages/CustomPage";
+import ProductsIndex from "./pages/ProductsIndex";
+import ProductDetail from "./pages/ProductDetail";
 import SEO from "./components/SEO";
 const App = () => {
 
   const dispatch = useDispatch();
   const getUserData = async () => {
     const token = localStorage.getItem('token');
+    if (!token) {
+      dispatch(setLoading(false));
+      return;
+    }
     try {
-      if (token) {
-        const { data } = await api.get('/api/users/data', { headers: { Authorization: token } });
-        if (data.user) {
-          dispatch(login({ token, user: data.user }));
-        }
-        dispatch(setLoading(false));
-      } else {
-        dispatch(setLoading(false));
+      // The timeout matters: if the API is down or hanging, the app must still reach
+      // the login page instead of showing the loading spinner forever.
+      const { data } = await api.get('/api/users/data', { headers: { Authorization: token }, timeout: 8000 });
+      if (data.user) {
+        dispatch(login({ token, user: data.user }));
       }
     } catch (error) {
+      // 401/403/404 = the saved token is expired or belongs to a deleted user: drop it.
+      // Network errors and timeouts keep the token so a brief outage doesn't log people out.
+      if ([401, 403, 404].includes(error.response?.status)) {
+        localStorage.removeItem('token');
+      }
+      console.log("Error fetching user data:", error.message);
+    } finally {
       dispatch(setLoading(false));
-      console.log("Error fetching user data:", error.messsage);
     }
   }
 
@@ -90,11 +110,24 @@ const App = () => {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/products" element={<ProductsIndex />} />
+        <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/templates" element={<TemplatesIndex />} />
         <Route path="/templates/:slug" element={<TemplateLanding />} />
 
         <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/blogs" replace />} />
+          <Route index element={<AdminOverview />} />
+          <Route path="products" element={<AdminProductList />} />
+          <Route path="products/new" element={<AdminProductEditor />} />
+          <Route path="products/:id/edit" element={<AdminProductEditor />} />
+          <Route path="categories" element={<AdminCategories />} />
+          <Route path="menus" element={<AdminMenus />} />
+          <Route path="messages" element={<AdminMessages />} />
+          <Route path="pages" element={<AdminPages />} />
+          <Route path="pages/new" element={<AdminPageEditor />} />
+          <Route path="pages/:id/edit" element={<AdminPageEditor />} />
+          <Route path="site-content" element={<AdminSiteContent />} />
+          <Route path="users" element={<AdminUsers />} />
           <Route path="blogs" element={<AdminBlogList />} />
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
@@ -112,6 +145,7 @@ const App = () => {
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/p/:slug" element={<CustomPage />} />
 
       </Routes>
     </>

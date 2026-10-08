@@ -17,7 +17,7 @@ if (!email) {
 
 await connectDB();
 
-const user = await User.findOneAndUpdate({ email }, { role: "admin" }, { new: true });
+const user = await User.findOneAndUpdate({ email }, { role: "admin" }, { returnDocument: 'after' });
 
 if (!user) {
     console.log(`No account found with email "${email}". Sign up (or log in) with that email first, then run this again.`);

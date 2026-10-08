@@ -1,6 +1,7 @@
 import SEO from '../components/SEO'
+import CmsPage from '../components/CmsPage'
 
-export default function TermsAndConditions() {
+function StaticTermsAndConditions() {
   return (
     <section className="bg-gray-50 py-14 px-4">
       <SEO
@@ -94,4 +95,9 @@ export default function TermsAndConditions() {
       </div>
     </section>
   );
+}
+
+// Text is managed from Admin > Pages; the static version above is the offline fallback.
+export default function TermsAndConditions() {
+  return <CmsPage slug="terms-and-conditions" seoPath="/terms-and-conditions" fallback={<StaticTermsAndConditions />} />
 }

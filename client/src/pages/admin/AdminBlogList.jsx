@@ -10,6 +10,10 @@ const AdminBlogList = () => {
   const navigate = useNavigate()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [categories, setCategories] = useState([])
+  const [q, setQ] = useState('')
+  const [status, setStatus] = useState('all')
+  const [cat, setCat] = useState('')
 
   const load = async () => {
     try {
@@ -21,7 +25,17 @@ const AdminBlogList = () => {
     setLoading(false)
   }
 
-  useEffect(() => { load() }, [])
+  useEffect(() => {
+    load()
+    api.get('/api/admin/categories?type=blog', { headers: { Authorization: token } })
+      .then(({ data }) => setCategories(data.categories || [])).catch(() => {})
+  }, [])
+
+  const nameOf = (slug) => categories.find((c) => c.slug === slug)?.name || '—'
+  const shown = posts.filter((p) =>
+    (!q || p.title.toLowerCase().includes(q.toLowerCase())) &&
+    (status === 'all' || (status === 'published') === p.published) &&
+    (!cat || p.category === cat))
 
   const remove = async (id, title) => {
     const confirmed = window.confirm(`Delete "${title}"? This can't be undone.`)
@@ -47,6 +61,17 @@ const AdminBlogList = () => {
         </button>
       </div>
 
+      <div className='flex flex-wrap gap-2 mb-4'>
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search titles…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-300' />
+        <select value={status} onChange={(e) => setStatus(e.target.value)} className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white'>
+          <option value='all'>All statuses</option><option value='published'>Published</option><option value='draft'>Drafts</option>
+        </select>
+        <select value={cat} onChange={(e) => setCat(e.target.value)} className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white'>
+          <option value=''>All categories</option>
+          {categories.map((c) => <option key={c._id} value={c.slug}>{c.name}</option>)}
+        </select>
+      </div>
+
       {loading ? (
         <p className='text-slate-400'>Loading…</p>
       ) : posts.length === 0 ? (
@@ -59,6 +84,7 @@ const AdminBlogList = () => {
             <thead className='bg-slate-50 text-slate-500 text-left'>
               <tr>
                 <th className='px-4 py-3 font-medium'>Title</th>
+                <th className='px-4 py-3 font-medium'>Category</th>
                 <th className='px-4 py-3 font-medium'>Status</th>
                 <th className='px-4 py-3 font-medium'>Date</th>
                 <th className='px-4 py-3 font-medium'>Views</th>
@@ -66,9 +92,10 @@ const AdminBlogList = () => {
               </tr>
             </thead>
             <tbody>
-              {posts.map((post) => (
+              {shown.map((post) => (
                 <tr key={post._id} className='border-t border-slate-100'>
                   <td className='px-4 py-3 text-slate-800 max-w-sm truncate'>{post.title}</td>
+                  <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{nameOf(post.category)}</td>
                   <td className='px-4 py-3'>
                     <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
                       {post.published ? 'Published' : 'Draft'}

@@ -4,22 +4,8 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
+import BlockRenderer from '../components/BlockRenderer'
 import { LuArrowLeft } from 'react-icons/lu'
-
-const renderBlock = (block, i) => {
-  if (block.type === 'heading') {
-    return <h2 key={i} className='text-2xl font-semibold text-slate-800 mt-10 mb-3'>{block.text}</h2>
-  }
-  if (block.type === 'list') {
-    return (
-      <ul key={i} className='list-disc list-outside pl-5 space-y-2 text-slate-600 my-4'>
-        {block.items.map((item, j) => <li key={j}>{item}</li>)}
-      </ul>
-    )
-  }
-  // paragraph (default)
-  return <p key={i} className='text-slate-600 leading-relaxed my-4'>{block.text}</p>
-}
 
 const BlogPost = () => {
   const { slug } = useParams()
@@ -90,6 +76,7 @@ const BlogPost = () => {
       name: 'Prime Resume AI',
       logo: { '@type': 'ImageObject', url: 'https://primeresumeai.com/logo.svg' },
     },
+    ...(post.categoryName ? { articleSection: post.categoryName } : {}),
     mainEntityOfPage: `https://primeresumeai.com/blog/${post.slug}`,
   }
 
@@ -109,13 +96,18 @@ const BlogPost = () => {
           <LuArrowLeft className='size-4' />Back to blog
         </Link>
 
+        {post.categoryName && (
+          <Link to={`/blog?category=${post.category}`} className='inline-block text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full mb-3 hover:bg-green-100 transition'>
+            {post.categoryName}
+          </Link>
+        )}
         <p className='text-xs text-slate-400 mb-2'>
           {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} · {post.readTime}
         </p>
         <h1 className='text-3xl sm:text-4xl font-bold text-slate-800 leading-tight'>{post.title}</h1>
 
         <div className='mt-8'>
-          {post.content.map(renderBlock)}
+          <BlockRenderer blocks={post.content} />
         </div>
 
         <div className='mt-14 rounded-xl border border-green-200 bg-green-50 p-6 text-center'>

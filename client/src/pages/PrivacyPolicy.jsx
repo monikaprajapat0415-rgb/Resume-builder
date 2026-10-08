@@ -1,6 +1,7 @@
 import SEO from '../components/SEO'
+import CmsPage from '../components/CmsPage'
 
-export default function PrivacyPolicy() {
+function StaticPrivacyPolicy() {
   return (
     <section className="bg-gray-50 py-14 px-4">
       <SEO
@@ -104,4 +105,9 @@ export default function PrivacyPolicy() {
       </div>
     </section>
   );
+}
+
+// Text is managed from Admin > Pages; the static version above is the offline fallback.
+export default function PrivacyPolicy() {
+  return <CmsPage slug="privacy-policy" seoPath="/privacy-policy" fallback={<StaticPrivacyPolicy />} />
 }
