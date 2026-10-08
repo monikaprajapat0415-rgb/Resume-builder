@@ -3,31 +3,21 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { logout } from '../../app/features/authSlice';
 import { useState } from 'react';
+import MenuLink from './MenuLink';
+import { useMenu } from '../../utils/menu';
 
 export default function NavBar() {
     const { user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
 
-    // Features/Testimonials/Contact Us are sections on the Home page, not separate
-    // routes. A plain <a href="#feature"> only works while already on "/" — from any
-    // other route (e.g. /blog) the browser has nothing with that id to scroll to, so
-    // the click appears to do nothing. Navigate to "/" with the hash instead; Home.jsx
-    // watches location.hash and scrolls to the matching section once it has mounted.
-    const goToSection = (id) => (e) => {
-        e.preventDefault();
-        setMenuOpen(false);
-        if (location.pathname === '/') {
-            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            navigate(`/#${id}`);
-        }
-    };
+    // Links come from the admin-managed menu (Admin > Menus). Section links like
+    // /#feature are handled inside MenuLink.
+    const { header } = useMenu();
 
 
     return (
@@ -39,13 +29,9 @@ export default function NavBar() {
                 </a>
 
                 <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
-                    <Link to="/" className="hover:text-green-600 transition">Home</Link>
-                    <a href="/#feature" onClick={goToSection('feature')} className="hover:text-green-600 transition">Features</a>
-                    <a href="/#testimonials" onClick={goToSection('testimonials')} className="hover:text-green-600 transition">Testimonials</a>
-                    <Link to='/templates' className="hover:text-green-600 transition">Templates</Link>
-                    <Link to='/blog' className="hover:text-green-600 transition">Blog</Link>
-                    {/* <a href="#cta" className="hover:text-green-600 transition">Contact</a> */}
-                    <a href='/#contact-us' onClick={goToSection('contact-us')} className="hover:text-green-600 transition">Contact Us</a>
+                    {header.map((item) => (
+                        <MenuLink key={item._id} item={item} className="hover:text-green-600 transition" />
+                    ))}
                 </div>
 
                 <div className="flex gap-2">
@@ -77,12 +63,9 @@ export default function NavBar() {
             </nav>
             {/* Mobile Menu */}
             <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
-                <Link to="/" className="text-white" onClick={() => setMenuOpen(false)}>Home</Link>
-                <a href="/#feature" onClick={goToSection('feature')} className="text-white">Features</a>
-                <a href="/#testimonials" onClick={goToSection('testimonials')} className="text-white">Testimonials</a>
-                <Link to='/templates' className="text-white" onClick={() => setMenuOpen(false)}>Templates</Link>
-                <Link to='/blog' className="text-white" onClick={() => setMenuOpen(false)}>Blog</Link>
-                <a href='/#contact-us' onClick={goToSection('contact-us')} className="text-white">Contact Us</a>
+                {header.map((item) => (
+                    <MenuLink key={item._id} item={item} className="text-white" onNavigate={() => setMenuOpen(false)} />
+                ))}
                 <Link
                     to="/app?state=login"
                     className="text-white"

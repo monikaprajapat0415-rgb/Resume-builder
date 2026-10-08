@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from '../../configs/api';
 import NavBar from './NavBar';
+import { useSiteContent } from '../../utils/siteContent';
 
 
 const Hero = () => {
@@ -17,6 +18,7 @@ const Hero = () => {
     
         const [menuOpen, setMenuOpen] = React.useState(false);
         const [userCount, setUserCount] = useState(null);
+        const site = useSiteContent();
 
         useEffect(() => {
                 let mounted = true;
@@ -124,15 +126,15 @@ const Hero = () => {
 
                     {/* Headline + CTA */}
                     <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
-                        Land your dream job with <span className=" bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">AI-powered </span> resumes.
+                        {site.hero_line1} <span className=" bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">{site.hero_highlight} </span> {site.hero_line2}
                     </h1>
 
-                    <p className="max-w-md text-center text-base my-7">Create, edit, and download professional resumes with AI-powered assistance.</p>
+                    <p className="max-w-md text-center text-base my-7">{site.hero_subtext}</p>
 
                     {/* CTA Buttons */}
                     <div className="flex items-center gap-4 ">
                         <Link to='/app' className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors">
-                            Create my resume
+                            {site.hero_button}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right ml-1 size-4" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                         </Link>
                         {/* <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">

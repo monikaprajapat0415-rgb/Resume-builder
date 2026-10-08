@@ -21,3 +21,12 @@ export const authLimiter = rateLimit({
     legacyHeaders: false,
     message: { message: "Too many attempts. Please wait a few minutes and try again." },
 });
+
+// Public contact form: a handful of messages per IP per hour is plenty for real people.
+export const contactLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { message: "You've sent several messages already. Please try again later." },
+});

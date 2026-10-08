@@ -18,6 +18,8 @@ const BlogSchema = new mongoose.Schema({
     content: { type: [BlogBlockSchema], default: [] },
     date: { type: Date, default: Date.now },
     readTime: { type: String, default: '' },
+    // Category.slug (type: blog). Empty string = uncategorised.
+    category: { type: String, default: '' },
     author: { type: String, default: 'Prime Resume AI Team' },
     // Drafts (published: false) are returned to the admin portal only, never to
     // the public /api/blogs endpoints or the sitemap.

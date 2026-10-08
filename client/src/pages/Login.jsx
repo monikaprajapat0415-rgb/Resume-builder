@@ -15,6 +15,11 @@ import { GoogleLogin } from '@react-oauth/google';
 
 
 
+// Only show the Google button when a real client ID is configured. With the
+// placeholder from .env.example Google answers 403 "client ID not found".
+const googleClientId = (import.meta.env.VITE_GOOGLE_CLIENT_ID || '').replace(/^["']|["']$/g, '')
+const googleEnabled = /\.apps\.googleusercontent\.com$/.test(googleClientId) && !googleClientId.startsWith('replace_with')
+
 const Login = () => {
 
     const dispatch = useDispatch();
@@ -78,35 +83,39 @@ const Login = () => {
                 <h1 className="text-gray-900 text-3xl mt-10 font-medium">{state === "login" ? "Login" : "Sign up"}</h1>
                 <p className="text-gray-500 text-sm mt-2">Please {state} in to continue</p>
 
+                {googleEnabled && (
+                    <>
                 <div className="flex justify-center mt-6">
-                    <GoogleLogin
-                        onSuccess={handleGoogleSuccess}
-                        onError={() => toast.error("Google sign-in failed. Please try again.")}
-                        text={state === "login" ? "signin_with" : "signup_with"}
-                        shape="pill"
-                        width="300"
-                    />
-                </div>
-
-                <div className="flex items-center gap-3 mt-6">
-                    <div className="h-px flex-1 bg-gray-300/80" />
-                    <span className="text-xs text-gray-400">or</span>
-                    <div className="h-px flex-1 bg-gray-300/80" />
-                </div>
+                        <GoogleLogin
+                            onSuccess={handleGoogleSuccess}
+                            onError={() => toast.error("Google sign-in failed. Please try again.")}
+                            text={state === "login" ? "signin_with" : "signup_with"}
+                            shape="pill"
+                            width="300"
+                        />
+                    </div>
+    
+                    <div className="flex items-center gap-3 mt-6">
+                        <div className="h-px flex-1 bg-gray-300/80" />
+                        <span className="text-xs text-gray-400">or</span>
+                        <div className="h-px flex-1 bg-gray-300/80" />
+                    </div>
+                    </>
+                )}
 
                 {state !== "login" && (
                     <div className="flex items-center mt-6 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                         <FaUser size={16} color='6B7280' />
-                        <input type="text" name="name" placeholder="Name" className="border-none outline-none ring-0" value={formData.name} onChange={handleChange} required />
+                        <input type="text" name="name" placeholder="Name" className="flex-1 min-w-0 h-full pr-6 bg-transparent border-none outline-none ring-0" value={formData.name} onChange={handleChange} required />
                     </div>
                 )}
                 <div className="flex items-center w-full mt-4 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                     <FaEnvelope size={13} color='6B7280' />
-                    <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={formData.email} onChange={handleChange} required />
+                    <input type="email" name="email" placeholder="Email id" className="flex-1 min-w-0 h-full pr-6 bg-transparent border-none outline-none ring-0" value={formData.email} onChange={handleChange} required />
                 </div>
                 <div className="relative flex items-center mt-4 w-full bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
                     <FaLock size={13} color='6B7280' />
-                    <input type={show ? "text" : "password"} name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
+                    <input type={show ? "text" : "password"} name="password" placeholder="Password" className="flex-1 min-w-0 h-full pr-10 bg-transparent border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
                     <span
                         onClick={() => setShow(!show)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">

@@ -1,21 +1,19 @@
 import Blog from "../models/Blog.js";
+import Category from "../models/Category.js";
+import Product from "../models/Product.js";
+import Page from "../models/Page.js";
+import { slugify } from "../utils/slugify.js";
 
-const slugify = (str) =>
-    (str || '')
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-+|-+$/g, '');
 
 // ---------- Public ----------
 
 // GET /api/blogs - list published posts for the /blog index page
 export const getPublishedBlogs = async (req, res) => {
     try {
-        const posts = await Blog.find({ published: true })
-            .select('title slug description excerpt date readTime keywords')
+        const filter = { published: true };
+        if (req.query.category) filter.category = String(req.query.category);
+        const posts = await Blog.find(filter)
+            .select('title slug description excerpt date readTime keywords category')
             .sort({ date: -1 });
         return res.status(200).json({ posts });
     } catch (error) {
@@ -29,12 +27,30 @@ export const getPublishedBlogBySlug = async (req, res) => {
         const post = await Blog.findOneAndUpdate(
             { slug: req.params.slug, published: true },
             { $inc: { views: 1 } },
-            { new: true }
+            { returnDocument: 'after' }
         );
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
-        return res.status(200).json({ post });
+        const cat = post.category ? await Category.findOne({ type: 'blog', slug: post.category }) : null;
+        return res.status(200).json({ post: { ...post.toObject(), categoryName: cat?.name || '' } });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// GET /api/blogs/categories - blog categories that have at least one published post
+export const getBlogCategories = async (req, res) => {
+    try {
+        const counts = await Blog.aggregate([
+            { $match: { published: true, category: { $ne: '' } } },
+            { $group: { _id: '$category', count: { $sum: 1 } } },
+        ]);
+        const countMap = Object.fromEntries(counts.map((c) => [c._id, c.count]));
+        const categories = (await Category.find({ type: 'blog' }).sort({ name: 1 }))
+            .filter((c) => countMap[c.slug])
+            .map((c) => ({ name: c.name, slug: c.slug, description: c.description, count: countMap[c.slug] }));
+        return res.status(200).json({ categories });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -58,13 +74,21 @@ export const getPublishedBlogSlugs = async (req, res) => {
 // as a second Sitemap: line in client/public/robots.txt.
 export const getBlogSitemapXml = async (req, res) => {
     try {
-        const posts = await Blog.find({ published: true }).select('slug updatedAt date');
+        const [posts, products, pages] = await Promise.all([
+            Blog.find({ published: true }).select('slug updatedAt date'),
+            Product.find({ published: true }).select('slug updatedAt'),
+            Page.find({ published: true, system: false }).select('slug updatedAt'),
+        ]);
         const siteUrl = process.env.CLIENT_URL || 'https://primeresumeai.com';
 
-        const urls = posts.map((post) => {
-            const lastmod = new Date(post.updatedAt || post.date).toISOString().slice(0, 10);
-            return `  <url>\n    <loc>${siteUrl}/blog/${post.slug}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n  </url>`;
-        }).join('\n');
+        const entry = (path, when, freq) =>
+            `  <url>\n    <loc>${siteUrl}${path}</loc>\n    <lastmod>${new Date(when).toISOString().slice(0, 10)}</lastmod>\n    <changefreq>${freq}</changefreq>\n  </url>`;
+
+        const urls = [
+            ...posts.map((post) => entry(`/blog/${post.slug}`, post.updatedAt || post.date, 'monthly')),
+            ...products.map((product) => entry(`/products/${product.slug}`, product.updatedAt, 'weekly')),
+            ...pages.map((page) => entry(`/p/${page.slug}`, page.updatedAt, 'monthly')),
+        ].join('\n');
 
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
 
@@ -103,7 +127,7 @@ export const getBlogByIdAdmin = async (req, res) => {
 // POST /api/admin/blogs
 export const createBlog = async (req, res) => {
     try {
-        const { title, slug, description, keywords, excerpt, content, date, readTime, published } = req.body;
+        const { title, slug, description, keywords, excerpt, content, date, readTime, published, category } = req.body;
         if (!title || !title.trim()) {
             return res.status(400).json({ message: 'Title is required' });
         }
@@ -127,6 +151,7 @@ export const createBlog = async (req, res) => {
             content: Array.isArray(content) ? content : [],
             date: date || Date.now(),
             readTime: readTime || '',
+            category: category || '',
             published: published !== undefined ? published : true,
         });
 
@@ -139,7 +164,7 @@ export const createBlog = async (req, res) => {
 // PUT /api/admin/blogs/:id
 export const updateBlog = async (req, res) => {
     try {
-        const { title, slug, description, keywords, excerpt, content, date, readTime, published } = req.body;
+        const { title, slug, description, keywords, excerpt, content, date, readTime, published, category } = req.body;
         const post = await Blog.findById(req.params.id);
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
@@ -163,6 +188,7 @@ export const updateBlog = async (req, res) => {
         if (Array.isArray(content)) post.content = content;
         if (date !== undefined) post.date = date;
         if (readTime !== undefined) post.readTime = readTime;
+        if (category !== undefined) post.category = category;
         if (published !== undefined) post.published = published;
 
         await post.save();
