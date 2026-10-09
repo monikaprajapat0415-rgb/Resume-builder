@@ -5,6 +5,9 @@ import Blog from "../models/Blog.js";
 import Product from "../models/Product.js";
 import Category from "../models/Category.js";
 import Message from "../models/Message.js";
+import AtsUsage from "../models/AtsUsage.js";
+import AtsReport from "../models/AtsReport.js";
+import { emailKey } from "../utils/emailKey.js";
 import imagekit from "../configs/imageKit.js";
 import { slugify } from "../utils/slugify.js";
 
@@ -82,7 +85,13 @@ export const getUsers = async (req, res) => {
             User.find(filter).select('name email role isVerified authProvider createdAt').sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit),
             User.countDocuments(filter),
         ]);
-        return res.status(200).json({ users, total, page, pages: Math.max(1, Math.ceil(total / limit)) });
+        const usage = await AtsUsage.find({ email: { $in: users.map((u) => emailKey(u.email)) } });
+        const byEmail = Object.fromEntries(usage.map((x) => [x.email, x]));
+        const out = users.map((u) => {
+            const x = byEmail[emailKey(u.email)];
+            return { ...u.toObject(), ats: { used: x?.totalChecks || 0, freeUsed: x?.freeUsed || 0, credits: x?.credits || 0, disabled: Boolean(x?.disabled) } };
+        });
+        return res.status(200).json({ users: out, total, page, pages: Math.max(1, Math.ceil(total / limit)) });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -107,6 +116,60 @@ export const setUserRole = async (req, res) => {
         user.role = role;
         await user.save();
         return res.status(200).json({ message: 'Role updated', user: { _id: user._id, role: user.role } });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+}
+
+// DELETE /api/admin/users/:id - removes the account and its resumes and ATS reports.
+// ATS usage counters are kept on purpose so the free check can't be re-claimed.
+export const deleteUser = async (req, res) => {
+    try {
+        if (!/^[a-f0-9]{24}$/i.test(req.params.id)) return res.status(404).json({ message: 'User not found' });
+        if (String(req.params.id) === String(req.userId)) return res.status(400).json({ message: "You can't delete your own account" });
+        const user = await User.findById(req.params.id);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        if (user.role === 'admin') return res.status(400).json({ message: 'Remove admin access first, then delete this user' });
+        const [resumes, reports] = await Promise.all([
+            Resume.deleteMany({ userId: user._id }),
+            AtsReport.deleteMany({ userId: user._id }),
+        ]);
+        await User.deleteOne({ _id: user._id });
+        return res.status(200).json({ message: 'User deleted', resumesDeleted: resumes.deletedCount || 0, reportsDeleted: reports.deletedCount || 0 });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// POST /api/admin/users/:id/ats-credits { credits: -50..50 } - give (or take back) extra ATS checks
+export const adjustAtsCredits = async (req, res) => {
+    try {
+        const n = parseInt(req.body.credits, 10);
+        if (!Number.isFinite(n) || n === 0 || Math.abs(n) > 50) return res.status(400).json({ message: 'Enter a number between 1 and 50' });
+        if (!/^[a-f0-9]{24}$/i.test(req.params.id)) return res.status(404).json({ message: 'User not found' });
+        const user = await User.findById(req.params.id).select('email');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        const email = emailKey(user.email);
+        await AtsUsage.updateOne({ email }, { $setOnInsert: { email } }, { upsert: true });
+        let usage = await AtsUsage.findOneAndUpdate({ email }, { $inc: { credits: n } }, { returnDocument: 'after' });
+        if (usage.credits < 0) usage = await AtsUsage.findOneAndUpdate({ email }, { $set: { credits: 0 } }, { returnDocument: 'after' });
+        return res.status(200).json({ message: 'Updated', ats: { used: usage.totalChecks, freeUsed: usage.freeUsed, credits: usage.credits, disabled: Boolean(usage.disabled) } });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+}
+
+// PATCH /api/admin/users/:id/ats-disabled { disabled: true|false } - switch the ATS checker off/on for one person
+export const setAtsDisabled = async (req, res) => {
+    try {
+        if (typeof req.body.disabled !== 'boolean') return res.status(400).json({ message: 'disabled must be true or false' });
+        if (!/^[a-f0-9]{24}$/i.test(req.params.id)) return res.status(404).json({ message: 'User not found' });
+        const user = await User.findById(req.params.id).select('email');
+        if (!user) return res.status(404).json({ message: 'User not found' });
+        const email = emailKey(user.email);
+        await AtsUsage.updateOne({ email }, { $setOnInsert: { email } }, { upsert: true });
+        const usage = await AtsUsage.findOneAndUpdate({ email }, { $set: { disabled: req.body.disabled } }, { returnDocument: 'after' });
+        return res.status(200).json({ message: 'Updated', ats: { used: usage.totalChecks, freeUsed: usage.freeUsed, credits: usage.credits, disabled: Boolean(usage.disabled) } });
     } catch (error) {
         return res.status(400).json({ message: error.message });
     }

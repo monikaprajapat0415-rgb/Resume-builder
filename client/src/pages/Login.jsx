@@ -26,6 +26,9 @@ const Login = () => {
 
     const queryParams = new URLSearchParams(window.location.search);
     const urlState = queryParams.get('state');
+    // After signing in, return to the page the person came from (same-site paths only).
+    const nextRaw = queryParams.get('next');
+    const next = nextRaw && /^\/(?!\/)/.test(nextRaw) ? nextRaw : null;
 
 
     const [state, setState] = useState(urlState || "login")
@@ -46,7 +49,7 @@ const Login = () => {
             dispatch(login(data))
             localStorage.setItem('token', data.token);
             toast.success(data.message)
-
+            if (next) navigate(next)
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message || "An error occurred. Please try again.")
@@ -68,6 +71,7 @@ const Login = () => {
             dispatch(login(data))
             localStorage.setItem('token', data.token);
             toast.success(data.message)
+            if (next) navigate(next)
         } catch (error) {
             toast.error(error.response?.data?.message || error.message || "Google sign-in failed. Please try again.")
         }

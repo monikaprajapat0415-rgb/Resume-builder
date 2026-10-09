@@ -51,7 +51,7 @@ const BlogPost = () => {
     let live = true
     setState('loading'); setPost(null)
     api.get(`/api/blogs/${slug}`)
-      .then(({ data }) => { if (live) { setPost(data.post); setState('ok') } })
+      .then(({ data }) => { if (!live) return; if (!data.post?.seo) { setState('error'); return } setPost(data.post); setState('ok') })
       .catch((e) => { if (live) setState(e.response?.status === 404 ? 'missing' : 'error') })
     return () => { live = false }
   }, [slug])

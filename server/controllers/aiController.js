@@ -3,7 +3,7 @@ import ai from "../configs/ai.js";
 import { inspect } from 'util';
 
 // Try multiple strategies to parse possibly-invalid JSON returned by models.
-const tryParseJSON = (input) => {
+export const tryParseJSON = (input) => {
     // console.log("tryParseJSON input preview:", input);
     if (input === null || input === undefined) return null;
 
@@ -294,7 +294,7 @@ export const uploadResume = async (req, res) => {
 // (OpenAI-style chat completions, or @google/genai's generateContent) and return
 // the raw text response. Used by the ATS score checker and cover letter generator
 // below so they don't have to duplicate the client branching every time.
-const callAI = async (systemPrompt, userPrompt) => {
+export const callAI = async (systemPrompt, userPrompt) => {
     if (ai?.chat?.completions?.create) {
         const response = await ai.chat.completions.create({
             model: process.env.OPENAI_MODEL,

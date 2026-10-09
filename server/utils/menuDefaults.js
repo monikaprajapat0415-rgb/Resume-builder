@@ -5,7 +5,7 @@ export const MENU_LOCATIONS = ['header', 'footer_product', 'footer_resources', '
 
 export const DEFAULT_MENU = [
     { key: 'h-home', location: 'header', label: 'Home', url: '/' },
-    { key: 'h-features', location: 'header', label: 'Features', url: '/#feature' },
+    { key: 'h-features', location: 'header', label: 'Features', url: '/features' },
     { key: 'h-testimonials', location: 'header', label: 'Testimonials', url: '/#testimonials' },
     { key: 'h-templates', location: 'header', label: 'Templates', url: '/templates' },
     { key: 'h-products', location: 'header', label: 'Products', url: '/products' },
@@ -18,6 +18,7 @@ export const DEFAULT_MENU = [
     { key: 'fp-affiliate', location: 'footer_product', label: 'Affiliate', url: '/' },
 
     { key: 'fr-templates', location: 'footer_resources', label: 'Templates', url: '/templates' },
+    { key: 'fr-ats', location: 'footer_resources', label: 'ATS Checker', url: '/features/ats-checker' },
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },
     { key: 'fr-contact', location: 'footer_resources', label: 'Contact', url: '/contact-us' },

@@ -1,6 +1,7 @@
 import React from 'react'
 // import { Zap } from 'lucide-react'  
-import { LuZap } from 'react-icons/lu';
+import { Link } from 'react-router-dom';
+import { LuZap, LuScanSearch, LuSparkles, LuMailPlus } from 'react-icons/lu';
 import Title from './Title';
 
 
@@ -19,33 +20,34 @@ const Features = () => {
             <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
                 <img className="max-w-2xl w-full xl:-ml-32" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/features/group-image-1.png" alt="Prime Resume AI dashboard showing resume templates and editing tools" />
                 <div className="px-4 md:px-0" onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
-                    <div className={"flex items-center justify-center gap-6 max-w-md group cursor-pointer"}>
-                        <div className={`p-6 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300  flex gap-4 rounded-xl transition-colors ${!isHover ? 'border-violet-300 bg-violet-100' : ''}`}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-violet-600"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /><circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /></svg>
+                    <Link to="/features/ats-checker" className={"flex items-center justify-center gap-6 max-w-md group"}>
+                        <div className={`p-6 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300 flex gap-4 rounded-xl transition-colors ${!isHover ? 'border-violet-300 bg-violet-100' : ''}`}>
+                            <LuScanSearch className="size-6 shrink-0 text-violet-600" />
                             <div className="space-y-2">
-                                <h3 className="text-base font-semibold text-slate-700">Real-Time Analytics</h3>
-                                <p className="text-sm text-slate-600 max-w-xs">Get instant insights into your finances with live dashboards.</p>
+                                <h3 className="text-base font-semibold text-slate-700">Free ATS Resume Checker <span className="ml-1 text-[10px] uppercase bg-green-600 text-white rounded-full px-2 py-0.5 align-middle">Free</span></h3>
+                                <p className="text-sm text-slate-600 max-w-xs">Drop your resume and get an ATS score with a full report on what to improve.</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex items-center justify-center gap-6 max-w-md group cursor-pointer">
+                    </Link>
+                    <Link to="/features" className="flex items-center justify-center gap-6 max-w-md group">
                         <div className="p-6 group-hover:bg-green-100 border border-transparent group-hover:border-green-300 flex gap-4 rounded-xl transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-6 stroke-green-600"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /></svg>
+                            <LuSparkles className="size-6 shrink-0 text-green-600" />
                             <div className="space-y-2">
-                                <h3 className="text-base font-semibold text-slate-700">Bank-Grade Security</h3>
-                                <p className="text-sm text-slate-600 max-w-xs">End-to-end encryption, 2FA, compliance with GDPR standards.</p>
+                                <h3 className="text-base font-semibold text-slate-700">AI Writing Help</h3>
+                                <p className="text-sm text-slate-600 max-w-xs">Polish your summary and turn job duties into achievement-focused bullet points.</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex items-center justify-center gap-6 max-w-md group cursor-pointer">
+                    </Link>
+                    <Link to="/features" className="flex items-center justify-center gap-6 max-w-md group">
                         <div className="p-6 group-hover:bg-orange-100 border border-transparent group-hover:border-orange-300 flex gap-4 rounded-xl transition-colors">
-                            <svg className="size-6 stroke-orange-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 15V3" /><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><path d="m7 10 5 5 5-5" /></svg>
+                            <LuMailPlus className="size-6 shrink-0 text-orange-600" />
                             <div className="space-y-2">
-                                <h3 className="text-base font-semibold text-slate-700">Customizable Reports</h3>
-                                <p className="text-sm text-slate-600 max-w-xs">Export professional, audit-ready financial reports for tax or internal review.</p>
+                                <h3 className="text-base font-semibold text-slate-700">AI Cover Letters</h3>
+                                <p className="text-sm text-slate-600 max-w-xs">Generate a tailored cover letter for each job from your resume details.</p>
                             </div>
                         </div>
-                    </div>
+                    </Link>
+                    <Link to="/features" className="block text-center text-sm font-medium text-green-700 hover:underline mt-3">See all features →</Link>
                 </div>
             </div>
             <style>{`

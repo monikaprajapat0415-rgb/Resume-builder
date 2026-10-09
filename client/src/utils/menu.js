@@ -6,7 +6,7 @@ import api from '../configs/api'
 export const DEFAULT_MENU = {
   header: [
     { _id: 'h-home', label: 'Home', url: '/' },
-    { _id: 'h-features', label: 'Features', url: '/#feature' },
+    { _id: 'h-features', label: 'Features', url: '/features' },
     { _id: 'h-testimonials', label: 'Testimonials', url: '/#testimonials' },
     { _id: 'h-templates', label: 'Templates', url: '/templates' },
     { _id: 'h-products', label: 'Products', url: '/products' },
@@ -21,6 +21,7 @@ export const DEFAULT_MENU = {
   ],
   footer_resources: [
     { _id: 'fr-templates', label: 'Templates', url: '/templates' },
+    { _id: 'fr-ats', label: 'ATS Checker', url: '/features/ats-checker' },
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },
     { _id: 'fr-contact', label: 'Contact', url: '/contact-us' },

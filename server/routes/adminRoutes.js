@@ -3,7 +3,7 @@ import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
-import { getStats, getUsers, setUserRole, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
+import { getStats, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
 import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage } from '../controllers/contactController.js';
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
@@ -65,6 +65,9 @@ adminRouter.put('/site-content', saveSiteContent);
 
 adminRouter.get('/users', getUsers);
 adminRouter.patch('/users/:id/role', setUserRole);
+adminRouter.delete('/users/:id', deleteUser);
+adminRouter.post('/users/:id/ats-credits', adjustAtsCredits);
+adminRouter.patch('/users/:id/ats-disabled', setAtsDisabled);
 
 adminRouter.post('/upload', imageUpload.single('image'), uploadImage);
 

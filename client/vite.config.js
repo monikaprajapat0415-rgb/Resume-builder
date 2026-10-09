@@ -21,6 +21,8 @@ const staticRoutes = [
   '/privacy-policy',
   '/terms-and-conditions',
   '/blog',
+  '/features',
+  '/features/ats-checker',
   '/templates',
   '/products',
   ...templateSlugs.map((slug) => `/templates/${slug}`),

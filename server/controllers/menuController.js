@@ -10,6 +10,15 @@ const ensureDefaults = async () => {
     })));
 };
 
+// Sites seeded before the Features page existed still have "Features -> /#feature".
+// Point it at /features once, but only if the admin never changed that link.
+let migrated = false;
+const migrateFeaturesLink = async () => {
+    if (migrated) return;
+    await MenuItem.updateOne({ key: 'h-features', url: '/#feature' }, { $set: { url: '/features' } });
+    migrated = true;
+};
+
 const group = (items) => {
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
     items.forEach((i) => out[i.location]?.push(i));
@@ -22,6 +31,7 @@ export const getMenu = async (req, res) => {
         // First ever request: seed the built-ins. After that the admin owns the menu,
         // so an item they deleted does not silently come back.
         if ((await MenuItem.estimatedDocumentCount()) === 0) await ensureDefaults();
+        await migrateFeaturesLink();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -36,6 +46,7 @@ export const getMenu = async (req, res) => {
 export const getMenuAdmin = async (req, res) => {
     try {
         if ((await MenuItem.estimatedDocumentCount()) === 0) await ensureDefaults();
+        await migrateFeaturesLink();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {
