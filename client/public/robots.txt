@@ -1,3 +1,4 @@
+# Prime Resume AI - crawler rules
 User-agent: *
 Allow: /
 Disallow: /app
@@ -7,6 +8,32 @@ Disallow: /forgot-password
 Disallow: /reset-password/
 Disallow: /verify-email/
 Disallow: /admin
+
+# AI assistants and AI search engines are welcome to read and cite our public pages.
+# To opt out of AI *training* only, change the Allow to Disallow for GPTBot, ClaudeBot,
+# Google-Extended, Applebot-Extended and CCBot below; keep the search/answer bots.
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: GPTBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
 
 Sitemap: https://primeresumeai.com/sitemap.xml
 Sitemap: https://primeresumeai.com/api/blogs/sitemap.xml

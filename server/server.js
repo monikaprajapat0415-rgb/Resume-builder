@@ -11,6 +11,8 @@ import adminRouter from "./routes/adminRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import menuRouter from "./routes/menuRoutes.js";
 import publicRouter from "./routes/publicRoutes.js";
+import atsRouter from "./routes/atsRoutes.js";
+import seoRouter from "./routes/seoRoutes.js";
 import { promoteAdminOnStartup } from "./utils/adminEmail.js";
 
 
@@ -63,11 +65,14 @@ app.use('/api', (req, res, next) => {
 app.use('/api/users', userRouter)
 app.use('/api/resumes', resumeRouter)
 app.use('/api/ai', aiRouter)
+app.use('/api/ats', atsRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/products', productRouter)
 app.use('/api/menu', menuRouter)
 app.use('/api', publicRouter)
 app.use('/api/admin', adminRouter)
+// Crawler-friendly HTML for /blog pages, RSS and llms.txt (nginx forwards these paths here)
+app.use('/', seoRouter)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
