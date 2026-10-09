@@ -1,15 +1,38 @@
 import React, { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import toast from 'react-hot-toast'
+import api from '../../configs/api'
 import { LuTrash2, LuArrowUp, LuArrowDown, LuLink, LuBold } from 'react-icons/lu'
 import { isSafeUrl } from '../../utils/inlineText'
 
-export const emptyBlock = (type) => (type === 'list' ? { type, items: [''] } : { type, text: '' })
+const isListType = (t) => t === 'list' || t === 'olist'
+export const emptyBlock = (type) => {
+  if (isListType(type)) return { type, items: [''] }
+  if (type === 'image') return { type, url: '', alt: '', caption: '' }
+  return { type, text: '' }
+}
 
 const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
 
 // Shared content editor for blog posts and products. Paragraphs and list items can
 // contain links written as [text](url) and **bold**; the toolbar inserts that syntax
 // around whatever text is selected, so nobody has to type it by hand.
-const BlockEditor = ({ blocks, setBlocks }) => {
+const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
+  const { token } = useSelector(state => state.auth)
+  const [uploading, setUploading] = useState(null)
+  const types = rich ? ['heading', 'paragraph', 'list', 'olist', 'image'] : ['heading', 'paragraph', 'list']
+  const uploadImage = async (index, file) => {
+    if (!file) return
+    if (file.size > 5 * 1024 * 1024) return toast.error('Image is over 5 MB.')
+    setUploading(index)
+    try {
+      const fd = new FormData()
+      fd.append('image', file)
+      const { data } = await api.post('/api/admin/upload', fd, { headers: { Authorization: token } })
+      update(index, { url: data.url })
+    } catch (err) { toast.error(err.response?.data?.message || 'Upload failed.') }
+    setUploading(null)
+  }
   const refs = useRef({})
   const [linkBox, setLinkBox] = useState(null) // { index, start, end, label, url }
 
@@ -27,9 +50,9 @@ const BlockEditor = ({ blocks, setBlocks }) => {
     })
   }
 
-  const valueOf = (block) => (block.type === 'list' ? (block.items || []).join('\n') : block.text || '')
+  const valueOf = (block) => (isListType(block.type) ? (block.items || []).join('\n') : block.text || '')
   const writeValue = (index, block, value) =>
-    update(index, block.type === 'list' ? { items: value.split('\n') } : { text: value })
+    update(index, isListType(block.type) ? { items: value.split('\n') } : { text: value })
 
   const wrapSelection = (index, block, before, after) => {
     const el = refs.current[index]
@@ -60,8 +83,8 @@ const BlockEditor = ({ blocks, setBlocks }) => {
       <div className='flex items-center justify-between mb-4 flex-wrap gap-2'>
         <h2 className='text-sm font-semibold text-slate-800'>Content</h2>
         <div className='flex items-center gap-2'>
-          {['heading', 'paragraph', 'list'].map((t) => (
-            <button key={t} type='button' onClick={() => add(t)} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 transition capitalize'>+ {t}</button>
+          {types.map((t) => (
+            <button key={t} type='button' onClick={() => add(t)} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 transition'>+ {t === 'olist' ? 'numbered list' : t}</button>
           ))}
         </div>
       </div>
@@ -73,9 +96,9 @@ const BlockEditor = ({ blocks, setBlocks }) => {
         {blocks.map((block, i) => (
           <div key={i} className='border border-slate-100 rounded-lg p-3'>
             <div className='flex items-center justify-between mb-2 gap-2 flex-wrap'>
-              <span className='text-xs font-medium uppercase text-slate-400'>{block.type}</span>
+              <span className='text-xs font-medium uppercase text-slate-400'>{block.type === 'olist' ? 'numbered list' : block.type}</span>
               <div className='flex items-center gap-1'>
-                {block.type !== 'heading' && (
+                {block.type !== 'heading' && block.type !== 'image' && (
                   <>
                     <button type='button' onClick={() => openLink(i, block)} className='inline-flex items-center gap-1 text-xs px-2 py-1 rounded hover:bg-slate-100 text-slate-600 transition' title='Turn the selected text into a link'>
                       <LuLink className='size-3.5' /> Link
@@ -93,12 +116,25 @@ const BlockEditor = ({ blocks, setBlocks }) => {
 
             {block.type === 'heading' ? (
               <input value={block.text} onChange={(e) => update(i, { text: e.target.value })} placeholder='Section heading' className={inputClass} />
+            ) : block.type === 'image' ? (
+              <div className='space-y-2'>
+                {block.url && <img src={block.url} alt={block.alt || ''} className='max-h-40 rounded border border-slate-200' />}
+                <div className='flex gap-2'>
+                  <input value={block.url || ''} onChange={(e) => update(i, { url: e.target.value })} placeholder='Image address (https://…) or upload' className={inputClass} />
+                  <label className='px-3 py-2 border border-slate-200 rounded-md text-xs hover:bg-slate-50 cursor-pointer whitespace-nowrap'>
+                    {uploading === i ? 'Uploading…' : 'Upload'}
+                    <input type='file' accept='image/*' hidden onChange={(e) => { uploadImage(i, e.target.files?.[0]); e.target.value = '' }} />
+                  </label>
+                </div>
+                <input value={block.alt || ''} onChange={(e) => update(i, { alt: e.target.value })} placeholder='Alt text (describe the image, required for SEO and accessibility)' className={inputClass} />
+                <input value={block.caption || ''} onChange={(e) => update(i, { caption: e.target.value })} placeholder='Caption (optional)' className={inputClass} />
+              </div>
             ) : (
               <textarea
                 ref={(el) => { refs.current[i] = el }}
                 value={valueOf(block)}
                 onChange={(e) => writeValue(i, block, e.target.value)}
-                placeholder={block.type === 'list' ? 'One list item per line' : 'Paragraph text'}
+                placeholder={isListType(block.type) ? 'One list item per line' : 'Paragraph text'}
                 rows={4}
                 className={inputClass}
               />

@@ -36,6 +36,8 @@ import AdminPages from "./pages/admin/AdminPages";
 import AdminPageEditor from "./pages/admin/AdminPageEditor";
 import AdminSiteContent from "./pages/admin/AdminSiteContent";
 import CustomPage from "./pages/CustomPage";
+import Features from "./pages/Features";
+import AtsChecker from "./pages/AtsChecker";
 import ProductsIndex from "./pages/ProductsIndex";
 import ProductDetail from "./pages/ProductDetail";
 import SEO from "./components/SEO";
@@ -109,7 +111,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/blog" element={<BlogIndex />} />
+        <Route path="/blog/category/:slug" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/features/ats-checker" element={<AtsChecker />} />
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/templates" element={<TemplatesIndex />} />

@@ -7,7 +7,22 @@ const BlockRenderer = ({ blocks = [], variant = 'article' }) => (
   <>
     {blocks.map((block, i) => {
       if (block.type === 'heading') {
-        return <h2 key={i} className={variant === 'page' ? 'text-xl font-semibold mt-6 mb-2' : 'text-2xl font-semibold text-slate-800 mt-10 mb-3'}>{block.text}</h2>
+        return <h2 key={i} id={block.id} className={variant === 'page' ? 'text-xl font-semibold mt-6 mb-2' : 'text-2xl font-semibold text-slate-800 mt-10 mb-3 scroll-mt-24'}>{block.text}</h2>
+      }
+      if (block.type === 'image') {
+        return (
+          <figure key={i} className='my-6'>
+            <img src={block.url} alt={block.alt || ''} loading='lazy' decoding='async' className='w-full h-auto rounded-lg border border-slate-100' />
+            {block.caption && <figcaption className='text-xs text-slate-400 text-center mt-2'>{block.caption}</figcaption>}
+          </figure>
+        )
+      }
+      if (block.type === 'olist') {
+        return (
+          <ol key={i} className={`list-decimal list-outside pl-5 text-gray-600 ${variant === 'page' ? 'space-y-1 my-2' : 'space-y-2 my-4'}`}>
+            {(block.items || []).map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+          </ol>
+        )
       }
       if (block.type === 'list') {
         return (

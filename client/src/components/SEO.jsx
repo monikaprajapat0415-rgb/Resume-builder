@@ -24,10 +24,16 @@ const SEO = ({
   noindex = false,
   // Optional JSON-LD structured data object (or array of objects) for rich results.
   structuredData,
+  // Optional extras (used by blog posts): a canonical URL that differs from the page URL,
+  // an explicit robots value, alt text for the social image, and article metadata.
+  canonical,
+  robots,
+  imageAlt,
+  article,
 }) => {
   const currentPath =
     path ?? (typeof window !== "undefined" ? window.location.pathname : "/");
-  const canonicalUrl = `${SITE_URL}${currentPath === "/" ? "" : currentPath}`;
+  const canonicalUrl = canonical || `${SITE_URL}${currentPath === "/" ? "" : currentPath}`;
   const fullTitle = title
     ? title.includes(SITE_NAME)
       ? title
@@ -50,7 +56,7 @@ const SEO = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <meta
         name="robots"
-        content={noindex ? "noindex, nofollow" : "index, follow"}
+        content={robots || (noindex ? "noindex, nofollow" : "index, follow")}
       />
       <link rel="canonical" href={canonicalUrl} />
 
@@ -64,12 +70,19 @@ const SEO = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_US" />
+      {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+      {article?.published && <meta property="article:published_time" content={new Date(article.published).toISOString()} />}
+      {article?.modified && <meta property="article:modified_time" content={new Date(article.modified).toISOString()} />}
+      {article?.author && <meta property="article:author" content={article.author} />}
+      {article?.section && <meta property="article:section" content={article.section} />}
+      {(article?.tags || []).map((t) => <meta key={t} property="article:tag" content={t} />)}
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={image} />
+      {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
 
       {structuredDataList.map((data, i) => (
         <script key={i} type="application/ld+json">
