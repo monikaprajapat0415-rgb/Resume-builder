@@ -1,8 +1,16 @@
 import React from 'react'
 import logo from '../../assets/logo.svg'
+import MenuLink from './MenuLink'
+import { useMenu } from '../../utils/menu'
 
 
 const Footer = () => {
+  const menu = useMenu()
+  const columns = [
+    ['Product', menu.footer_product],
+    ['Resources', menu.footer_resources],
+    ['Legal', menu.footer_legal],
+  ]
   return (
     <>
     <style>{`
@@ -18,32 +26,16 @@ const Footer = () => {
                     <a href="#">
                         <img src={logo} alt="logo" className="h-11 w-auto" />
                     </a>
-                    <div>
-                        <p className="text-slate-800 font-semibold">Product</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Home</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Support</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Pricing</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Affiliate</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="text-slate-800 font-semibold">Resources</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Company</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Blogs</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Community</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Careers<span className="text-xs text-white bg-green-600 rounded-md ml-2 px-2 py-1">We’re hiring!</span></a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">About</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="text-slate-800 font-semibold">Legal</p>
-                        <ul className="mt-2 space-y-2">
-                            <li><a href="/" className="hover:text-green-600 transition">Privacy</a></li>
-                            <li><a href="/" className="hover:text-green-600 transition">Terms</a></li>
-                        </ul>
-                    </div>
+                    {columns.filter(([, items]) => items.length > 0).map(([title, items]) => (
+                        <div key={title}>
+                            <p className="text-slate-800 font-semibold">{title}</p>
+                            <ul className="mt-2 space-y-2">
+                                {items.map((item) => (
+                                    <li key={item._id}><MenuLink item={item} className="hover:text-green-600 transition" /></li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
                 </div>
                 <div className="flex flex-col max-md:items-center max-md:text-center gap-2 items-end">
                     <p className="max-w-60">Making every customer feel valued—no matter the size of your audience.</p>

@@ -1,4 +1,7 @@
-import { Loader2, Sparkles } from 'lucide-react'
+// import { Loader2, Sparkles } from 'lucide-react'
+
+import { LuSparkles } from 'react-icons/lu';
+import {BiLoaderAlt} from 'react-icons/bi'
 import { useSelector } from 'react-redux'
 import api from '../configs/api';
 import toast from 'react-hot-toast';
@@ -37,8 +40,8 @@ const ProfessinalSummaryForm = ({data,onChange, setResumeData}) => {
             <button disabled={isGenerating} onClick={generateSummary} className='flex items-center gap-2 px-3 py-1 text-sm bg-purple-100 
             text-purple-700 rounded hover:bg-purple-200 transition-colors disabled:opacity-50'>
 
-               {isGenerating ? (<Loader2 className='size-4 animate-spin' />) : 
-               (<Sparkles className='size-4'/>)}
+               {isGenerating ? (<BiLoaderAlt className='size-4 animate-spin' />) : 
+               (<LuSparkles className='size-4'/>)}
                {isGenerating ? "Enhancing..." : "AI Enhance"}
            
             </button>

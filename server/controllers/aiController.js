@@ -3,7 +3,7 @@ import ai from "../configs/ai.js";
 import { inspect } from 'util';
 
 // Try multiple strategies to parse possibly-invalid JSON returned by models.
-const tryParseJSON = (input) => {
+export const tryParseJSON = (input) => {
     // console.log("tryParseJSON input preview:", input);
     if (input === null || input === undefined) return null;
 
@@ -213,7 +213,7 @@ export const uploadResume = async (req, res) => {
 
         const systemPrompt = 'You are an expert AI agent to extract structured data from resumes.'
         const userPropmt = `Extract structured data from the following resume text and return ONLY a single valid JSON object — nothing else (no explanation, no markdown, no leading/trailing text).\nResume text:\n${resumeText}\n\nThe JSON must follow this example shape exactly (use empty strings/arrays when data is missing):{  "professional_summary": "",  "skills": [],  "personal_info": {    "image": "",    "full_name": "",    "profession": "",    "email": "",    "phone": "",    "location": "",    "linkedin": "",    "website": ""  },  "experience": [    {      "company": "",      "position": "",      "start_date": "",      "end_date": "",      "description": "",      "is_current": false    }  ],  "project": [    {      "name": "",      "type": "",      "description": ""    }  ],  "education": [    {      "institution": "",      "degree": "",      "field": "",      "graduation_date": "",      "gpa": ""    }  ]}`
-        console.log("userPrompt:", userPropmt);
+       // console.log("userPrompt:", userPropmt);
         //console.log("systemPrompt:", systemPrompt);
         //console.log("OPENAI_MODEL:", process.env.OPENAI_MODEL);
 
@@ -287,5 +287,152 @@ export const uploadResume = async (req, res) => {
     } catch (error) {
         return res.status(400).json({ message: error.message })
 
+    }
+}
+
+// Shared helper: send a system+user prompt to whichever AI client is configured
+// (OpenAI-style chat completions, or @google/genai's generateContent) and return
+// the raw text response. Used by the ATS score checker and cover letter generator
+// below so they don't have to duplicate the client branching every time.
+export const callAI = async (systemPrompt, userPrompt) => {
+    if (ai?.chat?.completions?.create) {
+        const response = await ai.chat.completions.create({
+            model: process.env.OPENAI_MODEL,
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: userPrompt },
+            ],
+        });
+        return response?.choices?.[0]?.message?.content;
+    } else if (ai?.models?.generateContent) {
+        const genResp = await ai.models.generateContent({
+            model: process.env.GENAI_MODEL || process.env.OPENAI_MODEL,
+            contents: [
+                { type: 'text', text: `${systemPrompt}\n\n${userPrompt}` }
+            ],
+        });
+        return genResp?.candidates?.[0]?.content || genResp?.outputs?.[0]?.content?.[0]?.text || genResp?.output?.[0]?.content?.text || genResp?.candidates?.[0]?.output || JSON.stringify(genResp);
+    }
+    throw new Error('No supported AI client method found on `ai`');
+};
+
+//controller for scoring a resume against a job description (ATS match score)
+//POST: /api/ai/ats-score
+export const checkAtsScore = async (req, res) => {
+    try {
+        const { resumeId, jobDescription } = req.body;
+        const userId = req.userId;
+
+        if (!resumeId || !jobDescription || !jobDescription.trim()) {
+            return res.status(400).json({ message: 'A resume and a job description are required' });
+        }
+
+        const resume = await Resume.findOne({ userId, _id: resumeId });
+        if (!resume) {
+            return res.status(404).json({ message: 'Resume not found' });
+        }
+
+        const resumeSummary = {
+            professional_summary: resume.professional_summary,
+            skills: resume.skills,
+            experience: resume.experience,
+            education: resume.education,
+            project: resume.project,
+        };
+
+        const systemPrompt = "You are an expert ATS (Applicant Tracking System) and technical recruiter. You compare a resume against a job description and return ONLY a single valid JSON object - no markdown, no explanation, no leading/trailing text.";
+        const userPrompt = `Compare this resume data against the job description below. Score how well the resume matches the job on a 0-100 scale (100 = perfect match), list important keywords/skills from the job description that ARE present in the resume, list important keywords/skills from the job description that are MISSING from the resume, and give 3-5 short, actionable suggestions to improve the match.
+
+Resume data (JSON):
+${JSON.stringify(resumeSummary)}
+
+Job description:
+${jobDescription}
+
+Return ONLY a JSON object with exactly this shape:
+{
+  "score": 0,
+  "matchedKeywords": [],
+  "missingKeywords": [],
+  "suggestions": []
+}`;
+
+        let extractedData;
+        try {
+            extractedData = await callAI(systemPrompt, userPrompt);
+        } catch (aiError) {
+            const message = process.env.DEBUG ? (aiError?.message || String(aiError)) : 'AI service error';
+            return res.status(502).json({ message });
+        }
+
+        const result = tryParseJSON(extractedData);
+        if (!result || typeof result.score === 'undefined') {
+            return res.status(502).json({ message: 'Could not parse AI response. Please try again.' });
+        }
+        // clamp score defensively in case the model returns something out of range
+        result.score = Math.max(0, Math.min(100, Number(result.score) || 0));
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        console.error("Error checking ATS score:", error);
+        return res.status(400).json({ message: "An error occurred while checking the ATS score. Please try again." });
+    }
+}
+
+//controller for generating a tailored cover letter from resume data + a job description
+//POST: /api/ai/cover-letter
+export const generateCoverLetter = async (req, res) => {
+    try {
+        const { resumeId, jobDescription, companyName, jobTitle, tone } = req.body;
+        const userId = req.userId;
+
+        if (!resumeId || !jobDescription || !jobDescription.trim()) {
+            return res.status(400).json({ message: 'A resume and a job description are required' });
+        }
+
+        const resume = await Resume.findOne({ userId, _id: resumeId });
+        if (!resume) {
+            return res.status(404).json({ message: 'Resume not found' });
+        }
+
+        const resumeSummary = {
+            full_name: resume.personal_info?.full_name,
+            profession: resume.personal_info?.profession,
+            email: resume.personal_info?.email,
+            professional_summary: resume.professional_summary,
+            skills: resume.skills,
+            experience: resume.experience,
+            education: resume.education,
+            project: resume.project,
+        };
+
+        const systemPrompt = "You are an expert career coach who writes concise, compelling, ATS-friendly cover letters. Return ONLY the cover letter text - no markdown headers, no explanation, no JSON, just the letter body ready to send.";
+        const userPrompt = `Write a ${tone || 'professional'} cover letter (3-4 short paragraphs, under 350 words) for this candidate applying to ${jobTitle ? `the "${jobTitle}" role` : 'a role'}${companyName ? ` at ${companyName}` : ''}.
+
+Candidate resume data (JSON):
+${JSON.stringify(resumeSummary)}
+
+Job description:
+${jobDescription}
+
+Highlight the candidate's most relevant experience and skills for this specific job. Do not invent facts not present in the resume data. Sign off with the candidate's name.`;
+
+        let letterText;
+        try {
+            letterText = await callAI(systemPrompt, userPrompt);
+            if (typeof letterText === 'object') {
+                letterText = letterText?.text || JSON.stringify(letterText);
+            }
+            // strip accidental markdown code fences if the model added them
+            letterText = String(letterText).replace(/```(?:\w+)?\n?/g, '').replace(/```$/g, '').trim();
+        } catch (aiError) {
+            const message = process.env.DEBUG ? (aiError?.message || String(aiError)) : 'AI service error';
+            return res.status(502).json({ message });
+        }
+
+        return res.status(200).json({ coverLetter: letterText });
+    } catch (error) {
+        console.error("Error generating cover letter:", error);
+        return res.status(400).json({ message: "An error occurred while generating the cover letter. Please try again." });
     }
 }

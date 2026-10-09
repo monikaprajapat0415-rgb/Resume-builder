@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+// import { Mail, Phone, MapPin } from "lucide-react";
+import { LuMail,LuPhone, LuMapPin } from "react-icons/lu";
 
 const MinimalImageTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
@@ -51,19 +52,19 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                         <div className="space-y-2 text-sm">
                             {data.personal_info?.phone && (
                                 <div className="flex items-center gap-2">
-                                    <Phone size={14} style={{ color: accentColor }} />
+                                    <LuPhone size={14} style={{ color: accentColor }} />
                                     <span>{data.personal_info.phone}</span>
                                 </div>
                             )}
                             {data.personal_info?.email && (
                                 <div className="flex items-center gap-2">
-                                    <Mail size={14} style={{ color: accentColor }} />
+                                    <LuMail size={14} style={{ color: accentColor }} />
                                     <span>{data.personal_info.email}</span>
                                 </div>
                             )}
                             {data.personal_info?.location && (
                                 <div className="flex items-center gap-2">
-                                    <MapPin size={14} style={{ color: accentColor }} />
+                                    <LuMapPin size={14} style={{ color: accentColor }} />
                                     <span>{data.personal_info.location}</span>
                                 </div>
                             )}

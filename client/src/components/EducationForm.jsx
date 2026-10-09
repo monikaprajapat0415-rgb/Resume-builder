@@ -1,4 +1,6 @@
-import { GraduationCap,Plus,Trash2 } from 'lucide-react';
+// import { GraduationCap,Plus,Trash2 } from 'lucide-react';
+import { FaGraduationCap} from 'react-icons/fa';
+import { LuPlus, LuTrash2 } from 'react-icons/lu';
 import React from 'react'
 
 const EducationForm = ({ data, onChange }) => {
@@ -31,14 +33,14 @@ const EducationForm = ({ data, onChange }) => {
                 </div>
                 <button onClick={addEducation} className='flex items-center gap-2 px-3 py-1 text-sm bg-green-100 
             text-green-700 rounded-lg hover:bg-green-200 transition-colors'>
-                    <Plus className='size-4' />
+                    <LuPlus className='size-4' />
                     Add Education
                 </button>
 
             </div>
             {data.length === 0 ? (
                 <div className='text-center py-8 text-gray-500'>
-                    <GraduationCap className='w-12 h-12 mx-auto mb-3 text-gray-300' />
+                    <FaGraduationCap className='w-12 h-12 mx-auto mb-3 text-gray-300' />
                     <p>No education added yet.</p>
                     <p className='text-sm'>Click "Add Education" to get started.</p>
                 </div>
@@ -49,7 +51,7 @@ const EducationForm = ({ data, onChange }) => {
                             <div className='flex items-start justify-between'>
                                 <h4>Education #{index + 1}</h4>
                                 <button onClick={() => removeEducation(index)} className='text-red-500 hover:text-red-700 trasition-colors'>
-                                    <Trash2 className='size-4' />
+                                    <LuTrash2 className='size-4' />
                                 </button>
                             </div>
                             <div className='grid md:grid-cols-2 gap-3'>
