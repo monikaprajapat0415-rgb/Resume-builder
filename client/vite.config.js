@@ -36,5 +36,6 @@ export default defineConfig({
       exclude: ['/app', '/app/*', '/view/*', '/logout', '/forgot-password', '/reset-password/*', '/verify-email/*', '/admin', '/admin/*'],
       changefreq: 'weekly',
       readable: true,
+      generateRobotsTxt: false,
     })],
 })
