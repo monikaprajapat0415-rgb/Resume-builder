@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
+import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons } from '../controllers/learnController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
@@ -29,6 +30,18 @@ adminRouter.get('/blogs/:id', getBlogByIdAdmin);
 adminRouter.post('/blogs', createBlog);
 adminRouter.put('/blogs/:id', updateBlog);
 adminRouter.delete('/blogs/:id', deleteBlog);
+
+adminRouter.get('/learn/courses', getCoursesAdmin);
+adminRouter.post('/learn/courses', createCourse);
+adminRouter.get('/learn/courses/:id', getCourseAdmin);
+adminRouter.put('/learn/courses/:id', updateCourse);
+adminRouter.delete('/learn/courses/:id', deleteCourse);
+adminRouter.get('/learn/courses/:id/lessons', getLessonsAdmin);
+adminRouter.post('/learn/courses/:id/lessons', createLesson);
+adminRouter.put('/learn/courses/:id/reorder', reorderLessons);
+adminRouter.get('/learn/lessons/:id', getLessonAdmin);
+adminRouter.put('/learn/lessons/:id', updateLesson);
+adminRouter.delete('/learn/lessons/:id', deleteLesson);
 
 adminRouter.get('/products', getAllProductsAdmin);
 adminRouter.get('/products/:id', getProductByIdAdmin);

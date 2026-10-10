@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette } from 'react-icons/lu'
+import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -10,6 +10,7 @@ const groups = [
   { title: null, items: [{ to: '/admin', label: 'Overview', icon: LuLayoutDashboard, end: true }] },
   { title: 'Content', items: [
     { to: '/admin/blogs', label: 'Blog Posts', icon: LuFileText },
+    { to: '/admin/learn', label: 'Learn (tutorials)', icon: LuGraduationCap },
     { to: '/admin/products', label: 'Products', icon: LuShoppingBag },
     { to: '/admin/pages', label: 'Pages', icon: LuFilePen },
     { to: '/admin/categories', label: 'Categories', icon: LuTags },

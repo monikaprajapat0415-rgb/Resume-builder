@@ -9,6 +9,7 @@ const isListType = (t) => t === 'list' || t === 'olist'
 export const emptyBlock = (type) => {
   if (isListType(type)) return { type, items: [''] }
   if (type === 'image') return { type, url: '', alt: '', caption: '' }
+  if (type === 'code') return { type, lang: '', text: '' }
   return { type, text: '' }
 }
 
@@ -17,10 +18,10 @@ const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm 
 // Shared content editor for blog posts and products. Paragraphs and list items can
 // contain links written as [text](url) and **bold**; the toolbar inserts that syntax
 // around whatever text is selected, so nobody has to type it by hand.
-const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
+const BlockEditor = ({ blocks, setBlocks, rich = false, tutorial = false }) => {
   const { token } = useSelector(state => state.auth)
   const [uploading, setUploading] = useState(null)
-  const types = rich ? ['heading', 'paragraph', 'list', 'olist', 'image'] : ['heading', 'paragraph', 'list']
+  const types = tutorial ? ['heading', 'paragraph', 'code', 'note', 'list', 'olist', 'image'] : rich ? ['heading', 'paragraph', 'list', 'olist', 'image'] : ['heading', 'paragraph', 'list']
   const uploadImage = async (index, file) => {
     if (!file) return
     if (file.size > 5 * 1024 * 1024) return toast.error('Image is over 5 MB.')
@@ -98,7 +99,7 @@ const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
             <div className='flex items-center justify-between mb-2 gap-2 flex-wrap'>
               <span className='text-xs font-medium uppercase text-slate-400'>{block.type === 'olist' ? 'numbered list' : block.type}</span>
               <div className='flex items-center gap-1'>
-                {block.type !== 'heading' && block.type !== 'image' && (
+                {block.type !== 'heading' && block.type !== 'image' && block.type !== 'code' && (
                   <>
                     <button type='button' onClick={() => openLink(i, block)} className='inline-flex items-center gap-1 text-xs px-2 py-1 rounded hover:bg-slate-100 text-slate-600 transition' title='Turn the selected text into a link'>
                       <LuLink className='size-3.5' /> Link
@@ -116,6 +117,18 @@ const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
 
             {block.type === 'heading' ? (
               <input value={block.text} onChange={(e) => update(i, { text: e.target.value })} placeholder='Section heading' className={inputClass} />
+            ) : block.type === 'code' ? (
+              <div className='space-y-2'>
+                <input value={block.lang || ''} onChange={(e) => update(i, { lang: e.target.value })} placeholder='Language, e.g. typescript, html, bash, python' list='code-langs' className={inputClass} />
+                <textarea
+                  value={block.text || ''}
+                  onChange={(e) => update(i, { text: e.target.value })}
+                  placeholder='Paste the code here. Spaces and line breaks are kept exactly as typed.'
+                  rows={8} spellCheck={false} wrap='off'
+                  className={`${inputClass} font-mono text-[13px] whitespace-pre overflow-x-auto bg-slate-50`}
+                />
+                <datalist id='code-langs'>{['typescript', 'javascript', 'html', 'css', 'bash', 'json', 'python', 'java', 'csharp', 'sql', 'yaml', 'go', 'rust', 'php'].map((l) => <option key={l} value={l} />)}</datalist>
+              </div>
             ) : block.type === 'image' ? (
               <div className='space-y-2'>
                 {block.url && <img src={block.url} alt={block.alt || ''} className='max-h-40 rounded border border-slate-200' />}
@@ -134,7 +147,7 @@ const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
                 ref={(el) => { refs.current[i] = el }}
                 value={valueOf(block)}
                 onChange={(e) => writeValue(i, block, e.target.value)}
-                placeholder={isListType(block.type) ? 'One list item per line' : 'Paragraph text'}
+                placeholder={isListType(block.type) ? 'One list item per line' : block.type === 'note' ? 'Tip, warning or extra detail shown in a highlighted box' : 'Paragraph text'}
                 rows={4}
                 className={inputClass}
               />

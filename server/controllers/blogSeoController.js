@@ -1,6 +1,8 @@
 import Blog from '../models/Blog.js';
 import Category from '../models/Category.js';
 import Product from '../models/Product.js';
+import Course from '../models/Course.js';
+import Lesson from '../models/Lesson.js';
 import { loadTemplate, renderShell } from '../utils/seoShell.js';
 import {
     SITE_NAME, siteUrl, escapeHtml, stripInline, absUrl, seoTitle, postView, listItem, postHtml, listHtml, listJsonLd,
@@ -29,7 +31,7 @@ export const loadPostView = async (slug, { count = false } = {}) => {
     return postView(post, { categoryName: cat?.name || '', related });
 };
 
-const sendShell = (res, status, page) => {
+export const sendShell = (res, status, page) => {
     const tpl = loadTemplate();
     if (!tpl) return false;
     res.status(status).set('Content-Type', 'text/html; charset=utf-8').set('Cache-Control', 'public, max-age=0, s-maxage=300, must-revalidate');
@@ -37,7 +39,7 @@ const sendShell = (res, status, page) => {
     return true;
 };
 
-const notFoundPage = (path) => ({
+export const notFoundPage = (path) => ({
     fullTitle: `Page not found | ${SITE_NAME}`, description: 'This page could not be found.', canonical: `${siteUrl()}${path}`, robots: 'noindex, nofollow',
     body: '<section class="ssr-article"><h1>Page not found</h1><p><a href="/blog">Back to the blog</a></p></section>', jsonLd: [],
 });
@@ -143,6 +145,22 @@ ${items}
 // ---------- llms.txt (a plain-text map of the site for AI assistants) ----------
 const plain = (res) => res.set('Content-Type', 'text/plain; charset=utf-8').set('Cache-Control', 'public, max-age=0, s-maxage=900, must-revalidate');
 
+// Tutorials section of llms.txt: each published course with its lessons.
+const learnLines = async (u) => {
+    try {
+        const courses = await Course.find({ published: true, noindex: { $ne: true } }).sort({ order: 1, createdAt: 1 });
+        if (!courses.length) return [];
+        const lessons = await Lesson.find({ course: { $in: courses.map((c) => c._id) }, published: true, noindex: { $ne: true } }).select('course title slug description').sort({ order: 1, createdAt: 1 });
+        const out = ['## Tutorials', ''];
+        for (const c of courses) {
+            const ls = lessons.filter((l) => String(l.course) === String(c._id));
+            if (!ls.length) continue;
+            out.push(`### [${c.title}](${u}/learn/${c.slug})`, '', ...ls.map((l) => `- [${l.title}](${u}/learn/${c.slug}/${l.slug})${l.description ? `: ${stripInline(l.description).replace(/\s+/g, ' ').slice(0, 160)}` : ''}`), '');
+        }
+        return out.length > 2 ? out : [];
+    } catch { return []; }
+};
+
 export const llmsTxt = async (req, res) => {
     try {
         const [posts, products, cats] = await Promise.all([
@@ -160,10 +178,13 @@ export const llmsTxt = async (req, res) => {
             `- [Features](${u}/features): everything the builder offers`,
             `- [Free ATS resume checker](${u}/features/ats-checker): upload a resume (PDF or Word) and get an ATS score with fixes`,
             `- [Blog](${u}/blog): resume writing and career advice`,
+            `- [Learn](${u}/learn): free step-by-step tutorials for new technologies`,
             `- [Contact](${u}/contact-us)`, '',
         ];
         if (cats.length) lines.push('## Blog categories', '', ...cats.map((c) => `- [${c.name}](${u}/blog/category/${c.slug}): ${c.count} article${c.count > 1 ? 's' : ''}`), '');
         lines.push('## Blog articles', '', ...posts.map((p) => `- [${p.title}](${u}/blog/${p.slug}): ${stripInline(p.description || p.excerpt || '').replace(/\s+/g, ' ').slice(0, 200)}`), '');
+        const learn = await learnLines(u);
+        if (learn.length) lines.push(...learn);
         if (products.length) lines.push('## Products', '', ...products.map((p) => `- [${p.title}](${u}/products/${p.slug})`), '');
         lines.push('## Optional', '', `- [Full text of every article](${u}/llms-full.txt)`, `- [RSS feed](${u}/blog/rss.xml)`, '');
         return plain(res).status(200).send(lines.join('\n'));

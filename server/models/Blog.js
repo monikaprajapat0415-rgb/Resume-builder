@@ -4,13 +4,15 @@ import mongoose from "mongoose";
 // heading/paragraph use `text`, list uses `items`. Kept as Mixed-ish subdocuments
 // rather than a strict union so the admin editor can save either shape freely.
 const BlogBlockSchema = new mongoose.Schema({
-    type: { type: String, enum: ['heading', 'paragraph', 'list', 'olist', 'image'], required: true },
+    type: { type: String, enum: ['heading', 'paragraph', 'list', 'olist', 'image', 'code', 'note'], required: true },
     text: { type: String },
     items: { type: [String], default: undefined },
     // image blocks
     url: { type: String },
     alt: { type: String },
     caption: { type: String },
+    // code blocks (used by Learn lessons)
+    lang: { type: String },
 }, { _id: false });
 
 const FaqSchema = new mongoose.Schema({ q: { type: String, required: true }, a: { type: String, required: true } }, { _id: false });
