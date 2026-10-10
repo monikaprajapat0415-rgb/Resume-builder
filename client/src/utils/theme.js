@@ -45,7 +45,22 @@ export const buildPalette = (hex) => {
 
 const meta = () => document.querySelector('meta[name="theme-color"]')
 
+// Browser-tab icon in the chosen colour (the static favicon.ico stays green).
+const faviconSvg = (hex) => `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='${hex}'/><rect x='17' y='13' width='30' height='38' rx='5' fill='white'/><rect x='22' y='20' width='20' height='3.5' rx='1.7' fill='${hex}'/><rect x='22' y='27' width='16' height='3' rx='1.5' fill='${hex}' opacity='.45'/><rect x='22' y='33' width='18' height='3' rx='1.5' fill='${hex}' opacity='.45'/><rect x='22' y='39' width='12' height='3' rx='1.5' fill='${hex}' opacity='.45'/></svg>`
+
+const setFavicon = (hex) => {
+  let el = document.getElementById('theme-favicon')
+  if (!hex) { el?.remove(); return }
+  if (!el) {
+    el = document.createElement('link')
+    el.id = 'theme-favicon'; el.rel = 'icon'; el.type = 'image/svg+xml'
+    document.head.appendChild(el)
+  }
+  el.href = `data:image/svg+xml,${encodeURIComponent(faviconSvg(hex))}`
+}
+
 export const clearTheme = () => {
+  setFavicon(null)
   const root = document.documentElement.style
   SHADES.forEach((s) => root.removeProperty(`--color-brand-${s}`))
   meta()?.setAttribute('content', DEFAULT_PRIMARY)
@@ -57,6 +72,7 @@ export const applyTheme = (hex, { persist = true } = {}) => {
   const vars = buildPalette(hex)
   Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v))
   meta()?.setAttribute('content', hex)
+  setFavicon(hex.toLowerCase())
   if (persist) { try { localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(vars)) } catch { /* ignore */ } }
 }
 
