@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import SEO from '../components/SEO'
@@ -7,7 +7,7 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import AtsReport from '../components/ats/AtsReport'
 import api from '../configs/api'
-import { LuUpload, LuFileText, LuX, LuLock, LuInfo, LuShieldCheck, LuZap, LuTarget, LuChevronDown } from 'react-icons/lu'
+import { LuExternalLink, LuBriefcase, LuUpload, LuFileText, LuX, LuLock, LuInfo, LuShieldCheck, LuZap, LuTarget, LuChevronDown } from 'react-icons/lu'
 import { BiLoaderAlt } from 'react-icons/bi'
 
 const MAX = 5 * 1024 * 1024
@@ -29,6 +29,18 @@ const AtsChecker = () => {
   const [status, setStatus] = useState(null)
   const [file, setFile] = useState(null)
   const [jd, setJd] = useState('')
+  const [job, setJob] = useState(null) // job picked from /jobs, used as the target
+  const [params] = useSearchParams()
+  const jobSlug = params.get('job')
+  useEffect(() => {
+    if (!jobSlug) return
+    api.get(`/api/jobs/${encodeURIComponent(jobSlug)}`).then(({ data }) => {
+      const j = data.job
+      if (!j) return
+      setJob({ title: j.title, company: j.company, applyUrl: j.applyUrl, slug: jobSlug })
+      setJd(`${j.title} at ${j.company}\n${j.description || ''}`.slice(0, 5000))
+    }).catch(() => {})
+  }, [jobSlug])
   const [showJd, setShowJd] = useState(false)
   const [drag, setDrag] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -170,11 +182,18 @@ const AtsChecker = () => {
                 )}
               </div>
 
-              <button type='button' onClick={() => setShowJd(!showJd)} className='mt-4 flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900'>
+              {job && (
+                <div className='mt-4 flex items-start gap-3 bg-brand-50 border border-brand-100 rounded-lg px-3 py-2.5 text-sm'>
+                  <LuBriefcase className='size-4 text-brand-700 mt-0.5 shrink-0' />
+                  <p className='flex-1 text-slate-700'>Checking against <b>{job.title}</b> at <b>{job.company}</b>. We compare your resume with this job's keywords.</p>
+                  <button type='button' onClick={() => { setJob(null); setJd('') }} className='text-slate-500 hover:text-slate-800' aria-label='Remove job'><LuX className='size-4' /></button>
+                </div>
+              )}
+              {!job && <button type='button' onClick={() => setShowJd(!showJd)} className='mt-4 flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900'>
                 <LuTarget className='size-4 text-brand-600' /> Check against a specific job <span className='text-slate-400'>(optional)</span>
                 <LuChevronDown className={`size-4 transition ${showJd ? 'rotate-180' : ''}`} />
-              </button>
-              {showJd && <textarea value={jd} onChange={(e) => setJd(e.target.value)} maxLength={5000} rows={5} placeholder='Paste the job description here to see which of its keywords your resume is missing…' className='mt-2 w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 resize-y' />}
+              </button>}
+              {showJd && !job && <textarea value={jd} onChange={(e) => setJd(e.target.value)} maxLength={5000} rows={5} placeholder='Paste the job description here to see which of its keywords your resume is missing…' className='mt-2 w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 resize-y' />}
 
               <button disabled={busy || !file} className='mt-5 w-full py-3 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white rounded-full font-medium transition flex items-center justify-center gap-2'>
                 {busy && <BiLoaderAlt className='size-4 animate-spin' />}
@@ -211,6 +230,13 @@ const AtsChecker = () => {
               </div>
             )}
             {result && <AtsReport report={result.report} fileName={result.fileName} />}
+            {result && job && (
+              <div className='mt-4 flex flex-wrap items-center gap-3 bg-white border border-slate-200 rounded-xl p-4'>
+                <p className='text-sm text-slate-600 flex-1 min-w-[12rem]'>Fix the missing keywords above, then apply for <b>{job.title}</b> at {job.company}.</p>
+                <Link to='/app' className='px-4 py-2 border border-slate-200 rounded-full text-sm text-slate-700 hover:bg-slate-50'>Edit my resume</Link>
+                <a href={job.applyUrl} target='_blank' rel='nofollow noopener noreferrer' className='inline-flex items-center gap-2 px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium'>Apply on {job.company} <LuExternalLink className='size-4' /></a>
+              </div>
+            )}
             {result && (
               <div className='mt-6 rounded-xl bg-brand-600 text-white p-6 text-center'>
                 <p className='font-semibold text-lg'>Fix these in minutes with our resume builder</p>
