@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 //   [link text](https://example.com)   -> link (opens in a new tab if external)
 //   [link text](/templates)            -> internal link (client-side navigation)
 //   **bold text**                      -> bold
+//   `code`                             -> inline code
 // Plain text is rendered as text (never as HTML), and only http(s), mailto, tel,
 // site-relative and #anchor URLs become links, so pasted javascript: URLs are inert.
 
 export const isSafeUrl = (url) => /^(https?:\/\/|mailto:|tel:|\/|#)/i.test((url || '').trim())
 
-const TOKEN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g
+const TOKEN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|`([^`\n]+)`/g
 const linkClass = 'text-brand-600 underline underline-offset-2 hover:text-brand-700'
 
 export const renderInline = (text = '') => {
@@ -24,6 +25,8 @@ export const renderInline = (text = '') => {
     const key = `i${n++}`
     if (match[3] !== undefined) {
       out.push(<strong key={key} className='font-semibold text-slate-800'>{match[3]}</strong>)
+    } else if (match[4] !== undefined) {
+      out.push(<code key={key} className='px-1 py-0.5 rounded bg-slate-100 text-slate-800 text-[0.9em]' style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace' }}>{match[4]}</code>)
     } else if (!isSafeUrl(match[2])) {
       out.push(match[1]) // unsafe URL: keep the words, drop the link
     } else if (/^\/(?!\/)/.test(match[2])) {
@@ -46,7 +49,7 @@ export const renderInline = (text = '') => {
 }
 
 // Plain-text version (strips the markup) for meta descriptions, previews, etc.
-export const stripInline = (text = '') => text.replace(TOKEN, (_, label, _url, bold) => label ?? bold)
+export const stripInline = (text = '') => text.replace(TOKEN, (_, label, _url, bold, code) => label ?? bold ?? code)
 
 export const formatPrice = (amount, currency = 'INR') => {
   try {

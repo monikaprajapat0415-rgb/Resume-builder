@@ -228,3 +228,44 @@ export const reorderLessons = async (req, res) => {
         return res.status(200).json({ message: 'Order saved' });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
+
+// POST /api/admin/learn/import  { course: {...}, lessons: [{...}], replace?: boolean }
+// Creates a whole course (settings + every lesson, in the order given) in one go.
+// With replace: true an existing course with the same slug is updated and its lessons are replaced.
+export const importCourse = async (req, res) => {
+    try {
+        const { course: c, lessons, replace } = req.body || {};
+        if (!c || typeof c !== 'object' || !String(c.title || '').trim()) return res.status(400).json({ message: 'The file needs a course with a title.' });
+        if (!Array.isArray(lessons) || !lessons.length) return res.status(400).json({ message: 'The file needs at least one lesson.' });
+        if (lessons.length > 300) return res.status(400).json({ message: 'Too many lessons (300 max).' });
+
+        const slug = slugify(c.slug) || slugify(c.title);
+        if (!slug) return res.status(400).json({ message: 'Could not make a URL slug for the course.' });
+
+        const seen = new Set();
+        const prepared = [];
+        for (const [i, l] of lessons.entries()) {
+            if (!l || !String(l.title || '').trim()) return res.status(400).json({ message: `Lesson ${i + 1} has no title.` });
+            const lslug = slugify(l.slug) || slugify(l.title);
+            if (!lslug) return res.status(400).json({ message: `Lesson ${i + 1} ("${l.title}") has no usable URL slug.` });
+            if (seen.has(lslug)) return res.status(400).json({ message: `Two lessons share the URL slug "${lslug}".` });
+            seen.add(lslug);
+            prepared.push({ title: String(l.title).trim().slice(0, 200), slug: lslug, order: i, content: cleanBlogBlocks(l.content), ...cleanLessonFields(l) });
+        }
+
+        let course = await Course.findOne({ slug });
+        if (course && !replace) return res.status(409).json({ message: `A course with the URL slug "${slug}" already exists. Tick "replace" to overwrite it.`, exists: true });
+        if (course) {
+            course.title = String(c.title).trim().slice(0, 150);
+            Object.assign(course, cleanCourseFields(c));
+            course.modifiedAt = new Date();
+            await course.save();
+            await Lesson.deleteMany({ course: course._id });
+        } else {
+            course = await Course.create({ title: String(c.title).trim().slice(0, 150), slug, modifiedAt: new Date(), ...cleanCourseFields(c) });
+        }
+        const now = new Date();
+        await Lesson.insertMany(prepared.map((l) => ({ ...l, course: course._id, modifiedAt: now })));
+        return res.status(201).json({ message: 'Course imported', course, lessons: prepared.length });
+    } catch (e) { return res.status(400).json({ message: e.message }); }
+};
