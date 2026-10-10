@@ -6,6 +6,7 @@ import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCour
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
+import { getSources, createSource, updateSource, deleteSource, runSource, runAll, seedSources } from '../controllers/jobController.js';
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
 import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage } from '../controllers/contactController.js';
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
@@ -48,6 +49,14 @@ adminRouter.delete('/learn/lessons/:id', deleteLesson);
 adminRouter.get('/feedback', getFeedbackAdmin);
 adminRouter.patch('/feedback/:id', updateFeedbackAdmin);
 adminRouter.delete('/feedback/:id', deleteFeedbackAdmin);
+
+adminRouter.get('/job-sources', getSources);
+adminRouter.post('/job-sources', createSource);
+adminRouter.post('/job-sources/sync-all', runAll);   // these two must stay above /:id
+adminRouter.post('/job-sources/seed', seedSources);
+adminRouter.patch('/job-sources/:id', updateSource);
+adminRouter.delete('/job-sources/:id', deleteSource);
+adminRouter.post('/job-sources/:id/run', runSource);
 
 adminRouter.get('/products', getAllProductsAdmin);
 adminRouter.get('/products/:id', getProductByIdAdmin);

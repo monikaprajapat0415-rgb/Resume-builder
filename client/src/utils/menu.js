@@ -12,6 +12,7 @@ export const DEFAULT_MENU = {
     { _id: 'h-products', label: 'Products', url: '/products' },
     { _id: 'h-blog', label: 'Blog', url: '/blog' },
     { _id: 'h-learn', label: 'Learn', url: '/learn' },
+    { _id: 'h-jobs', label: 'Jobs', url: '/jobs' },
     { _id: 'h-contact', label: 'Contact Us', url: '/#contact-us' },
   ],
   footer_product: [
@@ -26,6 +27,7 @@ export const DEFAULT_MENU = {
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },
     { _id: 'fr-learn', label: 'Learn', url: '/learn' },
+    { _id: 'fr-jobs', label: 'Jobs', url: '/jobs' },
     { _id: 'fr-contact', label: 'Contact', url: '/contact-us' },
   ],
   footer_legal: [

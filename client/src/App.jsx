@@ -21,6 +21,9 @@ import VerifyEmail from "./pages/VerifyEmail";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 import LearnIndex from "./pages/LearnIndex";
+import Jobs from "./pages/Jobs";
+import JobDetail from "./pages/JobDetail";
+import AdminJobs from "./pages/admin/AdminJobs";
 import LearnCourse from "./pages/LearnCourse";
 import LearnLesson from "./pages/LearnLesson";
 import TemplatesIndex from "./pages/TemplatesIndex";
@@ -129,6 +132,8 @@ const App = () => {
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/category/:slug" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/:slug" element={<JobDetail />} />
         <Route path="/learn" element={<LearnIndex />} />
         <Route path="/learn/:course" element={<LearnCourse />} />
         <Route path="/learn/:course/:lesson" element={<LearnLesson />} />
@@ -148,6 +153,7 @@ const App = () => {
           <Route path="menus" element={<AdminMenus />} />
           <Route path="messages" element={<AdminMessages />} />
           <Route path="feedback" element={<AdminFeedback />} />
+          <Route path="jobs" element={<AdminJobs />} />
           <Route path="pages" element={<AdminPages />} />
           <Route path="pages/new" element={<AdminPageEditor />} />
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />

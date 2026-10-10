@@ -1,5 +1,6 @@
 import express from 'express';
 import { renderLearnIndex, renderCourse, renderLesson } from '../controllers/learnSeoController.js';
+import { renderJobsIndex, renderJob } from '../controllers/jobSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
@@ -15,6 +16,9 @@ seoRouter.get('/llms-full.txt', llmsFullTxt);
 seoRouter.get('/blog/category/:slug', renderIndex);
 seoRouter.get('/blog', renderIndex);
 seoRouter.get('/blog/:slug', renderPost);
+
+seoRouter.get('/jobs', renderJobsIndex);
+seoRouter.get('/jobs/:slug', renderJob);
 
 seoRouter.get('/learn', renderLearnIndex);
 seoRouter.get('/learn/:course', renderCourse);
