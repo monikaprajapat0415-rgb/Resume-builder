@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
+import LessonFeedback from "../models/LessonFeedback.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks } from "../utils/blogSeo.js";
 import { cleanCourseFields, cleanLessonFields, courseCard, courseView, lessonView } from "../utils/learnSeo.js";
@@ -134,6 +135,7 @@ export const deleteCourse = async (req, res) => {
         const course = await Course.findByIdAndDelete(req.params.id);
         if (!course) return res.status(404).json({ message: 'Course not found' });
         const { deletedCount } = await Lesson.deleteMany({ course: course._id });
+        await LessonFeedback.deleteMany({ course: course._id });
         return res.status(200).json({ message: 'Course deleted', lessonsDeleted: deletedCount });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
@@ -209,6 +211,7 @@ export const deleteLesson = async (req, res) => {
         if (!validId(req.params.id)) return res.status(404).json({ message: 'Lesson not found' });
         const lesson = await Lesson.findByIdAndDelete(req.params.id);
         if (!lesson) return res.status(404).json({ message: 'Lesson not found' });
+        await LessonFeedback.deleteMany({ lesson: lesson._id });
         return res.status(200).json({ message: 'Lesson deleted' });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
@@ -254,18 +257,29 @@ export const importCourse = async (req, res) => {
         }
 
         let course = await Course.findOne({ slug });
+        let oldSlugOf = null;
         if (course && !replace) return res.status(409).json({ message: `A course with the URL slug "${slug}" already exists. Tick "replace" to overwrite it.`, exists: true });
         if (course) {
             course.title = String(c.title).trim().slice(0, 150);
             Object.assign(course, cleanCourseFields(c));
             course.modifiedAt = new Date();
             await course.save();
+            // Readers' comments belong to a lesson id; keep them across a re-import by matching on slug.
+            const oldLessons = await Lesson.find({ course: course._id }).select('slug');
+            oldSlugOf = Object.fromEntries(oldLessons.map((l) => [String(l._id), l.slug]));
             await Lesson.deleteMany({ course: course._id });
         } else {
             course = await Course.create({ title: String(c.title).trim().slice(0, 150), slug, modifiedAt: new Date(), ...cleanCourseFields(c) });
         }
         const now = new Date();
-        await Lesson.insertMany(prepared.map((l) => ({ ...l, course: course._id, modifiedAt: now })));
+        const created = await Lesson.insertMany(prepared.map((l) => ({ ...l, course: course._id, modifiedAt: now })));
+        if (oldSlugOf) {
+            const newIdOf = Object.fromEntries(created.map((l) => [l.slug, l._id]));
+            for (const [oldId, lessonSlug] of Object.entries(oldSlugOf)) {
+                if (newIdOf[lessonSlug]) await LessonFeedback.updateMany({ lesson: oldId }, { lesson: newIdOf[lessonSlug] });
+                else await LessonFeedback.deleteMany({ lesson: oldId });
+            }
+        }
         return res.status(201).json({ message: 'Course imported', course, lessons: prepared.length });
     } catch (e) { return res.status(400).json({ message: e.message }); }
 };

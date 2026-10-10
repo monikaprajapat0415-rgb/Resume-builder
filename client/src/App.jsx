@@ -27,6 +27,7 @@ import TemplatesIndex from "./pages/TemplatesIndex";
 import TemplateLanding from "./pages/TemplateLanding";
 import AdminSeo from './pages/admin/AdminSeo'
 import AdminLayout from "./pages/admin/AdminLayout";
+import AdminFeedback from "./pages/admin/AdminFeedback";
 import AdminBlogList from "./pages/admin/AdminBlogList";
 import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
 import AdminCourses from "./pages/admin/AdminCourses";
@@ -146,6 +147,7 @@ const App = () => {
           <Route path="categories" element={<AdminCategories />} />
           <Route path="menus" element={<AdminMenus />} />
           <Route path="messages" element={<AdminMessages />} />
+          <Route path="feedback" element={<AdminFeedback />} />
           <Route path="pages" element={<AdminPages />} />
           <Route path="pages/new" element={<AdminPageEditor />} />
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />

@@ -5,6 +5,7 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
+import LessonFeedback from '../components/LessonFeedback'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
 import { LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
@@ -151,6 +152,8 @@ const LearnLesson = () => {
               </div>
             </section>
           )}
+
+          <LessonFeedback key={`${course.slug}/${lesson.slug}`} courseSlug={course.slug} lessonSlug={lesson.slug} />
 
           <nav aria-label='Lesson navigation' className='mt-12 grid sm:grid-cols-2 gap-4'>
             {prev ? (

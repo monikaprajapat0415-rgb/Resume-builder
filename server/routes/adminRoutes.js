@@ -5,6 +5,7 @@ import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog 
 import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse } from '../controllers/learnController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
+import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
 import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage } from '../controllers/contactController.js';
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
@@ -43,6 +44,10 @@ adminRouter.put('/learn/courses/:id/reorder', reorderLessons);
 adminRouter.get('/learn/lessons/:id', getLessonAdmin);
 adminRouter.put('/learn/lessons/:id', updateLesson);
 adminRouter.delete('/learn/lessons/:id', deleteLesson);
+
+adminRouter.get('/feedback', getFeedbackAdmin);
+adminRouter.patch('/feedback/:id', updateFeedbackAdmin);
+adminRouter.delete('/feedback/:id', deleteFeedbackAdmin);
 
 adminRouter.get('/products', getAllProductsAdmin);
 adminRouter.get('/products/:id', getProductByIdAdmin);
