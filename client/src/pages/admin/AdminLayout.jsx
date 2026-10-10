@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap } from 'react-icons/lu'
+import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -18,6 +18,7 @@ const groups = [
   { title: 'Growth', items: [
     { to: '/admin/seo', label: 'SEO & AI visibility', icon: LuSearch },
     { to: '/admin/messages', label: 'Messages', icon: LuInbox, badge: true },
+    { to: '/admin/feedback', label: 'Lesson feedback', icon: LuMessageSquare },
   ] },
   { title: 'Site', items: [
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },

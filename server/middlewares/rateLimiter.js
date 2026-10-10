@@ -30,3 +30,14 @@ export const contactLimiter = rateLimit({
     legacyHeaders: false,
     message: { message: "You've sent several messages already. Please try again later." },
 });
+
+// Lesson feedback: a few comments per signed-in user per hour is plenty (stops spam floods).
+export const feedbackLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    skipFailedRequests: true, // typos and validation errors should not use up the allowance
+    keyGenerator: (req) => req.userId || req.ip,
+    message: { message: "You've posted several comments already. Please try again later." },
+});
