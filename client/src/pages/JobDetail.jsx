@@ -41,7 +41,7 @@ const JobDetail = () => {
     )
   }
 
-  const { job, more, sourceName } = data
+  const { job, more, sourceName, insights } = data
   const where = job.location ? ` in ${job.location}` : ''
   const ld = {
     '@context': 'https://schema.org', '@type': 'JobPosting', title: job.title,
@@ -81,6 +81,30 @@ const JobDetail = () => {
         </div>
 
         <div className='mt-8 text-slate-700 text-[15px] leading-relaxed space-y-4'><JobDescription text={job.description} /></div>
+
+        {insights && (
+          <section className='mt-10 rounded-2xl border border-slate-200 p-5 sm:p-6'>
+            <h2 className='text-xl font-semibold text-slate-800'>About this role</h2>
+            <p className='mt-2 text-[15px] text-slate-600 leading-relaxed'>{insights.summary}</p>
+            {insights.skills.length > 0 && (
+              <>
+                <h3 className='mt-5 text-sm font-semibold text-slate-800'>Skills mentioned</h3>
+                <ul className='mt-2 flex flex-wrap gap-2'>{insights.skills.map((k) => <li key={k} className='px-3 py-1 rounded-full bg-brand-50 text-brand-800 text-xs'>{k}</li>)}</ul>
+              </>
+            )}
+            <h3 className='mt-5 text-sm font-semibold text-slate-800'>How to prepare your application</h3>
+            <ul className='mt-2 space-y-2 text-[15px] text-slate-600 list-disc pl-5'>{insights.tips.map((t) => <li key={t}>{t}</li>)}</ul>
+            <h3 className='mt-5 text-sm font-semibold text-slate-800'>Common questions</h3>
+            <div className='mt-2 divide-y divide-slate-100'>
+              {insights.faqs.map((f) => (
+                <details key={f.q} className='py-3 group'>
+                  <summary className='cursor-pointer text-[15px] font-medium text-slate-700 list-none flex justify-between gap-3'>{f.q}<span className='text-slate-400 group-open:rotate-45 transition'>+</span></summary>
+                  <p className='mt-2 text-sm text-slate-600 leading-relaxed'>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className='mt-8 rounded-xl border border-slate-200 bg-slate-50/60 p-4 text-sm text-slate-500'>
           You will apply on the employer's own website. Listing source: {sourceName || 'company career page'}
