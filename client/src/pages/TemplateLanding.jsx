@@ -55,7 +55,7 @@ const TemplateLanding = () => {
 
             <Link
               to={`/app?state=register&template=${template.id}`}
-              className='inline-block mt-7 px-7 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'
+              className='inline-block mt-7 px-7 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'
             >
               Use this template — it's free
             </Link>
@@ -65,7 +65,7 @@ const TemplateLanding = () => {
               <ul className='space-y-2'>
                 {template.bestFor.map((item, i) => (
                   <li key={i} className='flex items-start gap-2 text-sm text-slate-600'>
-                    <LuCheck className='size-4 text-green-600 mt-0.5 shrink-0' />
+                    <LuCheck className='size-4 text-brand-600 mt-0.5 shrink-0' />
                     {item}
                   </li>
                 ))}
@@ -77,7 +77,7 @@ const TemplateLanding = () => {
               <ul className='space-y-2'>
                 {template.features.map((item, i) => (
                   <li key={i} className='flex items-start gap-2 text-sm text-slate-600'>
-                    <LuCheck className='size-4 text-green-600 mt-0.5 shrink-0' />
+                    <LuCheck className='size-4 text-brand-600 mt-0.5 shrink-0' />
                     {item}
                   </li>
                 ))}
@@ -91,7 +91,7 @@ const TemplateLanding = () => {
             <p className='text-sm font-semibold text-slate-800 mb-4'>Other templates</p>
             <div className='grid sm:grid-cols-3 gap-4'>
               {other.map((t) => (
-                <Link key={t.slug} to={`/templates/${t.slug}`} className='block rounded-lg border border-slate-200 p-4 hover:border-green-200 hover:shadow-sm transition'>
+                <Link key={t.slug} to={`/templates/${t.slug}`} className='block rounded-lg border border-slate-200 p-4 hover:border-brand-200 hover:shadow-sm transition'>
                   <p className='text-sm font-medium text-slate-800'>{t.name}</p>
                   <p className='text-xs text-slate-500 mt-1'>{t.tagline}</p>
                 </Link>

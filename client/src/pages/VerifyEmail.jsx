@@ -29,16 +29,16 @@ const VerifyEmail = () => {
       <div className='sm:w-[420px] w-full text-center border border-gray-300/60 rounded-2xl p-8 bg-white shadow-sm'>
         {status === 'verifying' && (
           <>
-            <LuLoader className='mx-auto size-10 text-green-500 animate-spin mb-4' />
+            <LuLoader className='mx-auto size-10 text-brand-500 animate-spin mb-4' />
             <h1 className='text-xl font-medium text-gray-900'>Verifying your email...</h1>
           </>
         )}
         {status === 'success' && (
           <>
-            <LuCircleCheck className='mx-auto size-10 text-green-500 mb-4' />
+            <LuCircleCheck className='mx-auto size-10 text-brand-500 mb-4' />
             <h1 className='text-xl font-medium text-gray-900'>Email verified!</h1>
             <p className='text-gray-500 text-sm mt-2'>{message}</p>
-            <Link to='/app' className='inline-block mt-6 bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-2 text-sm transition-colors'>
+            <Link to='/app' className='inline-block mt-6 bg-brand-600 hover:bg-brand-700 text-white rounded-full px-6 py-2 text-sm transition-colors'>
               Go to Dashboard
             </Link>
           </>
@@ -48,7 +48,7 @@ const VerifyEmail = () => {
             <LuCircleX className='mx-auto size-10 text-red-500 mb-4' />
             <h1 className='text-xl font-medium text-gray-900'>Verification failed</h1>
             <p className='text-gray-500 text-sm mt-2'>{message}</p>
-            <Link to='/app' className='inline-block mt-6 bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-2 text-sm transition-colors'>
+            <Link to='/app' className='inline-block mt-6 bg-brand-600 hover:bg-brand-700 text-white rounded-full px-6 py-2 text-sm transition-colors'>
               Go to Dashboard
             </Link>
           </>

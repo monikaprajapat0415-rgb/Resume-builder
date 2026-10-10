@@ -17,6 +17,8 @@ export const DEFAULT_SITE = {
   contact_email: 'support@primeresumeai.com',
   contact_phone: '+91 7976204889',
   contact_address: 'New Delhi, India',
+  theme_primary: '#00a63e',
+  feature_cover_letter: 'false',
 }
 
 let cache = null

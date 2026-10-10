@@ -22,6 +22,7 @@ import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 import TemplatesIndex from "./pages/TemplatesIndex";
 import TemplateLanding from "./pages/TemplateLanding";
+import AdminSeo from './pages/admin/AdminSeo'
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminBlogList from "./pages/admin/AdminBlogList";
 import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
@@ -41,7 +42,14 @@ import AtsChecker from "./pages/AtsChecker";
 import ProductsIndex from "./pages/ProductsIndex";
 import ProductDetail from "./pages/ProductDetail";
 import SEO from "./components/SEO";
+import AdminAppearance from "./pages/admin/AdminAppearance";
+import { useSiteContent, DEFAULT_SITE } from "./utils/siteContent";
+import { applyTheme } from "./utils/theme";
 const App = () => {
+  // Apply the admin's chosen theme colour once the site settings arrive. Until then the
+  // colour saved in this browser by the previous visit is already applied (see index.html).
+  const site = useSiteContent();
+  useEffect(() => { if (site !== DEFAULT_SITE) applyTheme(site.theme_primary) }, [site]);
 
   const dispatch = useDispatch();
   const getUserData = async () => {
@@ -132,7 +140,9 @@ const App = () => {
           <Route path="pages/new" element={<AdminPageEditor />} />
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />
           <Route path="site-content" element={<AdminSiteContent />} />
+          <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />
+          <Route path="seo" element={<AdminSeo />} />
           <Route path="blogs" element={<AdminBlogList />} />
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />

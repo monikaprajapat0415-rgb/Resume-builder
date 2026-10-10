@@ -12,7 +12,7 @@ export const emptyBlock = (type) => {
   return { type, text: '' }
 }
 
-const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
 // Shared content editor for blog posts and products. Paragraphs and list items can
 // contain links written as [text](url) and **bold**; the toolbar inserts that syntax
@@ -151,7 +151,7 @@ const BlockEditor = ({ blocks, setBlocks, rich = false }) => {
                   <input value={linkBox.url} onChange={(e) => setLinkBox({ ...linkBox, url: e.target.value })} className={inputClass} placeholder='https://… or /templates' autoFocus />
                 </div>
                 <div className='flex gap-2'>
-                  <button type='button' onClick={() => applyLink(block)} className='px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md text-xs transition'>Add link</button>
+                  <button type='button' onClick={() => applyLink(block)} className='px-3 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-md text-xs transition'>Add link</button>
                   <button type='button' onClick={() => setLinkBox(null)} className='px-3 py-2 border border-slate-200 rounded-md text-xs hover:bg-white transition'>Cancel</button>
                 </div>
                 {linkBox.url && !isSafeUrl(linkBox.url) && <p className='sm:col-span-3 text-xs text-red-500'>Address must start with https://, http://, mailto:, tel: or /</p>}

@@ -17,6 +17,10 @@ export const SITE_FIELDS = [
     { key: 'contact_email', group: 'Contact page', label: 'Email', type: 'text', value: 'support@primeresumeai.com' },
     { key: 'contact_phone', group: 'Contact page', label: 'Phone', type: 'text', value: '+91 7976204889' },
     { key: 'contact_address', group: 'Contact page', label: 'Address', type: 'text', value: 'New Delhi, India' },
+
+    // Managed from Admin > Appearance, not from the homepage text page.
+    { key: 'theme_primary', group: 'Appearance', label: 'Main colour', type: 'color', value: '#00a63e', hidden: true },
+    { key: 'feature_cover_letter', group: 'Appearance', label: 'Show the Cover Letter button in the resume builder', type: 'toggle', value: 'false', hidden: true },
 ];
 
 export const SITE_DEFAULTS = Object.fromEntries(SITE_FIELDS.map((f) => [f.key, f.value]));

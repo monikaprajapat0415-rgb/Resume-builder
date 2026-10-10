@@ -42,11 +42,11 @@ const AdminProductList = () => {
     <div>
       <div className='flex items-center justify-between mb-6'>
         <h1 className='text-2xl font-semibold text-slate-800'>Products</h1>
-        <button onClick={() => navigate('/admin/products/new')} className='inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>
+        <button onClick={() => navigate('/admin/products/new')} className='inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
           <LuPlus className='size-4' /> New Product
         </button>
       </div>
-      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search products…' className='mb-4 px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-300' />
+      <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search products…' className='mb-4 px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-brand-300' />
 
       {loading ? <p className='text-slate-400'>Loading…</p> : shown.length === 0 ? (
         <div className='rounded-lg border border-dashed border-slate-200 p-10 text-center text-slate-500 bg-white'>
@@ -75,7 +75,7 @@ const AdminProductList = () => {
                   </td>
                   <td className='px-4 py-3 text-slate-600 whitespace-nowrap'>{p.price > 0 ? formatPrice(p.price, p.currency) : 'Free'}</td>
                   <td className='px-4 py-3'>
-                    <button onClick={() => patch(p, { published: !p.published })} title='Click to toggle' className={`px-2 py-0.5 rounded-full text-xs ${p.published ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                    <button onClick={() => patch(p, { published: !p.published })} title='Click to toggle' className={`px-2 py-0.5 rounded-full text-xs ${p.published ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
                       {p.published ? 'Published' : 'Draft'}
                     </button>
                   </td>

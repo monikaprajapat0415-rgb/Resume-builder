@@ -75,10 +75,10 @@ const ResetPassword = () => {
                     <input type="password" name="password" placeholder="New Password" className="border-none outline-none ring-0" value={password} onChange={(e) => setPassword(e.target.value)} required />
                 </div>
 
-                <button type="submit" onClick={handleFResetPasswordSubmit} className="mt-7 mb-11 w-full h-11 rounded-full text-white bg-green-500 hover:opacity-90 transition-opacity">
+                <button type="submit" onClick={handleFResetPasswordSubmit} className="mt-7 mb-11 w-full h-11 rounded-full text-white bg-brand-500 hover:opacity-90 transition-opacity">
                     Reset Password
                 </button>
-                {/* <p onClick={() => setState(prev => prev === "login" ? "register" : "login")} className="text-gray-500 text-sm mt-3 mb-11">{state === "login" ? "Don't have an account?" : "Already have an account?"} <a href="#" className="text-green-500 hover:underline">click here</a></p> */}
+                {/* <p onClick={() => setState(prev => prev === "login" ? "register" : "login")} className="text-gray-500 text-sm mt-3 mb-11">{state === "login" ? "Don't have an account?" : "Already have an account?"} <a href="#" className="text-brand-500 hover:underline">click here</a></p> */}
             </form>
     </div>
   );

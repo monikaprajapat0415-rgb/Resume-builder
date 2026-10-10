@@ -41,7 +41,7 @@ const AtsScoreModal = ({ resumeId, onClose }) => {
       <div onClick={(e) => e.stopPropagation()} className='relative bg-white border shadow-md rounded-lg w-full max-w-xl p-6 max-h-[85vh] overflow-y-auto'>
         <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors' onClick={onClose} />
         <h2 className='text-xl font-bold mb-1 flex items-center gap-2'>
-          <LuTarget className='size-5 text-green-600' />ATS Score Checker
+          <LuTarget className='size-5 text-brand-600' />ATS Score Checker
         </h2>
         <p className='text-sm text-slate-500 mb-4'>Paste a job description to see how well this resume matches it.</p>
 
@@ -51,9 +51,9 @@ const AtsScoreModal = ({ resumeId, onClose }) => {
             onChange={(e) => setJobDescription(e.target.value)}
             placeholder='Paste the job description here...'
             rows={6}
-            className='w-full px-4 py-2 mb-3 border rounded-md text-sm focus:border-green-600 focus:ring-green-600 resize-none'
+            className='w-full px-4 py-2 mb-3 border rounded-md text-sm focus:border-brand-600 focus:ring-brand-600 resize-none'
           />
-          <button disabled={isLoading} className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70'>
+          <button disabled={isLoading} className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70'>
             {isLoading && <BiLoaderAlt className='size-4 animate-spin' />}
             {isLoading ? 'Analyzing...' : 'Check ATS Score'}
           </button>
@@ -74,7 +74,7 @@ const AtsScoreModal = ({ resumeId, onClose }) => {
                 <p className='text-sm font-medium text-slate-700 mb-2'>Keywords found in your resume</p>
                 <div className='flex flex-wrap gap-2'>
                   {result.matchedKeywords.map((kw, i) => (
-                    <span key={i} className='text-xs px-2 py-1 rounded-full bg-green-50 text-green-700 ring-1 ring-green-200'>{kw}</span>
+                    <span key={i} className='text-xs px-2 py-1 rounded-full bg-brand-50 text-brand-700 ring-1 ring-brand-200'>{kw}</span>
                   ))}
                 </div>
               </div>

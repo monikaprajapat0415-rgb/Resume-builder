@@ -11,7 +11,7 @@ const Features = () => {
   return (
    <div id='feature' className='flex flex-col items-center my-10 scroll-mt-12'>
 
-     <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
+     <div className="flex items-center gap-2 text-sm text-brand-600 bg-brand-400/10 rounded-full px-6 py-1.5">
             <LuZap width={14}/>
             <span>Simple process</span>
         </div>
@@ -24,14 +24,14 @@ const Features = () => {
                         <div className={`p-6 group-hover:bg-violet-100 border border-transparent group-hover:border-violet-300 flex gap-4 rounded-xl transition-colors ${!isHover ? 'border-violet-300 bg-violet-100' : ''}`}>
                             <LuScanSearch className="size-6 shrink-0 text-violet-600" />
                             <div className="space-y-2">
-                                <h3 className="text-base font-semibold text-slate-700">Free ATS Resume Checker <span className="ml-1 text-[10px] uppercase bg-green-600 text-white rounded-full px-2 py-0.5 align-middle">Free</span></h3>
+                                <h3 className="text-base font-semibold text-slate-700">Free ATS Resume Checker <span className="ml-1 text-[10px] uppercase bg-brand-600 text-white rounded-full px-2 py-0.5 align-middle">Free</span></h3>
                                 <p className="text-sm text-slate-600 max-w-xs">Drop your resume and get an ATS score with a full report on what to improve.</p>
                             </div>
                         </div>
                     </Link>
                     <Link to="/features" className="flex items-center justify-center gap-6 max-w-md group">
-                        <div className="p-6 group-hover:bg-green-100 border border-transparent group-hover:border-green-300 flex gap-4 rounded-xl transition-colors">
-                            <LuSparkles className="size-6 shrink-0 text-green-600" />
+                        <div className="p-6 group-hover:bg-brand-100 border border-transparent group-hover:border-brand-300 flex gap-4 rounded-xl transition-colors">
+                            <LuSparkles className="size-6 shrink-0 text-brand-600" />
                             <div className="space-y-2">
                                 <h3 className="text-base font-semibold text-slate-700">AI Writing Help</h3>
                                 <p className="text-sm text-slate-600 max-w-xs">Polish your summary and turn job duties into achievement-focused bullet points.</p>
@@ -47,7 +47,7 @@ const Features = () => {
                             </div>
                         </div>
                     </Link>
-                    <Link to="/features" className="block text-center text-sm font-medium text-green-700 hover:underline mt-3">See all features →</Link>
+                    <Link to="/features" className="block text-center text-sm font-medium text-brand-700 hover:underline mt-3">See all features →</Link>
                 </div>
             </div>
             <style>{`

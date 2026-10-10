@@ -104,7 +104,7 @@ const ProductDetail = () => {
             {product.images?.length > 1 && (
               <div className='flex gap-2 mt-3 flex-wrap'>
                 {product.images.map((src, i) => (
-                  <button key={src + i} onClick={() => setImage(i)} className={`size-16 rounded-md overflow-hidden border-2 ${i === image ? 'border-green-500' : 'border-transparent hover:border-slate-300'}`}>
+                  <button key={src + i} onClick={() => setImage(i)} className={`size-16 rounded-md overflow-hidden border-2 ${i === image ? 'border-brand-500' : 'border-transparent hover:border-slate-300'}`}>
                     <img src={src} alt='' className='w-full h-full object-cover' />
                   </button>
                 ))}
@@ -119,14 +119,14 @@ const ProductDetail = () => {
             <div className='mt-5 flex items-baseline gap-3'>
               <span className='text-3xl font-semibold text-slate-800'>{product.price > 0 ? formatPrice(product.price, product.currency) : 'Free'}</span>
               {product.compareAtPrice > product.price && <span className='text-slate-400 line-through'>{formatPrice(product.compareAtPrice, product.currency)}</span>}
-              {discount > 0 && <span className='text-sm font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded-full'>{discount}% off</span>}
+              {discount > 0 && <span className='text-sm font-medium text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full'>{discount}% off</span>}
             </div>
 
             {product.features?.length > 0 && (
               <ul className='mt-6 space-y-2'>
                 {product.features.map((f, i) => (
                   <li key={i} className='flex items-start gap-2 text-slate-600 text-sm'>
-                    <LuCheck className='size-4 mt-0.5 text-green-600 shrink-0' /> {f}
+                    <LuCheck className='size-4 mt-0.5 text-brand-600 shrink-0' /> {f}
                   </li>
                 ))}
               </ul>
@@ -138,11 +138,11 @@ const ProductDetail = () => {
                   {product.stockStatus === 'coming_soon' ? 'Coming soon' : 'Sold out'}
                 </button>
               ) : product.buyUrl ? (
-                <button onClick={buy} className='px-8 py-3 rounded-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition active:scale-95'>
+                <button onClick={buy} className='px-8 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition active:scale-95'>
                   {product.buttonLabel || 'Buy now'}
                 </button>
               ) : (
-                <Link to='/contact-us' className='inline-block px-8 py-3 rounded-full bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition'>
+                <Link to='/contact-us' className='inline-block px-8 py-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition'>
                   Contact us to buy
                 </Link>
               )}
@@ -161,7 +161,7 @@ const ProductDetail = () => {
             <p className='text-sm font-semibold text-slate-800 mb-4'>More products</p>
             <div className='grid sm:grid-cols-3 gap-4'>
               {related.map((p) => (
-                <Link key={p.slug} to={`/products/${p.slug}`} className='rounded-lg border border-slate-200 p-3 hover:border-green-200 transition flex gap-3 items-center'>
+                <Link key={p.slug} to={`/products/${p.slug}`} className='rounded-lg border border-slate-200 p-3 hover:border-brand-200 transition flex gap-3 items-center'>
                   {p.images?.[0] && <img src={p.images[0]} alt='' className='size-14 rounded object-cover' />}
                   <div className='min-w-0'>
                     <p className='text-sm font-medium text-slate-800 truncate'>{p.title}</p>

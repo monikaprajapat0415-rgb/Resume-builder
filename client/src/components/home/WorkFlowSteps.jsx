@@ -26,7 +26,7 @@ export default function WorkFlowSteps() {
             {/* <h2 className="text-base font-semibold text-slate-900 text-center mb-10">
         How It Works
       </h2> */}
-            <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
+            <div className="flex items-center gap-2 text-sm text-brand-600 bg-brand-400/10 rounded-full px-6 py-1.5">
                 <LuZap width={14} />
                 <span>Working process</span>
             </div>
@@ -40,7 +40,7 @@ export default function WorkFlowSteps() {
                         className="flex flex-col items-center text-center max-w-xs hover:scale-105 transition-all"
                     >
                         {/* Icon */}
-                        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-green-100 text-green-600 mb-4">
+                        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-brand-100 text-brand-600 mb-4">
                             {step.icon}
                         </div>
 

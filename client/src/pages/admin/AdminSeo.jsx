@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -46,14 +46,16 @@ const AdminSeo = () => {
   const [q, setQ] = useState('')
   const [open, setOpen] = useState(null)
 
-  const load = useCallback(() => {
-    setLoading(true)
+  const [reloadKey, setReloadKey] = useState(0)
+  useEffect(() => {
+    let live = true
     api.get('/api/admin/seo-audit', { headers: { Authorization: token } })
-      .then(({ data }) => setData(data))
-      .catch((e) => toast.error(e.response?.data?.message || 'Could not load the SEO audit.'))
-      .finally(() => setLoading(false))
-  }, [token])
-  useEffect(() => { load() }, [load])
+      .then(({ data }) => { if (live) setData(data) })
+      .catch((e) => { if (live) toast.error(e.response?.data?.message || 'Could not load the SEO audit.') })
+      .finally(() => { if (live) setLoading(false) })
+    return () => { live = false }
+  }, [token, reloadKey])
+  const load = () => { setLoading(true); setReloadKey((k) => k + 1) }
 
   const rows = useMemo(() => {
     if (!data) return []
@@ -67,7 +69,7 @@ const AdminSeo = () => {
   const copy = (text) => navigator.clipboard?.writeText(text).then(() => toast.success('Copied.')).catch(() => toast.error('Could not copy.'))
 
   if (loading && !data) return <p className='text-slate-400'>Running SEO audit…</p>
-  if (!data) return <p className='text-slate-500'>Could not load the audit. <button onClick={load} className='text-green-600 underline'>Try again</button></p>
+  if (!data) return <p className='text-slate-500'>Could not load the audit. <button onClick={load} className='text-brand-600 underline'>Try again</button></p>
 
   const { summary: s, urls } = data
   const hasDupes = data.duplicateTitles.length + data.duplicateDescriptions.length > 0
@@ -98,7 +100,7 @@ const AdminSeo = () => {
           <p className='text-xs text-slate-400 mt-1'>{s.published} published posts</p>
         </div>
         {['good', 'fair', 'poor'].map((k) => (
-          <button key={k} onClick={() => setFilter(k)} className='text-left bg-white rounded-xl border border-slate-200 p-4 hover:ring-1 hover:ring-green-300'>
+          <button key={k} onClick={() => setFilter(k)} className='text-left bg-white rounded-xl border border-slate-200 p-4 hover:ring-1 hover:ring-brand-300'>
             <p className='text-xs text-slate-500'>{tone[k].label}</p>
             <p className='text-3xl font-semibold text-slate-800 mt-1'>{s[k]}</p>
             <p className='text-xs text-slate-400 mt-1'>{k === 'good' ? 'score 80+' : k === 'fair' ? 'score 50-79' : 'score under 50'}</p>
@@ -136,7 +138,7 @@ const AdminSeo = () => {
           <p className='text-xs text-slate-500 mb-2 flex items-center gap-1.5'><LuTriangleAlert className='size-3.5 text-amber-500' /> Search engines may treat these as competing pages. Make each one unique.</p>
           <ul className='text-sm space-y-1'>
             {[...data.duplicateTitles.map((g) => ['Title', g]), ...data.duplicateDescriptions.map((g) => ['Description', g])].map(([kind, g], i) => (
-              <li key={i} className='text-slate-700'><span className='text-slate-400'>{kind}: </span>{g.map((p, j) => <span key={p._id}>{j > 0 && ' and '}<Link className='text-green-700 hover:underline' to={`/admin/blogs/${p._id}/edit`}>{p.title}</Link></span>)}</li>
+              <li key={i} className='text-slate-700'><span className='text-slate-400'>{kind}: </span>{g.map((p, j) => <span key={p._id}>{j > 0 && ' and '}<Link className='text-brand-700 hover:underline' to={`/admin/blogs/${p._id}/edit`}>{p.title}</Link></span>)}</li>
             ))}
           </ul>
         </Card>
@@ -145,9 +147,9 @@ const AdminSeo = () => {
       <Card title='Posts'>
         <div className='flex flex-wrap items-center gap-2 mb-3'>
           {[['all', 'Published'], ['poor', 'Poor'], ['fair', 'Needs work'], ['good', 'Good'], ['drafts', `Drafts (${s.drafts})`]].map(([k, l]) => (
-            <button key={k} onClick={() => setFilter(k)} className={`text-xs px-3 py-1.5 rounded-full border transition ${filter === k ? 'bg-green-600 border-green-600 text-white' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{l}</button>
+            <button key={k} onClick={() => setFilter(k)} className={`text-xs px-3 py-1.5 rounded-full border transition ${filter === k ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:bg-slate-50'}`}>{l}</button>
           ))}
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search posts…' aria-label='Search posts' className='ml-auto w-full sm:w-52 px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300' />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search posts…' aria-label='Search posts' className='ml-auto w-full sm:w-52 px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300' />
         </div>
         {rows.length === 0 ? <p className='text-sm text-slate-400 py-6 text-center'>No posts match.</p> : (
           <ul className='divide-y divide-slate-100'>
@@ -186,7 +188,7 @@ const AdminSeo = () => {
           <ul className='space-y-2'>
             {files.map(([label, url]) => (
               <li key={label} className='flex items-center justify-between gap-2 text-sm'>
-                <a href={url} target='_blank' rel='noreferrer' className='text-slate-700 hover:text-green-600 truncate'>{label}</a>
+                <a href={url} target='_blank' rel='noreferrer' className='text-slate-700 hover:text-brand-600 truncate'>{label}</a>
                 <button onClick={() => copy(url)} className='p-1.5 rounded hover:bg-slate-100 shrink-0' title='Copy URL' aria-label={`Copy ${label} URL`}><LuCopy className='size-3.5 text-slate-500' /></button>
               </li>
             ))}
@@ -197,7 +199,7 @@ const AdminSeo = () => {
           <ul className='space-y-2.5'>
             {tools.map((t) => (
               <li key={t.label}>
-                <a href={t.href} target='_blank' rel='noreferrer' className='text-sm text-green-700 hover:underline inline-flex items-center gap-1.5'>{t.label} <LuExternalLink className='size-3' /></a>
+                <a href={t.href} target='_blank' rel='noreferrer' className='text-sm text-brand-700 hover:underline inline-flex items-center gap-1.5'>{t.label} <LuExternalLink className='size-3' /></a>
                 <p className='text-xs text-slate-400'>{t.hint}</p>
               </li>
             ))}

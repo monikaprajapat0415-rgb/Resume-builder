@@ -94,9 +94,9 @@ const AtsChecker = () => {
         structuredData={structured}
       />
       <NavBar />
-      <main className='bg-gradient-to-b from-green-50/60 to-white'>
+      <main className='bg-gradient-to-b from-brand-50/60 to-white'>
         <div className='max-w-3xl mx-auto px-4 pt-14 pb-10 text-center'>
-          <span className='inline-flex items-center gap-1.5 text-xs font-medium text-green-700 bg-green-100 rounded-full px-3 py-1'><LuZap className='size-3.5' /> 5 free checks per account</span>
+          <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuZap className='size-3.5' /> 5 free checks per account</span>
           <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>Free ATS Resume Checker</h1>
           <p className='text-slate-600 mt-4 max-w-xl mx-auto'>Drop your resume and see how an Applicant Tracking System reads it: your score, what is hurting it, and exactly how to fix it.</p>
         </div>
@@ -105,11 +105,11 @@ const AtsChecker = () => {
           {/* Not signed in */}
           {!authLoading && !user && (
             <div className='bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center'>
-              <LuLock className='size-8 text-green-600 mx-auto' />
+              <LuLock className='size-8 text-brand-600 mx-auto' />
               <h2 className='text-lg font-semibold text-slate-800 mt-3'>Create a free account to check your resume</h2>
               <p className='text-sm text-slate-500 mt-1 max-w-md mx-auto'>It takes a minute. Your account keeps your report so you can open it again any time.</p>
               <div className='flex flex-wrap justify-center gap-3 mt-5'>
-                <Link to='/app?state=register&next=/features/ats-checker' className='px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>Sign up free</Link>
+                <Link to='/app?state=register&next=/features/ats-checker' className='px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Sign up free</Link>
                 <Link to='/app?state=login&next=/features/ats-checker' className='px-6 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-full text-sm font-medium transition'>Log in</Link>
               </div>
             </div>
@@ -128,7 +128,7 @@ const AtsChecker = () => {
                   : (status.msg || 'Something went wrong on the server. Please try again.')}
               </p>
               <div className='flex justify-center gap-3 mt-5'>
-                <button onClick={() => { setStatus(null); loadStatus() }} className='px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>Try again</button>
+                <button onClick={() => { setStatus(null); loadStatus() }} className='px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Try again</button>
                 {(status.http === 401 || status.http === 404) && <Link to='/logout' className='px-6 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-full text-sm font-medium transition'>Log in again</Link>}
               </div>
               <p className='text-[11px] text-slate-300 mt-4'>Error code: {status.http || 'network'}</p>
@@ -152,31 +152,31 @@ const AtsChecker = () => {
                 onDragLeave={() => setDrag(false)}
                 onDrop={(e) => { e.preventDefault(); setDrag(false); pick(e.dataTransfer.files?.[0]) }}
                 onClick={() => !file && input.current?.click()}
-                className={`rounded-xl border-2 border-dashed px-4 py-10 text-center transition ${drag ? 'border-green-500 bg-green-50' : 'border-slate-300 hover:border-green-400'} ${file ? '' : 'cursor-pointer'}`}
+                className={`rounded-xl border-2 border-dashed px-4 py-10 text-center transition ${drag ? 'border-brand-500 bg-brand-50' : 'border-slate-300 hover:border-brand-400'} ${file ? '' : 'cursor-pointer'}`}
               >
                 <input ref={input} type='file' accept='.pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document' className='hidden' onChange={(e) => { pick(e.target.files?.[0]); e.target.value = '' }} data-testid='ats-file' />
                 {file ? (
                   <div className='inline-flex items-center gap-3 bg-slate-50 rounded-lg px-4 py-3'>
-                    <LuFileText className='size-6 text-green-600' />
+                    <LuFileText className='size-6 text-brand-600' />
                     <div className='text-left'><p className='text-sm text-slate-800 break-all'>{file.name}</p><p className='text-xs text-slate-400'>{(file.size / 1024).toFixed(0)} KB</p></div>
                     <button type='button' onClick={(e) => { e.stopPropagation(); setFile(null) }} className='p-1 rounded hover:bg-slate-200' aria-label='Remove file'><LuX className='size-4 text-slate-500' /></button>
                   </div>
                 ) : (
                   <>
-                    <LuUpload className='size-9 text-green-600 mx-auto' />
+                    <LuUpload className='size-9 text-brand-600 mx-auto' />
                     <p className='mt-3 text-slate-700 font-medium'>Drag and drop your resume here</p>
-                    <p className='text-sm text-slate-500'>or <span className='text-green-700 underline'>browse files</span> · PDF or Word (.docx) · up to 5 MB</p>
+                    <p className='text-sm text-slate-500'>or <span className='text-brand-700 underline'>browse files</span> · PDF or Word (.docx) · up to 5 MB</p>
                   </>
                 )}
               </div>
 
               <button type='button' onClick={() => setShowJd(!showJd)} className='mt-4 flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900'>
-                <LuTarget className='size-4 text-green-600' /> Check against a specific job <span className='text-slate-400'>(optional)</span>
+                <LuTarget className='size-4 text-brand-600' /> Check against a specific job <span className='text-slate-400'>(optional)</span>
                 <LuChevronDown className={`size-4 transition ${showJd ? 'rotate-180' : ''}`} />
               </button>
-              {showJd && <textarea value={jd} onChange={(e) => setJd(e.target.value)} maxLength={5000} rows={5} placeholder='Paste the job description here to see which of its keywords your resume is missing…' className='mt-2 w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-green-300 resize-y' />}
+              {showJd && <textarea value={jd} onChange={(e) => setJd(e.target.value)} maxLength={5000} rows={5} placeholder='Paste the job description here to see which of its keywords your resume is missing…' className='mt-2 w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 resize-y' />}
 
-              <button disabled={busy || !file} className='mt-5 w-full py-3 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white rounded-full font-medium transition flex items-center justify-center gap-2'>
+              <button disabled={busy || !file} className='mt-5 w-full py-3 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white rounded-full font-medium transition flex items-center justify-center gap-2'>
                 {busy && <BiLoaderAlt className='size-4 animate-spin' />}
                 {busy ? 'Analysing your resume… this takes about 20 seconds' : 'Check my resume'}
               </button>
@@ -190,13 +190,13 @@ const AtsChecker = () => {
           {/* Checker switched off for this account (limit reached, or turned off by an admin) */}
           {user && status && !status.error && !status.canCheck && status.verified && !busy && !result && (
             <div className='bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center' role='status'>
-              <LuInfo className='size-8 text-green-600 mx-auto' />
+              <LuInfo className='size-8 text-brand-600 mx-auto' />
               <h2 className='text-lg font-semibold text-slate-800 mt-3'>{status.reason === 'disabled' ? 'The ATS checker is turned off for your account' : `You have used all ${status.limit} of your free ATS checks`}</h2>
               <p className='text-sm text-slate-500 mt-1 max-w-md mx-auto'>
                 {status.reason === 'disabled' ? 'Please contact us if you think this is a mistake.' : 'The ATS checker is now turned off for your account. If you need more checks, please contact us.'}
               </p>
               <div className='flex flex-wrap justify-center gap-3 mt-5'>
-                <Link to='/contact-us' className='px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>Contact us</Link>
+                <Link to='/contact-us' className='px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Contact us</Link>
                 {status?.last && <button onClick={openLast} className='px-6 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-full text-sm font-medium transition'>View my last report (score {status.last.score})</button>}
               </div>
               <p className='text-xs text-slate-400 mt-4'>Meanwhile, you can improve your resume with our <Link to='/templates' className='underline'>ATS-friendly templates</Link>.</p>
@@ -212,10 +212,10 @@ const AtsChecker = () => {
             )}
             {result && <AtsReport report={result.report} fileName={result.fileName} />}
             {result && (
-              <div className='mt-6 rounded-xl bg-green-600 text-white p-6 text-center'>
+              <div className='mt-6 rounded-xl bg-brand-600 text-white p-6 text-center'>
                 <p className='font-semibold text-lg'>Fix these in minutes with our resume builder</p>
-                <p className='text-sm text-green-50 mt-1'>ATS-friendly templates and AI writing help for your summary and experience.</p>
-                <Link to='/app' className='inline-block mt-4 px-6 py-2.5 bg-white text-green-700 rounded-full text-sm font-medium hover:bg-green-50 transition'>Build my resume</Link>
+                <p className='text-sm text-brand-50 mt-1'>ATS-friendly templates and AI writing help for your summary and experience.</p>
+                <Link to='/app' className='inline-block mt-4 px-6 py-2.5 bg-white text-brand-700 rounded-full text-sm font-medium hover:bg-brand-50 transition'>Build my resume</Link>
               </div>
             )}
           </div>
