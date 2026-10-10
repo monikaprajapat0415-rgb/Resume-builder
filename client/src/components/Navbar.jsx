@@ -22,8 +22,11 @@ const Navbar = () => {
         <Link to="/">
         <Logo className='h-11 w-auto' />
         </Link>
-        <div className='flex items-center gap-4 text-sm'>
-            <p className='max-sm:hidden'>Hi, {user?.name}</p>
+        <div className='flex items-center gap-3 sm:gap-5 text-sm'>
+            {/* Quick links for signed-in users. /learn lists the free tutorial courses. */}
+            <Link to='/learn' className='font-medium hover:text-brand-600 transition'>Learn</Link>
+            <Link to='/blog' className='font-medium hover:text-brand-600 transition max-sm:hidden'>Blog</Link>
+            <p className='max-md:hidden'>Hi, {user?.name}</p>
             <button className='bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all' onClick={handleLogout}>
                 Logout
             </button>

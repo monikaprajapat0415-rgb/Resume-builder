@@ -15,12 +15,15 @@ import { templateSlugs } from './src/content/templateSlugs.js'
 // pre-listed in sitemap.xml. If you want every post in the sitemap too, add a
 // backend route that serves its own sitemap entries from GET /api/blogs/sitemap/slugs
 // and reference it from a <sitemapindex> alongside this one.
+// Tutorial courses and lessons (/learn/<course>/<lesson>) are also created in the admin,
+// so GET /api/blogs/sitemap.xml lists them live; only the /learn index is pre-listed here.
 const staticRoutes = [
   '/',
   '/contact-us',
   '/privacy-policy',
   '/terms-and-conditions',
   '/blog',
+  '/learn',
   '/features',
   '/features/ats-checker',
   '/templates',
