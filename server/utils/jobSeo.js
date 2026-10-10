@@ -1,3 +1,4 @@
+import { jobInsights } from './jobInsights.js';
 import { SITE_NAME, siteUrl, escapeHtml, seoTitle } from './blogSeo.js';
 
 const crumbHtml = (items) => `<nav aria-label="Breadcrumb">${items.map((b, i) => (b.href ? `<a href="${escapeHtml(b.href)}">${escapeHtml(b.name)}</a>` : escapeHtml(b.name)) + (i < items.length - 1 ? ' › ' : '')).join('')}</nav>`;
@@ -61,6 +62,11 @@ export const jobsIndexHtml = ({ jobs, total }) => `
   <ul>${jobs.map((j) => `<li><h2><a href="/jobs/${escapeHtml(j.slug)}">${escapeHtml(j.title)}</a></h2><p>${escapeHtml(j.company)}${j.location ? ` · ${escapeHtml(j.location)}` : ''}${j.remote ? ' · Remote' : ''}${j.employmentType ? ` · ${escapeHtml(j.employmentType)}` : ''}</p></li>`).join('')}</ul>
 </section>`;
 
+const insightsHtml = (job) => {
+    const i = jobInsights(job);
+    return `<section><h2>About this role</h2><p>${escapeHtml(i.summary)}</p>${i.skills.length ? `<h3>Skills mentioned</h3><ul>${i.skills.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}<h3>How to prepare your application</h3><ul>${i.tips.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul><h3>Common questions</h3>${i.faqs.map((f) => `<h4>${escapeHtml(f.q)}</h4><p>${escapeHtml(f.a)}</p>`).join('')}</section>`;
+};
+
 export const jobHtml = ({ job, more }) => `
 <article class="ssr-article">
   ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs', href: '/jobs' }, { name: job.title }])}
@@ -68,6 +74,7 @@ export const jobHtml = ({ job, more }) => `
   <p class="meta">${escapeHtml(job.company)}${job.location ? ` · ${escapeHtml(job.location)}` : ''}${job.remote ? ' · Remote' : ''}${job.employmentType ? ` · ${escapeHtml(job.employmentType)}` : ''} · Posted <time datetime="${day(job.postedAt || job.createdAt)}">${day(job.postedAt || job.createdAt)}</time></p>
   <div>${textToHtml(job.description)}</div>
   <p><a href="${escapeHtml(job.applyUrl)}" rel="nofollow noopener noreferrer">Apply on the ${escapeHtml(job.company)} website</a></p>
+  ${insightsHtml(job)}
   ${more.length ? `<h2>More jobs at ${escapeHtml(job.company)}</h2><ul>${more.map((m) => `<li><a href="/jobs/${escapeHtml(m.slug)}">${escapeHtml(m.title)}</a>${m.location ? ` · ${escapeHtml(m.location)}` : ''}</li>`).join('')}</ul>` : ''}
 </article>`;
 

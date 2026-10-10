@@ -1,3 +1,4 @@
+import { jobInsights } from '../utils/jobInsights.js';
 import mongoose from "mongoose";
 import Job from "../models/Job.js";
 import JobSource from "../models/JobSource.js";
@@ -75,7 +76,7 @@ export const getJob = async (req, res) => {
         const { job } = v;
         return res.status(200).json({
             job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, sourceType: job.sourceType, updatedAt: job.updatedAt },
-            more: v.more, sourceName: v.sourceName,
+            more: v.more, sourceName: v.sourceName, insights: jobInsights(job),
         });
     } catch (e) { return res.status(500).json({ message: 'Could not load the job.' }); }
 };
