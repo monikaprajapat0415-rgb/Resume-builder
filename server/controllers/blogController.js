@@ -4,6 +4,7 @@ import Product from "../models/Product.js";
 import Page from "../models/Page.js";
 import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
+import Job from "../models/Job.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks, cleanSeoFields, siteUrl, absUrl, listItem } from "../utils/blogSeo.js";
 import { loadPostView } from "./blogSeoController.js";
@@ -82,6 +83,7 @@ export const getBlogSitemapXml = async (req, res) => {
         ]);
         const liveCourses = courses.filter((c) => lessons.some((l) => String(l.course) === String(c._id)));
         const slugOf = Object.fromEntries(liveCourses.map((c) => [String(c._id), c.slug]));
+        const jobs = await Job.find({ active: true, hidden: { $ne: true } }).sort({ postedAt: -1 }).limit(5000).select('slug updatedAt postedAt').lean();
         const [posts, products, pages, cats] = await Promise.all([
             Blog.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt date modifiedAt coverImage coverAlt title category'),
             Product.find({ published: true }).select('slug updatedAt'),
@@ -108,6 +110,8 @@ export const getBlogSitemapXml = async (req, res) => {
             ...(liveCourses.length ? [entry('/learn', Math.max(...liveCourses.map((c) => +new Date(c.modifiedAt || c.updatedAt))), 'weekly')] : []),
             ...liveCourses.map((c) => entry(`/learn/${c.slug}`, c.modifiedAt || c.updatedAt, 'weekly')),
             ...lessons.filter((l) => slugOf[String(l.course)]).map((l) => entry(`/learn/${slugOf[String(l.course)]}/${l.slug}`, l.modifiedAt || l.updatedAt, 'monthly')),
+            ...(jobs.length ? [entry('/jobs', jobs[0].updatedAt || new Date(), 'daily')] : []),
+            ...jobs.map((j) => entry(`/jobs/${j.slug}`, j.updatedAt || j.postedAt, 'weekly')),
             ...cats.filter((c) => newest[c.slug]).map((c) => entry(`/blog/category/${c.slug}`, newest[c.slug], 'weekly')),
             ...products.map((product) => entry(`/products/${product.slug}`, product.updatedAt, 'weekly')),
             ...pages.map((page) => entry(`/p/${page.slug}`, page.updatedAt, 'monthly')),

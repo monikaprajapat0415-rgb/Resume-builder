@@ -25,6 +25,7 @@ const Navbar = () => {
         <div className='flex items-center gap-3 sm:gap-5 text-sm'>
             {/* Quick links for signed-in users. /learn lists the free tutorial courses. */}
             <Link to='/learn' className='font-medium hover:text-brand-600 transition'>Learn</Link>
+            <Link to='/jobs' className='font-medium hover:text-brand-600 transition'>Jobs</Link>
             <Link to='/blog' className='font-medium hover:text-brand-600 transition max-sm:hidden'>Blog</Link>
             <p className='max-md:hidden'>Hi, {user?.name}</p>
             <button className='bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all' onClick={handleLogout}>

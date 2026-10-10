@@ -8,6 +8,8 @@ import resumeRouter from "./routes/resumeRoutes.js";
 import aiRouter from "./routes/aiRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 import learnRouter from "./routes/learnRoutes.js";
+import jobRouter from "./routes/jobRoutes.js";
+import { startJobScheduler } from "./services/jobSync.js";
 import adminRouter from "./routes/adminRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import menuRouter from "./routes/menuRoutes.js";
@@ -69,6 +71,7 @@ app.use('/api/ai', aiRouter)
 app.use('/api/ats', atsRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/learn', learnRouter)
+app.use('/api/jobs', jobRouter)
 app.use('/api/products', productRouter)
 app.use('/api/menu', menuRouter)
 app.use('/api', publicRouter)
@@ -78,4 +81,5 @@ app.use('/', seoRouter)
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
+    startJobScheduler();
 })

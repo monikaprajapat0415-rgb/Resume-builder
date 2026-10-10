@@ -24,6 +24,7 @@ const staticRoutes = [
   '/terms-and-conditions',
   '/blog',
   '/learn',
+  '/jobs',
   '/features',
   '/features/ats-checker',
   '/templates',
