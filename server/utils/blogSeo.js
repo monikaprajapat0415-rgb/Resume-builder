@@ -37,6 +37,7 @@ export const absUrl = (u) => {
 export const blocksToText = (blocks = []) => blocks.map((b) => {
     if (b.type === 'list' || b.type === 'olist') return (b.items || []).map(stripInline).join(' ');
     if (b.type === 'image') return b.caption || '';
+    if (b.type === 'code') return b.text || '';
     return stripInline(b.text || '');
 }).join(' ');
 
@@ -53,6 +54,8 @@ export const cleanBlogBlocks = (content) => (Array.isArray(content) ? content : 
     const type = b?.type;
     if (type === 'list' || type === 'olist') return { type, items: (Array.isArray(b.items) ? b.items : []).map((s) => str(s, 1000)).filter(Boolean) };
     if (type === 'image') return { type, url: mediaUrl(b.url), alt: str(b.alt, 200), caption: str(b.caption, 300) };
+    if (type === 'code') return { type, lang: str(b.lang, 20).toLowerCase().replace(/[^a-z0-9+#.-]/g, ''), text: String(b.text ?? '').replace(/\s+$/, '').slice(0, 30000) };
+    if (type === 'note') return { type, text: str(b.text, 3000) };
     return { type: type === 'heading' ? 'heading' : 'paragraph', text: str(b?.text, 20000) };
 }).filter((b) => (b.type === 'list' || b.type === 'olist' ? b.items.length : b.type === 'image' ? b.url : b.text.length));
 
@@ -79,7 +82,7 @@ export const cleanSeoFields = (body) => {
 
 // ---------- view model: everything a page / crawler needs ----------
 
-const headingIds = (blocks) => {
+export const headingIds = (blocks) => {
     const used = new Map();
     return blocks.map((b, i) => {
         if (b.type !== 'heading') return b;
@@ -185,6 +188,8 @@ export const blocksToHtml = (blocks = []) => blocks.map((b) => {
         const src = absUrl(b.url) || b.url;
         return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${escapeHtml(b.caption)}</figcaption>` : ''}</figure>`;
     }
+    if (b.type === 'code') return `<pre><code${b.lang ? ` class="language-${escapeHtml(b.lang)}"` : ''}>${escapeHtml(b.text || '')}</code></pre>`;
+    if (b.type === 'note') return `<aside><p><strong>Note:</strong> ${inlineHtml(b.text)}</p></aside>`;
     return `<p>${inlineHtml(b.text)}</p>`;
 }).join('\n');
 

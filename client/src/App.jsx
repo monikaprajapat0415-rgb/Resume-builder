@@ -20,12 +20,19 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import VerifyEmail from "./pages/VerifyEmail";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import LearnIndex from "./pages/LearnIndex";
+import LearnCourse from "./pages/LearnCourse";
+import LearnLesson from "./pages/LearnLesson";
 import TemplatesIndex from "./pages/TemplatesIndex";
 import TemplateLanding from "./pages/TemplateLanding";
 import AdminSeo from './pages/admin/AdminSeo'
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminBlogList from "./pages/admin/AdminBlogList";
 import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
+import AdminCourses from "./pages/admin/AdminCourses";
+import AdminCourseEditor from "./pages/admin/AdminCourseEditor";
+import AdminCourseLessons from "./pages/admin/AdminCourseLessons";
+import AdminLessonEditor from "./pages/admin/AdminLessonEditor";
 import AdminOverview from "./pages/admin/AdminOverview";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminProductList from "./pages/admin/AdminProductList";
@@ -121,6 +128,9 @@ const App = () => {
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/category/:slug" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/learn" element={<LearnIndex />} />
+        <Route path="/learn/:course" element={<LearnCourse />} />
+        <Route path="/learn/:course/:lesson" element={<LearnLesson />} />
         <Route path="/features" element={<Features />} />
         <Route path="/features/ats-checker" element={<AtsChecker />} />
         <Route path="/products" element={<ProductsIndex />} />
@@ -146,6 +156,12 @@ const App = () => {
           <Route path="blogs" element={<AdminBlogList />} />
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
+          <Route path="learn" element={<AdminCourses />} />
+          <Route path="learn/new" element={<AdminCourseEditor />} />
+          <Route path="learn/:id/edit" element={<AdminCourseEditor />} />
+          <Route path="learn/:id/lessons/new" element={<AdminLessonEditor />} />
+          <Route path="learn/lessons/:lessonId/edit" element={<AdminLessonEditor />} />
+          <Route path="learn/:id" element={<AdminCourseLessons />} />
         </Route>
 
         <Route path="app" element={<Layouts />}>

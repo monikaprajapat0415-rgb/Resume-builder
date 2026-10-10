@@ -10,6 +10,7 @@ export const DEFAULT_MENU = [
     { key: 'h-templates', location: 'header', label: 'Templates', url: '/templates' },
     { key: 'h-products', location: 'header', label: 'Products', url: '/products' },
     { key: 'h-blog', location: 'header', label: 'Blog', url: '/blog' },
+    { key: 'h-learn', location: 'header', label: 'Learn', url: '/learn' },
     { key: 'h-contact', location: 'header', label: 'Contact Us', url: '/#contact-us' },
 
     { key: 'fp-home', location: 'footer_product', label: 'Home', url: '/' },
@@ -21,6 +22,7 @@ export const DEFAULT_MENU = [
     { key: 'fr-ats', location: 'footer_resources', label: 'ATS Checker', url: '/features/ats-checker' },
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },
+    { key: 'fr-learn', location: 'footer_resources', label: 'Learn', url: '/learn' },
     { key: 'fr-contact', location: 'footer_resources', label: 'Contact', url: '/contact-us' },
 
     { key: 'fl-privacy', location: 'footer_legal', label: 'Privacy', url: '/privacy-policy' },

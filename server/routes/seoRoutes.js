@@ -1,4 +1,5 @@
 import express from 'express';
+import { renderLearnIndex, renderCourse, renderLesson } from '../controllers/learnSeoController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
 // Not under /api: these answer the public URLs themselves (https://site/blog/...).
@@ -10,5 +11,9 @@ seoRouter.get('/llms-full.txt', llmsFullTxt);
 seoRouter.get('/blog/category/:slug', renderIndex);
 seoRouter.get('/blog', renderIndex);
 seoRouter.get('/blog/:slug', renderPost);
+
+seoRouter.get('/learn', renderLearnIndex);
+seoRouter.get('/learn/:course', renderCourse);
+seoRouter.get('/learn/:course/:lesson', renderLesson);
 
 export default seoRouter;

@@ -32,7 +32,7 @@ const setMeta = (html, attr, name, value) => {
 const STYLE = `<style>
 .ssr-article{max-width:42rem;margin:0 auto;padding:2rem 1rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#334155;line-height:1.65}
 .ssr-article h1{font-size:2rem;line-height:1.2;color:#1e293b}.ssr-article h2{font-size:1.4rem;color:#1e293b;margin-top:2rem}
-.ssr-article img{max-width:100%;height:auto}.ssr-article a{color:#16a34a}.ssr-article .meta{color:#94a3b8;font-size:.85rem}
+.ssr-article img{max-width:100%;height:auto}.ssr-article pre{background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:.5rem;overflow:auto;font-size:.85rem}.ssr-article a{color:#16a34a}.ssr-article .meta{color:#94a3b8;font-size:.85rem}
 </style>`;
 
 /**
