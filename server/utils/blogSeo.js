@@ -10,10 +10,10 @@ const DEFAULT_IMAGE = () => `${siteUrl()}/og-image.png`;
 export const escapeHtml = (s = '') => String(s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
-const TOKEN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g;
-export const stripInline = (t = '') => String(t).replace(TOKEN, (_, label, _u, bold) => label ?? bold);
+const TOKEN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|`([^`\n]+)`/g;
+export const stripInline = (t = '') => String(t).replace(TOKEN, (_, label, _u, bold, code) => label ?? bold ?? code);
 
-// [text](url) and **bold** -> safe HTML (everything else is escaped).
+// [text](url), **bold** and `code` -> safe HTML (everything else is escaped).
 export const inlineHtml = (text = '') => {
     let out = '', last = 0, m;
     const src = String(text);
@@ -21,6 +21,7 @@ export const inlineHtml = (text = '') => {
     while ((m = TOKEN.exec(src)) !== null) {
         out += escapeHtml(src.slice(last, m.index));
         if (m[3] !== undefined) out += `<strong>${escapeHtml(m[3])}</strong>`;
+        else if (m[4] !== undefined) out += `<code>${escapeHtml(m[4])}</code>`;
         else if (!isSafeUrl(m[2])) out += escapeHtml(m[1]);
         else out += `<a href="${escapeHtml(m[2])}"${/^https?:/i.test(m[2]) ? ' rel="noopener noreferrer"' : ''}>${escapeHtml(m[1])}</a>`;
         last = m.index + m[0].length;

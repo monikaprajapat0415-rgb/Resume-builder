@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
-import { LuPlus, LuPencil, LuTrash2, LuExternalLink, LuListOrdered } from 'react-icons/lu'
+import { LuPlus, LuPencil, LuTrash2, LuExternalLink, LuListOrdered, LuUpload } from 'react-icons/lu'
 
 const AdminCourses = () => {
   const { token } = useSelector((s) => s.auth)
@@ -11,6 +11,32 @@ const AdminCourses = () => {
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
   const auth = { headers: { Authorization: token } }
+  const fileRef = useRef(null)
+  const [importing, setImporting] = useState(false)
+
+  const importFile = async (file) => {
+    if (!file) return
+    setImporting(true)
+    try {
+      const body = JSON.parse(await file.text())
+      let replace = false
+      for (;;) {
+        try {
+          const { data } = await api.post('/api/admin/learn/import', { ...body, replace }, auth)
+          toast.success(`Imported "${data.course.title}" with ${data.lessons} lessons.`)
+          navigate(`/admin/learn/${data.course._id}`)
+          break
+        } catch (e) {
+          if (e.response?.status === 409 && !replace && window.confirm(`${e.response.data.message}\n\nReplace the existing course and all its lessons with this file?`)) { replace = true; continue }
+          throw e
+        }
+      }
+    } catch (e) {
+      toast.error(e instanceof SyntaxError ? 'That file is not valid JSON.' : e.response?.data?.message || 'Import failed.')
+    }
+    setImporting(false)
+    if (fileRef.current) fileRef.current.value = ''
+  }
 
   useEffect(() => {
     api.get('/api/admin/learn/courses', auth)
@@ -32,9 +58,15 @@ const AdminCourses = () => {
     <div>
       <div className='flex items-center justify-between mb-2 gap-3 flex-wrap'>
         <h1 className='text-2xl font-semibold text-slate-800'>Learn: courses</h1>
+        <div className='flex items-center gap-2'>
+        <input ref={fileRef} type='file' accept='application/json,.json' hidden onChange={(e) => importFile(e.target.files?.[0])} />
+        <button type='button' onClick={() => fileRef.current?.click()} disabled={importing} className='inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-full text-sm hover:bg-slate-50 transition disabled:opacity-60'>
+          <LuUpload className='size-4' /> {importing ? 'Importing…' : 'Import course (JSON)'}
+        </button>
         <button onClick={() => navigate('/admin/learn/new')} className='inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
           <LuPlus className='size-4' /> New course
         </button>
+        </div>
       </div>
       <p className='text-sm text-slate-500 mb-6 max-w-2xl'>Each course is a tutorial series (for example "Angular Tutorial") made of ordered lessons. Visitors see published courses at <Link to='/learn' target='_blank' className='text-brand-600 hover:underline'>/learn</Link>. A course appears there once it is published and has at least one published lesson.</p>
 
