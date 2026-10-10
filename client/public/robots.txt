@@ -27,4 +27,4 @@ Disallow: /verify-email/
 Disallow: /admin
 
 Sitemap: https://primeresumeai.com/sitemap.xml
-Sitemap: https://primeresumeai.com/api/blogs/sitemap.xml
+Sitemap: https://primeresumeai.com/sitemap-content.xml

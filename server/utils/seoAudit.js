@@ -99,7 +99,7 @@ export const auditBlogs = (posts) => {
     urls: {
       site: siteUrl(),
       sitemap: `${siteUrl()}/sitemap.xml`,
-      blogSitemap: `${siteUrl()}/api/blogs/sitemap.xml`,
+      blogSitemap: `${siteUrl()}/sitemap-content.xml`,
       robots: `${siteUrl()}/robots.txt`,
       llms: `${siteUrl()}/llms.txt`,
       rss: `${siteUrl()}/blog/rss.xml`,
