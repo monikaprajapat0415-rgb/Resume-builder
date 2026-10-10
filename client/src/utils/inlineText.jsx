@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 export const isSafeUrl = (url) => /^(https?:\/\/|mailto:|tel:|\/|#)/i.test((url || '').trim())
 
 const TOKEN = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*/g
-const linkClass = 'text-green-600 underline underline-offset-2 hover:text-green-700'
+const linkClass = 'text-brand-600 underline underline-offset-2 hover:text-brand-700'
 
 export const renderInline = (text = '') => {
   const out = []

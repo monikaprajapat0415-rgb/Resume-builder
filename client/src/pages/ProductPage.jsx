@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import logo from "../assets/logo.svg";
+import Logo from '../components/Logo';
 
 // Where the Expense Ledger frontend is running.
 // Dev: the ledger's own `npm run dev` (Vite default: http://localhost:5173)
@@ -21,7 +21,7 @@ const ProductPage = () => {
       {/* Slim top bar so it's obviously part of the site, not a dead end */}
       <div className="flex items-center justify-between px-6 py-3 border-b border-slate-200 bg-white shrink-0">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="logo" className="h-8 w-auto" />
+          <Logo className='h-8 w-auto' />
         </Link>
         <span className="text-sm text-slate-500">Expense Ledger</span>
         <Link

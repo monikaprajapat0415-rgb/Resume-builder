@@ -8,7 +8,7 @@ import ImageUploader from '../../components/admin/ImageUploader'
 
 const plain = (t = '') => t.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*/g, '')
 const Counter = ({ n, min, max }) => (
-  <span className={`text-xs ml-2 ${n === 0 ? 'text-slate-400' : n > max || n < min ? 'text-amber-600' : 'text-green-600'}`}>{n} chars (aim {min}-{max})</span>
+  <span className={`text-xs ml-2 ${n === 0 ? 'text-slate-400' : n > max || n < min ? 'text-amber-600' : 'text-brand-600'}`}>{n} chars (aim {min}-{max})</span>
 )
 
 const todayStr = () => new Date().toISOString().slice(0, 10)
@@ -163,7 +163,7 @@ const AdminBlogEditor = () => {
   const faqOps = listSetter(setFaqs)
   const srcOps = listSetter(setSources)
 
-  const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+  const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
   return (
     <div>
@@ -205,7 +205,7 @@ const AdminBlogEditor = () => {
           </div>
           <div>
             <label className='block text-sm font-medium text-slate-700 mb-1'>
-              Category <span className='text-slate-400 font-normal'>(<Link to='/admin/categories' className='text-green-600 hover:underline'>manage categories</Link>)</span>
+              Category <span className='text-slate-400 font-normal'>(<Link to='/admin/categories' className='text-brand-600 hover:underline'>manage categories</Link>)</span>
             </label>
             <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputClass}>
               <option value=''>Uncategorised</option>
@@ -225,7 +225,7 @@ const AdminBlogEditor = () => {
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-sm font-semibold text-slate-800'>SEO &amp; Google preview</h2>
-            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${score >= 80 ? 'bg-green-100 text-green-700' : score >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>Score {score}/100</span>
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${score >= 80 ? 'bg-brand-100 text-brand-700' : score >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>Score {score}/100</span>
           </div>
           <div className='border border-slate-200 rounded-lg p-3 bg-slate-50'>
             <p className='text-xs text-slate-500 truncate'>{serpUrl}</p>
@@ -246,7 +246,7 @@ const AdminBlogEditor = () => {
           </div>
           <ul className='grid sm:grid-cols-2 gap-x-4 gap-y-1'>
             {checks.map(([label, ok]) => (
-              <li key={label} className={`text-xs flex items-center gap-1.5 ${ok ? 'text-green-700' : 'text-slate-500'}`}><span>{ok ? '✓' : '○'}</span>{label}</li>
+              <li key={label} className={`text-xs flex items-center gap-1.5 ${ok ? 'text-brand-700' : 'text-slate-500'}`}><span>{ok ? '✓' : '○'}</span>{label}</li>
             ))}
           </ul>
           <p className='text-xs text-slate-400'>{words} words in the body.</p>
@@ -328,7 +328,7 @@ const AdminBlogEditor = () => {
         </div>
 
         <div className='flex items-center gap-3'>
-          <button type='submit' disabled={saving} className='px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition disabled:opacity-60'>
+          <button type='submit' disabled={saving} className='px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition disabled:opacity-60'>
             {saving ? 'Saving…' : isEdit ? 'Save changes' : 'Create post'}
           </button>
           <button type='button' onClick={() => navigate('/admin/blogs')} className='px-5 py-2.5 border border-slate-200 rounded-full text-sm hover:bg-slate-50 transition'>

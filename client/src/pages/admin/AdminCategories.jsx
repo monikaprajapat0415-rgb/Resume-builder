@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPencil, LuTrash2, LuCheck, LuX } from 'react-icons/lu'
 
-const input = 'px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const input = 'px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
 const AdminCategories = () => {
   const { token } = useSelector(state => state.auth)
@@ -54,13 +54,13 @@ const AdminCategories = () => {
 
       <div className='inline-flex rounded-full border border-slate-200 bg-white p-1 mb-5'>
         {['blog', 'product'].map((t) => (
-          <button key={t} onClick={() => { setType(t); setEditing(null) }} className={`px-4 py-1.5 rounded-full text-sm capitalize transition ${type === t ? 'bg-green-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>{t}</button>
+          <button key={t} onClick={() => { setType(t); setEditing(null) }} className={`px-4 py-1.5 rounded-full text-sm capitalize transition ${type === t ? 'bg-brand-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>{t}</button>
         ))}
       </div>
 
       <form onSubmit={add} className='flex gap-2 mb-5'>
         <input value={name} onChange={(e) => setName(e.target.value)} placeholder={`New ${type} category name`} className={`${input} flex-1`} />
-        <button className='px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>Add</button>
+        <button className='px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Add</button>
       </form>
 
       <div className='bg-white rounded-xl border border-slate-200 divide-y divide-slate-100'>
@@ -70,7 +70,7 @@ const AdminCategories = () => {
             {editing?.id === c._id ? (
               <>
                 <input value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className={`${input} flex-1`} autoFocus />
-                <button onClick={saveEdit} className='p-2 rounded-md hover:bg-slate-100' title='Save'><LuCheck className='size-4 text-green-600' /></button>
+                <button onClick={saveEdit} className='p-2 rounded-md hover:bg-slate-100' title='Save'><LuCheck className='size-4 text-brand-600' /></button>
                 <button onClick={() => setEditing(null)} className='p-2 rounded-md hover:bg-slate-100' title='Cancel'><LuX className='size-4 text-slate-500' /></button>
               </>
             ) : (

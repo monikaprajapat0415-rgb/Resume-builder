@@ -69,7 +69,7 @@ const AdminUsers = () => {
     <div>
       <h1 className='text-2xl font-semibold text-slate-800 mb-6'>Users <span className='text-base font-normal text-slate-400'>({data.total})</span></h1>
       <div className='flex flex-wrap gap-2 mb-4'>
-        <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder='Search name or email…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-300' />
+        <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder='Search name or email…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-brand-300' />
         <select value={role} onChange={(e) => { setRole(e.target.value); setPage(1) }} className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white'>
           <option value=''>All roles</option><option value='admin'>Admins</option><option value='user'>Users</option>
         </select>
@@ -96,22 +96,22 @@ const AdminUsers = () => {
                   <p className='text-xs text-slate-400'>{u.email}</p>
                 </td>
                 <td className='px-4 py-3 text-slate-500 capitalize'>{u.authProvider}</td>
-                <td className='px-4 py-3'>{u.isVerified ? <span className='text-green-600'>Yes</span> : <span className='text-amber-600'>No</span>}</td>
+                <td className='px-4 py-3'>{u.isVerified ? <span className='text-brand-600'>Yes</span> : <span className='text-amber-600'>No</span>}</td>
                 <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{new Date(u.createdAt).toLocaleDateString()}</td>
                 <td className='px-4 py-3 whitespace-nowrap'>
                   <span className='text-slate-600'>{u.ats?.used || 0} used</span>
-                  {u.ats?.credits > 0 && <span className='text-green-700'> · {u.ats.credits} extra</span>}
+                  {u.ats?.credits > 0 && <span className='text-brand-700'> · {u.ats.credits} extra</span>}
                   {u.ats?.disabled
                     ? <span className='ml-2 text-[10px] uppercase bg-red-100 text-red-700 rounded px-1.5 py-0.5'>Off</span>
                     : (u.ats?.freeUsed || 0) >= 5 && !(u.ats?.credits > 0) && <span className='ml-2 text-[10px] uppercase bg-amber-100 text-amber-700 rounded px-1.5 py-0.5'>Limit reached</span>}
-                  <button onClick={() => giveChecks(u)} className='ml-2 text-xs text-green-700 hover:underline' title='Give or remove extra ATS checks'>+ add</button>
+                  <button onClick={() => giveChecks(u)} className='ml-2 text-xs text-brand-700 hover:underline' title='Give or remove extra ATS checks'>+ add</button>
                   <button onClick={() => toggleAts(u)} className='ml-2 text-xs text-slate-500 hover:underline' title='Turn the ATS checker on or off for this user'>{u.ats?.disabled ? 'turn on' : 'turn off'}</button>
                 </td>
                 <td className='px-4 py-3'>
                   {String(u._id) === String(me?._id) ? (
                     <span className='text-xs text-slate-400'>{u.role} (you)</span>
                   ) : u.role === 'admin' ? (
-                    <button onClick={() => changeRole(u, 'user')} className='px-2.5 py-1 rounded-full text-xs bg-green-50 text-green-700 hover:bg-red-50 hover:text-red-600 transition' title='Remove admin'>admin ✕</button>
+                    <button onClick={() => changeRole(u, 'user')} className='px-2.5 py-1 rounded-full text-xs bg-brand-50 text-brand-700 hover:bg-red-50 hover:text-red-600 transition' title='Remove admin'>admin ✕</button>
                   ) : (
                     <button onClick={() => changeRole(u, 'admin')} className='px-2.5 py-1 rounded-full text-xs border border-slate-200 text-slate-600 hover:bg-slate-50 transition'>Make admin</button>
                   )}

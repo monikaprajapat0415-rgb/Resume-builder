@@ -52,23 +52,23 @@ const CoverLetterModal = ({ resumeId, onClose }) => {
       <div onClick={(e) => e.stopPropagation()} className='relative bg-white border shadow-md rounded-lg w-full max-w-xl p-6 max-h-[85vh] overflow-y-auto'>
         <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors' onClick={onClose} />
         <h2 className='text-xl font-bold mb-1 flex items-center gap-2'>
-          <LuMail className='size-5 text-green-600' />AI Cover Letter
+          <LuMail className='size-5 text-brand-600' />AI Cover Letter
         </h2>
         <p className='text-sm text-slate-500 mb-4'>Generate a tailored cover letter from this resume and a job description.</p>
 
         <form onSubmit={generate} className='space-y-3'>
           <div className='flex gap-3'>
-            <input value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} placeholder='Job title (optional)' className='w-1/2 px-4 py-2 border rounded-md text-sm focus:border-green-600 focus:ring-green-600' />
-            <input value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder='Company (optional)' className='w-1/2 px-4 py-2 border rounded-md text-sm focus:border-green-600 focus:ring-green-600' />
+            <input value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} placeholder='Job title (optional)' className='w-1/2 px-4 py-2 border rounded-md text-sm focus:border-brand-600 focus:ring-brand-600' />
+            <input value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder='Company (optional)' className='w-1/2 px-4 py-2 border rounded-md text-sm focus:border-brand-600 focus:ring-brand-600' />
           </div>
           <textarea
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
             placeholder='Paste the job description here...'
             rows={5}
-            className='w-full px-4 py-2 border rounded-md text-sm focus:border-green-600 focus:ring-green-600 resize-none'
+            className='w-full px-4 py-2 border rounded-md text-sm focus:border-brand-600 focus:ring-brand-600 resize-none'
           />
-          <button disabled={isLoading} className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70'>
+          <button disabled={isLoading} className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70'>
             {isLoading && <BiLoaderAlt className='size-4 animate-spin' />}
             {isLoading ? 'Writing...' : 'Generate Cover Letter'}
           </button>
@@ -80,7 +80,7 @@ const CoverLetterModal = ({ resumeId, onClose }) => {
               value={letter}
               onChange={(e) => setLetter(e.target.value)}
               rows={12}
-              className='w-full px-4 py-3 border rounded-md text-sm focus:border-green-600 focus:ring-green-600'
+              className='w-full px-4 py-3 border rounded-md text-sm focus:border-brand-600 focus:ring-brand-600'
             />
             <div className='flex gap-2 mt-3'>
               <button onClick={copyLetter} type='button' className='flex-1 flex items-center justify-center gap-2 py-2 border rounded-md text-sm hover:bg-slate-50 transition-colors'>

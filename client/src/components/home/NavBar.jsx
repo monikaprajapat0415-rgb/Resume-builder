@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.svg'
+import Logo from '../Logo';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,17 +25,17 @@ export default function NavBar() {
 
             <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                 <a href="/" className="flex items-center gap-2">
-                    <img src={logo} alt='logo' className='h-11 w-auto' />
+                    <Logo className='h-11 w-auto' />
                 </a>
 
                 <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
                     {header.map((item) => (
-                        <MenuLink key={item._id} item={item} className="hover:text-green-600 transition" />
+                        <MenuLink key={item._id} item={item} className="hover:text-brand-600 transition" />
                     ))}
                 </div>
 
                 <div className="flex gap-2">
-                    <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+                    <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white"
                         hidden={user}>
                         Get started
                     </Link>
@@ -43,7 +43,7 @@ export default function NavBar() {
                         hidden={user}>
                         Login
                     </Link>
-                    <Link to='/app/' className="hidden md:block px-8 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+                    <Link to='/app/' className="hidden md:block px-8 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white"
                         hidden={!user}>
                         Dashboard
                     </Link>
@@ -90,7 +90,7 @@ export default function NavBar() {
                     Logout
                 </button>
 
-                <button onClick={() => setMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex" >
+                <button onClick={() => setMenuOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-brand-600 hover:bg-brand-700 transition text-white rounded-md flex" >
                     X
                 </button>
             </div>

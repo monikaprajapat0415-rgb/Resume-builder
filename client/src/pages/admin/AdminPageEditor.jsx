@@ -6,7 +6,7 @@ import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
 import { LuArrowLeft } from 'react-icons/lu'
 
-const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
 const AdminPageEditor = () => {
   const { id } = useParams()
@@ -90,8 +90,8 @@ const AdminPageEditor = () => {
       <BlockEditor blocks={blocks} setBlocks={setBlocks} />
 
       <div className='flex flex-wrap items-center gap-3 mt-6'>
-        <button disabled={saving} className='px-6 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white rounded-full text-sm font-medium transition'>{saving ? 'Saving…' : 'Save page'}</button>
-        {!isNew && form.published && <a href={publicUrl} target='_blank' rel='noreferrer' className='text-sm text-green-700 hover:underline'>View live page</a>}
+        <button disabled={saving} className='px-6 py-2 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white rounded-full text-sm font-medium transition'>{saving ? 'Saving…' : 'Save page'}</button>
+        {!isNew && form.published && <a href={publicUrl} target='_blank' rel='noreferrer' className='text-sm text-brand-700 hover:underline'>View live page</a>}
         {system && <button type='button' onClick={reset} className='ml-auto text-sm text-slate-500 hover:text-red-600'>Reset to original text</button>}
       </div>
       {system && <p className='text-xs text-slate-400 mt-3'>This is a built-in page: its address stays the same and it can't be unpublished or deleted. “Last updated” on the page changes each time you save.</p>}

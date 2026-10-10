@@ -56,8 +56,8 @@ const ExperienceForm = ({ data, onChange }) => {
                     <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>Professional Experience</h3>
                     <p className='text-sm text-gray-500'>Add your job experience</p>
                 </div>
-                <button onClick={addExperience} className='flex items-center gap-2 px-3 py-1 text-sm bg-green-100 
-            text-green-700 rounded-lg hover:bg-green-200 transition-colors'>
+                <button onClick={addExperience} className='flex items-center gap-2 px-3 py-1 text-sm bg-brand-100 
+            text-brand-700 rounded-lg hover:bg-brand-200 transition-colors'>
                     <LuPlus className='size-4' />
                     Add Experience
                 </button>

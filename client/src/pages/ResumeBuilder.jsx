@@ -34,12 +34,16 @@ import ProjectForm from '../components/ProjectForm';
 import SkillForm from '../components/SkillForm';
 import AtsScoreModal from '../components/AtsScoreModal';
 import CoverLetterModal from '../components/CoverLetterModal';
+import { useSiteContent } from '../utils/siteContent';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 const ResumeBuilder = () => {
+  // The admin turns the Cover Letter button on or off from Admin > Appearance (off by default).
+  const site = useSiteContent();
+  const coverLetterEnabled = site.feature_cover_letter === 'true';
   const { resumeId } = useParams();
 
   const { token } = useSelector(state => state.auth);
@@ -336,7 +340,7 @@ const ResumeBuilder = () => {
             <div className='bg-white rounded-lg shadow-sm border border-gray-200 p-6 pt-1'>
               {/* progress bar using activeSectionIndex */}
               <hr className='absolute top-0 left-0 h-1 bg-gradient-to-r
-            from-green-500 to-green-600 border-none transition-all duration-2000'
+            from-brand-500 to-brand-600 border-none transition-all duration-2000'
                 style={{ width: `${activeSectionIndex * 100 / (sections.length - 1)}%` }} />
 
               {/* Section Navigation */}
@@ -400,7 +404,7 @@ const ResumeBuilder = () => {
               </div>
               <button onClick={() => {toast.promise(saveResume, {
                 loading: 'Saving...'})}}
-                 className='bg-gradient-to-br from-green-100 to-green-200 ring-green-300 text-green-600 ring hover:ring-green-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
+                 className='bg-gradient-to-br from-brand-100 to-brand-200 ring-brand-300 text-brand-600 ring hover:ring-brand-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
                 Save Changes
 
               </button>
@@ -420,10 +424,12 @@ const ResumeBuilder = () => {
                   bg-gradient-to-br from-teal-100 to-teal-200 text-teal-700 rounded-lg ring-teal-300 hover:ring transition-colors'>
                   <LuTarget className='size-4' />ATS Score
                 </button>
-                <button onClick={() => setShowCoverLetterModal(true)} className='flex items-center p-2 px-4 gap-2 text-xs
+                {coverLetterEnabled && (
+                  <button onClick={() => setShowCoverLetterModal(true)} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-indigo-100 to-indigo-200 text-indigo-700 rounded-lg ring-indigo-300 hover:ring transition-colors'>
-                  <LuMail className='size-4' />Cover Letter
-                </button>
+                    <LuMail className='size-4' />Cover Letter
+                  </button>
+                )}
                 {resumeData.public && (
                   <button onClick={handleShare} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
@@ -442,7 +448,7 @@ const ResumeBuilder = () => {
                 </button>
                 {/* Real one-click PDF export */}
                 <button onClick={downloadPdf} disabled={isDownloadingPdf} className='flex items-center p-2 px-4 gap-2 text-xs
-                  bg-gradient-to-br from-green-100 to-green-200 text-green-600 rounded-lg ring-blue-300 hover:ring transition-colors disabled:opacity-60'>
+                  bg-gradient-to-br from-brand-100 to-brand-200 text-brand-600 rounded-lg ring-blue-300 hover:ring transition-colors disabled:opacity-60'>
                   {isDownloadingPdf ? <BiLoaderAlt className='size-4 animate-spin' /> : <LuDownload className='size-4' />}
                   {isDownloadingPdf ? 'Generating...' : 'Download PDF'}
                 </button>
@@ -459,7 +465,7 @@ const ResumeBuilder = () => {
       {showAtsModal && (
         <AtsScoreModal resumeId={resumeData._id} onClose={() => setShowAtsModal(false)} />
       )}
-      {showCoverLetterModal && (
+      {coverLetterEnabled && showCoverLetterModal && (
         <CoverLetterModal resumeId={resumeData._id} onClose={() => setShowCoverLetterModal(false)} />
       )}
 

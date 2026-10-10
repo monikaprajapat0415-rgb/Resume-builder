@@ -26,7 +26,7 @@ const AdminPages = () => {
     <div>
       <div className='flex items-center justify-between mb-6'>
         <h1 className='text-2xl font-semibold text-slate-800'>Pages</h1>
-        <button onClick={() => navigate('/admin/pages/new')} className='inline-flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'><LuPlus className='size-4' /> New page</button>
+        <button onClick={() => navigate('/admin/pages/new')} className='inline-flex items-center gap-2 px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'><LuPlus className='size-4' /> New page</button>
       </div>
       <div className='bg-white rounded-xl border border-slate-200 divide-y divide-slate-100'>
         {pages === null && <p className='p-6 text-sm text-slate-400 text-center'>Loading…</p>}

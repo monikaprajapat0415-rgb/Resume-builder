@@ -68,7 +68,7 @@ const BlogPost = () => {
           {state === 'missing' && <>
             <h1 className='text-2xl font-semibold text-slate-800'>We couldn't find that article</h1>
             <p className='text-slate-500 mt-2'>It may have been moved or unpublished.</p>
-            <Link to='/blog' className='mt-5 text-green-600 hover:underline'>Browse all articles</Link>
+            <Link to='/blog' className='mt-5 text-brand-600 hover:underline'>Browse all articles</Link>
           </>}
           {state === 'error' && <p className='text-slate-500'>Could not load this article. Please refresh the page.</p>}
         </div>
@@ -100,7 +100,7 @@ const BlogPost = () => {
         <Crumbs post={post} />
 
         {post.categoryName && (
-          <Link to={`/blog/category/${post.category}`} className='inline-block text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full mb-3 hover:bg-green-100 transition'>
+          <Link to={`/blog/category/${post.category}`} className='inline-block text-xs font-medium text-brand-700 bg-brand-50 px-2.5 py-1 rounded-full mb-3 hover:bg-brand-100 transition'>
             {post.categoryName}
           </Link>
         )}
@@ -119,8 +119,8 @@ const BlogPost = () => {
         )}
 
         {post.takeaways.length > 0 && (
-          <aside className='mt-8 rounded-xl border border-green-200 bg-green-50/60 p-5' aria-labelledby='takeaways'>
-            <h2 id='takeaways' className='flex items-center gap-2 text-sm font-semibold text-green-800'><LuLightbulb className='size-4' />Key takeaways</h2>
+          <aside className='mt-8 rounded-xl border border-brand-200 bg-brand-50/60 p-5' aria-labelledby='takeaways'>
+            <h2 id='takeaways' className='flex items-center gap-2 text-sm font-semibold text-brand-800'><LuLightbulb className='size-4' />Key takeaways</h2>
             <ul className='mt-3 space-y-2 text-sm text-slate-700 list-disc pl-5'>
               {post.takeaways.map((t, i) => <li key={i}>{renderInline(t)}</li>)}
             </ul>
@@ -131,7 +131,7 @@ const BlogPost = () => {
           <nav className='mt-6 rounded-xl border border-slate-200 p-5' aria-labelledby='toc'>
             <h2 id='toc' className='flex items-center gap-2 text-sm font-semibold text-slate-800'><LuListChecks className='size-4 text-slate-500' />In this article</h2>
             <ol className='mt-3 space-y-1.5 text-sm list-decimal pl-5 text-slate-500'>
-              {post.toc.map((t) => <li key={t.id}><a href={`#${t.id}`} className='text-green-700 hover:underline'>{t.text}</a></li>)}
+              {post.toc.map((t) => <li key={t.id}><a href={`#${t.id}`} className='text-brand-700 hover:underline'>{t.text}</a></li>)}
             </ol>
           </nav>
         )}
@@ -161,7 +161,7 @@ const BlogPost = () => {
           <section className='mt-10' aria-labelledby='sources'>
             <h2 id='sources' className='text-sm font-semibold text-slate-800 mb-2'>Sources</h2>
             <ul className='text-sm space-y-1 list-disc pl-5'>
-              {post.sources.map((src, i) => <li key={i}><a href={src.url} target='_blank' rel='noopener noreferrer' className='text-green-700 hover:underline'>{src.title}</a></li>)}
+              {post.sources.map((src, i) => <li key={i}><a href={src.url} target='_blank' rel='noopener noreferrer' className='text-brand-700 hover:underline'>{src.title}</a></li>)}
             </ul>
           </section>
         )}
@@ -176,12 +176,12 @@ const BlogPost = () => {
           )}
         </div>
 
-        <div className='mt-12 rounded-xl border border-green-200 bg-green-50 p-6 text-center'>
+        <div className='mt-12 rounded-xl border border-brand-200 bg-brand-50 p-6 text-center'>
           <p className='text-slate-800 font-medium'>Ready to put this into practice?</p>
           <p className='text-sm text-slate-500 mt-1 mb-4'>Build an ATS-friendly resume with Prime Resume AI in minutes, or check how your current resume scores.</p>
           <div className='flex flex-wrap justify-center gap-3'>
-            <Link to='/app?state=register' className='inline-block px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm transition'>Build my resume</Link>
-            <Link to='/features/ats-checker' className='inline-block px-6 py-2.5 border border-green-300 text-green-700 hover:bg-green-100 rounded-full text-sm transition'>Free ATS checker</Link>
+            <Link to='/app?state=register' className='inline-block px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm transition'>Build my resume</Link>
+            <Link to='/features/ats-checker' className='inline-block px-6 py-2.5 border border-brand-300 text-brand-700 hover:bg-brand-100 rounded-full text-sm transition'>Free ATS checker</Link>
           </div>
         </div>
       </article>
@@ -191,10 +191,10 @@ const BlogPost = () => {
           <h2 id='related' className='text-lg font-semibold text-slate-800 mb-4'>Related articles</h2>
           <div className='grid sm:grid-cols-3 gap-4'>
             {post.related.map((r) => (
-              <Link key={r.slug} to={`/blog/${r.slug}`} className='group block rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-green-200 transition'>
+              <Link key={r.slug} to={`/blog/${r.slug}`} className='group block rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-brand-200 transition'>
                 {r.coverImage && <img src={r.coverImage} alt={r.coverAlt || r.title} loading='lazy' width={600} height={315} className='w-full aspect-[1200/630] object-cover' />}
                 <div className='p-4'>
-                  <p className='text-sm font-semibold text-slate-800 group-hover:text-green-600 transition'>{r.title}</p>
+                  <p className='text-sm font-semibold text-slate-800 group-hover:text-brand-600 transition'>{r.title}</p>
                   {r.excerpt && <p className='text-xs text-slate-500 mt-1.5 line-clamp-2'>{r.excerpt}</p>}
                 </div>
               </Link>

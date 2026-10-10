@@ -142,7 +142,7 @@ const Dashboard = () => {
       />
       <div className='max-w-7xl mx-auto px-4 py-6 relative'>
         {/* soft green background shard */}
-        <div className='absolute top-12 -z-10 right-1/4 rounded-full size-72 sm:size-96 bg-green-300 blur-[100px] opacity-25 transform rotate-12'></div>
+        <div className='absolute top-12 -z-10 right-1/4 rounded-full size-72 sm:size-96 bg-brand-300 blur-[100px] opacity-25 transform rotate-12'></div>
         {/* Header: greeting, summary stats and CTAs */}
         <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6'>
           <div>
@@ -153,7 +153,7 @@ const Dashboard = () => {
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className='mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-md transition'
+                className='mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-white bg-brand-600 hover:bg-brand-700 px-3 py-1.5 rounded-md transition'
               >
                 <LuShield className='size-3.5' /> Open admin panel
               </button>
@@ -170,7 +170,7 @@ const Dashboard = () => {
 
           <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto'>
             <div className='flex items-center gap-3'>
-              <button onClick={() => setShowCreateResume(true)} className='flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-sm transition'>
+              <button onClick={() => setShowCreateResume(true)} className='flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full shadow-sm transition'>
                 <LuPlus className='size-4' />
                 Create
               </button>
@@ -212,7 +212,7 @@ const Dashboard = () => {
             <p className='mb-3 text-lg text-slate-700'>No resumes yet</p>
             <p className='mb-6'>Start by creating a new resume or upload an existing PDF.</p>
             <div className='flex items-center justify-center gap-3'>
-              <button onClick={() => setShowCreateResume(true)} className='px-4 py-2 bg-green-600 text-white rounded-md'>Create resume</button>
+              <button onClick={() => setShowCreateResume(true)} className='px-4 py-2 bg-brand-600 text-white rounded-md'>Create resume</button>
               <button onClick={() => setShowUploadResume(true)} className='px-4 py-2 border rounded-md'>Upload PDF</button>
             </div>
           </div>
@@ -253,7 +253,7 @@ const Dashboard = () => {
                   <div className='mt-4 flex items-center justify-between'>
                     <div className='text-xs text-slate-500 flex items-center gap-3'>
                       {resume.public ? (
-                        <span className='inline-flex items-center gap-2 text-green-600 font-medium text-xs'>
+                        <span className='inline-flex items-center gap-2 text-brand-600 font-medium text-xs'>
                           {/* small public badge */}
                           <svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg' className='inline-block'>
                             <circle cx='5' cy='5' r='5' fill='#10B981' />
@@ -287,8 +287,8 @@ const Dashboard = () => {
               <h2 className='text-xl font-bold mb-4'>
                 Create Resume
               </h2>
-              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
-              <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
+              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-brand-600 ring-brand-600' required />
+              <button className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors'>
                 Create Resume
               </button>
               <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'
@@ -303,14 +303,14 @@ const Dashboard = () => {
               <h2 className='text-xl font-bold mb-4'>
                 Upload Resume
               </h2>
-              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
+              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-brand-600 ring-brand-600' required />
               <div>
                 <label htmlFor='resume-input' className='block text-sm text-slate-700'>Select Resume file
                   <div className='flex flex-col items-center justify-center gap-2
-                border group test-slate-400 border-dashed rounded-md p-4 py-10 my-4 hover:border-green-500
+                border group test-slate-400 border-dashed rounded-md p-4 py-10 my-4 hover:border-brand-500
                 hover:text-green700 cursor-pointer transition-colors'>
                     {resume ? (
-                      <p className='text-green-700'>{resume.name}</p>
+                      <p className='text-brand-700'>{resume.name}</p>
                     ) : (<>
                       <LuUpload className='size-14 stroke-1' />
                       <p>Upload resume</p>
@@ -321,7 +321,7 @@ const Dashboard = () => {
                 <input type='file' id='resume-input' accept='.pdf' hidden
                   onChange={(e) => setResume(e.target.files[0])} />
               </div>
-              <button disabled={isLoading} className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors flex items-center justify-center gap-2'>
+              <button disabled={isLoading} className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors flex items-center justify-center gap-2'>
                 {isLoading && <BiLoaderAlt className='size-4 animate-spin text-white' />}
                 {isLoading ? "Uploading..." : "Upload Resume"}
 
@@ -339,8 +339,8 @@ const Dashboard = () => {
               <h2 className='text-xl font-bold mb-4'>
                 Edit Resume Title
               </h2>
-              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600' required />
-              <button className='w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'>
+              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-brand-600 ring-brand-600' required />
+              <button className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors'>
                 Update
               </button>
               <LuX className='absolute top-4 right-4 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors'

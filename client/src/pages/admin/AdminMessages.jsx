@@ -64,18 +64,18 @@ const AdminMessages = () => {
     <div>
       <div className='flex flex-wrap items-center justify-between gap-3 mb-5'>
         <h1 className='text-2xl font-semibold text-slate-800'>Messages <span className='text-sm font-normal text-slate-400'>from the Contact Us form</span></h1>
-        {data.unread > 0 && <button onClick={markAll} className='text-sm text-green-700 hover:underline'>Mark all {data.unread} as read</button>}
+        {data.unread > 0 && <button onClick={markAll} className='text-sm text-brand-700 hover:underline'>Mark all {data.unread} as read</button>}
       </div>
 
       <div className='flex flex-wrap items-center gap-3 mb-4'>
         <div className='inline-flex rounded-full border border-slate-200 bg-white p-1'>
           {FILTERS.map(([k, label]) => (
-            <button key={k} onClick={() => { setStatus(k); setPage(1); setOpenId(null) }} className={`px-4 py-1.5 rounded-full text-sm transition ${status === k ? 'bg-green-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>{label}</button>
+            <button key={k} onClick={() => { setStatus(k); setPage(1); setOpenId(null) }} className={`px-4 py-1.5 rounded-full text-sm transition ${status === k ? 'bg-brand-600 text-white' : 'text-slate-600 hover:text-slate-900'}`}>{label}</button>
           ))}
         </div>
         <div className='relative flex-1 min-w-48 max-w-sm'>
           <LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search name, email or text' className='w-full pl-9 pr-3 py-2 border border-slate-200 rounded-full text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-300' />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search name, email or text' className='w-full pl-9 pr-3 py-2 border border-slate-200 rounded-full text-sm bg-white focus:outline-none focus:ring-1 focus:ring-brand-300' />
         </div>
       </div>
 
@@ -84,9 +84,9 @@ const AdminMessages = () => {
           {loading && data.messages.length === 0 && <p className='p-6 text-sm text-slate-400 text-center'>Loading…</p>}
           {!loading && data.messages.length === 0 && <p className='p-6 text-sm text-slate-400 text-center'>{query ? 'No messages match your search.' : 'No messages here.'}</p>}
           {data.messages.map((m) => (
-            <button key={m._id} onClick={() => open(m)} className={`w-full text-left px-4 py-3 hover:bg-slate-50 transition ${openId === m._id ? 'bg-green-50/60' : ''}`}>
+            <button key={m._id} onClick={() => open(m)} className={`w-full text-left px-4 py-3 hover:bg-slate-50 transition ${openId === m._id ? 'bg-brand-50/60' : ''}`}>
               <div className='flex items-center gap-2'>
-                {!m.read && <span className='size-2 rounded-full bg-green-500 shrink-0' aria-label='Unread' />}
+                {!m.read && <span className='size-2 rounded-full bg-brand-500 shrink-0' aria-label='Unread' />}
                 <span className={`text-sm truncate ${m.read ? 'text-slate-700' : 'font-semibold text-slate-900'}`}>{m.name}</span>
                 <span className='ml-auto text-[11px] text-slate-400 shrink-0'>{new Date(m.createdAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })}</span>
               </div>
@@ -110,7 +110,7 @@ const AdminMessages = () => {
               <div className='flex items-start justify-between gap-3'>
                 <div className='min-w-0'>
                   <p className='font-semibold text-slate-800'>{current.name}</p>
-                  <a href={`mailto:${current.email}`} className='text-sm text-green-700 hover:underline break-all'>{current.email}</a>
+                  <a href={`mailto:${current.email}`} className='text-sm text-brand-700 hover:underline break-all'>{current.email}</a>
                   <p className='text-xs text-slate-400 mt-0.5'>{fmt(current.createdAt)}</p>
                 </div>
                 <div className='flex items-center gap-1 shrink-0'>
@@ -124,7 +124,7 @@ const AdminMessages = () => {
                 </div>
               </div>
               <p className='mt-5 text-sm text-slate-700 whitespace-pre-wrap break-words'>{current.message}</p>
-              <a href={`mailto:${current.email}?subject=${encodeURIComponent('Re: your message to Prime Resume AI')}`} className='mt-6 inline-flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>
+              <a href={`mailto:${current.email}?subject=${encodeURIComponent('Re: your message to Prime Resume AI')}`} className='mt-6 inline-flex items-center gap-2 px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
                 <LuReply className='size-4' /> Reply by email
               </a>
             </div>

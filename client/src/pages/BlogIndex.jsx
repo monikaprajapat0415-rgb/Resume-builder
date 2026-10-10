@@ -76,7 +76,7 @@ const BlogIndex = () => {
                 key={c.slug || 'all'}
                 to={c.slug ? `/blog/category/${c.slug}` : '/blog'}
                 aria-current={active === c.slug ? 'page' : undefined}
-                className={`px-4 py-1.5 rounded-full text-sm border transition ${active === c.slug ? 'bg-green-600 border-green-600 text-white' : 'border-slate-200 text-slate-600 hover:border-green-300 hover:text-green-700'}`}
+                className={`px-4 py-1.5 rounded-full text-sm border transition ${active === c.slug ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:border-brand-300 hover:text-brand-700'}`}
               >
                 {c.name}
               </Link>
@@ -91,16 +91,16 @@ const BlogIndex = () => {
         ) : (
           <div className='grid sm:grid-cols-2 gap-6'>
             {posts.map((post) => (
-              <Link key={post.slug} to={`/blog/${post.slug}`} className='group block rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-green-200 transition'>
+              <Link key={post.slug} to={`/blog/${post.slug}`} className='group block rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-brand-200 transition'>
                 {post.coverImage && <img src={post.coverImage} alt={post.coverAlt || post.title} loading='lazy' width={800} height={420} className='w-full aspect-[1200/630] object-cover' />}
                 <div className='p-6'>
                   <p className='text-xs text-slate-400 mb-2'>
-                    {post.categoryName && <span className='text-green-700 font-medium'>{post.categoryName} · </span>}
+                    {post.categoryName && <span className='text-brand-700 font-medium'>{post.categoryName} · </span>}
                     {fmtDate(post.date)}{post.readTime ? ` · ${post.readTime}` : ''}
                   </p>
-                  <h2 className='text-lg font-semibold text-slate-800 group-hover:text-green-600 transition'>{post.title}</h2>
+                  <h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{post.title}</h2>
                   <p className='text-sm text-slate-500 mt-2 line-clamp-3'>{stripInline(post.excerpt || post.description || '')}</p>
-                  <span className='inline-flex items-center gap-1 text-sm text-green-600 font-medium mt-4'>
+                  <span className='inline-flex items-center gap-1 text-sm text-brand-600 font-medium mt-4'>
                     Read article <LuArrowRight className='size-4 group-hover:translate-x-1 transition-transform' />
                   </span>
                 </div>

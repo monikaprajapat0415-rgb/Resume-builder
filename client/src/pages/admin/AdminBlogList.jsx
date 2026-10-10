@@ -55,14 +55,14 @@ const AdminBlogList = () => {
         <h1 className='text-2xl font-semibold text-slate-800'>Blog Posts</h1>
         <button
           onClick={() => navigate('/admin/blogs/new')}
-          className='inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'
+          className='inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'
         >
           <LuPlus className='size-4' /> New Post
         </button>
       </div>
 
       <div className='flex flex-wrap gap-2 mb-4'>
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search titles…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-green-300' />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search titles…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-brand-300' />
         <select value={status} onChange={(e) => setStatus(e.target.value)} className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white'>
           <option value='all'>All statuses</option><option value='published'>Published</option><option value='draft'>Drafts</option>
         </select>
@@ -97,7 +97,7 @@ const AdminBlogList = () => {
                   <td className='px-4 py-3 text-slate-800 max-w-sm truncate'>{post.title}</td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{nameOf(post.category)}</td>
                   <td className='px-4 py-3'>
-                    <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? 'bg-green-50 text-green-700' : 'bg-amber-50 text-amber-700'}`}>
+                    <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
                       {post.published ? 'Published' : 'Draft'}
                     </span>
                   </td>

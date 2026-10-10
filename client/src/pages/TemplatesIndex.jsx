@@ -36,7 +36,7 @@ const TemplatesIndex = () => {
             <Link
               key={t.slug}
               to={`/templates/${t.slug}`}
-              className='group block rounded-xl border border-slate-200 overflow-hidden bg-white hover:shadow-md hover:border-green-200 transition'
+              className='group block rounded-xl border border-slate-200 overflow-hidden bg-white hover:shadow-md hover:border-brand-200 transition'
             >
               <div className='h-[280px] overflow-hidden flex justify-center bg-gray-100'>
                 <div className='w-[1000px] origin-top'>
@@ -44,9 +44,9 @@ const TemplatesIndex = () => {
                 </div>
               </div>
               <div className='p-5'>
-                <h2 className='text-lg font-semibold text-slate-800 group-hover:text-green-600 transition'>{t.name}</h2>
+                <h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{t.name}</h2>
                 <p className='text-sm text-slate-500 mt-2'>{t.tagline}</p>
-                <span className='inline-flex items-center gap-1 text-sm text-green-600 font-medium mt-4'>
+                <span className='inline-flex items-center gap-1 text-sm text-brand-600 font-medium mt-4'>
                   View template <LuArrowRight className='size-4 group-hover:translate-x-1 transition-transform' />
                 </span>
               </div>

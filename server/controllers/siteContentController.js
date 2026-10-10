@@ -37,6 +37,8 @@ export const saveSiteContent = async (req, res) => {
         for (const [key, raw] of Object.entries(values)) {
             if (!(key in SITE_DEFAULTS)) return res.status(400).json({ message: `Unknown field: ${key}` });
             const value = String(raw ?? '').trim();
+            if (key === 'theme_primary' && value && !/^#[0-9a-f]{6}$/i.test(value)) return res.status(400).json({ message: 'Colour must look like #16a34a' });
+            if (key.startsWith('feature_') && value && !['true', 'false'].includes(value)) return res.status(400).json({ message: `"${key}" must be true or false` });
             if (value.length > 400) return res.status(400).json({ message: `"${key}" is too long (max 400 characters)` });
             if (value === '' || value === SITE_DEFAULTS[key]) ops.push({ deleteOne: { filter: { key } } });
             else ops.push({ updateOne: { filter: { key }, update: { $set: { key, value } }, upsert: true } });

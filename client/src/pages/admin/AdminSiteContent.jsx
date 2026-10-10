@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { invalidateSiteContent } from '../../utils/siteContent'
 
-const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
 const AdminSiteContent = () => {
   const { token } = useSelector(state => state.auth)
@@ -16,7 +16,7 @@ const AdminSiteContent = () => {
 
   useEffect(() => {
     api.get('/api/admin/site-content', headers)
-      .then(({ data }) => { setFields(data.fields); setSaved(data.values); setValues(data.values) })
+      .then(({ data }) => { setFields(data.fields.filter((f) => !f.hidden)); setSaved(data.values); setValues(data.values) })
       .catch((e) => { setFields([]); toast.error(e.response?.data?.message || 'Could not load.') })
   }, [])
 
@@ -55,7 +55,7 @@ const AdminSiteContent = () => {
               <div key={f.key}>
                 <div className='flex items-center justify-between'>
                   <label htmlFor={f.key} className='text-xs text-slate-500'>{f.label}</label>
-                  {(values[f.key] ?? '') !== f.value && <button type='button' onClick={() => resetField(f)} className='text-[11px] text-slate-400 hover:text-green-700'>Reset</button>}
+                  {(values[f.key] ?? '') !== f.value && <button type='button' onClick={() => resetField(f)} className='text-[11px] text-slate-400 hover:text-brand-700'>Reset</button>}
                 </div>
                 {f.type === 'toggle' ? (
                   <label className='inline-flex items-center gap-2 text-sm text-slate-700 mt-1'>
@@ -72,8 +72,8 @@ const AdminSiteContent = () => {
         ))}
       </div>
       <div className='flex items-center gap-4 mt-6'>
-        <button disabled={saving || !dirty} className='px-6 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white rounded-full text-sm font-medium transition'>{saving ? 'Saving…' : 'Save changes'}</button>
-        <a href='/' target='_blank' rel='noreferrer' className='text-sm text-green-700 hover:underline'>View homepage</a>
+        <button disabled={saving || !dirty} className='px-6 py-2 bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white rounded-full text-sm font-medium transition'>{saving ? 'Saving…' : 'Save changes'}</button>
+        <a href='/' target='_blank' rel='noreferrer' className='text-sm text-brand-700 hover:underline'>View homepage</a>
       </div>
     </form>
   )

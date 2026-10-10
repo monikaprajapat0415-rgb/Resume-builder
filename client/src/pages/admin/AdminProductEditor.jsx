@@ -6,7 +6,7 @@ import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
 import ImageUploader from '../../components/admin/ImageUploader'
 
-const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const inputClass = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 const Field = ({ label, hint, children }) => (
   <div>
     <label className='block text-sm font-medium text-slate-700 mb-1'>{label} {hint && <span className='text-slate-400 font-normal'>{hint}</span>}</label>
@@ -87,7 +87,7 @@ const AdminProductEditor = () => {
           <Field label='Meta description' hint='(shown in Google results)'><textarea value={form.description} onChange={set('description')} rows={2} className={inputClass} /></Field>
           <div className='grid sm:grid-cols-2 gap-4'>
             <Field label='Keywords'><input value={form.keywords} onChange={set('keywords')} placeholder='comma, separated' className={inputClass} /></Field>
-            <Field label='Category' hint={<>(<Link to='/admin/categories' className='text-green-600 hover:underline'>manage</Link>)</>}>
+            <Field label='Category' hint={<>(<Link to='/admin/categories' className='text-brand-600 hover:underline'>manage</Link>)</>}>
               <select value={form.category} onChange={set('category')} className={inputClass}>
                 <option value=''>Uncategorised</option>
                 {categories.map((c) => <option key={c._id} value={c.slug}>{c.name}</option>)}
@@ -138,7 +138,7 @@ const AdminProductEditor = () => {
         </div>
 
         <div className='flex items-center gap-3'>
-          <button type='submit' disabled={saving} className='px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition disabled:opacity-60'>{saving ? 'Saving…' : isEdit ? 'Save changes' : 'Create product'}</button>
+          <button type='submit' disabled={saving} className='px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition disabled:opacity-60'>{saving ? 'Saving…' : isEdit ? 'Save changes' : 'Create product'}</button>
           <button type='button' onClick={() => navigate('/admin/products')} className='px-5 py-2.5 border border-slate-200 rounded-full text-sm hover:bg-slate-50 transition'>Cancel</button>
         </div>
       </form>

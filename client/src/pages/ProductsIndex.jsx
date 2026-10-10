@@ -54,7 +54,7 @@ const ProductsIndex = () => {
               <button
                 key={c.slug || 'all'}
                 onClick={() => (c.slug ? setParams({ category: c.slug }) : setParams({}))}
-                className={`px-4 py-1.5 rounded-full text-sm border transition ${active === c.slug ? 'bg-green-600 border-green-600 text-white' : 'border-slate-200 text-slate-600 hover:border-green-300 hover:text-green-700'}`}
+                className={`px-4 py-1.5 rounded-full text-sm border transition ${active === c.slug ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:border-brand-300 hover:text-brand-700'}`}
               >
                 {c.name}
               </button>
@@ -69,16 +69,16 @@ const ProductsIndex = () => {
         ) : (
           <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {products.map((p) => (
-              <Link key={p.slug} to={`/products/${p.slug}`} className='group rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-green-200 transition'>
+              <Link key={p.slug} to={`/products/${p.slug}`} className='group rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-brand-200 transition'>
                 <div className='relative aspect-[4/3] bg-slate-50'>
                   {p.images?.[0]
                     ? <img src={p.images[0]} alt={p.title} loading='lazy' className='w-full h-full object-cover' />
                     : <div className='w-full h-full flex items-center justify-center text-slate-300 text-sm'>No image</div>}
                   <StockBadge status={p.stockStatus} />
-                  {p.featured && <span className='absolute top-3 right-3 text-xs font-medium bg-green-600 text-white px-2.5 py-1 rounded-full'>Featured</span>}
+                  {p.featured && <span className='absolute top-3 right-3 text-xs font-medium bg-brand-600 text-white px-2.5 py-1 rounded-full'>Featured</span>}
                 </div>
                 <div className='p-5'>
-                  <h2 className='font-semibold text-slate-800 group-hover:text-green-600 transition'>{p.title}</h2>
+                  <h2 className='font-semibold text-slate-800 group-hover:text-brand-600 transition'>{p.title}</h2>
                   {p.tagline && <p className='text-sm text-slate-500 mt-1 line-clamp-2'>{p.tagline}</p>}
                   <div className='mt-3 flex items-baseline gap-2'>
                     <span className='text-lg font-semibold text-slate-800'>{p.price > 0 ? formatPrice(p.price, p.currency) : 'Free'}</span>

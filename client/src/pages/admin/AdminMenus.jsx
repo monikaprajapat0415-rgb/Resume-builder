@@ -12,7 +12,7 @@ const LOCATIONS = [
   { id: 'footer_legal', label: 'Footer · Legal', hint: 'Third link column in the footer.' },
 ]
 const PAGES = ['/', '/templates', '/products', '/blog', '/contact-us', '/privacy-policy', '/terms-and-conditions', '/#feature', '/#testimonials', '/#contact-us']
-const input = 'px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-green-300 focus:border-green-400'
+const input = 'px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 
 const AdminMenus = () => {
   const { token } = useSelector(state => state.auth)
@@ -79,7 +79,7 @@ const AdminMenus = () => {
       <div className='flex flex-wrap gap-2 mb-5'>
         {LOCATIONS.map((l) => (
           <button key={l.id} onClick={() => { setLoc(l.id); setEditing(null) }}
-            className={`px-4 py-1.5 rounded-full text-sm border transition ${loc === l.id ? 'bg-green-600 border-green-600 text-white' : 'border-slate-200 bg-white text-slate-600 hover:border-green-300'}`}>
+            className={`px-4 py-1.5 rounded-full text-sm border transition ${loc === l.id ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 bg-white text-slate-600 hover:border-brand-300'}`}>
             {l.label}
           </button>
         ))}
@@ -96,7 +96,7 @@ const AdminMenus = () => {
                 <input value={editing.url} onChange={(e) => setEditing({ ...editing, url: e.target.value })} list='site-pages' className={input} />
                 <div className='flex items-center gap-1'>
                   <label className='text-xs text-slate-500 flex items-center gap-1 mr-1'><input type='checkbox' checked={editing.newTab} onChange={(e) => setEditing({ ...editing, newTab: e.target.checked })} /> New tab</label>
-                  <button onClick={saveEdit} className='p-2 rounded-md hover:bg-slate-100' title='Save'><LuCheck className='size-4 text-green-600' /></button>
+                  <button onClick={saveEdit} className='p-2 rounded-md hover:bg-slate-100' title='Save'><LuCheck className='size-4 text-brand-600' /></button>
                   <button onClick={() => setEditing(null)} className='p-2 rounded-md hover:bg-slate-100' title='Cancel'><LuX className='size-4 text-slate-500' /></button>
                 </div>
               </div>
@@ -124,7 +124,7 @@ const AdminMenus = () => {
         <div className='grid sm:grid-cols-[1fr_1.4fr_auto] gap-2 items-center'>
           <input value={draft.label} onChange={(e) => setDraft({ ...draft, label: e.target.value })} placeholder='Label, e.g. Pricing' required maxLength={40} className={input} />
           <input value={draft.url} onChange={(e) => setDraft({ ...draft, url: e.target.value })} list='site-pages' placeholder='/page or https://…' required className={input} />
-          <button className='px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full text-sm font-medium transition'>Add</button>
+          <button className='px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Add</button>
         </div>
         <label className='mt-3 text-xs text-slate-500 flex items-center gap-1.5'><input type='checkbox' checked={draft.newTab} onChange={(e) => setDraft({ ...draft, newTab: e.target.checked })} /> Open in a new tab</label>
         <datalist id='site-pages'>{PAGES.map((p) => <option key={p} value={p} />)}</datalist>

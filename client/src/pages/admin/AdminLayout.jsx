@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType } from 'react-icons/lu'
+import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
 
-const links = [
-  { to: '/admin', label: 'Overview', icon: LuLayoutDashboard, end: true },
-  { to: '/admin/blogs', label: 'Blog Posts', icon: LuFileText },
-  { to: '/admin/products', label: 'Products', icon: LuShoppingBag },
-  { to: '/admin/categories', label: 'Categories', icon: LuTags },
-  { to: '/admin/messages', label: 'Messages', icon: LuInbox, badge: true },
-  { to: '/admin/pages', label: 'Pages', icon: LuFilePen },
-  { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
-  { to: '/admin/menus', label: 'Menus', icon: LuMenu },
-  { to: '/admin/users', label: 'Users', icon: LuUsers },
+const groups = [
+  { title: null, items: [{ to: '/admin', label: 'Overview', icon: LuLayoutDashboard, end: true }] },
+  { title: 'Content', items: [
+    { to: '/admin/blogs', label: 'Blog Posts', icon: LuFileText },
+    { to: '/admin/products', label: 'Products', icon: LuShoppingBag },
+    { to: '/admin/pages', label: 'Pages', icon: LuFilePen },
+    { to: '/admin/categories', label: 'Categories', icon: LuTags },
+  ] },
+  { title: 'Growth', items: [
+    { to: '/admin/seo', label: 'SEO & AI visibility', icon: LuSearch },
+    { to: '/admin/messages', label: 'Messages', icon: LuInbox, badge: true },
+  ] },
+  { title: 'Site', items: [
+    { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
+    { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
+    { to: '/admin/menus', label: 'Menus', icon: LuMenu },
+    { to: '/admin/users', label: 'Users', icon: LuUsers },
+  ] },
 ]
 
 const AdminLayout = () => {
@@ -40,24 +48,29 @@ const AdminLayout = () => {
   if (user.role !== 'admin') return <Navigate to='/app' replace />
 
   const itemClass = ({ isActive }) =>
-    `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm whitespace-nowrap transition ${isActive ? 'bg-green-50 text-green-700 font-medium' : 'text-slate-600 hover:bg-slate-100'}`
+    `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm whitespace-nowrap transition ${isActive ? 'bg-brand-50 text-brand-700 font-medium' : 'text-slate-600 hover:bg-slate-100'}`
 
   return (
     <div className='min-h-screen bg-slate-50 md:flex'>
       <SEO title='Admin' noindex />
-      <aside className='md:w-56 md:shrink-0 bg-white border-b md:border-b-0 md:border-r border-slate-200 md:min-h-screen md:sticky md:top-0 md:self-start'>
+      <aside className='md:w-60 md:shrink-0 bg-white border-b md:border-b-0 md:border-r border-slate-200 md:min-h-screen md:sticky md:top-0 md:self-start'>
         <div className='px-4 py-4 flex items-center justify-between md:block'>
           <p className='font-semibold text-slate-800'>Admin</p>
           <Link to='/app' className='md:mt-1 inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 transition'>
             <LuArrowLeft className='size-3.5' /> Back to app
           </Link>
         </div>
-        <nav className='px-2 pb-2 md:pb-4 flex md:flex-col gap-1 overflow-x-auto'>
-          {links.map(({ to, label, icon: Icon, end, badge }) => (
-            <NavLink key={to} to={to} end={end} className={itemClass}>
-              <Icon className='size-4' /> {label}
-              {badge && unread > 0 && <span className='ml-auto bg-green-600 text-white text-[10px] font-semibold rounded-full px-1.5 min-w-4 text-center'>{unread > 99 ? '99+' : unread}</span>}
-            </NavLink>
+        <nav aria-label='Admin sections' className='px-2 pb-2 md:pb-4 flex md:flex-col gap-1 overflow-x-auto'>
+          {groups.map((g, gi) => (
+            <React.Fragment key={gi}>
+              {g.title && <p className='hidden md:block px-3 pt-4 pb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400'>{g.title}</p>}
+              {g.items.map(({ to, label, icon: Icon, end, badge }) => (
+                <NavLink key={to} to={to} end={end} className={itemClass}>
+                  <Icon className='size-4 shrink-0' /> {label}
+                  {badge && unread > 0 && <span className='ml-auto bg-brand-600 text-white text-[10px] font-semibold rounded-full px-1.5 min-w-4 text-center'>{unread > 99 ? '99+' : unread}</span>}
+                </NavLink>
+              ))}
+            </React.Fragment>
           ))}
         </nav>
       </aside>

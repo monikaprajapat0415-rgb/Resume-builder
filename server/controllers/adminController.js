@@ -10,8 +10,19 @@ import AtsReport from "../models/AtsReport.js";
 import { emailKey } from "../utils/emailKey.js";
 import imagekit from "../configs/imageKit.js";
 import { slugify } from "../utils/slugify.js";
+import { auditBlogs } from "../utils/seoAudit.js";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// GET /api/admin/seo-audit - per-post SEO/GEO scores and site-wide issues
+export const getSeoAudit = async (req, res) => {
+    try {
+        const posts = await Blog.find({}).lean();
+        return res.status(200).json(auditBlogs(posts));
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
 
 // GET /api/admin/stats - everything the overview page shows, in one round trip
 export const getStats = async (req, res) => {
@@ -51,6 +62,9 @@ export const getStats = async (req, res) => {
             signupsByDay.push({ date: d, count: counts[d] || 0 });
         }
 
+        const audit = auditBlogs(await Blog.find({}).lean());
+        const seoSummary = { avgScore: audit.summary.avgScore, poor: audit.summary.poor, fair: audit.summary.fair, good: audit.summary.good,
+            worst: audit.posts.filter((p) => p.published).slice(0, 3).map((p) => ({ _id: p._id, title: p.title, score: p.score })) };
         const sum = (rows, f) => rows.reduce((n, r) => n + (r[f] || 0), 0);
         return res.status(200).json({
             users: { total: totalUsers, verified: verifiedUsers, admins: adminUsers, new7d: newUsers7d },
@@ -61,6 +75,7 @@ export const getStats = async (req, res) => {
                 views: sum(products, 'views'), clicks: sum(products, 'clicks'),
             },
             messages: { unread: unreadMessages, total: totalMessages },
+            seo: seoSummary,
             signupsByDay, topPosts, topProducts, recentUsers,
         });
     } catch (error) {

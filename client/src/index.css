@@ -3,6 +3,22 @@
 
 @import "tailwindcss";
 
+/* The app's main colour. Defaults to the same values as Tailwind green; an admin can change it
+   from Admin > Appearance, which overrides these variables at runtime (see utils/theme.js). */
+@theme {
+  --color-brand-50: oklch(98.2% 0.018 155.826);
+  --color-brand-100: oklch(96.2% 0.044 156.743);
+  --color-brand-200: oklch(92.5% 0.084 155.995);
+  --color-brand-300: oklch(87.1% 0.15 154.449);
+  --color-brand-400: oklch(79.2% 0.209 151.711);
+  --color-brand-500: oklch(72.3% 0.219 149.579);
+  --color-brand-600: oklch(62.7% 0.194 149.214);
+  --color-brand-700: oklch(52.7% 0.154 150.069);
+  --color-brand-800: oklch(44.8% 0.119 151.328);
+  --color-brand-900: oklch(39.3% 0.095 152.535);
+  --color-brand-950: oklch(26.6% 0.065 152.934);
+}
+
 * {
   font-family: 'Outfit', sans-serif;
 }

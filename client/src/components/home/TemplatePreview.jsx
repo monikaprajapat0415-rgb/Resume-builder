@@ -139,8 +139,8 @@ export default function TemplatePreview() {
 
                 {/* Heading */}
                 <div id='testimonials' className='flex flex-col items-center my-10 scroll-mt-12'>
-                    <div className="flex items-center gap-2 text-sm text-green-600 bg-green-400/10 rounded-full px-6 py-1.5">
-                        <LuLayers className='size-4.5 stroke-green-600' />
+                    <div className="flex items-center gap-2 text-sm text-brand-600 bg-brand-400/10 rounded-full px-6 py-1.5">
+                        <LuLayers className='size-4.5 stroke-brand-600' />
                         <span>Preview</span>
                     </div>
                     <Title title="More Professional" desciption='Professionally tested resume templates designed for recruiter success. Download in PDF with ATS-optimized layouts.' />

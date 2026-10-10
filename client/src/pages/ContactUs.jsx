@@ -56,17 +56,17 @@ export default function ContactUs() {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <FaEnvelope className="text-green-600" />
+              <FaEnvelope className="text-brand-600" />
               <span>{site.contact_email}</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <FaPhoneAlt className="text-green-600" />
+              <FaPhoneAlt className="text-brand-600" />
               <span>{site.contact_phone}</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <FaMapMarkerAlt className="text-green-600" />
+              <FaMapMarkerAlt className="text-brand-600" />
               <span>{site.contact_address}</span>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function ContactUs() {
               value={form.name}
               onChange={handleChange}
               required
-              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-brand-500"
               placeholder="Enter your name"
             />
           </div>
@@ -96,7 +96,7 @@ export default function ContactUs() {
               value={form.email}
               onChange={handleChange}
               required
-              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-brand-500"
               placeholder="Enter your email"
             />
           </div>
@@ -109,7 +109,7 @@ export default function ContactUs() {
               onChange={handleChange}
               required
               rows="4"
-              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full mt-1 p-3 border rounded-lg outline-none focus:ring-2 focus:ring-brand-500"
               placeholder="Write your message..."
             />
           </div>
@@ -124,7 +124,7 @@ export default function ContactUs() {
           <button
             type="submit"
             disabled={sending}
-            className="w-full bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition disabled:opacity-60"
+            className="w-full bg-brand-600 text-white py-3 rounded-lg font-medium hover:bg-brand-700 transition disabled:opacity-60"
           >
             {sending ? "Sending..." : "Send Message"}
           </button>
