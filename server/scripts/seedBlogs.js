@@ -26,7 +26,7 @@ for (const post of blogPosts) {
             content: post.content,
             published: true,
         },
-        { upsert: true, new: true, setDefaultsOnInsert: true }
+        { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
     console.log(`Seeded: ${result.slug}`);
 }
