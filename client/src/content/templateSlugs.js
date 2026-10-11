@@ -9,4 +9,9 @@ export const templateSlugs = [
   'modern-resume-template',
   'minimal-resume-template',
   'resume-template-with-photo',
+  'executive-resume-template',
+  'compact-resume-template',
+  'bold-header-resume-template',
+  'timeline-resume-template',
+  'graduate-resume-template',
 ]

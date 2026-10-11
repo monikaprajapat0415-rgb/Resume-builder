@@ -19,7 +19,7 @@ const TemplatesIndex = () => {
     <div>
       <SEO
         title="Free ATS-Friendly Resume Templates"
-        description="Browse free, professionally designed resume templates — Classic, Modern, Minimal, and Minimal with Photo. All ATS-friendly and fully customizable online."
+        description="Browse 9 free, professionally designed resume templates: Classic, Modern, Minimal, Executive, Compact, Bold Header, Timeline, Graduate and more. ATS-friendly and fully customizable online."
         keywords="resume templates, free resume templates, ATS resume templates, professional resume templates"
         path="/templates"
         structuredData={structuredData}
@@ -28,7 +28,7 @@ const TemplatesIndex = () => {
       <section className='max-w-5xl mx-auto px-4 py-16'>
         <div className='text-center max-w-2xl mx-auto mb-14'>
           <h1 className='text-4xl font-semibold text-slate-800'>Free Resume Templates</h1>
-          <p className='text-slate-500 mt-3'>Every template is ATS-friendly, fully customizable, and free to start. Pick a style and fill it in online — no design software needed.</p>
+          <p className='text-slate-500 mt-3'>Every template is built as plain, readable text so applicant tracking systems can parse it, and each one shows its ATS rating. Pick a style and fill it in online — no design software needed.</p>
         </div>
 
         <div className='grid sm:grid-cols-2 gap-8'>
@@ -44,7 +44,7 @@ const TemplatesIndex = () => {
                 </div>
               </div>
               <div className='p-5'>
-                <h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{t.name}</h2>
+                <div className='flex items-center justify-between gap-3'><h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{t.name}</h2>{t.ats && <span className='shrink-0 text-xs font-medium px-2 py-0.5 rounded-full bg-green-50 text-green-700'>ATS: {t.ats.rating}</span>}</div>
                 <p className='text-sm text-slate-500 mt-2'>{t.tagline}</p>
                 <span className='inline-flex items-center gap-1 text-sm text-brand-600 font-medium mt-4'>
                   View template <LuArrowRight className='size-4 group-hover:translate-x-1 transition-transform' />

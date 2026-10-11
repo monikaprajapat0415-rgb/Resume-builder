@@ -3,15 +3,13 @@ import React, { useState } from 'react';
 import { FaCheck, } from 'react-icons/fa';
 import { LuLayoutDashboard } from 'react-icons/lu';
 import SEO from './SEO';
+import { resumeTemplates } from '../content/resumeTemplates';
+
+const RATING_CLASS = { Excellent: 'bg-green-50 text-green-700', 'Very good': 'bg-emerald-50 text-emerald-700', Good: 'bg-amber-50 text-amber-700' };
 
 const TemplateSelector = ({ selectedTemplate, onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const templates = [
-        { id: 'classic', name: 'Classic', preview: 'Clean, timeless layout focused on readability.' },
-        { id: 'modern', name: 'Modern', preview: 'Contemporary layout with bold typography and clear sections.' },
-        { id: 'minimal', name: 'Minimal', preview: 'Sleek, minimal design emphasizing whitespace and clarity.' },
-        { id: 'minimal-image', name: 'Minimal with image', preview: 'Minimal layout that includes a profile image option.' },
-    ];
+    const templates = resumeTemplates.map((t) => ({ id: t.id, name: t.name.replace(' Resume Template', '').replace(' Template', ''), preview: t.tagline, rating: t.ats?.rating }));
 
     return (<>
     <SEO title="Choose Resume Template | Prime Resume AI" description="Select from a variety of professional resume templates to create your perfect CV. Our templates are designed to be ATS-friendly and visually appealing, helping you stand out to employers." />
@@ -33,7 +31,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
                         <div className="text-xs text-gray-500">{templates.length} options</div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-3 max-h-[60vh] overflow-y-auto pr-1">
                         {templates.map(t => {
                             const active = selectedTemplate === t.id;
                             return (
@@ -45,7 +43,7 @@ const TemplateSelector = ({ selectedTemplate, onChange }) => {
                                     <div className="flex items-start gap-3">
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between">
-                                                <div className="text-sm font-medium text-gray-800">{t.name}</div>
+                                                <div className="flex items-center gap-2"><span className="text-sm font-medium text-gray-800">{t.name}</span>{t.rating && <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full ${RATING_CLASS[t.rating] || "bg-gray-100 text-gray-600"}`} title="How easily applicant tracking systems read this layout">ATS: {t.rating}</span>}</div>
                                                 {active && (
                                                     <div className="flex items-center gap-1 text-sm text-sky-700">
                                                         <FaCheck size={14} />

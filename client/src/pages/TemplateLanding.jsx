@@ -24,7 +24,7 @@ const TemplateLanding = () => {
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
-  const other = resumeTemplates.filter((t) => t.slug !== template.slug).slice(0, 3)
+  const other = resumeTemplates.filter((t) => t.slug !== template.slug).slice(0, 6)
 
   return (
     <div>
@@ -59,6 +59,18 @@ const TemplateLanding = () => {
             >
               Use this template — it's free
             </Link>
+
+            {template.ats && (
+              <div className='mt-8 rounded-xl border border-green-100 bg-green-50/60 p-4'>
+                <p className='text-sm font-semibold text-slate-800'>ATS-friendliness: <span className='text-green-700'>{template.ats.rating}</span></p>
+                <ul className='mt-2 space-y-1.5'>
+                  {template.ats.points.map((pt, i) => (
+                    <li key={i} className='flex items-start gap-2 text-sm text-slate-600'><LuCheck className='size-4 text-green-600 mt-0.5 shrink-0' />{pt}</li>
+                  ))}
+                </ul>
+                <p className='text-xs text-slate-400 mt-3'>Our own assessment of the layout. Always check your finished resume with the <Link to='/features/ats-checker' className='underline'>free ATS checker</Link>.</p>
+              </div>
+            )}
 
             <div className='mt-10'>
               <p className='text-sm font-semibold text-slate-800 mb-3'>Best for</p>
