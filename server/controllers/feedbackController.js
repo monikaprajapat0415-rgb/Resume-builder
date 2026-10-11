@@ -102,7 +102,7 @@ export const updateFeedbackAdmin = async (req, res) => {
     try {
         const { status } = req.body || {};
         if (!['visible', 'hidden'].includes(status)) return res.status(400).json({ message: 'Invalid status' });
-        const f = await LessonFeedback.findByIdAndUpdate(req.params.id, { status }, { new: true });
+        const f = await LessonFeedback.findByIdAndUpdate(req.params.id, { status }, { returnDocument: 'after' });
         if (!f) return res.status(404).json({ message: 'Not found' });
         return res.status(200).json({ item: f });
     } catch (e) { return res.status(404).json({ message: 'Not found' }); }

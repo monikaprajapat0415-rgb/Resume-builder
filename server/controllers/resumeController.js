@@ -74,7 +74,7 @@ export const getResumePublicById = async (req, res)=>{
         const resume = await Resume.findOneAndUpdate(
             {public: true, _id:resumeId},
             {$inc: {views: 1}},
-            {new: true}
+            {returnDocument: 'after'}
         );
         if(!resume){
             return res.status(404).json({message:'Resume not found'})
@@ -147,7 +147,7 @@ export const updateResume = async (req, res)=>
             });
             resumeDataCopy.personal_info.image = response.url;
         }
-        const resume = await Resume.findByIdAndUpdate({userId, _id:resumeId}, resumeDataCopy, {new:true})
+        const resume = await Resume.findByIdAndUpdate({userId, _id:resumeId}, resumeDataCopy, {returnDocument: 'after'})
         //return success message
         return res.status(200).json({message:'Resume updated successfully', resume})
     } catch (error) {

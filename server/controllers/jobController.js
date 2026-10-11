@@ -125,7 +125,7 @@ export const updateSource = async (req, res) => {
         if (req.body?.enabled !== undefined) set.enabled = Boolean(req.body.enabled);
         if (typeof req.body?.company === 'string') set.company = req.body.company.trim().slice(0, 100);
         if (typeof req.body?.query === 'string') set.query = req.body.query.trim().slice(0, 80);
-        const s = await JobSource.findByIdAndUpdate(req.params.id, { $set: set }, { new: true });
+        const s = await JobSource.findByIdAndUpdate(req.params.id, { $set: set }, { returnDocument: 'after' });
         if (!s) return res.status(404).json({ message: 'Source not found' });
         return res.status(200).json({ source: s });
     } catch (e) { return res.status(400).json({ message: e.message }); }
