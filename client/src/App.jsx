@@ -1,6 +1,7 @@
 import React, { use, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
+import Analytics from "./components/Analytics";
 import Dashboard from "./pages/Dashboard";
 // import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -126,6 +127,7 @@ const App = () => {
       structuredData={siteStructuredData}
     />
     <Toaster />
+    <Analytics />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
