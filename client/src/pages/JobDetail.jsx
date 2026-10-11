@@ -1,3 +1,4 @@
+import { trackEvent } from '../components/Analytics'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SEO from '../components/SEO'
@@ -72,7 +73,7 @@ const JobDetail = () => {
         </p>
 
         <div className='flex flex-wrap gap-3 mt-6'>
-          <a href={job.applyUrl} target='_blank' rel='nofollow noopener noreferrer' className='inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
+          <a href={job.applyUrl} onClick={() => trackEvent('job_apply_click', { job_company: job.company, job_title: job.title })} target='_blank' rel='nofollow noopener noreferrer' className='inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
             Apply on {job.company} <LuExternalLink className='size-4' />
           </a>
           <Link to={`/features/ats-checker?job=${encodeURIComponent(job.slug || slug)}`} className='inline-flex items-center gap-2 px-6 py-2.5 border border-brand-600 text-brand-700 hover:bg-brand-50 rounded-full text-sm font-medium transition'>

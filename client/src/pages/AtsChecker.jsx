@@ -1,3 +1,4 @@
+import { trackEvent } from '../components/Analytics'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -72,6 +73,7 @@ const AtsChecker = () => {
       if (jd.trim()) form.append('jobDescription', jd.trim())
       const { data } = await api.post('/api/ats/analyze', form, { headers: { Authorization: token }, timeout: 90000 })
       setResult({ report: data.report, fileName: data.fileName })
+      trackEvent('ats_check', { score: data.report?.score, for_job: job ? 'yes' : 'no' })
       setFile(null); loadStatus()
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
     } catch (err) {
