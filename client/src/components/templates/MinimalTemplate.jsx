@@ -1,3 +1,4 @@
+import Bullets from './Bullets'
 
 const MinimalTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
@@ -16,6 +17,9 @@ const MinimalTemplate = ({ data, accentColor }) => {
                 <h1 className="text-4xl font-thin mb-4 tracking-wide">
                     {data.personal_info?.full_name || "Your Name"}
                 </h1>
+                {data.personal_info?.profession && (
+                    <p className="text-base text-gray-600 -mt-2 mb-4">{data.personal_info.profession}</p>
+                )}
 
                 <div className="flex flex-wrap gap-6 text-sm text-gray-600">
                     {data.personal_info?.email && <span>{data.personal_info.email}</span>}
@@ -57,9 +61,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
                                 </div>
                                 <p className="text-gray-600 mb-2">{exp.company}</p>
                                 {exp.description && (
-                                    <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                                        {exp.description}
-                                    </div>
+                                    <Bullets text={exp.description} className="text-gray-700 leading-relaxed" />
                                 )}
                             </div>
                         ))}
@@ -77,8 +79,8 @@ const MinimalTemplate = ({ data, accentColor }) => {
                     <div className="space-y-4">
                         {data.project.map((proj, index) => (
                             <div key={index} className="flex flex-col gap-2 justify-between items-baseline">
-                                <h3 className="text-lg font-medium ">{proj.name}</h3>
-                                <p className="text-gray-600">{proj.description}</p>
+                                <h3 className="text-lg font-medium ">{proj.name}{proj.type && <span className="font-normal text-gray-500 text-base"> – {proj.type}</span>}</h3>
+                                <Bullets text={proj.description} className="text-gray-600" />
                             </div>
                         ))}
                     </div>

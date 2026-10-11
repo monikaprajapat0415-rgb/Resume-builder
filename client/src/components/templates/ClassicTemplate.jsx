@@ -1,3 +1,4 @@
+import Bullets from './Bullets'
 // import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import { FaLinkedin, FaGithub,FaGlobe } from "react-icons/fa";
 import { LuMail,LuPhone, LuMapPin } from "react-icons/lu";
@@ -20,6 +21,9 @@ const ClassicTemplate = ({ data, accentColor }) => {
                 <h1 className="text-3xl font-bold mb-2" style={{ color: accentColor }}>
                     {data.personal_info?.full_name || "Your Name"}
                 </h1>
+                {data.personal_info?.profession && (
+                    <p className="text-base text-gray-600 mb-3">{data.personal_info.profession}</p>
+                )}
 
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                     {data.personal_info?.email && (
@@ -85,9 +89,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                                     </div>
                                 </div>
                                 {exp.description && (
-                                    <div className="text-gray-700 leading-relaxed whitespace-pre-line break-words">
-                                        {exp.description}
-                                    </div>
+                                    <Bullets text={exp.description} className="text-gray-700 leading-relaxed break-words" />
                                 )}
                             </div>
                         ))}
@@ -106,8 +108,8 @@ const ClassicTemplate = ({ data, accentColor }) => {
                         {data.project.map((proj, index) => (
                             <div key={index} className="flex justify-between items-start border-l-3 border-gray-300 pl-6">
                                 <div className="min-w-0">
-                                    <li className="font-semibold text-gray-800 whitespace-pre-line break-words">{proj.name}</li>
-                                    <p className="text-gray-600 whitespace-pre-line break-words">{proj.description}</p>
+                                    <li className="font-semibold text-gray-800 whitespace-pre-line break-words">{proj.name}{proj.type && <span className="font-normal text-gray-500"> – {proj.type}</span>}</li>
+                                    <Bullets text={proj.description} className="text-gray-600 break-words" />
                                 </div>
                             </div>
                         ))}

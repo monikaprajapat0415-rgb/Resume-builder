@@ -1,3 +1,4 @@
+import Bullets from './Bullets'
 // import { Mail, Phone, MapPin, Briefcase, Globe } from "lucide-react";
 import {FaBriefcase, FaGlobe} from 'react-icons/fa';
 import {LuMail, LuMapPin, LuPhone } from 'react-icons/lu';
@@ -18,6 +19,9 @@ const ModernTemplate = ({ data, accentColor }) => {
 				<h1 className="text-4xl font-light mb-3">
 					{data.personal_info?.full_name || "Your Name"}
 				</h1>
+				{data.personal_info?.profession && (
+					<p className="text-lg font-light mb-3 opacity-90">{data.personal_info.profession}</p>
+				)}
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm ">
 					{data.personal_info?.email && (
@@ -85,9 +89,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 										</div>
 									</div>
 									{exp.description && (
-										<div className="text-gray-700 leading-relaxed mt-3 whitespace-pre-line">
-											{exp.description}
-										</div>
+										<Bullets text={exp.description} className="text-gray-700 leading-relaxed mt-3" />
 									)}
 								</div>
 							))}
@@ -109,13 +111,11 @@ const ModernTemplate = ({ data, accentColor }) => {
 
 									<div className="flex justify-between items-start">
 										<div>
-											<h3 className="text-lg font-medium text-gray-900">{p.name}</h3>
+											<h3 className="text-lg font-medium text-gray-900">{p.name}{p.type && <span className="font-normal text-gray-500 text-base"> – {p.type}</span>}</h3>
 										</div>
 									</div>
 									{p.description && (
-										<div className="text-gray-700 leading-relaxed text-sm mt-3">
-											{p.description}
-										</div>
+										<Bullets text={p.description} className="text-gray-700 leading-relaxed text-sm mt-3" />
 									)}
 								</div>
 							))}

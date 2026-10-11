@@ -8,6 +8,11 @@ import classic from '../../assets/Classic.webp';
 import modern from '../../assets/modern.webp';
 import minimal from '../../assets/Minimal.webp';
 import minimalImage from '../../assets/MinimalwithImage.webp';
+import executive from '../../assets/Executive.webp';
+import compact from '../../assets/Compact.webp';
+import banner from '../../assets/Banner.webp';
+import timeline from '../../assets/Timeline.webp';
+import graduate from '../../assets/Graduate.webp';
 import Title from "./Title";
 import { LuBookUser, LuLayers } from "react-icons/lu";
 // import { dummyResumeData } from '../../assets/assets';
@@ -127,6 +132,11 @@ export default function TemplatePreview() {
         { id: 2, name: "Modern", image: modern },
         { id: 3, name: "Minimal", image: minimal },
         { id: 4, name: "Minimal with Image", image: minimalImage },
+        { id: 5, name: "Executive", image: executive },
+        { id: 6, name: "Compact One-Page", image: compact },
+        { id: 7, name: "Bold Header", image: banner },
+        { id: 8, name: "Timeline", image: timeline },
+        { id: 9, name: "Graduate & Fresher", image: graduate },
 
     ];
     const [selected, setSelected] = useState(null);
@@ -147,7 +157,7 @@ export default function TemplatePreview() {
                 </div>
 
                 {/* Grid */}
-                <div className="grid md:grid-cols-4 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {templates.map((template) => (
                         <div
                             key={template.id}
