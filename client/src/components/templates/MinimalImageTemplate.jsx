@@ -1,5 +1,6 @@
+import Bullets from './Bullets'
 // import { Mail, Phone, MapPin } from "lucide-react";
-import { LuMail,LuPhone, LuMapPin } from "react-icons/lu";
+import { LuMail,LuPhone, LuMapPin, LuLinkedin, LuGlobe } from "react-icons/lu";
 
 const MinimalImageTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
@@ -68,6 +69,18 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                     <span>{data.personal_info.location}</span>
                                 </div>
                             )}
+                            {data.personal_info?.linkedin && (
+                                <div className="flex items-center gap-2 break-all">
+                                    <LuLinkedin size={14} style={{ color: accentColor }} />
+                                    <span>{data.personal_info.linkedin}</span>
+                                </div>
+                            )}
+                            {data.personal_info?.website && (
+                                <div className="flex items-center gap-2 break-all">
+                                    <LuGlobe size={14} style={{ color: accentColor }} />
+                                    <span>{data.personal_info.website}</span>
+                                </div>
+                            )}
                         </div>
                     </section>
 
@@ -80,11 +93,12 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                             <div className="space-y-4 text-sm">
                                 {data.education.map((edu, index) => (
                                     <div key={index}>
-                                        <p className="font-semibold uppercase">{edu.degree}</p>
+                                        <p className="font-semibold uppercase">{edu.degree}{edu.field && ` in ${edu.field}`}</p>
                                         <p className="text-zinc-600">{edu.institution}</p>
                                         <p className="text-xs text-zinc-500">
                                             {formatDate(edu.graduation_date)}
                                         </p>
+                                        {edu.gpa && <p className="text-xs text-zinc-500">GPA: {edu.gpa}</p>}
                                     </div>
                                 ))}
                             </div>
@@ -143,11 +157,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                             {exp.company}
                                         </p>
                                         {exp.description && (
-                                            <ul className="list-disc list-inside text-sm text-zinc-700 leading-relaxed space-y-1">
-                                                {exp.description.split("\n").map((line, i) => (
-                                                    <li key={i}>{line}</li>
-                                                ))}
-                                            </ul>
+                                            <Bullets text={exp.description} className="text-sm text-zinc-700 leading-relaxed space-y-1" />
                                         )}
                                     </div>
                                 ))}
@@ -169,11 +179,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                             {project.type}
                                         </p>
                                         {project.description && (
-                                            <ul className="list-disc list-inside text-sm text-zinc-700  space-y-1">
-                                                {project.description.split("\n").map((line, i) => (
-                                                    <li key={i}>{line}</li>
-                                                ))}
-                                            </ul>
+                                            <Bullets text={project.description} className="text-sm text-zinc-700 space-y-1" />
                                         )}
                                     </div>
                                 ))}

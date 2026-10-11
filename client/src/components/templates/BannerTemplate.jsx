@@ -55,7 +55,7 @@ const BannerTemplate = ({ data, accentColor }) => {
             <div className="space-y-3">
               {data.project.map((pr, i) => (
                 <div key={i}>
-                  <h3 className="font-bold">{pr.name}</h3>
+                  <h3 className="font-bold">{pr.name}{pr.type ? <span className="font-normal text-gray-500"> — {pr.type}</span> : null}</h3>
                   <Bullets className="" text={pr.description} />
                 </div>
               ))}
