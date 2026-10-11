@@ -6,9 +6,23 @@ import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
 import ImageUploader from '../../components/admin/ImageUploader'
 
-const plain = (t = '') => t.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/\*\*/g, '')
+import { analyzePost } from '../../utils/seoAnalyze'
 const Counter = ({ n, min, max }) => (
   <span className={`text-xs ml-2 ${n === 0 ? 'text-slate-400' : n > max || n < min ? 'text-amber-600' : 'text-brand-600'}`}>{n} chars (aim {min}-{max})</span>
+)
+
+const CheckList = ({ title, items }) => (
+  <div>
+    <p className='text-xs font-semibold text-slate-600 mb-1'>{title} <span className='text-slate-400 font-normal'>({items.filter((c) => c.ok).length}/{items.length} passed)</span></p>
+    <ul className='space-y-1'>
+      {[...items].sort((a, b) => a.ok - b.ok).map((c) => (
+        <li key={c.label} className={`text-xs flex gap-1.5 ${c.ok ? 'text-brand-700' : 'text-slate-600'}`}>
+          <span className='shrink-0'>{c.ok ? '✓' : '○'}</span>
+          <span>{c.label}{!c.ok && <span className='block text-slate-400'>{c.tip}</span>}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
 )
 
 const todayStr = () => new Date().toISOString().slice(0, 10)
@@ -125,36 +139,10 @@ const AdminBlogEditor = () => {
 
   if (loading) return <p className='text-slate-400'>Loading…</p>
 
-  const text = blocks.map((b) => b.text || (b.items || []).join(' ')).join(' ')
-  const lower = (v) => plain(v).toLowerCase()
-  const kw = focusKeyword.trim().toLowerCase()
-  const headings = blocks.filter((b) => b.type === 'heading')
-  const firstPara = blocks.find((b) => b.type === 'paragraph')?.text || ''
-  const words = plain(text).split(/\s+/).filter(Boolean).length
-  const linkText = blocks.map((b) => b.text || (b.items || []).join(' ')).join(' ')
-  const internalLinks = (linkText.match(/\]\(\//g) || []).length
-  const externalLinks = (linkText.match(/\]\(https?:/g) || []).length
   const effTitle = metaTitle || title
-  const checks = [
-    ['Focus keyword set', Boolean(kw)],
-    ['Keyword in title', kw && lower(effTitle).includes(kw)],
-    ['Keyword in meta description', kw && lower(description).includes(kw)],
-    ['Keyword in first paragraph', kw && lower(firstPara).includes(kw)],
-    ['Keyword in a subheading', kw && headings.some((h) => lower(h.text).includes(kw))],
-    ['Keyword in URL slug', kw && (slug || '').includes(kw.replace(/\s+/g, '-'))],
-    ['Title 30-60 characters', effTitle.length >= 30 && effTitle.length <= 60],
-    ['Meta description 110-160 characters', description.length >= 110 && description.length <= 160],
-    ['At least 600 words', words >= 600],
-    ['3+ subheadings', headings.length >= 3],
-    ['Internal link to another page', internalLinks > 0],
-    ['External link to a source', externalLinks > 0 || sources.some((x) => x.url.trim())],
-    ['Cover image with alt text', Boolean(coverImage && coverAlt.trim())],
-    ['Key takeaways (helps AI answers)', takeaways.some((t) => t.trim())],
-    ['FAQ with 2+ questions (helps AI answers)', faqs.filter((f) => f.q.trim() && f.a.trim()).length >= 2],
-    ['Sources cited (helps AI trust)', sources.some((x) => x.url.trim())],
-    ['Category chosen', Boolean(category)],
-  ].map(([label, ok]) => [label, Boolean(ok)])
-  const score = Math.round((checks.filter((c) => c[1]).length / checks.length) * 100)
+  const analysis = analyzePost({ title, metaTitle, description, focusKeyword, slug, category, coverImage, coverAlt, takeaways, faqs, sources, blocks })
+  const { seo: checks, readability, words, seoScore: score, readScore } = analysis
+  const scoreClass = (n) => (n >= 80 ? 'bg-brand-100 text-brand-700' : n >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700')
   const serpUrl = `primeresumeai.com › blog › ${slug || 'your-post'}`
   const listSetter = (setter) => ({
     set: (i, patch) => setter((prev) => prev.map((x, j) => (j === i ? { ...x, ...patch } : x))),
@@ -225,7 +213,7 @@ const AdminBlogEditor = () => {
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-4'>
           <div className='flex items-center justify-between'>
             <h2 className='text-sm font-semibold text-slate-800'>SEO &amp; Google preview</h2>
-            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${score >= 80 ? 'bg-brand-100 text-brand-700' : score >= 50 ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>Score {score}/100</span>
+            <span className='flex gap-2'><span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${scoreClass(score)}`}>SEO {score}/100</span><span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${scoreClass(readScore)}`}>Readability {readScore}/100</span></span>
           </div>
           <div className='border border-slate-200 rounded-lg p-3 bg-slate-50'>
             <p className='text-xs text-slate-500 truncate'>{serpUrl}</p>
@@ -244,12 +232,20 @@ const AdminBlogEditor = () => {
             <label className='block text-sm font-medium text-slate-700 mb-1'>Focus keyword</label>
             <input value={focusKeyword} onChange={(e) => setFocusKeyword(e.target.value)} placeholder='e.g. resume summary examples' className={inputClass} />
           </div>
-          <ul className='grid sm:grid-cols-2 gap-x-4 gap-y-1'>
-            {checks.map(([label, ok]) => (
-              <li key={label} className={`text-xs flex items-center gap-1.5 ${ok ? 'text-brand-700' : 'text-slate-500'}`}><span>{ok ? '✓' : '○'}</span>{label}</li>
-            ))}
-          </ul>
+          <CheckList title='SEO checks' items={checks} />
+          <CheckList title='Readability checks' items={readability} />
           <p className='text-xs text-slate-400'>{words} words in the body.</p>
+          <div>
+            <p className='text-xs font-semibold text-slate-600 mb-2'>Social share preview (Facebook, LinkedIn, X)</p>
+            <div className='border border-slate-200 rounded-lg overflow-hidden max-w-md bg-white'>
+              {coverImage ? <img src={coverImage} alt='' className='w-full h-44 object-cover bg-slate-100' /> : <div className='h-44 bg-slate-100 flex items-center justify-center text-xs text-slate-400'>Add a cover image to show here</div>}
+              <div className='p-3 bg-slate-50'>
+                <p className='text-[11px] uppercase tracking-wide text-slate-400'>primeresumeai.com</p>
+                <p className='text-sm font-semibold text-slate-800 leading-snug line-clamp-2'>{effTitle || 'Post title'}</p>
+                <p className='text-xs text-slate-500 line-clamp-2'>{description || 'Your meta description will appear here.'}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-4'>

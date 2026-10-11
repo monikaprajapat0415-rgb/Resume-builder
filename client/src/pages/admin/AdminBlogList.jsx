@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
+import { analyzePost } from '../../utils/seoAnalyze'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink } from 'react-icons/lu'
 
 const AdminBlogList = () => {
@@ -31,6 +32,7 @@ const AdminBlogList = () => {
       .then(({ data }) => setCategories(data.categories || [])).catch(() => {})
   }, [])
 
+  const scoreOf = (p) => analyzePost({ ...p, blocks: p.content || [] })
   const nameOf = (slug) => categories.find((c) => c.slug === slug)?.name || '—'
   const shown = posts.filter((p) =>
     (!q || p.title.toLowerCase().includes(q.toLowerCase())) &&
@@ -87,6 +89,7 @@ const AdminBlogList = () => {
                 <th className='px-4 py-3 font-medium'>Category</th>
                 <th className='px-4 py-3 font-medium'>Status</th>
                 <th className='px-4 py-3 font-medium'>Date</th>
+                <th className='px-4 py-3 font-medium' title='SEO score / readability score'>SEO</th>
                 <th className='px-4 py-3 font-medium'>Views</th>
                 <th className='px-4 py-3 font-medium text-right'>Actions</th>
               </tr>
@@ -102,6 +105,13 @@ const AdminBlogList = () => {
                     </span>
                   </td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{new Date(post.date).toLocaleDateString()}</td>
+                  <td className='px-4 py-3 whitespace-nowrap'>
+                    {(() => {
+                      const a = scoreOf(post)
+                      const c = (n) => (n >= 80 ? 'bg-brand-50 text-brand-700' : n >= 50 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700')
+                      return <span className='inline-flex gap-1'><span title='SEO score' className={`px-2 py-0.5 rounded-full text-xs ${c(a.seoScore)}`}>{a.seoScore}</span><span title='Readability score' className={`px-2 py-0.5 rounded-full text-xs ${c(a.readScore)}`}>{a.readScore}</span></span>
+                    })()}
+                  </td>
                   <td className='px-4 py-3 text-slate-500'>{post.views || 0}</td>
                   <td className='px-4 py-3 text-right'>
                     <div className='flex items-center justify-end gap-1'>
