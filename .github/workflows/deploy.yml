@@ -52,6 +52,11 @@ jobs:
           ssh -i ~/.ssh/deploy_key -p "${{ secrets.VPS_PORT || 22 }}" \
             "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" 'bash -s' <<'REMOTE'
           set -euo pipefail
+          # Non-interactive SSH has a short PATH; add the usual npm/nvm global bin folders.
+          NVM_BINS=$(ls -d /root/.nvm/versions/node/*/bin 2>/dev/null | tr '\n' ':' || true)
+          export PATH="${NVM_BINS}/root/.npm-global/bin:/usr/local/bin:$PATH"
+          echo "node: $(command -v node) $(node -v) | npm: $(npm -v) | pm2: $(command -v pm2)"
+          command -v pm2 >/dev/null || { echo "pm2 not found on PATH: $PATH"; exit 1; }
           cd /var/www/Resume-builder
 
           PREV=$(git rev-parse HEAD)

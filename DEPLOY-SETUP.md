@@ -1,32 +1,43 @@
-# One-time setup for GitHub Actions deploy
+# Prime Resume AI: GitHub Actions deploy setup (one time)
 
-## 1. Make a deploy key (on your Mac)
-    ssh-keygen -t ed25519 -f ~/deploy_key -N "" -C "github-actions-deploy"
+Only two values are yours to fill in: VPS_IP and VPS_USER (the user you SSH in with today).
 
-## 2. Allow it on the VPS (as the user that owns /var/www/Resume-builder)
-    cat ~/deploy_key.pub   # copy this line
-    # on the VPS:
-    echo "PASTE_PUBLIC_KEY_LINE" >> ~/.ssh/authorized_keys
+## 1. Create the deploy key (on your Mac, any folder)
+    ssh-keygen -t ed25519 -f ~/.ssh/primeresumeai_deploy -N "" -C "primeresumeai-github-actions"
 
-Test: ssh -i ~/deploy_key USER@VPS_IP "echo ok"
+This makes two files:
+  ~/.ssh/primeresumeai_deploy       private key -> goes into the GitHub secret
+  ~/.ssh/primeresumeai_deploy.pub   public key  -> goes on the VPS
 
-## 3. Add GitHub secrets
-Repo -> Settings -> Environments -> New environment "production" -> add secrets
-(or Settings -> Secrets and variables -> Actions):
-  VPS_HOST   your server IP or hostname
-  VPS_USER   the SSH user
-  VPS_PORT   (optional) only if not 22
-  VPS_SSH_KEY  the full contents of ~/deploy_key (the PRIVATE key)
-Then delete ~/deploy_key from the Mac or keep it somewhere safe.
+## 2. Put the public key on the VPS
+    ssh-copy-id -i ~/.ssh/primeresumeai_deploy.pub VPS_USER@VPS_IP
+    ssh -i ~/.ssh/primeresumeai_deploy VPS_USER@VPS_IP "echo connected"
 
-## 4. On the VPS
-- pm2, node and git must be on the PATH for a non-interactive SSH login:
-    ssh USER@VPS 'which pm2 node git'
-  If pm2 is missing, add the PATH export to ~/.bashrc ABOVE the "if not interactive, return" line.
-- The VPS clone must be able to `git pull` without a password (it already does).
-- client/.env and server/.env live on the VPS. If they are tracked in git, `git pull` can fail
-  when they differ. Fix once: add them to .gitignore and run `git rm --cached client/.env server/.env`,
-  commit, and keep the VPS copies.
+## 3. Check the VPS tools work over a non-interactive SSH login
+    ssh -i ~/.ssh/primeresumeai_deploy VPS_USER@VPS_IP 'cd /var/www/Resume-builder && which git node npm pm2 && pm2 list'
+You should see project-backend in the list. If "pm2: command not found", add your node PATH
+export line to the TOP of ~/.bashrc on the VPS, above the "if not interactive, return" line.
 
-## 5. Optional but recommended
-Settings -> Environments -> production -> "Required reviewers" adds a manual approve button before deploy.
+## 4. Add the GitHub secrets
+GitHub repo -> Settings -> Environments -> New environment "production" -> Add secret:
+  VPS_HOST     VPS_IP (or api.primeresumeai.com if it points to the same server over SSH)
+  VPS_USER     VPS_USER
+  VPS_SSH_KEY  output of:  cat ~/.ssh/primeresumeai_deploy   (the whole file, BEGIN to END lines)
+  VPS_PORT     only if SSH is not on port 22
+
+macOS shortcut to copy the private key:  pbcopy < ~/.ssh/primeresumeai_deploy
+
+## 5. Stop tracking the .env files (needed so git pull on the VPS never fails)
+On your Mac, in the repo root:
+    printf "\nclient/.env\nserver/.env\n" >> .gitignore
+    git rm --cached client/.env server/.env
+    git commit -m "Stop tracking .env files"
+Do this BEFORE the first deploy and keep the .env files that already exist on the VPS.
+Then rotate the keys that were ever committed (Gemini, SendGrid, ImageKit, JWT, DB).
+
+## 6. First deploy
+Commit .github/workflows/deploy.yml, push to main, and watch GitHub -> Actions.
+Paths used by the workflow: /var/www/Resume-builder, pm2 app "project-backend", port 3000.
+
+## 7. Optional safety
+Settings -> Environments -> production -> Required reviewers adds an Approve button before each deploy.
