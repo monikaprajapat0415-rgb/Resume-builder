@@ -12,3 +12,9 @@ npm-debug.log*
 yarn-error.log*
 .idea
 
+
+client/.env
+server/.env
+
+.DS_Store
+server.log
