@@ -27,7 +27,7 @@ const summarise = (r) => ({ id: r._id, fileName: r.fileName, score: r.score, cre
 // GET /api/ats/status - what this user can do right now
 export const getStatus = async (req, res) => {
     try {
-        const user = await User.findById(req.userId).select('email isVerified');
+        const user = await User.findById(req.userId).select('email');
         if (!user) return res.status(404).json({ message: 'User not found' });
         const usage = await AtsUsage.findOne({ email: emailKey(user.email) });
         const credits = usage?.credits || 0;
@@ -38,7 +38,6 @@ export const getStatus = async (req, res) => {
             limit: FREE_CHECKS, used: usage?.totalChecks || 0, left, disabled,
             canCheck: !disabled && left > 0,
             reason: disabled ? 'disabled' : left <= 0 ? 'limit' : null,
-            verified: Boolean(user.isVerified),
             last: last ? summarise(last) : null,
         });
     } catch (error) {
@@ -74,9 +73,8 @@ const running = new Set();
 export const analyze = async (req, res) => {
     let claimed = null; let key = null; let locked = null;
     try {
-        const user = await User.findById(req.userId).select('email isVerified');
+        const user = await User.findById(req.userId).select('email');
         if (!user) return res.status(404).json({ message: 'User not found' });
-        if (!user.isVerified) return res.status(403).json({ code: 'VERIFY_EMAIL', message: 'Please verify your email address first - then your free ATS check is unlocked.' });
 
         const file = req.file;
         if (!file) return res.status(400).json({ message: 'Please upload your resume as a PDF or Word (.docx) file.' });

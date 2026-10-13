@@ -10,7 +10,7 @@ import TimelineTemplate from './templates/TimelineTemplate'
 import GraduateTemplate from './templates/GraduateTemplate'
 
 
-const ResumePreview = ({data,template, accentColor, classes=""}) => {
+const ResumePreview = ({data,template, accentColor, classes="", previewId='resume-preview'}) => {
   
     const renderTemplate = () => {
         switch(template) {
@@ -38,7 +38,7 @@ const ResumePreview = ({data,template, accentColor, classes=""}) => {
 
     return (
     <div className='w-full bg-gray-100'>
-        <div id='resume-preview' className={"border border-gray-200 print:shadow-none print:border-none" + classes}>
+        <div id={previewId} className={"border border-gray-200 print:shadow-none print:border-none" + classes}>
             {renderTemplate()}
         </div>
     <style>

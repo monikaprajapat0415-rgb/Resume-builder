@@ -7,7 +7,9 @@ import SEO from "../components/SEO";
 import api from "../configs/api";
 import { useSiteContent } from "../utils/siteContent";
 
-export default function ContactUs() {
+// `embedded` is true when this section is shown inside another page (the home page). It must NOT
+// set its own title/canonical there, otherwise it overrides the host page's SEO tags.
+export default function ContactUs({ embedded = false }) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -36,12 +38,14 @@ export default function ContactUs() {
 
   return (
     <>
+    {!embedded && (
     <SEO
-      title="Contact Us"
-      description="Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume."
-      keywords="contact prime resume ai, resume builder support"
-      path="/contact-us"
-    />
+        title="Contact Us"
+        description="Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume."
+        keywords="contact prime resume ai, resume builder support"
+        path="/contact-us"
+      />
+    )}
     {/* <NavBar /> */}
        <div id='contact-us' className='flex flex-col items-center my-10 scroll-mt-12'>
     <section className="py-14 px-4">

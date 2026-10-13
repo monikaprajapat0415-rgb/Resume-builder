@@ -91,12 +91,7 @@ const AtsChecker = () => {
     } catch { toast.error('Could not open that report.') }
   }
 
-  const resend = async () => {
-    try { const { data } = await api.post('/api/users/resend-verification', {}, headers); toast.success(data.message || 'Verification email sent.') }
-    catch (e) { toast.error(e.response?.data?.message || 'Could not send the email.') }
-  }
-
-  const canCheck = status && !status.error && status.canCheck && status.verified
+  const canCheck = status && !status.error && status.canCheck
 
   return (
     <>
@@ -146,15 +141,6 @@ const AtsChecker = () => {
                 {(status.http === 401 || status.http === 404) && <Link to='/logout' className='px-6 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-full text-sm font-medium transition'>Log in again</Link>}
               </div>
               <p className='text-[11px] text-slate-300 mt-4'>Error code: {status.http || 'network'}</p>
-            </div>
-          )}
-
-          {/* Needs email verification */}
-          {user && status && !status.error && !status.verified && (
-            <div className='bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center'>
-              <p className='font-medium text-amber-900'>Verify your email to use the ATS checker</p>
-              <p className='text-sm text-amber-800 mt-1'>We sent a link to {user.email}. Open it, then come back to this page.</p>
-              <button onClick={resend} className='mt-4 px-5 py-2 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-full text-sm font-medium transition'>Resend verification email</button>
             </div>
           )}
 
@@ -209,7 +195,7 @@ const AtsChecker = () => {
           )}
 
           {/* Checker switched off for this account (limit reached, or turned off by an admin) */}
-          {user && status && !status.error && !status.canCheck && status.verified && !busy && !result && (
+          {user && status && !status.error && !status.canCheck && !busy && !result && (
             <div className='bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center' role='status'>
               <LuInfo className='size-8 text-brand-600 mx-auto' />
               <h2 className='text-lg font-semibold text-slate-800 mt-3'>{status.reason === 'disabled' ? 'The ATS checker is turned off for your account' : `You have used all ${status.limit} of your free ATS checks`}</h2>
