@@ -1,5 +1,6 @@
 
 import User from "../models/User.js";
+import { isDisposableEmail } from '../utils/disposableEmail.js';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import Resume from "../models/Resume.js";
@@ -27,6 +28,11 @@ export const registerUser = async (req, res) => {
         //Check if required fields are present
         if (!name || !email || !password) {
             return res.status(400).json({ message: "Missing required fields" })
+        }
+
+        // Temporary-mailbox addresses are not accepted (they are used to farm free ATS checks)
+        if (isDisposableEmail(email)) {
+            return res.status(400).json({ message: "Please use your real email address. Temporary email services are not supported." });
         }
 
         // check if user already exists

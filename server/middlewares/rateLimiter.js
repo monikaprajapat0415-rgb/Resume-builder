@@ -41,3 +41,14 @@ export const feedbackLimiter = rateLimit({
     keyGenerator: (req) => req.userId || req.ip,
     message: { message: "You've posted several comments already. Please try again later." },
 });
+
+// New accounts per network address per day. Generous enough for a shared college / office
+// connection, tight enough to stop scripted fake-account sign-ups.
+export const signupLimiter = rateLimit({
+    windowMs: 24 * 60 * 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+    skipFailedRequests: true, // a typo or "user already exists" should not use up the allowance
+    message: { message: "Too many accounts were created from this connection today. Please try again tomorrow." },
+});

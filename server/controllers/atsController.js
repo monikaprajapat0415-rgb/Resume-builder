@@ -2,12 +2,41 @@ import multer from 'multer';
 import User from '../models/User.js';
 import AtsUsage from '../models/AtsUsage.js';
 import AtsReport from '../models/AtsReport.js';
+import AtsIpUsage from '../models/AtsIpUsage.js';
+import crypto from 'crypto';
+import { isDisposableEmail } from '../utils/disposableEmail.js';
 import { emailKey } from '../utils/emailKey.js';
 import { detectKind, extractFromFile, buildReport, MAX_FILE_BYTES } from '../utils/atsAnalyzer.js';
 
 // Every account may run this many ATS checks in total; after that the checker is switched
 // off for that account (an admin can give extra checks or switch it back on).
 export const FREE_CHECKS = 5;
+
+// Free checks allowed from one network address per rolling week (about three accounts' worth).
+// Paid / admin-granted credits are never limited by this.
+export const IP_FREE_LIMIT = 15;
+const IP_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+// Salted hash of the caller's IP, or null when we cannot see a real one (e.g. direct
+// localhost call). In that case the per-IP limit is skipped rather than blocking everyone.
+const ipKeyOf = (req) => {
+    const ip = String(req.ip || '').replace(/^::ffff:/, '');
+    if (!ip || ip === '127.0.0.1' || ip === '::1') return null;
+    return crypto.createHash('sha256').update(`${process.env.JWT_SECRET || 'ats'}|${ip}`).digest('hex');
+};
+const ipUsedNow = async (ipHash) => {
+    const row = await AtsIpUsage.findOne({ ipHash });
+    if (!row || Date.now() - new Date(row.windowStart).getTime() > IP_WINDOW_MS) return 0;
+    return row.freeUsed;
+};
+const ipBump = async (ipHash, delta) => {
+    const row = await AtsIpUsage.findOne({ ipHash });
+    if (!row || Date.now() - new Date(row.windowStart).getTime() > IP_WINDOW_MS) {
+        if (delta > 0) await AtsIpUsage.updateOne({ ipHash }, { $set: { freeUsed: delta, windowStart: new Date() } }, { upsert: true });
+        return;
+    }
+    await AtsIpUsage.updateOne({ ipHash }, { $inc: { freeUsed: delta } });
+};
 
 export const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_FILE_BYTES, files: 1 } }).single('resume');
 
@@ -93,15 +122,32 @@ export const analyze = async (req, res) => {
         if (existing?.disabled) { key = null; return res.status(403).json({ code: 'ATS_DISABLED', message: LIMIT_MESSAGE }); }
         if (running.has(key)) { key = null; return res.status(429).json({ message: 'Your resume is already being checked. Please wait a moment.' }); }
         running.add(key); locked = key;
+
+        // Abuse guards: only apply to FREE checks (a person holding admin-granted credits is fine).
+        const hasCredits = (existing?.credits || 0) > 0;
+        if (!hasCredits) {
+            if (isDisposableEmail(user.email)) {
+                return res.status(403).json({ code: 'DISPOSABLE_EMAIL', message: 'Please use an account with your real email address to run the ATS checker. Temporary email services are not supported.' });
+            }
+            const ipHash = ipKeyOf(req);
+            if (ipHash && (await ipUsedNow(ipHash)) >= IP_FREE_LIMIT) {
+                return res.status(429).json({ code: 'IP_LIMIT', message: 'Many free checks have already been used from this internet connection this week. Please try again later, or contact us if you need more.' });
+            }
+        }
         claimed = await claim(key);
         if (!claimed) {
             return res.status(403).json({ code: 'LIMIT_REACHED', message: LIMIT_MESSAGE });
         }
 
+        const ipHash = ipKeyOf(req);
+        const ipCounted = claimed === 'free' && ipHash;
+        if (ipCounted) await ipBump(ipHash, 1).catch(() => {});
+
         let report;
         try { report = await buildReport({ text: extracted.text, pages: extracted.pages, kind, jobDescription }); }
         catch (aiError) {
             await refund(key, claimed); claimed = null;
+            if (ipCounted) await ipBump(ipHash, -1).catch(() => {});
             console.error('[ats] analysis failed:', aiError?.message);
             return res.status(502).json({ message: 'The analysis service is busy right now. Your check was not used - please try again in a moment.' });
         }

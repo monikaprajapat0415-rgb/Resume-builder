@@ -1,10 +1,10 @@
 import express from 'express';
 import { getUserById, getUserResumes, loginUser, registerUser, getUserCount,forgotPassword,resetPassword, googleAuth, verifyEmail, resendVerificationEmail } from '../controllers/userController.js';
 import protect from '../middlewares/authMiddleware.js';
-import { authLimiter } from '../middlewares/rateLimiter.js';
+import { authLimiter, signupLimiter } from '../middlewares/rateLimiter.js';
 
 const userRouter = express.Router();
-userRouter.post('/register', authLimiter, registerUser);
+userRouter.post('/register', authLimiter, signupLimiter, registerUser);
 userRouter.post('/login', authLimiter, loginUser);
 // Google signup/login - accepts { credential } (Google ID token) and returns our own JWT
 userRouter.post('/google-auth', authLimiter, googleAuth);
