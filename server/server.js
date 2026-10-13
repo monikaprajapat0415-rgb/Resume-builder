@@ -31,6 +31,9 @@ mongoose.connection.once('connected', () => {
 await connectDB();
 
 // increase request size to allow large resume text payloads (client may send full PDF-extracted text)
+// We sit behind nginx (one hop). Without this every visitor looks like 127.0.0.1, so per-IP
+// rate limits would be shared by ALL users. nginx must send X-Forwarded-For.
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
