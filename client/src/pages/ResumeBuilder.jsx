@@ -37,7 +37,7 @@ import CoverLetterModal from '../components/CoverLetterModal';
 import { useSiteContent } from '../utils/siteContent';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro'; // supports oklch() colours used by Tailwind v4
 import jsPDF from 'jspdf';
 
 const ResumeBuilder = () => {
@@ -225,7 +225,7 @@ const ResumeBuilder = () => {
     setIsDownloadingPdf(true);
     try {
       const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/jpeg', 0.92);
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
@@ -235,7 +235,7 @@ const ResumeBuilder = () => {
       let heightLeft = imgHeight;
       let position = 0;
 
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
       heightLeft -= pageHeight;
 
       // Paginate: if the resume is taller than one page, keep shifting the same
@@ -243,7 +243,7 @@ const ResumeBuilder = () => {
       while (heightLeft > 0) {
         position -= pageHeight;
         pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight, undefined, 'FAST');
         heightLeft -= pageHeight;
       }
 
