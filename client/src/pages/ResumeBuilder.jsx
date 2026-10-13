@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../components/SEO'
 import api from '../configs/api'
@@ -21,6 +21,8 @@ LuUser,
 LuTarget,
 LuMail,
 LuPrinter,
+LuCheck,
+LuX,
 } from "react-icons/lu";
 import { BiLoaderAlt } from 'react-icons/bi';
 import PersonalInfoForm from '../components/PersonalInfoForm';
@@ -84,6 +86,9 @@ const ResumeBuilder = () => {
   const [showCoverLetterModal, setShowCoverLetterModal] = useState(false);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [isFinishing, setIsFinishing] = useState(false);
+  const navigate = useNavigate();
   const [lastSavedLabel, setLastSavedLabel] = useState('');
 
   // Tracks the JSON snapshot of the last version we know is synced with the server
@@ -291,6 +296,25 @@ const ResumeBuilder = () => {
     }
   }
 
+  // "Done": check every section, save, then go back to the dashboard.
+  const finishResume = async () => {
+    for (let i = 0; i < sections.length; i++) {
+      if (!validateSection(i)) {
+        setActiveSectionIndex(i);
+        return;
+      }
+    }
+    setIsFinishing(true);
+    try {
+      await performSave(true);
+      toast.success('Your resume is complete and saved.');
+      navigate('/app');
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Could not save your resume. Please try again.');
+      setIsFinishing(false);
+    }
+  }
+
   // Autosave: whenever resumeData changes and genuinely differs from the last
   // synced version, save it in the background ~2.5s after the last edit.
   useEffect(() => {
@@ -402,6 +426,23 @@ const ResumeBuilder = () => {
                     onChange={(data) => setResumeData(prev => ({ ...prev, skills: data }))} />
                 )}
               </div>
+              {activeSection.id === 'skills' && (
+                <div className='mt-6 rounded-lg border border-brand-200 bg-brand-50/60 p-4'>
+                  <p className='text-sm font-medium text-slate-800'>All sections filled in?</p>
+                  <p className='text-xs text-slate-500 mt-0.5'>Preview your finished resume, or press Done to save it and go back to your dashboard.</p>
+                  <div className='mt-3 flex flex-wrap items-center gap-2'>
+                    <button type='button' onClick={() => setShowPreview(true)}
+                      className='flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-brand-300 bg-white text-brand-700 hover:bg-brand-50 transition-colors'>
+                      <LuEye className='size-4' />Preview
+                    </button>
+                    <button type='button' onClick={finishResume} disabled={isFinishing}
+                      className='flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-md bg-brand-600 hover:bg-brand-700 text-white transition-colors disabled:opacity-60'>
+                      {isFinishing ? <BiLoaderAlt className='size-4 animate-spin' /> : <LuCheck className='size-4' />}
+                      {isFinishing ? 'Saving...' : 'Done'}
+                    </button>
+                  </div>
+                </div>
+              )}
               <button onClick={() => {toast.promise(saveResume, {
                 loading: 'Saving...'})}}
                  className='bg-gradient-to-br from-brand-100 to-brand-200 ring-brand-300 text-brand-600 ring hover:ring-brand-400 transition-all rounded-md px-6 py-2 mt-6 text-sm'>
@@ -462,6 +503,30 @@ const ResumeBuilder = () => {
         </div>
       </div>
 
+      {showPreview && (
+        <div className='fixed inset-0 z-50 flex flex-col bg-black/60' role='dialog' aria-modal='true' aria-label='Resume preview'
+          onClick={(e) => { if (e.target === e.currentTarget) setShowPreview(false) }}>
+          <div className='flex items-center justify-between gap-3 bg-white px-4 py-3 shadow'>
+            <p className='text-sm font-medium text-slate-800'>Preview of your resume</p>
+            <div className='flex items-center gap-2'>
+              <button type='button' onClick={downloadPdf} disabled={isDownloadingPdf}
+                className='flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-md bg-brand-600 text-white hover:bg-brand-700 disabled:opacity-60'>
+                {isDownloadingPdf ? <BiLoaderAlt className='size-4 animate-spin' /> : <LuDownload className='size-4' />}
+                {isDownloadingPdf ? 'Generating...' : 'Download PDF'}
+              </button>
+              <button type='button' onClick={() => setShowPreview(false)} aria-label='Close preview'
+                className='flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-md border border-slate-300 text-slate-700 hover:bg-slate-50'>
+                <LuX className='size-4' />Close
+              </button>
+            </div>
+          </div>
+          <div className='flex-1 overflow-y-auto p-4 sm:p-8' onClick={(e) => { if (e.target === e.currentTarget) setShowPreview(false) }}>
+            <div className='mx-auto max-w-[860px] bg-white shadow-xl'>
+              <ResumePreview previewId='resume-preview-modal' data={resumeData} template={resumeData.template} accentColor={resumeData.accent_color} />
+            </div>
+          </div>
+        </div>
+      )}
       {showAtsModal && (
         <AtsScoreModal resumeId={resumeData._id} onClose={() => setShowAtsModal(false)} />
       )}

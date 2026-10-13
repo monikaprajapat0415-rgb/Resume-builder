@@ -41,7 +41,7 @@ const Home = () => {
     <Testimonials/>
     <TemplatePreview/>
     <CallToAction/>
-    <ContactUs/>
+    <ContactUs embedded />
     <Footer/>
    </div>
   )
