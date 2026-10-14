@@ -1,6 +1,7 @@
 import express from "express";
 import protect from "../middlewares/authMiddleware.js";
 import { aiLimiter } from "../middlewares/rateLimiter.js";
+import { generateCv } from "../controllers/cvAiController.js";
 import { enhanceProfessionalSummary, enhanceJobDescription, uploadResume, checkAtsScore, generateCoverLetter } from "../controllers/aiController.js";
 
 const aiRouter = express.Router();
@@ -12,5 +13,8 @@ aiRouter.post('/upload-resume', protect, aiLimiter, uploadResume);
 aiRouter.post('/ats-score', protect, aiLimiter, checkAtsScore);
 // AI cover letter generator - drafts a cover letter from resume data + a job description
 aiRouter.post('/cover-letter', protect, aiLimiter, generateCoverLetter);
+
+// AI CV builder - writes a tailored, ATS-friendly CV from the details saved on a CV document
+aiRouter.post('/generate-cv', protect, aiLimiter, generateCv);
 
 export default aiRouter;

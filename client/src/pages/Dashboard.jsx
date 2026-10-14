@@ -4,7 +4,8 @@ import {FaFileSignature,  } from 'react-icons/fa'
 import { BiLoaderAlt } from 'react-icons/bi';
 import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuShield } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import CvDashboardSection from '../components/cv/CvDashboardSection'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../configs/api'
@@ -28,6 +29,9 @@ const Dashboard = () => {
   const [sortOption, setSortOption] = useState('newest')
 
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = searchParams.get('tab') === 'cvs' ? 'cvs' : 'resumes';
+  const setTab = (id) => setSearchParams(id === 'cvs' ? { tab: 'cvs' } : {}, { replace: true });
 
   const loadAllResumes = async () => {
     try {
@@ -157,6 +161,7 @@ const Dashboard = () => {
             </div>
           </div>
 
+          {tab === 'resumes' && (
           <div className='flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto'>
             <div className='flex items-center gap-3'>
               <button onClick={() => setShowCreateResume(true)} className='flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full shadow-sm transition'>
@@ -180,12 +185,20 @@ const Dashboard = () => {
               </select>
             </div>
           </div>
+          )}
         </div>
 
-        <hr className='border-slate-200 my-6' />
+        <div role='tablist' className='flex gap-1 border-b border-slate-200 mb-6'>
+          {[['resumes', 'My Resumes'], ['cvs', 'My CVs']].map(([id, label]) => (
+            <button key={id} role='tab' aria-selected={tab === id} onClick={() => setTab(id)}
+              className={`px-4 py-2 text-sm font-medium -mb-px border-b-2 transition ${tab === id ? 'border-brand-600 text-brand-700' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>{label}</button>
+          ))}
+        </div>
+        {tab === 'cvs' && <CvDashboardSection />}
 
 
-        {allResumes.length === 0 ? (
+
+        {tab === 'resumes' && (allResumes.length === 0 ? (
           <div className='rounded-lg border border-dashed border-slate-200 p-10 text-center text-slate-500'>
             <p className='mb-3 text-lg text-slate-700'>No resumes yet</p>
             <p className='mb-6'>Start by creating a new resume or upload an existing PDF.</p>
@@ -257,7 +270,7 @@ const Dashboard = () => {
               )
             })}
           </div>
-        )}
+        ))}
 
         {showCreateResume && (
           <form onSubmit={createResume} onClick={() => { setShowCreateResume(false); setTitle('') }} className='fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center'>

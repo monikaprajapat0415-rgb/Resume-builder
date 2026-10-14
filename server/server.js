@@ -5,6 +5,7 @@ import "dotenv/config";
 import connectDB from "./configs/db.js";
 import userRouter from "./routes/userRouter.js";
 import resumeRouter from "./routes/resumeRoutes.js";
+import cvRouter from "./routes/cvRoutes.js";
 import aiRouter from "./routes/aiRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 import learnRouter from "./routes/learnRoutes.js";
@@ -70,6 +71,7 @@ app.use('/api', (req, res, next) => {
 });
 app.use('/api/users', userRouter)
 app.use('/api/resumes', resumeRouter)
+app.use('/api/cvs', cvRouter)
 app.use('/api/ai', aiRouter)
 app.use('/api/ats', atsRouter)
 app.use('/api/blogs', blogRouter)

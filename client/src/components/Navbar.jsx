@@ -24,6 +24,7 @@ const Navbar = () => {
         </Link>
         <div className='flex items-center gap-3 sm:gap-5 text-sm'>
             {/* Quick links for signed-in users. /learn lists the free tutorial courses. */}
+            <Link to='/app?tab=cvs' className='font-medium hover:text-brand-600 transition'>CVs</Link>
             <Link to='/learn' className='font-medium hover:text-brand-600 transition'>Learn</Link>
             <Link to='/jobs' className='font-medium hover:text-brand-600 transition'>Jobs</Link>
             <Link to='/blog' className='font-medium hover:text-brand-600 transition max-sm:hidden'>Blog</Link>

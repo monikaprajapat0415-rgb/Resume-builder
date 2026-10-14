@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
-import { LuScanSearch, LuSparkles, LuLayoutTemplate, LuUpload, LuMailPlus, LuTarget, LuShare2, LuArrowRight } from 'react-icons/lu'
+import { LuScanSearch, LuSparkles, LuLayoutTemplate, LuUpload, LuMailPlus, LuTarget, LuShare2, LuArrowRight, LuFileUser } from 'react-icons/lu'
 
 const FEATURES = [
   { icon: LuTarget, title: 'ATS match for a job', desc: 'Paste a job description inside the builder and see which keywords your resume is missing.', to: '/app', cta: 'Open the builder' },
@@ -11,6 +11,7 @@ const FEATURES = [
   { icon: LuLayoutTemplate, title: 'ATS-friendly templates', desc: 'Clean, recruiter-tested layouts. Change colours and templates any time without losing your content.', to: '/templates', cta: 'Browse templates' },
   { icon: LuUpload, title: 'Import your old resume', desc: 'Upload a PDF and we fill the builder for you, so you edit instead of retyping.', to: '/app', cta: 'Import a resume' },
   { icon: LuMailPlus, title: 'AI cover letters', desc: 'Generate a cover letter tailored to the job and company from your resume details.', to: '/app', cta: 'Write one' },
+  { icon: LuFileUser, title: 'AI CV builder', desc: 'Enter the job and your details and AI writes a tailored, ATS-friendly CV using only your real experience.', to: '/cv-builder', cta: 'Build a CV' },
   { icon: LuShare2, title: 'Download or share', desc: 'Download your resume or share a public link with recruiters in one click.', to: '/app', cta: 'Get started' },
 ]
 
