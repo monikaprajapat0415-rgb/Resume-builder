@@ -8,6 +8,7 @@ export const DEFAULT_MENU = [
     { key: 'h-features', location: 'header', label: 'Features', url: '/features' },
     { key: 'h-testimonials', location: 'header', label: 'Testimonials', url: '/#testimonials' },
     { key: 'h-templates', location: 'header', label: 'Templates', url: '/templates' },
+    { key: 'h-cv', location: 'header', label: 'CV Builder', url: '/cv-builder' },
     { key: 'h-products', location: 'header', label: 'Products', url: '/products' },
     { key: 'h-blog', location: 'header', label: 'Blog', url: '/blog' },
     { key: 'h-learn', location: 'header', label: 'Learn', url: '/learn' },
@@ -21,6 +22,7 @@ export const DEFAULT_MENU = [
 
     { key: 'fr-templates', location: 'footer_resources', label: 'Templates', url: '/templates' },
     { key: 'fr-ats', location: 'footer_resources', label: 'ATS Checker', url: '/features/ats-checker' },
+    { key: 'fr-cv', location: 'footer_resources', label: 'CV Builder', url: '/cv-builder' },
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },
     { key: 'fr-learn', location: 'footer_resources', label: 'Learn', url: '/learn' },

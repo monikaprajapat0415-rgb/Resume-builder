@@ -9,6 +9,7 @@ export const DEFAULT_MENU = {
     { _id: 'h-features', label: 'Features', url: '/features' },
     { _id: 'h-testimonials', label: 'Testimonials', url: '/#testimonials' },
     { _id: 'h-templates', label: 'Templates', url: '/templates' },
+    { _id: 'h-cv', label: 'CV Builder', url: '/cv-builder' },
     { _id: 'h-products', label: 'Products', url: '/products' },
     { _id: 'h-blog', label: 'Blog', url: '/blog' },
     { _id: 'h-learn', label: 'Learn', url: '/learn' },
@@ -24,6 +25,7 @@ export const DEFAULT_MENU = {
   footer_resources: [
     { _id: 'fr-templates', label: 'Templates', url: '/templates' },
     { _id: 'fr-ats', label: 'ATS Checker', url: '/features/ats-checker' },
+    { _id: 'fr-cv', label: 'CV Builder', url: '/cv-builder' },
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },
     { _id: 'fr-learn', label: 'Learn', url: '/learn' },

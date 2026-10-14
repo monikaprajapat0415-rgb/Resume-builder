@@ -51,6 +51,8 @@ import AdminSiteContent from "./pages/admin/AdminSiteContent";
 import CustomPage from "./pages/CustomPage";
 import Features from "./pages/Features";
 import AtsChecker from "./pages/AtsChecker";
+import CvLanding from "./pages/CvLanding";
+import CvBuilder from "./pages/CvBuilder";
 import ProductsIndex from "./pages/ProductsIndex";
 import ProductDetail from "./pages/ProductDetail";
 import SEO from "./components/SEO";
@@ -141,6 +143,7 @@ const App = () => {
         <Route path="/learn/:course/:lesson" element={<LearnLesson />} />
         <Route path="/features" element={<Features />} />
         <Route path="/features/ats-checker" element={<AtsChecker />} />
+        <Route path="/cv-builder" element={<CvLanding />} />
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/templates" element={<TemplatesIndex />} />
@@ -177,6 +180,7 @@ const App = () => {
         <Route path="app" element={<Layouts />}>
           <Route index element={<Dashboard />} />
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
+          <Route path="cv/:cvId" element={<CvBuilder />} />
         </Route>
         <Route path="view/:resumeId" element={<Preview />} />
 
