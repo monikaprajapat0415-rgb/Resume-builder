@@ -10,6 +10,7 @@ import { getSources, createSource, updateSource, deleteSource, runSource, runAll
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
 import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage } from '../controllers/contactController.js';
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
+import { defaultRouter } from '../utils/aiRouter.js';
 import { getSiteContentAdmin, saveSiteContent } from '../controllers/siteContentController.js';
 
 const adminRouter = express.Router();
@@ -23,6 +24,10 @@ const imageUpload = multer({
 
 // Every route below requires a logged-in admin.
 adminRouter.use(protect, isAdmin);
+
+// AI providers: live state of the fallback chain, and a one-click test of every key/model.
+adminRouter.get('/ai-status', (req, res) => res.json({ providers: defaultRouter().status() }));
+adminRouter.post('/ai-status/test', async (req, res) => res.json({ results: await defaultRouter().probe() }));
 
 adminRouter.get('/stats', getStats);
 adminRouter.get('/seo-audit', getSeoAudit);

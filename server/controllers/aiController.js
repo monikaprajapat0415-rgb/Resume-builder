@@ -1,5 +1,6 @@
 import Resume from "../models/Resume.js";
 import ai from "../configs/ai.js";
+import { defaultRouter } from "../utils/aiRouter.js";
 import { inspect } from 'util';
 
 // Try multiple strategies to parse possibly-invalid JSON returned by models.
@@ -112,92 +113,31 @@ const genaiGenerateWithRetries = async (model, contents, maxAttempts = 3) => {
     throw lastErr;
 };
 
+// Shared by the two "enhance with AI" buttons: sends the user's own text to the AI (with automatic
+// provider fallback) and returns clean plain text.
+const enhanceText = async (res, system, userContent, errorLabel) => {
+    if (!userContent || !String(userContent).trim()) return res.status(400).json({ message: 'Missing required fields' });
+    try {
+        const raw = await callAI(system, String(userContent).slice(0, 4000), { validate: (t) => t.trim().length > 0 });
+        const enhancedContent = String(raw).replace(/```(?:\w+)?\n?/g, '').replace(/```$/g, '').trim().replace(/^["']|["']$/g, '').trim();
+        return res.status(200).json({ enhancedContent });
+    } catch (error) {
+        console.error(`Error ${errorLabel}:`, error?.message || error);
+        return res.status(502).json({ message: 'The AI service is busy right now. Please try again in a moment.' });
+    }
+};
+
 //controller for enhancing a resume's professional summery
 //POST: /api/ai/enhance-pro-sum
-export const enhanceProfessionalSummary = async (req, res) => {
-    try {
-        const { userContent } = req.body;
-
-        if (!userContent) {
-            return res.status(400).json({ message: 'Missing required fields' })
-        }
-
-        // const response = await ai.chat.completions.create({
-        //     model: process.env.OPENAI_MODEL,
-        //     messages: [
-        //         {
-        //             role: "system",
-        //             content: "You are an expert in resume writing. Your task is to enhance the professional summary of a resume. The summary should be 1-2 sentences also highlighting key skills, experience, and career objectives. Make it compelling and ATS-friendly. and only return text no options or anything else. "
-        //         },
-        //         {
-        //             role: "user",
-        //             content: userContent,
-        //         },
-        //     ],
-        // })
-        let extractedData;
-        let genResp;
-        let enhancedContent;
-
-        try {
-             // @google/genai expects `contents` to be provided. Pass a single text content
-                // containing the combined prompt. Some GenAI SDKs also accept an array of
-                // content blocks with `{ type: 'text', text: '...' }`.
-               if (ai?.models?.generateContent) {
-                 genResp = await ai.models.generateContent({
-                    model: process.env.GENAI_MODEL || process.env.OPENAI_MODEL,
-                    contents: [
-                        { type: 'text', text: "You are an expert in resume writing. Your task is to enhance the professional summary of a resume. The summary should be 1-2 sentences also highlighting key skills, experience, and career objectives. Make it compelling and ATS-friendly. and only return text no options or anything else. " }
-                    ],
-                });
-            }
-
-            extractedData = genResp?.candidates?.[0]?.content || genResp?.outputs?.[0]?.content?.[0]?.text || genResp?.output?.[0]?.content?.text || genResp?.candidates?.[0]?.output || JSON.stringify(genResp);
-          enhancedContent = tryParseJSON(extractedData);
-
-
-        } catch (error) {
-            return res.status(400).json({ message: error.message })
-        }
-        return res.status(200).json({ enhancedContent })
-
-    } catch (error) {
-        return res.status(400).json({ message: error.message })
-
-    }
-}
+export const enhanceProfessionalSummary = (req, res) => enhanceText(res,
+    "You are an expert in resume writing. Your task is to enhance the professional summary of a resume. The summary should be 1-2 sentences also highlighting key skills, experience, and career objectives. Make it compelling and ATS-friendly. Do not invent facts. Only return the improved text, no options, quotes or explanations.",
+    req.body.userContent, 'enhancing professional summary');
 
 //controller for enhancing a resume's job description
 //POST: /api/ai/enhance-job-desc
-export const enhanceJobDescription = async (req, res) => {
-    try {
-        const { userContent } = req.body;
-        let genResp;
-
-        if (!userContent) {
-            return res.status(400).json({ message: 'Missing required fields' })
-        }
-             // @google/genai expects `contents` to be provided. Pass a single text content
-                // containing the combined prompt. Some GenAI SDKs also accept an array of
-                // content blocks with `{ type: 'text', text: '...' }`.
-               if (ai?.models?.generateContent) {
-               genResp = await ai.models.generateContent({
-                    model: process.env.GENAI_MODEL || process.env.OPENAI_MODEL,
-                    contents: [
-                        { type: 'text', text: "You are an expert in resume writing. Your task is to enhance the job description of a resume. The job description should be 1-2 sentences also highlighting key responsibilities and achievements. Use action verbs and quantifiable results where possible. Make it ATS-friendly. and only return text no options or anything else." }
-                    ],
-                });
-            }
-            const extractedData = genResp?.candidates?.[0]?.content || genResp?.outputs?.[0]?.content?.[0]?.text || genResp?.output?.[0]?.content?.text || genResp?.candidates?.[0]?.output || JSON.stringify(genResp);
-            const enhancedContent = tryParseJSON(extractedData);
-        return res.status(200).json({ enhancedContent })
-
-    } catch (error) {
-        console.error("Error enhancing job description:", error);
-        return res.status(400).json({ message:"An error occurred while enhancing job description. Please try again." })
-
-    }
-}
+export const enhanceJobDescription = (req, res) => enhanceText(res,
+    "You are an expert in resume writing. Your task is to enhance the job description of a resume. The job description should be 1-2 sentences also highlighting key responsibilities and achievements. Use action verbs and quantifiable results where possible, but do not invent numbers. Make it ATS-friendly. Only return the improved text, no options, quotes or explanations.",
+    req.body.userContent, 'enhancing job description');
 
 //controller for uploading a resume to the database
 //POST: /api/ai/upload-resume
@@ -228,42 +168,12 @@ export const uploadResume = async (req, res) => {
         // Note: the `response_format: { type: 'json_object' }` option
         // is not supported by the OpenAI JS client used here. Request
         // a plain JSON string from the model and parse it robustly.
-        let response;
         let extractedData;
         try {
-            if (ai?.chat?.completions?.create) {
-                response = await ai.chat.completions.create({
-                    model: process.env.OPENAI_MODEL,
-                    messages: [
-                        { role: "system", content: systemPrompt },
-                        { role: "user", content: userPropmt },
-                    ],
-                });
-                extractedData = response?.choices?.[0]?.message?.content;
-                if (process.env.DEBUG) {
-                    // eslint-disable-next-line no-console
-                    console.log("[ai] raw response preview:", typeof extractedData === 'string' ? extractedData.slice(0, 2000) : inspect(extractedData, { depth: 4 }));
-                }
-            } else if (ai?.models?.generateContent) {
-                // @google/genai expects `contents` to be provided. Pass a single text content
-                // containing the combined prompt. Some GenAI SDKs also accept an array of
-                // content blocks with `{ type: 'text', text: '...' }`.
-                const genResp = await ai.models.generateContent({
-                    model: process.env.GENAI_MODEL || process.env.OPENAI_MODEL,
-                    contents: [
-                        { type: 'text', text: `${systemPrompt}\n\n${userPropmt}` }
-                    ],
-                });
-
-                extractedData = genResp?.candidates?.[0]?.content || genResp?.outputs?.[0]?.content?.[0]?.text || genResp?.output?.[0]?.content?.text || genResp?.candidates?.[0]?.output || JSON.stringify(genResp);
-
-            } else {
-                throw new Error('No supported AI client method found on `ai`');
-            }
+            // callAI tries each configured AI provider in turn; an answer that is not parseable JSON counts as a failure.
+            extractedData = await callAI(systemPrompt, userPropmt, { validate: (t) => { const j = tryParseJSON(t); return !!j && typeof j === 'object'; } });
         } catch (aiError) {
-            // eslint-disable-next-line no-console
-            // Return a 502 Bad Gateway to indicate upstream AI error.
-            const message = process.env.DEBUG ? (aiError?.message || String(aiError)) : 'AI service error';
+            const message = process.env.DEBUG ? (aiError?.message || String(aiError)) : 'The AI service is busy right now. Please try again in a moment.';
             return res.status(502).json({ message });
         }
 
@@ -294,26 +204,10 @@ export const uploadResume = async (req, res) => {
 // (OpenAI-style chat completions, or @google/genai's generateContent) and return
 // the raw text response. Used by the ATS score checker and cover letter generator
 // below so they don't have to duplicate the client branching every time.
-export const callAI = async (systemPrompt, userPrompt) => {
-    if (ai?.chat?.completions?.create) {
-        const response = await ai.chat.completions.create({
-            model: process.env.OPENAI_MODEL,
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: userPrompt },
-            ],
-        });
-        return response?.choices?.[0]?.message?.content;
-    } else if (ai?.models?.generateContent) {
-        const genResp = await ai.models.generateContent({
-            model: process.env.GENAI_MODEL || process.env.OPENAI_MODEL,
-            contents: [
-                { type: 'text', text: `${systemPrompt}\n\n${userPrompt}` }
-            ],
-        });
-        return genResp?.candidates?.[0]?.content || genResp?.outputs?.[0]?.content?.[0]?.text || genResp?.output?.[0]?.content?.text || genResp?.candidates?.[0]?.output || JSON.stringify(genResp);
-    }
-    throw new Error('No supported AI client method found on `ai`');
+export const callAI = async (systemPrompt, userPrompt, options = {}) => {
+    // Tries every configured AI provider in turn (see utils/aiRouter.js), so one busy model does not fail the request.
+    // options.validate(text) can reject an unusable answer so the next provider gets a chance.
+    return defaultRouter().call(systemPrompt, userPrompt, options);
 };
 
 //controller for scoring a resume against a job description (ATS match score)
@@ -419,7 +313,7 @@ Highlight the candidate's most relevant experience and skills for this specific 
 
         let letterText;
         try {
-            letterText = await callAI(systemPrompt, userPrompt);
+            letterText = await callAI(systemPrompt, userPrompt, { validate: (t) => t.trim().length > 40 });
             if (typeof letterText === 'object') {
                 letterText = letterText?.text || JSON.stringify(letterText);
             }
