@@ -2,15 +2,16 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { LuSearch, LuSend, LuClock, LuPlus, LuMail, LuPhone, LuUser } from 'react-icons/lu'
+import { LuSearch, LuSend, LuClock, LuPlus, LuMail, LuPhone, LuUser, LuMessageCircle } from 'react-icons/lu'
 import { BiLoaderAlt } from 'react-icons/bi'
 import SEO from '../components/SEO'
 import api from '../configs/api'
 import { trackEvent } from '../components/Analytics'
 import { Text, Area, Field, inputCls } from '../components/cv/CvFields'
-import { LEVELS, JOB_TYPES, SIZES, TalentCard, StatusBadge, Modal, timeShort, errMsg } from '../components/hiring/ui'
+import { CATEGORIES, COUNTRIES, CURRENCIES, PAY_PER, EMPLOYER_TYPES, JOB_TYPES_ALL, PERKS, isLabour, catShort, currencyFor, defaultPayPer, payText } from '../utils/workTaxonomy'
+import { LEVELS, SIZES, TalentCard, StatusBadge, Modal, timeShort, errMsg } from '../components/hiring/ui'
 
-const BLANK_CO = { companyName: '', website: '', workEmail: '', contactName: '', contactRole: '', phone: '', industry: '', size: '', location: '', about: '' }
+const BLANK_CO = { employerType: 'company', country: 'IN', registrationNo: '', companyName: '', website: '', workEmail: '', contactName: '', contactRole: '', phone: '', industry: '', size: '', location: '', about: '' }
 const TABS = [['talent', 'Find talent'], ['requests', 'Requests'], ['jobs', 'My jobs'], ['company', 'Company']]
 
 // Company side: apply, wait for approval, then search available candidates, contact them and post jobs.
@@ -39,7 +40,7 @@ const Hire = () => {
           </div>
           {tab === 'talent' && <FindTalent auth={auth} goRequests={() => setTab('requests')} />}
           {tab === 'requests' && <Requests auth={auth} />}
-          {tab === 'jobs' && <MyJobs auth={auth} />}
+          {tab === 'jobs' && <MyJobs auth={auth} country={emp.country} />}
           {tab === 'company' && <CompanyForm emp={emp} auth={auth} onSaved={(e) => { setEmp(e); if (e.status !== 'approved') toast('Changes to name, website or email need a quick re-approval.') }} />}
         </>
       )}
@@ -51,10 +52,14 @@ const CompanyForm = ({ emp, auth, onSaved, defaults = {} }) => {
   const [f, setF] = useState({ ...BLANK_CO, ...defaults, ...(emp ? Object.fromEntries(Object.keys(BLANK_CO).map((k) => [k, emp[k] || ''])) : {}) })
   const [busy, setBusy] = useState(false)
   const set = (p) => setF((x) => ({ ...x, ...p }))
+  const [noFee, setNoFee] = useState(false)
   const submit = async (e) => {
-    e.preventDefault(); setBusy(true)
+    e.preventDefault()
+    if (!emp && !noFee) return toast.error('Please confirm you will never charge workers a fee.')
+    setBusy(true)
     try {
-      const { data } = emp ? await api.put('/api/employers/me', f, auth) : await api.post('/api/employers', f, auth)
+      const body = emp ? f : { ...f, noFee: true }
+      const { data } = emp ? await api.put('/api/employers/me', body, auth) : await api.post('/api/employers', body, auth)
       if (!emp) trackEvent('employer_applied')
       onSaved(data.employer); toast.success(emp ? 'Saved' : 'Submitted for approval')
     } catch (err) { toast.error(errMsg(err, 'Could not save.')) } finally { setBusy(false) }
@@ -68,17 +73,21 @@ const CompanyForm = ({ emp, auth, onSaved, defaults = {} }) => {
         {emp?.status === 'rejected' && <p className='mt-2 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm px-3 py-2'>Not approved yet{emp.reviewNote ? `: ${emp.reviewNote}` : '.'} Fix the details below and submit again.</p>}
       </div>
       <div className='grid sm:grid-cols-2 gap-4'>
-        <Text label='Company name' required value={f.companyName} onChange={(v) => set({ companyName: v })} maxLength={150} />
-        <Text label='Company website' required value={f.website} onChange={(v) => set({ website: v })} placeholder='https://example.com' />
-        <Text label='Work email' required hint='Must be on your company domain (not Gmail or Yahoo).' type='email' value={f.workEmail} onChange={(v) => set({ workEmail: v })} placeholder='you@yourcompany.com' />
+        <Field label='Who is hiring?' required><select className={inputCls} value={f.employerType} onChange={(e) => set({ employerType: e.target.value })}>{EMPLOYER_TYPES.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></Field>
+        <Field label='Country' required><select className={inputCls} value={f.country} onChange={(e) => set({ country: e.target.value })}>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
+        <Text label='Business name' required value={f.companyName} onChange={(v) => set({ companyName: v })} maxLength={150} />
+        <Text label='Registration number' hint='GST, CIN, Companies House, CRA or local registration. Needed if you have no company website.' value={f.registrationNo} onChange={(v) => set({ registrationNo: v })} maxLength={60} />
+        <Text label='Website (optional)' value={f.website} onChange={(v) => set({ website: v })} placeholder='https://example.com' />
+        <Text label='Email' required hint='A company email is best. A Gmail or similar address is accepted only with a registration number.' type='email' value={f.workEmail} onChange={(v) => set({ workEmail: v })} placeholder='you@yourcompany.com' />
         <Text label='Your name' required value={f.contactName} onChange={(v) => set({ contactName: v })} maxLength={100} />
         <Text label='Your role' value={f.contactRole} onChange={(v) => set({ contactRole: v })} placeholder='e.g. HR Manager' maxLength={100} />
-        <Text label='Phone (optional)' value={f.phone} onChange={(v) => set({ phone: v })} maxLength={30} />
+        <Text label='Phone / WhatsApp' required type='tel' inputMode='tel' value={f.phone} onChange={(v) => set({ phone: v })} maxLength={30} />
         <Text label='Industry' value={f.industry} onChange={(v) => set({ industry: v })} placeholder='e.g. Software, Manufacturing' maxLength={100} />
         <Field label='Company size'><select className={inputCls} value={f.size} onChange={(e) => set({ size: e.target.value })}><option value=''>Select</option>{SIZES.map((s) => <option key={s} value={s}>{s} people</option>)}</select></Field>
       </div>
       <Text label='Location' value={f.location} onChange={(v) => set({ location: v })} placeholder='e.g. Pune, India' maxLength={150} />
-      <Area label='About your company' required hint={`${f.about.length}/1000. Job seekers read this before they decide to reply.`} rows={4} value={f.about} onChange={(v) => set({ about: v.slice(0, 1000) })} />
+      <Area label='About your company' required hint={`${f.about.length}/1000. Workers read this before they decide to reply.`} rows={4} value={f.about} onChange={(v) => set({ about: v.slice(0, 1000) })} />
+      {isNew ? <label className='flex items-start gap-2 text-sm text-slate-700 rounded-lg border border-amber-200 bg-amber-50 p-3'><input type='checkbox' className='mt-1' checked={noFee} onChange={(e) => setNoFee(e.target.checked)} /><span>I confirm that we will <strong>never ask workers to pay</strong> any fee, deposit or commission to get a job, and that every job we post is real. Breaking this gets the account removed.</span></label> : emp.noFeeConfirmedAt && <p className='text-xs text-slate-500'>No-fee pledge confirmed.</p>}
       <button disabled={busy} className='inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white rounded-full text-sm font-medium'>{busy && <BiLoaderAlt className='size-4 animate-spin' />}{isNew ? 'Submit for approval' : emp.status === 'rejected' ? 'Submit again' : 'Save changes'}</button>
     </form>
   )
@@ -98,7 +107,7 @@ const Waiting = ({ emp, auth, onSaved }) => {
 }
 
 const FindTalent = ({ auth, goRequests }) => {
-  const [q, setQ] = useState({ q: '', skills: '', location: '', level: '', remote: false, minExp: '' })
+  const [q, setQ] = useState({ q: '', skills: '', location: '', level: '', remote: false, minExp: '', category: '', country: '', availableNow: false, workRight: false, travel: false })
   const [data, setData] = useState({ talent: [], total: 0, pages: 1 })
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
@@ -107,7 +116,7 @@ const FindTalent = ({ auth, goRequests }) => {
 
   const load = useCallback(() => {
     setLoading(true)
-    const p = { ...applied, remote: applied.remote ? 1 : undefined, page }
+    const p = { ...applied, remote: applied.remote ? 1 : undefined, availableNow: applied.availableNow ? 1 : undefined, workRight: applied.workRight ? 1 : undefined, travel: applied.travel ? 1 : undefined, page }
     Object.keys(p).forEach((k) => (p[k] === '' || p[k] === undefined) && delete p[k])
     api.get('/api/employers/talent', { ...auth, params: p }).then(({ data }) => setData(data)).catch((e) => toast.error(errMsg(e, 'Could not search.'))).finally(() => setLoading(false))
   }, [applied, page])
@@ -116,16 +125,25 @@ const FindTalent = ({ auth, goRequests }) => {
 
   return (
     <div>
+      <div className='flex flex-wrap gap-2 mb-3' role='group' aria-label='Kind of worker'>
+        {[{ id: '', label: 'All workers' }, ...CATEGORIES].map((c) => <button key={c.id} type='button' aria-pressed={q.category === c.id} onClick={() => { const n = { ...q, category: c.id }; setQ(n); setApplied(n); setPage(1) }} className={`px-4 py-2 text-sm rounded-full border ${q.category === c.id ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon ? `${c.icon} ` : ''}{c.label}</button>)}
+      </div>
       <form onSubmit={submit} className='grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4'>
-        <label className='relative sm:col-span-2'><span className='sr-only'>Role or skill</span><LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' /><input value={q.q} onChange={(e) => setQ({ ...q, q: e.target.value })} placeholder='Role or keyword, e.g. react developer' className='w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white' /></label>
+        <label className='relative sm:col-span-2'><span className='sr-only'>Role or skill</span><LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' /><input value={q.q} onChange={(e) => setQ({ ...q, q: e.target.value })} placeholder='Job or keyword, e.g. electrician, welder, accountant' className='w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white' /></label>
         <input aria-label='Skills (comma separated)' value={q.skills} onChange={(e) => setQ({ ...q, skills: e.target.value })} placeholder='Must-have skills: React, Node.js' className='px-4 py-2.5 border border-slate-200 rounded-full text-sm bg-white' />
         <input aria-label='Location' value={q.location} onChange={(e) => setQ({ ...q, location: e.target.value })} placeholder='City' className='px-4 py-2.5 border border-slate-200 rounded-full text-sm bg-white' />
+        <select aria-label='Country' value={q.country} onChange={(e) => setQ({ ...q, country: e.target.value })} className='px-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white text-slate-600'><option value=''>Any country</option>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select>
         <select aria-label='Experience level' value={q.level} onChange={(e) => setQ({ ...q, level: e.target.value })} className='px-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white text-slate-600'><option value=''>Any level</option>{LEVELS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select>
         <input aria-label='Minimum years' type='number' min='0' value={q.minExp} onChange={(e) => setQ({ ...q, minExp: e.target.value })} placeholder='Min. years' className='px-4 py-2.5 border border-slate-200 rounded-full text-sm bg-white' />
-        <label className='inline-flex items-center gap-2 text-sm text-slate-600 px-2'><input type='checkbox' checked={q.remote} onChange={(e) => setQ({ ...q, remote: e.target.checked })} /> Open to remote</label>
+        <div className='flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600 px-2 items-center sm:col-span-2'>
+          <label className='inline-flex items-center gap-2'><input type='checkbox' checked={q.availableNow} onChange={(e) => setQ({ ...q, availableNow: e.target.checked })} /> Can start now</label>
+          <label className='inline-flex items-center gap-2'><input type='checkbox' checked={q.workRight} onChange={(e) => setQ({ ...q, workRight: e.target.checked })} /> Has right to work</label>
+          <label className='inline-flex items-center gap-2'><input type='checkbox' checked={q.travel} onChange={(e) => setQ({ ...q, travel: e.target.checked })} /> Can travel</label>
+          <label className='inline-flex items-center gap-2'><input type='checkbox' checked={q.remote} onChange={(e) => setQ({ ...q, remote: e.target.checked })} /> Remote</label>
+        </div>
         <button className='px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium'>Search</button>
       </form>
-      <p className='text-xs text-slate-500 mb-4'>Candidates are anonymous until they accept your request. Contact details are never shown before that.</p>
+      <p className='text-xs text-slate-500 mb-4'>Workers are anonymous until they accept your request. Contact details are never shown before that.</p>
       {loading ? <p className='text-center text-slate-400 py-10'>Searching…</p> : data.talent.length === 0 ? <p className='text-center text-slate-400 py-10'>No available candidates match. Try fewer filters.</p> : (
         <>
           <p className='text-sm text-slate-400 mb-3'>{data.total} available candidate{data.total === 1 ? '' : 's'}</p>
@@ -190,6 +208,7 @@ const Requests = ({ auth }) => {
             <p className='mt-1 inline-flex items-center gap-1.5'><LuUser className='size-4' />{r.contact.name}</p>
             {r.contact.email && <p className='inline-flex items-center gap-1.5 ml-4'><LuMail className='size-4' /><a href={`mailto:${r.contact.email}`} className='underline'>{r.contact.email}</a></p>}
             {r.contact.phone && <p className='inline-flex items-center gap-1.5 ml-4'><LuPhone className='size-4' />{r.contact.phone}</p>}
+            {r.contact.whatsapp && r.contact.phone && <a href={`https://wa.me/${String(r.contact.phone).replace(/\D/g, '')}`} target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-1.5 ml-4 underline'><LuMessageCircle className='size-4' />WhatsApp</a>}
             {r.reply && <p className='mt-2 text-green-800'>"{r.reply}"</p>}
           </div>
         )}
@@ -200,9 +219,9 @@ const Requests = ({ auth }) => {
   )
 }
 
-const BLANK_JOB = { title: '', location: '', remote: false, employmentType: 'full-time', department: '', salary: '', description: '', applyUrl: '', applyEmail: '' }
+const BLANK_JOB = { category: 'corporate', country: 'IN', title: '', location: '', remote: false, employmentType: 'full-time', department: '', payMin: '', payMax: '', payPer: 'year', currency: 'INR', openings: '', perks: [], description: '', applyUrl: '', applyEmail: '' }
 
-const MyJobs = ({ auth }) => {
+const MyJobs = ({ auth, country }) => {
   const [jobs, setJobs] = useState(null)
   const [edit, setEdit] = useState(null)   // null | {} (new) | job
   const load = () => api.get('/api/employers/jobs', auth).then(({ data }) => setJobs(data.jobs)).catch(() => setJobs([]))
@@ -218,7 +237,7 @@ const MyJobs = ({ auth }) => {
         <ul className='space-y-3'>{jobs.map((j) => (
           <li key={j.id} className='rounded-xl border border-slate-200 bg-white p-5'>
             <div className='flex flex-wrap items-start justify-between gap-3'>
-              <div><p className='font-semibold text-slate-800'>{j.title}</p><p className='text-xs text-slate-500'>{[j.location, j.employmentType, j.salary].filter(Boolean).join(' · ')}</p></div>
+              <div><p className='font-semibold text-slate-800'>{j.title}</p><p className='text-xs text-slate-500'>{[catShort(j.category), j.location, j.employmentType, j.salary].filter(Boolean).join(' · ')}</p></div>
               <div className='flex items-center gap-2'><StatusBadge status={j.reviewStatus}>{j.reviewStatus === 'approved' ? (j.active ? 'Live' : 'Closed') : j.reviewStatus === 'pending' ? 'In review' : 'Needs changes'}</StatusBadge></div>
             </div>
             {j.reviewStatus === 'rejected' && j.reviewNote && <p className='text-sm text-red-700 mt-2'>Reviewer note: {j.reviewNote}</p>}
@@ -231,14 +250,14 @@ const MyJobs = ({ auth }) => {
           </li>
         ))}</ul>
       )}
-      {edit && <JobModal job={edit} auth={auth} onClose={() => setEdit(null)} onSaved={() => { setEdit(null); load() }} />}
+      {edit && <JobModal job={edit} country={country} auth={auth} onClose={() => setEdit(null)} onSaved={() => { setEdit(null); load() }} />}
     </div>
   )
 }
 
-const JobModal = ({ job, auth, onClose, onSaved }) => {
+const JobModal = ({ job, country, auth, onClose, onSaved }) => {
   const editing = Boolean(job.id)
-  const [f, setF] = useState({ ...BLANK_JOB, ...Object.fromEntries(Object.keys(BLANK_JOB).map((k) => [k, job[k] ?? BLANK_JOB[k]])), applyUrl: job.applyUrl?.startsWith('mailto:') ? '' : job.applyUrl || '', applyEmail: job.applyUrl?.startsWith('mailto:') ? job.applyUrl.slice(7) : '' })
+  const [f, setF] = useState({ ...BLANK_JOB, ...(country ? { country, currency: currencyFor(country) } : {}), ...Object.fromEntries(Object.keys(BLANK_JOB).filter((k) => job[k] !== undefined && job[k] !== null).map((k) => [k, job[k]])), applyUrl: job.applyUrl?.startsWith('mailto:') ? '' : job.applyUrl || '', applyEmail: job.applyUrl?.startsWith('mailto:') ? job.applyUrl.slice(7) : '' })
   const [busy, setBusy] = useState(false)
   const set = (p) => setF((x) => ({ ...x, ...p }))
   const save = async (e) => {
@@ -249,17 +268,31 @@ const JobModal = ({ job, auth, onClose, onSaved }) => {
   return (
     <Modal title={editing ? 'Edit job' : 'Post a job'} onClose={onClose} wide>
       <form onSubmit={save} className='space-y-4'>
-        <Text label='Job title' required value={f.title} onChange={(v) => set({ title: v })} maxLength={200} placeholder='e.g. React Developer' />
+        <fieldset><legend className='block text-sm font-medium text-slate-700 mb-1.5'>Kind of work</legend>
+          <div className='flex flex-wrap gap-2'>{CATEGORIES.map((c) => <button key={c.id} type='button' aria-pressed={f.category === c.id} onClick={() => set({ category: c.id, payPer: defaultPayPer(c.id), employmentType: c.id === 'daily_wage' ? 'daily-wage' : f.employmentType })} className={`px-3.5 py-2 text-sm rounded-full border ${f.category === c.id ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon} {c.label}</button>)}</div></fieldset>
+        <Text label='Job title' required value={f.title} onChange={(v) => set({ title: v })} maxLength={200} placeholder={isLabour(f.category) ? 'e.g. Electrician for factory maintenance' : 'e.g. Accounts Executive'} />
         <div className='grid sm:grid-cols-2 gap-4'>
+          <Field label='Country' required><select className={inputCls} value={f.country} onChange={(e) => set({ country: e.target.value, currency: currencyFor(e.target.value) })}>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
           <Text label='Location' value={f.location} onChange={(v) => set({ location: v })} placeholder='e.g. Pune' maxLength={200} />
-          <Field label='Job type'><select className={inputCls} value={f.employmentType} onChange={(e) => set({ employmentType: e.target.value })}>{[...JOB_TYPES, ['temporary', 'Temporary']].map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></Field>
-          <Text label='Salary (optional)' value={f.salary} onChange={(v) => set({ salary: v })} placeholder='e.g. 8-12 LPA' maxLength={120} />
-          <Text label='Department (optional)' value={f.department} onChange={(v) => set({ department: v })} maxLength={120} />
+          <Field label='Job type'><select className={inputCls} value={f.employmentType} onChange={(e) => set({ employmentType: e.target.value })}>{JOB_TYPES_ALL.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></Field>
+          <Text label='Openings' type='number' inputMode='numeric' value={f.openings} onChange={(v) => set({ openings: v })} placeholder='How many people?' />
+          {!isLabour(f.category) && <Text label='Department (optional)' value={f.department} onChange={(v) => set({ department: v })} maxLength={120} />}
         </div>
+        <fieldset><legend className='block text-sm font-medium text-slate-700 mb-1.5'>Pay (optional, but jobs with pay get more replies)</legend>
+          <div className='grid grid-cols-2 sm:grid-cols-4 gap-2'>
+            <input aria-label='Minimum pay' type='number' inputMode='decimal' min='0' className={inputCls} value={f.payMin} onChange={(e) => set({ payMin: e.target.value })} placeholder='From' />
+            <input aria-label='Maximum pay' type='number' inputMode='decimal' min='0' className={inputCls} value={f.payMax} onChange={(e) => set({ payMax: e.target.value })} placeholder='To' />
+            <select aria-label='Currency' className={inputCls} value={f.currency} onChange={(e) => set({ currency: e.target.value })}>{CURRENCIES.map((c) => <option key={c}>{c}</option>)}</select>
+            <select aria-label='Pay period' className={inputCls} value={f.payPer} onChange={(e) => set({ payPer: e.target.value })}>{PAY_PER.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select>
+          </div>
+          {(f.payMin || f.payMax) && <p className='text-xs text-slate-500 mt-1'>Workers will see: {payText({ payMin: Number(f.payMin), payMax: Number(f.payMax), currency: f.currency, payPer: f.payPer })}</p>}
+        </fieldset>
+        {isLabour(f.category) && <fieldset><legend className='block text-sm font-medium text-slate-700 mb-1.5'>What do you provide?</legend>
+          <div className='flex flex-wrap gap-2'>{PERKS.map((p) => { const on = f.perks.includes(p); return <button key={p} type='button' aria-pressed={on} onClick={() => set({ perks: on ? f.perks.filter((x) => x !== p) : [...f.perks, p] })} className={`px-3 py-1.5 text-sm rounded-full border ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{p}</button> })}</div></fieldset>}
         <label className='inline-flex items-center gap-2 text-sm text-slate-700'><input type='checkbox' checked={f.remote} onChange={(e) => set({ remote: e.target.checked })} /> Remote friendly</label>
-        <Area label='Description' required rows={9} hint='Duties, requirements and how to apply. Start a line with "- " for bullet points. At least 80 characters.' value={f.description} onChange={(v) => set({ description: v })} />
+        <Area label='Description' required rows={9} hint={`Duties, hours, place of work and how to apply. Start a line with "- " for bullet points. At least ${isLabour(f.category) ? 30 : 80} characters. Do not ask workers for money.`} value={f.description} onChange={(v) => set({ description: v })} />
         <div className='grid sm:grid-cols-2 gap-4'>
-          <Text label='Apply link' hint='Your careers page or form' value={f.applyUrl} onChange={(v) => set({ applyUrl: v })} placeholder='https://...' />
+          <Text label='Apply link' hint='Your careers page or form (or use email)' value={f.applyUrl} onChange={(v) => set({ applyUrl: v })} placeholder='https://...' />
           <Text label='...or apply email' type='email' value={f.applyEmail} onChange={(v) => set({ applyEmail: v })} placeholder='jobs@yourcompany.com' />
         </div>
         <p className='text-xs text-slate-500'>Every job is reviewed before it goes live. Editing a live job sends it for review again.</p>

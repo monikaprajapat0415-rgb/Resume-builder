@@ -1,4 +1,4 @@
-import { jobInsights } from './jobInsights.js';
+import { jobInsights, labourInsights } from './jobInsights.js';
 import { SITE_NAME, siteUrl, escapeHtml, seoTitle } from './blogSeo.js';
 
 const crumbHtml = (items) => `<nav aria-label="Breadcrumb">${items.map((b, i) => (b.href ? `<a href="${escapeHtml(b.href)}">${escapeHtml(b.name)}</a>` : escapeHtml(b.name)) + (i < items.length - 1 ? ' › ' : '')).join('')}</nav>`;
@@ -22,7 +22,7 @@ export const textToHtml = (text) => {
     }).join('');
 };
 
-const TYPE_LD = { 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY' };
+const TYPE_LD = { 'daily-wage': 'PER_DIEM', 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY' };
 
 export const jobPostingLd = (job) => {
     const ld = {
@@ -42,6 +42,12 @@ export const jobPostingLd = (job) => {
         if (job.country) address.addressCountry = job.country;
         ld.jobLocation = { '@type': 'Place', address };
     }
+    if (!job.location && /^[A-Z]{2}$/.test(job.country || '') && job.country !== 'XX') ld.jobLocation = { '@type': 'Place', address: { '@type': 'PostalAddress', addressCountry: job.country } };
+    if ((job.payMin > 0 || job.payMax > 0) && job.currency) {
+        const unit = { day: 'DAY', hour: 'HOUR', week: 'WEEK', month: 'MONTH', year: 'YEAR' }[job.payPer];
+        if (unit) ld.baseSalary = { '@type': 'MonetaryAmount', currency: job.currency, value: { '@type': 'QuantitativeValue', minValue: job.payMin || job.payMax, maxValue: job.payMax || job.payMin, unitText: unit } };
+    }
+    if (job.openings > 1) ld.totalJobOpenings = job.openings;
     if (job.remote) {
         ld.jobLocationType = 'TELECOMMUTE';
         if (job.country) ld.applicantLocationRequirements = { '@type': 'Country', name: job.country };
@@ -57,13 +63,13 @@ const breadcrumbLd = (items) => ({
 export const jobsIndexHtml = ({ jobs, total }) => `
 <section class="ssr-article">
   ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs' }])}
-  <h1>Latest jobs from top companies</h1>
-  <p>${total} open jobs from company career pages. Apply on each employer's own site.</p>
+  <h1>Jobs for office, factory and skilled workers</h1>
+  <p>${total} open jobs in India, the UK, Canada and Africa: corporate, factory, warehouse, skilled trades and daily-wage work. Apply directly with the employer.</p>
   <ul>${jobs.map((j) => `<li><h2><a href="/jobs/${escapeHtml(j.slug)}">${escapeHtml(j.title)}</a></h2><p>${escapeHtml(j.company)}${j.location ? ` · ${escapeHtml(j.location)}` : ''}${j.remote ? ' · Remote' : ''}${j.employmentType ? ` · ${escapeHtml(j.employmentType)}` : ''}</p></li>`).join('')}</ul>
 </section>`;
 
 const insightsHtml = (job) => {
-    const i = jobInsights(job);
+    const i = job.category && job.category !== 'corporate' ? labourInsights(job) : jobInsights(job);
     return `<section><h2>About this role</h2><p>${escapeHtml(i.summary)}</p>${i.skills.length ? `<h3>Skills mentioned</h3><ul>${i.skills.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul>` : ''}<h3>How to prepare your application</h3><ul>${i.tips.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul><h3>Common questions</h3>${i.faqs.map((f) => `<h4>${escapeHtml(f.q)}</h4><p>${escapeHtml(f.a)}</p>`).join('')}</section>`;
 };
 
@@ -90,9 +96,9 @@ export const jobSeo = (job) => {
 };
 
 export const jobsIndexSeo = () => ({
-    fullTitle: seoTitle('Latest jobs from top companies'),
-    description: 'Browse open jobs collected from company career pages. Search by role, company, location or remote, then apply on the employer site.',
-    canonical: `${siteUrl()}/jobs`, robots: 'index, follow', type: 'website', keywords: 'jobs, careers, job openings, remote jobs, software jobs India',
+    fullTitle: seoTitle('Jobs for office, factory and skilled workers'),
+    description: 'Find corporate, factory, warehouse, skilled trade and daily-wage jobs in India, the UK, Canada and Africa. Workers can list themselves as available and employers can contact them.',
+    canonical: `${siteUrl()}/jobs`, robots: 'index, follow', type: 'website', keywords: 'jobs, factory jobs, skilled trade jobs, daily wage jobs, electrician jobs, warehouse jobs, jobs in India, jobs in UK, jobs in Canada, jobs in Africa',
     jsonLd: [breadcrumbLd([{ name: 'Home', url: `${siteUrl()}/` }, { name: 'Jobs', url: `${siteUrl()}/jobs` }])],
 });
 

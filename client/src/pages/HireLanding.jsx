@@ -6,11 +6,12 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 
 const FAQS = [
-  ['Who can see my profile if I mark myself as available?', 'Only companies that we have approved. They see your role, skills, experience, city, expected salary and notice period. Your name, email and phone number stay hidden until you accept a request.'],
-  ['How do companies contact me?', 'A company writes you a message through the site and you get an email. You can accept, decline, or decline and block that company. If you accept you choose exactly which details to share.'],
-  ['Can I hide my profile again?', 'Yes. Switch "Available to work" off at any time and you disappear from company searches, or remove your profile completely.'],
-  ['How do you check companies?', 'Every company applies with a work email on its own domain and its website. An admin approves it before it can search candidates or post jobs, and every job post is reviewed before it goes live.'],
-  ['Is it free?', 'Creating an account, listing yourself as available and answering requests is free for job seekers.'],
+  ['Who is this for?', 'Office and corporate staff, factory and plant workers, skilled tradespeople such as electricians, welders, plumbers and drivers, and daily wage workers. It works for India, the United Kingdom, Canada and African countries including Nigeria, Kenya, Ghana and South Africa.'],
+  ['Who can see my profile if I mark myself as available?', 'Only employers we approved. They see your trade, experience, area, expected pay and when you can start. Your name, email and phone number stay hidden until you accept a request.'],
+  ['Do I have to pay anything?', 'No. Listing yourself and answering employers is free. Employers must promise never to charge workers, and you should never pay anyone to get a job. Report any job that asks for money.'],
+  ['How do employers contact me?', 'An approved employer sends you a message through the site and you get an email. You can accept, decline, or decline and block them. If you accept you choose whether to share your phone, WhatsApp and email.'],
+  ['How do you check employers?', 'Every employer gives a phone number and either a company website or a registration number. A personal email such as Gmail is accepted only with a registration number. An admin approves each employer, and each job post is reviewed before it goes live.'],
+  ['Can I hide my profile again?', 'Yes. Switch "Available to work" off at any time, or remove your profile completely.'],
 ]
 
 const Step = ({ n, title, children }) => (
@@ -19,39 +20,39 @@ const Step = ({ n, title, children }) => (
 
 const HireLanding = () => (
   <div>
-    <SEO title='Hire talent or get hired: open to work profiles' description='Job seekers can mark themselves available to work and companies can contact them, with contact details kept private until the candidate accepts. Companies are approved before they can search.' keywords='hire developers India, open to work, find candidates, hire freshers, job seekers available' path='/hire' canonical='https://primeresumeai.com/hire'
+    <SEO title='Hire workers or find work: office, factory and skilled labour' description='Workers in India, the UK, Canada and Africa can mark themselves available for office, factory, trade and daily wage work. Approved employers contact them, and contact details stay private until the worker accepts.' keywords='hire electrician India, factory workers, daily wage workers, skilled labour, hire staff UK, jobs Nigeria, jobs Kenya, available to work' path='/hire' canonical='https://primeresumeai.com/hire'
       structuredData={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }} />
     <NavBar />
     <section className='max-w-5xl mx-auto px-4 py-14'>
       <div className='text-center max-w-2xl mx-auto'>
-        <h1 className='text-4xl font-semibold text-slate-800'>Companies hire. Job seekers get found.</h1>
-        <p className='text-slate-500 mt-4'>Mark yourself available to work and let approved companies reach out, or find candidates who are ready to start. Contact details stay private until the candidate says yes.</p>
+        <h1 className='text-4xl font-semibold text-slate-800'>Hire workers. Get found for work.</h1>
+        <p className='text-slate-500 mt-4'>Office staff, factory workers, skilled trades and daily wage workers in India, the UK, Canada and Africa. Say you are available and approved employers reach out, or find workers ready to start. Contact details stay private until the worker says yes.</p>
       </div>
       <div className='grid md:grid-cols-2 gap-6 mt-10'>
         <div className='rounded-2xl border border-slate-200 bg-white p-6'>
           <LuUserCheck className='size-7 text-brand-600' />
           <h2 className='text-xl font-semibold text-slate-800 mt-3'>I am looking for work</h2>
           <ol className='space-y-4 mt-4'>
-            <Step n='1' title='Create a short profile'>Your role, skills, experience, city and notice period. No name or contact details are shown.</Step>
-            <Step n='2' title='Switch on "Available to work"'>Approved companies can find you. Switch it off any time.</Step>
-            <Step n='3' title='Reply to the ones you like'>Accept to share your email or phone, decline, or block a company.</Step>
+            <Step n='1' title='Choose your kind of work'>Office, factory, skilled trade or daily wage. Add your job, experience, area and expected pay. No name or phone number is shown.</Step>
+            <Step n='2' title='Switch on "Available to work"'>Approved employers can find you, and you can say you can start now. Switch it off any time.</Step>
+            <Step n='3' title='Reply to the ones you like'>Accept to share your phone, WhatsApp or email, decline, or block an employer.</Step>
           </ol>
-          <Link to='/app/open-to-work' className='mt-6 inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium'>Make me available <LuArrowRight className='size-4' /></Link>
+          <Link to='/app/open-to-work' className='mt-6 inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium'>I am available for work <LuArrowRight className='size-4' /></Link>
         </div>
         <div className='rounded-2xl border border-slate-200 bg-white p-6'>
           <LuBuilding2 className='size-7 text-brand-600' />
           <h2 className='text-xl font-semibold text-slate-800 mt-3'>I am hiring</h2>
           <ol className='space-y-4 mt-4'>
-            <Step n='1' title='Apply with your work email'>Tell us about your company. We approve every company before it can see candidates.</Step>
-            <Step n='2' title='Search available candidates'>Filter by skills, level, location and notice period.</Step>
-            <Step n='3' title='Send a request and post jobs'>Candidates who accept share their contact details. Your jobs also appear on our Jobs page.</Step>
+            <Step n='1' title='Apply as an employer'>Tell us about your business, with a phone number and a website or registration number. We approve every employer first.</Step>
+            <Step n='2' title='Search available workers'>Filter by kind of work, country, trade, experience and who can start now.</Step>
+            <Step n='3' title='Send a request and post jobs'>Workers who accept share their contact details. Your jobs also appear on our Jobs page.</Step>
           </ol>
           <Link to='/app/hire' className='mt-6 inline-flex items-center gap-2 px-6 py-2.5 border border-brand-600 text-brand-700 hover:bg-brand-50 rounded-full text-sm font-medium'>Start hiring <LuArrowRight className='size-4' /></Link>
         </div>
       </div>
 
       <div className='grid sm:grid-cols-3 gap-4 mt-10'>
-        {[[LuEyeOff, 'Private by default', 'Names, emails and phone numbers are hidden until a candidate accepts.'], [LuBadgeCheck, 'Approved companies only', 'Work email and website are checked before a company can search.'], [LuShieldCheck, 'You stay in control', 'Decline, block or hide your profile whenever you like.']].map(([I, t, d]) => (
+        {[[LuEyeOff, 'Private by default', 'Names, emails and phone numbers are hidden until a worker accepts.'], [LuBadgeCheck, 'Approved employers only', 'Phone, website or registration number are checked before an employer can search.'], [LuShieldCheck, 'No fees, ever', 'Employers promise never to charge workers. Report any job that asks for money.']].map(([I, t, d]) => (
           <div key={t} className='rounded-xl bg-slate-50 p-5'><I className='size-5 text-brand-600' /><p className='font-medium text-slate-800 mt-2'>{t}</p><p className='text-sm text-slate-600 mt-1'>{d}</p></div>
         ))}
       </div>

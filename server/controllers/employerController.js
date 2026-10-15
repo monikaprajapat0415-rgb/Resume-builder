@@ -8,10 +8,11 @@ import { isDisposableEmail } from '../utils/disposableEmail.js'
 import { isFreeEmail, domainMatches, hostOf } from '../utils/freeEmail.js'
 import { slugify, isSafeUrl } from '../utils/slugify.js'
 import { notify, notifyAdmin, escapeHtml, CLIENT_URL } from '../utils/notify.js'
+import { CATEGORIES, COUNTRY_CODES, CURRENCIES, PAY_PER, EMPLOYER_TYPES, JOB_TYPES, formatPay } from '../utils/workTaxonomy.js'
 
 const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const SIZES = ['1-10', '11-50', '51-200', '201-1000', '1000+']
-const TYPES = ['full-time', 'part-time', 'contract', 'internship', 'temporary']
+const TYPES = JOB_TYPES
 const MAX_OPEN_JOBS = 20, DAILY_JOBS = 10
 const idOk = (id) => /^[a-f\d]{24}$/i.test(String(id))
 const str = (v, n) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, n)
@@ -27,29 +28,40 @@ export const needEmployer = async (req, res, next) => {
     } catch (e) { return res.status(500).json({ message: 'Something went wrong.' }) }
 }
 
-const empView = (e) => ({ id: e._id, companyName: e.companyName, website: e.website, workEmail: e.workEmail, contactName: e.contactName, contactRole: e.contactRole, phone: e.phone, industry: e.industry, size: e.size, location: e.location, about: e.about, status: e.status, reviewNote: e.reviewNote, createdAt: e.createdAt })
+const empView = (e) => ({ id: e._id, employerType: e.employerType, country: e.country, registrationNo: e.registrationNo, noFeeConfirmedAt: e.noFeeConfirmedAt, companyName: e.companyName, website: e.website, workEmail: e.workEmail, contactName: e.contactName, contactRole: e.contactRole, phone: e.phone, industry: e.industry, size: e.size, location: e.location, about: e.about, status: e.status, reviewNote: e.reviewNote, createdAt: e.createdAt })
 
-const readCompany = (b, partial) => {
+const readCompany = (b, partial, existing) => {
     const out = {}
     const need = (k, label, min = 2, max = 150) => { if (!partial || b[k] !== undefined) { out[k] = str(b[k], max); if (out[k].length < min) throw new Error(`${label} is required.`) } }
-    need('companyName', 'Company name'); need('contactName', 'Your name', 2, 100)
+    need('companyName', 'Business name'); need('contactName', 'Your name', 2, 100)
+    if (!partial || b.employerType !== undefined) { const t = b.employerType || 'company'; if (!EMPLOYER_TYPES.includes(t)) throw new Error('Choose what kind of employer you are.'); out.employerType = t }
+    if (!partial || b.country !== undefined) { const c = String(b.country || 'IN').toUpperCase(); if (!COUNTRY_CODES.includes(c)) throw new Error('Choose your country.'); out.country = c }
     if (!partial || b.website !== undefined) {
-        let w = str(b.website, 300); if (w && !/^https?:\/\//i.test(w)) w = 'https://' + w
-        if (!hostOf(w) || !hostOf(w).includes('.') || !isSafeUrl(w)) throw new Error('Enter your company website, e.g. https://example.com')
+        let w = str(b.website, 300)
+        if (w) {
+            if (!/^https?:\/\//i.test(w)) w = 'https://' + w
+            if (!hostOf(w) || !hostOf(w).includes('.') || !isSafeUrl(w)) throw new Error('Enter a valid website, e.g. https://example.com, or leave it empty.')
+        }
         out.website = w
     }
+    if (b.registrationNo !== undefined) out.registrationNo = str(b.registrationNo, 60)
     if (!partial || b.workEmail !== undefined) {
         const e = str(b.workEmail, 200).toLowerCase()
-        if (!EMAIL_RX.test(e)) throw new Error('Enter a valid work email.')
-        if (isFreeEmail(e) || isDisposableEmail(e)) throw new Error('Use your company email address (not Gmail, Yahoo, etc.) so we can confirm you work there.')
+        if (!EMAIL_RX.test(e)) throw new Error('Enter a valid email address.')
+        if (isDisposableEmail(e)) throw new Error('Temporary email addresses are not accepted. Please use your real email.')
         out.workEmail = e
     }
     if (b.contactRole !== undefined) out.contactRole = str(b.contactRole, 100)
-    if (b.phone !== undefined) { const p = str(b.phone, 30); if (p && !/^[+\d][\d\s().-]{6,24}$/.test(p)) throw new Error('Enter a valid phone number or leave it empty.'); out.phone = p }
+    if (!partial || b.phone !== undefined) { const p = str(b.phone, 30); if (!/^[+\d][\d\s().-]{6,24}$/.test(p)) throw new Error('Enter your phone number so we can reach you if needed.'); out.phone = p }
     if (b.industry !== undefined) out.industry = str(b.industry, 100)
-    if (b.size !== undefined) { if (b.size && !SIZES.includes(b.size)) throw new Error('Choose a company size.'); out.size = b.size || '' }
+    if (b.size !== undefined) { if (b.size && !SIZES.includes(b.size)) throw new Error('Choose a size.'); out.size = b.size || '' }
     if (b.location !== undefined) out.location = str(b.location, 150)
-    if (b.about !== undefined) { out.about = String(b.about || '').trim().slice(0, 1000); if (!partial && out.about.length < 30) throw new Error('Tell job seekers a little about your company (at least 30 characters).') }
+    if (b.about !== undefined) { out.about = String(b.about || '').trim().slice(0, 1000); if (!partial && out.about.length < 30) throw new Error('Tell workers a little about your business (at least 30 characters).') }
+    // identity checks on the final values (merge with what is already saved when updating)
+    const final = { website: out.website ?? existing?.website ?? '', registrationNo: out.registrationNo ?? existing?.registrationNo ?? '', workEmail: out.workEmail ?? existing?.workEmail ?? '' }
+    if (!final.website && !final.registrationNo) throw new Error('Add your website or your business registration number (GST, company number, trade licence) so we can verify you.')
+    if (isFreeEmail(final.workEmail) && !final.registrationNo) throw new Error('You are using a personal email (like Gmail). Please add your business registration number, or use an email on your company website.')
+    if (!partial && b.noFee !== true) throw new Error('Please confirm that you will never charge workers any fee to get a job.')
     return out
 }
 
@@ -62,8 +74,8 @@ export const applyEmployer = async (req, res) => {
         if (await Employer.findOne({ userId: req.userId })) return res.status(409).json({ message: 'You already have a company profile.' })
         let data
         try { data = readCompany(req.body || {}, false) } catch (e) { return res.status(400).json({ message: e.message }) }
-        const emp = await Employer.create({ userId: req.userId, ...data })
-        notifyAdmin(`New company waiting for approval: ${emp.companyName}`, `<p><strong>${escapeHtml(emp.companyName)}</strong> (${escapeHtml(emp.website)}) applied to hire.</p><p>Work email: ${escapeHtml(emp.workEmail)} ${domainMatches(emp.workEmail, emp.website) ? '(matches website domain)' : '(does NOT match the website domain)'}</p><p>Review it in Admin &gt; Hiring.</p>`)
+        const emp = await Employer.create({ userId: req.userId, ...data, noFeeConfirmedAt: new Date() })
+        notifyAdmin(`New company waiting for approval: ${emp.companyName}`, `<p><strong>${escapeHtml(emp.companyName)}</strong> (${escapeHtml(emp.website || emp.registrationNo || 'no website')}) applied to hire (${escapeHtml(emp.employerType)}, ${escapeHtml(emp.country)}).</p><p>Email: ${escapeHtml(emp.workEmail)} ${emp.website ? (domainMatches(emp.workEmail, emp.website) ? '(matches website domain)' : '(does NOT match the website domain)') : ''}</p><p>Review it in Admin &gt; Hiring.</p>`)
         return res.status(201).json({ employer: empView(emp) })
     } catch (e) { return res.status(500).json({ message: 'Could not submit your company.' }) }
 }
@@ -84,8 +96,8 @@ export const updateEmployer = async (req, res) => {
         if (!emp) return res.status(404).json({ message: 'Company not found' })
         if (emp.status === 'suspended') return res.status(403).json({ message: 'This company is suspended. Contact us for help.' })
         let data
-        try { data = readCompany(req.body || {}, true) } catch (e) { return res.status(400).json({ message: e.message }) }
-        const sensitive = ['companyName', 'website', 'workEmail'].some((k) => data[k] !== undefined && data[k] !== emp[k])
+        try { data = readCompany(req.body || {}, true, emp) } catch (e) { return res.status(400).json({ message: e.message }) }
+        const sensitive = ['companyName', 'website', 'workEmail', 'registrationNo', 'employerType', 'country'].some((k) => data[k] !== undefined && data[k] !== emp[k])
         Object.assign(emp, data)
         if (emp.status === 'rejected' || (emp.status === 'approved' && sensitive)) { emp.status = 'pending'; emp.reviewNote = '' }
         await emp.save()
@@ -96,17 +108,33 @@ export const updateEmployer = async (req, res) => {
 
 // ---------------- Company job posts ----------------
 
-const jobView = (j) => ({ id: j._id, slug: j.slug, title: j.title, location: j.location, remote: j.remote, employmentType: j.employmentType, department: j.department, salary: j.salary, description: j.description, applyUrl: j.applyUrl, active: j.active, reviewStatus: j.reviewStatus, reviewNote: j.reviewNote, postedAt: j.postedAt, createdAt: j.createdAt })
+const jobView = (j) => ({ id: j._id, category: j.category, country: j.country, payMin: j.payMin, payMax: j.payMax, currency: j.currency, payPer: j.payPer, openings: j.openings, perks: j.perks || [], slug: j.slug, title: j.title, location: j.location, remote: j.remote, employmentType: j.employmentType, department: j.department, salary: j.salary, description: j.description, applyUrl: j.applyUrl, active: j.active, reviewStatus: j.reviewStatus, reviewNote: j.reviewNote, postedAt: j.postedAt, createdAt: j.createdAt })
 
 const readJob = (b, company) => {
     const title = str(b.title, 200); if (title.length < 3) throw new Error('Enter the job title.')
-    const description = String(b.description || '').replace(/\r/g, '').trim().slice(0, 20000); if (description.length < 80) throw new Error('Describe the role in at least 80 characters: duties, requirements, how to apply.')
+    const category = b.category || 'corporate'; if (!CATEGORIES.includes(category)) throw new Error('Choose the kind of work.')
+    const description = String(b.description || '').replace(/\r/g, '').trim().slice(0, 20000)
+    if (description.length < (category === 'corporate' ? 80 : 30)) throw new Error(category === 'corporate' ? 'Describe the role in at least 80 characters: duties, requirements, how to apply.' : 'Describe the work: what the person will do, hours, and where. At least 30 characters.')
     const employmentType = str(b.employmentType, 40).toLowerCase(); if (employmentType && !TYPES.includes(employmentType)) throw new Error('Choose a job type.')
+    const country = String(b.country || company.country || 'IN').toUpperCase(); if (!COUNTRY_CODES.includes(country)) throw new Error('Choose the country of the job.')
     let applyUrl = str(b.applyUrl, 1000); const applyEmail = str(b.applyEmail, 200)
     if (applyUrl) { if (!/^https?:\/\//i.test(applyUrl)) applyUrl = 'https://' + applyUrl; if (!hostOf(applyUrl).includes('.')) throw new Error('Enter a valid apply link.') }
     else if (applyEmail) { if (!EMAIL_RX.test(applyEmail)) throw new Error('Enter a valid apply email.'); applyUrl = `mailto:${applyEmail}` }
     else throw new Error('Add an apply link or an apply email.')
-    return { title, description, employmentType, applyUrl, location: str(b.location, 200), remote: Boolean(b.remote), department: str(b.department, 120), salary: str(b.salary, 120), company: company.companyName }
+    const num = (v) => (v === '' || v === undefined || v === null ? undefined : Number(v))
+    let payMin = num(b.payMin), payMax = num(b.payMax)
+    for (const v of [payMin, payMax]) if (v !== undefined && !(v >= 0 && v <= 1e9)) throw new Error('Pay must be a number.')
+    if (payMin > payMax) [payMin, payMax] = [payMax, payMin]
+    let currency = '', payPer = ''
+    if (payMin || payMax) {
+        currency = String(b.currency || '').toUpperCase(); payPer = String(b.payPer || '')
+        if (!CURRENCIES.includes(currency)) throw new Error('Choose the pay currency.')
+        if (!PAY_PER.includes(payPer)) throw new Error('Choose how the pay is counted: per day, hour, week, month or year.')
+    }
+    const openings = num(b.openings); if (openings !== undefined && !(openings >= 1 && openings <= 1000)) throw new Error('Number of openings must be between 1 and 1000.')
+    const perks = [...new Set((Array.isArray(b.perks) ? b.perks : []).map((x) => str(x, 40)).filter(Boolean))].slice(0, 10)
+    const salary = payMin || payMax ? formatPay({ payMin, payMax, currency, payPer }) : str(b.salary, 120)
+    return { title, description, category, country, employmentType, applyUrl, location: str(b.location, 200), remote: Boolean(b.remote), department: str(b.department, 120), salary, payMin: payMin || undefined, payMax: payMax || undefined, currency, payPer, openings: openings ? Math.round(openings) : undefined, perks, company: company.companyName }
 }
 
 // GET /api/employers/jobs
@@ -197,7 +225,7 @@ export const adminEmployers = async (req, res) => {
             ContactRequest.aggregate([{ $match: { employerId: { $in: rows.map((r) => r._id) } } }, { $group: { _id: '$employerId', n: { $sum: 1 } } }]),
         ])
         const OJ = Object.fromEntries(openJobs.map((x) => [String(x._id), x.n])); const S = Object.fromEntries(sent.map((x) => [String(x._id), x.n]))
-        return res.status(200).json({ employers: rows.map((e) => ({ ...empView(e), accountEmail: U[String(e.userId)]?.email, accountName: U[String(e.userId)]?.name, domainMatch: domainMatches(e.workEmail, e.website), openJobs: OJ[String(e._id)] || 0, requestsSent: S[String(e._id)] || 0 })) })
+        return res.status(200).json({ employers: rows.map((e) => ({ ...empView(e), accountEmail: U[String(e.userId)]?.email, accountName: U[String(e.userId)]?.name, domainMatch: e.website ? domainMatches(e.workEmail, e.website) : null, personalEmail: isFreeEmail(e.workEmail), noFeeConfirmed: Boolean(e.noFeeConfirmedAt), openJobs: OJ[String(e._id)] || 0, requestsSent: S[String(e._id)] || 0 })) })
     } catch (e) { return res.status(500).json({ message: e.message }) }
 }
 

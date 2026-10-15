@@ -7,15 +7,27 @@ import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { JobDescription, timeAgo } from '../utils/jobText'
-import { LuMapPin, LuBriefcase, LuWifi, LuExternalLink, LuFileCheck } from 'react-icons/lu'
+import { useSelector } from 'react-redux'
+import toast from 'react-hot-toast'
+import { catShort } from '../utils/workTaxonomy'
+import { LuMapPin, LuBriefcase, LuWifi, LuExternalLink, LuFileCheck, LuTriangleAlert } from 'react-icons/lu'
 
 const SITE = 'https://primeresumeai.com'
-const TYPE_LD = { 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY' }
+const TYPE_LD = { 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY', 'daily-wage': 'TEMPORARY' }
+const PER_DIEM = { hour: 'HOUR', day: 'DAY', week: 'WEEK', month: 'MONTH', year: 'YEAR' }
 
 const JobDetail = () => {
   const { slug } = useParams()
   const [data, setData] = useState(null)
   const [state, setState] = useState('loading')
+  const token = useSelector((s) => s.auth?.token)
+  const [reporting, setReporting] = useState(false)
+  const [reason, setReason] = useState('')
+  const sendReport = async (e) => {
+    e.preventDefault()
+    try { await api.post(`/api/jobs/${slug}/report`, { reason }, { headers: { Authorization: token } }); toast.success('Thank you. We will review this job.'); setReporting(false); setReason('') }
+    catch (err) { toast.error(err.response?.data?.message || 'Could not send your report.') }
+  }
 
   useEffect(() => {
     let live = true
@@ -49,6 +61,7 @@ const JobDetail = () => {
     description: `<p>${(job.description || job.title).replace(/&/g, '&amp;').replace(/</g, '&lt;').split(/\n{2,}/).join('</p><p>').replace(/\n/g, '<br>')}</p>`,
     datePosted: new Date(job.postedAt).toISOString().slice(0, 10), hiringOrganization: { '@type': 'Organization', name: job.company },
     url: `${SITE}/jobs/${job.slug}`, directApply: false,
+    ...(job.payPer && (job.payMin || job.payMax) && job.currency ? { baseSalary: { '@type': 'MonetaryAmount', currency: job.currency, value: { '@type': 'QuantitativeValue', ...(job.payMin && job.payMax && job.payMin !== job.payMax ? { minValue: job.payMin, maxValue: job.payMax } : { value: job.payMin || job.payMax }), unitText: PER_DIEM[job.payPer] || 'MONTH' } } } : {}),
     ...(TYPE_LD[String(job.employmentType || '').toLowerCase()] ? { employmentType: TYPE_LD[String(job.employmentType).toLowerCase()] } : {}),
     ...(job.location ? { jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: job.location, ...(job.country ? { addressCountry: job.country } : {}) } } } : {}),
     ...(job.remote ? { jobLocationType: 'TELECOMMUTE', ...(job.country ? { applicantLocationRequirements: { '@type': 'Country', name: job.country } } : {}) } : {}),
@@ -68,7 +81,9 @@ const JobDetail = () => {
           {job.location && <span className='inline-flex items-center gap-1.5'><LuMapPin className='size-4' />{job.location}</span>}
           {job.remote && <span className='inline-flex items-center gap-1.5'><LuWifi className='size-4' />Remote</span>}
           {job.employmentType && <span className='inline-flex items-center gap-1.5'><LuBriefcase className='size-4' />{job.employmentType}</span>}
-          {job.salary && <span>{job.salary}</span>}
+          {job.category && job.category !== 'corporate' && <span>{catShort(job.category)}</span>}
+          {job.salary && <span className='font-medium text-slate-700'>{job.salary}</span>}
+          {job.openings > 1 && <span>{job.openings} openings</span>}
           <span>Posted {timeAgo(job.postedAt)}</span>
         </p>
 
@@ -80,6 +95,8 @@ const JobDetail = () => {
             <LuFileCheck className='size-4' /> Check my resume for this job
           </Link>
         </div>
+
+        {job.perks?.length > 0 && <ul className='flex flex-wrap gap-2 mt-5' aria-label='Benefits'>{job.perks.map((p) => <li key={p} className='px-3 py-1 rounded-full bg-green-50 border border-green-200 text-green-800 text-xs'>{p}</li>)}</ul>}
 
         <div className='mt-8 text-slate-700 text-[15px] leading-relaxed space-y-4'><JobDescription text={job.description} /></div>
 
@@ -113,6 +130,24 @@ const JobDetail = () => {
           {sourceName === 'Arbeitnow' && <> · via <a href='https://www.arbeitnow.com' target='_blank' rel='nofollow noopener noreferrer' className='text-brand-700 hover:underline'>Arbeitnow</a></>}.
           Never pay money to apply for a job.
         </div>
+
+        <aside className='mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900'>
+          <p className='font-semibold inline-flex items-center gap-2'><LuTriangleAlert className='size-4' />Stay safe</p>
+          <ul className='mt-1.5 list-disc pl-5 space-y-1'>
+            <li>A real employer never asks you to pay for a job, a visa, training, uniform or "registration".</li>
+            <li>Meet at the work place or in public. Tell someone where you are going.</li>
+            <li>Ask for the pay and hours in writing before you start.</li>
+          </ul>
+          {!reporting ? (token
+            ? <button type='button' onClick={() => setReporting(true)} className='mt-3 underline'>Report this job</button>
+            : <p className='mt-3'><Link to='/app' className='underline'>Log in</Link> to report this job.</p>)
+            : (
+              <form onSubmit={sendReport} className='mt-3 space-y-2'>
+                <label className='block'><span className='sr-only'>What is wrong with this job?</span><textarea required minLength={5} maxLength={1000} rows={3} value={reason} onChange={(e) => setReason(e.target.value)} placeholder='What is wrong with this job? For example: asks for money, fake company.' className='w-full rounded-lg border border-amber-300 bg-white p-2 text-slate-700' /></label>
+                <div className='flex gap-3'><button className='px-4 py-1.5 rounded-full bg-amber-600 text-white'>Send report</button><button type='button' onClick={() => setReporting(false)} className='text-amber-800'>Cancel</button></div>
+              </form>
+            )}
+        </aside>
 
         {more.length > 0 && (
           <section className='mt-10'>

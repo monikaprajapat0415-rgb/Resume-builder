@@ -136,7 +136,8 @@ const fetchers = {
         const country = (src.token || 'in').toLowerCase();
         if (!/^[a-z]{2}$/.test(country)) throw new Error('Adzuna country must be a 2-letter code, e.g. "in".');
         const out = [];
-        for (let page = 1; page <= 4; page++) {
+        const maxPages = Math.min(6, Math.max(1, Number(src.pages) || 4));
+        for (let page = 1; page <= maxPages; page++) {
             const url = `${HOSTS().adzuna}/v1/api/jobs/${country}/search/${page}?app_id=${encodeURIComponent(id)}&app_key=${encodeURIComponent(key)}&results_per_page=50&sort_by=date&content-type=application/json${src.query ? `&what=${encodeURIComponent(src.query)}` : ''}`;
             const data = await getJson(url);
             const rows = data.results || [];
@@ -183,6 +184,18 @@ export const fetchSourceJobs = async (src) => {
     }
     return jobs;
 };
+
+// Adzuna job searches for the countries Adzuna covers where we have users: India, UK, Canada, South Africa.
+// (Adzuna has no feed for Nigeria, Kenya, Ghana and most other African countries; those jobs come from employers
+// posting directly on the site.) Each search reads 2 pages (100 newest jobs). 23 searches x 2 pages x 2 syncs a day
+// is about 92 API calls a day, inside Adzuna's free quota.
+const adz = (token, queries) => queries.map((query) => ({ type: 'adzuna', token, query, company: '', pages: 2 }));
+export const ADZUNA_SOURCES = [
+    ...adz('in', ['software developer', 'fresher', 'electrician', 'driver', 'factory worker', 'warehouse', 'security guard']),
+    ...adz('gb', ['warehouse operative', 'electrician', 'plumber', 'driver', 'labourer', 'software developer']),
+    ...adz('ca', ['warehouse', 'electrician', 'welder', 'labourer', 'software developer']),
+    ...adz('za', ['general worker', 'electrician', 'driver', 'factory worker', 'accountant']),
+];
 
 // Sources the admin can add with one click. Each board name was checked against the live public API.
 export const STARTER_SOURCES = [
