@@ -46,8 +46,6 @@ const AdminJobs = () => {
         <div className='flex gap-2'>
           <button onClick={() => call('seed', () => api.post('/api/admin/job-sources/seed', {}, headers), (r) => `${r.added} starter source(s) added`)} disabled={!!busy}
             className='px-4 py-2 border border-slate-200 rounded-full text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-50'>Add starter companies</button>
-          <button onClick={() => call('adz', () => api.post('/api/admin/job-sources/seed-adzuna', {}, headers), (r) => r.added ? `${r.added} Adzuna India search(es) added and syncing` : 'Adzuna India is already added')} disabled={!!busy} title={data.adzunaConfigured ? 'Adds 10 role searches for India' : 'Needs ADZUNA_APP_ID and ADZUNA_APP_KEY in server/.env'}
-            className='px-4 py-2 border border-slate-200 rounded-full text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-50'>Add Adzuna India</button>
           <button onClick={() => call('all', () => api.post('/api/admin/job-sources/sync-all', {}, headers), 'Sync started. Results appear below.')} disabled={!!busy || data.syncing}
             className='inline-flex items-center gap-2 px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium disabled:opacity-50'>
             <LuRefreshCw className={`size-4 ${data.syncing ? 'animate-spin' : ''}`} />{data.syncing ? 'Syncing…' : 'Sync all now'}
