@@ -10,6 +10,8 @@ import aiRouter from "./routes/aiRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 import learnRouter from "./routes/learnRoutes.js";
 import jobRouter from "./routes/jobRoutes.js";
+import talentRouter from './routes/talentRoutes.js'
+import employerRouter from './routes/employerRoutes.js'
 import { startJobScheduler } from "./services/jobSync.js";
 import adminRouter from "./routes/adminRoutes.js";
 import productRouter from "./routes/productRoutes.js";
@@ -77,6 +79,8 @@ app.use('/api/ats', atsRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/learn', learnRouter)
 app.use('/api/jobs', jobRouter)
+app.use('/api/talent', talentRouter)
+app.use('/api/employers', employerRouter)
 app.use('/api/products', productRouter)
 app.use('/api/menu', menuRouter)
 app.use('/api', publicRouter)

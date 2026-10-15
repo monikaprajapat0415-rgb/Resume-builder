@@ -3,9 +3,9 @@ import { trackEvent } from '../components/Analytics'
 // import React from 'react'
 import {FaFileSignature,  } from 'react-icons/fa'
 import { BiLoaderAlt } from 'react-icons/bi';
-import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuShield } from 'react-icons/lu';
+import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuShield, LuUserCheck, LuBuilding2 } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import CvDashboardSection from '../components/cv/CvDashboardSection'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -191,6 +191,10 @@ const Dashboard = () => {
           )}
         </div>
 
+        <div className='flex flex-wrap gap-2 mb-5 text-sm'>
+          <Link to='/app/open-to-work' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-200 bg-brand-50 text-brand-800 hover:bg-brand-100 transition'><LuUserCheck className='size-4' />Open to work: let companies find you</Link>
+          <Link to='/app/hire' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition'><LuBuilding2 className='size-4' />Hiring? Find candidates</Link>
+        </div>
         <div role='tablist' className='flex gap-1 border-b border-slate-200 mb-6'>
           {[['resumes', 'My Resumes'], ['cvs', 'My CVs']].map(([id, label]) => (
             <button key={id} role='tab' aria-selected={tab === id} onClick={() => setTab(id)}

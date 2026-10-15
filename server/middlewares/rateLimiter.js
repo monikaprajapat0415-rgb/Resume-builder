@@ -52,3 +52,13 @@ export const signupLimiter = rateLimit({
     skipFailedRequests: true, // a typo or "user already exists" should not use up the allowance
     message: { message: "Too many accounts were created from this connection today. Please try again tomorrow." },
 });
+
+// Company actions (search, contact, post). Keyed by user so rotating IPs does not help.
+export const employerLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 120,
+    standardHeaders: true,
+    legacyHeaders: false,
+    keyGenerator: (req) => req.userId || req.ip,
+    message: { message: "Too many requests. Please slow down and try again in a few minutes." },
+});

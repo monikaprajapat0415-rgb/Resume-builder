@@ -28,6 +28,7 @@ const staticRoutes = [
   '/features',
   '/features/ats-checker',
   '/cv-builder',
+  '/hire',
   '/resume-job-description-matcher',
   '/templates',
   '/products',
