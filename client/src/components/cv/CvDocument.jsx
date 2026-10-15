@@ -1,55 +1,79 @@
-import React from 'react'
-import { buildCvSections, contactLine } from '../../utils/cvModel'
+import React, { useEffect, useRef, useState } from 'react'
+import { buildCvSections, contactLine, CV_STYLE, CV_SPACE, CV_PAGE, CV_LINE } from '../../utils/cvModel'
 
 // ATS-first CV: one column, real text, standard headings, no icons / tables / graphics.
 // Template only changes typography and heading colour, never the structure.
-const STYLES = {
-  standard: { font: 'Helvetica, Arial, sans-serif', base: 13, name: 28, heading: 13, gap: 16, upper: true, coloured: true },
-  classic: { font: 'Georgia, "Times New Roman", serif', base: 13.5, name: 28, heading: 13, gap: 16, upper: true, coloured: false },
-  compact: { font: 'Helvetica, Arial, sans-serif', base: 11.5, name: 24, heading: 11.5, gap: 11, upper: true, coloured: true },
-}
+// Sizes come from the shared spec in cvModel so the PDF and Word file match this preview.
+const px = (pt) => `${+(pt * 4 / 3).toFixed(2)}px`
+
+// The page is always laid out at the real A4 width, so line breaks match the PDF and Word file exactly.
+// On a narrower screen the whole page is scaled down (never re-wrapped).
+const PAGE_PX = CV_PAGE.w * 4 / 3
+const MIN_SCALE = 0.4
 
 const CvDocument = ({ cv, personal = {}, template = 'standard', accentColor = '#1E3A8A', level = 'fresher', previewId = 'cv-preview' }) => {
-  const st = STYLES[template] || STYLES.standard
-  const color = st.coloured ? accentColor : '#111827'
+  const box = useRef(null)
+  const [scale, setScale] = useState(1)
+  useEffect(() => {
+    const el = box.current
+    if (!el) return undefined
+    const fit = () => setScale(Math.max(MIN_SCALE, Math.min(1, el.clientWidth / PAGE_PX)))
+    fit()
+    if (typeof ResizeObserver === 'undefined') return undefined
+    const ro = new ResizeObserver(fit); ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+  const st = CV_STYLE[template] || CV_STYLE.standard
+  const color = st.coloured ? accentColor : CV_SPACE.classicColor
   const sections = buildCvSections(cv || {}, personal, level)
   const contact = contactLine(personal)
+  const li = { margin: 0 }
+  const ul = (extra) => ({ margin: extra ? `${px(CV_SPACE.blockInner)} 0 0` : 0, paddingLeft: px(CV_SPACE.bulletIndent), listStyle: 'disc' })
 
   return (
-    <div id={previewId} className='bg-white text-gray-900 mx-auto shadow-sm border border-gray-200'
-      style={{ fontFamily: st.font, fontSize: st.base, lineHeight: 1.45, width: '100%', maxWidth: 794, minHeight: 1000, padding: '44px 48px', boxSizing: 'border-box' }}>
-      <header style={{ textAlign: 'center', marginBottom: st.gap }}>
-        <h1 style={{ fontSize: st.name, fontWeight: 700, margin: 0, color, letterSpacing: 0.3 }}>{personal.full_name || 'Your Name'}</h1>
-        {contact.length > 0 && <p style={{ margin: '6px 0 0', color: '#374151' }}>{contact.join('  |  ')}</p>}
+    <div ref={box} className={`${previewId}-fit`} style={{ width: '100%', minWidth: 0, maxWidth: '100%', contain: 'inline-size', overflowX: scale <= MIN_SCALE ? 'auto' : 'visible' }}>
+    <div style={{ zoom: scale, width: px(CV_PAGE.w), margin: '0 auto' }} className={`${previewId}-zoom`}>
+    <div id={previewId} className='bg-white shadow-sm border border-gray-200'
+      style={{ color: CV_SPACE.text, fontFamily: st.css, fontSize: px(st.base), lineHeight: CV_LINE, width: px(CV_PAGE.w), minHeight: px(CV_PAGE.h), padding: `${px(CV_PAGE.my)} ${px(CV_PAGE.mx)}`, boxSizing: 'border-box' }}>
+      <header style={{ textAlign: 'center', marginBottom: px(st.gap) }}>
+        <h1 style={{ fontSize: px(st.name), fontWeight: 700, margin: 0, color, lineHeight: CV_LINE }}>{personal.full_name || 'Your Name'}</h1>
+        {contact.length > 0 && <p style={{ margin: `${px(CV_SPACE.contactTop)} 0 0`, color: CV_SPACE.contact }}>{contact.join('  |  ')}</p>}
       </header>
 
       {sections.length === 0 && <p style={{ textAlign: 'center', color: '#9CA3AF', marginTop: 60 }}>Your CV will appear here after you generate it.</p>}
 
       {sections.map((s) => (
-        <section key={s.heading} style={{ marginBottom: st.gap }}>
-          <h2 style={{ fontSize: st.heading, fontWeight: 700, color, textTransform: st.upper ? 'uppercase' : 'none', letterSpacing: 0.8, borderBottom: `1.5px solid ${color}`, paddingBottom: 2, margin: '0 0 6px' }}>{s.heading}</h2>
+        <section key={s.heading} style={{ marginBottom: px(st.gap) }}>
+          <h2 style={{ fontSize: px(st.head), fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: px(CV_SPACE.headTrack), lineHeight: CV_LINE, borderBottom: `${px(CV_SPACE.headRule)} solid ${color}`, paddingBottom: px(CV_SPACE.headPad), margin: `0 0 ${px(CV_SPACE.headAfter)}` }}>{s.heading}</h2>
           {s.text && <p style={{ margin: 0 }}>{s.text}</p>}
-          {s.bullets && <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>{s.bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>}
+          {s.bullets && <ul style={ul(false)}>{s.bullets.map((b, i) => <li key={i} style={li}>{b}</li>)}</ul>}
           {s.blocks && s.blocks.map((b, i) => (
-            <div key={i} style={{ marginBottom: 8 }}>
+            <div key={i} style={{ marginBottom: px(CV_SPACE.blockAfter) }}>
               <p style={{ margin: 0, fontWeight: 700 }}>{b.title}</p>
-              {b.meta && <p style={{ margin: 0, color: '#4B5563', fontSize: st.base - 1 }}>{b.meta}</p>}
-              {b.text && <p style={{ margin: '2px 0 0' }}>{b.text}</p>}
-              {b.bullets?.length > 0 && <ul style={{ margin: '2px 0 0', paddingLeft: 18, listStyle: 'disc' }}>{b.bullets.map((x, j) => <li key={j}>{x}</li>)}</ul>}
+              {b.meta && <p style={{ margin: 0, color: CV_SPACE.meta, fontSize: px(st.base - CV_SPACE.metaDrop) }}>{b.meta}</p>}
+              {b.text && <p style={{ margin: `${px(CV_SPACE.blockInner)} 0 0` }}>{b.text}</p>}
+              {b.bullets?.length > 0 && <ul style={ul(true)}>{b.bullets.map((x, j) => <li key={j} style={li}>{x}</li>)}</ul>}
             </div>
           ))}
         </section>
       ))}
 
       <style>{`
-        @page { size: A4; margin: 0; }
+        #${previewId} { box-sizing: border-box; white-space: pre-wrap; }
+        #${previewId} * { font-family: inherit; }
+        @page { size: A4; margin: ${CV_PAGE.my}pt ${CV_PAGE.mx}pt; }
         @media print {
           html, body { margin: 0; padding: 0; }
-          body * { visibility: hidden; }
-          #${previewId}, #${previewId} * { visibility: visible; }
-          #${previewId} { position: fixed; left: 0; top: 0; width: 100% !important; max-width: none !important; border: none !important; box-shadow: none !important; }
+          /* print only the CV: hide everything except the preview and the elements that contain it */
+          body *:not(:has(#${previewId})):not(#${previewId}):not(#${previewId} *) { display: none !important; }
+          html, body, #root, body *:has(#${previewId}) { display: block !important; position: static !important; margin: 0 !important; padding: 0 !important; width: auto !important; max-width: none !important; height: auto !important; min-height: 0 !important; overflow: visible !important; border: none !important; box-shadow: none !important; background: none !important; }
+          .${previewId}-fit { contain: none !important; }
+          .${previewId}-zoom { zoom: 1 !important; width: auto !important; margin: 0 !important; }
+          #${previewId} { position: static !important; width: 100% !important; min-height: 0 !important; padding: 0 !important; max-width: none !important; border: none !important; box-shadow: none !important; }
         }
       `}</style>
+    </div>
+    </div>
     </div>
   )
 }
