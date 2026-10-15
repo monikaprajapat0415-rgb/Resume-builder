@@ -140,7 +140,7 @@ Return ONLY JSON of exactly this shape:
   "rewrites": [{"before": "a weak bullet copied from the resume", "after": "an improved version with action verb and measurable result - do not invent employers or facts, use placeholders like [X%] for numbers"}]
 }
 Rules: contentScore (0-100) rates clarity, action verbs, achievements and relevance of the experience. keywordScore (0-100) rates ${jobDescription ? 'match with the job description' : 'coverage of relevant industry keywords and skills'}. Give 4-8 issues and 2-3 rewrites. Be specific, honest and practical.`;
-    const raw = await callAI(system, user);
+    const raw = await callAI(system, user, { validate: (txt) => { const j = tryParseJSON(txt); return !!j && typeof j === 'object'; } });
     const out = tryParseJSON(raw);
     if (!out || typeof out !== 'object') throw new Error('Could not parse AI response');
     return out;

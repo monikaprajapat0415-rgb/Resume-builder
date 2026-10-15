@@ -28,7 +28,8 @@ let ai;
 
 // Build options object and only include baseURL when it's valid.
 const buildOptions = (key) => {
-    const opts = {};
+    // the router (utils/aiRouter.js) does its own retry + fallback, so the SDK must not also retry silently
+    const opts = { maxRetries: 0 };
     if (key) opts.apiKey = key;
     if (safeBaseURL) opts.baseURL = safeBaseURL;
     return opts;

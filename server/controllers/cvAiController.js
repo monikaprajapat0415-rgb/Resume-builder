@@ -266,10 +266,11 @@ export const generateCv = async (req, res) => {
 
         let out;
         try {
-            out = await callAI(CV_SYSTEM_PROMPT, userPrompt);
+            // a provider that answers with something that is not a JSON object counts as failed, so the next provider is tried
+            out = await callAI(CV_SYSTEM_PROMPT, userPrompt, { validate: (txt) => { const j = tryParseJSON(txt); return !!j && typeof j === 'object' && !Array.isArray(j); } });
         } catch (aiError) {
             console.error('[cv] AI error:', aiError?.message || aiError);
-            return res.status(502).json({ message: process.env.DEBUG ? (aiError?.message || String(aiError)) : 'The AI service is busy. Please try again in a moment.' });
+            return res.status(502).json({ message: process.env.DEBUG ? (aiError?.message || String(aiError)) : 'The AI service is busy right now. Please try again in a moment.' });
         }
         const parsed = tryParseJSON(out);
         if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
