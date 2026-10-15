@@ -6,6 +6,22 @@ export const CV_TEMPLATES = [
   { id: 'compact', name: 'Compact', desc: 'Smaller type to fit more on one page' },
 ]
 
+// ONE style spec for the preview, the PDF and the Word file, so all three look the same.
+// All sizes are in points (pt). The preview converts to CSS px (1pt = 4/3 px).
+// Page is A4 (595 x 842 pt) with the same margins everywhere: 36pt left/right, 33pt top/bottom.
+export const CV_PAGE = { w: 595.28, h: 841.89, mx: 36, my: 33 }
+export const CV_LINE = 1.4 // line height as a multiple of the font size
+export const CV_STYLE = {
+  standard: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10, name: 21, head: 10, gap: 12, coloured: true },
+  classic: { css: '"Times New Roman", Times, serif', pdfFont: 'times', docxFont: 'Times New Roman', base: 10.5, name: 21, head: 10.5, gap: 12, coloured: false },
+  compact: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 9, name: 18, head: 9, gap: 8, coloured: true },
+}
+export const CV_SPACE = {
+  contactTop: 4.5, headAfter: 4.5, headPad: 1.5, headRule: 1.1, headTrack: 0.6,
+  blockAfter: 6, blockInner: 1.5, bulletIndent: 13.5, metaDrop: 1, // meta text is this many pt smaller than body
+  text: '#111827', contact: '#374151', meta: '#4B5563', classicColor: '#111827',
+}
+
 export const emptyCv = () => ({
   cv_title: '', professional_summary: '', skills: [], experience: [], projects: [], education: [],
   certifications: [], internships: [], achievements: [], languages: [], additional_information: [],
