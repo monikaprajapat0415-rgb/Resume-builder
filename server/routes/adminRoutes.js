@@ -7,6 +7,7 @@ import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct,
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
 import { getSources, createSource, updateSource, deleteSource, runSource, runAll, seedSources } from '../controllers/jobController.js';
+import { hiringStats, adminEmployers, reviewEmployer, adminEmployerJobs, reviewJob } from '../controllers/employerController.js';
 import { getMenuAdmin, createMenuItem, updateMenuItem, deleteMenuItem, reorderMenu, restoreMenuDefaults } from '../controllers/menuController.js';
 import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage } from '../controllers/contactController.js';
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
@@ -39,6 +40,13 @@ adminRouter.put('/blogs/:id', updateBlog);
 adminRouter.delete('/blogs/:id', deleteBlog);
 
 adminRouter.post('/learn/import', importCourse);
+
+// Hiring: company approvals and employer job posts
+adminRouter.get('/hiring/stats', hiringStats);
+adminRouter.get('/hiring/employers', adminEmployers);
+adminRouter.patch('/hiring/employers/:id', reviewEmployer);
+adminRouter.get('/hiring/jobs', adminEmployerJobs);
+adminRouter.patch('/hiring/jobs/:id', reviewJob);
 adminRouter.get('/learn/courses', getCoursesAdmin);
 adminRouter.post('/learn/courses', createCourse);
 adminRouter.get('/learn/courses/:id', getCourseAdmin);

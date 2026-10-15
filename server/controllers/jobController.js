@@ -7,16 +7,17 @@ import { STARTER_SOURCES, TOKEN_RX } from "../utils/jobFeeds.js";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const PAGE_SIZE = 20;
-const SOURCE_NAMES = { greenhouse: 'Greenhouse', lever: 'Lever', ashby: 'Ashby', arbeitnow: 'Arbeitnow', adzuna: 'Adzuna' };
+const SOURCE_NAMES = { greenhouse: 'Greenhouse', lever: 'Lever', ashby: 'Ashby', arbeitnow: 'Arbeitnow', adzuna: 'Adzuna', employer: 'Direct from employer' };
 const validId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 export const jobCard = (j) => ({
     slug: j.slug, title: j.title, company: j.company, location: j.location, remote: j.remote,
-    employmentType: j.employmentType, department: j.department, salary: j.salary, postedAt: j.postedAt || j.createdAt,
+    employmentType: j.employmentType, department: j.department, salary: j.salary, direct: j.sourceType === 'employer', postedAt: j.postedAt || j.createdAt,
     snippet: String(j.description || '').replace(/\s+/g, ' ').slice(0, 220),
 });
 
-export const liveFilter = () => ({ active: true, hidden: { $ne: true } });
+// employer-posted jobs appear only once an admin has approved them (imported jobs have no reviewStatus / are approved)
+export const liveFilter = () => ({ active: true, hidden: { $ne: true }, reviewStatus: { $nin: ['pending', 'rejected'] } });
 
 // GET /api/jobs?q=&location=&company=&type=&remote=1&page=
 export const listJobs = async (req, res) => {

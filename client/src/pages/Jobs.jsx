@@ -6,7 +6,7 @@ import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { timeAgo } from '../utils/jobText'
-import { LuSearch, LuMapPin, LuBriefcase, LuWifi, LuArrowRight } from 'react-icons/lu'
+import { LuSearch, LuMapPin, LuBriefcase, LuWifi, LuArrowRight, LuUserCheck, LuBuilding2 } from 'react-icons/lu'
 
 const DESC = 'Browse open jobs collected from company career pages. Search by role, company, location or remote, then apply on the employer site.'
 
@@ -80,6 +80,19 @@ const Jobs = () => {
           {filtered && <button type='button' onClick={() => setParams({})} className='text-brand-700 hover:underline'>Clear filters</button>}
         </div>
 
+        <div className='grid sm:grid-cols-2 gap-3 mb-6'>
+          <Link to='/app/open-to-work' className='group flex items-center gap-3 rounded-xl border border-brand-200 bg-brand-50/60 px-4 py-3 hover:bg-brand-50 transition'>
+            <LuUserCheck className='size-6 text-brand-600 shrink-0' />
+            <span className='text-sm'><strong className='block text-slate-800'>Open to work?</strong><span className='text-slate-600'>Let companies find you. Your contact details stay private.</span></span>
+            <LuArrowRight className='size-4 ml-auto text-brand-600 group-hover:translate-x-1 transition shrink-0' />
+          </Link>
+          <Link to='/hire' className='group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50 transition'>
+            <LuBuilding2 className='size-6 text-slate-500 shrink-0' />
+            <span className='text-sm'><strong className='block text-slate-800'>Hiring?</strong><span className='text-slate-600'>Post a job and contact available candidates.</span></span>
+            <LuArrowRight className='size-4 ml-auto text-slate-400 group-hover:translate-x-1 transition shrink-0' />
+          </Link>
+        </div>
+
         {loading ? <p className='text-center text-slate-400 py-10'>Loading jobs…</p>
           : failed ? <p className='text-center text-slate-500 py-10'>Could not load jobs. Please refresh the page.</p>
           : data.jobs.length === 0 ? <p className='text-center text-slate-400 py-10'>{filtered ? 'No jobs match your search. Try fewer filters.' : 'No jobs yet. Check back soon.'}</p>
@@ -92,7 +105,7 @@ const Jobs = () => {
                     <Link to={`/jobs/${j.slug}`} className='group flex gap-4 items-start rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-brand-200 transition'>
                       <span aria-hidden='true' className='size-11 rounded-lg bg-brand-100 text-brand-700 font-bold flex items-center justify-center shrink-0'>{j.company.slice(0, 2).toUpperCase()}</span>
                       <div className='min-w-0 flex-1'>
-                        <h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{j.title}</h2>
+                        <h2 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{j.title}{j.direct && <span className='ml-2 align-middle px-2 py-0.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-[11px] font-medium'>Direct from employer</span>}</h2>
                         <p className='text-sm text-slate-600 mt-0.5'>{j.company}</p>
                         <p className='flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400 mt-2'>
                           {j.location && <span className='inline-flex items-center gap-1'><LuMapPin className='size-3.5' />{j.location}</span>}

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // A job listing imported from a JobSource. We keep a short plain-text copy of the
 // description and always send applicants to the employer's own apply page.
 const JobSchema = new mongoose.Schema({
-    sourceId: { type: mongoose.Schema.Types.ObjectId, ref: 'JobSource', required: true, index: true },
+    sourceId: { type: mongoose.Schema.Types.ObjectId, ref: 'JobSource', index: true },          // absent for jobs posted by an employer
     sourceType: { type: String, required: true },
     externalId: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
@@ -21,6 +21,10 @@ const JobSchema = new mongoose.Schema({
     lastSeenAt: { type: Date, required: true },
     active: { type: Boolean, default: true, index: true },         // false once the employer removes it
     hidden: { type: Boolean, default: false },                     // admin can hide a listing
+    // Jobs posted directly by a company on this site (sourceType 'employer'). Imported jobs are always approved.
+    employerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Employer', index: true },
+    reviewStatus: { type: String, enum: ['approved', 'pending', 'rejected'], default: 'approved', index: true },
+    reviewNote: { type: String, default: '', maxlength: 500 },
 }, { timestamps: true });
 
 JobSchema.index({ sourceId: 1, externalId: 1 }, { unique: true });

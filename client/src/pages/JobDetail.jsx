@@ -63,7 +63,7 @@ const JobDetail = () => {
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{job.title}</span>
         </nav>
         <h1 className='text-3xl font-bold text-slate-800 leading-tight'>{job.title}</h1>
-        <p className='text-lg text-slate-600 mt-1'>{job.company}</p>
+        <p className='text-lg text-slate-600 mt-1'>{job.company}{job.direct && <span className='ml-2 align-middle px-2 py-0.5 rounded-full bg-green-50 border border-green-200 text-green-700 text-xs font-medium'>Posted directly by the employer</span>}</p>
         <p className='flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-slate-500 mt-3'>
           {job.location && <span className='inline-flex items-center gap-1.5'><LuMapPin className='size-4' />{job.location}</span>}
           {job.remote && <span className='inline-flex items-center gap-1.5'><LuWifi className='size-4' />Remote</span>}
@@ -74,7 +74,7 @@ const JobDetail = () => {
 
         <div className='flex flex-wrap gap-3 mt-6'>
           <a href={job.applyUrl} onClick={() => trackEvent('job_apply_click', { job_company: job.company, job_title: job.title })} target='_blank' rel='nofollow noopener noreferrer' className='inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>
-            Apply on {job.company} <LuExternalLink className='size-4' />
+            {/^mailto:/i.test(job.applyUrl) ? 'Apply by email' : `Apply on ${job.company}`} <LuExternalLink className='size-4' />
           </a>
           <Link to={`/features/ats-checker?job=${encodeURIComponent(job.slug || slug)}`} className='inline-flex items-center gap-2 px-6 py-2.5 border border-brand-600 text-brand-700 hover:bg-brand-50 rounded-full text-sm font-medium transition'>
             <LuFileCheck className='size-4' /> Check my resume for this job
