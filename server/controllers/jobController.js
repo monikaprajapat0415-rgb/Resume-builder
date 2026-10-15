@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import Job from "../models/Job.js";
 import JobSource from "../models/JobSource.js";
 import { syncSource, syncAll, isSyncRunning } from "../services/jobSync.js";
-import { STARTER_SOURCES, TOKEN_RX } from "../utils/jobFeeds.js";
+import { STARTER_SOURCES, ADZUNA_INDIA_SOURCES, TOKEN_RX } from "../utils/jobFeeds.js";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const PAGE_SIZE = 20;
@@ -159,6 +159,19 @@ export const runAll = async (req, res) => {
     if (isSyncRunning()) return res.status(202).json({ message: 'A sync is already running.' });
     syncAll().catch((e) => console.error('[jobs] manual sync failed:', e.message));
     return res.status(202).json({ message: 'Sync started.' });
+};
+
+// POST /api/admin/job-sources/seed-adzuna - adds the India role searches (needs the free Adzuna keys in .env)
+export const seedAdzunaIndia = async (req, res) => {
+    try {
+        if (!process.env.ADZUNA_APP_ID || !process.env.ADZUNA_APP_KEY) return res.status(400).json({ message: 'Add ADZUNA_APP_ID and ADZUNA_APP_KEY to the server .env (free keys from developer.adzuna.com), restart, then try again.' });
+        let added = 0;
+        for (const s of ADZUNA_INDIA_SOURCES) {
+            if (!(await JobSource.findOne({ type: 'adzuna', token: s.token, query: s.query }))) { await JobSource.create(s); added++; }
+        }
+        if (added && !isSyncRunning()) syncAll().catch((e) => console.error('[jobs] adzuna first sync failed:', e.message));
+        return res.status(200).json({ added, total: ADZUNA_INDIA_SOURCES.length });
+    } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
 // POST /api/admin/job-sources/seed - adds the checked starter boards that are not there yet

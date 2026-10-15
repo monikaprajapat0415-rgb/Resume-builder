@@ -18,6 +18,7 @@ const TalentSchema = new mongoose.Schema({
     noticePeriod: { type: String, default: '', maxlength: 40, trim: true },   // "Immediate", "30 days"...
     summary: { type: String, default: '', maxlength: 600, trim: true },
     phone: { type: String, default: '', maxlength: 30, trim: true },          // shared only on accept, and only if the seeker wants to
+    reminders: { type: Boolean, default: true },                              // email me a reminder about unanswered requests
     blockedEmployers: { type: [mongoose.Schema.Types.ObjectId], default: [] },
     lastActiveAt: { type: Date, default: Date.now },
 }, { timestamps: true });

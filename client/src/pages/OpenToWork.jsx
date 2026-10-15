@@ -12,7 +12,7 @@ import { ChipInput } from '../components/cv/CvChips'
 import { buildSkillSuggestions } from '../utils/cvSuggestions'
 import { LEVELS, JOB_TYPES, NOTICE, TalentCard, StatusBadge, Switch, timeShort, errMsg } from '../components/hiring/ui'
 
-const BLANK = { headline: '', level: 'fresher', experienceYears: 0, skills: [], location: '', remote: false, relocate: false, jobTypes: ['full-time'], expectedSalary: '', noticePeriod: '', summary: '', phone: '' }
+const BLANK = { headline: '', level: 'fresher', experienceYears: 0, skills: [], location: '', remote: false, relocate: false, jobTypes: ['full-time'], expectedSalary: '', noticePeriod: '', summary: '', phone: '', reminders: true }
 
 // Job seeker side: switch "available to work" on, describe yourself anonymously, and answer company requests.
 const OpenToWork = () => {
@@ -29,7 +29,7 @@ const OpenToWork = () => {
   useEffect(() => {
     api.get('/api/talent/me', auth).then(({ data }) => {
       setProfile(data.profile)
-      if (data.profile) { const p = data.profile; setForm({ ...BLANK, headline: p.headline, level: p.level, experienceYears: p.experienceYears, skills: p.skills, location: p.location, remote: p.remote, relocate: p.relocate, jobTypes: p.jobTypes, expectedSalary: p.expectedSalary, noticePeriod: p.noticePeriod, summary: p.summary, phone: p.phone || '' }); loadRequests() }
+      if (data.profile) { const p = data.profile; setForm({ ...BLANK, headline: p.headline, level: p.level, experienceYears: p.experienceYears, skills: p.skills, location: p.location, remote: p.remote, relocate: p.relocate, jobTypes: p.jobTypes, expectedSalary: p.expectedSalary, noticePeriod: p.noticePeriod, summary: p.summary, phone: p.phone || '', reminders: p.reminders !== false }); loadRequests() }
     }).catch(() => toast.error('Could not load your profile.')).finally(() => setLoading(false))
   }, [])
 
@@ -110,6 +110,7 @@ const OpenToWork = () => {
           </div>
           <Area label='Short introduction' hint={`${form.summary.length}/600. Describe what you do and what you are looking for. Do not include your name, email, phone or links; we remove them.`} rows={4} value={form.summary} onChange={(v) => set({ summary: v.slice(0, 600) })} />
           <Text label='Phone (optional)' hint='Never shown to companies. Shared only if you choose to when you accept a request.' value={form.phone} onChange={(v) => set({ phone: v })} placeholder='+91 ...' maxLength={30} />
+          <label className='flex items-start gap-2 text-sm text-slate-700'><input type='checkbox' className='mt-1' checked={form.reminders} onChange={(e) => set({ reminders: e.target.checked })} /><span>Email me one reminder if a company is waiting for my answer for 3 days</span></label>
           <div className='flex flex-wrap items-center gap-3'>
             <button type='submit' disabled={saving} className='inline-flex items-center gap-2 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 disabled:opacity-60 text-white rounded-full text-sm font-medium transition'>
               {saving && <BiLoaderAlt className='size-4 animate-spin' />}{profile ? 'Save changes' : 'Make me visible to companies'}

@@ -10,7 +10,7 @@ export const SIZES = ['1-10', '11-50', '51-200', '201-1000', '1000+']
 const TONE = {
   pending: 'bg-amber-50 text-amber-800 border-amber-200', approved: 'bg-green-50 text-green-800 border-green-200', accepted: 'bg-green-50 text-green-800 border-green-200',
   rejected: 'bg-red-50 text-red-700 border-red-200', declined: 'bg-slate-100 text-slate-600 border-slate-200', suspended: 'bg-red-50 text-red-700 border-red-200',
-  withdrawn: 'bg-slate-100 text-slate-500 border-slate-200',
+  withdrawn: 'bg-slate-100 text-slate-500 border-slate-200', expired: 'bg-slate-100 text-slate-500 border-slate-200',
 }
 export const StatusBadge = ({ status, children }) => (
   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-medium capitalize ${TONE[status] || TONE.declined}`}>{children || status}</span>

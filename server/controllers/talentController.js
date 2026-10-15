@@ -24,7 +24,7 @@ const cleanSkills = (arr) => {
 }
 
 // the seeker's own view of their profile (includes phone, which companies never see)
-const ownView = (t) => ({ ...anonCard(t), available: t.available, phone: t.phone, blockedCount: (t.blockedEmployers || []).length })
+const ownView = (t) => ({ ...anonCard(t), available: t.available, reminders: t.reminders !== false, phone: t.phone, blockedCount: (t.blockedEmployers || []).length })
 
 // ---------------- Seeker ----------------
 
@@ -63,6 +63,7 @@ export const saveMyTalent = async (req, res) => {
         if (b.summary !== undefined) set.summary = scrubPii(b.summary).slice(0, 600)
         if (b.phone !== undefined) { const p = String(b.phone || '').trim(); if (p && !/^[+\d][\d\s().-]{6,24}$/.test(p)) return res.status(400).json({ message: 'Enter a valid phone number or leave it empty.' }); set.phone = p }
         if (b.available !== undefined) set.available = Boolean(b.available)
+        if (b.reminders !== undefined) set.reminders = Boolean(b.reminders)
         set.lastActiveAt = new Date()
         let t
         if (existing) t = await TalentProfile.findOneAndUpdate({ userId: req.userId }, { $set: set }, { returnDocument: 'after' })
@@ -116,6 +117,7 @@ export const respondRequest = async (req, res) => {
         if (!t || !/^[a-f\d]{24}$/i.test(req.params.id)) return res.status(404).json({ message: 'Request not found' })
         const r = await ContactRequest.findOne({ _id: req.params.id, talentId: t._id })
         if (!r) return res.status(404).json({ message: 'Request not found' })
+        if (r.status === 'expired') return res.status(409).json({ message: 'This request expired because it was not answered in time.' })
         if (r.status !== 'pending') return res.status(409).json({ message: 'You already responded to this request.' })
         const { action } = req.body || {}
         const reply = scrubPii(req.body?.reply).slice(0, 600)
@@ -187,7 +189,7 @@ export const contactTalent = async (req, res) => {
         if (message.length > 1200) return res.status(400).json({ message: 'Keep your message under 1200 characters.' })
         const recent = await ContactRequest.find({ employerId: emp._id, talentId: t._id }).sort({ createdAt: -1 }).limit(1).lean()
         if (recent[0]?.status === 'pending') return res.status(409).json({ message: 'You already sent this candidate a request. Wait for their reply.' })
-        if (recent[0] && recent[0].status !== 'withdrawn' && Date.now() - new Date(recent[0].createdAt).getTime() < 30 * 864e5) return res.status(409).json({ message: recent[0].status === 'accepted' ? 'This candidate already shared their contact details with you.' : 'This candidate declined recently. You can try again after 30 days.' })
+        if (recent[0] && !['withdrawn', 'expired'].includes(recent[0].status) && Date.now() - new Date(recent[0].createdAt).getTime() < 30 * 864e5) return res.status(409).json({ message: recent[0].status === 'accepted' ? 'This candidate already shared their contact details with you.' : 'This candidate declined recently. You can try again after 30 days.' })
         const today = await ContactRequest.countDocuments({ employerId: emp._id, createdAt: { $gte: new Date(Date.now() - 864e5) } })
         if (today >= DAILY_REQUESTS) return res.status(429).json({ message: `You can send up to ${DAILY_REQUESTS} requests a day. Please try again tomorrow.` })
         let jobId

@@ -184,6 +184,11 @@ export const fetchSourceJobs = async (src) => {
     return jobs;
 };
 
+// Adzuna India searches. One unfiltered search only reaches the newest 200 jobs, so we run several role searches.
+// Each one is up to 4 API calls per sync (about 80 calls a day at the default 12h sync, inside Adzuna's free quota).
+export const ADZUNA_INDIA_SOURCES = ['software developer', 'fresher', 'data analyst', 'customer support', 'digital marketing', 'sales executive', 'accountant', 'human resources', 'content writer', 'graphic designer']
+    .map((query) => ({ type: 'adzuna', token: 'in', query, company: '' }));
+
 // Sources the admin can add with one click. Each board name was checked against the live public API.
 export const STARTER_SOURCES = [
     { type: 'greenhouse', company: 'Groww', token: 'groww' },
