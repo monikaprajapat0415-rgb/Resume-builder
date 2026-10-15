@@ -2,7 +2,7 @@
 // Keep in sync with `staticRoutes` in client/vite.config.js and client/src/content/templateSlugs.js.
 export const STATIC_ROUTES = [
     '/', '/contact-us', '/privacy-policy', '/terms-and-conditions', '/blog', '/learn', '/jobs',
-    '/features', '/features/ats-checker', '/cv-builder', '/templates', '/products',
+    '/features', '/features/ats-checker', '/cv-builder', '/resume-job-description-matcher', '/templates', '/products',
     '/templates/classic-resume-template', '/templates/modern-resume-template',
     '/templates/minimal-resume-template', '/templates/resume-template-with-photo',
     '/templates/executive-resume-template', '/templates/compact-resume-template',

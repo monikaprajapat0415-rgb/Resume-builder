@@ -28,6 +28,7 @@ const staticRoutes = [
   '/features',
   '/features/ats-checker',
   '/cv-builder',
+  '/resume-job-description-matcher',
   '/templates',
   '/products',
   ...templateSlugs.map((slug) => `/templates/${slug}`),

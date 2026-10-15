@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { trackEvent } from '../components/Analytics'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -39,6 +40,7 @@ const CvLanding = () => {
     setBusy(true)
     try {
       const { data } = await api.post('/api/cvs/create', { title: 'My CV' }, { headers: { Authorization: token } })
+      trackEvent('resume_builder_started', { type: 'cv', source: 'landing' })
       navigate(`/app/cv/${data.cv._id}`)
     } catch (e) { toast.error(e.response?.data?.message || 'Could not start your CV. Please try again.') }
     setBusy(false)

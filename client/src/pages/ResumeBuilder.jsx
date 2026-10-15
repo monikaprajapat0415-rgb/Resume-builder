@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { trackEvent } from '../components/Analytics'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../components/SEO'
@@ -307,6 +308,7 @@ const ResumeBuilder = () => {
     setIsFinishing(true);
     try {
       await performSave(true);
+      trackEvent('resume_generated', { type: 'resume' });
       toast.success('Your resume is complete and saved.');
       navigate('/app');
     } catch (error) {

@@ -12,6 +12,7 @@ const FEATURES = [
   { icon: LuUpload, title: 'Import your old resume', desc: 'Upload a PDF and we fill the builder for you, so you edit instead of retyping.', to: '/app', cta: 'Import a resume' },
   { icon: LuMailPlus, title: 'AI cover letters', desc: 'Generate a cover letter tailored to the job and company from your resume details.', to: '/app', cta: 'Write one' },
   { icon: LuFileUser, title: 'AI CV builder', desc: 'Enter the job and your details and AI writes a tailored, ATS-friendly CV using only your real experience.', to: '/cv-builder', cta: 'Build a CV' },
+  { icon: LuTarget, title: 'Resume job match', desc: 'Paste a job post and your resume to see which keywords match, which are weak and which are missing. Free and private.', to: '/resume-job-description-matcher', cta: 'Match my resume' },
   { icon: LuShare2, title: 'Download or share', desc: 'Download your resume or share a public link with recruiters in one click.', to: '/app', cta: 'Get started' },
 ]
 

@@ -26,6 +26,7 @@ export const DEFAULT_MENU = {
     { _id: 'fr-templates', label: 'Templates', url: '/templates' },
     { _id: 'fr-ats', label: 'ATS Checker', url: '/features/ats-checker' },
     { _id: 'fr-cv', label: 'CV Builder', url: '/cv-builder' },
+    { _id: 'fr-match', label: 'Job Match Tool', url: '/resume-job-description-matcher' },
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },
     { _id: 'fr-learn', label: 'Learn', url: '/learn' },

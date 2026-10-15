@@ -52,10 +52,12 @@ import CustomPage from "./pages/CustomPage";
 import Features from "./pages/Features";
 import AtsChecker from "./pages/AtsChecker";
 import CvLanding from "./pages/CvLanding";
+import JdMatcher from "./pages/JdMatcher";
 import CvBuilder from "./pages/CvBuilder";
 import ProductsIndex from "./pages/ProductsIndex";
 import ProductDetail from "./pages/ProductDetail";
 import SEO from "./components/SEO";
+import { Helmet } from "react-helmet-async";
 import AdminAppearance from "./pages/admin/AdminAppearance";
 import { useSiteContent, DEFAULT_SITE } from "./utils/siteContent";
 import { applyTheme } from "./utils/theme";
@@ -126,8 +128,11 @@ const App = () => {
     <SEO
       title="Prime Resume AI - AI-Powered Resume Builder for Job Seekers"
       description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI!"
-      structuredData={siteStructuredData}
     />
+    {/* site-wide structured data stays on every page even though a page's own <SEO /> replaces the fallback tags */}
+    <Helmet>
+      {siteStructuredData.map((d, i) => <script key={i} type="application/ld+json">{JSON.stringify(d)}</script>)}
+    </Helmet>
     <Toaster />
     <Analytics />
       <Routes>
@@ -144,6 +149,7 @@ const App = () => {
         <Route path="/features" element={<Features />} />
         <Route path="/features/ats-checker" element={<AtsChecker />} />
         <Route path="/cv-builder" element={<CvLanding />} />
+        <Route path="/resume-job-description-matcher" element={<JdMatcher />} />
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/templates" element={<TemplatesIndex />} />
