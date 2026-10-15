@@ -4,11 +4,13 @@ import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { BiLoaderAlt } from 'react-icons/bi'
-import { LuArrowLeft, LuArrowRight, LuCheck, LuCopy, LuDownload, LuPrinter, LuSparkles, LuTriangleAlert, LuFileText, LuLightbulb, LuRefreshCw } from 'react-icons/lu'
+import { LuArrowLeft, LuArrowRight, LuCheck, LuCopy, LuDownload, LuPrinter, LuSparkles, LuTriangleAlert, LuFileText, LuPlus, LuLightbulb, LuRefreshCw } from 'react-icons/lu'
 import SEO from '../components/SEO'
 import api from '../configs/api'
 import CvDocument from '../components/cv/CvDocument'
 import { Area, Field, Lines, Repeater, Text, inputCls } from '../components/cv/CvFields'
+import { ChipInput, ListInput } from '../components/cv/CvChips'
+import { ACHIEVEMENT_EXAMPLES, LANGUAGE_LEVELS, COMMON_LANGUAGES, OTHER_INFO_QUICK, SUMMARY_QUICK, buildSkillSuggestions, certSuggestions } from '../utils/cvSuggestions'
 import { CV_TEMPLATES, cvToText, emptyCv, emptyInput } from '../utils/cvModel'
 import { downloadCvPdf } from '../utils/cvPdf'
 import { downloadCvDocx } from '../utils/cvDocx'
@@ -31,6 +33,8 @@ const CvBuilder = () => {
   const [step, setStep] = useState(0)
   const [saveState, setSaveState] = useState('saved') // saved | saving | error
   const [generating, setGenerating] = useState(false)
+  const [importing, setImporting] = useState(false)
+  const [langLevel, setLangLevel] = useState('')
   const [genKey, setGenKey] = useState(0) // remounts the review editors after a new generation
   const lastSynced = useRef('')
   const timer = useRef(null)
@@ -141,6 +145,23 @@ const CvBuilder = () => {
     try { await navigator.clipboard.writeText(cvToText(cv, pi, level)); toast.success('CV text copied') } catch { toast.error('Could not copy') }
   }
 
+  const skillGroups = buildSkillSuggestions({ jobTitle: target.job_title, jd: target.job_description, input, have: input.skills })
+  const certGroups = certSuggestions(target.job_title, target.job_description, input.certifications)
+  const langItems = COMMON_LANGUAGES.filter((l) => !input.languages.some((v) => v.toLowerCase().startsWith(l.toLowerCase()))).map((l) => (langLevel ? `${l} (${langLevel})` : l))
+  const importSkills = async () => {
+    setImporting(true)
+    try {
+      const { data } = await api.get('/api/users/resumes', auth)
+      const found = [...new Set((data.resumes || []).flatMap((r) => r.skills || []).map((s) => String(s).trim()).filter(Boolean))]
+      const have = new Set(input.skills.map((s) => s.toLowerCase()))
+      const fresh = found.filter((s) => !have.has(s.toLowerCase())).slice(0, Math.max(0, 40 - input.skills.length))
+      if (!found.length) toast('No skills found in your saved resumes yet.')
+      else if (!fresh.length) toast('All skills from your resumes are already here.')
+      else { setInput({ skills: [...input.skills, ...fresh] }); toast.success(`Added ${fresh.length} skill${fresh.length > 1 ? 's' : ''} from your resumes`) }
+    } catch { toast.error('Could not load your resumes.') }
+    setImporting(false)
+  }
+
   // ---------------------------------------------------------------- steps
   const stepBody = [
     // 0 target
@@ -240,15 +261,51 @@ const CvBuilder = () => {
       </div>
     </div>,
     // 5 skills & extras
-    <div key='s5' className='space-y-4'>
-      <Lines label='Skills' commas rows={3} value={input.skills} onChange={(skills) => setInput({ skills })} placeholder='React, Node.js, MongoDB, REST APIs'
-        hint='Comma separated. Only list skills you really have: the AI will not add any.' />
-      <Area label='Notes for your summary (optional)' rows={3} value={input.summary_notes} onChange={(v) => setInput({ summary_notes: v })}
-        hint='Career goals, strengths, what you want recruiters to know. The AI turns this into a professional summary.' />
-      <Lines label='Certifications' rows={3} value={input.certifications} onChange={(certifications) => setInput({ certifications })} hint='One per line.' />
-      <Lines label='Achievements & awards' rows={3} value={input.achievements} onChange={(achievements) => setInput({ achievements })} hint='One per line.' />
-      <Lines label='Languages' commas rows={2} value={input.languages} onChange={(languages) => setInput({ languages })} placeholder='English, Hindi' />
-      <Lines label='Other information (optional)' rows={2} value={input.additional_information} onChange={(additional_information) => setInput({ additional_information })} hint='Volunteering, publications, availability... one per line. References are not included unless you add them here.' />
+    <div key='s5' className='space-y-7'>
+      <p className='text-sm text-slate-600'>Type and press <kbd className='px-1.5 py-0.5 text-xs bg-slate-100 border border-slate-300 rounded'>Enter</kbd> or comma to add, or paste a whole list. Tap a suggestion to add it. Only add what is true for you.</p>
+
+      <div className='space-y-2'>
+        <ChipInput label='Skills' value={input.skills} onChange={(skills) => setInput({ skills })} max={40} maxLen={60}
+          placeholder='e.g. React, Node.js, MongoDB' countHint={(n) => (n === 0 ? 'Aim for 8-15' : n < 8 ? `${n} added, aim for 8-15` : n <= 15 ? `${n} added` : `${n} added, the most relevant 15 or fewer read best`)}
+          suggestionGroups={skillGroups} />
+        <button type='button' onClick={importSkills} disabled={importing} className='inline-flex items-center gap-1.5 text-xs text-brand-700 hover:underline disabled:opacity-50'>
+          {importing ? <BiLoaderAlt className='size-3.5 animate-spin' /> : <LuDownload className='size-3.5' />}Import skills from my saved resumes
+        </button>
+      </div>
+
+      <div>
+        <Area label='Notes for your summary (optional)' rows={3} value={input.summary_notes} onChange={(v) => setInput({ summary_notes: v })}
+          hint='Career goals and strengths in your own words. The AI turns this into a professional summary.' />
+        <div className='flex flex-wrap gap-1.5 mt-1.5'>
+          {SUMMARY_QUICK.filter((q) => !(input.summary_notes || '').includes(q)).map((q) => (
+            <button type='button' key={q} onClick={() => setInput({ summary_notes: `${(input.summary_notes || '').trim()} ${q}`.trim() })} aria-label={`Add note: ${q}`} className='inline-flex items-center gap-1 px-2.5 py-1 text-xs rounded-full border border-dashed border-slate-300 text-slate-700 hover:border-brand-500 hover:bg-brand-50 transition'><LuPlus className='size-3' />{q.replace(/\.$/, '')}</button>
+          ))}
+        </div>
+      </div>
+
+      <ChipInput label='Certifications' value={input.certifications} onChange={(certifications) => setInput({ certifications })} max={20} maxLen={120}
+        placeholder='Name of the certificate, then Enter' suggestionGroups={certGroups.length ? [{ id: 'certs', label: 'Common for this role: add only if you hold it', items: certGroups }] : []} />
+
+      <div>
+        <ChipInput label='Languages' value={input.languages} onChange={(languages) => setInput({ languages })} max={10} maxLen={60}
+          placeholder='e.g. English (Fluent)' suggestionGroups={[{ id: 'langs', label: 'Tap to add', items: langItems }]} />
+        <label className='flex items-center gap-2 text-xs text-slate-600 mt-2'>Add new languages with level
+          <select value={langLevel} onChange={(e) => setLangLevel(e.target.value)} className='text-xs border border-slate-300 rounded-md px-2 py-1'>
+            <option value=''>no level</option>
+            {LANGUAGE_LEVELS.map((l) => <option key={l} value={l}>{l}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <div>
+        <ListInput label='Achievements & awards' value={input.achievements} onChange={(achievements) => setInput({ achievements })} max={8}
+          placeholder='Describe one achievement, then Enter' hint='Real results only. Include a number if you have one.' />
+        <p className='text-xs text-slate-500 mt-1.5'>Ideas: {ACHIEVEMENT_EXAMPLES.join(' · ')}</p>
+      </div>
+
+      <ListInput label='Other information (optional)' value={input.additional_information} onChange={(additional_information) => setInput({ additional_information })} max={8}
+        placeholder='e.g. Open to relocation, then Enter' quick={OTHER_INFO_QUICK} quickLabel='Tap to add'
+        hint='Volunteering, publications, availability. References are not included unless you add them here.' />
     </div>,
     // 6 generate & review
     <div key='s6' className='space-y-5'>
