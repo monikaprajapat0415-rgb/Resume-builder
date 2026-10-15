@@ -3,13 +3,15 @@ import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { BiLoaderAlt } from 'react-icons/bi'
-import { LuArrowLeft, LuArrowRight, LuCheck, LuCopy, LuDownload, LuPrinter, LuSparkles, LuTriangleAlert, LuLightbulb, LuRefreshCw } from 'react-icons/lu'
+import { LuArrowLeft, LuArrowRight, LuCheck, LuCopy, LuDownload, LuPrinter, LuSparkles, LuTriangleAlert, LuFileText, LuLightbulb, LuRefreshCw } from 'react-icons/lu'
 import SEO from '../components/SEO'
 import api from '../configs/api'
 import CvDocument from '../components/cv/CvDocument'
 import { Area, Field, Lines, Repeater, Text, inputCls } from '../components/cv/CvFields'
 import { CV_TEMPLATES, cvToText, emptyCv, emptyInput } from '../utils/cvModel'
 import { downloadCvPdf } from '../utils/cvPdf'
+import { downloadCvDocx } from '../utils/cvDocx'
+import CvAtsPanel from '../components/cv/CvAtsPanel'
 
 const STEPS = ['Target job', 'Contact', 'Education', 'Experience', 'Internships & projects', 'Skills & extras', 'Generate & review']
 const COLORS = ['#1E3A8A', '#0F766E', '#7C3AED', '#BE123C', '#B45309', '#111827']
@@ -127,6 +129,11 @@ const CvBuilder = () => {
     if (!doc.generated) { toast.error('Generate your CV first'); return }
     try { downloadCvPdf({ cv, personal: pi, template: doc.template, accentColor: doc.accent_color, level, fileName }) }
     catch (e) { console.error(e); toast.error('Could not create the PDF') }
+  }
+  const downloadWord = async () => {
+    if (!doc.generated) { toast.error('Generate your CV first'); return }
+    try { await downloadCvDocx({ cv, personal: pi, template: doc.template, accentColor: doc.accent_color, level, fileName }) }
+    catch (e) { console.error(e); toast.error('Could not create the Word file') }
   }
   const copyText = async () => {
     try { await navigator.clipboard.writeText(cvToText(cv, pi, level)); toast.success('CV text copied') } catch { toast.error('Could not copy') }
@@ -260,6 +267,7 @@ const CvBuilder = () => {
       </div>
 
       {doc.generated && (<>
+        <CvAtsPanel cv={cv} personal={pi} target={target} level={level} />
         {cv.missing_information?.length > 0 && (
           <div className='rounded-xl border border-amber-200 bg-amber-50 p-4'>
             <p className='flex items-center gap-2 text-sm font-semibold text-amber-900'><LuTriangleAlert className='size-4' />Missing or needs attention</p>
@@ -351,6 +359,7 @@ const CvBuilder = () => {
             <div className='flex gap-2 ml-auto'>
               <button type='button' onClick={copyText} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuCopy className='size-3.5' />Copy text</button>
               <button type='button' onClick={() => window.print()} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuPrinter className='size-3.5' />Print</button>
+              <button type='button' onClick={downloadWord} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuFileText className='size-3.5' />Word</button>
               <button type='button' onClick={download} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-4 py-1.5 text-xs bg-brand-600 hover:bg-brand-700 text-white rounded-full disabled:opacity-40'><LuDownload className='size-3.5' />Download PDF</button>
             </div>
           </div>
