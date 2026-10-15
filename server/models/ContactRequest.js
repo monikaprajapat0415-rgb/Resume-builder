@@ -9,7 +9,7 @@ const ContactRequestSchema = new mongoose.Schema({
     status: { type: String, enum: ['pending', 'accepted', 'declined', 'withdrawn', 'expired'], default: 'pending', index: true },
     reply: { type: String, default: '', maxlength: 600, trim: true },
     // Filled only when the seeker accepts: exactly what the seeker chose to share.
-    sharedContact: { name: String, email: String, phone: String },
+    sharedContact: { name: String, email: String, phone: String, whatsapp: Boolean },
     respondedAt: { type: Date },
     remindedAt: { type: Date },                                            // one reminder email to the seeker while the request is unanswered
 }, { timestamps: true });

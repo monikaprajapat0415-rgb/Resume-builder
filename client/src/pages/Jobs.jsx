@@ -6,17 +6,19 @@ import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { timeAgo } from '../utils/jobText'
+import { CATEGORIES, catShort } from '../utils/workTaxonomy'
 import { LuSearch, LuMapPin, LuBriefcase, LuWifi, LuArrowRight, LuUserCheck, LuBuilding2 } from 'react-icons/lu'
 
-const DESC = 'Browse open jobs collected from company career pages. Search by role, company, location or remote, then apply on the employer site.'
+const DESC = 'Jobs for office, factory and skilled workers in India, the UK, Canada and Africa. Find office jobs, factory work, trade jobs and daily wage work, and apply directly.'
 
 const Jobs = () => {
   const [params, setParams] = useSearchParams()
   const q = params.get('q') || '', location = params.get('location') || '', company = params.get('company') || ''
+  const category = params.get('category') || '', country = params.get('country') || ''
   const type = params.get('type') || '', remote = params.get('remote') === '1', page = Math.max(1, parseInt(params.get('page')) || 1)
   const [form, setForm] = useState({ q, location })
   const [data, setData] = useState({ jobs: [], total: 0, pages: 1 })
-  const [facets, setFacets] = useState({ companies: [], types: [], total: 0 })
+  const [facets, setFacets] = useState({ companies: [], types: [], countries: [], categories: {}, total: 0 })
   const [loading, setLoading] = useState(true)
   const [failed, setFailed] = useState(false)
 
@@ -26,12 +28,12 @@ const Jobs = () => {
   useEffect(() => {
     let live = true
     setLoading(true); setFailed(false)
-    api.get('/api/jobs', { params: { q, location, company, type, remote: remote ? 1 : undefined, page } })
+    api.get('/api/jobs', { params: { q, location, company, type, remote: remote ? 1 : undefined, category, country, page } })
       .then(({ data }) => { if (live) setData(data) })
       .catch(() => { if (live) setFailed(true) })
       .finally(() => { if (live) { setLoading(false); dropServerJsonLd() } })
     return () => { live = false }
-  }, [q, location, company, type, remote, page])
+  }, [q, location, company, type, remote, category, country, page])
 
   const update = (patch) => {
     const next = new URLSearchParams(params)
@@ -40,20 +42,26 @@ const Jobs = () => {
     setParams(next)
   }
   const submit = (e) => { e.preventDefault(); update({ q: form.q.trim(), location: form.location.trim() }) }
-  const filtered = q || location || company || type || remote
+  const filtered = q || location || company || type || remote || category || country
 
   return (
     <div>
-      <SEO title='Latest jobs from top companies' description={DESC} keywords='jobs, careers, job openings, remote jobs, software jobs India' path='/jobs'
+      <SEO title='Jobs for office, factory and skilled workers' description={DESC} keywords='jobs in India, factory jobs, daily wage jobs, electrician jobs, jobs UK, jobs Canada, jobs Nigeria, jobs Kenya, remote jobs' path='/jobs'
         robots={filtered || page > 1 ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />
       <NavBar />
       <section className='max-w-5xl mx-auto px-4 py-12'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › <span>Jobs</span></nav>
         <div className='text-center max-w-2xl mx-auto mb-8'>
-          <h1 className='text-4xl font-semibold text-slate-800'>Latest jobs from top companies</h1>
-          <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs from company career pages. ` : ''}Apply on each employer's own site, and tailor your resume first.</p>
+          <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>Jobs for office, factory and skilled workers</h1>
+          <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs. ` : ''}Office jobs, factory work, skilled trades and daily wage work in India, the UK, Canada and Africa. Never pay anyone to get a job.</p>
         </div>
 
+        <div className='flex gap-2 overflow-x-auto pb-2 mb-3 -mx-1 px-1' role='group' aria-label='Kind of work'>
+          {[{ id: '', label: 'All jobs', icon: '' }, ...CATEGORIES].map((c) => {
+            const on = category === c.id, n = c.id ? facets.categories?.[c.id] : facets.total
+            return <button key={c.id} type='button' aria-pressed={on} onClick={() => update({ category: c.id })} className={`shrink-0 px-4 py-2 text-sm rounded-full border transition ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon ? `${c.icon} ` : ''}{c.label}{n ? <span className={`ml-1.5 text-xs ${on ? 'text-slate-300' : 'text-slate-400'}`}>{n.toLocaleString()}</span> : null}</button>
+          })}
+        </div>
         <form onSubmit={submit} className='grid sm:grid-cols-[1fr_1fr_auto] gap-3 mb-4'>
           <label className='relative'><span className='sr-only'>Job title, skill or company</span>
             <LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' />
@@ -61,14 +69,18 @@ const Jobs = () => {
           </label>
           <label className='relative'><span className='sr-only'>Location</span>
             <LuMapPin className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' />
-            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder='City or country, e.g. Bengaluru' className='w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-200' />
+            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder='City or area, e.g. Pune, Leeds, Lagos' className='w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-full text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-200' />
           </label>
           <button type='submit' className='px-7 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Search</button>
         </form>
 
         <div className='flex flex-wrap items-center gap-3 mb-6 text-sm'>
           <button type='button' onClick={() => update({ remote: remote ? '' : '1' })} aria-pressed={remote} className={`px-4 py-1.5 rounded-full border transition ${remote ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}>Remote</button>
-          <button type='button' onClick={() => update({ location: location === 'India' ? '' : 'India' })} aria-pressed={location === 'India'} className={`px-4 py-1.5 rounded-full border transition ${location === 'India' ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}>India</button>
+          {facets.countries.length > 0 && (
+            <select value={country} onChange={(e) => update({ country: e.target.value })} aria-label='Country' className='px-3 py-1.5 border border-slate-200 rounded-full bg-white text-slate-600'>
+              <option value=''>All countries</option>{facets.countries.map((c) => <option key={c.code} value={c.code}>{c.name}</option>)}
+            </select>
+          )}
           <select value={company} onChange={(e) => update({ company: e.target.value })} aria-label='Company' className='px-3 py-1.5 border border-slate-200 rounded-full bg-white text-slate-600'>
             <option value=''>All companies</option>{facets.companies.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
@@ -83,12 +95,12 @@ const Jobs = () => {
         <div className='grid sm:grid-cols-2 gap-3 mb-6'>
           <Link to='/app/open-to-work' className='group flex items-center gap-3 rounded-xl border border-brand-200 bg-brand-50/60 px-4 py-3 hover:bg-brand-50 transition'>
             <LuUserCheck className='size-6 text-brand-600 shrink-0' />
-            <span className='text-sm'><strong className='block text-slate-800'>Open to work?</strong><span className='text-slate-600'>Let companies find you. Your contact details stay private.</span></span>
+            <span className='text-sm'><strong className='block text-slate-800'>Looking for work?</strong><span className='text-slate-600'>Tell employers you are available. Your phone and name stay private.</span></span>
             <LuArrowRight className='size-4 ml-auto text-brand-600 group-hover:translate-x-1 transition shrink-0' />
           </Link>
           <Link to='/hire' className='group flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 hover:bg-slate-50 transition'>
             <LuBuilding2 className='size-6 text-slate-500 shrink-0' />
-            <span className='text-sm'><strong className='block text-slate-800'>Hiring?</strong><span className='text-slate-600'>Post a job and contact available candidates.</span></span>
+            <span className='text-sm'><strong className='block text-slate-800'>Hiring?</strong><span className='text-slate-600'>Post a job and contact available workers.</span></span>
             <LuArrowRight className='size-4 ml-auto text-slate-400 group-hover:translate-x-1 transition shrink-0' />
           </Link>
         </div>
@@ -111,9 +123,12 @@ const Jobs = () => {
                           {j.location && <span className='inline-flex items-center gap-1'><LuMapPin className='size-3.5' />{j.location}</span>}
                           {j.remote && !/^remote$/i.test(j.location || '') && <span className='inline-flex items-center gap-1'><LuWifi className='size-3.5' />Remote</span>}
                           {j.employmentType && <span className='inline-flex items-center gap-1'><LuBriefcase className='size-3.5' />{j.employmentType}</span>}
-                          {j.salary && <span>{j.salary}</span>}
+                          {j.category && j.category !== 'corporate' && <span className='px-2 py-0.5 rounded-full bg-slate-100 text-slate-600'>{catShort(j.category)}</span>}
+                          {j.salary && <span className='font-medium text-slate-600'>{j.salary}</span>}
+                          {j.openings > 1 && <span>{j.openings} openings</span>}
                           <span>{timeAgo(j.postedAt)}</span>
                         </p>
+                        {j.perks?.length > 0 && <p className='text-xs text-green-700 mt-1.5'>{j.perks.slice(0, 4).join(' · ')}</p>}
                         {j.snippet && <p className='text-sm text-slate-500 mt-2 line-clamp-2'>{j.snippet}</p>}
                       </div>
                       <LuArrowRight className='size-5 text-slate-300 group-hover:text-brand-600 group-hover:translate-x-1 transition shrink-0 self-center' />

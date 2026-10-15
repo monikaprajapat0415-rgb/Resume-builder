@@ -22,6 +22,12 @@ const JobSchema = new mongoose.Schema({
     active: { type: Boolean, default: true, index: true },         // false once the employer removes it
     hidden: { type: Boolean, default: false },                     // admin can hide a listing
     // Jobs posted directly by a company on this site (sourceType 'employer'). Imported jobs are always approved.
+    category: { type: String, enum: ['corporate', 'factory', 'skilled_trade', 'daily_wage'], default: 'corporate', index: true },
+    payMin: { type: Number, min: 0 }, payMax: { type: Number, min: 0 },
+    currency: { type: String, default: '', maxlength: 3 },
+    payPer: { type: String, enum: ['day', 'hour', 'week', 'month', 'year', ''], default: '' },
+    openings: { type: Number, min: 1, max: 1000 },                  // how many workers are needed
+    perks: { type: [String], default: [] },                         // accommodation, food, transport, PPE...
     employerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Employer', index: true },
     reviewStatus: { type: String, enum: ['approved', 'pending', 'rejected'], default: 'approved', index: true },
     reviewNote: { type: String, default: '', maxlength: 500 },

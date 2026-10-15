@@ -80,3 +80,28 @@ export const jobInsights = (job) => {
     ];
     return { summary, skills, level, years, family, tips: tips.slice(0, 5), faqs };
 };
+
+// Guidance for factory, trade and daily-wage jobs. No resume advice: workers need to know what to bring,
+// what to ask, and how to avoid job scams. Built from the posting itself (no AI call).
+export const labourInsights = (job) => {
+    const title = String(job.title || '');
+    const where = job.location || '';
+    const lines = [`${job.company} is looking for a ${title}${where ? ` in ${where}` : ''}.`];
+    if (job.openings > 1) lines.push(`There are ${job.openings} openings.`);
+    if (job.salary) lines.push(`The pay listed is ${job.salary}.`);
+    if (job.perks?.length) lines.push(`Benefits mentioned: ${list(job.perks.slice(0, 5)).toLowerCase()}.`);
+    const tips = [
+        'Carry your ID, any trade certificate or licence, and one or two recent photos when you go to the site or interview.',
+        'Before you accept, ask: what is the daily or monthly pay, how and when is it paid, what are the working hours, and is overtime paid?',
+        'Ask who provides safety gear and tools, and whether food, travel or a place to stay is included.',
+        'If you can, speak to someone who has worked for this employer before, or visit the workplace first.',
+        'Never pay an agent or employer any fee to get a job. Real employers do not charge workers. Report anyone who asks.',
+    ];
+    const faqs = [
+        { q: `What does a ${title} do?`, a: 'Read the full description above for the exact duties. If anything is unclear, ask the employer before you accept the job.' },
+        { q: 'Do I have to pay to apply?', a: 'No. You should never pay to get a job. If someone asks for money, a deposit or a "registration fee", do not pay and report the listing.' },
+        { q: 'How do I apply?', a: job.applyUrl && /^mailto:/i.test(job.applyUrl) ? 'Use the Apply button to email the employer directly.' : `Use the Apply button. It opens the employer's own page or form, so your details go straight to them.` },
+        { q: 'What should I bring on the first day?', a: 'Your ID, any certificates or licences you have, and proper work clothes and shoes. Ask the employer if safety gear is provided.' },
+    ];
+    return { summary: lines.join(' '), skills: [], level: '', years: null, family: 'labour', tips, faqs };
+};

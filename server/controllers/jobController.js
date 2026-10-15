@@ -1,9 +1,12 @@
-import { jobInsights } from '../utils/jobInsights.js';
+import { jobInsights, labourInsights } from '../utils/jobInsights.js';
+import { CATEGORIES, COUNTRIES, COUNTRY_CODES } from '../utils/workTaxonomy.js';
+import Message from "../models/Message.js";
+import User from "../models/User.js";
 import mongoose from "mongoose";
 import Job from "../models/Job.js";
 import JobSource from "../models/JobSource.js";
 import { syncSource, syncAll, isSyncRunning } from "../services/jobSync.js";
-import { STARTER_SOURCES, ADZUNA_INDIA_SOURCES, TOKEN_RX } from "../utils/jobFeeds.js";
+import { STARTER_SOURCES, ADZUNA_SOURCES, TOKEN_RX } from "../utils/jobFeeds.js";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const PAGE_SIZE = 20;
@@ -12,7 +15,7 @@ const validId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 export const jobCard = (j) => ({
     slug: j.slug, title: j.title, company: j.company, location: j.location, remote: j.remote,
-    employmentType: j.employmentType, department: j.department, salary: j.salary, direct: j.sourceType === 'employer', postedAt: j.postedAt || j.createdAt,
+    category: j.category || 'corporate', country: j.country, openings: j.openings, perks: j.perks || [], employmentType: j.employmentType, department: j.department, salary: j.salary, direct: j.sourceType === 'employer', postedAt: j.postedAt || j.createdAt,
     snippet: String(j.description || '').replace(/\s+/g, ' ').slice(0, 220),
 });
 
@@ -32,7 +35,9 @@ export const listJobs = async (req, res) => {
         if (req.query.location && String(req.query.location).trim()) filter.location = rx(req.query.location);
         if (req.query.company && String(req.query.company).trim()) filter.company = String(req.query.company).trim().slice(0, 150);
         if (req.query.type && String(req.query.type).trim()) filter.employmentType = String(req.query.type).trim().slice(0, 40);
-        if (req.query.remote === '1' || req.query.remote === 'true') filter.remote = true;
+        if (req.query.remote === '1' || req.query.remote === 'true') filter.remote = true
+        if (CATEGORIES.includes(req.query.category)) filter.category = req.query.category
+        if (COUNTRY_CODES.includes(String(req.query.country || '').toUpperCase())) filter.country = String(req.query.country).toUpperCase();
         const [jobs, total] = await Promise.all([
             Job.find(filter).sort({ postedAt: -1, createdAt: -1 }).skip((page - 1) * PAGE_SIZE).limit(PAGE_SIZE).select('-description').lean(),
             Job.countDocuments(filter),
@@ -51,11 +56,14 @@ export const listJobs = async (req, res) => {
 export const jobFacets = async (req, res) => {
     try {
         const f = liveFilter();
-        const [companies, types, total] = await Promise.all([
-            Job.distinct('company', f), Job.distinct('employmentType', f), Job.countDocuments(f),
+        const [companies, types, total, countries, catCounts] = await Promise.all([
+            Job.distinct('company', f), Job.distinct('employmentType', f), Job.countDocuments(f), Job.distinct('country', f),
+            Promise.all(CATEGORIES.map(async (c) => [c, await Job.countDocuments({ ...f, category: c })])),
         ]);
         return res.status(200).json({
             total,
+            countries: COUNTRIES.filter((c) => countries.includes(c[0])).map((c) => ({ code: c[0], name: c[1] })),
+            categories: Object.fromEntries(catCounts),
             companies: companies.filter(Boolean).sort((a, b) => a.localeCompare(b)).slice(0, 300),
             types: types.filter(Boolean).sort(),
         });
@@ -76,10 +84,23 @@ export const getJob = async (req, res) => {
         if (!v) return res.status(404).json({ message: 'Job not found' });
         const { job } = v;
         return res.status(200).json({
-            job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, sourceType: job.sourceType, updatedAt: job.updatedAt },
-            more: v.more, sourceName: v.sourceName, insights: jobInsights(job),
+            job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, payMin: job.payMin, payMax: job.payMax, currency: job.currency, payPer: job.payPer, sourceType: job.sourceType, updatedAt: job.updatedAt },
+            more: v.more, sourceName: v.sourceName, insights: job.category && job.category !== 'corporate' ? labourInsights(job) : jobInsights(job),
         });
     } catch (e) { return res.status(500).json({ message: 'Could not load the job.' }); }
+};
+
+// POST /api/jobs/:slug/report { reason } - lands in Admin > Messages so a scam listing can be removed quickly
+export const reportJob = async (req, res) => {
+    try {
+        const job = await Job.findOne({ slug: String(req.params.slug).slice(0, 160) }).select('title company slug sourceType').lean();
+        if (!job) return res.status(404).json({ message: 'Job not found' });
+        const reason = String(req.body?.reason || '').trim().slice(0, 1000);
+        if (reason.length < 5) return res.status(400).json({ message: 'Tell us briefly what is wrong with this job.' });
+        const user = await User.findById(req.userId).select('email name');
+        await Message.create({ name: `Job report by ${user?.name || 'user'}`.slice(0, 100), email: user?.email || 'unknown@example.com', message: `REPORTED JOB: ${job.title} at ${job.company}\n/jobs/${job.slug} (${job.sourceType})\n\n${reason}` });
+        return res.status(201).json({ message: 'Thank you. We will review this job.' });
+    } catch (e) { return res.status(500).json({ message: 'Could not send your report.' }); }
 };
 
 // ---------- Admin ----------
@@ -166,11 +187,11 @@ export const seedAdzunaIndia = async (req, res) => {
     try {
         if (!process.env.ADZUNA_APP_ID || !process.env.ADZUNA_APP_KEY) return res.status(400).json({ message: 'Add ADZUNA_APP_ID and ADZUNA_APP_KEY to the server .env (free keys from developer.adzuna.com), restart, then try again.' });
         let added = 0;
-        for (const s of ADZUNA_INDIA_SOURCES) {
+        for (const s of ADZUNA_SOURCES) {
             if (!(await JobSource.findOne({ type: 'adzuna', token: s.token, query: s.query }))) { await JobSource.create(s); added++; }
         }
         if (added && !isSyncRunning()) syncAll().catch((e) => console.error('[jobs] adzuna first sync failed:', e.message));
-        return res.status(200).json({ added, total: ADZUNA_INDIA_SOURCES.length });
+        return res.status(200).json({ added, total: ADZUNA_SOURCES.length });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 

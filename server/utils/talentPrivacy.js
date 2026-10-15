@@ -16,5 +16,8 @@ export const anonCard = (t) => ({
     id: t.publicId, headline: t.headline, level: t.level, experienceYears: t.experienceYears,
     skills: t.skills || [], location: t.location, remote: t.remote, relocate: t.relocate,
     jobTypes: t.jobTypes || [], expectedSalary: t.expectedSalary, noticePeriod: t.noticePeriod,
+    category: t.category || 'corporate', country: t.country || '', payAmount: t.payAmount ?? null, payPer: t.payPer || '', currency: t.currency || '',
+    availability: t.availability || '', willingToTravel: Boolean(t.willingToTravel), ownTools: Boolean(t.ownTools),
+    languages: t.languages || [], certifications: t.certifications || [], workRight: t.workRight || '',
     summary: t.summary, updatedAt: t.updatedAt,
 })

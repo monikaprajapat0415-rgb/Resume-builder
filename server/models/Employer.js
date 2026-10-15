@@ -5,7 +5,11 @@ import mongoose from "mongoose";
 const EmployerSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, unique: true },
     companyName: { type: String, required: true, maxlength: 150, trim: true },
-    website: { type: String, required: true, maxlength: 300, trim: true },
+    employerType: { type: String, enum: ['company', 'factory', 'contractor', 'agency', 'individual'], default: 'company' },
+    country: { type: String, default: 'IN', maxlength: 3 },
+    website: { type: String, default: '', maxlength: 300, trim: true },                 // website OR registrationNo is required
+    registrationNo: { type: String, default: '', maxlength: 60, trim: true },           // GST / CIN / Companies House / CAC / trade licence number
+    noFeeConfirmedAt: { type: Date },                                                   // pledged never to charge workers a recruitment fee
     workEmail: { type: String, required: true, maxlength: 200, lowercase: true, trim: true },   // company address, shown to the admin
     contactName: { type: String, required: true, maxlength: 100, trim: true },
     contactRole: { type: String, default: '', maxlength: 100, trim: true },

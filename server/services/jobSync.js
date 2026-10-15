@@ -3,6 +3,7 @@ import Job from '../models/Job.js';
 import JobSource from '../models/JobSource.js';
 import { fetchSourceJobs } from '../utils/jobFeeds.js';
 import { slugify } from '../utils/slugify.js';
+import { inferCategory } from '../utils/workTaxonomy.js';
 
 let running = false;
 export const isSyncRunning = () => running;
@@ -23,7 +24,7 @@ export const syncSource = async (source) => {
                 updateOne: {
                     filter: { sourceId: source._id, externalId: j.externalId },
                     update: {
-                        $set: { ...j, sourceType: source.type, lastSeenAt: started, active: true },
+                        $set: { ...j, category: inferCategory(j.title, j.department), sourceType: source.type, lastSeenAt: started, active: true },
                         $setOnInsert: { slug: makeSlug(j, source._id) },
                     },
                     upsert: true,
@@ -57,8 +58,20 @@ export const syncAll = async () => {
     } finally { running = false; }
 };
 
+// Imported jobs saved before categories existed get one (title based). Runs once at start-up, in small batches.
+export const backfillCategories = async () => {
+    try {
+        for (let i = 0; i < 50; i++) {
+            const rows = await Job.find({ category: { $exists: false }, sourceType: { $ne: 'employer' } }).select('title department').limit(500).lean();
+            if (!rows.length) break;
+            await Job.bulkWrite(rows.map((r) => ({ updateOne: { filter: { _id: r._id }, update: { $set: { category: inferCategory(r.title, r.department) } } } })), { ordered: false });
+        }
+    } catch (e) { console.error('[jobs] category backfill failed:', e.message); }
+};
+
 // Refreshes every enabled source every JOBS_SYNC_HOURS (default 12). Set JOBS_AUTO_SYNC=false to disable.
 export const startJobScheduler = () => {
+    backfillCategories();
     if (process.env.JOBS_AUTO_SYNC === 'false') return;
     const hours = Math.max(1, Number(process.env.JOBS_SYNC_HOURS) || 12);
     const run = () => syncAll().catch((e) => console.error('[jobs] scheduled sync failed:', e.message));

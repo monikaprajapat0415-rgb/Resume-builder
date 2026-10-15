@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
+import { EMPLOYER_TYPES, countryName, catShort } from '../../utils/workTaxonomy'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { LuCheck, LuX, LuBan, LuExternalLink, LuTriangleAlert } from 'react-icons/lu'
@@ -54,11 +55,13 @@ const AdminHiring = () => {
               <li key={c.id} className='rounded-xl border border-slate-200 bg-white p-5'>
                 <div className='flex flex-wrap items-start justify-between gap-3'>
                   <div><p className='font-semibold text-slate-800'>{c.companyName}</p>
-                    <a href={c.website} target='_blank' rel='nofollow noopener noreferrer' className='text-xs text-brand-700 hover:underline inline-flex items-center gap-1'>{c.website}<LuExternalLink className='size-3' /></a></div>
+                    {c.website ? <a href={c.website} target='_blank' rel='nofollow noopener noreferrer' className='text-xs text-brand-700 hover:underline inline-flex items-center gap-1'>{c.website}<LuExternalLink className='size-3' /></a> : <span className='text-xs text-amber-700'>No website</span>}
+                    <p className='text-xs text-slate-500 mt-0.5'>{[EMPLOYER_TYPES.find((t) => t[0] === c.employerType)?.[1], countryName(c.country), c.registrationNo && `Reg. no. ${c.registrationNo}`].filter(Boolean).join(' · ')}</p></div>
                   <div className='text-right'><StatusBadge status={c.status} /><p className='text-xs text-slate-400 mt-1'>{timeShort(c.createdAt)}</p></div>
                 </div>
                 <dl className='grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm text-slate-600 mt-3'>
-                  <div>Work email: <strong>{c.workEmail}</strong> {c.domainMatch ? <span className='text-green-700 text-xs'>(matches website)</span> : <span className='text-amber-700 text-xs inline-flex items-center gap-1'><LuTriangleAlert className='size-3' />different domain from website</span>}</div>
+                  <div>Work email: <strong>{c.workEmail}</strong> {c.personalEmail ? <span className='text-amber-700 text-xs inline-flex items-center gap-1'><LuTriangleAlert className='size-3' />personal email, check the registration number</span> : c.domainMatch === true ? <span className='text-green-700 text-xs'>(matches website)</span> : c.domainMatch === false ? <span className='text-amber-700 text-xs inline-flex items-center gap-1'><LuTriangleAlert className='size-3' />different domain from website</span> : null}</div>
+                  <div>No-fee pledge: {c.noFeeConfirmed ? <span className='text-green-700'>confirmed</span> : <span className='text-amber-700'>not confirmed</span>}</div>
                   <div>Contact: {c.contactName}{c.contactRole ? `, ${c.contactRole}` : ''}</div>
                   <div>Login account: {c.accountEmail}</div><div>{[c.industry, c.size && `${c.size} people`, c.location].filter(Boolean).join(' · ')}</div>
                   {c.phone && <div>Phone: {c.phone}</div>}<div>Open jobs: {c.openJobs} · Requests sent: {c.requestsSent}</div>
@@ -83,7 +86,7 @@ const AdminHiring = () => {
             <ul className='space-y-3'>{jobs.map((j) => (
               <li key={j.id} className='rounded-xl border border-slate-200 bg-white p-5'>
                 <div className='flex flex-wrap items-start justify-between gap-3'>
-                  <div><p className='font-semibold text-slate-800'>{j.title}</p><p className='text-sm text-slate-500'>{j.company} · {[j.location, j.employmentType, j.salary].filter(Boolean).join(' · ')}</p></div>
+                  <div><p className='font-semibold text-slate-800'>{j.title}</p><p className='text-sm text-slate-500'>{j.company} · {[catShort(j.category), countryName(j.country), j.location, j.employmentType, j.salary].filter(Boolean).join(' · ')}</p></div>
                   <StatusBadge status={j.reviewStatus} />
                 </div>
                 <p className='text-xs text-slate-500 mt-2'>Apply via: <span className='font-mono break-all'>{j.applyUrl}</span></p>

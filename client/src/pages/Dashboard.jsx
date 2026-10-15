@@ -192,8 +192,8 @@ const Dashboard = () => {
         </div>
 
         <div className='flex flex-wrap gap-2 mb-5 text-sm'>
-          <Link to='/app/open-to-work' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-200 bg-brand-50 text-brand-800 hover:bg-brand-100 transition'><LuUserCheck className='size-4' />Open to work: let companies find you</Link>
-          <Link to='/app/hire' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition'><LuBuilding2 className='size-4' />Hiring? Find candidates</Link>
+          <Link to='/app/open-to-work' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-200 bg-brand-50 text-brand-800 hover:bg-brand-100 transition'><LuUserCheck className='size-4' />Available for work: let employers find you</Link>
+          <Link to='/app/hire' className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition'><LuBuilding2 className='size-4' />Hiring? Find workers</Link>
         </div>
         <div role='tablist' className='flex gap-1 border-b border-slate-200 mb-6'>
           {[['resumes', 'My Resumes'], ['cvs', 'My CVs']].map(([id, label]) => (
