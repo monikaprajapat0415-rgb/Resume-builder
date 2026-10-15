@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { trackEvent } from '../components/Analytics'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -116,6 +117,7 @@ const CvBuilder = () => {
       const { data } = await api.post('/api/ai/generate-cv', { cvId }, auth)
       const next = { ...doc, cv: { ...emptyCv(), ...data.cv }, generated: true, generations: data.generations }
       setDoc(next); lastSynced.current = snap(next); setGenKey((k) => k + 1); setSaveState('saved')
+      trackEvent('resume_generated', { type: 'cv', regenerated: doc.generated ? 'yes' : 'no' })
       toast.success('Your CV is ready - review it below')
     } catch (e) {
       toast.error(e.response?.data?.message || e.message || 'Could not generate your CV. Please try again.')

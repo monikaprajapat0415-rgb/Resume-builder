@@ -21,6 +21,7 @@ const boot = () => {
 }
 
 export const trackEvent = (name, params = {}) => {
+  boot() // events fire from /app pages too; page views still skip private paths
   if (ready && typeof window.gtag === 'function') window.gtag('event', name, params)
 }
 

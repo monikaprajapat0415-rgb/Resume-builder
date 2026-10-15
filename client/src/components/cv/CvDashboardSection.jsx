@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { trackEvent } from '../../components/Analytics'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -27,6 +28,7 @@ const CvDashboardSection = () => {
     e.preventDefault(); setBusy(true)
     try {
       const { data } = await api.post('/api/cvs/create', { title: title.trim() || 'Untitled CV' }, auth)
+      trackEvent('resume_builder_started', { type: 'cv', source: 'dashboard' })
       navigate(`/app/cv/${data.cv._id}`)
     } catch (err) { toast.error(err.response?.data?.message || 'Could not create the CV.') }
     setBusy(false)

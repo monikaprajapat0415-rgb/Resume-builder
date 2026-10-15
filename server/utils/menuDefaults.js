@@ -23,6 +23,7 @@ export const DEFAULT_MENU = [
     { key: 'fr-templates', location: 'footer_resources', label: 'Templates', url: '/templates' },
     { key: 'fr-ats', location: 'footer_resources', label: 'ATS Checker', url: '/features/ats-checker' },
     { key: 'fr-cv', location: 'footer_resources', label: 'CV Builder', url: '/cv-builder' },
+    { key: 'fr-match', location: 'footer_resources', label: 'Job Match Tool', url: '/resume-job-description-matcher' },
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },
     { key: 'fr-learn', location: 'footer_resources', label: 'Learn', url: '/learn' },

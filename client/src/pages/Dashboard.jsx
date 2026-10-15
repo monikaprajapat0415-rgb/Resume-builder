@@ -1,4 +1,5 @@
 // import { FilePenIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
+import { trackEvent } from '../components/Analytics'
 // import React from 'react'
 import {FaFileSignature,  } from 'react-icons/fa'
 import { BiLoaderAlt } from 'react-icons/bi';
@@ -50,6 +51,7 @@ const Dashboard = () => {
     try {
       event.preventDefault();
       const { data } = await api.post('/api/resumes/create', { title }, { headers: { Authorization: token } });
+      trackEvent('resume_builder_started', { type: 'resume', source: 'blank' });
       setAllResumes([...allResumes, data.resume]);
       setTitle("");
       setShowCreateResume(false);
@@ -68,6 +70,7 @@ const Dashboard = () => {
     try {
       const resumeText = await pdfToText(resume);
       const { data } = await api.post('/api/ai/upload-resume', { title, resumeText }, { headers: { Authorization: token } });
+      trackEvent('resume_builder_started', { type: 'resume', source: 'upload' });
       setTitle("");
       setResume(null);
       setShowUploadResume(false);

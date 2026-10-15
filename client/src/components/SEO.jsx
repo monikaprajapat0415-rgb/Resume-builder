@@ -4,7 +4,25 @@
 // JSON-LD structured data. Mount one <SEO /> per page/route with props specific to
 // that page - more specific tags (rendered later in the tree) win over the app-level
 // default set in App.jsx, since react-helmet-async merges tags in render order.
+import { useEffect, useId, useLayoutEffect, useSyncExternalStore } from "react";
 import { Helmet } from "react-helmet-async";
+
+// ---- one set of SEO tags at a time -------------------------------------------------------
+// The page used to end up with several <title>, meta description, canonical and og: tags in <head>:
+// the static ones from index.html, the app-wide fallback from App.jsx, and the page's own. Crawlers
+// that read the first one (and every social-card scraper) then saw the home page's text on every URL.
+// Now only the most recently mounted <SEO /> (the page's own) renders its tags; the app-wide fallback
+// returns when a page has none; and the static index.html tags are removed once a page takes over.
+const stack = [];
+const subs = new Set();
+const emit = () => subs.forEach((f) => f());
+const subscribe = (f) => { subs.add(f); return () => subs.delete(f); };
+const topId = () => (stack.length ? stack[stack.length - 1] : null);
+const STATIC_SELECTOR = 'title, meta[name="description"], meta[name="robots"], meta[name="keywords"], link[rel="canonical"], meta[property^="og:"], meta[name^="twitter:"]';
+if (typeof document !== "undefined") {
+  // mark what index.html shipped, before React adds anything of its own
+  document.head.querySelectorAll(STATIC_SELECTOR).forEach((el) => el.setAttribute("data-static-seo", ""));
+}
 
 const SITE_NAME = "Prime Resume AI";
 const SITE_URL = "https://primeresumeai.com";
@@ -31,6 +49,18 @@ const SEO = ({
   imageAlt,
   article,
 }) => {
+  const id = useId();
+  useLayoutEffect(() => {
+    stack.push(id); emit();
+    return () => { const i = stack.indexOf(id); if (i > -1) stack.splice(i, 1); emit(); };
+  }, [id]);
+  const activeId = useSyncExternalStore(subscribe, topId, () => null);
+  const isActive = activeId === id;
+  useEffect(() => {
+    if (isActive) document.head.querySelectorAll("[data-static-seo]").forEach((el) => el.remove());
+  }, [isActive]);
+  if (!isActive) return null;
+
   const currentPath =
     path ?? (typeof window !== "undefined" ? window.location.pathname : "/");
   const canonicalUrl = canonical || `${SITE_URL}${currentPath === "/" ? "" : currentPath}`;
