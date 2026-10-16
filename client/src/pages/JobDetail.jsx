@@ -73,7 +73,7 @@ const JobDetail = () => {
       <SEO title={`${job.title} at ${job.company}${where}`} description={`${job.title} at ${job.company}${where}. ${job.snippet}`.slice(0, 160)} path={`/jobs/${job.slug}`} structuredData={ld} />
       <NavBar />
       <article className='max-w-3xl mx-auto px-4 py-10'>
-        <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-5'>
+        <nav aria-label='Breadcrumb' className='text-sm text-slate-500 mb-5'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{job.title}</span>
         </nav>
         <h1 className='text-3xl font-bold text-slate-800 leading-tight'>{job.title}</h1>

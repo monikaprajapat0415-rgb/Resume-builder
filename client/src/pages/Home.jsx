@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import Banner from '../components/home/Banner'
 import Hero from '../components/home/Hero'
 import Features from '../components/home/Features'
+import JobsSection from '../components/home/JobsSection'
 import Testimonials from '../components/home/Testimonials'
 import CallToAction from '../components/home/CallToAction'
 import Footer from '../components/home/Footer'
@@ -38,6 +39,7 @@ const Home = () => {
     <Hero/>
     <WorkFlowSteps/>
     <Features/>
+    <JobsSection/>
     <Testimonials/>
     <TemplatePreview/>
     <CallToAction/>
