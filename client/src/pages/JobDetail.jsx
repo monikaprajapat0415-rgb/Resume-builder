@@ -13,7 +13,7 @@ import { catShort } from '../utils/workTaxonomy'
 import { LuMapPin, LuBriefcase, LuWifi, LuExternalLink, LuFileCheck, LuTriangleAlert } from 'react-icons/lu'
 
 const SITE = 'https://primeresumeai.com'
-const TYPE_LD = { 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY', 'daily-wage': 'TEMPORARY' }
+const TYPE_LD = { 'full-time': 'FULL_TIME', 'part-time': 'PART_TIME', contract: 'CONTRACTOR', internship: 'INTERN', temporary: 'TEMPORARY', 'daily-wage': 'PER_DIEM' }
 const PER_DIEM = { hour: 'HOUR', day: 'DAY', week: 'WEEK', month: 'MONTH', year: 'YEAR' }
 
 const JobDetail = () => {
@@ -61,6 +61,7 @@ const JobDetail = () => {
     description: `<p>${(job.description || job.title).replace(/&/g, '&amp;').replace(/</g, '&lt;').split(/\n{2,}/).join('</p><p>').replace(/\n/g, '<br>')}</p>`,
     datePosted: new Date(job.postedAt).toISOString().slice(0, 10), hiringOrganization: { '@type': 'Organization', name: job.company },
     url: `${SITE}/jobs/${job.slug}`, directApply: false,
+    validThrough: new Date(job.direct ? new Date(job.postedAt).getTime() + 60 * 864e5 : new Date(job.lastSeenAt || job.updatedAt || Date.now()).getTime() + 14 * 864e5).toISOString(),
     ...(job.payPer && (job.payMin || job.payMax) && job.currency ? { baseSalary: { '@type': 'MonetaryAmount', currency: job.currency, value: { '@type': 'QuantitativeValue', ...(job.payMin && job.payMax && job.payMin !== job.payMax ? { minValue: job.payMin, maxValue: job.payMax } : { value: job.payMin || job.payMax }), unitText: PER_DIEM[job.payPer] || 'MONTH' } } } : {}),
     ...(TYPE_LD[String(job.employmentType || '').toLowerCase()] ? { employmentType: TYPE_LD[String(job.employmentType).toLowerCase()] } : {}),
     ...(job.location ? { jobLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: job.location, ...(job.country ? { addressCountry: job.country } : {}) } } } : {}),

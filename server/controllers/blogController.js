@@ -1,3 +1,4 @@
+import { STATIC_ROUTES, STATIC_LASTMOD } from '../utils/staticSitemapRoutes.js';
 import Blog from "../models/Blog.js";
 import Category from "../models/Category.js";
 import Product from "../models/Product.js";
@@ -8,6 +9,22 @@ import Job from "../models/Job.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks, cleanSeoFields, siteUrl, absUrl, listItem } from "../utils/blogSeo.js";
 import { loadPostView } from "./blogSeoController.js";
+import { liveFilter } from "./jobController.js";
+import { COUNTRY_SLUGS, KIND_SLUGS, kindSlugOf, landingPath } from "../utils/jobLanding.js";
+
+// /jobs/in/<country>[/<kind>] pages that have at least one live job
+const landingSitemapPaths = async () => {
+    const jobs = await Job.find(liveFilter()).select('country category updatedAt').limit(20000).lean();
+    const rows = jobs.map((j) => ({ _id: { c: j.country, k: j.category }, t: j.updatedAt }));
+    const out = new Map();
+    for (const r of rows) {
+        const country = Object.values(COUNTRY_SLUGS).find((x) => x.code === r._id.c); if (!country) continue;
+        const add = (path) => { const cur = out.get(path); if (!cur || +r.t > +cur) out.set(path, r.t); };
+        add(landingPath(country));
+        const k = kindSlugOf(r._id.k || 'corporate'); if (k && KIND_SLUGS.includes(k)) add(landingPath(country, k));
+    }
+    return [...out].map(([path, when]) => ({ path, when }));
+};
 
 
 // ---------- Public ----------
@@ -83,7 +100,8 @@ export const getBlogSitemapXml = async (req, res) => {
         ]);
         const liveCourses = courses.filter((c) => lessons.some((l) => String(l.course) === String(c._id)));
         const slugOf = Object.fromEntries(liveCourses.map((c) => [String(c._id), c.slug]));
-        const jobs = await Job.find({ active: true, hidden: { $ne: true } }).sort({ postedAt: -1 }).limit(5000).select('slug updatedAt postedAt').lean();
+        const jobs = await Job.find(liveFilter()).sort({ postedAt: -1 }).limit(5000).select('slug updatedAt postedAt').lean();
+        const landing = await landingSitemapPaths();
         const [posts, products, pages, cats] = await Promise.all([
             Blog.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt date modifiedAt coverImage coverAlt title category'),
             Product.find({ published: true }).select('slug updatedAt'),
@@ -102,6 +120,7 @@ export const getBlogSitemapXml = async (req, res) => {
         posts.forEach((p) => { const t = +new Date(p.modifiedAt || p.date); if (p.category && (!newest[p.category] || t > newest[p.category])) newest[p.category] = t; });
 
         const urls = [
+            ...STATIC_ROUTES.map((p) => entry(p, STATIC_LASTMOD, p === '/' ? 'daily' : 'weekly')),
             ...posts.map((post) => {
                 const img = absUrl(post.coverImage);
                 return entry(`/blog/${post.slug}`, post.modifiedAt || post.date, 'monthly',
@@ -111,13 +130,18 @@ export const getBlogSitemapXml = async (req, res) => {
             ...liveCourses.map((c) => entry(`/learn/${c.slug}`, c.modifiedAt || c.updatedAt, 'weekly')),
             ...lessons.filter((l) => slugOf[String(l.course)]).map((l) => entry(`/learn/${slugOf[String(l.course)]}/${l.slug}`, l.modifiedAt || l.updatedAt, 'monthly')),
             ...(jobs.length ? [entry('/jobs', jobs[0].updatedAt || new Date(), 'daily')] : []),
+            ...landing.map((l) => entry(l.path, l.when || new Date(), 'daily')),
             ...jobs.map((j) => entry(`/jobs/${j.slug}`, j.updatedAt || j.postedAt, 'weekly')),
             ...cats.filter((c) => newest[c.slug]).map((c) => entry(`/blog/category/${c.slug}`, newest[c.slug], 'weekly')),
             ...products.map((product) => entry(`/products/${product.slug}`, product.updatedAt, 'weekly')),
             ...pages.map((page) => entry(`/p/${page.slug}`, page.updatedAt, 'monthly')),
-        ].join('\n');
+        ];
+        // one <url> per address; a later (database-backed, fresher) entry replaces the static one
+        const byLoc = new Map();
+        urls.forEach((u) => byLoc.set(u.match(/<loc>(.*?)<\/loc>/)[1], u));
+        const body = [...byLoc.values()].join('\n');
 
-        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls}\n</urlset>`;
+        const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${body}\n</urlset>`;
 
         res.set('Content-Type', 'application/xml');
         return res.status(200).send(xml);

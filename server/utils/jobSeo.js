@@ -32,6 +32,7 @@ export const jobPostingLd = (job) => {
         datePosted: day(job.postedAt || job.createdAt),
         hiringOrganization: { '@type': 'Organization', name: job.company },
         url: `${siteUrl()}/jobs/${job.slug}`,
+        validThrough: new Date(job.sourceType === 'employer' ? new Date(job.postedAt || job.createdAt).getTime() + 60 * 864e5 : new Date(job.lastSeenAt || job.updatedAt || Date.now()).getTime() + 14 * 864e5).toISOString(),   // imported jobs: seen live in the last sync + 2 weeks
         directApply: false,
         identifier: { '@type': 'PropertyValue', name: job.company, value: job.externalId },
     };
