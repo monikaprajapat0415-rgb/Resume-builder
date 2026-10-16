@@ -146,6 +146,8 @@ const App = () => {
         <Route path="/blog/category/:slug" element={<BlogIndex />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/jobs/in/:country" element={<Jobs landing />} />
+        <Route path="/jobs/in/:country/:kind" element={<Jobs landing />} />
         <Route path="/jobs/:slug" element={<JobDetail />} />
         <Route path="/hire" element={<HireLanding />} />
         <Route path="/learn" element={<LearnIndex />} />

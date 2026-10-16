@@ -1,5 +1,6 @@
 import { jobInsights, labourInsights } from '../utils/jobInsights.js';
 import { CATEGORIES, COUNTRIES, COUNTRY_CODES } from '../utils/workTaxonomy.js';
+import { resolveLanding, landingContent, landingSeo } from '../utils/jobLanding.js';
 import Message from "../models/Message.js";
 import User from "../models/User.js";
 import mongoose from "mongoose";
@@ -84,7 +85,7 @@ export const getJob = async (req, res) => {
         if (!v) return res.status(404).json({ message: 'Job not found' });
         const { job } = v;
         return res.status(200).json({
-            job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, payMin: job.payMin, payMax: job.payMax, currency: job.currency, payPer: job.payPer, sourceType: job.sourceType, updatedAt: job.updatedAt },
+            job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, payMin: job.payMin, payMax: job.payMax, currency: job.currency, payPer: job.payPer, sourceType: job.sourceType, updatedAt: job.updatedAt, lastSeenAt: job.lastSeenAt },
             more: v.more, sourceName: v.sourceName, insights: job.category && job.category !== 'corporate' ? labourInsights(job) : jobInsights(job),
         });
     } catch (e) { return res.status(500).json({ message: 'Could not load the job.' }); }
@@ -192,4 +193,23 @@ export const seedSources = async (req, res) => {
         }
         return res.status(200).json({ added });
     } catch (e) { return res.status(500).json({ message: e.message }); }
+};
+
+// jobs behind a landing page: /jobs/in/<country>[/<kind>]
+export const landingJobs = async (res, limit = 20) => {
+    const f = { ...liveFilter(), country: res.country.code, ...(res.kind ? { category: res.kind.id } : {}) };
+    const [jobs, total] = await Promise.all([Job.find(f).sort({ postedAt: -1, createdAt: -1 }).limit(limit).select('slug title company location salary').lean(), Job.countDocuments(f)]);
+    return { jobs, total };
+};
+
+// GET /api/jobs/landing/:country/:kind? - page copy for the browser (same text the server-rendered page carries)
+export const getLanding = async (req, res) => {
+    try {
+        const r = resolveLanding(req.params.country, req.params.kind);
+        if (!r) return res.status(404).json({ message: 'Not found' });
+        const { jobs, total } = await landingJobs(r, 20);
+        const content = landingContent(r, total);
+        const seo = landingSeo(r, content, total, jobs);
+        return res.status(200).json({ code: r.country.code, category: r.kind?.id || '', total, content, seo: { title: seo.fullTitle, description: seo.description, canonical: seo.canonical, robots: seo.robots, jsonLd: seo.jsonLd } });
+    } catch (e) { return res.status(500).json({ message: 'Could not load this page.' }); }
 };

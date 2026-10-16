@@ -10,22 +10,9 @@ import { trackEvent } from '../components/Analytics'
 import { Text, Area, Field, inputCls } from '../components/cv/CvFields'
 import { ChipInput } from '../components/cv/CvChips'
 import { buildSkillSuggestions } from '../utils/cvSuggestions'
-import { CATEGORIES, isLabour, COUNTRIES, countryName, currencyFor, CURRENCIES, PAY_PER, defaultPayPer, AVAILABILITY, TRADES, certsFor, WORK_LANGS, JOB_TYPES_ALL } from '../utils/workTaxonomy'
+import { CATEGORIES, isLabour, COUNTRIES, countryName, currencyFor, CURRENCIES, PAY_PER, defaultPayPer, AVAILABILITY, TRADES, certsFor, WORK_LANGS, JOB_TYPES_ALL, guessCountry } from '../utils/workTaxonomy'
 import { LEVELS, NOTICE, TalentCard, StatusBadge, Switch, timeShort, errMsg } from '../components/hiring/ui'
 
-// Best guess of the visitor's country from their time zone (they can change it).
-const guessCountry = () => {
-  try {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''
-    if (/Calcutta|Kolkata/.test(tz)) return 'IN'
-    if (/London/.test(tz)) return 'GB'
-    if (/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|Regina|St_Johns|Montreal)/.test(tz)) return 'CA'
-    const m = { Lagos: 'NG', Nairobi: 'KE', Accra: 'GH', Johannesburg: 'ZA', 'Dar_es_Salaam': 'TZ', Kampala: 'UG', 'Addis_Ababa': 'ET', Lusaka: 'ZM', Harare: 'ZW', Kigali: 'RW', Cairo: 'EG', Casablanca: 'MA' }
-    const city = tz.split('/')[1]
-    if (tz.startsWith('Africa/') && m[city]) return m[city]
-  } catch { /* ignore */ }
-  return 'IN'
-}
 const DEFAULT_TYPES = { corporate: ['full-time'], factory: ['full-time', 'contract'], skilled_trade: ['contract', 'full-time'], daily_wage: ['daily-wage', 'temporary'] }
 const BLANK = { category: '', headline: '', country: '', level: 'fresher', experienceYears: '', skills: [], location: '', remote: false, relocate: false, willingToTravel: false, ownTools: false, jobTypes: [], payAmount: '', payPer: '', currency: '', availability: '', workRight: '', languages: [], certifications: [], noticePeriod: '', summary: '', phone: '', reminders: true }
 
@@ -69,6 +56,7 @@ const OpenToWork = () => {
   const save = async (e) => {
     e?.preventDefault()
     if (!form.category) return toast.error('First choose the kind of work you do.')
+    if (!form.country) return toast.error('Choose your country.')
     setSaving(true)
     try {
       const body = { ...form, experienceYears: Number(form.experienceYears) || 0, payAmount: form.payAmount === '' ? '' : Number(form.payAmount), currency: form.currency || currencyFor(form.country), payPer: form.payPer || defaultPayPer(form.category) }
@@ -141,7 +129,7 @@ const OpenToWork = () => {
 
               <Section n='3' title='Where do you want to work?'>
                 <div className='grid sm:grid-cols-2 gap-4'>
-                  <Field label='Country' required><select className={inputCls} value={form.country} onChange={(e) => pickCountry(e.target.value)}>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
+                  <Field label='Country' required><select className={inputCls} value={form.country} onChange={(e) => pickCountry(e.target.value)}><option value=''>Select country</option>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
                   <Text label='City / area' value={form.location} onChange={(v) => set({ location: v })} placeholder='e.g. Jaipur, Leeds, Toronto, Nairobi' />
                 </div>
                 <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-700'>

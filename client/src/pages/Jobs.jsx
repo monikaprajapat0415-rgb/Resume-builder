@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
@@ -9,12 +9,19 @@ import { timeAgo } from '../utils/jobText'
 import { CATEGORIES, catShort } from '../utils/workTaxonomy'
 import { LuSearch, LuMapPin, LuBriefcase, LuWifi, LuArrowRight, LuUserCheck, LuBuilding2 } from 'react-icons/lu'
 
-const DESC = 'Jobs for office, factory and skilled workers in India, the UK, Canada and Africa. Find office jobs, factory work, trade jobs and daily wage work, and apply directly.'
+const DESC = 'Jobs for office, factory and skilled workers worldwide. Find office jobs, factory work, trade jobs and daily wage work, and apply directly.'
 
-const Jobs = () => {
+const COUNTRY_SLUG = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const KIND_SLUG = { corporate: 'office-jobs', factory: 'factory-jobs', skilled_trade: 'skilled-trade-jobs', daily_wage: 'daily-wage-jobs' }
+
+// landing: true on /jobs/in/<country>[/<kind>] - the same list, fixed to one country (and kind of work), with its own heading and copy
+const Jobs = ({ landing = false }) => {
+  const route = useParams()
+  const [page_, setPage_] = useState(null)   // landing copy + SEO from the server
   const [params, setParams] = useSearchParams()
   const q = params.get('q') || '', location = params.get('location') || '', company = params.get('company') || ''
-  const category = params.get('category') || '', country = params.get('country') || ''
+  const KIND_ID = { 'office-jobs': 'corporate', 'factory-jobs': 'factory', 'skilled-trade-jobs': 'skilled_trade', 'daily-wage-jobs': 'daily_wage' }
+  const category = landing ? (KIND_ID[route.kind] || '') : params.get('category') || '', country = landing ? (page_?.code || '') : params.get('country') || ''
   const type = params.get('type') || '', remote = params.get('remote') === '1', page = Math.max(1, parseInt(params.get('page')) || 1)
   const [form, setForm] = useState({ q, location })
   const [data, setData] = useState({ jobs: [], total: 0, pages: 1 })
@@ -22,10 +29,16 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true)
   const [failed, setFailed] = useState(false)
 
+  useEffect(() => {
+    if (!landing) return
+    setPage_(null)
+    api.get(`/api/jobs/landing/${route.country}${route.kind ? `/${route.kind}` : ''}`).then(({ data }) => setPage_(data)).catch(() => setPage_({ missing: true }))
+  }, [landing, route.country, route.kind])
   useEffect(() => { api.get('/api/jobs/facets').then(({ data }) => setFacets(data)).catch(() => {}) }, [])
   useEffect(() => { setForm({ q, location }) }, [q, location])
 
   useEffect(() => {
+    if (landing && !page_?.code) return
     let live = true
     setLoading(true); setFailed(false)
     api.get('/api/jobs', { params: { q, location, company, type, remote: remote ? 1 : undefined, category, country, page } })
@@ -33,7 +46,7 @@ const Jobs = () => {
       .catch(() => { if (live) setFailed(true) })
       .finally(() => { if (live) { setLoading(false); dropServerJsonLd() } })
     return () => { live = false }
-  }, [q, location, company, type, remote, category, country, page])
+  }, [q, location, company, type, remote, category, country, page, landing, page_?.code])
 
   const update = (patch) => {
     const next = new URLSearchParams(params)
@@ -42,24 +55,25 @@ const Jobs = () => {
     setParams(next)
   }
   const submit = (e) => { e.preventDefault(); update({ q: form.q.trim(), location: form.location.trim() }) }
-  const filtered = q || location || company || type || remote || category || country
+  const filtered = q || location || company || type || remote || (!landing && (category || country))
 
   return (
     <div>
-      <SEO title='Jobs for office, factory and skilled workers' description={DESC} keywords='jobs in India, factory jobs, daily wage jobs, electrician jobs, jobs UK, jobs Canada, jobs Nigeria, jobs Kenya, remote jobs' path='/jobs'
-        robots={filtered || page > 1 ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />
+      {landing && page_?.seo ? <SEO title={page_.seo.title.replace(/ \| Prime Resume AI$/, '')} description={page_.seo.description} canonical={page_.seo.canonical} robots={filtered || page > 1 ? 'noindex, follow' : page_.seo.robots} structuredData={page_.seo.jsonLd} path={page_.content?.path} /> : landing ? <SEO title='Jobs' noindex /> :
+      <SEO title='Jobs for office, factory and skilled workers' description={DESC} keywords='jobs worldwide, factory jobs, daily wage jobs, electrician jobs, jobs in India, jobs in USA, jobs UK, jobs Canada, jobs Australia, jobs UAE, remote jobs' path='/jobs'
+        robots={filtered || page > 1 || category || country ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />}
       <NavBar />
       <section className='max-w-5xl mx-auto px-4 py-12'>
-        <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › <span>Jobs</span></nav>
+        <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › {landing && page_?.content ? <><Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{page_.content.h1}</span></> : <span>Jobs</span>}</nav>
         <div className='text-center max-w-2xl mx-auto mb-8'>
-          <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>Jobs for office, factory and skilled workers</h1>
-          <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs. ` : ''}Office jobs, factory work, skilled trades and daily wage work in India, the UK, Canada and Africa. Never pay anyone to get a job.</p>
+          <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>{landing ? (page_?.content?.h1 || 'Jobs') : 'Jobs for office, factory and skilled workers'}</h1>
+          {landing ? <p className='text-slate-500 mt-3'>{page_?.content?.intro}</p> : <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs. ` : ''}Office jobs, factory work, skilled trades and daily wage work in countries around the world. Never pay anyone to get a job.</p>}
         </div>
 
         <div className='flex gap-2 overflow-x-auto pb-2 mb-3 -mx-1 px-1' role='group' aria-label='Kind of work'>
           {[{ id: '', label: 'All jobs', icon: '' }, ...CATEGORIES].map((c) => {
-            const on = category === c.id, n = c.id ? facets.categories?.[c.id] : facets.total
-            return <button key={c.id} type='button' aria-pressed={on} onClick={() => update({ category: c.id })} className={`shrink-0 px-4 py-2 text-sm rounded-full border transition ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon ? `${c.icon} ` : ''}{c.label}{n ? <span className={`ml-1.5 text-xs ${on ? 'text-slate-300' : 'text-slate-400'}`}>{n.toLocaleString()}</span> : null}</button>
+            const on = category === c.id, n = landing ? 0 : c.id ? facets.categories?.[c.id] : facets.total
+            return landing ? <Link key={c.id} to={`/jobs/in/${route.country}${c.id ? `/${KIND_SLUG[c.id]}` : ''}`} aria-current={on ? 'page' : undefined} className={`shrink-0 px-4 py-2 text-sm rounded-full border transition ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon ? `${c.icon} ` : ''}{c.label}</Link> : <button key={c.id} type='button' aria-pressed={on} onClick={() => update({ category: c.id })} className={`shrink-0 px-4 py-2 text-sm rounded-full border transition ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{c.icon ? `${c.icon} ` : ''}{c.label}{n ? <span className={`ml-1.5 text-xs ${on ? 'text-slate-300' : 'text-slate-400'}`}>{n.toLocaleString()}</span> : null}</button>
           })}
         </div>
         <form onSubmit={submit} className='grid sm:grid-cols-[1fr_1fr_auto] gap-3 mb-4'>
@@ -76,7 +90,7 @@ const Jobs = () => {
 
         <div className='flex flex-wrap items-center gap-3 mb-6 text-sm'>
           <button type='button' onClick={() => update({ remote: remote ? '' : '1' })} aria-pressed={remote} className={`px-4 py-1.5 rounded-full border transition ${remote ? 'bg-brand-600 border-brand-600 text-white' : 'border-slate-200 text-slate-600 hover:border-slate-300'}`}>Remote</button>
-          {facets.countries.length > 0 && (
+          {!landing && facets.countries.length > 0 && (
             <select value={country} onChange={(e) => update({ country: e.target.value })} aria-label='Country' className='px-3 py-1.5 border border-slate-200 rounded-full bg-white text-slate-600'>
               <option value=''>All countries</option>{facets.countries.map((c) => <option key={c.code} value={c.code}>{c.name}</option>)}
             </select>
@@ -145,6 +159,30 @@ const Jobs = () => {
               )}
             </>
           )}
+        {landing && page_?.content && (
+          <div className='mt-12 grid md:grid-cols-2 gap-8'>
+            <section aria-labelledby='tips-h'>
+              <h2 id='tips-h' className='text-xl font-semibold text-slate-800'>Before you apply</h2>
+              <ul className='mt-3 space-y-2 list-disc pl-5 text-[15px] text-slate-600'>{page_.content.tips.map((t) => <li key={t}>{t}</li>)}</ul>
+            </section>
+            <section aria-labelledby='more-h'>
+              <h2 id='more-h' className='text-xl font-semibold text-slate-800'>More jobs</h2>
+              <ul className='mt-3 space-y-2 text-[15px]'>{page_.content.links.map((l) => <li key={l.path}><Link to={l.path} className='text-brand-700 hover:underline'>{l.name}</Link></li>)}</ul>
+            </section>
+            <section className='md:col-span-2' aria-labelledby='faq-h'>
+              <h2 id='faq-h' className='text-xl font-semibold text-slate-800'>Questions</h2>
+              <div className='mt-2 divide-y divide-slate-100'>{page_.content.faqs.map((f) => <details key={f.q} className='py-3 group'><summary className='cursor-pointer font-medium text-slate-800'>{f.q}</summary><p className='text-sm text-slate-600 mt-2'>{f.a}</p></details>)}</div>
+            </section>
+          </div>
+        )}
+        {!landing && facets.countries.length > 0 && (
+          <nav className='mt-12' aria-label='Browse jobs by country'>
+            <h2 className='text-xl font-semibold text-slate-800'>Browse jobs by country</h2>
+            <ul className='mt-3 grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-[15px]'>
+              {facets.countries.map((c) => <li key={c.code}><Link to={`/jobs/in/${COUNTRY_SLUG(c.name)}`} className='text-brand-700 hover:underline'>Jobs in {c.name}</Link></li>)}
+            </ul>
+          </nav>
+        )}
       </section>
       <Footer />
     </div>
