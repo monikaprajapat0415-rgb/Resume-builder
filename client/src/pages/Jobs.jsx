@@ -64,7 +64,7 @@ const Jobs = ({ landing = false }) => {
         robots={filtered || page > 1 || category || country ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />}
       <NavBar />
       <section className='max-w-5xl mx-auto px-4 py-12'>
-        <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › {landing && page_?.content ? <><Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{page_.content.h1}</span></> : <span>Jobs</span>}</nav>
+        <nav aria-label='Breadcrumb' className='text-sm text-slate-500 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › {landing && page_?.content ? <><Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{page_.content.h1}</span></> : <span>Jobs</span>}</nav>
         <div className='text-center max-w-2xl mx-auto mb-8'>
           <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>{landing ? (page_?.content?.h1 || 'Jobs') : 'Jobs for office, factory and skilled workers'}</h1>
           {landing ? <p className='text-slate-500 mt-3'>{page_?.content?.intro}</p> : <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs. ` : ''}Office jobs, factory work, skilled trades and daily wage work in countries around the world. Never pay anyone to get a job.</p>}
