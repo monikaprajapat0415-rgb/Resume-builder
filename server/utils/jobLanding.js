@@ -1,4 +1,4 @@
-import { CATEGORIES, COUNTRIES } from './workTaxonomy.js';
+import { CATEGORIES, COUNTRIES, POPULAR } from './workTaxonomy.js';
 import { SITE_NAME, siteUrl, escapeHtml, seoTitle } from './blogSeo.js';
 
 // Landing pages that rank for searches like "factory jobs in India" or "electrician jobs UK":
@@ -25,6 +25,9 @@ const COUNTRY_TIPS = {
     IN: ['Keep your Aadhaar or another photo ID, and a bank account in your own name, ready.', 'Carry skill or ITI certificates and your previous employers\' contact details.', 'Ask whether pay is per day, per week or per month, and when it is paid.'],
     GB: ['Have proof of your right to work in the UK ready. Employers must check it.', 'Have your National Insurance number and a UK bank account. Construction and site work often needs a CSCS card.', 'Ask for the hourly rate, hours and how overtime is paid. Pay must meet the legal minimum wage for your age.'],
     CA: ['Have your Social Insurance Number and proof you can work in Canada (citizen, permanent resident or a valid work permit).', 'Safety tickets such as WHMIS or first aid are often asked for. Trades may ask for Red Seal or provincial certification.', 'Ask for the hourly rate, hours and pay period in writing.'],
+    US: ['Have proof you are allowed to work in the US ready. Employers must check it (Form I-9).', 'Have your Social Security number and a bank account. Construction and warehouse work may ask for an OSHA card or forklift certification.', 'Ask for the hourly rate, hours and pay day in writing. Overtime rules are set by law.'],
+    AU: ['Have proof of your right to work in Australia (citizen, permanent resident or a visa with work rights).', 'Have your tax file number and an Australian bank account. Construction sites need a White Card.', 'Ask for the pay rate, hours and award or agreement that applies, in writing.'],
+    AE: ['Your employer arranges your work visa and Emirates ID. Do not pay anyone for a visa or job offer.', 'Never hand your passport to an employer to keep.', 'Get the job offer and contract in writing before you travel, and check the pay, hours and housing.'],
     ZA: ['Have your South African ID or a valid work permit, and a bank account.', 'Security work needs PSIRA registration. Many trades ask for a trade test certificate.', 'Ask for the daily or monthly rate in writing before you start.'],
     DEFAULT: ['Keep a photo ID and your trade or skill certificates ready, and the names of people who can vouch for your work.', 'Ask for the pay, hours and place of work in writing before you start.', 'Meet at the workplace or somewhere public, and tell someone where you are going.'],
 };
@@ -36,7 +39,7 @@ const KIND_TIPS = {
 };
 
 const faqsFor = (country, kind) => {
-    const where = country ? country.name : 'India, the UK, Canada and Africa';
+    const where = country ? country.name : 'your country';
     const what = kind ? KINDS[kind].noun : 'jobs';
     return [
         { q: `How do I find ${what} in ${where}?`, a: `Browse the open ${what} on this page, open a job and apply with the employer. You can also create a free "available to work" profile so approved employers can contact you.` },
@@ -65,7 +68,7 @@ export const landingContent = ({ country, kindSlug, kind }, total) => {
     const links = [
         ...(kindSlug ? [{ name: `All jobs in ${place}`, path: landingPath(country) }] : []),
         ...KIND_SLUGS.filter((k) => k !== kindSlug).map((k) => ({ name: `${KINDS[k].label} in ${place}`, path: landingPath(country, k) })),
-        ...COUNTRIES.filter((c) => c[0] !== 'XX' && c[0] !== country.code).slice(0, 6).map((c) => ({ name: kind ? `${kind.label} in ${c[1]}` : `Jobs in ${c[1]}`, path: landingPath({ code: c[0] }, kindSlug) })),
+        ...POPULAR.filter((c) => c !== country.code).slice(0, 6).map((code) => COUNTRIES.find((c) => c[0] === code)).filter(Boolean).map((c) => ({ name: kind ? `${kind.label} in ${c[1]}` : `Jobs in ${c[1]}`, path: landingPath({ code: c[0] }, kindSlug) })),
     ];
     return { h1, intro, tips, faqs: faqsFor(country, kindSlug), links, path: landingPath(country, kindSlug) };
 };

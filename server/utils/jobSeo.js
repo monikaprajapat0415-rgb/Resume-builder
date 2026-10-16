@@ -65,7 +65,7 @@ export const jobsIndexHtml = ({ jobs, total }) => `
 <section class="ssr-article">
   ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs' }])}
   <h1>Jobs for office, factory and skilled workers</h1>
-  <p>${total} open jobs in India, the UK, Canada and Africa: corporate, factory, warehouse, skilled trades and daily-wage work. Apply directly with the employer.</p>
+  <p>${total} open jobs worldwide: corporate, factory, warehouse, skilled trades and daily-wage work. Apply directly with the employer.</p>
   <ul>${jobs.map((j) => `<li><h2><a href="/jobs/${escapeHtml(j.slug)}">${escapeHtml(j.title)}</a></h2><p>${escapeHtml(j.company)}${j.location ? ` · ${escapeHtml(j.location)}` : ''}${j.remote ? ' · Remote' : ''}${j.employmentType ? ` · ${escapeHtml(j.employmentType)}` : ''}</p></li>`).join('')}</ul>
 </section>`;
 
@@ -98,8 +98,8 @@ export const jobSeo = (job) => {
 
 export const jobsIndexSeo = () => ({
     fullTitle: seoTitle('Jobs for office, factory and skilled workers'),
-    description: 'Find corporate, factory, warehouse, skilled trade and daily-wage jobs in India, the UK, Canada and Africa. Workers can list themselves as available and employers can contact them.',
-    canonical: `${siteUrl()}/jobs`, robots: 'index, follow', type: 'website', keywords: 'jobs, factory jobs, skilled trade jobs, daily wage jobs, electrician jobs, warehouse jobs, jobs in India, jobs in UK, jobs in Canada, jobs in Africa',
+    description: 'Find corporate, factory, warehouse, skilled trade and daily-wage jobs in countries around the world. Workers can list themselves as available and employers can contact them.',
+    canonical: `${siteUrl()}/jobs`, robots: 'index, follow', type: 'website', keywords: 'jobs, factory jobs, skilled trade jobs, daily wage jobs, electrician jobs, warehouse jobs, jobs worldwide, jobs abroad, jobs in India, jobs in UK, jobs in USA, jobs in Canada, jobs in Australia, jobs in UAE, jobs in Nigeria, jobs in Kenya',
     jsonLd: [breadcrumbLd([{ name: 'Home', url: `${siteUrl()}/` }, { name: 'Jobs', url: `${siteUrl()}/jobs` }])],
 });
 

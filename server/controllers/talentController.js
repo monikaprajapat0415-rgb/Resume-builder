@@ -59,7 +59,7 @@ export const saveMyTalent = async (req, res) => {
             set.headline = headline
         }
         if (b.country !== undefined || !existing) {
-            const c = String(b.country ?? 'IN').toUpperCase()
+            const c = String(b.country ?? existing?.country ?? '').toUpperCase()
             if (!COUNTRY_CODES.includes(c)) return res.status(400).json({ message: 'Choose the country where you want to work.' })
             set.country = c
         }

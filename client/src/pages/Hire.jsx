@@ -8,10 +8,10 @@ import SEO from '../components/SEO'
 import api from '../configs/api'
 import { trackEvent } from '../components/Analytics'
 import { Text, Area, Field, inputCls } from '../components/cv/CvFields'
-import { CATEGORIES, COUNTRIES, CURRENCIES, PAY_PER, EMPLOYER_TYPES, JOB_TYPES_ALL, PERKS, isLabour, catShort, currencyFor, defaultPayPer, payText } from '../utils/workTaxonomy'
+import { CATEGORIES, COUNTRIES, CURRENCIES, PAY_PER, EMPLOYER_TYPES, JOB_TYPES_ALL, PERKS, isLabour, catShort, currencyFor, defaultPayPer, payText, guessCountry } from '../utils/workTaxonomy'
 import { LEVELS, SIZES, TalentCard, StatusBadge, Modal, timeShort, errMsg } from '../components/hiring/ui'
 
-const BLANK_CO = { employerType: 'company', country: 'IN', registrationNo: '', companyName: '', website: '', workEmail: '', contactName: '', contactRole: '', phone: '', industry: '', size: '', location: '', about: '' }
+const BLANK_CO = { employerType: 'company', country: '', registrationNo: '', companyName: '', website: '', workEmail: '', contactName: '', contactRole: '', phone: '', industry: '', size: '', location: '', about: '' }
 const TABS = [['talent', 'Find talent'], ['requests', 'Requests'], ['jobs', 'My jobs'], ['company', 'Company']]
 
 // Company side: apply, wait for approval, then search available candidates, contact them and post jobs.
@@ -49,12 +49,13 @@ const Hire = () => {
 }
 
 const CompanyForm = ({ emp, auth, onSaved, defaults = {} }) => {
-  const [f, setF] = useState({ ...BLANK_CO, ...defaults, ...(emp ? Object.fromEntries(Object.keys(BLANK_CO).map((k) => [k, emp[k] || ''])) : {}) })
+  const [f, setF] = useState({ ...BLANK_CO, country: guessCountry(), ...defaults, ...(emp ? Object.fromEntries(Object.keys(BLANK_CO).map((k) => [k, emp[k] || ''])) : {}) })
   const [busy, setBusy] = useState(false)
   const set = (p) => setF((x) => ({ ...x, ...p }))
   const [noFee, setNoFee] = useState(false)
   const submit = async (e) => {
     e.preventDefault()
+    if (!f.country) return toast.error('Choose your country.')
     if (!emp && !noFee) return toast.error('Please confirm you will never charge workers a fee.')
     setBusy(true)
     try {
@@ -74,7 +75,7 @@ const CompanyForm = ({ emp, auth, onSaved, defaults = {} }) => {
       </div>
       <div className='grid sm:grid-cols-2 gap-4'>
         <Field label='Who is hiring?' required><select className={inputCls} value={f.employerType} onChange={(e) => set({ employerType: e.target.value })}>{EMPLOYER_TYPES.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></Field>
-        <Field label='Country' required><select className={inputCls} value={f.country} onChange={(e) => set({ country: e.target.value })}>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
+        <Field label='Country' required><select className={inputCls} value={f.country} onChange={(e) => set({ country: e.target.value })}><option value=''>Select country</option>{COUNTRIES.map(([c, n]) => <option key={c} value={c}>{n}</option>)}</select></Field>
         <Text label='Business name' required value={f.companyName} onChange={(v) => set({ companyName: v })} maxLength={150} />
         <Text label='Registration number' hint='GST, CIN, Companies House, CRA or local registration. Needed if you have no company website.' value={f.registrationNo} onChange={(v) => set({ registrationNo: v })} maxLength={60} />
         <Text label='Website (optional)' value={f.website} onChange={(v) => set({ website: v })} placeholder='https://example.com' />
@@ -219,7 +220,7 @@ const Requests = ({ auth }) => {
   )
 }
 
-const BLANK_JOB = { category: 'corporate', country: 'IN', title: '', location: '', remote: false, employmentType: 'full-time', department: '', payMin: '', payMax: '', payPer: 'year', currency: 'INR', openings: '', perks: [], description: '', applyUrl: '', applyEmail: '' }
+const BLANK_JOB = { category: 'corporate', country: '', title: '', location: '', remote: false, employmentType: 'full-time', department: '', payMin: '', payMax: '', payPer: 'year', currency: 'USD', openings: '', perks: [], description: '', applyUrl: '', applyEmail: '' }
 
 const MyJobs = ({ auth, country }) => {
   const [jobs, setJobs] = useState(null)

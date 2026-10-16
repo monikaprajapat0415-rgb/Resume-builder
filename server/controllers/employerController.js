@@ -35,7 +35,7 @@ const readCompany = (b, partial, existing) => {
     const need = (k, label, min = 2, max = 150) => { if (!partial || b[k] !== undefined) { out[k] = str(b[k], max); if (out[k].length < min) throw new Error(`${label} is required.`) } }
     need('companyName', 'Business name'); need('contactName', 'Your name', 2, 100)
     if (!partial || b.employerType !== undefined) { const t = b.employerType || 'company'; if (!EMPLOYER_TYPES.includes(t)) throw new Error('Choose what kind of employer you are.'); out.employerType = t }
-    if (!partial || b.country !== undefined) { const c = String(b.country || 'IN').toUpperCase(); if (!COUNTRY_CODES.includes(c)) throw new Error('Choose your country.'); out.country = c }
+    if (!partial || b.country !== undefined) { const c = String(b.country || '').toUpperCase(); if (!COUNTRY_CODES.includes(c)) throw new Error('Choose your country.'); out.country = c }
     if (!partial || b.website !== undefined) {
         let w = str(b.website, 300)
         if (w) {
@@ -116,7 +116,7 @@ const readJob = (b, company) => {
     const description = String(b.description || '').replace(/\r/g, '').trim().slice(0, 20000)
     if (description.length < (category === 'corporate' ? 80 : 30)) throw new Error(category === 'corporate' ? 'Describe the role in at least 80 characters: duties, requirements, how to apply.' : 'Describe the work: what the person will do, hours, and where. At least 30 characters.')
     const employmentType = str(b.employmentType, 40).toLowerCase(); if (employmentType && !TYPES.includes(employmentType)) throw new Error('Choose a job type.')
-    const country = String(b.country || company.country || 'IN').toUpperCase(); if (!COUNTRY_CODES.includes(country)) throw new Error('Choose the country of the job.')
+    const country = String(b.country || company.country || '').toUpperCase(); if (!COUNTRY_CODES.includes(country)) throw new Error('Choose the country of the job.')
     let applyUrl = str(b.applyUrl, 1000); const applyEmail = str(b.applyEmail, 200)
     if (applyUrl) { if (!/^https?:\/\//i.test(applyUrl)) applyUrl = 'https://' + applyUrl; if (!hostOf(applyUrl).includes('.')) throw new Error('Enter a valid apply link.') }
     else if (applyEmail) { if (!EMAIL_RX.test(applyEmail)) throw new Error('Enter a valid apply email.'); applyUrl = `mailto:${applyEmail}` }
