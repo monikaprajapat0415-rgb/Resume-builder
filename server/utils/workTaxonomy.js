@@ -55,6 +55,7 @@ export const COUNTRIES = [
 // shown first in links and suggestions
 export const POPULAR = ['IN', 'US', 'GB', 'CA', 'AU', 'AE', 'NG', 'KE', 'ZA', 'SG']
 export const COUNTRY_CODES = COUNTRIES.map((c) => c[0])
+export const currencyOf = (code) => COUNTRIES.find((c) => c[0] === code)?.[2] || 'USD'
 export const CURRENCIES = [...new Set([...COUNTRIES.map((c) => c[2]), 'USD', 'EUR'])]
 export const PAY_PER = ['day', 'hour', 'week', 'month', 'year']
 export const AVAILABILITY = ['now', 'week', 'month']          // can start: immediately / within a week / within a month
@@ -88,3 +89,40 @@ export const inferCategory = (title = '', department = '') => {
     if (RX.factory.test(text)) return 'factory'
     return 'corporate'
 }
+
+// ---------- country / address helpers for imported jobs ----------
+const ALIASES = { usa: 'US', 'u.s.': 'US', 'u.s.a.': 'US', america: 'US', 'united states of america': 'US', uk: 'GB', 'u.k.': 'GB', 'great britain': 'GB', england: 'GB', scotland: 'GB', wales: 'GB', 'northern ireland': 'GB', uae: 'AE', emirates: 'AE', korea: 'KR', 'republic of korea': 'KR', czech: 'CZ', 'czech republic': 'CZ', russia: 'RU', 'russian federation': 'RU', vietnam: 'VN', 'viet nam': 'VN', turkiye: 'TR', 'türkiye': 'TR', holland: 'NL', 'the netherlands': 'NL', 'ivory coast': 'CI', 'hong kong sar': 'HK', drc: 'CD', 'dr congo': 'CD' };
+const US_STATES = new Set('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' '));
+const CITY_COUNTRY = {
+    bengaluru: 'IN', bangalore: 'IN', mumbai: 'IN', delhi: 'IN', 'new delhi': 'IN', hyderabad: 'IN', chennai: 'IN', pune: 'IN', kolkata: 'IN', gurgaon: 'IN', gurugram: 'IN', noida: 'IN', ahmedabad: 'IN', jaipur: 'IN',
+    london: 'GB', manchester: 'GB', edinburgh: 'GB', glasgow: 'GB', toronto: 'CA', vancouver: 'CA', montreal: 'CA', ottawa: 'CA', calgary: 'CA', sydney: 'AU', melbourne: 'AU', singapore: 'SG', dubai: 'AE', 'abu dhabi': 'AE',
+    lagos: 'NG', abuja: 'NG', nairobi: 'KE', accra: 'GH', johannesburg: 'ZA', 'cape town': 'ZA', berlin: 'DE', munich: 'DE', paris: 'FR', amsterdam: 'NL', dublin: 'IE', madrid: 'ES', barcelona: 'ES', lisbon: 'PT', tokyo: 'JP',
+    'san francisco': 'US', 'new york': 'US', 'new york city': 'US', seattle: 'US', austin: 'US', boston: 'US', chicago: 'US', 'los angeles': 'US', denver: 'US', atlanta: 'US', 'palo alto': 'US', 'mountain view': 'US', 'san jose': 'US',
+};
+const byName = new Map(COUNTRIES.filter((c) => c[0] !== 'XX').map((c) => [c[1].toLowerCase(), c[0]]));
+const clean = (s) => String(s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+
+// ISO code for a country given as a code or a name, else '' (e.g. "India", "IN", "United States", "UK")
+export const countryCodeOf = (raw) => {
+    const s = clean(raw); if (!s) return '';
+    if (/^[a-z]{2}$/.test(s)) { const c = s === 'uk' ? 'GB' : s.toUpperCase(); return COUNTRY_CODES.includes(c) && c !== 'XX' ? c : ''; }
+    return byName.get(s) || ALIASES[s] || '';
+};
+// Best country for a job: the feed's own value, else a country (or well-known city / US state) in the location text.
+export const normalizeCountry = (raw, location) => {
+    const direct = countryCodeOf(raw); if (direct) return direct;
+    const parts = String(location || '').split(/[,;|/()–-]+/).map((p) => p.trim()).filter(Boolean);
+    for (let i = parts.length - 1; i >= 0; i--) {
+        const p = parts[i], low = clean(p);
+        const named = byName.get(low) || ALIASES[low]; if (named) return named;
+        if (i > 0 && US_STATES.has(p.toUpperCase()) && p === p.toUpperCase()) return 'US';
+    }
+    for (const p of parts) { const c = CITY_COUNTRY[clean(p)]; if (c) return c; }
+    return '';
+};
+// "Austin, TX, United States" -> { locality: 'Austin', region: 'TX' }; "Pune, Maharashtra" -> { 'Pune', 'Maharashtra' }
+export const splitLocation = (location, countryCode) => {
+    const name = COUNTRIES.find((c) => c[0] === countryCode)?.[1]?.toLowerCase();
+    const parts = String(location || '').split(',').map((p) => p.trim()).filter((p) => p && !/^(remote|hybrid|on-?site|anywhere)$/i.test(p) && clean(p) !== name && countryCodeOf(p) !== countryCode);
+    return { locality: parts[0] || '', region: parts[1] || '' };
+};

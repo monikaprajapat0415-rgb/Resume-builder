@@ -108,7 +108,7 @@ export const updateEmployer = async (req, res) => {
 
 // ---------------- Company job posts ----------------
 
-const jobView = (j) => ({ id: j._id, category: j.category, country: j.country, payMin: j.payMin, payMax: j.payMax, currency: j.currency, payPer: j.payPer, openings: j.openings, perks: j.perks || [], slug: j.slug, title: j.title, location: j.location, remote: j.remote, employmentType: j.employmentType, department: j.department, salary: j.salary, description: j.description, applyUrl: j.applyUrl, active: j.active, reviewStatus: j.reviewStatus, reviewNote: j.reviewNote, postedAt: j.postedAt, createdAt: j.createdAt })
+const jobView = (j) => ({ id: j._id, category: j.category, country: j.country, region: j.region, streetAddress: j.streetAddress, postalCode: j.postalCode, payMin: j.payMin, payMax: j.payMax, currency: j.currency, payPer: j.payPer, openings: j.openings, perks: j.perks || [], slug: j.slug, title: j.title, location: j.location, remote: j.remote, employmentType: j.employmentType, department: j.department, salary: j.salary, description: j.description, applyUrl: j.applyUrl, active: j.active, reviewStatus: j.reviewStatus, reviewNote: j.reviewNote, postedAt: j.postedAt, createdAt: j.createdAt })
 
 const readJob = (b, company) => {
     const title = str(b.title, 200); if (title.length < 3) throw new Error('Enter the job title.')
@@ -131,10 +131,11 @@ const readJob = (b, company) => {
         if (!CURRENCIES.includes(currency)) throw new Error('Choose the pay currency.')
         if (!PAY_PER.includes(payPer)) throw new Error('Choose how the pay is counted: per day, hour, week, month or year.')
     }
+    const address = { region: str(b.region, 80), streetAddress: str(b.streetAddress, 150), postalCode: str(b.postalCode, 20) };
     const openings = num(b.openings); if (openings !== undefined && !(openings >= 1 && openings <= 1000)) throw new Error('Number of openings must be between 1 and 1000.')
     const perks = [...new Set((Array.isArray(b.perks) ? b.perks : []).map((x) => str(x, 40)).filter(Boolean))].slice(0, 10)
     const salary = payMin || payMax ? formatPay({ payMin, payMax, currency, payPer }) : str(b.salary, 120)
-    return { title, description, category, country, employmentType, applyUrl, location: str(b.location, 200), remote: Boolean(b.remote), department: str(b.department, 120), salary, payMin: payMin || undefined, payMax: payMax || undefined, currency, payPer, openings: openings ? Math.round(openings) : undefined, perks, company: company.companyName }
+    return { ...address, title, description, category, country, employmentType, applyUrl, location: str(b.location, 200), remote: Boolean(b.remote), department: str(b.department, 120), salary, payMin: payMin || undefined, payMax: payMax || undefined, currency, payPer, openings: openings ? Math.round(openings) : undefined, perks, company: company.companyName }
 }
 
 // GET /api/employers/jobs

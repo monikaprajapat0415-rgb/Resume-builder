@@ -3,7 +3,7 @@ import Job from '../models/Job.js';
 import JobSource from '../models/JobSource.js';
 import { fetchSourceJobs } from '../utils/jobFeeds.js';
 import { slugify } from '../utils/slugify.js';
-import { inferCategory } from '../utils/workTaxonomy.js';
+import { inferCategory, normalizeCountry, splitLocation } from '../utils/workTaxonomy.js';
 
 let running = false;
 export const isSyncRunning = () => running;
@@ -24,7 +24,7 @@ export const syncSource = async (source) => {
                 updateOne: {
                     filter: { sourceId: source._id, externalId: j.externalId },
                     update: {
-                        $set: { ...j, category: inferCategory(j.title, j.department), sourceType: source.type, lastSeenAt: started, active: true },
+                        $set: { ...j, payMin: j.payMin ?? null, payMax: j.payMax ?? null, currency: j.currency ?? '', payPer: j.payPer ?? '', region: splitLocation(j.location, j.country).region, category: inferCategory(j.title, j.department), sourceType: source.type, lastSeenAt: started, active: true },
                         $setOnInsert: { slug: makeSlug(j, source._id) },
                     },
                     upsert: true,
@@ -69,9 +69,28 @@ export const backfillCategories = async () => {
     } catch (e) { console.error('[jobs] category backfill failed:', e.message); }
 };
 
+// Imported jobs saved before countries were normalised (free text such as "India" or empty) get an ISO code and a region.
+export const backfillCountries = async () => {
+    try {
+        let last = null;
+        for (let i = 0; i < 100; i++) {
+            const rows = await Job.find({ sourceType: { $ne: 'employer' }, ...(last ? { _id: { $gt: last } } : {}) }).sort({ _id: 1 }).select('location country region').limit(500).lean();
+            if (!rows.length) break;
+            last = rows[rows.length - 1]._id;
+            const ops = [];
+            for (const r of rows) {
+                const country = normalizeCountry(r.country, r.location), region = splitLocation(r.location, country).region;
+                if (country !== (r.country || '') || region !== (r.region || '')) ops.push({ updateOne: { filter: { _id: r._id }, update: { $set: { country, region } } } });
+            }
+            if (ops.length) await Job.bulkWrite(ops, { ordered: false });
+        }
+    } catch (e) { console.error('[jobs] country backfill failed:', e.message); }
+};
+
 // Refreshes every enabled source every JOBS_SYNC_HOURS (default 12). Set JOBS_AUTO_SYNC=false to disable.
 export const startJobScheduler = () => {
     backfillCategories();
+    backfillCountries();
     if (process.env.JOBS_AUTO_SYNC === 'false') return;
     const hours = Math.max(1, Number(process.env.JOBS_SYNC_HOURS) || 12);
     const run = () => syncAll().catch((e) => console.error('[jobs] scheduled sync failed:', e.message));

@@ -11,6 +11,8 @@ const HOSTS = () => ({
     adzuna: process.env.JOBS_ADZUNA_BASE || 'https://api.adzuna.com',
 });
 
+import { normalizeCountry, currencyOf, formatPay } from './workTaxonomy.js';
+
 const MAX_JOBS_PER_SOURCE = 2000;
 export const TOKEN_RX = /^[A-Za-z0-9_.-]{1,80}$/;
 
@@ -54,10 +56,31 @@ export const getJson = async (url, { headers = {}, timeoutMs = 25000 } = {}) => 
     } finally { clearTimeout(timer); }
 };
 
+// ---- pay from feeds that publish it. Only clear, structured amounts are used; nothing is guessed.
+const PER = { year: 'year', yearly: 'year', annual: 'year', annually: 'year', month: 'month', monthly: 'month', week: 'week', weekly: 'week', day: 'day', daily: 'day', hour: 'hour', hourly: 'hour' };
+const perOf = (s) => { const k = String(s || '').toLowerCase(); const m = k.match(/year|annual|month|week|day|hour/); return m ? PER[m[0]] || PER[m[0] + 'ly'] || 'year' : ''; };
+const numPay = (min, max, currency, payPer) => {
+    const lo = Number(min) || 0, hi = Number(max) || 0;
+    if (!(lo > 0 || hi > 0) || !/^[A-Z]{3}$/.test(String(currency || '')) || !payPer) return {};
+    return { payMin: lo || hi, payMax: hi || lo, currency, payPer };
+};
+const leverPay = (r) => (r ? numPay(r.min, r.max, String(r.currency || '').toUpperCase(), perOf(r.interval)) : {});
+const ashbyPay = (c) => {
+    const comp = (c?.summaryComponents || []).find((x) => /salary/i.test(x.compensationType || '') && (x.minValue || x.maxValue));
+    return comp ? numPay(comp.minValue, comp.maxValue, String(comp.currencyCode || '').toUpperCase(), perOf(comp.interval)) : {};
+};
+// Greenhouse gives amounts in cents with no period, so only unmistakable ranges are used (yearly >= 10,000, hourly <= 500)
+const greenhousePay = (ranges) => {
+    const r = (ranges || []).find((x) => x.max_cents || x.min_cents); if (!r) return {};
+    const lo = (r.min_cents || 0) / 100, hi = (r.max_cents || 0) / 100, top = hi || lo;
+    const payPer = top >= 10000 ? 'year' : top > 0 && top <= 500 ? 'hour' : '';
+    return numPay(lo, hi, String(r.currency_type || '').toUpperCase(), payPer);
+};
+
 const fetchers = {
     // https://developers.greenhouse.io/job-board.html  (public Job Board API)
     async greenhouse(src) {
-        const data = await getJson(`${HOSTS().greenhouse}/v1/boards/${encodeURIComponent(src.token)}/jobs?content=true`);
+        const data = await getJson(`${HOSTS().greenhouse}/v1/boards/${encodeURIComponent(src.token)}/jobs?content=true&pay_transparency=true`);
         return (data.jobs || []).map((j) => ({
             externalId: String(j.id),
             title: j.title,
@@ -69,6 +92,7 @@ const fetchers = {
             description: htmlToText(decodeEntities(j.content || '')),
             applyUrl: j.absolute_url,
             postedAt: toDate(j.first_published || j.updated_at),
+            ...greenhousePay(j.pay_input_ranges),
         }));
     },
     // https://github.com/lever/postings-api
@@ -90,6 +114,7 @@ const fetchers = {
                 description: parts.filter(Boolean).join('\n\n'),
                 applyUrl: j.hostedUrl || j.applyUrl,
                 postedAt: toDate(j.createdAt),
+                ...leverPay(j.salaryRange),
             };
         });
     },
@@ -109,6 +134,7 @@ const fetchers = {
             description: j.descriptionPlain || htmlToText(j.descriptionHtml),
             applyUrl: j.jobUrl || j.applyUrl,
             postedAt: toDate(j.publishedAt),
+            ...ashbyPay(j.compensation),
         }));
     },
     // https://www.arbeitnow.com/api/job-board-api  (free, no key; please credit Arbeitnow)
@@ -150,7 +176,8 @@ const fetchers = {
                     remote: /remote/i.test(`${j.title} ${j.location?.display_name || ''}`),
                     employmentType: normType(j.contract_time),
                     department: j.category?.label || '',
-                    salary: j.salary_min ? cut(`${Math.round(j.salary_min)}${j.salary_max ? ' - ' + Math.round(j.salary_max) : ''}`, 120) : '',
+                    // Adzuna salaries are yearly; estimated ones (salary_is_predicted) are not shown as pay
+                    ...(j.salary_min && String(j.salary_is_predicted) !== '1' ? numPay(j.salary_min, j.salary_max, currencyOf(country.toUpperCase()), 'year') : {}),
                     description: htmlToText(j.description),
                     applyUrl: j.redirect_url,
                     postedAt: toDate(j.created),
@@ -175,8 +202,9 @@ export const fetchSourceJobs = async (src) => {
         if (!applyUrl || !title || !company || !externalId) continue;   // skip anything we cannot link to
         jobs.push({
             externalId, title, company,
-            location: cut(r.location, 200), country: cut(r.country, 60), remote: Boolean(r.remote),
-            employmentType: cut(r.employmentType, 40), department: cut(r.department, 120), salary: cut(r.salary, 120),
+            location: cut(r.location, 200), country: normalizeCountry(r.country, r.location), remote: Boolean(r.remote),
+            employmentType: cut(r.employmentType, 40), department: cut(r.department, 120),
+            ...(r.payMin || r.payMax ? { payMin: r.payMin, payMax: r.payMax, currency: r.currency, payPer: r.payPer, salary: formatPay(r) } : { salary: cut(r.salary, 120) }),
             description: cut(r.description, 20000), applyUrl: cut(applyUrl, 1000), postedAt: r.postedAt,
         });
         if (jobs.length >= MAX_JOBS_PER_SOURCE) break;

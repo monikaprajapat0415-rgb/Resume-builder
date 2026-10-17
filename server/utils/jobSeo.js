@@ -1,4 +1,5 @@
 import { jobInsights, labourInsights } from './jobInsights.js';
+import { normalizeCountry, splitLocation } from './workTaxonomy.js';
 import { SITE_NAME, siteUrl, escapeHtml, seoTitle } from './blogSeo.js';
 
 const crumbHtml = (items) => `<nav aria-label="Breadcrumb">${items.map((b, i) => (b.href ? `<a href="${escapeHtml(b.href)}">${escapeHtml(b.name)}</a>` : escapeHtml(b.name)) + (i < items.length - 1 ? ' › ' : '')).join('')}</nav>`;
@@ -38,12 +39,16 @@ export const jobPostingLd = (job) => {
     };
     const et = TYPE_LD[String(job.employmentType || '').toLowerCase()];
     if (et) ld.employmentType = et;
-    if (job.location) {
-        const address = { '@type': 'PostalAddress', addressLocality: job.location };
-        if (job.country) address.addressCountry = job.country;
-        ld.jobLocation = { '@type': 'Place', address };
-    }
-    if (!job.location && /^[A-Z]{2}$/.test(job.country || '') && job.country !== 'XX') ld.jobLocation = { '@type': 'Place', address: { '@type': 'PostalAddress', addressCountry: job.country } };
+    // Full postal address where we know it. Street and postal code exist only for jobs an employer posted with them.
+    const country = normalizeCountry(job.country, job.location);
+    const { locality, region } = splitLocation(job.location, country);
+    const address = { '@type': 'PostalAddress' };
+    if (job.streetAddress) address.streetAddress = job.streetAddress;
+    if (locality) address.addressLocality = locality;
+    if (job.region || region) address.addressRegion = job.region || region;
+    if (job.postalCode) address.postalCode = job.postalCode;
+    if (country && country !== 'XX') address.addressCountry = country;
+    if (address.addressLocality || address.addressCountry) ld.jobLocation = { '@type': 'Place', address };
     if ((job.payMin > 0 || job.payMax > 0) && job.currency) {
         const unit = { day: 'DAY', hour: 'HOUR', week: 'WEEK', month: 'MONTH', year: 'YEAR' }[job.payPer];
         if (unit) ld.baseSalary = { '@type': 'MonetaryAmount', currency: job.currency, value: { '@type': 'QuantitativeValue', minValue: job.payMin || job.payMax, maxValue: job.payMax || job.payMin, unitText: unit } };
@@ -51,7 +56,7 @@ export const jobPostingLd = (job) => {
     if (job.openings > 1) ld.totalJobOpenings = job.openings;
     if (job.remote) {
         ld.jobLocationType = 'TELECOMMUTE';
-        if (job.country) ld.applicantLocationRequirements = { '@type': 'Country', name: job.country };
+        if (country && country !== 'XX') ld.applicantLocationRequirements = { '@type': 'Country', name: country };
     }
     return ld;
 };

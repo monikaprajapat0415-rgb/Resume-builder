@@ -10,7 +10,10 @@ const JobSchema = new mongoose.Schema({
     title: { type: String, required: true, maxlength: 200 },
     company: { type: String, required: true, maxlength: 150 },
     location: { type: String, default: '', maxlength: 200 },
-    country: { type: String, default: '', maxlength: 60 },     // ISO code or name when the feed gives one
+    country: { type: String, default: '', maxlength: 60 },     // ISO 3166-1 alpha-2 code (imported jobs are normalised; '' when unknown)
+    region: { type: String, default: '', maxlength: 80 },      // state / province, for Google job search
+    streetAddress: { type: String, default: '', maxlength: 150 },
+    postalCode: { type: String, default: '', maxlength: 20 },
     remote: { type: Boolean, default: false },
     employmentType: { type: String, default: '', maxlength: 40 },
     department: { type: String, default: '', maxlength: 120 },

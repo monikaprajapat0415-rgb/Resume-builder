@@ -1,5 +1,6 @@
 import { jobInsights, labourInsights } from '../utils/jobInsights.js';
 import { CATEGORIES, COUNTRIES, COUNTRY_CODES } from '../utils/workTaxonomy.js';
+import { jobPostingLd } from '../utils/jobSeo.js';
 import { resolveLanding, landingContent, landingSeo } from '../utils/jobLanding.js';
 import Message from "../models/Message.js";
 import User from "../models/User.js";
@@ -86,6 +87,7 @@ export const getJob = async (req, res) => {
         const { job } = v;
         return res.status(200).json({
             job: { ...jobCard(job), description: job.description, applyUrl: job.applyUrl, country: job.country, payMin: job.payMin, payMax: job.payMax, currency: job.currency, payPer: job.payPer, sourceType: job.sourceType, updatedAt: job.updatedAt, lastSeenAt: job.lastSeenAt },
+            jsonLd: jobPostingLd(job),
             more: v.more, sourceName: v.sourceName, insights: job.category && job.category !== 'corporate' ? labourInsights(job) : jobInsights(job),
         });
     } catch (e) { return res.status(500).json({ message: 'Could not load the job.' }); }
