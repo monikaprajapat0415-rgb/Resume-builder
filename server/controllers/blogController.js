@@ -100,7 +100,11 @@ export const getBlogSitemapXml = async (req, res) => {
         ]);
         const liveCourses = courses.filter((c) => lessons.some((l) => String(l.course) === String(c._id)));
         const slugOf = Object.fromEntries(liveCourses.map((c) => [String(c._id), c.slug]));
-        const jobs = await Job.find(liveFilter()).sort({ postedAt: -1 }).limit(5000).select('slug updatedAt postedAt').lean();
+        // Only jobs posted on this site go in the sitemap. Thousands of near-identical imported
+        // listings made Google park the whole site in "Discovered - currently not indexed";
+        // imported jobs stay crawlable through /jobs and the landing pages, just not listed here.
+        const newestJob = await Job.findOne(liveFilter()).sort({ updatedAt: -1 }).select('updatedAt').lean();
+        const jobs = await Job.find({ ...liveFilter(), sourceType: 'employer' }).sort({ postedAt: -1 }).limit(2000).select('slug updatedAt postedAt').lean();
         const landing = await landingSitemapPaths();
         const [posts, products, pages, cats] = await Promise.all([
             Blog.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt date modifiedAt coverImage coverAlt title category'),
@@ -129,7 +133,7 @@ export const getBlogSitemapXml = async (req, res) => {
             ...(liveCourses.length ? [entry('/learn', Math.max(...liveCourses.map((c) => +new Date(c.modifiedAt || c.updatedAt))), 'weekly')] : []),
             ...liveCourses.map((c) => entry(`/learn/${c.slug}`, c.modifiedAt || c.updatedAt, 'weekly')),
             ...lessons.filter((l) => slugOf[String(l.course)]).map((l) => entry(`/learn/${slugOf[String(l.course)]}/${l.slug}`, l.modifiedAt || l.updatedAt, 'monthly')),
-            ...(jobs.length ? [entry('/jobs', jobs[0].updatedAt || new Date(), 'daily')] : []),
+            ...(newestJob ? [entry('/jobs', newestJob.updatedAt || new Date(), 'daily')] : []),
             ...landing.map((l) => entry(l.path, l.when || new Date(), 'daily')),
             ...jobs.map((j) => entry(`/jobs/${j.slug}`, j.updatedAt || j.postedAt, 'weekly')),
             ...cats.filter((c) => newest[c.slug]).map((c) => entry(`/blog/category/${c.slug}`, newest[c.slug], 'weekly')),

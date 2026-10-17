@@ -220,7 +220,7 @@ const Requests = ({ auth }) => {
   )
 }
 
-const BLANK_JOB = { category: 'corporate', country: '', title: '', location: '', remote: false, employmentType: 'full-time', department: '', payMin: '', payMax: '', payPer: 'year', currency: 'USD', openings: '', perks: [], description: '', applyUrl: '', applyEmail: '' }
+const BLANK_JOB = { category: 'corporate', country: '', region: '', streetAddress: '', postalCode: '', title: '', location: '', remote: false, employmentType: 'full-time', department: '', payMin: '', payMax: '', payPer: 'year', currency: 'USD', openings: '', perks: [], description: '', applyUrl: '', applyEmail: '' }
 
 const MyJobs = ({ auth, country }) => {
   const [jobs, setJobs] = useState(null)
@@ -288,6 +288,14 @@ const JobModal = ({ job, country, auth, onClose, onSaved }) => {
           </div>
           {(f.payMin || f.payMax) && <p className='text-xs text-slate-500 mt-1'>Workers will see: {payText({ payMin: Number(f.payMin), payMax: Number(f.payMax), currency: f.currency, payPer: f.payPer })}</p>}
         </fieldset>
+        <details className='rounded-lg border border-slate-200 p-3' open={Boolean(f.streetAddress || f.postalCode || f.region)}>
+          <summary className='cursor-pointer text-sm font-medium text-slate-700'>Work place address (optional, helps people and Google find your job)</summary>
+          <div className='grid sm:grid-cols-3 gap-3 mt-3'>
+            <Text label='Street address' value={f.streetAddress} onChange={(v) => set({ streetAddress: v })} maxLength={150} />
+            <Text label='State / region' value={f.region} onChange={(v) => set({ region: v })} maxLength={80} />
+            <Text label='Postal code' value={f.postalCode} onChange={(v) => set({ postalCode: v })} maxLength={20} />
+          </div>
+        </details>
         {isLabour(f.category) && <fieldset><legend className='block text-sm font-medium text-slate-700 mb-1.5'>What do you provide?</legend>
           <div className='flex flex-wrap gap-2'>{PERKS.map((p) => { const on = f.perks.includes(p); return <button key={p} type='button' aria-pressed={on} onClick={() => set({ perks: on ? f.perks.filter((x) => x !== p) : [...f.perks, p] })} className={`px-3 py-1.5 text-sm rounded-full border ${on ? 'bg-slate-800 border-slate-800 text-white' : 'border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{p}</button> })}</div></fieldset>}
         <label className='inline-flex items-center gap-2 text-sm text-slate-700'><input type='checkbox' checked={f.remote} onChange={(e) => set({ remote: e.target.checked })} /> Remote friendly</label>
