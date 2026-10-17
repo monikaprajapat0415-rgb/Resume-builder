@@ -29,6 +29,9 @@ export const renderInline = (text = '') => {
       out.push(<code key={key} className='px-1 py-0.5 rounded bg-slate-100 text-slate-800 text-[0.9em]' style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace' }}>{match[4]}</code>)
     } else if (!isSafeUrl(match[2])) {
       out.push(match[1]) // unsafe URL: keep the words, drop the link
+    } else if (/^\/api\//.test(match[2])) {
+      // API files (such as lesson solution zips) are real downloads, not pages of this app
+      out.push(<a key={key} href={match[2]} download className={`${linkClass} font-semibold`}>{match[1]}</a>)
     } else if (/^\/(?!\/)/.test(match[2])) {
       out.push(<Link key={key} to={match[2]} className={linkClass}>{match[1]}</Link>)
     } else if (match[2].startsWith('#')) {

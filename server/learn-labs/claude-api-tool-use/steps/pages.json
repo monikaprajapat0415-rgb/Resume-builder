@@ -1,0 +1,14 @@
+[
+  { "step": 1,  "path": "models",     "label": "Models",     "cls": "ModelsPage",    "file": "models" },
+  { "step": 2,  "path": "ask",        "label": "Ask",        "cls": "AskPage",       "file": "ask" },
+  { "step": 3,  "path": "tokens",     "label": "Tokens",     "cls": "TokensPage",    "file": "tokens" },
+  { "step": 4,  "path": "chat",       "label": "Chat",       "cls": "ChatPage",      "file": "chat" },
+  { "step": 5,  "path": "stream",     "label": "Stream",     "cls": "StreamPage",    "file": "stream" },
+  { "step": 6,  "path": "reliable",   "label": "Reliable",   "cls": "ReliablePage",  "file": "reliable" },
+  { "step": 7,  "path": "caching",    "label": "Caching",    "cls": "CachingPage",   "file": "caching" },
+  { "step": 8,  "path": "documents",  "label": "Documents",  "cls": "DocumentsPage", "file": "documents" },
+  { "step": 9,  "path": "agent",      "label": "Tools",      "cls": "AgentPage",     "file": "agent" },
+  { "step": 10, "path": "safe-agent", "label": "Safe tools", "cls": "SafeAgentPage", "file": "safe-agent" },
+  { "step": 11, "path": "match",      "label": "Match",      "cls": "MatchPage",     "file": "match" },
+  { "step": 12, "path": "prompt-lab", "label": "Prompt lab", "cls": "PromptLabPage", "file": "prompt-lab" }
+]
