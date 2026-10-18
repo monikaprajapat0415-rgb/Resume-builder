@@ -82,6 +82,7 @@ const LearnIndex = () => {
               </div>
             </div>
           ))}
+        <p className='text-center text-sm text-slate-400 mt-8'>Planning your next career move? See the <Link to='/roadmaps' className='text-brand-600 hover:underline'>career roadmaps</Link>.</p>
       </section>
       <Footer />
     </div>

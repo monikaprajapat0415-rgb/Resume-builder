@@ -3,6 +3,7 @@ import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
 import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse, uploadLessonDownload, removeLessonDownload } from '../controllers/learnController.js';
+import { getRoadmapsAdmin, getRoadmapAdmin, createRoadmap, updateRoadmap, deleteRoadmap } from '../controllers/roadmapController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
@@ -46,6 +47,11 @@ adminRouter.post('/blogs', createBlog);
 adminRouter.put('/blogs/:id', updateBlog);
 adminRouter.delete('/blogs/:id', deleteBlog);
 
+adminRouter.get('/roadmaps', getRoadmapsAdmin);
+adminRouter.post('/roadmaps', createRoadmap);
+adminRouter.get('/roadmaps/:id', getRoadmapAdmin);
+adminRouter.put('/roadmaps/:id', updateRoadmap);
+adminRouter.delete('/roadmaps/:id', deleteRoadmap);
 adminRouter.post('/learn/import', importCourse);
 
 // Hiring: company approvals and employer job posts
