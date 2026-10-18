@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link } from 'react-router-dom'
+import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
 import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake } from 'react-icons/lu'
 import SEO from '../../components/SEO'
@@ -80,6 +81,7 @@ const AdminLayout = () => {
       </aside>
       <main className='flex-1 min-w-0 px-4 py-8 md:px-8'>
         <div className='max-w-5xl mx-auto'>
+          <PageNav className='!px-0 !max-w-none mb-4' />
           <Outlet />
         </div>
       </main>

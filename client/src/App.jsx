@@ -1,3 +1,4 @@
+import { StandalonePageNav } from './components/PageNav';
 import React, { use, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
@@ -139,6 +140,7 @@ const App = () => {
     </Helmet>
     <Toaster />
     <Analytics />
+      <StandalonePageNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
