@@ -8,7 +8,7 @@ import BlockRenderer from '../components/BlockRenderer'
 import LessonFeedback from '../components/LessonFeedback'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
-import { LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
+import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
 
 // Course menu: every lesson grouped by chapter, current lesson highlighted.
 const CourseMenu = ({ courseSlug, sections, current }) => {
@@ -135,6 +135,18 @@ const LearnLesson = () => {
           </p>
 
           <div className='mt-6'><BlockRenderer blocks={lesson.content} /></div>
+
+          {lesson.download && (
+            <aside aria-label='Solution download' className='mt-10 rounded-xl border border-brand-200 bg-brand-50/50 p-5 flex flex-wrap items-center justify-between gap-4'>
+              <div>
+                <p className='font-semibold text-slate-800'>Download the solution</p>
+                <p className='text-sm text-slate-600 mt-0.5'>The full project as it should look after this lesson{lesson.download.size ? ` (${lesson.download.size > 1048576 ? `${(lesson.download.size / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(lesson.download.size / 1024))} KB`})` : ''}.</p>
+              </div>
+              <a href={lesson.download.url} download rel='nofollow' className='inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700'>
+                <LuDownload className='size-4' />{lesson.download.name}
+              </a>
+            </aside>
+          )}
 
           {lesson.faqs.length > 0 && (
             <section className='mt-12' aria-labelledby='faq'>

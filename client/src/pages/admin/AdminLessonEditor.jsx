@@ -25,6 +25,8 @@ const AdminLessonEditor = () => {
   const [f, setF] = useState({ title: '', slug: '', section: '', description: '', readTime: '', published: false, metaTitle: '', keywords: '', noindex: false })
   const [blocks, setBlocks] = useState([{ type: 'paragraph', text: '' }])
   const [faqs, setFaqs] = useState([])
+  const [download, setDownload] = useState(null)
+  const [uploading, setUploading] = useState(false)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const set = (patch) => setF((p) => ({ ...p, ...patch }))
@@ -41,6 +43,7 @@ const AdminLessonEditor = () => {
           setF({ title: l.title, slug: l.slug, section: l.section || '', description: l.description || '', readTime: l.readTime || '', published: l.published, metaTitle: l.metaTitle || '', keywords: l.keywords || '', noindex: Boolean(l.noindex) })
           setBlocks(l.content?.length ? l.content : [{ type: 'paragraph', text: '' }])
           setFaqs(l.faqs || [])
+          setDownload(l.download?.file ? l.download : null)
         }
         const { data } = await api.get(`/api/admin/learn/courses/${cid}/lessons`, auth)
         setCourse(data.course)
@@ -77,6 +80,31 @@ const AdminLessonEditor = () => {
 
   if (loading) return <p className='text-slate-400'>Loading…</p>
   const words = blocks.map((b) => (b.type === 'code' ? '' : b.text || (b.items || []).join(' '))).join(' ').split(/\s+/).filter(Boolean).length
+  const sizeText = (n) => (n > 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`)
+  const uploadZip = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    if (!/\.zip$/i.test(file.name)) return toast.error('Choose a .zip file.')
+    if (file.size > 25 * 1024 * 1024) return toast.error('That file is over the 25 MB limit.')
+    setUploading(true)
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      const { data } = await api.post(`/api/admin/learn/lessons/${lessonId}/download`, fd, auth)
+      setDownload(data.download)
+      toast.success('Solution zip saved.')
+    } catch (err) { toast.error(err.response?.data?.message || 'Upload failed.') }
+    setUploading(false)
+  }
+  const removeZip = async () => {
+    if (!window.confirm('Remove the solution download from this lesson?')) return
+    try {
+      await api.delete(`/api/admin/learn/lessons/${lessonId}/download`, auth)
+      setDownload(null)
+      toast.success('Solution removed.')
+    } catch (err) { toast.error(err.response?.data?.message || 'Could not remove.') }
+  }
   const setFaq = (i, patch) => setFaqs((p) => p.map((x, j) => (j === i ? { ...x, ...patch } : x)))
 
   return (
@@ -109,6 +137,29 @@ const AdminLessonEditor = () => {
         <div className='bg-white rounded-xl border border-slate-200 p-5'>
           <BlockEditor blocks={blocks} setBlocks={setBlocks} rich tutorial />
           <p className='text-xs text-slate-400 mt-4'>{words} words of text. Headings become the "On this page" menu on the right of the lesson.</p>
+        </div>
+
+        <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>
+          <h2 className='text-sm font-semibold text-slate-800'>Solution download <span className='text-slate-400 font-normal'>(optional .zip, 25 MB max; shown as a download card under the lesson)</span></h2>
+          {!isEdit ? (
+            <p className='text-sm text-slate-500'>Save the lesson first, then edit it to upload a zip.</p>
+          ) : (
+            <>
+              {download ? (
+                <p className='text-sm text-slate-700'>
+                  <strong>{download.name}</strong> · {sizeText(download.size || 0)} · {download.builtin ? 'built-in file from the project' : 'uploaded by an admin'}
+                </p>
+              ) : <p className='text-sm text-slate-500'>No download on this lesson yet.</p>}
+              <div className='flex flex-wrap items-center gap-3'>
+                <label className={`text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50 cursor-pointer ${uploading ? 'opacity-50 pointer-events-none' : ''}`}>
+                  {uploading ? 'Uploading…' : download ? 'Replace zip' : 'Upload zip'}
+                  <input type='file' accept='.zip,application/zip' onChange={uploadZip} className='hidden' />
+                </label>
+                {download && <button type='button' onClick={removeZip} className='text-xs text-red-500'>Remove</button>}
+                <span className='text-xs text-slate-400'>Uploads save straight away; no need to press Save.</span>
+              </div>
+            </>
+          )}
         </div>
 
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>

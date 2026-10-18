@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import jwt from 'jsonwebtoken';
 import protect from '../middlewares/authMiddleware.js';
 import { feedbackLimiter } from '../middlewares/rateLimiter.js';
-import { getCourses, getCourse, getLesson } from '../controllers/learnController.js';
+import { getCourses, getCourse, getLesson, downloadLessonFile } from '../controllers/learnController.js';
 import { listFeedback, createFeedback, deleteOwnFeedback } from '../controllers/feedbackController.js';
 
 const learnRouter = express.Router();
@@ -32,6 +32,7 @@ learnRouter.get('/downloads/:lab/:file', (req, res) => {
 learnRouter.get('/', getCourses);
 learnRouter.get('/:course', getCourse);
 learnRouter.get('/:course/:lesson', getLesson);
+learnRouter.get('/:course/:lesson/download', downloadLessonFile);
 learnRouter.get('/:course/:lesson/feedback', optionalUser, listFeedback);
 learnRouter.post('/:course/:lesson/feedback', protect, feedbackLimiter, createFeedback);
 learnRouter.delete('/:course/:lesson/feedback/:id', protect, deleteOwnFeedback);

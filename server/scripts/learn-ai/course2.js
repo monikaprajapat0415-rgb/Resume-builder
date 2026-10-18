@@ -28,4 +28,9 @@ const minutes = (l) => {
   return Math.round(words / 200 + code / 25);
 };
 
-export const lessons = [...p1, ...p2, ...p3, ...p4].map((l) => ({ ...l, readTime: `${minutes(l)} min read` }));
+// The solution zip is shown as a download card under the lesson (built from the repo zips or an admin upload),
+// so the plain "[Download the lesson N solution (zip)](...)" paragraph is dropped from the text.
+const isDlLink = (b) => b.type === 'paragraph' && /^\[Download the lesson \d+ solution/.test(b.text || '');
+export const lessons = [...p1, ...p2, ...p3, ...p4].map((l, i) => ({
+  ...l, content: l.content.filter((b) => !isDlLink(b)), lab: 'claude-api-tool-use', labStep: i + 1, readTime: `${minutes(l)} min read`,
+}));
