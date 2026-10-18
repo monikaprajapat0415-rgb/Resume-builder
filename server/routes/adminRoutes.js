@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
-import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse } from '../controllers/learnController.js';
+import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse, uploadLessonDownload, removeLessonDownload } from '../controllers/learnController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
@@ -21,6 +21,13 @@ const imageUpload = multer({
     storage: multer.diskStorage({}),
     limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter: (req, file, cb) => cb(null, /^image\/(png|jpe?g|webp|gif|svg\+xml)$/.test(file.mimetype)),
+});
+
+// Lesson solution zips: kept in memory (25 MB max), checked and written by the controller.
+const zipUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 25 * 1024 * 1024, files: 1 } });
+const receiveZip = (req, res, next) => zipUpload.single('file')(req, res, (err) => {
+    if (!err) return next();
+    return res.status(err.code === 'LIMIT_FILE_SIZE' ? 413 : 400).json({ message: err.code === 'LIMIT_FILE_SIZE' ? 'That file is over the 25 MB limit.' : 'Upload failed.' });
 });
 
 // Every route below requires a logged-in admin.
@@ -58,6 +65,8 @@ adminRouter.put('/learn/courses/:id/reorder', reorderLessons);
 adminRouter.get('/learn/lessons/:id', getLessonAdmin);
 adminRouter.put('/learn/lessons/:id', updateLesson);
 adminRouter.delete('/learn/lessons/:id', deleteLesson);
+adminRouter.post('/learn/lessons/:id/download', receiveZip, uploadLessonDownload);
+adminRouter.delete('/learn/lessons/:id/download', removeLessonDownload);
 
 adminRouter.get('/feedback', getFeedbackAdmin);
 adminRouter.patch('/feedback/:id', updateFeedbackAdmin);

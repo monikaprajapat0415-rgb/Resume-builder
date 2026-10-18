@@ -1,0 +1,13 @@
+[
+  {"step": 1, "path": "spam", "label": "Rules vs learning", "cls": "SpamPage", "file": "spam"},
+  {"step": 2, "path": "vectors", "label": "Maths", "cls": "VectorsPage", "file": "vectors"},
+  {"step": 3, "path": "classifier", "label": "Train and test", "cls": "ClassifierPage", "file": "classifier"},
+  {"step": 4, "path": "neural", "label": "Neural net", "cls": "NeuralPage", "file": "neural"},
+  {"step": 5, "path": "markov", "label": "Generator", "cls": "MarkovPage", "file": "markov"},
+  {"step": 6, "path": "sampling", "label": "Sampling", "cls": "SamplingPage", "file": "sampling"},
+  {"step": 7, "path": "memory", "label": "Model size", "cls": "MemoryPage", "file": "memory"},
+  {"step": 8, "path": "prompt-builder", "label": "Prompt builder", "cls": "PromptBuilderPage", "file": "prompt-builder"},
+  {"step": 9, "path": "chain", "label": "Chains", "cls": "ChainPage", "file": "chain"},
+  {"step": 10, "path": "json-check", "label": "JSON check", "cls": "JsonCheckPage", "file": "json-check"},
+  {"step": 11, "path": "prompt-tests", "label": "Prompt tests", "cls": "PromptTestsPage", "file": "prompt-tests"}
+]

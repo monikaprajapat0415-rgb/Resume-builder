@@ -137,7 +137,7 @@ export const lessonView = (course, lesson, lessons) => {
         jsonLd.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: l.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: stripInline(f.a) } })) });
     }
     return {
-        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
+        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], download: l.download?.file ? { name: l.download.name, size: l.download.size || 0, url: `/api/learn/${c.slug}/${l.slug}/download` } : null, datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
         toc: content.filter((b) => b.type === 'heading').map((b) => ({ id: b.id, text: stripInline(b.text) })),
         course: { title: c.title, slug: c.slug, level: c.level, author: c.author || DEFAULT_AUTHOR },
         sections: groupSections(lessons), prev, next, position: idx + 1, total: lessons.length, seo, jsonLd, breadcrumbs: crumbs,
@@ -172,6 +172,7 @@ export const lessonHtml = (v) => `
   <p class="meta">${escapeHtml(v.course.title)}${v.lesson.section ? ` · ${escapeHtml(v.lesson.section)}` : ''} · ${escapeHtml(v.lesson.readTime)} · Updated <time datetime="${new Date(v.lesson.modifiedAt).toISOString()}">${new Date(v.lesson.modifiedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time></p>
   ${v.toc.length > 2 ? `<nav aria-label="On this page"><h2>On this page</h2><ol>${v.toc.map((t) => `<li><a href="#${escapeHtml(t.id)}">${escapeHtml(t.text)}</a></li>`).join('')}</ol></nav>` : ''}
   <div itemprop="articleBody">${blocksToHtml(v.lesson.content)}</div>
+  ${v.lesson.download ? `<p><a href="${escapeHtml(v.lesson.download.url)}" rel="nofollow">Download the solution (${escapeHtml(v.lesson.download.name)})</a></p>` : ''}
   ${v.lesson.faqs.length ? `<section><h2>Frequently asked questions</h2>${v.lesson.faqs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${inlineHtml(f.a)}</p>`).join('')}</section>` : ''}
   <nav aria-label="Lesson navigation">${v.prev ? `<a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(v.prev.slug)}" rel="prev">← ${escapeHtml(v.prev.title)}</a> ` : ''}${v.next ? `<a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(v.next.slug)}" rel="next">${escapeHtml(v.next.title)} →</a>` : ''}</nav>
   <aside><h2>${escapeHtml(v.course.title)} - all lessons</h2>${v.sections.map((s) => `${s.title ? `<h3>${escapeHtml(s.title)}</h3>` : ''}<ul>${s.lessons.map((l) => `<li><a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(l.slug)}">${escapeHtml(l.title)}</a></li>`).join('')}</ul>`).join('')}</aside>

@@ -1,9 +1,11 @@
+import fs from "node:fs";
 import mongoose from "mongoose";
 import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
 import LessonFeedback from "../models/LessonFeedback.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks } from "../utils/blogSeo.js";
+import { downloadPath, isZip, safeName, saveUpload, removeUpload } from "../utils/learnFiles.js";
 import { cleanCourseFields, cleanLessonFields, courseCard, courseView, lessonView } from "../utils/learnSeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -134,6 +136,8 @@ export const deleteCourse = async (req, res) => {
         if (!validId(req.params.id)) return res.status(404).json({ message: 'Course not found' });
         const course = await Course.findByIdAndDelete(req.params.id);
         if (!course) return res.status(404).json({ message: 'Course not found' });
+        const withFiles = await Lesson.find({ course: course._id, 'download.builtin': false }).select('download');
+        for (const l of withFiles) removeUpload(l.download?.file);
         const { deletedCount } = await Lesson.deleteMany({ course: course._id });
         await LessonFeedback.deleteMany({ course: course._id });
         return res.status(200).json({ message: 'Course deleted', lessonsDeleted: deletedCount });
@@ -212,6 +216,7 @@ export const deleteLesson = async (req, res) => {
         const lesson = await Lesson.findByIdAndDelete(req.params.id);
         if (!lesson) return res.status(404).json({ message: 'Lesson not found' });
         await LessonFeedback.deleteMany({ lesson: lesson._id });
+        if (lesson.download && !lesson.download.builtin) removeUpload(lesson.download.file);
         return res.status(200).json({ message: 'Lesson deleted' });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
@@ -258,6 +263,7 @@ export const importCourse = async (req, res) => {
 
         let course = await Course.findOne({ slug });
         let oldSlugOf = null;
+        let oldDownloads = {};
         if (course && !replace) return res.status(409).json({ message: `A course with the URL slug "${slug}" already exists. Tick "replace" to overwrite it.`, exists: true });
         if (course) {
             course.title = String(c.title).trim().slice(0, 150);
@@ -265,14 +271,17 @@ export const importCourse = async (req, res) => {
             course.modifiedAt = new Date();
             await course.save();
             // Readers' comments belong to a lesson id; keep them across a re-import by matching on slug.
-            const oldLessons = await Lesson.find({ course: course._id }).select('slug');
+            const oldLessons = await Lesson.find({ course: course._id }).select('slug download');
             oldSlugOf = Object.fromEntries(oldLessons.map((l) => [String(l._id), l.slug]));
+            oldDownloads = Object.fromEntries(oldLessons.filter((l) => l.download?.file).map((l) => [l.slug, l.download.toObject()]));
             await Lesson.deleteMany({ course: course._id });
         } else {
             course = await Course.create({ title: String(c.title).trim().slice(0, 150), slug, modifiedAt: new Date(), ...cleanCourseFields(c) });
         }
         const now = new Date();
-        const created = await Lesson.insertMany(prepared.map((l) => ({ ...l, course: course._id, modifiedAt: now })));
+        const created = await Lesson.insertMany(prepared.map((l) => ({ ...l, ...(oldDownloads[l.slug] ? { download: oldDownloads[l.slug] } : {}), course: course._id, modifiedAt: now })));
+        // Uploaded zips of lessons that no longer exist are deleted; the rest moved to the new lesson rows above.
+        for (const [lslug, d] of Object.entries(oldDownloads)) if (!d.builtin && !seen.has(lslug)) removeUpload(d.file);
         if (oldSlugOf) {
             const newIdOf = Object.fromEntries(created.map((l) => [l.slug, l._id]));
             for (const [oldId, lessonSlug] of Object.entries(oldSlugOf)) {
@@ -282,4 +291,52 @@ export const importCourse = async (req, res) => {
         }
         return res.status(201).json({ message: 'Course imported', course, lessons: prepared.length });
     } catch (e) { return res.status(400).json({ message: e.message }); }
+};
+
+// ---------- solution zip: admin upload / remove, public download ----------
+
+export const uploadLessonDownload = async (req, res) => {
+    try {
+        if (!validId(req.params.id)) return res.status(404).json({ message: 'Lesson not found' });
+        const lesson = await Lesson.findById(req.params.id);
+        if (!lesson) return res.status(404).json({ message: 'Lesson not found' });
+        const f = req.file;
+        if (!f) return res.status(400).json({ message: 'Choose a .zip file to upload.' });
+        if (!isZip(f.buffer)) return res.status(400).json({ message: 'That file is not a valid .zip archive.' });
+        const old = lesson.download;
+        const name = safeName(req.body?.name || f.originalname);
+        const file = saveUpload(f.buffer);
+        lesson.download = { name, file, size: f.buffer.length, builtin: false, uploadedAt: new Date() };
+        lesson.modifiedAt = new Date();
+        await lesson.save();
+        if (old && !old.builtin) removeUpload(old.file);
+        return res.status(200).json({ message: 'Solution uploaded', download: lesson.download });
+    } catch (e) { return res.status(500).json({ message: e.message }); }
+};
+
+export const removeLessonDownload = async (req, res) => {
+    try {
+        if (!validId(req.params.id)) return res.status(404).json({ message: 'Lesson not found' });
+        const lesson = await Lesson.findById(req.params.id);
+        if (!lesson) return res.status(404).json({ message: 'Lesson not found' });
+        const old = lesson.download;
+        lesson.download = undefined;
+        lesson.modifiedAt = new Date();
+        await lesson.save();
+        if (old && !old.builtin) removeUpload(old.file);
+        return res.status(200).json({ message: 'Solution removed' });
+    } catch (e) { return res.status(500).json({ message: e.message }); }
+};
+
+export const downloadLessonFile = async (req, res) => {
+    try {
+        const course = await Course.findOne({ slug: String(req.params.course), published: true }).select('_id');
+        if (!course) return res.status(404).json({ message: 'Not found' });
+        const lesson = await Lesson.findOne({ course: course._id, slug: String(req.params.lesson), published: true }).select('download');
+        const full = downloadPath(lesson?.download);
+        if (!full || !fs.existsSync(full)) return res.status(404).json({ message: 'Not found' });
+        res.setHeader('Cache-Control', 'private, no-cache');
+        res.setHeader('X-Robots-Tag', 'noindex');
+        return res.download(full, lesson.download.name || 'solution.zip');
+    } catch (e) { return res.status(500).json({ message: e.message }); }
 };

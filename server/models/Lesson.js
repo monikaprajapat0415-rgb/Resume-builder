@@ -12,6 +12,15 @@ const BlockSchema = new mongoose.Schema({
 
 const FaqSchema = new mongoose.Schema({ q: { type: String, required: true }, a: { type: String, required: true } }, { _id: false });
 
+// Optional solution zip. builtin = shipped in the repo (learn-labs/<lab>/zips); otherwise uploaded by an admin.
+const DownloadSchema = new mongoose.Schema({
+    name: { type: String, default: '' },      // file name the reader gets
+    file: { type: String, default: '' },      // stored file name (uploads) or "<lab>/<file>" (builtin)
+    size: { type: Number, default: 0 },
+    builtin: { type: Boolean, default: false },
+    uploadedAt: { type: Date },
+}, { _id: false });
+
 const LessonSchema = new mongoose.Schema({
     course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true, index: true },
     title: { type: String, required: true },
@@ -27,6 +36,7 @@ const LessonSchema = new mongoose.Schema({
     metaTitle: { type: String, default: '' },
     keywords: { type: String, default: '' },
     noindex: { type: Boolean, default: false },
+    download: { type: DownloadSchema, default: undefined },
     modifiedAt: { type: Date },
 }, { timestamps: true });
 

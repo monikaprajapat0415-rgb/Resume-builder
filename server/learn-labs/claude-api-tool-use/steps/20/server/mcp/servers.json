@@ -1,0 +1,4 @@
+{
+  "text-tools": { "command": "node", "args": ["mcp/text-tools-server.js"] },
+  "resume-tools": { "command": "node", "args": ["mcp/resume-tools-server.js"] }
+}

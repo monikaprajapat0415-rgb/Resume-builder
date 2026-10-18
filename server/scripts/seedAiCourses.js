@@ -40,6 +40,7 @@ const { default: connectDB } = await import("../configs/db.js");
 const { default: Course } = await import("../models/Course.js");
 const { default: Lesson } = await import("../models/Lesson.js");
 const { default: LessonFeedback } = await import("../models/LessonFeedback.js");
+const { builtinDownload } = await import("../utils/learnFiles.js");
 const { cleanBlogBlocks } = await import("../utils/blogSeo.js");
 const { cleanCourseFields, cleanLessonFields } = await import("../utils/learnSeo.js");
 
@@ -49,16 +50,20 @@ for (const s of sets) {
   const now = new Date();
   let course = await Course.findOne({ slug: c.slug });
   let oldSlugOf = null;
+  let oldDownloads = {};
   if (course) {
     course.title = c.title; Object.assign(course, cleanCourseFields(c)); course.modifiedAt = now; await course.save();
-    const old = await Lesson.find({ course: course._id }).select('slug');
+    const old = await Lesson.find({ course: course._id }).select('slug download');
     oldSlugOf = Object.fromEntries(old.map((l) => [String(l._id), l.slug]));
+    // keep zips an admin uploaded; built-in ones are re-pointed below
+    oldDownloads = Object.fromEntries(old.filter((l) => l.download?.file && !l.download.builtin).map((l) => [l.slug, l.download.toObject()]));
     await Lesson.deleteMany({ course: course._id });
   } else {
     course = await Course.create({ title: c.title, slug: c.slug, modifiedAt: now, ...cleanCourseFields(c) });
   }
   const created = await Lesson.insertMany(lessons.map((l, i) => ({
-    title: l.title, slug: l.slug, order: i, content: cleanBlogBlocks(l.content), ...cleanLessonFields(l), course: course._id, modifiedAt: now,
+    title: l.title, slug: l.slug, order: i, content: cleanBlogBlocks(l.content), ...cleanLessonFields(l),
+    ...(() => { const d = oldDownloads[l.slug] || (l.lab ? builtinDownload(l.lab, l.labStep) : undefined); return d ? { download: d } : {}; })(), course: course._id, modifiedAt: now,
   })));
   if (oldSlugOf) {
     const newIdOf = Object.fromEntries(created.map((l) => [l.slug, l._id]));
