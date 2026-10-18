@@ -22,6 +22,7 @@ const LABELS = {
   blog: 'Blog',
   jobs: 'Jobs',
   learn: 'Learn',
+  roadmaps: 'Career Roadmaps',
   category: 'Category',
   'terms-and-conditions': 'Terms & Conditions',
   'privacy-policy': 'Privacy Policy',
@@ -38,14 +39,16 @@ const LABELS = {
 
 // Real pages, so a crumb only becomes a link when it goes somewhere that exists.
 const LINKABLE = [
-  /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
+  /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
   /^\/features$/, /^\/products$/, /^\/templates$/, /^\/app$/, /^\/admin$/,
-  /^\/admin\/(products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
+  /^\/admin\/(roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
 
 // Pages that print their own breadcrumb trail.
 const OWN_TRAIL = /^\/(blog|jobs|learn)(\/|$)/;
+// Pages whose own <SEO /> already carries the BreadcrumbList (the visible trail still comes from here).
+const OWN_LD = /^\/(blog|jobs|learn|roadmaps)(\/|$)/;
 // Pages with no site header of their own: App.jsx mounts the bar for these.
 export const STANDALONE = /^\/(contact-us|terms-and-conditions|privacy-policy|forgot-password|reset-password|verify-email)(\/|$)/;
 // Nothing to navigate back to, or a full-screen view.
@@ -95,7 +98,7 @@ export default function PageNav({ className = '' }) {
     else navigate(parent);
   };
 
-  const jsonLd = !own && !PRIVATE.test(pathname) && trail.length > 1 ? {
+  const jsonLd = !OWN_LD.test(pathname) && !PRIVATE.test(pathname) && trail.length > 1 ? {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: trail.map((c, i) => ({

@@ -22,6 +22,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import VerifyEmail from "./pages/VerifyEmail";
 import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
+import AdminRoadmaps from "./pages/admin/AdminRoadmaps";
+import AdminRoadmapEditor from "./pages/admin/AdminRoadmapEditor";
+import RoadmapIndex from "./pages/RoadmapIndex";
+import RoadmapView from "./pages/RoadmapView";
 import LearnIndex from "./pages/LearnIndex";
 import Jobs from "./pages/Jobs";
 import HireLanding from "./pages/HireLanding";
@@ -155,6 +159,8 @@ const App = () => {
         <Route path="/learn" element={<LearnIndex />} />
         <Route path="/learn/:course" element={<LearnCourse />} />
         <Route path="/learn/:course/:lesson" element={<LearnLesson />} />
+        <Route path="/roadmaps" element={<RoadmapIndex />} />
+        <Route path="/roadmaps/:slug" element={<RoadmapView />} />
         <Route path="/features" element={<Features />} />
         <Route path="/features/ats-checker" element={<AtsChecker />} />
         <Route path="/cv-builder" element={<CvLanding />} />
@@ -185,6 +191,9 @@ const App = () => {
           <Route path="blogs" element={<AdminBlogList />} />
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
+          <Route path="roadmaps" element={<AdminRoadmaps />} />
+          <Route path="roadmaps/new" element={<AdminRoadmapEditor />} />
+          <Route path="roadmaps/:id/edit" element={<AdminRoadmapEditor />} />
           <Route path="learn" element={<AdminCourses />} />
           <Route path="learn/new" element={<AdminCourseEditor />} />
           <Route path="learn/:id/edit" element={<AdminCourseEditor />} />

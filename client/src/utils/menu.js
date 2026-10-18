@@ -30,6 +30,7 @@ export const DEFAULT_MENU = {
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },
     { _id: 'fr-learn', label: 'Learn', url: '/learn' },
+    { _id: 'fr-roadmaps', label: 'Career Roadmaps', url: '/roadmaps' },
     { _id: 'fr-jobs', label: 'Jobs', url: '/jobs' },
     { _id: 'fr-hire', label: 'Hire Talent', url: '/hire' },
     { _id: 'fr-contact', label: 'Contact', url: '/contact-us' },

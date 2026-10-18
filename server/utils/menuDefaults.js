@@ -27,6 +27,7 @@ export const DEFAULT_MENU = [
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },
     { key: 'fr-learn', location: 'footer_resources', label: 'Learn', url: '/learn' },
+    { key: 'fr-roadmaps', location: 'footer_resources', label: 'Career Roadmaps', url: '/roadmaps' },
     { key: 'fr-jobs', location: 'footer_resources', label: 'Jobs', url: '/jobs' },
     { key: 'fr-hire', location: 'footer_resources', label: 'Hire Talent', url: '/hire' },
     { key: 'fr-contact', location: 'footer_resources', label: 'Contact', url: '/contact-us' },

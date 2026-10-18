@@ -4,6 +4,7 @@ import Category from "../models/Category.js";
 import Product from "../models/Product.js";
 import Page from "../models/Page.js";
 import Course from "../models/Course.js";
+import Roadmap from '../models/Roadmap.js';
 import Lesson from "../models/Lesson.js";
 import Job from "../models/Job.js";
 import { slugify } from "../utils/slugify.js";
@@ -98,6 +99,7 @@ export const getBlogSitemapXml = async (req, res) => {
             Course.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt modifiedAt'),
             Lesson.find({ published: true, noindex: { $ne: true } }).select('slug course updatedAt modifiedAt'),
         ]);
+        const roadmaps = await Roadmap.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt modifiedAt');
         const liveCourses = courses.filter((c) => lessons.some((l) => String(l.course) === String(c._id)));
         const slugOf = Object.fromEntries(liveCourses.map((c) => [String(c._id), c.slug]));
         // Only jobs posted on this site go in the sitemap. Thousands of near-identical imported
@@ -133,6 +135,8 @@ export const getBlogSitemapXml = async (req, res) => {
             ...(liveCourses.length ? [entry('/learn', Math.max(...liveCourses.map((c) => +new Date(c.modifiedAt || c.updatedAt))), 'weekly')] : []),
             ...liveCourses.map((c) => entry(`/learn/${c.slug}`, c.modifiedAt || c.updatedAt, 'weekly')),
             ...lessons.filter((l) => slugOf[String(l.course)]).map((l) => entry(`/learn/${slugOf[String(l.course)]}/${l.slug}`, l.modifiedAt || l.updatedAt, 'monthly')),
+            ...(roadmaps.length ? [entry('/roadmaps', Math.max(...roadmaps.map((r) => +new Date(r.modifiedAt || r.updatedAt))), 'weekly')] : []),
+            ...roadmaps.map((r) => entry(`/roadmaps/${r.slug}`, r.modifiedAt || r.updatedAt, 'monthly')),
             ...(newestJob ? [entry('/jobs', newestJob.updatedAt || new Date(), 'daily')] : []),
             ...landing.map((l) => entry(l.path, l.when || new Date(), 'daily')),
             ...jobs.map((j) => entry(`/jobs/${j.slug}`, j.updatedAt || j.postedAt, 'weekly')),
