@@ -1,0 +1,12 @@
+[
+  { "id": "length",      "question": "How long should my resume be?",                         "expectedSource": "resume-basics.md",     "mustContain": ["two pages"] },
+  { "id": "font",        "question": "Which font and file type should I use for my resume?",   "expectedSource": "resume-basics.md",     "mustContain": ["pdf"] },
+  { "id": "ats-layout",  "question": "What layout should I use so an ATS can read my resume?", "expectedSource": "ats-guide.md",         "mustContain": ["single column"] },
+  { "id": "keywords",    "question": "Where do the keywords for my resume come from?",         "expectedSource": "ats-guide.md",         "mustContain": ["job post"] },
+  { "id": "cover-len",   "question": "How many words should a cover letter have?",             "expectedSource": "cover-letters.md",     "mustContain": ["300"] },
+  { "id": "salary",      "question": "What do I say if the interviewer asks about salary?",    "expectedSource": "interview-tips.md",    "mustContain": ["range"] },
+  { "id": "referral",    "question": "Why do referrals help in a job search?",                 "expectedSource": "job-search.md",        "mustContain": ["referral"] },
+  { "id": "forgot",      "question": "I forgot my password, what do I do?",                    "expectedSource": "privacy-and-accounts.md", "mustContain": ["forgot password"] },
+  { "id": "unknown",     "question": "What is the capital of Australia?",                      "expectedSource": null,                   "mustContain": ["don't have that"], "mustNotContain": ["canberra"] },
+  { "id": "money-scam",  "question": "A recruiter wants money before hiring me. Is that normal?", "expectedSource": "job-search.md",     "mustContain": ["not charge"] }
+]

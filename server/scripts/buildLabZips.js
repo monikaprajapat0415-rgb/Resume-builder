@@ -25,6 +25,13 @@ const onlyStage = stageIdx > -1 ? Number(process.argv[stageIdx + 1]) : null;
 
 const lab = path.join(here, '..', 'learn-labs', name);
 const pages = JSON.parse(fs.readFileSync(path.join(lab, 'steps', 'pages.json'), 'utf8'));
+// Optional lab.json: { "title": "AI Basics Lab", "folder": "ai-basics-lab", "zipPrefix": "ai-basics-lesson", "readme": "readme.md" }
+// "readme" is a file in the lab folder with {{n}} and {{total}} placeholders. Without lab.json the original AI Lab defaults apply.
+const cfgFile = path.join(lab, 'lab.json');
+const cfg = fs.existsSync(cfgFile) ? JSON.parse(fs.readFileSync(cfgFile, 'utf8')) : {};
+const TITLE = cfg.title || 'AI Lab';
+const FOLDER = cfg.folder || 'ai-lab';
+const PREFIX = cfg.zipPrefix || 'ai-lab-lesson';
 const stepDirs = fs.readdirSync(path.join(lab, 'steps')).filter((d) => /^\d+$/.test(d)).sort();
 const zipsDir = path.join(lab, 'zips');
 fs.mkdirSync(zipsDir, { recursive: true });
@@ -37,7 +44,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: \`
     <header>
-      <strong>AI Lab</strong>
+      <strong>${TITLE}</strong>
       <nav>
 ${list.map((p) => `        <a routerLink="/${p.path}" routerLinkActive="active">${p.step}. ${p.label}</a>`).join('\n')}
       </nav>
@@ -64,7 +71,7 @@ ${list.map((p) => `  { path: '${p.path}', loadComponent: () => import('./pages/$
 ];
 `;
 
-const readme = (n, total) => `# AI Lab (Angular + Node) - solution after lesson ${n} of ${total}
+const readme = (n, total) => cfg.readme ? fs.readFileSync(path.join(lab, cfg.readme), 'utf8').replaceAll('{{n}}', n).replaceAll('{{total}}', total) : `# AI Lab (Angular + Node) - solution after lesson ${n} of ${total}
 
 A small Angular app plus a Node server that talks to the Claude API. Your API key stays on the server and never reaches the browser.
 
@@ -83,7 +90,9 @@ Open http://localhost:4200. The menu shows one page for every lesson you have co
 - \`server/claude.js\` creates the Claude client from \`.env\`.
 - \`src/app/pages/\` has one Angular page per lesson.
 - \`proxy.conf.json\` sends \`/api\` calls from Angular to the server during development.
-
+${n >= 13 ? `- \`server/rag/\` holds the RAG code and the sample documents in \`server/rag/docs/\`. Files the app writes while running (the vector store, notes, usage log) go to \`server/runtime/\`.
+` : ''}${n >= 19 ? `- \`server/mcp/\` holds the MCP servers (\`servers.json\` lists them) and the host code that talks to them. Run \`npm run mcp:test\` to list their tools.
+` : ''}
 Model names, features and prices change. Check docs.anthropic.com before you rely on them.
 `;
 
@@ -92,7 +101,7 @@ for (const dir of stepDirs) {
   const n = Number(dir);
   if (onlyStage && n !== onlyStage) continue;
   const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'lab-'));
-  const proj = path.join(tmpRoot, 'ai-lab');
+  const proj = path.join(tmpRoot, FOLDER);
   fs.cpSync(path.join(lab, 'base'), proj, { recursive: true });
   for (const d of stepDirs.filter((x) => Number(x) <= n)) {
     fs.cpSync(path.join(lab, 'steps', d), proj, { recursive: true, force: true });
@@ -102,9 +111,9 @@ for (const dir of stepDirs) {
   fs.writeFileSync(path.join(proj, 'src/app/app.routes.ts'), routesTs(list));
   fs.writeFileSync(path.join(proj, 'README.md'), readme(n, total));
 
-  const out = path.join(zipsDir, `ai-lab-lesson-${String(n).padStart(2, '0')}.zip`);
+  const out = path.join(zipsDir, `${PREFIX}-${String(n).padStart(2, '0')}.zip`);
   fs.rmSync(out, { force: true });
-  execFileSync('zip', ['-qr', '-X', out, 'ai-lab'], { cwd: tmpRoot });
+  execFileSync('zip', ['-qr', '-X', out, FOLDER], { cwd: tmpRoot });
   if (onlyStage) {
     const dest = path.join('/tmp/lab-stage', String(n));
     fs.rmSync(dest, { recursive: true, force: true });
