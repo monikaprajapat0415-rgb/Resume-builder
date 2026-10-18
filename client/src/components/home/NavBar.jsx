@@ -8,6 +8,7 @@ import { logout } from '../../app/features/authSlice';
 import { useState } from 'react';
 import MenuLink from './MenuLink';
 import { useMenu } from '../../utils/menu';
+import PageNav from '../PageNav';
 
 export default function NavBar() {
     const { user } = useSelector(state => state.auth);
@@ -94,6 +95,7 @@ export default function NavBar() {
                     X
                 </button>
             </div>
+            <PageNav />
         </>
 
 
