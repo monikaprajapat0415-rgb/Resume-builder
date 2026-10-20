@@ -15,6 +15,7 @@ export const DEFAULT_MENU = [
     { key: 'h-jobs', location: 'header', label: 'Jobs', url: '/jobs' },
     // sub-menus: `parentKey` is the key of the top-level item they drop down from
     { key: 'h-learn-tutorials', location: 'header', label: 'Tutorials', url: '/learn', parentKey: 'h-learn' },
+    { key: 'h-learn-roadmaps', location: 'header', label: 'All roadmaps', url: '/roadmaps', parentKey: 'h-learn' },
     { key: 'h-learn-roles', location: 'header', label: 'Role roadmaps', url: '/roadmaps?kind=role', parentKey: 'h-learn' },
     { key: 'h-learn-tech', location: 'header', label: 'Technology roadmaps', url: '/roadmaps?kind=technology', parentKey: 'h-learn' },
     { key: 'h-learn-career', location: 'header', label: 'Career paths', url: '/roadmaps?kind=career', parentKey: 'h-learn' },
