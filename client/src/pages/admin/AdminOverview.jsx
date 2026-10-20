@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
-import { LuPlus, LuInbox, LuSearch, LuFileText, LuCircleCheck, LuTriangleAlert } from 'react-icons/lu'
+import { LuPlus, LuInbox, LuSearch, LuFileText, LuCircleCheck, LuTriangleAlert, LuShieldCheck, LuHandshake } from 'react-icons/lu'
 
 const Stat = ({ label, value, sub }) => (
   <div className='bg-white rounded-xl border border-slate-200 p-4'>
@@ -37,7 +37,13 @@ const AdminOverview = () => {
   const hour = new Date().getHours()
   const greet = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
   const seo = stats.seo || { avgScore: 0, poor: 0, fair: 0, good: 0, worst: [] }
+  const mod = stats.moderation || { answers: 0, salaries: 0, reviews: 0, reported: 0, employers: 0, jobs: 0 }
+  const pendingCommunity = mod.answers + mod.salaries + mod.reviews
   const todo = [
+    pendingCommunity > 0 && { to: '/admin/inbox', icon: LuShieldCheck, text: `${pendingCommunity} community ${pendingCommunity === 1 ? 'submission' : 'submissions'} waiting for approval` },
+    mod.reported > 0 && { to: '/admin/inbox', icon: LuTriangleAlert, text: `${mod.reported} reported ${mod.reported === 1 ? 'item' : 'items'} to review` },
+    mod.employers > 0 && { to: '/admin/hiring', icon: LuHandshake, text: `${mod.employers} ${mod.employers === 1 ? 'employer' : 'employers'} waiting for approval` },
+    mod.jobs > 0 && { to: '/admin/hiring', icon: LuHandshake, text: `${mod.jobs} employer ${mod.jobs === 1 ? 'job' : 'jobs'} waiting for review` },
     stats.messages?.unread > 0 && { to: '/admin/messages', icon: LuInbox, text: `${stats.messages.unread} unread ${stats.messages.unread === 1 ? 'message' : 'messages'}` },
     seo.poor > 0 && { to: '/admin/seo', icon: LuSearch, text: `${seo.poor} ${seo.poor === 1 ? 'post has' : 'posts have'} a poor SEO score` },
     stats.blogs.drafts > 0 && { to: '/admin/blogs', icon: LuFileText, text: `${stats.blogs.drafts} unpublished ${stats.blogs.drafts === 1 ? 'draft' : 'drafts'}` },
@@ -53,6 +59,7 @@ const AdminOverview = () => {
         <div className='flex flex-wrap gap-2'>
           <Action to='/admin/blogs/new' icon={LuPlus}>New post</Action>
           <Action to='/admin/products/new' icon={LuPlus}>New product</Action>
+          <Action to='/admin/inbox' icon={LuShieldCheck}>Moderation inbox</Action>
           <Action to='/admin/seo' icon={LuSearch}>SEO audit</Action>
         </div>
       </div>
@@ -90,6 +97,13 @@ const AdminOverview = () => {
         <Link to='/admin/messages' className='block hover:ring-1 hover:ring-brand-300 rounded-xl'>
           <Stat label='Messages' value={stats.messages?.unread ?? 0} sub={`unread · ${stats.messages?.total ?? 0} in total`} />
         </Link>
+      </div>
+
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
+        <Link to='/admin/jobs' className='block hover:ring-1 hover:ring-brand-300 rounded-xl'><Stat label='Live jobs' value={stats.content?.liveJobs ?? 0} /></Link>
+        <Link to='/admin/roadmaps' className='block hover:ring-1 hover:ring-brand-300 rounded-xl'><Stat label='Published roadmaps' value={stats.content?.roadmaps ?? 0} /></Link>
+        <Link to='/admin/community' className='block hover:ring-1 hover:ring-brand-300 rounded-xl'><Stat label='Interview questions' value={stats.content?.questions ?? 0} /></Link>
+        <Link to='/admin/inbox' className='block hover:ring-1 hover:ring-brand-300 rounded-xl'><Stat label='Awaiting moderation' value={pendingCommunity + mod.reported} sub={`${mod.answers} answers · ${mod.salaries} salaries · ${mod.reviews} reviews`} /></Link>
       </div>
 
       <div className='grid lg:grid-cols-3 gap-4 mt-4'>

@@ -5,6 +5,13 @@ import Blog from "../models/Blog.js";
 import Product from "../models/Product.js";
 import Category from "../models/Category.js";
 import Message from "../models/Message.js";
+import InterviewAnswer from "../models/InterviewAnswer.js";
+import SalaryReport from "../models/SalaryReport.js";
+import CompanyReview from "../models/CompanyReview.js";
+import InterviewQuestion from "../models/InterviewQuestion.js";
+import Roadmap from "../models/Roadmap.js";
+import Employer from "../models/Employer.js";
+import Job from "../models/Job.js";
 import AtsUsage from "../models/AtsUsage.js";
 import AtsReport from "../models/AtsReport.js";
 import { emailKey } from "../utils/emailKey.js";
@@ -36,6 +43,7 @@ export const getStats = async (req, res) => {
         const [
             totalUsers, verifiedUsers, adminUsers, newUsers7d, recentSignups, totalResumes,
             blogs, products, topPosts, topProducts, recentUsers, unreadMessages, totalMessages,
+            pAnswers, pSalaries, pReviews, rAnswers, rSalaries, rReviews, pEmployers, pJobs, questions, roadmaps, liveJobs,
         ] = await Promise.all([
             User.countDocuments({}),
             User.countDocuments({ isVerified: true }),
@@ -50,6 +58,10 @@ export const getStats = async (req, res) => {
             User.find({}).select('name email role createdAt authProvider').sort({ createdAt: -1 }).limit(5),
             Message.countDocuments({ read: false, archived: false }),
             Message.countDocuments({}),
+            InterviewAnswer.countDocuments({ status: 'pending' }), SalaryReport.countDocuments({ status: 'pending' }), CompanyReview.countDocuments({ status: 'pending' }),
+            InterviewAnswer.countDocuments({ 'reports.0': { $exists: true } }), SalaryReport.countDocuments({ 'reports.0': { $exists: true } }), CompanyReview.countDocuments({ 'reports.0': { $exists: true } }),
+            Employer.countDocuments({ status: 'pending' }), Job.countDocuments({ sourceType: 'employer', reviewStatus: 'pending' }),
+            InterviewQuestion.countDocuments({ published: true }), Roadmap.countDocuments({ published: true }), Job.countDocuments({ active: true }),
         ]);
 
         // 14 day buckets ending today, so days with no sign-ups still show as empty bars.
@@ -75,6 +87,8 @@ export const getStats = async (req, res) => {
                 views: sum(products, 'views'), clicks: sum(products, 'clicks'),
             },
             messages: { unread: unreadMessages, total: totalMessages },
+            moderation: { answers: pAnswers, salaries: pSalaries, reviews: pReviews, reported: rAnswers + rSalaries + rReviews, employers: pEmployers, jobs: pJobs },
+            content: { questions, roadmaps, liveJobs },
             seo: seoSummary,
             signupsByDay, topPosts, topProducts, recentUsers,
         });

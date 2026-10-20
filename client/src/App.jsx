@@ -31,6 +31,7 @@ import SalaryRole from "./pages/community/SalaryRole";
 import CompanyReviews from "./pages/community/CompanyReviews";
 import CompanyView from "./pages/community/CompanyView";
 import AdminCommunity from "./pages/admin/AdminCommunity";
+import AdminInbox from "./pages/admin/AdminInbox";
 import RoadmapIndex from "./pages/RoadmapIndex";
 import RoadmapView from "./pages/RoadmapView";
 import LearnIndex from "./pages/LearnIndex";
@@ -207,6 +208,7 @@ const App = () => {
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
           <Route path="community" element={<AdminCommunity />} />
+          <Route path="inbox" element={<AdminInbox />} />
           <Route path="roadmaps" element={<AdminRoadmaps />} />
           <Route path="roadmaps/new" element={<AdminRoadmapEditor />} />
           <Route path="roadmaps/:id/edit" element={<AdminRoadmapEditor />} />

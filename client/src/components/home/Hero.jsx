@@ -32,7 +32,7 @@ const Hero = () => {
           <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-brand-300 blur-[100px] opacity-30"></div>
 
           <ul className="flex flex-wrap items-center justify-center gap-2 mt-14 md:mt-20 text-xs sm:text-sm text-slate-700" aria-label="Highlights">
-            {['Free to start', 'ATS-friendly templates', 'For office, factory and skilled jobs'].map((t) => (
+            {(site.hero_chips || '').split(',').map((t) => t.trim()).filter(Boolean).map((t) => (
               <li key={t} className="rounded-full border border-brand-200 bg-white/70 px-3.5 py-1">{t}</li>
             ))}
             {userCount != null && userCount >= 100 && <li className="rounded-full border border-brand-200 bg-white/70 px-3.5 py-1">{userCount.toLocaleString()} job seekers have signed up</li>}

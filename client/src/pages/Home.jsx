@@ -10,12 +10,14 @@ import Footer from '../components/home/Footer'
 import WorkFlowSteps from '../components/home/WorkFlowSteps'
 import TemplatePreview from '../components/home/TemplatePreview'
 import CareerHub from '../components/home/CareerHub'
-import HomeFaq, { faqJsonLd } from '../components/home/HomeFaq'
+import HomeFaq, { faqJsonLd, faqFrom } from '../components/home/HomeFaq'
 import ContactUs from './ContactUs'
 import SEO from '../components/SEO'
+import { useSiteContent } from '../utils/siteContent'
 
 const Home = () => {
   const location = useLocation()
+  const faq = faqFrom(useSiteContent())
 
   // Reached via a nav link like "/#feature" (e.g. clicked from /blog, where the
   // section doesn't exist on the page). Scroll to it once Home has mounted.
@@ -35,7 +37,7 @@ const Home = () => {
   description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
   keywords="resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume"
   path="/"
-  structuredData={faqJsonLd}
+  structuredData={faq.length ? faqJsonLd(faq) : undefined}
 />
 
     <Banner />
