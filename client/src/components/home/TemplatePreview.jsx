@@ -148,7 +148,7 @@ export default function TemplatePreview() {
             <div className="max-w-6xl mx-auto">
 
                 {/* Heading */}
-                <div id='testimonials' className='flex flex-col items-center my-10 scroll-mt-12'>
+                <div id='templates-preview' className='flex flex-col items-center my-10 scroll-mt-12'>
                     <div className="flex items-center gap-2 text-sm text-brand-600 bg-brand-400/10 rounded-full px-6 py-1.5">
                         <LuLayers className='size-4.5 stroke-brand-600' />
                         <span>Preview</span>
@@ -165,7 +165,7 @@ export default function TemplatePreview() {
                             onClick={() => setSelected(template)}>
                             <div className="h-[300px] overflow-hidden flex justify-center bg-gray-100">
                                 <div className="w-[1000px] origin-top">
-                                    <img src={template.image} alt={template.name} />
+                                    <img src={template.image} alt={template.name} loading="lazy" decoding="async" />
                                 </div>
                             </div>
 

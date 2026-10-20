@@ -34,7 +34,7 @@ export default function NavBar() {
                     <Logo className='h-11 w-auto' />
                 </a>
 
-                <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
+                <div className="hidden md:flex items-center gap-3 lg:gap-4 2xl:gap-8 text-sm lg:text-base whitespace-nowrap transition duration-500 text-slate-800">
                     {header.map((item) => item.children?.length ? (
                         <div key={item._id} className="relative group" onMouseLeave={() => setOpenId(null)}
                             onKeyDown={(e) => { if (e.key === 'Escape') { setOpenId(null); document.activeElement?.blur?.() } }}>
@@ -57,7 +57,7 @@ export default function NavBar() {
                     ))}
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 shrink-0 whitespace-nowrap ml-3">
                     <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white"
                         hidden={user}>
                         Get started
