@@ -30,7 +30,22 @@ const migrateFeaturesLink = async () => {
     migrated = true;
 };
 
+// Sites that existed before sub-menus get the Learn and Jobs sub-links once, automatically, so the
+// dropdowns work without pressing "Restore defaults". A hidden marker record remembers it ran, so
+// links the admin deletes afterwards stay deleted.
+const MARKER = 'migrated-submenus-v1';
+let submenusDone = false;
+const migrateSubmenus = async () => {
+    if (submenusDone) return;
+    if (!(await MenuItem.exists({ key: MARKER }))) {
+        await ensureDefaults();
+        await MenuItem.updateOne({ key: MARKER }, { $setOnInsert: { key: MARKER, location: 'footer_legal', label: 'marker', url: '/', visible: false, order: 9999 } }, { upsert: true });
+    }
+    submenusDone = true;
+};
+
 const group = (items) => {
+    items = items.filter((i) => i.key !== MARKER);
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
     items.forEach((i) => out[i.location]?.push(i));
     return out;
@@ -43,6 +58,7 @@ export const getMenu = async (req, res) => {
         // so an item they deleted does not silently come back.
         if ((await MenuItem.estimatedDocumentCount()) === 0) await ensureDefaults();
         await migrateFeaturesLink();
+        await migrateSubmenus();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab parent');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -58,6 +74,7 @@ export const getMenuAdmin = async (req, res) => {
     try {
         if ((await MenuItem.estimatedDocumentCount()) === 0) await ensureDefaults();
         await migrateFeaturesLink();
+        await migrateSubmenus();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {
@@ -168,9 +185,9 @@ export const reorderMenu = async (req, res) => {
 // POST /api/admin/menu/restore - bring back any built-in item that was deleted
 export const restoreMenuDefaults = async (req, res) => {
     try {
-        const before = await MenuItem.countDocuments({});
+        const before = await MenuItem.countDocuments({ key: { $ne: MARKER } });
         await ensureDefaults();
-        const restored = (await MenuItem.countDocuments({})) - before;
+        const restored = (await MenuItem.countDocuments({ key: { $ne: MARKER } })) - before;
         return res.status(200).json({ message: restored ? `Restored ${restored} item(s)` : 'Nothing to restore', restored });
     } catch (error) {
         return res.status(500).json({ message: error.message });

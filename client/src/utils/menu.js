@@ -14,6 +14,7 @@ export const DEFAULT_MENU = {
     { _id: 'h-blog', label: 'Blog', url: '/blog' },
     { _id: 'h-learn', label: 'Learn', url: '/learn', children: [
       { _id: 'h-learn-tutorials', label: 'Tutorials', url: '/learn' },
+      { _id: 'h-learn-roadmaps', label: 'All roadmaps', url: '/roadmaps' },
       { _id: 'h-learn-roles', label: 'Role roadmaps', url: '/roadmaps?kind=role' },
       { _id: 'h-learn-tech', label: 'Technology roadmaps', url: '/roadmaps?kind=technology' },
       { _id: 'h-learn-career', label: 'Career paths', url: '/roadmaps?kind=career' },
