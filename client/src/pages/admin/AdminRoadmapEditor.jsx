@@ -8,23 +8,27 @@ import { LuPlus, LuTrash2, LuArrowUp, LuArrowDown } from 'react-icons/lu'
 const input = 'w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-200'
 const label = 'block text-xs font-medium text-slate-500 mb-1 mt-3'
 
-const emptyStep = () => ({ title: '', pace: '', description: '', skills: '', tips: '', links: '' })
+const emptyStep = () => ({ title: '', pace: '', description: '', skills: '', tips: '', links: '', layer: '', resources: '' })
 // the form keeps lists as text: skills on one line separated by commas, tips and links one per line
 const toForm = (r) => ({
-  title: r.title || '', slug: r.slug || '', summary: r.summary || '', description: r.description || '', audience: r.audience || '', badge: r.badge || '',
+  title: r.title || '', slug: r.slug || '', summary: r.summary || '', description: r.description || '', audience: r.audience || '', badge: r.badge || '', kind: r.kind || 'career', aliases: (r.aliases || []).join(', '),
   tags: (r.tags || []).join(', '), order: r.order ?? 0, published: !!r.published, noindex: !!r.noindex, metaTitle: r.metaTitle || '', keywords: r.keywords || '',
-  steps: (r.steps || []).map((s) => ({ title: s.title, pace: s.pace || '', description: s.description || '', skills: (s.skills || []).join(', '), tips: (s.tips || []).join('\n'), links: (s.links || []).map((l) => `${l.label} | ${l.url}`).join('\n') })),
+  steps: (r.steps || []).map((s) => ({ title: s.title, pace: s.pace || '', description: s.description || '', skills: (s.skills || []).join(', '), tips: (s.tips || []).join('\n'), links: (s.links || []).map((l) => `${l.label} | ${l.url}`).join('\n'), layer: s.layer || '', resources: (s.resources || []).map((x) => `${x.label} | ${x.url} | ${x.type || 'docs'} | ${x.free === false ? 'paid' : 'free'}`).join('\n') })),
   faqs: (r.faqs || []).map((f) => ({ q: f.q, a: f.a })),
 })
 const toBody = (f) => ({
   ...f,
   order: Number(f.order) || 0,
   tags: f.tags.split(',').map((t) => t.trim()).filter(Boolean),
+  aliases: f.aliases.split(',').map((t) => t.trim()).filter(Boolean),
   steps: f.steps.map((s) => ({
     title: s.title, pace: s.pace, description: s.description,
     skills: s.skills.split(',').map((t) => t.trim()).filter(Boolean),
     tips: s.tips.split('\n').map((t) => t.trim()).filter(Boolean),
     links: s.links.split('\n').map((line) => { const [l, ...u] = line.split('|'); return { label: (l || '').trim(), url: u.join('|').trim() } }).filter((x) => x.label && x.url),
+    layer: s.layer,
+    // one per line: Label | https://address | docs/course/video/book/practice/tool | free/paid
+    resources: s.resources.split('\n').map((line) => { const [l, u, t, p] = line.split('|').map((x) => (x || '').trim()); return { label: l, url: u, type: t || 'docs', free: (p || 'free').toLowerCase() !== 'paid' } }).filter((x) => x.label && x.url),
   })),
 })
 
@@ -84,6 +88,15 @@ const AdminRoadmapEditor = () => {
         <input id='su' className={input} maxLength={200} value={f.summary} onChange={(e) => set('summary', e.target.value)} />
         <label className={label} htmlFor='de'>Description: meta description and intro (up to 320 characters)</label>
         <textarea id='de' className={input} rows={3} maxLength={320} value={f.description} onChange={(e) => set('description', e.target.value)} />
+        <div className='grid sm:grid-cols-2 gap-3'>
+          <div><label className={label} htmlFor='kd'>Kind of roadmap</label>
+            <select id='kd' className={input} value={f.kind} onChange={(e) => set('kind', e.target.value)}>
+              <option value='career'>Career path (e.g. Warehouse worker to supervisor)</option>
+              <option value='role'>Job role (e.g. Full Stack Developer)</option>
+              <option value='technology'>Technology (e.g. React, SQL)</option>
+            </select></div>
+          <div><label className={label} htmlFor='al'>Other names people search for (comma separated)</label><input id='al' className={input} value={f.aliases} onChange={(e) => set('aliases', e.target.value)} placeholder='fullstack, full-stack, mern' /></div>
+        </div>
         <div className='grid sm:grid-cols-3 gap-3'>
           <div><label className={label} htmlFor='au'>Group (e.g. Skilled trades)</label><input id='au' className={input} value={f.audience} onChange={(e) => set('audience', e.target.value)} /></div>
           <div><label className={label} htmlFor='ba'>Badge (1-3 letters)</label><input id='ba' className={input} maxLength={3} value={f.badge} onChange={(e) => set('badge', e.target.value)} /></div>
@@ -114,6 +127,10 @@ const AdminRoadmapEditor = () => {
           <input className={input} value={s.skills} onChange={(e) => setStep(i, 'skills', e.target.value)} />
           <label className={label}>Tips (one per line)</label>
           <textarea className={input} rows={2} value={s.tips} onChange={(e) => setStep(i, 'tips', e.target.value)} />
+          <label className={label}>Part of the stack (e.g. Frontend, Backend, Database, DevOps). Steps with the same name are grouped in the “stack end to end” box</label>
+          <input className={input} value={s.layer} onChange={(e) => setStep(i, 'layer', e.target.value)} placeholder='Frontend' />
+          <label className={label}>Best places to learn (one per line, as: Label | https://address | docs, course, video, book, practice or tool | free or paid)</label>
+          <textarea className={input} rows={3} value={s.resources} onChange={(e) => setStep(i, 'resources', e.target.value)} placeholder='React documentation | https://react.dev/learn | docs | free' />
           <label className={label}>Links (one per line, as: Label | /page-or-https-address)</label>
           <textarea className={input} rows={2} value={s.links} onChange={(e) => setStep(i, 'links', e.target.value)} placeholder='Build your resume | /cv-builder' />
         </div>

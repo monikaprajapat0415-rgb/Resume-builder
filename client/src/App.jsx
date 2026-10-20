@@ -24,6 +24,13 @@ import BlogIndex from "./pages/BlogIndex";
 import BlogPost from "./pages/BlogPost";
 import AdminRoadmaps from "./pages/admin/AdminRoadmaps";
 import AdminRoadmapEditor from "./pages/admin/AdminRoadmapEditor";
+import InterviewQuestions from "./pages/community/InterviewQuestions";
+import InterviewQuestionView from "./pages/community/InterviewQuestionView";
+import Salaries from "./pages/community/Salaries";
+import SalaryRole from "./pages/community/SalaryRole";
+import CompanyReviews from "./pages/community/CompanyReviews";
+import CompanyView from "./pages/community/CompanyView";
+import AdminCommunity from "./pages/admin/AdminCommunity";
 import RoadmapIndex from "./pages/RoadmapIndex";
 import RoadmapView from "./pages/RoadmapView";
 import LearnIndex from "./pages/LearnIndex";
@@ -154,6 +161,14 @@ const App = () => {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/jobs/in/:country" element={<Jobs landing />} />
         <Route path="/jobs/in/:country/:kind" element={<Jobs landing />} />
+        <Route path="/jobs/interview-questions" element={<InterviewQuestions />} />
+        <Route path="/jobs/interview-questions/fresher" element={<InterviewQuestions level="fresher" />} />
+        <Route path="/jobs/interview-questions/experienced" element={<InterviewQuestions level="experienced" />} />
+        <Route path="/jobs/interview-questions/:slug" element={<InterviewQuestionView />} />
+        <Route path="/jobs/salaries" element={<Salaries />} />
+        <Route path="/jobs/salaries/:slug" element={<SalaryRole />} />
+        <Route path="/jobs/company-reviews" element={<CompanyReviews />} />
+        <Route path="/jobs/company-reviews/:slug" element={<CompanyView />} />
         <Route path="/jobs/:slug" element={<JobDetail />} />
         <Route path="/hire" element={<HireLanding />} />
         <Route path="/learn" element={<LearnIndex />} />
@@ -191,6 +206,7 @@ const App = () => {
           <Route path="blogs" element={<AdminBlogList />} />
           <Route path="blogs/new" element={<AdminBlogEditor />} />
           <Route path="blogs/:id/edit" element={<AdminBlogEditor />} />
+          <Route path="community" element={<AdminCommunity />} />
           <Route path="roadmaps" element={<AdminRoadmaps />} />
           <Route path="roadmaps/new" element={<AdminRoadmapEditor />} />
           <Route path="roadmaps/:id/edit" element={<AdminRoadmapEditor />} />

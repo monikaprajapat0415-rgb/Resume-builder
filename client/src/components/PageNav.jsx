@@ -22,7 +22,7 @@ const LABELS = {
   blog: 'Blog',
   jobs: 'Jobs',
   learn: 'Learn',
-  roadmaps: 'Career Roadmaps',
+  roadmaps: 'Roadmaps',
   category: 'Category',
   'terms-and-conditions': 'Terms & Conditions',
   'privacy-policy': 'Privacy Policy',
@@ -41,7 +41,7 @@ const LABELS = {
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
   /^\/features$/, /^\/products$/, /^\/templates$/, /^\/app$/, /^\/admin$/,
-  /^\/admin\/(roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
+  /^\/admin\/(community|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
 

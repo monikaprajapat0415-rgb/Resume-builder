@@ -21,14 +21,16 @@ const guard = (fn) => async (req, res, next) => {
     }
 };
 
-const DESC = 'Step-by-step career roadmaps for job seekers: what to learn, in what order, and which tools to use to get from your first job to the next one.';
+const DESC = 'Roadmaps for jobs and technologies: full stack, frontend, SQL, data, DevOps and more. See the stack end to end and the best places to learn it.';
 
 // GET /roadmaps
 export const renderRoadmapIndex = guard(async (req, res) => {
     const roadmaps = await listPublishedRoadmaps();
+    // a search or kind filter is a thinner view of the same page: keep it out of the index
+    const filtered = Boolean(req.query.q || req.query.kind);
     sendShell(res, 200, {
-        fullTitle: seoTitle('Career roadmaps: step-by-step plans for job seekers'), description: DESC, canonical: `${siteUrl()}/roadmaps`,
-        robots: roadmaps.length ? 'index, follow' : 'noindex, follow', type: 'website', keywords: 'career roadmap, career path, how to get promoted, job seeker guide',
+        fullTitle: seoTitle('Developer and Career Roadmaps'), description: DESC, canonical: `${siteUrl()}/roadmaps`,
+        robots: roadmaps.length && !filtered ? 'index, follow' : 'noindex, follow', type: 'website', keywords: 'career roadmap, career path, how to get promoted, job seeker guide',
         jsonLd: roadmapIndexJsonLd(roadmaps), body: roadmapIndexHtml({ roadmaps }),
     });
 });

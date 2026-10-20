@@ -71,6 +71,7 @@ export const jobsIndexHtml = ({ jobs, total }) => `
   ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs' }])}
   <h1>Jobs for office, factory and skilled workers</h1>
   <p>${total} open jobs worldwide: corporate, factory, warehouse, skilled trades and daily-wage work. Apply directly with the employer.</p>
+  <p>Getting ready? <a href="/jobs/interview-questions">Interview questions</a> · <a href="/jobs/salaries">Salaries</a> · <a href="/jobs/company-reviews">Company reviews</a></p>
   <ul>${jobs.map((j) => `<li><h2><a href="/jobs/${escapeHtml(j.slug)}">${escapeHtml(j.title)}</a></h2><p>${escapeHtml(j.company)}${j.location ? ` · ${escapeHtml(j.location)}` : ''}${j.remote ? ' · Remote' : ''}${j.employmentType ? ` · ${escapeHtml(j.employmentType)}` : ''}</p></li>`).join('')}</ul>
 </section>`;
 

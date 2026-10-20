@@ -10,6 +10,8 @@ const MenuItemSchema = new mongoose.Schema({
     order: { type: Number, default: 0 },
     visible: { type: Boolean, default: true },   // false = hidden from visitors, kept for later
     newTab: { type: Boolean, default: false },
+    // Set on a sub-menu link: the _id of the top-level item it drops down from (header only, one level deep).
+    parent: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem', default: null },
 }, { timestamps: true });
 
 export default mongoose.model("MenuItem", MenuItemSchema);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute } from 'react-icons/lu'
+import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -13,6 +13,7 @@ const groups = [
     { to: '/admin/blogs', label: 'Blog Posts', icon: LuFileText },
     { to: '/admin/learn', label: 'Learn (tutorials)', icon: LuGraduationCap },
     { to: '/admin/roadmaps', label: 'Career roadmaps', icon: LuRoute },
+    { to: '/admin/community', label: 'Jobs community', icon: LuUsersRound },
     { to: '/admin/jobs', label: 'Jobs', icon: LuBriefcase },
     { to: '/admin/hiring', label: 'Hiring', icon: LuHandshake },
     { to: '/admin/products', label: 'Products', icon: LuShoppingBag },
