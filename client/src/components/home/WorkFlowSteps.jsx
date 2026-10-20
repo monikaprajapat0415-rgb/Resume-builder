@@ -6,18 +6,18 @@ export default function WorkFlowSteps() {
     const steps = [
         {
             icon: <FaRegEdit size={28} />,
-            title: "You fill out the order form",
-            description: "Provide your details, experience, and career goals.",
+            title: "Add your details",
+            description: "Enter your experience, education and skills, or start from an example. Nothing is shared with employers.",
         },
         {
             icon: <FaMagic size={28} />,
-            title: "We make you shine",
-            description: "We craft and optimize your resume professionally.",
+            title: "Pick a template and polish it",
+            description: "Choose an ATS-friendly layout and use AI suggestions for your summary and bullet points. You stay in control of every word.",
         },
         {
             icon: <FaBriefcase size={28} />,
-            title: "You get more interviews",
-            description: "Stand out and increase your chances of getting hired.",
+            title: "Download, check and apply",
+            description: "Download your resume, test it with the ATS checker, then find jobs and prepare with interview questions.",
         },
     ];
 

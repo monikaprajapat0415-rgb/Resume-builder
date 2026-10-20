@@ -9,6 +9,8 @@ import CallToAction from '../components/home/CallToAction'
 import Footer from '../components/home/Footer'
 import WorkFlowSteps from '../components/home/WorkFlowSteps'
 import TemplatePreview from '../components/home/TemplatePreview'
+import CareerHub from '../components/home/CareerHub'
+import HomeFaq, { faqJsonLd } from '../components/home/HomeFaq'
 import ContactUs from './ContactUs'
 import SEO from '../components/SEO'
 
@@ -33,6 +35,7 @@ const Home = () => {
   description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
   keywords="resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume"
   path="/"
+  structuredData={faqJsonLd}
 />
 
     <Banner />
@@ -40,8 +43,10 @@ const Home = () => {
     <WorkFlowSteps/>
     <Features/>
     <JobsSection/>
+    <CareerHub/>
     <Testimonials/>
     <TemplatePreview/>
+    <HomeFaq/>
     <CallToAction/>
     <ContactUs embedded />
     <Footer/>

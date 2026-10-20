@@ -70,7 +70,7 @@ const Footer = () => {
                             </svg>
                         </a>
                     </div>
-                    <p className="mt-3 text-center">© 2025 Resume Builder</p>
+                    <p className="mt-3 text-center">© {new Date().getFullYear()} Prime Resume AI</p>
                 </div>
             </footer>
         </>
