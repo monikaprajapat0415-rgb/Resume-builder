@@ -1,3 +1,4 @@
+import { communitySitemapEntries } from './communityController.js';
 import { STATIC_ROUTES, STATIC_LASTMOD } from '../utils/staticSitemapRoutes.js';
 import Blog from "../models/Blog.js";
 import Category from "../models/Category.js";
@@ -100,6 +101,7 @@ export const getBlogSitemapXml = async (req, res) => {
             Lesson.find({ published: true, noindex: { $ne: true } }).select('slug course updatedAt modifiedAt'),
         ]);
         const roadmaps = await Roadmap.find({ published: true, noindex: { $ne: true } }).select('slug updatedAt modifiedAt');
+        const community = await communitySitemapEntries();
         const liveCourses = courses.filter((c) => lessons.some((l) => String(l.course) === String(c._id)));
         const slugOf = Object.fromEntries(liveCourses.map((c) => [String(c._id), c.slug]));
         // Only jobs posted on this site go in the sitemap. Thousands of near-identical imported
@@ -137,6 +139,17 @@ export const getBlogSitemapXml = async (req, res) => {
             ...lessons.filter((l) => slugOf[String(l.course)]).map((l) => entry(`/learn/${slugOf[String(l.course)]}/${l.slug}`, l.modifiedAt || l.updatedAt, 'monthly')),
             ...(roadmaps.length ? [entry('/roadmaps', Math.max(...roadmaps.map((r) => +new Date(r.modifiedAt || r.updatedAt))), 'weekly')] : []),
             ...roadmaps.map((r) => entry(`/roadmaps/${r.slug}`, r.modifiedAt || r.updatedAt, 'monthly')),
+            // jobs community: only pages with real content (questions we wrote; pay ranges and companies once enough reports exist)
+            ...(community.questions.length ? [
+                entry('/jobs/interview-questions', Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly'),
+                entry('/jobs/interview-questions/fresher', Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly'),
+                entry('/jobs/interview-questions/experienced', Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly'),
+            ] : []),
+            ...community.questions.map((q) => entry(`/jobs/interview-questions/${q.slug}`, q.at, 'monthly')),
+            ...(community.salaries.length ? [entry('/jobs/salaries', Math.max(...community.salaries.map((x) => +new Date(x.at))), 'weekly')] : []),
+            ...community.salaries.map((x) => entry(`/jobs/salaries/${x.slug}`, x.at, 'monthly')),
+            ...(community.companies.length ? [entry('/jobs/company-reviews', Math.max(...community.companies.map((x) => +new Date(x.at))), 'weekly')] : []),
+            ...community.companies.map((x) => entry(`/jobs/company-reviews/${x.slug}`, x.at, 'monthly')),
             ...(newestJob ? [entry('/jobs', newestJob.updatedAt || new Date(), 'daily')] : []),
             ...landing.map((l) => entry(l.path, l.when || new Date(), 'daily')),
             ...jobs.map((j) => entry(`/jobs/${j.slug}`, j.updatedAt || j.postedAt, 'weekly')),

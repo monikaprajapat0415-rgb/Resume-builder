@@ -70,15 +70,18 @@ export const coverage = (profile, steps) => {
     const rows = steps.map((s) => {
         const matched = (s.skills || []).filter((k) => hasSkill(profile, k));
         const total = (s.skills || []).length;
-        const status = total && matched.length === total ? 'have' : matched.length ? 'partial' : 'todo';
+        // a step counts as covered when most of its skills show up (a lone skill out of five does not)
+        const status = total && matched.length / total >= 0.6 ? 'have' : matched.length ? 'partial' : 'todo';
         return { matched, total, status };
     });
     const matched = rows.reduce((n, r) => n + r.matched.length, 0);
     const total = rows.reduce((n, r) => n + r.total, 0);
-    // "Start here": carry on from the furthest step where the profile already shows something
-    const lastHit = rows.reduce((n, r, i) => (r.matched.length ? i : n), -1);
-    let next = lastHit === -1 ? 0 : (rows[lastHit].status === 'have' ? lastHit + 1 : lastHit);
-    if (next >= rows.length) next = rows.findIndex((r) => r.status !== 'have');
+    // "Start here": the first step after the last step the profile already covers; if it covers none,
+    // the first step it partly covers; otherwise the very first step
+    const lastHave = rows.reduce((n, r, i) => (r.status === 'have' ? i : n), -1);
+    let next = lastHave === -1 ? rows.findIndex((r) => r.status === 'partial') : rows.findIndex((r, i) => i > lastHave && r.status !== 'have');
+    if (lastHave === -1 && next === -1) next = 0;
+    if (next === -1) next = rows.findIndex((r) => r.status !== 'have');
     return { steps: rows, matched, total, percent: total ? Math.round((matched / total) * 100) : 0, nextStep: next < 0 ? null : next };
 };
 

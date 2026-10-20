@@ -10,6 +10,7 @@ import aiRouter from "./routes/aiRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
 import learnRouter from "./routes/learnRoutes.js";
 import roadmapRouter from "./routes/roadmapRoutes.js";
+import communityRouter from "./routes/communityRoutes.js";
 import jobRouter from "./routes/jobRoutes.js";
 import talentRouter from './routes/talentRoutes.js'
 import employerRouter from './routes/employerRoutes.js'
@@ -81,6 +82,7 @@ app.use('/api/ats', atsRouter)
 app.use('/api/blogs', blogRouter)
 app.use('/api/learn', learnRouter)
 app.use('/api/roadmaps', roadmapRouter)
+app.use('/api/community', communityRouter)
 app.use('/api/jobs', jobRouter)
 app.use('/api/talent', talentRouter)
 app.use('/api/employers', employerRouter)

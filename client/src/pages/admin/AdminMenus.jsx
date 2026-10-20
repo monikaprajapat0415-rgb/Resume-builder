@@ -19,15 +19,21 @@ const AdminMenus = () => {
   const headers = { headers: { Authorization: token } }
   const [loc, setLoc] = useState('header')
   const [menu, setMenu] = useState({})
-  const [editing, setEditing] = useState(null) // { id, label, url, newTab }
-  const [draft, setDraft] = useState({ label: '', url: '', newTab: false })
+  const [editing, setEditing] = useState(null) // { id, label, url, newTab, parent }
+  const [draft, setDraft] = useState({ label: '', url: '', newTab: false, parent: '' })
 
   const load = () => api.get('/api/admin/menu', headers)
     .then(({ data }) => setMenu(data.menu || {}))
     .catch((e) => toast.error(e.response?.data?.message || 'Could not load menu.'))
   useEffect(() => { load() }, [])
 
-  const items = menu[loc] || []
+  // Show each sub-link right under its parent; moving up/down only swaps links that share a parent.
+  const raw = menu[loc] || []
+  const topLevel = raw.filter((i) => !i.parent || !raw.some((p) => p._id === i.parent))
+  const kids = (id) => raw.filter((i) => i.parent === id)
+  const items = topLevel.flatMap((t) => [t, ...kids(t._id)])
+  const parentName = (id) => raw.find((p) => p._id === id)?.label
+  const parentChoices = topLevel.filter((t) => loc === 'header')
   const info = LOCATIONS.find((l) => l.id === loc)
 
   const run = async (fn, okMsg) => {
@@ -37,26 +43,31 @@ const AdminMenus = () => {
 
   const toggle = (item) => run(() => api.put(`/api/admin/menu/${item._id}`, { visible: !item.visible }, headers))
   const move = (index, dir) => {
-    const next = [...items]
-    const to = index + dir
-    if (to < 0 || to >= next.length) return
-    ;[next[index], next[to]] = [next[to], next[index]]
-    setMenu({ ...menu, [loc]: next }) // instant feedback, then persist
-    run(() => api.put('/api/admin/menu/reorder', { location: loc, ids: next.map((i) => i._id) }, headers))
+    const item = items[index]
+    const group = item.parent ? kids(item.parent) : topLevel
+    const gi = group.findIndex((g) => g._id === item._id)
+    const gj = gi + dir
+    if (gj < 0 || gj >= group.length) return
+    const swapped = [...group]
+    ;[swapped[gi], swapped[gj]] = [swapped[gj], swapped[gi]]
+    const top = item.parent ? topLevel : swapped
+    const ids = top.flatMap((t) => [t._id, ...(item.parent === t._id ? swapped : kids(t._id)).filter((k) => k._id !== t._id).map((k) => k._id)])
+    setMenu({ ...menu, [loc]: ids.map((id) => raw.find((r) => r._id === id)) }) // instant feedback, then persist
+    run(() => api.put('/api/admin/menu/reorder', { location: loc, ids }, headers))
   }
   const remove = (item) => {
     if (!window.confirm(`Remove "${item.label}" from this menu?${item.key ? ' You can bring it back later with "Restore defaults".' : ''}`)) return
     run(() => api.delete(`/api/admin/menu/${item._id}`, headers), 'Removed.')
   }
   const saveEdit = () => run(async () => {
-    await api.put(`/api/admin/menu/${editing.id}`, { label: editing.label, url: editing.url, newTab: editing.newTab }, headers)
+    await api.put(`/api/admin/menu/${editing.id}`, { label: editing.label, url: editing.url, newTab: editing.newTab, parent: editing.parent || null }, headers)
     setEditing(null)
   }, 'Saved.')
   const add = (e) => {
     e.preventDefault()
     run(async () => {
-      await api.post('/api/admin/menu', { ...draft, location: loc }, headers)
-      setDraft({ label: '', url: '', newTab: false })
+      await api.post('/api/admin/menu', { ...draft, parent: draft.parent || null, location: loc }, headers)
+      setDraft({ label: '', url: '', newTab: false, parent: '' })
     }, 'Menu item added.')
   }
   const restore = () => run(async () => {
@@ -94,6 +105,10 @@ const AdminMenus = () => {
               <div className='grid sm:grid-cols-[1fr_1.4fr_auto] gap-2 items-center'>
                 <input value={editing.label} onChange={(e) => setEditing({ ...editing, label: e.target.value })} className={input} />
                 <input value={editing.url} onChange={(e) => setEditing({ ...editing, url: e.target.value })} list='site-pages' className={input} />
+                {loc === 'header' && !kids(editing.id).length && <select value={editing.parent} onChange={(e) => setEditing({ ...editing, parent: e.target.value })} className={input} aria-label='Show under'>
+                  <option value=''>Top level (no dropdown)</option>
+                  {parentChoices.filter((p) => p._id !== editing.id).map((p) => <option key={p._id} value={p._id}>Under: {p.label}</option>)}
+                </select>}
                 <div className='flex items-center gap-1'>
                   <label className='text-xs text-slate-500 flex items-center gap-1 mr-1'><input type='checkbox' checked={editing.newTab} onChange={(e) => setEditing({ ...editing, newTab: e.target.checked })} /> New tab</label>
                   <button onClick={saveEdit} className='p-2 rounded-md hover:bg-slate-100' title='Save'><LuCheck className='size-4 text-brand-600' /></button>
@@ -102,16 +117,16 @@ const AdminMenus = () => {
               </div>
             ) : (
               <div className='flex items-center gap-2'>
-                <div className={`flex-1 min-w-0 ${item.visible ? '' : 'opacity-50'}`}>
+                <div className={`flex-1 min-w-0 ${item.parent ? 'pl-6 border-l-2 border-slate-100' : ''} ${item.visible ? '' : 'opacity-50'}`}>
                   <p className='text-sm text-slate-800 truncate'>{item.label} {!item.visible && <span className='text-xs text-amber-600'>(hidden)</span>}</p>
-                  <p className='text-xs text-slate-400 truncate'>{item.url}{item.newTab ? ' · new tab' : ''}{item.key ? ' · built-in' : ''}</p>
+                  <p className='text-xs text-slate-400 truncate'>{item.url}{item.parent ? ` · under ${parentName(item.parent) || 'a link'}` : ''}{item.newTab ? ' · new tab' : ''}{item.key ? ' · built-in' : ''}</p>
                 </div>
                 <button onClick={() => toggle(item)} className='p-2 rounded-md hover:bg-slate-100' title={item.visible ? 'Hide from visitors' : 'Show to visitors'}>
                   {item.visible ? <LuEye className='size-4 text-slate-600' /> : <LuEyeOff className='size-4 text-amber-600' />}
                 </button>
-                <button disabled={i === 0} onClick={() => move(i, -1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move up'><LuArrowUp className='size-4 text-slate-500' /></button>
-                <button disabled={i === items.length - 1} onClick={() => move(i, 1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move down'><LuArrowDown className='size-4 text-slate-500' /></button>
-                <button onClick={() => setEditing({ id: item._id, label: item.label, url: item.url, newTab: item.newTab })} className='p-2 rounded-md hover:bg-slate-100' title='Edit'><LuPencil className='size-4 text-slate-600' /></button>
+                <button onClick={() => move(i, -1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move up'><LuArrowUp className='size-4 text-slate-500' /></button>
+                <button onClick={() => move(i, 1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move down'><LuArrowDown className='size-4 text-slate-500' /></button>
+                <button onClick={() => setEditing({ id: item._id, label: item.label, url: item.url, newTab: item.newTab, parent: item.parent || '' })} className='p-2 rounded-md hover:bg-slate-100' title='Edit'><LuPencil className='size-4 text-slate-600' /></button>
                 <button onClick={() => remove(item)} className='p-2 rounded-md hover:bg-slate-100' title='Remove'><LuTrash2 className='size-4 text-red-500' /></button>
               </div>
             )}
@@ -126,6 +141,10 @@ const AdminMenus = () => {
           <input value={draft.url} onChange={(e) => setDraft({ ...draft, url: e.target.value })} list='site-pages' placeholder='/page or https://…' required className={input} />
           <button className='px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Add</button>
         </div>
+        {loc === 'header' && <div className='mt-3 max-w-xs'><select value={draft.parent} onChange={(e) => setDraft({ ...draft, parent: e.target.value })} className={input} aria-label='Show under'>
+                  <option value=''>Top level (no dropdown)</option>
+                  {parentChoices.filter((p) => p._id !== draft.id).map((p) => <option key={p._id} value={p._id}>Under: {p.label}</option>)}
+                </select></div>}
         <label className='mt-3 text-xs text-slate-500 flex items-center gap-1.5'><input type='checkbox' checked={draft.newTab} onChange={(e) => setDraft({ ...draft, newTab: e.target.checked })} /> Open in a new tab</label>
         <datalist id='site-pages'>{PAGES.map((p) => <option key={p} value={p} />)}</datalist>
         <p className='text-xs text-slate-400 mt-2'>Use <code>/page</code> for pages on this site (e.g. <code>/products/my-toolkit</code>), or a full <code>https://…</code> address for other sites.</p>

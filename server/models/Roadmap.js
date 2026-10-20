@@ -9,6 +9,9 @@ const StepSchema = new mongoose.Schema({
     skills: { type: [String], default: [] },
     tips: { type: [String], default: [] },
     links: { type: [{ label: String, url: String }], default: [] },
+    layer: { type: String, default: '' },              // part of the stack this step belongs to, e.g. "Frontend", "Database", "DevOps"
+    // best places to learn this step: official docs, free courses, practice sites
+    resources: { type: [{ label: String, url: String, type: { type: String, default: 'docs' }, free: { type: Boolean, default: true } }], default: [] },
 }, { _id: false });
 
 const RoadmapSchema = new mongoose.Schema({
@@ -17,6 +20,8 @@ const RoadmapSchema = new mongoose.Schema({
     summary: { type: String, default: '' },            // short line for the cards on /roadmaps
     description: { type: String, default: '' },        // meta description + intro on the page
     audience: { type: String, default: '' },           // e.g. "Factory & warehouse", used to group cards
+    kind: { type: String, enum: ['career', 'role', 'technology'], default: 'career' },   // career path | job role (Full stack developer) | one technology (React)
+    aliases: { type: [String], default: [] },          // other names people search for, e.g. "fullstack", "MERN"
     badge: { type: String, default: '' },              // 1-3 letters on the card
     steps: { type: [StepSchema], default: [] },
     faqs: { type: [{ q: String, a: String }], default: [] },

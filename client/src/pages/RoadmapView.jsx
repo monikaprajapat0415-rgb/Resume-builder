@@ -6,7 +6,7 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import { dropServerJsonLd } from '../utils/seoDom'
-import { LuCheck, LuClock, LuLightbulb, LuSparkles, LuUserRound } from 'react-icons/lu'
+import { LuBookOpen, LuCheck, LuClock, LuLayers, LuLightbulb, LuSparkles, LuUserRound } from 'react-icons/lu'
 
 // Progress lives in this browser only. Storage can be blocked, so every access is wrapped.
 const KEY = (slug) => `roadmap-progress:v2:${slug}`
@@ -34,9 +34,13 @@ const RoadmapView = () => {
     let live = true
     setState('loading'); setFit(null)
     api.get(`/api/roadmaps/${slug}`)
-      .then(({ data }) => { if (live) { setData(data); setMine(read(slug)); setState('ok') } })
+      .then(({ data }) => {
+        if (!live) return
+        setData(data); setMine(read(slug)); setState('ok')
+        // related: other roadmaps of the same kind (role with role, technology with technology)
+        api.get(`/api/roadmaps?kind=${data.roadmap.kind || 'career'}`).then(({ data: d }) => { if (live) setMore((d.roadmaps || []).filter((x) => x.slug !== slug).slice(0, 6)) }).catch(() => {})
+      })
       .catch((e) => { if (live) setState(e.response?.status === 404 ? 'missing' : 'error') })
-    api.get('/api/roadmaps').then(({ data }) => { if (live) setMore((data.roadmaps || []).filter((r) => r.slug !== slug).slice(0, 3)) }).catch(() => {})
     return () => { live = false }
   }, [slug])
 
@@ -144,6 +148,21 @@ const RoadmapView = () => {
           </ul>
         </div>
 
+        {r.stack?.length > 0 && (
+          <section className='mt-8 rounded-lg border-2 border-slate-900 bg-white p-4 sm:p-5' aria-labelledby='stack-h'>
+            <h2 id='stack-h' className='flex items-center gap-2 text-lg font-semibold text-slate-900'><LuLayers className='size-5' />The stack, end to end</h2>
+            <p className='text-sm text-slate-500 mt-1'>Everything this path covers, grouped by layer. The step numbers show where each layer is learned.</p>
+            <ul className='mt-4 space-y-2.5'>
+              {r.stack.map((l) => (
+                <li key={l.layer} className='grid sm:grid-cols-[9rem_1fr] gap-x-4 gap-y-1.5 items-start'>
+                  <p className='text-sm font-semibold text-slate-800'>{l.layer}<span className='block text-xs font-normal text-slate-400'>step{l.steps.length > 1 ? 's' : ''} {l.steps.join(', ')}</span></p>
+                  <ul className='flex flex-wrap gap-1.5'>{l.skills.map((k) => <li key={k} className='rounded-md border-2 border-slate-900 bg-yellow-200 px-2.5 py-1 text-xs font-medium text-slate-900'>{k}</li>)}</ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <ol className='mt-10'>
           {r.steps.map((s, i) => {
             const sf = stepFit(i)
@@ -162,6 +181,19 @@ const RoadmapView = () => {
                       <ul className='mt-3 space-y-1.5'>
                         {s.tips.map((t) => <li key={t} className='flex gap-2 text-slate-600'><LuLightbulb className='size-4 text-amber-500 shrink-0 mt-0.5' /><span>{t}</span></li>)}
                       </ul>
+                    )}
+                    {s.resources?.length > 0 && (
+                      <div className='mt-4'>
+                        <p className='flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500'><LuBookOpen className='size-3.5' />Best places to learn</p>
+                        <ul className='mt-1.5 space-y-1'>
+                          {s.resources.map((x) => (
+                            <li key={x.url} className='flex flex-wrap items-baseline gap-x-2'>
+                              <a href={x.url} target='_blank' rel='noopener noreferrer' className='text-brand-700 hover:underline font-medium'>{x.label}</a>
+                              <span className='text-xs text-slate-400'>{x.type}{x.free ? ' · free' : ' · paid or free trial'}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                     {s.links.length > 0 && (
                       <div className='mt-3 flex flex-wrap gap-2'>

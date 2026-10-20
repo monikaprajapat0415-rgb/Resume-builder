@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Roadmap from "../models/Roadmap.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanRoadmapFields, roadmapCard, roadmapView } from "../utils/roadmapSeo.js";
+import { searchRoadmaps } from "../utils/roadmapSearch.js";
 import { collectProfile, coverage, fitScore } from "../utils/roadmapProfile.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -11,13 +12,13 @@ export const loadRoadmapView = async (slug) => {
     const r = await Roadmap.findOne({ slug, published: true });
     return r ? roadmapView(r) : null;
 };
-export const listPublishedRoadmaps = async () =>
-    (await Roadmap.find({ published: true }).sort({ order: 1, createdAt: 1 })).map(roadmapCard);
+export const listPublishedRoadmaps = async ({ q = '', kind = '' } = {}) =>
+    searchRoadmaps(await Roadmap.find({ published: true }).sort({ order: 1, createdAt: 1 }), { q: String(q).slice(0, 80), kind }).map(roadmapCard);
 
 // ---------- Public ----------
 // GET /api/roadmaps
 export const getRoadmaps = async (req, res) => {
-    try { return res.status(200).json({ roadmaps: await listPublishedRoadmaps() }); }
+    try { return res.status(200).json({ roadmaps: await listPublishedRoadmaps({ q: req.query.q, kind: ['career', 'role', 'technology'].includes(req.query.kind) ? req.query.kind : '' }) }); }
     catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
@@ -62,8 +63,8 @@ export const getRoadmapForMe = async (req, res) => {
 // ---------- Admin ----------
 export const getRoadmapsAdmin = async (req, res) => {
     try {
-        const rows = await Roadmap.find().sort({ order: 1, createdAt: 1 }).select('title slug summary audience published order steps updatedAt');
-        return res.status(200).json({ roadmaps: rows.map((r) => ({ _id: r._id, title: r.title, slug: r.slug, audience: r.audience, published: r.published, order: r.order, stepCount: r.steps.length, updatedAt: r.updatedAt })) });
+        const rows = await Roadmap.find().sort({ order: 1, createdAt: 1 }).select('title slug summary audience kind published order steps updatedAt');
+        return res.status(200).json({ roadmaps: rows.map((r) => ({ _id: r._id, title: r.title, slug: r.slug, audience: r.audience, kind: r.kind || 'career', published: r.published, order: r.order, stepCount: r.steps.length, updatedAt: r.updatedAt })) });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
