@@ -3,12 +3,34 @@ import { Link, useParams } from 'react-router-dom'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
+import toast from 'react-hot-toast'
 import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
 import LessonFeedback from '../components/LessonFeedback'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
 import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
+
+// Download through the same API client the page uses for its data, so the request always reaches the API
+// (a plain relative link can land on a host that only serves the web app and saves index.html instead).
+// If anything goes wrong we say so instead of saving a wrong file.
+const downloadSolution = async (e, d) => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return
+  e.preventDefault()
+  try {
+    const res = await api.get(d.url, { responseType: 'blob' })
+    const blob = res.data
+    const head = new Uint8Array(await blob.slice(0, 2).arrayBuffer())
+    if (!(head[0] === 0x50 && head[1] === 0x4b)) throw new Error('not a zip')
+    const href = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = href; a.download = d.name || 'solution.zip'
+    document.body.appendChild(a); a.click(); a.remove()
+    setTimeout(() => URL.revokeObjectURL(href), 10000)
+  } catch {
+    toast.error('The download could not be fetched. Please try again in a moment, or tell us on the Contact page.')
+  }
+}
 
 // Course menu: every lesson grouped by chapter, current lesson highlighted.
 const CourseMenu = ({ courseSlug, sections, current }) => {
@@ -142,7 +164,7 @@ const LearnLesson = () => {
                 <p className='font-semibold text-slate-800'>Download the solution</p>
                 <p className='text-sm text-slate-600 mt-0.5'>The full project as it should look after this lesson{lesson.download.size ? ` (${lesson.download.size > 1048576 ? `${(lesson.download.size / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(lesson.download.size / 1024))} KB`})` : ''}.</p>
               </div>
-              <a href={lesson.download.url} download rel='nofollow' className='inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700'>
+              <a href={lesson.download.url} download={lesson.download.name} rel='nofollow' onClick={(e) => downloadSolution(e, lesson.download)} className='inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700'>
                 <LuDownload className='size-4' />{lesson.download.name}
               </a>
             </aside>
