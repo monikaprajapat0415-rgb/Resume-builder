@@ -41,7 +41,7 @@ const LABELS = {
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
   /^\/features$/, /^\/products$/, /^\/templates$/, /^\/app$/, /^\/admin$/,
-  /^\/admin\/(community|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
+  /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
 

@@ -21,7 +21,7 @@ const Moderation = ({ type, auth, onChange }) => {
   }, [type, status, reported])
   useEffect(() => { setItems(null); setEdit(null); load() }, [load])
 
-  const act = async (fn, msg) => { try { await fn(); toast.success(msg); load(); onChange?.() } catch (e) { toast.error(e.response?.data?.message || 'Failed.') } }
+  const act = async (fn, msg) => { try { await fn(); toast.success(msg); load(); onChange?.(); window.dispatchEvent(new Event('admin-review-changed')) } catch (e) { toast.error(e.response?.data?.message || 'Failed.') } }
   const setSt = (i, s) => act(() => api.put(`/api/admin/community/${type}/${i._id}`, { status: s }, auth), s === 'approved' ? 'Approved.' : s === 'rejected' ? 'Rejected.' : 'Saved.')
   const del = (i) => window.confirm('Delete this permanently?') && act(() => api.delete(`/api/admin/community/${type}/${i._id}`, auth), 'Deleted.')
   const save = () => act(async () => { await api.put(`/api/admin/community/${type}/${edit._id}`, edit, auth); setEdit(null) }, 'Saved.')

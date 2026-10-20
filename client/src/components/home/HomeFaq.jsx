@@ -1,22 +1,20 @@
 import React from 'react'
 import Title from './Title'
+import { useSiteContent } from '../../utils/siteContent'
 
-export const FAQ = [
-  { q: 'Is Prime Resume AI free?', a: 'Yes. You can build a resume and download it for free. Some extras may need an account.' },
-  { q: 'Are the resume templates ATS-friendly?', a: 'Yes. The templates use clean, single-flow layouts that applicant tracking systems can parse. You can also run your resume through the free ATS checker.' },
-  { q: 'Can I use it if I have no office experience?', a: 'Yes. It supports factory, trade, driving, retail and other skilled jobs, and fresher resumes with no work history.' },
-  { q: 'Does the AI write my resume for me?', a: 'It suggests wording for your summary and bullet points. You review and edit every line before you download.' },
-  { q: 'How are salary figures and company reviews checked?', a: 'They are shared by members and reviewed before they appear. A salary range or an average rating is shown only after at least three reports agree.' },
-  { q: 'Where can I find interview questions?', a: 'Under Jobs, Interview questions: questions for freshers and experienced candidates with model answers.' },
-]
+// Questions come from Admin > Homepage text, so the visible text and the FAQPage markup always match.
+export const faqFrom = (site) => [1, 2, 3, 4, 5, 6].map((n) => ({ q: site[`faq_${n}_q`], a: site[`faq_${n}_a`] })).filter((f) => f.q && f.a)
 
-export const faqJsonLd = {
+export const faqJsonLd = (faq) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-}
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+})
 
-const HomeFaq = () => (
+const HomeFaq = () => {
+  const FAQ = faqFrom(useSiteContent())
+  if (!FAQ.length) return null
+  return (
   <section id="faq" aria-labelledby="faq-h" className="py-14 px-4 bg-slate-50 scroll-mt-12">
     <div className="max-w-3xl mx-auto">
       <div className="flex flex-col items-center"><Title title="Frequently asked questions" desciption="" /></div>
@@ -33,6 +31,7 @@ const HomeFaq = () => (
       </div>
     </div>
   </section>
-)
+  )
+}
 
 export default HomeFaq

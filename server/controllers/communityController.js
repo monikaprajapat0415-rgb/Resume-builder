@@ -364,3 +364,41 @@ export const adminDeleteSubmission = async (req, res) => {
         return item ? res.status(200).json({ message: 'Deleted' }) : res.status(404).json({ message: 'Not found' });
     } catch (e) { return fail(res, e); }
 };
+
+// GET /api/admin/inbox : everything waiting for a decision, newest first, across all three kinds
+export const adminInbox = async (req, res) => {
+    try {
+        const only = ['answers', 'salaries', 'reviews'].includes(req.query.type) ? [req.query.type] : Object.keys(TYPES);
+        const reportedOnly = req.query.reported === '1';
+        const lists = await Promise.all(only.map(async (type) => {
+            const filter = reportedOnly ? { 'reports.0': { $exists: true } } : { $or: [{ status: 'pending' }, { 'reports.0': { $exists: true } }] };
+            let q = TYPES[type].find(filter).sort({ createdAt: -1 }).limit(100).populate('user', 'name email');
+            if (type === 'answers') q = q.populate('question', 'question slug');
+            return (await q.lean()).map((i) => ({ ...i, type, reportCount: (i.reports || []).length, reports: undefined }));
+        }));
+        const items = lists.flat().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 200);
+        return res.status(200).json({ items });
+    } catch (e) { return fail(res, e); }
+};
+
+// POST /api/admin/inbox/bulk { action: 'approve'|'reject'|'delete', items: [{ type, id }] }
+export const adminInboxBulk = async (req, res) => {
+    try {
+        const { action, items } = req.body || {};
+        if (!['approve', 'reject', 'delete'].includes(action) || !Array.isArray(items) || !items.length) return res.status(400).json({ message: 'action and items are required' });
+        if (items.length > 100) return res.status(400).json({ message: 'Select at most 100 items at a time.' });
+        let done = 0;
+        for (const it of items) {
+            const Model = TYPES[it?.type];
+            if (!Model || !validId(it.id)) continue;
+            if (action === 'delete') { if (await Model.findByIdAndDelete(it.id)) done++; continue; }
+            const doc = await Model.findById(it.id);
+            if (!doc) continue;
+            doc.status = action === 'approve' ? 'approved' : 'rejected';
+            if (action === 'approve') doc.reports = [];
+            await doc.save();
+            done++;
+        }
+        return res.status(200).json({ done });
+    } catch (e) { return fail(res, e); }
+};

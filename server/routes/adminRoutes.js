@@ -7,6 +7,7 @@ import { getRoadmapsAdmin, getRoadmapAdmin, createRoadmap, updateRoadmap, delete
 import {
     adminSummary, adminListQuestions, adminGetQuestion, adminCreateQuestion, adminUpdateQuestion, adminDeleteQuestion,
     adminListSubmissions, adminUpdateSubmission, adminDeleteSubmission,
+  adminInbox, adminInboxBulk,
 } from '../controllers/communityController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
 import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
@@ -59,6 +60,8 @@ adminRouter.delete('/roadmaps/:id', deleteRoadmap);
 adminRouter.post('/learn/import', importCourse);
 
 // Jobs community: interview questions + moderation of answers, salary reports and company reviews
+adminRouter.get('/inbox', adminInbox);
+adminRouter.post('/inbox/bulk', adminInboxBulk);
 adminRouter.get('/community/summary', adminSummary);
 adminRouter.get('/community/questions', adminListQuestions);
 adminRouter.post('/community/questions', adminCreateQuestion);

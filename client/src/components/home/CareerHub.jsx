@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Title from './Title'
-
-const POPULAR = ['Full Stack Developer', 'Frontend Developer', 'SQL Developer', 'DevOps Engineer', 'Data Analyst', 'React']
+import { useSiteContent } from '../../utils/siteContent'
 
 const CARDS = [
   { to: '/roadmaps', title: 'Roadmaps', text: 'Step-by-step paths for roles and technologies, with the full stack from end to end and free places to learn.' },
@@ -12,6 +11,8 @@ const CARDS = [
 ]
 
 const CareerHub = () => {
+  const site = useSiteContent()
+  const POPULAR = (site.career_chips || '').split(',').map((t) => t.trim()).filter(Boolean)
   const [q, setQ] = useState('')
   const nav = useNavigate()
   const go = (e) => {
@@ -23,7 +24,7 @@ const CareerHub = () => {
     <section id="career-hub" aria-labelledby="career-hub-h" className="py-14 px-4 bg-slate-50 scroll-mt-12">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center">
-          <Title title="Grow your career, not just your resume" desciption="Find what to learn next, prepare for interviews, and check pay and employers before you apply. All free to read." />
+          <Title title={site.career_title} desciption={site.career_text} />
         </div>
         <h2 id="career-hub-h" className="sr-only">Career tools</h2>
 
