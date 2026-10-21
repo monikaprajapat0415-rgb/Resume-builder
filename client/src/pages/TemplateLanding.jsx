@@ -24,13 +24,21 @@ const TemplateLanding = () => {
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   }
 
+  // Search results show about 160 characters, so cut a long description at a sentence or word end.
+  const shortDescription = (d) => {
+    if (d.length <= 158) return d
+    const cut = d.slice(0, 158)
+    const stop = cut.lastIndexOf('. ')
+    return stop > 70 ? cut.slice(0, stop + 1) : `${cut.slice(0, cut.lastIndexOf(' '))}…`
+  }
+
   const other = resumeTemplates.filter((t) => t.slug !== template.slug).slice(0, 6)
 
   return (
     <div>
       <SEO
         title={`${template.name} — Free & ATS-Friendly`}
-        description={template.description}
+        description={template.metaDescription || shortDescription(template.description)}
         keywords={template.keywords}
         path={`/templates/${template.slug}`}
         structuredData={structuredData}

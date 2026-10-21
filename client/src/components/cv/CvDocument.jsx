@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { buildCvSections, contactLine, CV_STYLE, CV_SPACE, CV_PAGE, CV_LINE } from '../../utils/cvModel'
+import { buildCvSections, contactLine, cvStyle, cvRule, CV_SPACE, CV_PAGE, CV_LINE } from '../../utils/cvModel'
 
 // ATS-first CV: one column, real text, standard headings, no icons / tables / graphics.
 // Template only changes typography and heading colour, never the structure.
@@ -23,8 +23,11 @@ const CvDocument = ({ cv, personal = {}, template = 'standard', accentColor = '#
     const ro = new ResizeObserver(fit); ro.observe(el)
     return () => ro.disconnect()
   }, [])
-  const st = CV_STYLE[template] || CV_STYLE.standard
-  const color = st.coloured ? accentColor : CV_SPACE.classicColor
+  const st = cvStyle(template)
+  const color = st.coloured ? accentColor : CV_SPACE.classicColor   // the name
+  const headColor = st.coloured && !st.inkHead ? accentColor : CV_SPACE.classicColor
+  const rl = cvRule(st)
+  const ruleCss = rl.w ? { [st.rule === 'over' ? 'borderTop' : 'borderBottom']: `${px(rl.w)} ${st.rule === 'double' ? 'double' : 'solid'} ${headColor}`, [st.rule === 'over' ? 'paddingTop' : 'paddingBottom']: px(rl.pad) } : {}
   const sections = buildCvSections(cv || {}, personal, level)
   const contact = contactLine(personal)
   const li = { margin: 0 }
@@ -35,16 +38,16 @@ const CvDocument = ({ cv, personal = {}, template = 'standard', accentColor = '#
     <div style={{ zoom: scale, width: px(CV_PAGE.w), margin: '0 auto' }} className={`${previewId}-zoom`}>
     <div id={previewId} className='bg-white shadow-sm border border-gray-200'
       style={{ color: CV_SPACE.text, fontFamily: st.css, fontSize: px(st.base), lineHeight: CV_LINE, width: px(CV_PAGE.w), minHeight: px(CV_PAGE.h), padding: `${px(CV_PAGE.my)} ${px(CV_PAGE.mx)}`, boxSizing: 'border-box' }}>
-      <header style={{ textAlign: 'center', marginBottom: px(st.gap) }}>
-        <h1 style={{ fontSize: px(st.name), fontWeight: 700, margin: 0, color, lineHeight: CV_LINE }}>{personal.full_name || 'Your Name'}</h1>
-        {contact.length > 0 && <p style={{ margin: `${px(CV_SPACE.contactTop)} 0 0`, color: CV_SPACE.contact }}>{contact.join('  |  ')}</p>}
+      <header style={{ textAlign: st.align, marginBottom: px(st.gap) }}>
+        <h1 style={{ fontSize: px(st.name), fontWeight: 700, margin: 0, color, lineHeight: CV_LINE, textTransform: st.nameCase === 'upper' ? 'uppercase' : 'none' }}>{personal.full_name || 'Your Name'}</h1>
+        {contact.length > 0 && <p style={{ margin: `${px(CV_SPACE.contactTop)} 0 0`, color: CV_SPACE.contact }}>{contact.join(st.sep)}</p>}
       </header>
 
       {sections.length === 0 && <p style={{ textAlign: 'center', color: '#9CA3AF', marginTop: 60 }}>Your CV will appear here after you generate it.</p>}
 
       {sections.map((s) => (
         <section key={s.heading} style={{ marginBottom: px(st.gap) }}>
-          <h2 style={{ fontSize: px(st.head), fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: px(CV_SPACE.headTrack), lineHeight: CV_LINE, borderBottom: `${px(CV_SPACE.headRule)} solid ${color}`, paddingBottom: px(CV_SPACE.headPad), margin: `0 0 ${px(CV_SPACE.headAfter)}` }}>{s.heading}</h2>
+          <h2 style={{ fontSize: px(st.head), fontWeight: 700, color: headColor, textTransform: st.headCase === 'upper' ? 'uppercase' : 'none', letterSpacing: px(st.track), lineHeight: CV_LINE, ...ruleCss, margin: `0 0 ${px(CV_SPACE.headAfter)}` }}>{s.heading}</h2>
           {s.text && <p style={{ margin: 0 }}>{s.text}</p>}
           {s.bullets && <ul style={ul(false)}>{s.bullets.map((b, i) => <li key={i} style={li}>{b}</li>)}</ul>}
           {s.blocks && s.blocks.map((b, i) => (

@@ -19,7 +19,7 @@ const TemplatesIndex = () => {
     <div>
       <SEO
         title="Free ATS-Friendly Resume Templates"
-        description="Browse 9 free, professionally designed resume templates: Classic, Modern, Minimal, Executive, Compact, Bold Header, Timeline, Graduate and more. ATS-friendly and fully customizable online."
+        description="Browse 19 free resume templates: classic, modern, sidebar, developer, skilled trades, career change and more. Each shows its ATS rating. Customize online."
         keywords="resume templates, free resume templates, ATS resume templates, professional resume templates"
         path="/templates"
         structuredData={structuredData}

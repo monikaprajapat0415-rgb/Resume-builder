@@ -7,5 +7,6 @@ export const STATIC_ROUTES = [
     '/templates/minimal-resume-template', '/templates/resume-template-with-photo',
     '/templates/executive-resume-template', '/templates/compact-resume-template',
     '/templates/bold-header-resume-template', '/templates/timeline-resume-template', '/templates/graduate-resume-template',
+    '/templates/professional-resume-template', '/templates/corporate-resume-template', '/templates/elegant-resume-template', '/templates/sidebar-resume-template', '/templates/two-column-resume-template', '/templates/developer-resume-template', '/templates/skilled-trades-resume-template', '/templates/career-change-resume-template', '/templates/leadership-resume-template', '/templates/two-tone-resume-template',
 ];
 export const STATIC_LASTMOD = new Date().toISOString().slice(0, 10); // day this server started

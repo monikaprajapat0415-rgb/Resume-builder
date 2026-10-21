@@ -8,6 +8,16 @@ import CompactTemplate from './templates/CompactTemplate'
 import BannerTemplate from './templates/BannerTemplate'
 import TimelineTemplate from './templates/TimelineTemplate'
 import GraduateTemplate from './templates/GraduateTemplate'
+import ProfessionalTemplate from './templates/ProfessionalTemplate'
+import CorporateTemplate from './templates/CorporateTemplate'
+import ElegantTemplate from './templates/ElegantTemplate'
+import SidebarLeftTemplate from './templates/SidebarLeftTemplate'
+import TwoColumnTemplate from './templates/TwoColumnTemplate'
+import DeveloperTemplate from './templates/DeveloperTemplate'
+import SkilledTradesTemplate from './templates/SkilledTradesTemplate'
+import CareerChangeTemplate from './templates/CareerChangeTemplate'
+import LeadershipTemplate from './templates/LeadershipTemplate'
+import TwoToneTemplate from './templates/TwoToneTemplate'
 
 
 const ResumePreview = ({data,template, accentColor, classes="", previewId='resume-preview'}) => {
@@ -32,6 +42,26 @@ const ResumePreview = ({data,template, accentColor, classes="", previewId='resum
                 return <TimelineTemplate data={data} accentColor={accentColor} />;
             case 'graduate':
                 return <GraduateTemplate data={data} accentColor={accentColor} />;
+            case 'professional':
+                return <ProfessionalTemplate data={data} accentColor={accentColor} />;
+            case 'corporate':
+                return <CorporateTemplate data={data} accentColor={accentColor} />;
+            case 'elegant':
+                return <ElegantTemplate data={data} accentColor={accentColor} />;
+            case 'sidebar':
+                return <SidebarLeftTemplate data={data} accentColor={accentColor} />;
+            case 'two-column':
+                return <TwoColumnTemplate data={data} accentColor={accentColor} />;
+            case 'developer':
+                return <DeveloperTemplate data={data} accentColor={accentColor} />;
+            case 'skilled-trades':
+                return <SkilledTradesTemplate data={data} accentColor={accentColor} />;
+            case 'career-change':
+                return <CareerChangeTemplate data={data} accentColor={accentColor} />;
+            case 'leadership':
+                return <LeadershipTemplate data={data} accentColor={accentColor} />;
+            case 'two-tone':
+                return <TwoToneTemplate data={data} accentColor={accentColor} />;
             default:
                 return <ClassicTemplate data={data} accentColor={accentColor} />;
         }}

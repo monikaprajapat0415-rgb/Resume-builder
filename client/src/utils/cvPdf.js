@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf'
-import { buildCvSections, contactLine, CV_STYLE, CV_SPACE, CV_PAGE, CV_LINE } from './cvModel'
+import { buildCvSections, contactLine, cvStyle, cvRule, CV_SPACE, CV_PAGE, CV_LINE } from './cvModel'
 
 // Text-based PDF (selectable / searchable text), which is what applicant tracking systems parse best.
 // Sizes, margins, spacing and colours come from the same spec as the on-screen preview and the Word file.
@@ -11,12 +11,15 @@ const rgb = (hex) => {
 }
 
 export const downloadCvPdf = ({ cv, personal, template = 'standard', accentColor, level, fileName = 'cv' }) => {
-  const c = CV_STYLE[template] || CV_STYLE.standard
+  const c = cvStyle(template)
+  const rl = cvRule(c)
   const doc = new jsPDF({ unit: 'pt', format: 'a4' })
   doc.setProperties({ title: `${personal?.full_name || 'CV'} - CV`, author: personal?.full_name || '' })
   const W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight()
   const MX = CV_PAGE.mx, MY = CV_PAGE.my, maxW = W - MX * 2
   const color = rgb(c.coloured ? accentColor : CV_SPACE.classicColor)
+  const headColor = rgb(c.coloured && !c.inkHead ? accentColor : CV_SPACE.classicColor)
+  const hx = c.align === 'left' ? MX : W / 2, hopt = c.align === 'left' ? undefined : { align: 'center' }
   let y = MY
 
   const need = (h) => { if (y + h > H - MY) { doc.addPage(); y = MY } }
@@ -38,23 +41,28 @@ export const downloadCvPdf = ({ cv, personal, template = 'standard', accentColor
 
   // header
   doc.setFont(c.pdfFont, 'bold'); doc.setFontSize(c.name); doc.setTextColor(...color)
-  line(personal?.full_name || '', c.name, W / 2, { align: 'center' })
-  const contact = contactLine(personal).join('  |  ')
+  line(c.nameCase === 'upper' ? String(personal?.full_name || '').toUpperCase() : (personal?.full_name || ''), c.name, hx, hopt)
+  const contact = contactLine(personal).join(c.sep)
   if (contact) {
     y += CV_SPACE.contactTop
     doc.setFont(c.pdfFont, 'normal'); doc.setFontSize(c.base); doc.setTextColor(...rgb(CV_SPACE.contact))
-    doc.splitTextToSize(contact, maxW).forEach((ln) => line(ln, c.base, W / 2, { align: 'center' }))
+    doc.splitTextToSize(contact, maxW).forEach((ln) => line(ln, c.base, hx, hopt))
   }
   y += c.gap
 
   buildCvSections(cv, personal, level).forEach((s) => {
     const first = s.blocks?.[0]
-    need(c.head * CV_LINE + CV_SPACE.headAfter + 4 + c.base * CV_LINE * (first ? 2 : 1)) // keep the heading with its first lines
-    doc.setFont(c.pdfFont, 'bold'); doc.setFontSize(c.head); doc.setTextColor(...color)
-    line(s.heading.toUpperCase(), c.head, MX, { charSpace: CV_SPACE.headTrack })
-    y += CV_SPACE.headPad
-    doc.setDrawColor(...color); doc.setLineWidth(CV_SPACE.headRule); doc.line(MX, y + CV_SPACE.headRule / 2, W - MX, y + CV_SPACE.headRule / 2)
-    y += CV_SPACE.headRule + CV_SPACE.headAfter
+    need(c.head * CV_LINE + CV_SPACE.headAfter + rl.w + rl.pad + c.base * CV_LINE * (first ? 2 : 1)) // keep the heading with its first lines
+    const rule = (at) => {
+      doc.setDrawColor(...headColor)
+      if (c.rule === 'double') { const t = CV_SPACE.headRule; doc.setLineWidth(t); doc.line(MX, at + t / 2, W - MX, at + t / 2); doc.line(MX, at + t * 2.5, W - MX, at + t * 2.5) }
+      else { doc.setLineWidth(rl.w); doc.line(MX, at + rl.w / 2, W - MX, at + rl.w / 2) }
+    }
+    if (c.rule === 'over') { rule(y); y += rl.w + rl.pad }
+    doc.setFont(c.pdfFont, 'bold'); doc.setFontSize(c.head); doc.setTextColor(...headColor)
+    line(c.headCase === 'upper' ? s.heading.toUpperCase() : s.heading, c.head, MX, { charSpace: c.track })
+    if (c.rule === 'under' || c.rule === 'double') { y += rl.pad; rule(y); y += rl.w }
+    y += CV_SPACE.headAfter
     if (s.text) para(s.text)
     s.bullets?.forEach((b) => para(b, { bullet: true }))
     s.blocks?.forEach((b, i) => {

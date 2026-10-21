@@ -14,6 +14,8 @@ import banner from '../../assets/Banner.webp';
 import timeline from '../../assets/Timeline.webp';
 import graduate from '../../assets/Graduate.webp';
 import Title from "./Title";
+import { Link } from "react-router-dom";
+import { resumeTemplates } from "../../content/resumeTemplates";
 import { LuBookUser, LuLayers } from "react-icons/lu";
 // import { dummyResumeData } from '../../assets/assets';
 
@@ -140,6 +142,8 @@ export default function TemplatePreview() {
 
     ];
     const [selected, setSelected] = useState(null);
+    const [showAll, setShowAll] = useState(false);
+    const shown = showAll ? resumeTemplates.map((t) => ({ id: t.id, name: t.name.replace(' Resume Template', ''), image: t.image })) : templates;
 
 
 
@@ -158,7 +162,7 @@ export default function TemplatePreview() {
 
                 {/* Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {templates.map((template) => (
+                    {shown.map((template) => (
                         <div
                             key={template.id}
                             className="border border-gray-200 rounded-lg overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
@@ -174,6 +178,10 @@ export default function TemplatePreview() {
                             </div>
                         </div>
                     ))}
+                </div>
+                <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                    {!showAll && <button type="button" onClick={() => setShowAll(true)} className="rounded-full bg-brand-500 hover:bg-brand-600 text-white px-7 h-11 text-sm transition">Show all {resumeTemplates.length} templates</button>}
+                    <Link to="/templates" className="rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 px-7 h-11 text-sm flex items-center transition">Compare ATS ratings</Link>
                 </div>
             </div>
 
