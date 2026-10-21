@@ -5,13 +5,16 @@ import imagekit from "../configs/imageKit.js";
 import Resume from "../models/Resume.js";
 import fs from 'fs';
 
+// Template ids the resume builder can render (client/src/components/ResumePreview.jsx). Unknown ids fall back to the default.
+export const RESUME_TEMPLATE_IDS = ['classic', 'modern', 'minimal', 'minimal-image', 'executive', 'compact', 'banner', 'timeline', 'graduate', 'professional', 'corporate', 'elegant', 'sidebar', 'two-column', 'developer', 'skilled-trades', 'career-change', 'leadership', 'two-tone'];
+
 export const createResume = async (req, res)=>
 {
     try {
         const userId = req.userId;
-        const {title} = req.body;
-        //create new resume
-        const newResume = await Resume.create({userId,title})
+        const {title, template} = req.body;
+        //create new resume (with the template the person picked, if it is a known one)
+        const newResume = await Resume.create({userId, title, ...(RESUME_TEMPLATE_IDS.includes(template) ? {template} : {})})
         //return success message
         return res.status(201).json({message:'Resume created successfully', resume:newResume})
         
