@@ -210,6 +210,12 @@ export default function TemplatePreview() {
 
                         </div>
 
+                        {(() => { const match = resumeTemplates.find((t) => t.image === selected.image); return match ? (
+                            <div className="flex justify-between items-center gap-3 mt-3 px-1">
+                                <Link to={`/templates/${match.slug}`} className="text-sm text-brand-700 hover:underline">Details and ATS rating</Link>
+                                <Link to={`/app?state=register&template=${match.id}`} className="rounded-full bg-brand-500 hover:bg-brand-600 text-white px-6 h-10 text-sm flex items-center transition">Use this template</Link>
+                            </div>) : null })()}
+
                         {/* Actions */}
                         {/* <div className="flex justify-between items-center mt-4 px-2">
                             <h3 className="font-semibold text-lg">{selected.name}</h3>

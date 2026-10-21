@@ -6,6 +6,7 @@ import { BiLoaderAlt } from 'react-icons/bi';
 import { LuUpload, LuPlus, LuTrash2 , LuX,LuFileText, LuCopy, LuEye, LuShield, LuUserCheck, LuBuilding2 } from 'react-icons/lu';
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { resumeTemplates } from '../content/resumeTemplates'
 import CvDashboardSection from '../components/cv/CvDashboardSection'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -21,6 +22,7 @@ const Dashboard = () => {
   const colors = ["#9333EA", "#F43F5E", "#3B82F6", "#10B981", "#8B5CF6", "#EC4899", "#0EA5E9", "#14B8A6"]
   const [allResumes, setAllResumes] = useState([])
   const [showCreateResume, setShowCreateResume] = useState(false)
+  const [template, setTemplate] = useState('classic')
   const [showUploadResume, setShowUploadResume] = useState(false)
   const [title, setTitle] = useState("")
   const [resume, setResume] = useState(null)
@@ -44,14 +46,27 @@ const Dashboard = () => {
     }
   }
 
+  // Arrived from a template page ("Use this template"): open the create step with that template already chosen.
+  useEffect(() => {
+    let pick = searchParams.get('template')
+    if (!pick) { try { pick = sessionStorage.getItem('pending_template') } catch { /* ignore */ } }
+    const found = resumeTemplates.find((t) => t.id === pick)
+    if (!found) return
+    try { sessionStorage.removeItem('pending_template') } catch { /* ignore */ }
+    setTemplate(found.id)
+    setTitle((t) => t || `${found.name.replace(' Resume Template', '').replace(' Template', '')} resume`)
+    setShowCreateResume(true)
+    if (searchParams.get('template')) { const n = new URLSearchParams(searchParams); n.delete('template'); n.delete('state'); setSearchParams(n, { replace: true }) }
+  }, [])
+
   const createResume = async (event) => {
     // event.preventDefault();
     // setShowCreateResume(false);
     // navigate(`/app/builder/res123`);
     try {
       event.preventDefault();
-      const { data } = await api.post('/api/resumes/create', { title }, { headers: { Authorization: token } });
-      trackEvent('resume_builder_started', { type: 'resume', source: 'blank' });
+      const { data } = await api.post('/api/resumes/create', { title, template }, { headers: { Authorization: token } });
+      trackEvent('resume_builder_started', { type: 'resume', source: 'blank', template });
       setAllResumes([...allResumes, data.resume]);
       setTitle("");
       setShowCreateResume(false);
@@ -285,7 +300,12 @@ const Dashboard = () => {
               <h2 className='text-xl font-bold mb-4'>
                 Create Resume
               </h2>
-              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter rasume title' className='w-full px-4 py-2 mb-4 focus:border-brand-600 ring-brand-600' required />
+              <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Enter resume title' className='w-full px-4 py-2 mb-4 focus:border-brand-600 ring-brand-600' required />
+              <label htmlFor='new-resume-template' className='block text-sm text-slate-600 mb-1'>Template</label>
+              <select id='new-resume-template' value={template} onChange={(e) => setTemplate(e.target.value)} className='w-full px-3 py-2 mb-1 border border-slate-300 rounded bg-white text-sm'>
+                {resumeTemplates.map((t) => <option key={t.id} value={t.id}>{t.name.replace(' Resume Template', '').replace(' Template', '')}</option>)}
+              </select>
+              <p className='text-xs text-slate-400 mb-4'>You can change the template any time while editing.</p>
               <button className='w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors'>
                 Create Resume
               </button>

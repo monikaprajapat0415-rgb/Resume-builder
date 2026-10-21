@@ -31,6 +31,10 @@ const Login = () => {
     const next = nextRaw && /^\/(?!\/)/.test(nextRaw) ? nextRaw : null;
 
 
+    // A template picked on a /templates page: remember it until the person is signed in and on the dashboard.
+    const pickedTemplate = queryParams.get('template');
+    if (pickedTemplate && /^[a-z-]{1,30}$/.test(pickedTemplate)) { try { sessionStorage.setItem('pending_template', pickedTemplate) } catch { /* private mode */ } }
+
     const [state, setState] = useState(urlState || "login")
 
     const [formData, setFormData] = useState({
