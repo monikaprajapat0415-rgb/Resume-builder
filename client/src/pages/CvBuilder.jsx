@@ -11,7 +11,7 @@ import CvDocument from '../components/cv/CvDocument'
 import { Area, Field, Lines, Repeater, Text, inputCls } from '../components/cv/CvFields'
 import { ChipInput, ListInput } from '../components/cv/CvChips'
 import { ACHIEVEMENT_EXAMPLES, LANGUAGE_LEVELS, COMMON_LANGUAGES, OTHER_INFO_QUICK, SUMMARY_QUICK, buildSkillSuggestions, certSuggestions } from '../utils/cvSuggestions'
-import { CV_TEMPLATES, cvToText, emptyCv, emptyInput } from '../utils/cvModel'
+import { CV_TEMPLATES, cvStyle, cvToText, emptyCv, emptyInput } from '../utils/cvModel'
 import { downloadCvPdf } from '../utils/cvPdf'
 import { downloadCvDocx } from '../utils/cvDocx'
 import CvAtsPanel from '../components/cv/CvAtsPanel'
@@ -405,12 +405,12 @@ const CvBuilder = () => {
 
         <section className='lg:col-span-7 lg:sticky lg:top-4'>
           <div className='flex flex-wrap items-center gap-3 mb-3'>
-            <div className='flex items-center gap-1.5' role='group' aria-label='Template'>
+            <div className='flex flex-wrap items-center gap-1.5' role='group' aria-label='Template'>
               {CV_TEMPLATES.map((t) => (
                 <button key={t.id} type='button' title={t.desc} onClick={() => patch({ template: t.id })} className={`px-3 py-1.5 text-xs rounded-full border transition ${doc.template === t.id ? 'bg-slate-800 text-white border-slate-800' : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50'}`}>{t.name}</button>
               ))}
             </div>
-            {doc.template !== 'classic' && (
+            {cvStyle(doc.template).coloured && (
               <div className='flex items-center gap-1.5' role='group' aria-label='Heading colour'>
                 {COLORS.map((c) => <button key={c} type='button' aria-label={`Colour ${c}`} onClick={() => patch({ accent_color: c })} className={`size-5 rounded-full border-2 ${doc.accent_color === c ? 'border-slate-800' : 'border-white ring-1 ring-slate-300'}`} style={{ background: c }} />)}
               </div>

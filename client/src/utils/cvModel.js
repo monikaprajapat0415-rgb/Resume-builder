@@ -4,6 +4,16 @@ export const CV_TEMPLATES = [
   { id: 'standard', name: 'Standard', desc: 'Clean sans-serif with coloured headings' },
   { id: 'classic', name: 'Classic', desc: 'Traditional serif, black and white' },
   { id: 'compact', name: 'Compact', desc: 'Smaller type to fit more on one page' },
+  { id: 'modern', name: 'Modern', desc: 'Left-aligned header, sans-serif, coloured headings with a rule' },
+  { id: 'elegant', name: 'Elegant', desc: 'Centred serif, headings in title case with a line above' },
+  { id: 'fresher', name: 'Fresher', desc: 'Larger text, bold black headings, coloured name' },
+  { id: 'executive', name: 'Executive', desc: 'Formal serif, capital name, double rule, black and white' },
+  { id: 'minimal', name: 'Minimal', desc: 'Airy, no rules, quiet headings' },
+  { id: 'tech', name: 'Tech', desc: 'Monospace type for engineering and IT roles' },
+  { id: 'dense', name: 'Dense serif', desc: 'Small serif type for long work histories' },
+  { id: 'bold', name: 'Bold name', desc: 'Large name and a thick line above each heading' },
+  { id: 'soft', name: 'Soft', desc: 'Centred, friendly, title-case headings, no rules' },
+  { id: 'large-print', name: 'Large print', desc: 'Bigger type for easy reading, for hands-on and trade roles' },
 ]
 
 // ONE style spec for the preview, the PDF and the Word file, so all three look the same.
@@ -15,6 +25,29 @@ export const CV_STYLE = {
   standard: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10, name: 21, head: 10, gap: 12, coloured: true },
   classic: { css: '"Times New Roman", Times, serif', pdfFont: 'times', docxFont: 'Times New Roman', base: 10.5, name: 21, head: 10.5, gap: 12, coloured: false },
   compact: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 9, name: 18, head: 9, gap: 8, coloured: true },
+  // Added styles. Optional fields (see cvStyle below): align, rule (under | over | double | none), thick, headCase (upper | title),
+  // nameCase (as | upper), sep, inkHead (headings in black while the name keeps the accent colour), track.
+  modern: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10, name: 24, head: 10, gap: 12, coloured: true, align: 'left', sep: '  ·  ' },
+  elegant: { css: '"Times New Roman", Times, serif', pdfFont: 'times', docxFont: 'Times New Roman', base: 10.5, name: 22, head: 11, gap: 13, coloured: true, nameCase: 'upper', headCase: 'title', rule: 'over' },
+  fresher: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10.5, name: 22, head: 11, gap: 12, coloured: true, align: 'left', inkHead: true, thick: true },
+  executive: { css: '"Times New Roman", Times, serif', pdfFont: 'times', docxFont: 'Times New Roman', base: 11, name: 22, head: 11, gap: 12, coloured: false, nameCase: 'upper', rule: 'double' },
+  minimal: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10, name: 22, head: 11, gap: 14, coloured: true, align: 'left', headCase: 'title', rule: 'none' },
+  tech: { css: '"Courier New", Courier, monospace', pdfFont: 'courier', docxFont: 'Courier New', base: 9.5, name: 18, head: 9.5, gap: 11, coloured: true, align: 'left', rule: 'none', sep: '  /  ' },
+  dense: { css: '"Times New Roman", Times, serif', pdfFont: 'times', docxFont: 'Times New Roman', base: 9.5, name: 18, head: 9.5, gap: 8, coloured: false, align: 'left' },
+  bold: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10, name: 28, head: 11, gap: 13, coloured: true, align: 'left', rule: 'over', thick: true },
+  soft: { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 10.5, name: 22, head: 11.5, gap: 14, coloured: true, headCase: 'title', rule: 'none', sep: '  •  ' },
+  'large-print': { css: 'Helvetica, Arial, sans-serif', pdfFont: 'helvetica', docxFont: 'Arial', base: 11, name: 24, head: 12, gap: 13, coloured: true, align: 'left', inkHead: true, thick: true },
+}
+// A style with every optional field filled in. The preview, the PDF and the Word file all read styles through this.
+export const cvStyle = (template) => {
+  const st = CV_STYLE[template] || CV_STYLE.standard
+  return { align: 'center', rule: 'under', thick: false, headCase: 'upper', nameCase: 'as', sep: '  |  ', inkHead: false, track: st.headCase === 'title' ? 0 : 0.6, ...st }
+}
+// Heading line: thickness (pt) and the gap between the text and the line (pt). Under and over use the same height.
+export const cvRule = (st) => {
+  if (st.rule === 'none') return { w: 0, pad: 0 }
+  const base = 1.1
+  return { w: st.rule === 'double' ? base * 3 : base * (st.thick ? 2 : 1), pad: 1.5 }
 }
 export const CV_SPACE = {
   contactTop: 4.5, headAfter: 4.5, headPad: 1.5, headRule: 1.1, headTrack: 0.6,

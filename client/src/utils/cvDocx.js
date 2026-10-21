@@ -1,4 +1,4 @@
-import { buildCvSections, contactLine, CV_STYLE, CV_SPACE, CV_PAGE, CV_LINE } from './cvModel'
+import { buildCvSections, contactLine, cvStyle, cvRule, CV_SPACE, CV_PAGE, CV_LINE } from './cvModel'
 
 // Word (.docx) export. Plain paragraphs and real bullet lists only (no tables or text boxes) so it stays ATS-friendly.
 // Sizes, margins, line height, spacing and colours come from the same spec as the on-screen preview and the PDF.
@@ -8,9 +8,13 @@ const tw = (pt) => Math.round(pt * 20) // points -> twips
 
 export const downloadCvDocx = async ({ cv, personal, template = 'standard', accentColor = '#1E3A8A', level, fileName = 'cv' }) => {
   const { Document, Packer, Paragraph, TextRun, AlignmentType, BorderStyle, LevelFormat, LineRuleType } = await import('docx')
-  const c = CV_STYLE[template] || CV_STYLE.standard
+  const c = cvStyle(template)
+  const rl = cvRule(c)
   const font = c.docxFont
   const color = hex(c.coloured ? accentColor : CV_SPACE.classicColor)
+  const headColor = hex(c.coloured && !c.inkHead ? accentColor : CV_SPACE.classicColor)
+  const al = c.align === 'left' ? AlignmentType.LEFT : AlignmentType.CENTER
+  const nm = c.nameCase === 'upper' ? String(personal?.full_name || '').toUpperCase() : (personal?.full_name || '')
   const body = hex(CV_SPACE.text)
 
   // Every paragraph gets an exact line height (size x CV_LINE) and all vertical gaps go in "after",
@@ -24,21 +28,21 @@ export const downloadCvDocx = async ({ cv, personal, template = 'standard', acce
     children: [run(t, c.base)],
   })
 
-  const kids = [para(personal?.full_name || '', c.name, { bold: true, color }, 0, { alignment: AlignmentType.CENTER })]
-  const contact = contactLine(personal).join('  |  ')
-  const afterHeader = c.gap
+  const kids = []
+  const contact = contactLine(personal).join(c.sep)
   if (contact) {
-    kids[0] = para(personal?.full_name || '', c.name, { bold: true, color }, CV_SPACE.contactTop, { alignment: AlignmentType.CENTER })
-    kids.push(para(contact, c.base, { color: hex(CV_SPACE.contact) }, afterHeader, { alignment: AlignmentType.CENTER }))
+    kids.push(para(nm, c.name, { bold: true, color }, CV_SPACE.contactTop, { alignment: al }))
+    kids.push(para(contact, c.base, { color: hex(CV_SPACE.contact) }, c.gap, { alignment: al }))
   } else {
-    kids[0] = para(personal?.full_name || '', c.name, { bold: true, color }, afterHeader, { alignment: AlignmentType.CENTER })
+    kids.push(para(nm, c.name, { bold: true, color }, c.gap, { alignment: al }))
   }
 
   buildCvSections(cv, personal, level).forEach((s) => {
+    const side = c.rule === 'over' ? 'top' : 'bottom'
     kids.push(new Paragraph({
       keepNext: true, spacing: sp(c.head, CV_SPACE.headAfter),
-      border: { bottom: { style: BorderStyle.SINGLE, size: Math.round(CV_SPACE.headRule * 8), color, space: CV_SPACE.headPad } },
-      children: [run(s.heading.toUpperCase(), c.head, { bold: true, color, characterSpacing: tw(CV_SPACE.headTrack) })],
+      ...(rl.w ? { border: { [side]: { style: c.rule === 'double' ? BorderStyle.DOUBLE : BorderStyle.SINGLE, size: Math.round((c.rule === 'double' ? rl.w / 3 : rl.w) * 8), color: headColor, space: rl.pad } } } : {}),
+      children: [run(c.headCase === 'upper' ? s.heading.toUpperCase() : s.heading, c.head, { bold: true, color: headColor, characterSpacing: tw(c.track) })],
     }))
     // spacing after the section's last paragraph = section gap (merged with the block gap like the preview)
     const endGap = s.blocks ? Math.max(CV_SPACE.blockAfter, c.gap) : c.gap
