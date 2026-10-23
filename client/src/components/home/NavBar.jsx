@@ -18,8 +18,8 @@ const SubLabel = ({ c, dark }) => {
     return (
         <span className="flex items-start gap-3">
             {Icon && <span className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg ${dark ? 'bg-white/15 text-white' : 'bg-brand-50 text-brand-600'}`}><Icon className="size-5" aria-hidden="true" /></span>}
-            <span className="min-w-0">
-                <span className="block font-medium">{c.label}</span>
+            <span className="min-w-0 flex-1">
+                <span className="block font-medium break-words">{c.label}</span>
                 {c.description && <span className={`block text-xs font-normal whitespace-normal ${dark ? 'text-white/70' : 'text-slate-500'}`}>{c.description}</span>}
             </span>
         </span>
@@ -59,10 +59,10 @@ export default function NavBar() {
                                 {item.label}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                             </button>
-                            <div className={`absolute left-0 top-full pt-2 z-50 min-w-52 ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
+                            <div className={`absolute left-0 top-full pt-2 z-50 w-72 max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
                                 <ul className="rounded-xl border border-slate-200 bg-white shadow-lg py-2">
                                     {item.children.map((c) => (
-                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className={`block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 ${c.icon || c.description ? 'w-72' : 'whitespace-nowrap'}`}><SubLabel c={c} /></MenuLink></li>
+                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-normal break-words"><SubLabel c={c} /></MenuLink></li>
                                     ))}
                                 </ul>
                             </div>
@@ -105,11 +105,11 @@ export default function NavBar() {
                     X
                 </button>
                 {header.map((item) => item.children?.length ? (
-                    <div key={item._id} className="flex flex-col items-center gap-3">
+                    <div key={item._id} className="flex flex-col items-center gap-3 w-full px-6">
                         <span className="text-white">{item.label}</span>
-                        <ul className="flex flex-col items-start gap-3 text-base">
+                        <ul className="flex flex-col items-stretch gap-3 text-base w-72 max-w-full">
                             {item.children.map((c) => (
-                                <li key={c._id}><MenuLink item={c} className="text-white/90 block max-w-xs" onNavigate={() => setMenuOpen(false)}>{c.icon || c.description ? <SubLabel c={c} dark /> : c.label}</MenuLink></li>
+                                <li key={c._id}><MenuLink item={c} className="text-white/90 block break-words" onNavigate={() => setMenuOpen(false)}>{c.icon || c.description ? <SubLabel c={c} dark /> : c.label}</MenuLink></li>
                             ))}
                         </ul>
                     </div>
