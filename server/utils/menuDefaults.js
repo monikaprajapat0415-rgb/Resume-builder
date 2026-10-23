@@ -2,11 +2,14 @@
 // bring back one that was deleted without duplicating the ones that still exist.
 // Keep in sync with client/src/utils/menu.js (the offline fallback).
 export const MENU_LOCATIONS = ['header', 'footer_product', 'footer_resources', 'footer_legal'];
+// Icons the admin can pick for a sub-menu link (client/src/utils/menuIcons.js draws them).
+export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up'];
 
 export const DEFAULT_MENU = [
     { key: 'h-home', location: 'header', label: 'Home', url: '/' },
     { key: 'h-features', location: 'header', label: 'Features', url: '/features' },
     { key: 'h-testimonials', location: 'header', label: 'Testimonials', url: '/#testimonials' },
+    { key: 'h-builder', location: 'header', label: 'Builder', url: '/app' },
     { key: 'h-templates', location: 'header', label: 'Templates', url: '/templates' },
     { key: 'h-cv', location: 'header', label: 'CV Builder', url: '/cv-builder' },
     { key: 'h-products', location: 'header', label: 'Products', url: '/products' },
@@ -23,6 +26,8 @@ export const DEFAULT_MENU = [
     { key: 'h-jobs-interview', location: 'header', label: 'Interview questions', url: '/jobs/interview-questions', parentKey: 'h-jobs' },
     { key: 'h-jobs-salaries', location: 'header', label: 'Salaries', url: '/jobs/salaries', parentKey: 'h-jobs' },
     { key: 'h-jobs-reviews', location: 'header', label: 'Company reviews', url: '/jobs/company-reviews', parentKey: 'h-jobs' },
+    { key: 'h-builder-app', location: 'header', label: 'AI Resume builder & CV maker', url: '/app', icon: 'sparkles', description: 'Build, edit and download an ATS-friendly resume or CV', parentKey: 'h-builder' },
+    { key: 'h-builder-examples', location: 'header', label: 'Examples of 100/100 CV and resume', url: '/examples', icon: 'award', description: 'Real samples that pass every automatic ATS check', parentKey: 'h-builder' },
     { key: 'h-contact', location: 'header', label: 'Contact Us', url: '/#contact-us' },
 
     { key: 'fp-home', location: 'footer_product', label: 'Home', url: '/' },
@@ -33,6 +38,7 @@ export const DEFAULT_MENU = [
     { key: 'fr-templates', location: 'footer_resources', label: 'Templates', url: '/templates' },
     { key: 'fr-ats', location: 'footer_resources', label: 'ATS Checker', url: '/features/ats-checker' },
     { key: 'fr-cv', location: 'footer_resources', label: 'CV Builder', url: '/cv-builder' },
+    { key: 'fr-examples', location: 'footer_resources', label: '100/100 Resume Examples', url: '/examples' },
     { key: 'fr-match', location: 'footer_resources', label: 'Job Match Tool', url: '/resume-job-description-matcher' },
     { key: 'fr-products', location: 'footer_resources', label: 'Products', url: '/products' },
     { key: 'fr-blog', location: 'footer_resources', label: 'Blog', url: '/blog' },

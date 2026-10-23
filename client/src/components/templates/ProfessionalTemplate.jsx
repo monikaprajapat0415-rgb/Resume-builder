@@ -4,7 +4,7 @@ import { contactParts, range, formatDate } from './shared'
 // Left-aligned header over a heavy accent rule; spaced capital headings; dates on the right.
 const ProfessionalTemplate = ({ data, accentColor }) => {
   const p = data.personal_info || {}
-  const H = ({ children }) => <h2 className="mt-5 mb-1.5 text-[12px] font-bold uppercase tracking-[0.16em]" style={{ color: accentColor }}>{children}</h2>
+  const H = ({ children }) => <h2 className="mt-5 mb-1.5 text-[12px] font-bold uppercase tracking-wider" style={{ color: accentColor }}>{children}</h2>
   return (
     <div className="max-w-4xl mx-auto px-10 py-9 bg-white text-gray-800 text-[14px] leading-relaxed font-sans">
       <header className="pb-3 border-b-[3px]" style={{ borderColor: accentColor }}>

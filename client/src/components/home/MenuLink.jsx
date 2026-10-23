@@ -5,10 +5,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 //   /#section   -> scroll on the home page (or go there first, then scroll)
 //   /page       -> client-side navigation (a new tab if the admin ticked "open in new tab")
 //   https://…   -> normal link, new tab if ticked; mailto:/tel: work as-is
-const MenuLink = ({ item, className, onNavigate }) => {
+const MenuLink = ({ item, className, onNavigate, children }) => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { label, url, newTab } = item
+  const { url, newTab } = item
+  const label = children ?? item.label
 
   const hash = url.match(/^\/#(.+)$/)
   if (hash) {

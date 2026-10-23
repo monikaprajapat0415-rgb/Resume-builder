@@ -105,7 +105,7 @@ const CvLanding = () => {
               </details>
             ))}
           </div>
-          <p className='text-center text-sm text-slate-600 mt-8'>Want to improve an existing resume instead? Try the <Link className='text-brand-700 underline' to='/features/ats-checker'>free ATS checker</Link>.</p>
+          <p className='text-center text-sm text-slate-600 mt-8'>Want to improve an existing resume instead? Try the <Link className='text-brand-700 underline' to='/features/ats-checker'>free ATS checker</Link>. Or see <Link className='text-brand-700 underline' to='/examples'>CV examples that score 100/100</Link> on every automatic check.</p>
         </section>
       </main>
       <Footer />

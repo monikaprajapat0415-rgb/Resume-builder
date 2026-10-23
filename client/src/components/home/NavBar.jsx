@@ -10,6 +10,21 @@ import { useLocation } from 'react-router-dom';
 import MenuLink from './MenuLink';
 import { useMenu } from '../../utils/menu';
 import PageNav from '../PageNav';
+import { MENU_ICONS } from '../../utils/menuIcons';
+
+// Dropdown row: optional icon tile, label and one-line description.
+const SubLabel = ({ c, dark }) => {
+    const Icon = MENU_ICONS[c.icon];
+    return (
+        <span className="flex items-start gap-3">
+            {Icon && <span className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg ${dark ? 'bg-white/15 text-white' : 'bg-brand-50 text-brand-600'}`}><Icon className="size-5" aria-hidden="true" /></span>}
+            <span className="min-w-0">
+                <span className="block font-medium">{c.label}</span>
+                {c.description && <span className={`block text-xs font-normal whitespace-normal ${dark ? 'text-white/70' : 'text-slate-500'}`}>{c.description}</span>}
+            </span>
+        </span>
+    );
+};
 
 export default function NavBar() {
     const { user } = useSelector(state => state.auth);
@@ -47,7 +62,7 @@ export default function NavBar() {
                             <div className={`absolute left-0 top-full pt-2 z-50 min-w-52 ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
                                 <ul className="rounded-xl border border-slate-200 bg-white shadow-lg py-2">
                                     {item.children.map((c) => (
-                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-nowrap" /></li>
+                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className={`block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 ${c.icon || c.description ? 'w-72' : 'whitespace-nowrap'}`}><SubLabel c={c} /></MenuLink></li>
                                     ))}
                                 </ul>
                             </div>
@@ -92,9 +107,9 @@ export default function NavBar() {
                 {header.map((item) => item.children?.length ? (
                     <div key={item._id} className="flex flex-col items-center gap-3">
                         <span className="text-white">{item.label}</span>
-                        <ul className="flex flex-col items-center gap-2 text-base">
+                        <ul className="flex flex-col items-start gap-3 text-base">
                             {item.children.map((c) => (
-                                <li key={c._id}><MenuLink item={c} className="text-white/80" onNavigate={() => setMenuOpen(false)} /></li>
+                                <li key={c._id}><MenuLink item={c} className="text-white/90 block max-w-xs" onNavigate={() => setMenuOpen(false)}>{c.icon || c.description ? <SubLabel c={c} dark /> : c.label}</MenuLink></li>
                             ))}
                         </ul>
                     </div>

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import sitemap from 'vite-plugin-sitemap'
+import { exampleSlugs } from './src/content/exampleSlugs.js'
 import { templateSlugs } from './src/content/templateSlugs.js'
 
 // Only public, indexable pages belong in the sitemap. Private/user-specific routes
@@ -33,6 +34,8 @@ const staticRoutes = [
   '/templates',
   '/products',
   ...templateSlugs.map((slug) => `/templates/${slug}`),
+  '/examples',
+  ...exampleSlugs.map((slug) => `/examples/${slug}`),
 ]
 
 // https://vite.dev/config/
@@ -43,6 +46,5 @@ export default defineConfig({
       exclude: ['/app', '/app/*', '/view/*', '/logout', '/forgot-password', '/reset-password/*', '/verify-email/*', '/admin', '/admin/*'],
       changefreq: 'weekly',
       readable: true,
-      generateRobotsTxt: false,
     })],
 })
