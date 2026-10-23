@@ -2,6 +2,7 @@ import express from 'express';
 import { renderLearnIndex, renderCourse, renderLesson } from '../controllers/learnSeoController.js';
 import { renderQuestionsIndex, renderQuestion, renderSalariesIndex, renderSalaryRole, renderCompaniesIndex, renderCompany } from '../controllers/communitySeoController.js';
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
+import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
@@ -38,6 +39,9 @@ seoRouter.get('/jobs/:slug', renderJob);
 seoRouter.get('/learn', renderLearnIndex);
 seoRouter.get('/learn/:course', renderCourse);
 seoRouter.get('/learn/:course/:lesson', renderLesson);
+
+seoRouter.get('/examples', renderExamplesIndex);
+seoRouter.get('/examples/:slug', renderExample);
 
 seoRouter.get('/roadmaps', renderRoadmapIndex);
 seoRouter.get('/roadmaps/:slug', renderRoadmap);

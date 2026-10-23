@@ -53,6 +53,7 @@ const TemplatesIndex = () => {
             </Link>
           ))}
         </div>
+        <p className='text-center text-sm text-slate-600 mt-12'>Want to see a finished one first? Browse <Link to='/examples' className='text-brand-700 underline'>resume and CV examples that score 100/100</Link> on every automatic ATS check.</p>
       </section>
       <Footer />
     </div>

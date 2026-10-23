@@ -18,6 +18,11 @@ const LABELS = {
   'resume-job-description-matcher': 'Job Match Tool',
   products: 'Products',
   templates: 'Templates',
+  examples: 'Examples',
+  'nurse-cv-example': 'Nurse CV Example',
+  'production-supervisor-cv-example': 'Production Supervisor CV Example',
+  'teacher-cv-example': 'Teacher CV Example',
+  'fresher-engineer-cv-example': 'Fresher Engineer CV Example',
   hire: 'Hire',
   blog: 'Blog',
   jobs: 'Jobs',
@@ -40,7 +45,7 @@ const LABELS = {
 // Real pages, so a crumb only becomes a link when it goes somewhere that exists.
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
-  /^\/features$/, /^\/products$/, /^\/templates$/, /^\/app$/, /^\/admin$/,
+  /^\/features$/, /^\/products$/, /^\/templates$/, /^\/examples$/, /^\/app$/, /^\/admin$/,
   /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];

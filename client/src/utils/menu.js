@@ -8,6 +8,10 @@ export const DEFAULT_MENU = {
     { _id: 'h-home', label: 'Home', url: '/' },
     { _id: 'h-features', label: 'Features', url: '/features' },
     { _id: 'h-testimonials', label: 'Testimonials', url: '/#testimonials' },
+    { _id: 'h-builder', label: 'Builder', url: '/app', children: [
+      { _id: 'h-builder-app', label: 'AI Resume builder & CV maker', url: '/app', icon: 'sparkles', description: 'Build, edit and download an ATS-friendly resume or CV' },
+      { _id: 'h-builder-examples', label: 'Examples of 100/100 CV and resume', url: '/examples', icon: 'award', description: 'Real samples that pass every automatic ATS check' },
+    ] },
     { _id: 'h-templates', label: 'Templates', url: '/templates' },
     { _id: 'h-cv', label: 'CV Builder', url: '/cv-builder' },
     { _id: 'h-products', label: 'Products', url: '/products' },
@@ -37,6 +41,7 @@ export const DEFAULT_MENU = {
     { _id: 'fr-templates', label: 'Templates', url: '/templates' },
     { _id: 'fr-ats', label: 'ATS Checker', url: '/features/ats-checker' },
     { _id: 'fr-cv', label: 'CV Builder', url: '/cv-builder' },
+    { _id: 'fr-examples', label: '100/100 Resume Examples', url: '/examples' },
     { _id: 'fr-match', label: 'Job Match Tool', url: '/resume-job-description-matcher' },
     { _id: 'fr-products', label: 'Products', url: '/products' },
     { _id: 'fr-blog', label: 'Blog', url: '/blog' },

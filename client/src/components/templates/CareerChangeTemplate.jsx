@@ -12,16 +12,16 @@ const CareerChangeTemplate = ({ data, accentColor }) => {
         {p.profession && <p className="text-[16px] font-medium" style={{ color: accentColor }}>{p.profession}</p>}
         <p className="mt-1.5 text-[13px] text-gray-600">{contactParts(p).join('  |  ')}</p>
       </header>
-      {data.professional_summary && <section className="mt-5 rounded-md border-l-4 px-4 py-3 bg-gray-50" style={{ borderColor: accentColor, ...printSafe }}><h2 className="mb-1 text-[13px] font-bold uppercase tracking-wide" style={{ color: accentColor }}>Career Profile</h2><p className="whitespace-pre-line">{data.professional_summary}</p></section>}
-      {data.skills?.length > 0 && <section><H>Transferable Skills</H><p>{data.skills.join('  •  ')}</p></section>}
-      {data.experience?.length > 0 && <section><H>Relevant Experience</H><div className="space-y-4">{data.experience.map((e, i) => (
+      {data.professional_summary && <section className="mt-5 rounded-md border-l-4 px-4 py-3 bg-gray-50" style={{ borderColor: accentColor, ...printSafe }}><h2 className="mb-1 text-[13px] font-bold uppercase tracking-wide" style={{ color: accentColor }}>Professional Summary</h2><p className="whitespace-pre-line">{data.professional_summary}</p></section>}
+      {data.skills?.length > 0 && <section><H>Key Skills</H><p>{data.skills.join('  •  ')}</p></section>}
+      {data.experience?.length > 0 && <section><H>Work Experience</H><div className="space-y-4">{data.experience.map((e, i) => (
         <div key={i}>
           <div className="flex justify-between items-baseline gap-4"><h3 className="font-bold">{e.position} — {e.company}</h3><span className="text-[13px] text-gray-500 whitespace-nowrap">{range(e.start_date, e.end_date, e.is_current)}</span></div>
           <Bullets className="mt-1 space-y-0.5" text={e.description} />
         </div>))}</div></section>}
       {data.project?.length > 0 && <section><H>Projects and Training</H><div className="space-y-3">{data.project.map((pr, i) => (
         <div key={i}><h3 className="font-bold">{pr.name}{pr.type ? <span className="font-normal text-gray-600"> — {pr.type}</span> : null}</h3><Bullets text={pr.description} /></div>))}</div></section>}
-      {data.education?.length > 0 && <section><H>Education and Certifications</H><div className="space-y-2">{data.education.map((e, i) => (
+      {data.education?.length > 0 && <section><H>Education</H><div className="space-y-2">{data.education.map((e, i) => (
         <div key={i} className="flex justify-between items-baseline gap-4"><p><span className="font-bold">{e.degree}{e.field ? `, ${e.field}` : ''}</span> — {e.institution}{e.gpa ? ` (GPA: ${e.gpa})` : ''}</p><span className="text-[13px] text-gray-500 whitespace-nowrap">{formatDate(e.graduation_date)}</span></div>))}</div></section>}
     </div>
   )

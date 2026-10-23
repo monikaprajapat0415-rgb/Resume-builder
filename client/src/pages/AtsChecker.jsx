@@ -207,7 +207,7 @@ const AtsChecker = () => {
                 <Link to='/contact-us' className='px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-full text-sm font-medium transition'>Contact us</Link>
                 {status?.last && <button onClick={openLast} className='px-6 py-2.5 border border-slate-200 hover:bg-slate-50 text-slate-700 rounded-full text-sm font-medium transition'>View my last report (score {status.last.score})</button>}
               </div>
-              <p className='text-xs text-slate-400 mt-4'>Meanwhile, you can improve your resume with our <Link to='/templates' className='underline'>ATS-friendly templates</Link>.</p>
+              <p className='text-xs text-slate-400 mt-4'>Meanwhile, you can improve your resume with our <Link to='/templates' className='underline'>ATS-friendly templates</Link> or copy from <Link to='/examples' className='underline'>examples that score 100/100</Link>.</p>
             </div>
           )}
 

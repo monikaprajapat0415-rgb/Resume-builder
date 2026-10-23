@@ -12,7 +12,7 @@ const DeveloperTemplate = ({ data, accentColor }) => {
         {p.profession && <p className="font-mono text-[14px]" style={{ color: accentColor }}>{p.profession}</p>}
         <p className="mt-1 font-mono text-[12px] text-gray-600">{contactParts(p).join('  /  ')}</p>
       </header>
-      {data.professional_summary && <section><H>About</H><p className="whitespace-pre-line">{data.professional_summary}</p></section>}
+      {data.professional_summary && <section><H>Summary</H><p className="whitespace-pre-line">{data.professional_summary}</p></section>}
       {data.skills?.length > 0 && <section><H>Technical Skills</H><p className="font-mono text-[13px]">{data.skills.join(', ')}</p></section>}
       {data.experience?.length > 0 && <section><H>Experience</H><div className="space-y-4">{data.experience.map((e, i) => (
         <div key={i}>

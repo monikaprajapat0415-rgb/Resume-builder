@@ -45,6 +45,8 @@ import AdminJobs from "./pages/admin/AdminJobs";
 import LearnCourse from "./pages/LearnCourse";
 import LearnLesson from "./pages/LearnLesson";
 import TemplatesIndex from "./pages/TemplatesIndex";
+import ExamplesIndex from './pages/ExamplesIndex'
+import ExampleDetail from './pages/ExampleDetail'
 import TemplateLanding from "./pages/TemplateLanding";
 import AdminSeo from './pages/admin/AdminSeo'
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -183,6 +185,8 @@ const App = () => {
         <Route path="/resume-job-description-matcher" element={<JdMatcher />} />
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
+        <Route path="/examples" element={<ExamplesIndex />} />
+        <Route path="/examples/:slug" element={<ExampleDetail />} />
         <Route path="/templates" element={<TemplatesIndex />} />
         <Route path="/templates/:slug" element={<TemplateLanding />} />
 
