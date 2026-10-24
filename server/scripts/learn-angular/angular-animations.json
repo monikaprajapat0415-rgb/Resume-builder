@@ -1,0 +1,6260 @@
+{
+ "angular": {
+  "What is Angular? A Beginner's Introduction": {
+   "title": "What Angular does for you",
+   "nodes": [
+    {
+     "id": "code",
+     "label": "Your code",
+     "sub": "TypeScript + HTML",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "ng",
+     "label": "Angular",
+     "sub": "framework",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "browser",
+     "label": "Browser",
+     "sub": "runs the app",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "sees a fast page",
+     "col": 3,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "state",
+     "label": "Data",
+     "sub": "changes over time",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Angular is a framework from Google for building web apps, written in TypeScript.",
+     "on": [
+      "ng"
+     ]
+    },
+    {
+     "say": "You build the screen from components: small pieces made of a class, a template and styles.",
+     "flow": [
+      "code>ng:components"
+     ]
+    },
+    {
+     "say": "Angular gives you routing, forms, HTTP and testing tools in one place, so you do not choose each one yourself.",
+     "on": [
+      "ng"
+     ]
+    },
+    {
+     "say": "When your data changes, Angular updates only the parts of the page that need it.",
+     "flow": [
+      "state>ng:change"
+     ]
+    },
+    {
+     "say": "The browser runs the finished app and the user sees a fast, interactive page.",
+     "flow": [
+      "ng>browser:build",
+      "browser>user:page"
+     ]
+    }
+   ]
+  },
+  "TypeScript Basics for Angular": {
+   "title": "TypeScript catches mistakes early",
+   "nodes": [
+    {
+     "id": "ts",
+     "label": "TypeScript",
+     "sub": "types + JavaScript",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "check",
+     "label": "Type check",
+     "sub": "while you write",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "err",
+     "label": "Error shown",
+     "sub": "before you run",
+     "col": 1,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "js",
+     "label": "JavaScript",
+     "sub": "what the browser runs",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "TypeScript is JavaScript with types. You say what kind of value a variable, input or function holds.",
+     "on": [
+      "ts"
+     ]
+    },
+    {
+     "say": "The compiler and your editor check those types while you type.",
+     "flow": [
+      "ts>check:types"
+     ]
+    },
+    {
+     "say": "If you pass a number where text is expected, you see the error at once, not later in the browser.",
+     "flow": [
+      "check>err:mismatch"
+     ]
+    },
+    {
+     "say": "Interfaces, classes and decorators are the parts of TypeScript you will use most in Angular.",
+     "on": [
+      "ts"
+     ]
+    },
+    {
+     "say": "When everything checks out, TypeScript is turned into plain JavaScript for the browser.",
+     "flow": [
+      "check>js:compile"
+     ]
+    }
+   ]
+  },
+  "Install Node.js and the Angular CLI": {
+   "title": "Setting up your computer",
+   "nodes": [
+    {
+     "id": "node",
+     "label": "Node.js",
+     "sub": "runs tools",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "npm",
+     "label": "npm",
+     "sub": "installs packages",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "cli",
+     "label": "Angular CLI",
+     "sub": "the ng command",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "ver",
+     "label": "ng version",
+     "sub": "check it works",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "app",
+     "label": "Your projects",
+     "sub": "ng new, ng serve",
+     "col": 3,
+     "row": 0,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Install Node.js first. Angular tools run on it.",
+     "on": [
+      "node"
+     ]
+    },
+    {
+     "say": "Node comes with npm, the package manager that downloads tools and libraries.",
+     "flow": [
+      "node>npm:includes"
+     ]
+    },
+    {
+     "say": "Use npm to install the Angular CLI, which gives you the ng command.",
+     "flow": [
+      "npm>cli:install"
+     ]
+    },
+    {
+     "say": "Run ng version to confirm that it is installed.",
+     "flow": [
+      "cli>ver:check"
+     ]
+    },
+    {
+     "say": "Now ng can create, run and build projects for you.",
+     "flow": [
+      "cli>app:ng new"
+     ]
+    }
+   ]
+  },
+  "Angular Course Roadmap and Complete Topic Index (Beginner to Advanced)": {
+   "title": "The course path",
+   "nodes": [
+    {
+     "id": "basics",
+     "label": "Basics",
+     "sub": "components, templates",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "state",
+     "label": "State and forms",
+     "sub": "signals, services",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "data",
+     "label": "Routing and HTTP",
+     "sub": "real apps",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "adv",
+     "label": "Advanced",
+     "sub": "RxJS, SSR, testing",
+     "col": 3,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "proj",
+     "label": "Projects",
+     "sub": "build and deploy",
+     "col": 3,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Start with the basics: your first app, components and templates.",
+     "on": [
+      "basics"
+     ]
+    },
+    {
+     "say": "Next you manage state with signals and services, and collect input with forms.",
+     "flow": [
+      "basics>state:then"
+     ]
+    },
+    {
+     "say": "Then connect real data: routing between pages and HTTP calls to an API.",
+     "flow": [
+      "state>data:then"
+     ]
+    },
+    {
+     "say": "Advanced topics follow: RxJS, change detection, server-side rendering, testing and security.",
+     "flow": [
+      "data>adv:then"
+     ]
+    },
+    {
+     "say": "Projects tie it together, and the last lessons show how to deploy.",
+     "flow": [
+      "adv>proj:apply"
+     ]
+    }
+   ]
+  },
+  "Create Your First Angular App with the CLI": {
+   "title": "From ng new to the browser",
+   "nodes": [
+    {
+     "id": "new",
+     "label": "ng new",
+     "sub": "create project",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "files",
+     "label": "Project files",
+     "sub": "src, angular.json",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "serve",
+     "label": "ng serve",
+     "sub": "dev server",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "browser",
+     "label": "Browser",
+     "sub": "localhost:4200",
+     "col": 3,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "edit",
+     "label": "You edit code",
+     "sub": "saved",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Run ng new and answer the questions. The CLI creates a complete project.",
+     "flow": [
+      "new>files:generates"
+     ]
+    },
+    {
+     "say": "Move into the folder and run ng serve to start the development server.",
+     "flow": [
+      "files>serve:ng serve"
+     ]
+    },
+    {
+     "say": "Open localhost:4200 in the browser and your first app appears.",
+     "flow": [
+      "serve>browser:page"
+     ]
+    },
+    {
+     "say": "Change a file and save it. The browser reloads by itself.",
+     "flow": [
+      "edit>serve:save",
+      "serve>browser:reload"
+     ]
+    }
+   ]
+  },
+  "Angular Project Structure Explained": {
+   "title": "Where things live in a project",
+   "nodes": [
+    {
+     "id": "main",
+     "label": "main.ts",
+     "sub": "starts the app",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "cfg",
+     "label": "app.config.ts",
+     "sub": "providers",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "root",
+     "label": "App component",
+     "sub": "the root",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "routes",
+     "label": "app.routes.ts",
+     "sub": "pages",
+     "col": 2,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "page",
+     "label": "index.html",
+     "sub": "one host page",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "main.ts is the entry point. It starts the app.",
+     "on": [
+      "main"
+     ]
+    },
+    {
+     "say": "It passes in app.config.ts, where you list app-wide settings and services.",
+     "flow": [
+      "main>cfg:config"
+     ]
+    },
+    {
+     "say": "It then loads the root component, which holds the page layout.",
+     "flow": [
+      "cfg>root:bootstrap"
+     ]
+    },
+    {
+     "say": "app.routes.ts says which component shows for each URL.",
+     "flow": [
+      "routes>root:routes"
+     ]
+    },
+    {
+     "say": "The result is drawn inside index.html, the single page the browser loads.",
+     "flow": [
+      "root>page:renders"
+     ]
+    }
+   ]
+  },
+  "Your First Angular Component": {
+   "title": "Inside a component",
+   "nodes": [
+    {
+     "id": "ts",
+     "label": "Class",
+     "sub": "data and methods",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "html",
+     "label": "Template",
+     "sub": "what you see",
+     "col": 1,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "css",
+     "label": "Styles",
+     "sub": "how it looks",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "sel",
+     "label": "Selector",
+     "sub": "<app-hello>",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "page",
+     "label": "Parent page",
+     "sub": "uses the tag",
+     "col": 2,
+     "row": 1,
+     "kind": "user"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A component is a class with a decorator that tells Angular how to use it.",
+     "on": [
+      "ts"
+     ]
+    },
+    {
+     "say": "Its template is HTML that shows the data from the class.",
+     "flow": [
+      "ts>html:data"
+     ]
+    },
+    {
+     "say": "Its styles apply only to this component.",
+     "flow": [
+      "html>css:styled by"
+     ]
+    },
+    {
+     "say": "The selector gives it a custom tag name.",
+     "flow": [
+      "ts>sel:selector"
+     ]
+    },
+    {
+     "say": "Put that tag in another template, and Angular draws your component there.",
+     "flow": [
+      "sel>page:use tag"
+     ]
+    }
+   ]
+  },
+  "Angular CLI Guide: ng new, ng update, Multiple Apps and Multiple Angular Versions": {
+   "title": "Common CLI commands",
+   "nodes": [
+    {
+     "id": "cli",
+     "label": "Angular CLI",
+     "sub": "ng",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "new",
+     "label": "ng new",
+     "sub": "start a project",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "gen",
+     "label": "ng generate",
+     "sub": "components, services",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "upd",
+     "label": "ng update",
+     "sub": "upgrade versions",
+     "col": 0,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "build",
+     "label": "ng build",
+     "sub": "production files",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The Angular CLI is one tool for the whole life of a project.",
+     "on": [
+      "cli"
+     ]
+    },
+    {
+     "say": "ng new creates a project. You can keep several apps side by side in separate folders.",
+     "flow": [
+      "cli>new:create"
+     ]
+    },
+    {
+     "say": "ng generate makes components, services and more with the right files and names.",
+     "flow": [
+      "cli>gen:generate"
+     ]
+    },
+    {
+     "say": "ng update upgrades Angular and runs migrations that change your code for you. Upgrade one major version at a time.",
+     "flow": [
+      "cli>upd:upgrade"
+     ]
+    },
+    {
+     "say": "ng build creates the optimised files you deploy.",
+     "flow": [
+      "gen>build:build"
+     ]
+    }
+   ]
+  },
+  "Displaying Data in Angular with Interpolation": {
+   "title": "Interpolation",
+   "nodes": [
+    {
+     "id": "cls",
+     "label": "Component class",
+     "sub": "title = \"Hello\"",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "tpl",
+     "label": "Template",
+     "sub": "{{ title }}",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "page",
+     "label": "Page",
+     "sub": "shows Hello",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "chg",
+     "label": "Value changes",
+     "sub": "title = \"Hi\"",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A class property holds a value, for example title.",
+     "on": [
+      "cls"
+     ]
+    },
+    {
+     "say": "In the template, double curly braces read that value.",
+     "flow": [
+      "cls>tpl:value"
+     ]
+    },
+    {
+     "say": "Angular turns it into text on the page.",
+     "flow": [
+      "tpl>page:renders"
+     ]
+    },
+    {
+     "say": "When the property changes, the text on the page updates.",
+     "flow": [
+      "chg>cls:update",
+      "cls>tpl:notify",
+      "tpl>page:new text"
+     ]
+    },
+    {
+     "say": "You can also write small expressions inside the braces, such as a calculation.",
+     "on": [
+      "tpl"
+     ]
+    }
+   ]
+  },
+  "Property Binding and Event Binding in Angular": {
+   "title": "Data in, events out",
+   "nodes": [
+    {
+     "id": "cls",
+     "label": "Component class",
+     "sub": "data and methods",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "el",
+     "label": "Element",
+     "sub": "button or input",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "clicks",
+     "col": 2,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "h",
+     "label": "Handler method",
+     "sub": "runs on click",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Square brackets bind a class value to an element property, like [disabled]=\"isBusy\".",
+     "flow": [
+      "cls>el:[property]"
+     ]
+    },
+    {
+     "say": "The element always shows the current value. Angular keeps it in sync.",
+     "on": [
+      "el"
+     ]
+    },
+    {
+     "say": "Round brackets listen to events, like (click)=\"save()\".",
+     "flow": [
+      "user>el:click"
+     ]
+    },
+    {
+     "say": "The event calls your method in the component class.",
+     "flow": [
+      "el>h:(event)"
+     ]
+    },
+    {
+     "say": "The method changes the data, and property bindings update the screen.",
+     "flow": [
+      "h>cls:change"
+     ]
+    }
+   ]
+  },
+  "Angular Two-Way Binding: ngModel, ngModelChange and Input Events": {
+   "title": "Two-way binding with ngModel",
+   "nodes": [
+    {
+     "id": "cls",
+     "label": "Property",
+     "sub": "name",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "in",
+     "label": "Input box",
+     "sub": "[(ngModel)]",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "user",
+     "label": "User types",
+     "sub": "Priya",
+     "col": 2,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "page",
+     "label": "Text on page",
+     "sub": "{{ name }}",
+     "col": 1,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Two-way binding keeps a property and an input in sync in both directions.",
+     "on": [
+      "in"
+     ]
+    },
+    {
+     "say": "Property to input: the box shows the current value of name.",
+     "flow": [
+      "cls>in:value"
+     ]
+    },
+    {
+     "say": "Input to property: when the user types, name is updated.",
+     "flow": [
+      "user>in:typing",
+      "in>cls:new value"
+     ]
+    },
+    {
+     "say": "Anything else that shows name now shows the new value too.",
+     "flow": [
+      "cls>page:updated"
+     ]
+    },
+    {
+     "say": "The banana-in-a-box [(ngModel)] is shorthand for a property binding plus an event binding.",
+     "on": [
+      "in"
+     ]
+    }
+   ]
+  },
+  "Angular Signals: Reactive State for Beginners": {
+   "title": "How a signal works",
+   "nodes": [
+    {
+     "id": "sig",
+     "label": "Signal",
+     "sub": "count = signal(0)",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "tpl",
+     "label": "Template",
+     "sub": "{{ count() }}",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "set",
+     "label": "set / update",
+     "sub": "change the value",
+     "col": 0,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "page",
+     "label": "Page",
+     "sub": "updates itself",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A signal holds a value and tells Angular whenever that value changes.",
+     "on": [
+      "sig"
+     ]
+    },
+    {
+     "say": "You read it by calling it like a function: count().",
+     "flow": [
+      "sig>tpl:count()"
+     ]
+    },
+    {
+     "say": "The template now depends on the signal.",
+     "flow": [
+      "tpl>page:shows 0"
+     ]
+    },
+    {
+     "say": "Call set or update to change the value.",
+     "flow": [
+      "set>sig"
+     ]
+    },
+    {
+     "say": "Angular knows exactly which parts of the page used the signal, and refreshes only those.",
+     "flow": [
+      "sig>tpl:notify",
+      "tpl>page:shows 1"
+     ]
+    }
+   ]
+  },
+  "Angular Styling: Global Styles, Component Styles, View Encapsulation, Bootstrap and Font Awesome": {
+   "title": "Where styles apply",
+   "nodes": [
+    {
+     "id": "glob",
+     "label": "styles.css",
+     "sub": "whole app",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "comp",
+     "label": "Component CSS",
+     "sub": "only this component",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "enc",
+     "label": "View encapsulation",
+     "sub": "keeps styles inside",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "lib",
+     "label": "Bootstrap, icons",
+     "sub": "libraries",
+     "col": 0,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "page",
+     "label": "Rendered page",
+     "sub": "combined result",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Global styles in styles.css apply to every page of the app.",
+     "on": [
+      "glob"
+     ]
+    },
+    {
+     "say": "Component styles apply only to that component.",
+     "on": [
+      "comp"
+     ]
+    },
+    {
+     "say": "View encapsulation is how Angular keeps a component's styles from leaking out.",
+     "flow": [
+      "comp>enc:scoped"
+     ]
+    },
+    {
+     "say": "Libraries such as Bootstrap and Font Awesome are added once and used through classes.",
+     "flow": [
+      "lib>glob"
+     ]
+    },
+    {
+     "say": "The browser combines all of them into the final look.",
+     "flow": [
+      "enc>page:styles",
+      "glob>comp:inherit"
+     ]
+    }
+   ]
+  },
+  "Conditional Rendering in Angular with @if, @else and @switch": {
+   "title": "Showing the right block",
+   "nodes": [
+    {
+     "id": "cond",
+     "label": "Condition",
+     "sub": "loggedIn()",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "if",
+     "label": "@if",
+     "sub": "true: show this",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "else",
+     "label": "@else",
+     "sub": "false: show that",
+     "col": 1,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "sw",
+     "label": "@switch",
+     "sub": "one of many cases",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "page",
+     "label": "Page",
+     "sub": "only one block",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Control flow decides which parts of the template exist at all.",
+     "on": [
+      "cond"
+     ]
+    },
+    {
+     "say": "@if shows its block when the condition is true.",
+     "flow": [
+      "cond>if:true"
+     ]
+    },
+    {
+     "say": "@else gives the block for when it is false.",
+     "flow": [
+      "cond>else:false"
+     ]
+    },
+    {
+     "say": "Only the matching block is added to the page. The other is not in the page at all.",
+     "flow": [
+      "if>page:renders"
+     ]
+    },
+    {
+     "say": "@switch picks one block out of many cases, like the status of an order.",
+     "flow": [
+      "else>sw:many cases"
+     ]
+    }
+   ]
+  },
+  "Rendering Lists in Angular with @for and track": {
+   "title": "A list with @for",
+   "nodes": [
+    {
+     "id": "arr",
+     "label": "Array",
+     "sub": "items",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "for",
+     "label": "@for",
+     "sub": "repeat the block",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "track",
+     "label": "track item.id",
+     "sub": "identity of each",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "dom",
+     "label": "List items",
+     "sub": "one per item",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "You have an array of items, such as products.",
+     "on": [
+      "arr"
+     ]
+    },
+    {
+     "say": "@for repeats its block once for each item.",
+     "flow": [
+      "arr>for:each item"
+     ]
+    },
+    {
+     "say": "The track expression tells Angular which item is which, usually its id.",
+     "flow": [
+      "for>track:track"
+     ]
+    },
+    {
+     "say": "The page gets one element per item.",
+     "flow": [
+      "for>dom:renders"
+     ]
+    },
+    {
+     "say": "When the array changes, Angular uses the tracking to add, move or remove only what changed.",
+     "flow": [
+      "track>dom:minimal updates"
+     ]
+    }
+   ]
+  },
+  "Angular ngIf, ngFor, ngSwitch and trackBy: Legacy Syntax and Migration": {
+   "title": "Old syntax to new syntax",
+   "nodes": [
+    {
+     "id": "old",
+     "label": "*ngIf, *ngFor",
+     "sub": "older directives",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "mig",
+     "label": "Migration",
+     "sub": "ng generate migration",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "new",
+     "label": "@if, @for, @switch",
+     "sub": "built-in control flow",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "app",
+     "label": "Your app",
+     "sub": "still works",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Older Angular code uses *ngIf, *ngFor and *ngSwitch, which you still meet in many projects.",
+     "on": [
+      "old"
+     ]
+    },
+    {
+     "say": "trackBy was the old way to track list items. @for uses a track expression instead.",
+     "on": [
+      "old"
+     ]
+    },
+    {
+     "say": "Angular provides a migration that converts templates to the new control flow for you.",
+     "flow": [
+      "old>mig:convert"
+     ]
+    },
+    {
+     "say": "The result is the same behaviour with the built-in @if, @for and @switch blocks.",
+     "flow": [
+      "mig>new:rewrites"
+     ]
+    },
+    {
+     "say": "Review the changes and run your tests. Your app keeps working.",
+     "flow": [
+      "new>app:check"
+     ]
+    }
+   ]
+  },
+  "Angular ngClass, ngStyle, Class Binding and Style Binding Explained": {
+   "title": "Changing classes and styles",
+   "nodes": [
+    {
+     "id": "state",
+     "label": "Component state",
+     "sub": "isActive, size",
+     "col": 0,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "cb",
+     "label": "[class.active]",
+     "sub": "one class",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "ng",
+     "label": "[ngClass]",
+     "sub": "many classes",
+     "col": 1,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "sb",
+     "label": "[style.width.px]",
+     "sub": "one style",
+     "col": 1,
+     "row": 2,
+     "kind": "check"
+    },
+    {
+     "id": "el",
+     "label": "Element",
+     "sub": "updated live",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "State in your component decides how an element looks.",
+     "on": [
+      "state"
+     ]
+    },
+    {
+     "say": "A class binding adds or removes a single class when the value is true or false.",
+     "flow": [
+      "state>cb:true or false"
+     ]
+    },
+    {
+     "say": "ngClass handles several classes at once, from an object or a list.",
+     "flow": [
+      "state>ng:many"
+     ]
+    },
+    {
+     "say": "A style binding sets one CSS property, with a unit if you need it.",
+     "flow": [
+      "state>sb:value"
+     ]
+    },
+    {
+     "say": "The element updates whenever the state changes.",
+     "flow": [
+      "sb>el:applied",
+      "ng>el:applied"
+     ]
+    }
+   ]
+  },
+  "Computed Signals and Effects in Angular": {
+   "title": "Computed values and effects",
+   "nodes": [
+    {
+     "id": "a",
+     "label": "price signal",
+     "sub": "writable",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "b",
+     "label": "qty signal",
+     "sub": "writable",
+     "col": 0,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "c",
+     "label": "total computed",
+     "sub": "price x qty",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "e",
+     "label": "effect",
+     "sub": "side effect",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "out",
+     "label": "Log or save",
+     "sub": "outside the template",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Some values depend on others. A computed signal calculates one from other signals.",
+     "on": [
+      "c"
+     ]
+    },
+    {
+     "say": "total reads price and quantity.",
+     "flow": [
+      "a>c:read",
+      "b>c:read"
+     ]
+    },
+    {
+     "say": "When either changes, total is recalculated. It is also cached until then.",
+     "flow": [
+      "b>c:changed"
+     ]
+    },
+    {
+     "say": "An effect runs code whenever the signals it reads change.",
+     "flow": [
+      "c>e:reads"
+     ]
+    },
+    {
+     "say": "Use effects for things like logging or saving to storage, not to calculate values.",
+     "flow": [
+      "e>out:side effect"
+     ]
+    }
+   ]
+  },
+  "Signals in Practice: Build a Shopping Cart": {
+   "title": "A cart built with signals",
+   "nodes": [
+    {
+     "id": "items",
+     "label": "items signal",
+     "sub": "cart lines",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "add",
+     "label": "Add button",
+     "sub": "update()",
+     "col": 0,
+     "row": 1,
+     "kind": "user"
+    },
+    {
+     "id": "count",
+     "label": "count computed",
+     "sub": "number of items",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "total",
+     "label": "total computed",
+     "sub": "sum of prices",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "ui",
+     "label": "Cart view",
+     "sub": "updates itself",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The cart keeps its lines in one signal.",
+     "on": [
+      "items"
+     ]
+    },
+    {
+     "say": "Pressing Add updates the signal with a new line.",
+     "flow": [
+      "add>items"
+     ]
+    },
+    {
+     "say": "The item count is a computed signal that reads the lines.",
+     "flow": [
+      "items>count:read"
+     ]
+    },
+    {
+     "say": "The total is another computed signal, so it is always correct.",
+     "flow": [
+      "count>total:also read"
+     ]
+    },
+    {
+     "say": "The cart view shows both values and refreshes with no extra code.",
+     "flow": [
+      "total>ui:render"
+     ]
+    }
+   ]
+  },
+  "Angular Component Inputs: Pass Data to Child Components": {
+   "title": "Passing data down with input()",
+   "nodes": [
+    {
+     "id": "parent",
+     "label": "Parent",
+     "sub": "has the data",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "tpl",
+     "label": "Parent template",
+     "sub": "[product]=\"p\"",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "child",
+     "label": "Child component",
+     "sub": "product = input()",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "view",
+     "label": "Child view",
+     "sub": "shows it",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A parent often needs to give data to a child component.",
+     "on": [
+      "parent"
+     ]
+    },
+    {
+     "say": "In the parent template, bind the value to the child's input with square brackets.",
+     "flow": [
+      "parent>tpl:value"
+     ]
+    },
+    {
+     "say": "The child declares the input with input() or input.required().",
+     "flow": [
+      "tpl>child:[product]"
+     ]
+    },
+    {
+     "say": "Inside the child, read it by calling product().",
+     "flow": [
+      "child>view:product()"
+     ]
+    },
+    {
+     "say": "Data flows one way, from parent to child. When the parent value changes, the child updates.",
+     "on": [
+      "parent",
+      "child"
+     ]
+    }
+   ]
+  },
+  "Angular Component Outputs and Two-Way Binding with model()": {
+   "title": "Sending events up",
+   "nodes": [
+    {
+     "id": "child",
+     "label": "Child",
+     "sub": "output() or model()",
+     "col": 0,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "ev",
+     "label": "Event",
+     "sub": "saved",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "parent",
+     "label": "Parent",
+     "sub": "handles it",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "data",
+     "label": "Parent data",
+     "sub": "updated",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A child tells its parent that something happened with an output.",
+     "on": [
+      "child"
+     ]
+    },
+    {
+     "say": "The child emits an event, optionally with a value.",
+     "flow": [
+      "child>ev:emit"
+     ]
+    },
+    {
+     "say": "The parent listens with round brackets and runs its own method.",
+     "flow": [
+      "ev>parent:(saved)"
+     ]
+    },
+    {
+     "say": "model() combines an input and an output, so the child can change a value the parent owns.",
+     "flow": [
+      "parent>data:update"
+     ]
+    },
+    {
+     "say": "With model(), the parent can use [(value)] for two-way binding with the child.",
+     "flow": [
+      "data>child:new value"
+     ]
+    }
+   ]
+  },
+  "Angular Pipes: Format Dates, Currency and Text": {
+   "title": "A pipe formats a value",
+   "nodes": [
+    {
+     "id": "val",
+     "label": "Raw value",
+     "sub": "1730000000000",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "pipe",
+     "label": "Pipe",
+     "sub": "| date",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "out",
+     "label": "Shown text",
+     "sub": "24 Oct 2026",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "cur",
+     "label": "currency pipe",
+     "sub": "| currency",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A pipe changes how a value is shown, without changing the value itself.",
+     "on": [
+      "pipe"
+     ]
+    },
+    {
+     "say": "Put the raw value in the template and add a pipe after the bar sign.",
+     "flow": [
+      "val>pipe:value"
+     ]
+    },
+    {
+     "say": "The date pipe turns a timestamp into readable text in the format you choose.",
+     "flow": [
+      "pipe>out:formatted"
+     ]
+    },
+    {
+     "say": "The currency pipe adds the symbol and decimals. Uppercase and lowercase pipes change text.",
+     "flow": [
+      "val>cur:number"
+     ]
+    },
+    {
+     "say": "Pipes can take options and can be chained one after another.",
+     "on": [
+      "pipe",
+      "cur"
+     ]
+    }
+   ]
+  },
+  "Angular Built-in Pipes: Date, Async, KeyValue and Using Pipes in Code": {
+   "title": "More built-in pipes",
+   "nodes": [
+    {
+     "id": "obs",
+     "label": "Observable",
+     "sub": "data over time",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "async",
+     "label": "async pipe",
+     "sub": "subscribes for you",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "view",
+     "label": "Template",
+     "sub": "shows the value",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "kv",
+     "label": "keyvalue pipe",
+     "sub": "object to list",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "code",
+     "label": "Pipe in code",
+     "sub": "new DatePipe()",
+     "col": 2,
+     "row": 1,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The async pipe subscribes to an observable or promise and shows its latest value.",
+     "flow": [
+      "obs>async:subscribe"
+     ]
+    },
+    {
+     "say": "It also unsubscribes when the component is destroyed, so you cannot forget to.",
+     "flow": [
+      "async>view:value"
+     ]
+    },
+    {
+     "say": "The keyvalue pipe lets you loop over the keys and values of an object.",
+     "flow": [
+      "obs>kv:object"
+     ]
+    },
+    {
+     "say": "You can also use a pipe in TypeScript, by injecting it or creating it and calling transform.",
+     "flow": [
+      "kv>code:transform"
+     ]
+    }
+   ]
+  },
+  "Angular Lifecycle Hooks: OnInit, OnDestroy, OnChanges, DoCheck and More": {
+   "title": "Component life",
+   "nodes": [
+    {
+     "id": "create",
+     "label": "Created",
+     "sub": "constructor",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "init",
+     "label": "ngOnInit",
+     "sub": "start work",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "chg",
+     "label": "ngOnChanges",
+     "sub": "inputs changed",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "after",
+     "label": "AfterViewInit",
+     "sub": "view is ready",
+     "col": 3,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "dest",
+     "label": "ngOnDestroy",
+     "sub": "clean up",
+     "col": 3,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A component has a life: it is created, it updates, then it is removed.",
+     "on": [
+      "create"
+     ]
+    },
+    {
+     "say": "ngOnInit runs once after the inputs are set. It is the place to load initial data.",
+     "flow": [
+      "create>init:then"
+     ]
+    },
+    {
+     "say": "ngOnChanges runs when an input value changes. DoCheck runs on every change detection.",
+     "flow": [
+      "init>chg:inputs"
+     ]
+    },
+    {
+     "say": "ngAfterViewInit runs once the view and child components exist.",
+     "flow": [
+      "chg>after:view"
+     ]
+    },
+    {
+     "say": "ngOnDestroy runs just before removal. Stop timers and subscriptions here.",
+     "flow": [
+      "after>dest:removed"
+     ]
+    }
+   ]
+  },
+  "Template Reference Variables, ng-container, ViewChild and ContentChild in Angular": {
+   "title": "Reaching elements and content",
+   "nodes": [
+    {
+     "id": "ref",
+     "label": "#box",
+     "sub": "template variable",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "vc",
+     "label": "viewChild()",
+     "sub": "in your own view",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "cc",
+     "label": "contentChild()",
+     "sub": "content passed in",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "ngc",
+     "label": "ng-container",
+     "sub": "no extra element",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "use",
+     "label": "Your code",
+     "sub": "uses the element",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A template reference variable, like #box, gives a name to an element or component in the template.",
+     "on": [
+      "ref"
+     ]
+    },
+    {
+     "say": "viewChild() lets your class get hold of something inside its own template.",
+     "flow": [
+      "ref>vc:find"
+     ]
+    },
+    {
+     "say": "contentChild() gets something the parent projected into your component.",
+     "flow": [
+      "vc>cc:vs content"
+     ]
+    },
+    {
+     "say": "ng-container groups elements or holds an @if without adding an extra element to the page.",
+     "on": [
+      "ngc"
+     ]
+    },
+    {
+     "say": "Once you have the reference, you can call its methods or read its value.",
+     "flow": [
+      "vc>use:use it"
+     ]
+    }
+   ]
+  },
+  "Angular Services and Dependency Injection Explained": {
+   "title": "Dependency injection",
+   "nodes": [
+    {
+     "id": "svc",
+     "label": "Service class",
+     "sub": "@Injectable",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "inj",
+     "label": "Injector",
+     "sub": "creates and shares",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "c1",
+     "label": "Component A",
+     "sub": "inject(Service)",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "c2",
+     "label": "Component B",
+     "sub": "inject(Service)",
+     "col": 2,
+     "row": 1,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A service is a class that holds logic or data you want to reuse, such as API calls.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "Mark it with @Injectable and provide it, often with providedIn: root.",
+     "flow": [
+      "svc>inj:provided"
+     ]
+    },
+    {
+     "say": "A component asks for it with inject(). It does not create it with new.",
+     "flow": [
+      "inj>c1:inject()"
+     ]
+    },
+    {
+     "say": "Another component asks, and gets the same instance.",
+     "flow": [
+      "inj>c2:same instance"
+     ]
+    },
+    {
+     "say": "This keeps components small and makes services easy to replace in tests.",
+     "on": [
+      "c1",
+      "c2"
+     ]
+    }
+   ]
+  },
+  "Share State Between Components with an Angular Service": {
+   "title": "Shared state in a service",
+   "nodes": [
+    {
+     "id": "a",
+     "label": "Component A",
+     "sub": "changes data",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "svc",
+     "label": "Cart service",
+     "sub": "holds a signal",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "sig",
+     "label": "Signal",
+     "sub": "items",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "b",
+     "label": "Component B",
+     "sub": "shows data",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Two components that are not parent and child still need the same data.",
+     "on": [
+      "a",
+      "b"
+     ]
+    },
+    {
+     "say": "Put the data in a service. It lives as one shared instance.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "The service keeps the state in a signal.",
+     "flow": [
+      "svc>sig:holds"
+     ]
+    },
+    {
+     "say": "Component A calls a service method to change it.",
+     "flow": [
+      "a>svc:add()"
+     ]
+    },
+    {
+     "say": "Component B reads the signal and updates by itself.",
+     "flow": [
+      "sig>b:read"
+     ]
+    }
+   ]
+  },
+  "Angular Hierarchical Dependency Injection: Providers, @Self, @SkipSelf, @Optional, @Host": {
+   "title": "Which injector answers?",
+   "nodes": [
+    {
+     "id": "root",
+     "label": "Root injector",
+     "sub": "app-wide",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "par",
+     "label": "Parent component",
+     "sub": "own provider",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "child",
+     "label": "Child component",
+     "sub": "asks for service",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "opt",
+     "label": "Flags",
+     "sub": "@Self @SkipSelf",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Angular has a tree of injectors that follows your component tree.",
+     "on": [
+      "root",
+      "par"
+     ]
+    },
+    {
+     "say": "A component asks for a service. Angular looks in its own providers first.",
+     "on": [
+      "child"
+     ]
+    },
+    {
+     "say": "If it is not found, Angular moves up to the parent, and finally to the root.",
+     "flow": [
+      "child>par:ask up",
+      "par>root:ask up"
+     ]
+    },
+    {
+     "say": "A provider on a component gives that branch its own instance.",
+     "on": [
+      "par"
+     ]
+    },
+    {
+     "say": "Flags change the search: @Self only here, @SkipSelf starts at the parent, @Optional allows no result.",
+     "flow": [
+      "child>opt:flags"
+     ]
+    }
+   ]
+  },
+  "Angular Reactive Forms for Beginners": {
+   "title": "A reactive form",
+   "nodes": [
+    {
+     "id": "cls",
+     "label": "FormGroup",
+     "sub": "in your class",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "ctl",
+     "label": "FormControl",
+     "sub": "email, name",
+     "col": 1,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "tpl",
+     "label": "Template",
+     "sub": "[formGroup]",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "sub",
+     "label": "Submit",
+     "sub": "form.value",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "In a reactive form you build the form model in your class.",
+     "on": [
+      "cls"
+     ]
+    },
+    {
+     "say": "It is a FormGroup holding a FormControl for each field.",
+     "flow": [
+      "cls>ctl:contains"
+     ]
+    },
+    {
+     "say": "The template connects to it with [formGroup] and formControlName.",
+     "flow": [
+      "ctl>tpl:bind"
+     ]
+    },
+    {
+     "say": "As the user types, the model always has the current values.",
+     "on": [
+      "ctl"
+     ]
+    },
+    {
+     "say": "On submit, read form.value and send it where it needs to go.",
+     "flow": [
+      "tpl>sub:submit"
+     ]
+    }
+   ]
+  },
+  "Angular Form Validation: Built-in and Custom Validators": {
+   "title": "Validators",
+   "nodes": [
+    {
+     "id": "ctl",
+     "label": "FormControl",
+     "sub": "email",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "val",
+     "label": "Validators",
+     "sub": "required, email",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "st",
+     "label": "Status",
+     "sub": "valid or invalid",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "msg",
+     "label": "Error message",
+     "sub": "shown to user",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Validators are rules a control must satisfy.",
+     "on": [
+      "val"
+     ]
+    },
+    {
+     "say": "Attach built-in ones such as required, minLength and email.",
+     "flow": [
+      "ctl>val:rules"
+     ]
+    },
+    {
+     "say": "Angular checks them each time the value changes and sets the status.",
+     "flow": [
+      "val>st:result"
+     ]
+    },
+    {
+     "say": "Show an error message only when the control is invalid and touched.",
+     "flow": [
+      "st>msg:if invalid"
+     ]
+    },
+    {
+     "say": "A custom validator is a function that returns an error object or null.",
+     "on": [
+      "val"
+     ]
+    }
+   ]
+  },
+  "Angular Template-Driven Forms with ngModel": {
+   "title": "Template-driven forms",
+   "nodes": [
+    {
+     "id": "tpl",
+     "label": "Template",
+     "sub": "ngModel, name",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "dir",
+     "label": "NgForm",
+     "sub": "created by Angular",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "val",
+     "label": "HTML rules",
+     "sub": "required, pattern",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "sub",
+     "label": "ngSubmit",
+     "sub": "handler",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "In a template-driven form, most of the setup is in the HTML.",
+     "on": [
+      "tpl"
+     ]
+    },
+    {
+     "say": "Add ngModel and a name to each input. Angular builds the form model for you.",
+     "flow": [
+      "tpl>dir:ngModel"
+     ]
+    },
+    {
+     "say": "Use HTML attributes like required for validation.",
+     "flow": [
+      "val>dir:rules"
+     ]
+    },
+    {
+     "say": "The form tracks values and validity.",
+     "on": [
+      "dir"
+     ]
+    },
+    {
+     "say": "The ngSubmit event gives your code the values. It suits small, simple forms.",
+     "flow": [
+      "dir>sub:ngSubmit"
+     ]
+    }
+   ]
+  },
+  "FormControl, FormGroup, FormBuilder, setValue, patchValue, valueChanges and statusChanges": {
+   "title": "Form building blocks",
+   "nodes": [
+    {
+     "id": "fb",
+     "label": "FormBuilder",
+     "sub": "short syntax",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "grp",
+     "label": "FormGroup",
+     "sub": "many controls",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "set",
+     "label": "set / patchValue",
+     "sub": "write values",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "vc",
+     "label": "valueChanges",
+     "sub": "stream of values",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "sc",
+     "label": "statusChanges",
+     "sub": "stream of status",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "FormControl is one field. FormGroup groups fields into one form.",
+     "on": [
+      "grp"
+     ]
+    },
+    {
+     "say": "FormBuilder is a shorter way to create them.",
+     "flow": [
+      "fb>grp:builds"
+     ]
+    },
+    {
+     "say": "setValue needs every field. patchValue lets you update only some.",
+     "flow": [
+      "set>grp:write"
+     ]
+    },
+    {
+     "say": "valueChanges is an observable that emits each time a value changes.",
+     "flow": [
+      "grp>vc:emits"
+     ]
+    },
+    {
+     "say": "statusChanges emits when the form becomes valid or invalid.",
+     "flow": [
+      "grp>sc:emits"
+     ]
+    }
+   ]
+  },
+  "Angular Forms: Select Dropdowns, Checkboxes, Radio Buttons, Typed Forms and FormRecord": {
+   "title": "More form inputs",
+   "nodes": [
+    {
+     "id": "sel",
+     "label": "Select",
+     "sub": "one option",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "chk",
+     "label": "Checkbox",
+     "sub": "true or false",
+     "col": 0,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "rad",
+     "label": "Radio group",
+     "sub": "one of few",
+     "col": 1,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "form",
+     "label": "Typed form",
+     "sub": "known types",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "rec",
+     "label": "FormRecord",
+     "sub": "dynamic keys",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Selects, checkboxes and radio buttons work with form controls just like text inputs.",
+     "on": [
+      "sel",
+      "chk",
+      "rad"
+     ]
+    },
+    {
+     "say": "A select or radio group stores one chosen value.",
+     "flow": [
+      "sel>form:value",
+      "rad>form:value"
+     ]
+    },
+    {
+     "say": "A checkbox stores true or false.",
+     "flow": [
+      "chk>form:boolean"
+     ]
+    },
+    {
+     "say": "Typed forms know the type of each control, so mistakes show up in your editor.",
+     "on": [
+      "form"
+     ]
+    },
+    {
+     "say": "FormRecord is for groups where the keys are not known in advance.",
+     "flow": [
+      "form>rec:dynamic"
+     ]
+    }
+   ]
+  },
+  "Angular Advanced Form Validation: Custom, Async, Cross-Field and setValidators": {
+   "title": "Advanced validation",
+   "nodes": [
+    {
+     "id": "cus",
+     "label": "Custom validator",
+     "sub": "your function",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "asy",
+     "label": "Async validator",
+     "sub": "asks a server",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "crs",
+     "label": "Group validator",
+     "sub": "compares fields",
+     "col": 0,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "ctl",
+     "label": "Form",
+     "sub": "status",
+     "col": 1,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "set",
+     "label": "setValidators",
+     "sub": "change rules later",
+     "col": 2,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Custom validators encode your own rules, such as a password policy.",
+     "flow": [
+      "cus>ctl:error or null"
+     ]
+    },
+    {
+     "say": "Async validators wait for a result, for example checking if a username is taken. The control shows pending meanwhile.",
+     "flow": [
+      "asy>ctl:pending"
+     ]
+    },
+    {
+     "say": "A cross-field validator sits on the group and compares fields, like password and confirm.",
+     "flow": [
+      "crs>ctl:group error"
+     ]
+    },
+    {
+     "say": "setValidators changes the rules at runtime. Call updateValueAndValidity afterwards.",
+     "flow": [
+      "set>ctl:new rules"
+     ]
+    }
+   ]
+  },
+  "Angular Route Parameters and Query Parameters": {
+   "title": "Parameters in a URL",
+   "nodes": [
+    {
+     "id": "url",
+     "label": "URL",
+     "sub": "/products/42?sort=asc",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "matches route",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "par",
+     "label": "Route param",
+     "sub": "id = 42",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "q",
+     "label": "Query param",
+     "sub": "sort = asc",
+     "col": 2,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "cmp",
+     "label": "Component",
+     "sub": "loads that product",
+     "col": 3,
+     "row": 0,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Part of a URL can carry data. The router reads it for you.",
+     "on": [
+      "url"
+     ]
+    },
+    {
+     "say": "The route /products/:id matches the URL.",
+     "flow": [
+      "url>rt:navigate"
+     ]
+    },
+    {
+     "say": "Route parameters are required parts of the path, like the id.",
+     "flow": [
+      "rt>par::id"
+     ]
+    },
+    {
+     "say": "Query parameters come after the question mark and are optional, like sort or page.",
+     "flow": [
+      "rt>q:?sort"
+     ]
+    },
+    {
+     "say": "The component reads both, and loads the right data.",
+     "flow": [
+      "par>cmp:read",
+      "q>cmp:read"
+     ]
+    }
+   ]
+  },
+  "Angular Router Navigation: ActivatedRoute, Query Params, Route Data and Router Events": {
+   "title": "Navigating in code",
+   "nodes": [
+    {
+     "id": "rl",
+     "label": "routerLink",
+     "sub": "in templates",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "nav",
+     "label": "router.navigate",
+     "sub": "in code",
+     "col": 0,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "changes the URL",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "ar",
+     "label": "ActivatedRoute",
+     "sub": "params, data",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "ev",
+     "label": "Router events",
+     "sub": "start, end",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Use routerLink for links in a template.",
+     "flow": [
+      "rl>rt:click"
+     ]
+    },
+    {
+     "say": "Use router.navigate when code decides where to go, for example after saving.",
+     "flow": [
+      "nav>rt:navigate"
+     ]
+    },
+    {
+     "say": "The router updates the URL and shows the matching component.",
+     "on": [
+      "rt"
+     ]
+    },
+    {
+     "say": "ActivatedRoute gives that component its params, query params and route data.",
+     "flow": [
+      "rt>ar:current route"
+     ]
+    },
+    {
+     "say": "Router events tell you when navigation starts and ends, useful for loading bars.",
+     "flow": [
+      "rt>ev:events"
+     ]
+    }
+   ]
+  },
+  "Angular Route Guards: Protect Pages with CanActivateFn": {
+   "title": "A guard protects a page",
+   "nodes": [
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "opens /admin",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "asks the guard",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "g",
+     "label": "CanActivateFn",
+     "sub": "logged in?",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "pg",
+     "label": "Admin page",
+     "sub": "allowed",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "lg",
+     "label": "Login page",
+     "sub": "redirect",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A guard is a function that decides whether a route may open.",
+     "on": [
+      "g"
+     ]
+    },
+    {
+     "say": "The user tries to open a protected URL.",
+     "flow": [
+      "user>rt:/admin"
+     ]
+    },
+    {
+     "say": "Before showing the page, the router runs the guard.",
+     "flow": [
+      "rt>g:canActivate"
+     ]
+    },
+    {
+     "say": "If the guard returns true, the page opens.",
+     "flow": [
+      "g>pg:true"
+     ]
+    },
+    {
+     "say": "Otherwise it returns a redirect to the login page. Remember: the server must still check permissions.",
+     "flow": [
+      "g>lg:false"
+     ]
+    }
+   ]
+  },
+  "Angular Guards: CanActivateChild, CanDeactivate, Resolve, canMatch and Preloading": {
+   "title": "Other guards",
+   "nodes": [
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "navigation",
+     "col": 1,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "cac",
+     "label": "CanActivateChild",
+     "sub": "child routes",
+     "col": 0,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "cd",
+     "label": "CanDeactivate",
+     "sub": "leave a page",
+     "col": 0,
+     "row": 2,
+     "kind": "check"
+    },
+    {
+     "id": "res",
+     "label": "Resolve",
+     "sub": "load data first",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "cm",
+     "label": "canMatch",
+     "sub": "choose a route",
+     "col": 2,
+     "row": 2,
+     "kind": "tool"
+    }
+   ],
+   "steps": [
+    {
+     "say": "There are several guard types, each at a different moment.",
+     "on": [
+      "rt"
+     ]
+    },
+    {
+     "say": "CanActivateChild protects all the children of a route at once.",
+     "flow": [
+      "rt>cac:children"
+     ]
+    },
+    {
+     "say": "CanDeactivate runs before leaving, so you can warn about unsaved changes.",
+     "flow": [
+      "rt>cd:leaving"
+     ]
+    },
+    {
+     "say": "Resolve fetches data before the page shows.",
+     "flow": [
+      "rt>res:prefetch"
+     ]
+    },
+    {
+     "say": "canMatch decides whether a route definition applies at all, for example by role. Preloading can fetch lazy routes in the background.",
+     "flow": [
+      "rt>cm:match"
+     ]
+    }
+   ]
+  },
+  "Angular Lazy Loading: Load Routes and Components on Demand": {
+   "title": "Lazy loading",
+   "nodes": [
+    {
+     "id": "main",
+     "label": "Main bundle",
+     "sub": "loads first",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "opens /admin",
+     "col": 1,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "loadComponent",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "chunk",
+     "label": "Admin chunk",
+     "sub": "separate file",
+     "col": 2,
+     "row": 1,
+     "kind": "store"
+    },
+    {
+     "id": "pg",
+     "label": "Admin page",
+     "sub": "shown",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Without lazy loading, the first download contains the whole app.",
+     "on": [
+      "main"
+     ]
+    },
+    {
+     "say": "With lazy loading, a page is split into its own file.",
+     "on": [
+      "chunk"
+     ]
+    },
+    {
+     "say": "The user opens a lazy route.",
+     "flow": [
+      "user>rt:/admin"
+     ]
+    },
+    {
+     "say": "Only then does the router download that file, using loadComponent or loadChildren.",
+     "flow": [
+      "rt>chunk:download"
+     ]
+    },
+    {
+     "say": "The page appears. The first load stays small and fast.",
+     "flow": [
+      "chunk>pg:render"
+     ]
+    }
+   ]
+  },
+  "Angular HttpClient: Get Data from an API with a Service": {
+   "title": "Get data from an API",
+   "nodes": [
+    {
+     "id": "cmp",
+     "label": "Component",
+     "sub": "shows the list",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "svc",
+     "label": "Service",
+     "sub": "uses HttpClient",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "http",
+     "label": "HttpClient",
+     "sub": "get()",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "returns JSON",
+     "col": 3,
+     "row": 0,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Keep API calls in a service, not in the component.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "Provide HttpClient with provideHttpClient(), then inject it into the service.",
+     "flow": [
+      "svc>http:inject"
+     ]
+    },
+    {
+     "say": "Calling get() returns an observable. Nothing is sent until someone subscribes.",
+     "flow": [
+      "http>api:GET"
+     ]
+    },
+    {
+     "say": "The API replies with JSON.",
+     "flow": [
+      "api>http:JSON"
+     ]
+    },
+    {
+     "say": "The component subscribes, or uses the async pipe, and shows the data.",
+     "flow": [
+      "http>svc:data",
+      "svc>cmp:list"
+     ]
+    }
+   ]
+  },
+  "Angular HTTP: Loading State, Error Handling and POST Requests": {
+   "title": "Loading, errors and POST",
+   "nodes": [
+    {
+     "id": "cmp",
+     "label": "Component",
+     "sub": "form and list",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "ld",
+     "label": "Loading flag",
+     "sub": "show spinner",
+     "col": 0,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "http",
+     "label": "HttpClient",
+     "sub": "post()",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "saves data",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "err",
+     "label": "Error state",
+     "sub": "friendly message",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Before a request, set a loading flag so the user sees something is happening.",
+     "flow": [
+      "cmp>ld"
+     ]
+    },
+    {
+     "say": "post() sends data to the API as the request body.",
+     "flow": [
+      "cmp>http:body",
+      "http>api:POST"
+     ]
+    },
+    {
+     "say": "On success, turn off loading and update the screen.",
+     "flow": [
+      "api>http:ok",
+      "http>ld:done"
+     ]
+    },
+    {
+     "say": "On failure, catch the error and show a clear message, instead of a blank screen.",
+     "flow": [
+      "api>err:error"
+     ]
+    }
+   ]
+  },
+  "Angular HTTP: Query Parameters, Headers, PUT, PATCH and DELETE Requests": {
+   "title": "More HTTP requests",
+   "nodes": [
+    {
+     "id": "svc",
+     "label": "Service",
+     "sub": "API methods",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "get",
+     "label": "GET + params",
+     "sub": "filter, page",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "put",
+     "label": "PUT or PATCH",
+     "sub": "update",
+     "col": 1,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "del",
+     "label": "DELETE",
+     "sub": "remove",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "your server",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The same service can cover all the actions your API supports.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "Use HttpParams for query parameters such as page or search, and set headers when needed.",
+     "flow": [
+      "svc>get:?page=2"
+     ]
+    },
+    {
+     "say": "PUT replaces a whole item. PATCH changes only some fields.",
+     "flow": [
+      "svc>put:update"
+     ]
+    },
+    {
+     "say": "DELETE removes an item by id.",
+     "flow": [
+      "put>del:remove"
+     ]
+    },
+    {
+     "say": "The API processes each request and returns the result.",
+     "flow": [
+      "get>api:request"
+     ]
+    }
+   ]
+  },
+  "RxJS Basics for Angular: Observables and Operators": {
+   "title": "Observable pipeline",
+   "nodes": [
+    {
+     "id": "src",
+     "label": "Observable",
+     "sub": "source of values",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "map",
+     "label": "map",
+     "sub": "change values",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "flt",
+     "label": "filter",
+     "sub": "keep some",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "sub",
+     "label": "subscribe",
+     "sub": "receives them",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "An observable is a stream of values over time, like clicks or HTTP results.",
+     "on": [
+      "src"
+     ]
+    },
+    {
+     "say": "Operators are small steps you add with pipe().",
+     "flow": [
+      "src>map:pipe"
+     ]
+    },
+    {
+     "say": "map changes each value. filter keeps only the ones you want.",
+     "flow": [
+      "map>flt:next"
+     ]
+    },
+    {
+     "say": "Nothing runs until you subscribe.",
+     "flow": [
+      "flt>sub:value"
+     ]
+    },
+    {
+     "say": "Unsubscribe when done, or let the async pipe do it for you.",
+     "on": [
+      "sub"
+     ]
+    }
+   ]
+  },
+  "RxJS Observables Explained: Create from Arrays, Strings, Events with of, from and fromEvent": {
+   "title": "Creating observables",
+   "nodes": [
+    {
+     "id": "of",
+     "label": "of(1, 2, 3)",
+     "sub": "values you list",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "from",
+     "label": "from(array)",
+     "sub": "array or promise",
+     "col": 0,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "ev",
+     "label": "fromEvent",
+     "sub": "clicks, keys",
+     "col": 0,
+     "row": 2,
+     "kind": "tool"
+    },
+    {
+     "id": "obs",
+     "label": "Observable",
+     "sub": "emits values",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "sub",
+     "label": "subscribe",
+     "sub": "you receive",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "There are helper functions to create observables.",
+     "on": [
+      "obs"
+     ]
+    },
+    {
+     "say": "of emits the values you give it, one after another, then completes.",
+     "flow": [
+      "of>obs:1, 2, 3"
+     ]
+    },
+    {
+     "say": "from turns an array, string or promise into a stream.",
+     "flow": [
+      "from>obs:each item"
+     ]
+    },
+    {
+     "say": "fromEvent turns browser events, like clicks, into a stream.",
+     "flow": [
+      "ev>obs:events"
+     ]
+    },
+    {
+     "say": "Subscribe to receive the values.",
+     "flow": [
+      "obs>sub:next"
+     ]
+    }
+   ]
+  },
+  "RxJS take, takeUntil, takeWhile, first, last, single, skip and tap Operators": {
+   "title": "Limiting a stream",
+   "nodes": [
+    {
+     "id": "src",
+     "label": "Source",
+     "sub": "1 2 3 4 5",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "skip",
+     "label": "skip(1)",
+     "sub": "ignore first",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "take",
+     "label": "take(3)",
+     "sub": "then complete",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "tap",
+     "label": "tap",
+     "sub": "peek, no change",
+     "col": 2,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "sub",
+     "label": "subscribe",
+     "sub": "2 3 4",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "These operators decide how many values you let through.",
+     "on": [
+      "src"
+     ]
+    },
+    {
+     "say": "skip ignores the first values.",
+     "flow": [
+      "src>skip:1 2 3 4 5"
+     ]
+    },
+    {
+     "say": "take stops after a number of values. first and last pick one value. takeUntil and takeWhile stop on a condition.",
+     "flow": [
+      "skip>take:2 3 4 5"
+     ]
+    },
+    {
+     "say": "tap lets you look at values, for logging, without changing them.",
+     "flow": [
+      "take>tap:peek"
+     ]
+    },
+    {
+     "say": "The subscriber gets only what is left, and the stream completes.",
+     "flow": [
+      "take>sub:2 3 4"
+     ]
+    }
+   ]
+  },
+  "RxJS scan, reduce, debounceTime, debounce, delay and delayWhen Explained": {
+   "title": "Time and totals",
+   "nodes": [
+    {
+     "id": "in",
+     "label": "Search box",
+     "sub": "keystrokes",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "deb",
+     "label": "debounceTime",
+     "sub": "wait 300 ms",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "api",
+     "label": "API call",
+     "sub": "only the last",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "scan",
+     "label": "scan",
+     "sub": "running total",
+     "col": 1,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "red",
+     "label": "reduce",
+     "sub": "final total",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "debounceTime waits until the user stops typing before it passes on a value.",
+     "flow": [
+      "in>deb:keystrokes"
+     ]
+    },
+    {
+     "say": "That means one API call instead of one per key press.",
+     "flow": [
+      "deb>api:last value"
+     ]
+    },
+    {
+     "say": "scan keeps a running result and emits it for every value, like a live total.",
+     "flow": [
+      "in>scan:values"
+     ]
+    },
+    {
+     "say": "reduce emits only the final result, when the stream completes.",
+     "flow": [
+      "scan>red:on complete"
+     ]
+    },
+    {
+     "say": "delay and delayWhen shift values later in time.",
+     "on": [
+      "deb"
+     ]
+    }
+   ]
+  },
+  "RxJS Error Handling: throwError, catchError, retry, retryWhen and finalize": {
+   "title": "Handling errors",
+   "nodes": [
+    {
+     "id": "src",
+     "label": "Request",
+     "sub": "may fail",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "retry",
+     "label": "retry(2)",
+     "sub": "try again",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "catch",
+     "label": "catchError",
+     "sub": "recover",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "fb",
+     "label": "Fallback value",
+     "sub": "empty list",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "fin",
+     "label": "finalize",
+     "sub": "always runs",
+     "col": 2,
+     "row": 1,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "An error ends an observable unless you handle it.",
+     "on": [
+      "src"
+     ]
+    },
+    {
+     "say": "retry tries the request again a set number of times.",
+     "flow": [
+      "src>retry:error"
+     ]
+    },
+    {
+     "say": "If it still fails, catchError lets you recover instead of crashing.",
+     "flow": [
+      "retry>catch:still fails"
+     ]
+    },
+    {
+     "say": "Return a fallback value, or use throwError to pass a clearer error on.",
+     "flow": [
+      "catch>fb:fallback"
+     ]
+    },
+    {
+     "say": "finalize runs at the end either way, which is a good place to hide a spinner.",
+     "flow": [
+      "catch>fin:always"
+     ]
+    }
+   ]
+  },
+  "RxJS Subjects in Angular: Subject, BehaviorSubject, ReplaySubject and AsyncSubject": {
+   "title": "Subjects share values",
+   "nodes": [
+    {
+     "id": "send",
+     "label": "Code calls next()",
+     "sub": "pushes a value",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "sub",
+     "label": "Subject",
+     "sub": "sends and listens",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "l1",
+     "label": "Listener 1",
+     "sub": "subscribed",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "l2",
+     "label": "Listener 2",
+     "sub": "subscribed",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    },
+    {
+     "id": "beh",
+     "label": "BehaviorSubject",
+     "sub": "remembers latest",
+     "col": 1,
+     "row": 1,
+     "kind": "store"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A subject is an observable you can also push values into.",
+     "on": [
+      "sub"
+     ]
+    },
+    {
+     "say": "Call next() and every current subscriber receives the value.",
+     "flow": [
+      "send>sub:next(5)"
+     ]
+    },
+    {
+     "say": "Both listeners get the same value.",
+     "flow": [
+      "sub>l1:5",
+      "sub>l2:5"
+     ]
+    },
+    {
+     "say": "A BehaviorSubject keeps the latest value, so new subscribers get it immediately.",
+     "flow": [
+      "beh>l2:latest"
+     ]
+    },
+    {
+     "say": "ReplaySubject replays several past values. AsyncSubject gives only the last, on completion.",
+     "on": [
+      "beh"
+     ]
+    }
+   ]
+  },
+  "Test Angular Components and Services with Vitest": {
+   "title": "A test run",
+   "nodes": [
+    {
+     "id": "test",
+     "label": "Test file",
+     "sub": "*.spec.ts",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "tb",
+     "label": "TestBed",
+     "sub": "builds the component",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "cmp",
+     "label": "Component",
+     "sub": "under test",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "exp",
+     "label": "expect(...)",
+     "sub": "check result",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "res",
+     "label": "Pass or fail",
+     "sub": "in the terminal",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A test sets up a situation, does something, and checks the result.",
+     "on": [
+      "test"
+     ]
+    },
+    {
+     "say": "TestBed creates the component with the same setup the app uses.",
+     "flow": [
+      "test>tb:configure"
+     ]
+    },
+    {
+     "say": "You create it, change its inputs or click a button, then let Angular update.",
+     "flow": [
+      "tb>cmp:create"
+     ]
+    },
+    {
+     "say": "Use expect to check the text or value you get.",
+     "flow": [
+      "cmp>exp:result"
+     ]
+    },
+    {
+     "say": "Vitest runs the file and reports passes and failures. For services, mock the HTTP calls.",
+     "flow": [
+      "exp>res:report"
+     ]
+    }
+   ]
+  },
+  "Angular Accessibility: Build Apps Everyone Can Use": {
+   "title": "Accessible by design",
+   "nodes": [
+    {
+     "id": "html",
+     "label": "Semantic HTML",
+     "sub": "button, nav, label",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "aria",
+     "label": "ARIA, labels",
+     "sub": "for gaps in HTML",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "kbd",
+     "label": "Keyboard",
+     "sub": "tab and enter",
+     "col": 2,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "sr",
+     "label": "Screen reader",
+     "sub": "reads the page",
+     "col": 2,
+     "row": 1,
+     "kind": "user"
+    },
+    {
+     "id": "foc",
+     "label": "Focus",
+     "sub": "moves after routes",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Accessibility means people with different needs can use your app.",
+     "on": [
+      "html"
+     ]
+    },
+    {
+     "say": "Start with the right HTML elements: real buttons, links, labels and headings.",
+     "on": [
+      "html"
+     ]
+    },
+    {
+     "say": "Add ARIA attributes only where plain HTML cannot say it.",
+     "flow": [
+      "html>aria:extra"
+     ]
+    },
+    {
+     "say": "Everything must work with the keyboard, with a visible focus.",
+     "flow": [
+      "aria>kbd:tab"
+     ]
+    },
+    {
+     "say": "Manage focus when the page changes, so screen reader users know where they are.",
+     "flow": [
+      "foc>sr:announce"
+     ]
+    }
+   ]
+  },
+  "Angular Performance and Production Build Checklist": {
+   "title": "Faster apps",
+   "nodes": [
+    {
+     "id": "build",
+     "label": "ng build",
+     "sub": "production mode",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "ts",
+     "label": "Tree shaking",
+     "sub": "drops unused code",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "lazy",
+     "label": "Lazy loading",
+     "sub": "smaller first load",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "img",
+     "label": "Image optimisation",
+     "sub": "right size",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "fast page",
+     "col": 3,
+     "row": 0,
+     "kind": "user"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A production build minifies and optimises your code.",
+     "on": [
+      "build"
+     ]
+    },
+    {
+     "say": "Unused code is removed, which makes bundles smaller.",
+     "flow": [
+      "build>ts:optimise"
+     ]
+    },
+    {
+     "say": "Lazy loading keeps the first download small.",
+     "flow": [
+      "ts>lazy:split"
+     ]
+    },
+    {
+     "say": "Optimise images and use track in lists so less work is done.",
+     "on": [
+      "img"
+     ]
+    },
+    {
+     "say": "Check bundle sizes and measure with Lighthouse. The user gets a faster page.",
+     "flow": [
+      "lazy>user:fast"
+     ]
+    }
+   ]
+  },
+  "Angular Project 1: Build a Task Manager App Step by Step": {
+   "title": "Task manager design",
+   "nodes": [
+    {
+     "id": "form",
+     "label": "Add form",
+     "sub": "new task",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "svc",
+     "label": "Task service",
+     "sub": "signal of tasks",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "list",
+     "label": "Task list",
+     "sub": "@for",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "flt",
+     "label": "Filter",
+     "sub": "computed",
+     "col": 2,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "done",
+     "label": "Toggle, delete",
+     "sub": "update tasks",
+     "col": 1,
+     "row": 1,
+     "kind": "app"
+    }
+   ],
+   "steps": [
+    {
+     "say": "You will build a task manager from small, reusable parts.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "The add form sends a new task to the service.",
+     "flow": [
+      "form>svc:add"
+     ]
+    },
+    {
+     "say": "The service keeps all tasks in one signal.",
+     "on": [
+      "svc"
+     ]
+    },
+    {
+     "say": "The list renders them with @for.",
+     "flow": [
+      "svc>list:render"
+     ]
+    },
+    {
+     "say": "Buttons toggle or delete tasks, and a computed filter shows all, active or done.",
+     "flow": [
+      "done>svc:update",
+      "svc>flt:filter"
+     ]
+    }
+   ]
+  },
+  "Angular Project 2: Employee Management Dashboard (Guided)": {
+   "title": "Employee dashboard",
+   "nodes": [
+    {
+     "id": "rt",
+     "label": "Routes",
+     "sub": "list, detail, edit",
+     "col": 0,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "svc",
+     "label": "Employee service",
+     "sub": "HttpClient",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "employee data",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "tbl",
+     "label": "Table page",
+     "sub": "search and sort",
+     "col": 1,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "frm",
+     "label": "Reactive form",
+     "sub": "add or edit",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    }
+   ],
+   "steps": [
+    {
+     "say": "This project is a dashboard with a list, a detail page and an edit form.",
+     "on": [
+      "rt"
+     ]
+    },
+    {
+     "say": "A service talks to the API for all employee data.",
+     "flow": [
+      "svc>api:HTTP"
+     ]
+    },
+    {
+     "say": "The table page shows the list with search and sorting.",
+     "flow": [
+      "svc>tbl:data"
+     ]
+    },
+    {
+     "say": "A reactive form with validators adds or edits an employee.",
+     "flow": [
+      "frm>svc:save"
+     ]
+    },
+    {
+     "say": "Routes connect the pages, and a guard can protect the edit screens.",
+     "flow": [
+      "rt>tbl:navigate"
+     ]
+    }
+   ]
+  },
+  "Angular Project 3: Online Learning Platform (Capstone)": {
+   "title": "Learning platform",
+   "nodes": [
+    {
+     "id": "auth",
+     "label": "Login",
+     "sub": "guard + token",
+     "col": 0,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "crs",
+     "label": "Course list",
+     "sub": "lazy routes",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "les",
+     "label": "Lesson page",
+     "sub": "route param",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "courses, progress",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "prog",
+     "label": "Progress state",
+     "sub": "signals",
+     "col": 2,
+     "row": 1,
+     "kind": "store"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The capstone combines most of what you learned.",
+     "on": [
+      "crs"
+     ]
+    },
+    {
+     "say": "Login uses a guard and sends a token with requests.",
+     "flow": [
+      "auth>crs:allowed"
+     ]
+    },
+    {
+     "say": "Courses load from an API, on lazy routes.",
+     "flow": [
+      "api>crs:courses"
+     ]
+    },
+    {
+     "say": "A lesson page reads its id from the route.",
+     "flow": [
+      "crs>les:/lesson/:id"
+     ]
+    },
+    {
+     "say": "Progress is kept in signals and saved back to the API.",
+     "flow": [
+      "les>prog:completed",
+      "prog>api:save"
+     ]
+    }
+   ]
+  },
+  "Deploy an Angular App: Netlify, Firebase and Nginx": {
+   "title": "Deploying an app",
+   "nodes": [
+    {
+     "id": "src",
+     "label": "Your code",
+     "sub": "ng build",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "dist",
+     "label": "dist folder",
+     "sub": "static files",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "host",
+     "label": "Host",
+     "sub": "Netlify, Firebase",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "rw",
+     "label": "index.html rewrite",
+     "sub": "for refresh",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "user",
+     "label": "User",
+     "sub": "opens your URL",
+     "col": 3,
+     "row": 0,
+     "kind": "user"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Run ng build to create the production files.",
+     "flow": [
+      "src>dist:ng build"
+     ]
+    },
+    {
+     "say": "Upload the dist folder to a host: Netlify, Firebase Hosting, or your own Nginx server.",
+     "flow": [
+      "dist>host:upload"
+     ]
+    },
+    {
+     "say": "Because Angular handles routes in the browser, the host must send index.html for unknown paths.",
+     "flow": [
+      "host>rw:fallback"
+     ]
+    },
+    {
+     "say": "Without this rewrite, refreshing a deep link gives a 404.",
+     "on": [
+      "rw"
+     ]
+    },
+    {
+     "say": "The user opens your URL and the app loads.",
+     "flow": [
+      "host>user:app"
+     ]
+    }
+   ]
+  },
+  "Angular effect() and linkedSignal(): Advanced Signals": {
+   "title": "effect and linkedSignal",
+   "nodes": [
+    {
+     "id": "src",
+     "label": "Source signal",
+     "sub": "selected plan",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "lnk",
+     "label": "linkedSignal",
+     "sub": "resets, but editable",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "user",
+     "label": "User override",
+     "sub": "set()",
+     "col": 1,
+     "row": 1,
+     "kind": "user"
+    },
+    {
+     "id": "eff",
+     "label": "effect()",
+     "sub": "side effect",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "out",
+     "label": "Storage or log",
+     "sub": "outside Angular",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "linkedSignal is a writable signal that is derived from another signal.",
+     "on": [
+      "lnk"
+     ]
+    },
+    {
+     "say": "When the source changes, it resets to a new default value.",
+     "flow": [
+      "src>lnk:reset"
+     ]
+    },
+    {
+     "say": "Unlike computed, you can still set it yourself.",
+     "flow": [
+      "user>lnk:set()"
+     ]
+    },
+    {
+     "say": "effect() reruns when the signals it reads change.",
+     "flow": [
+      "lnk>eff:reads"
+     ]
+    },
+    {
+     "say": "Use effect for side effects, like saving to storage. Avoid it for computing values.",
+     "flow": [
+      "eff>out:save"
+     ]
+    }
+   ]
+  },
+  "Angular resource() and httpResource(): Signal-Based Data Loading": {
+   "title": "Signal-based data loading",
+   "nodes": [
+    {
+     "id": "sig",
+     "label": "Request signal",
+     "sub": "id = 5",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "res",
+     "label": "httpResource",
+     "sub": "reads the signal",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "GET /items/5",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "st",
+     "label": "Result signals",
+     "sub": "value, error, loading",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "ui",
+     "label": "Template",
+     "sub": "shows state",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "httpResource loads data from an API and exposes it as signals.",
+     "on": [
+      "res"
+     ]
+    },
+    {
+     "say": "It watches a request signal, such as an id.",
+     "flow": [
+      "sig>res:watch"
+     ]
+    },
+    {
+     "say": "When the signal changes, it sends a new request.",
+     "flow": [
+      "res>api:GET"
+     ]
+    },
+    {
+     "say": "The result comes back as value, isLoading and error signals.",
+     "flow": [
+      "api>st:response"
+     ]
+    },
+    {
+     "say": "The template reads these signals and updates itself. resource() works the same way for any async source.",
+     "flow": [
+      "st>ui:render"
+     ]
+    }
+   ]
+  },
+  "Angular Custom Directives: Attribute Directives and Host Bindings": {
+   "title": "An attribute directive",
+   "nodes": [
+    {
+     "id": "dir",
+     "label": "Directive",
+     "sub": "@Directive",
+     "col": 0,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "sel",
+     "label": "Selector",
+     "sub": "[appHighlight]",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "el",
+     "label": "Any element",
+     "sub": "adds attribute",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "host",
+     "label": "host bindings",
+     "sub": "class, style, events",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "out",
+     "label": "Changed element",
+     "sub": "new look",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A directive adds behaviour to an existing element, with no template of its own.",
+     "on": [
+      "dir"
+     ]
+    },
+    {
+     "say": "Its selector is an attribute, like appHighlight.",
+     "flow": [
+      "dir>sel:selector"
+     ]
+    },
+    {
+     "say": "Add that attribute to any element.",
+     "flow": [
+      "sel>el:attribute"
+     ]
+    },
+    {
+     "say": "The host property binds classes, styles and listens to events on that element.",
+     "flow": [
+      "dir>host:host"
+     ]
+    },
+    {
+     "say": "The element now behaves differently, and you can reuse the directive everywhere.",
+     "flow": [
+      "host>el:applied",
+      "el>out:new look"
+     ]
+    }
+   ]
+  },
+  "Angular Content Projection: ng-content, ng-template and Template Outlets": {
+   "title": "Content projection",
+   "nodes": [
+    {
+     "id": "par",
+     "label": "Parent",
+     "sub": "gives content",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "card",
+     "label": "Card component",
+     "sub": "ng-content slot",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "out",
+     "label": "Rendered card",
+     "sub": "content inside",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "tpl",
+     "label": "ng-template",
+     "sub": "content on demand",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "ngo",
+     "label": "ngTemplateOutlet",
+     "sub": "draws it",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Content projection lets a parent put its own HTML inside a component.",
+     "on": [
+      "card"
+     ]
+    },
+    {
+     "say": "The component marks a spot with ng-content.",
+     "on": [
+      "card"
+     ]
+    },
+    {
+     "say": "The parent writes content between the component tags.",
+     "flow": [
+      "par>card:content"
+     ]
+    },
+    {
+     "say": "Angular places that content where the slot is.",
+     "flow": [
+      "card>out:projected"
+     ]
+    },
+    {
+     "say": "An ng-template holds markup that is not drawn until something renders it with ngTemplateOutlet.",
+     "flow": [
+      "tpl>ngo:template",
+      "ngo>out:drawn"
+     ]
+    }
+   ]
+  },
+  "Angular Dynamic Components and Host Directives": {
+   "title": "Creating components in code",
+   "nodes": [
+    {
+     "id": "code",
+     "label": "Your code",
+     "sub": "decides at runtime",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "vcr",
+     "label": "ViewContainerRef",
+     "sub": "a place to draw",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "cmp",
+     "label": "Component class",
+     "sub": "chosen type",
+     "col": 1,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "view",
+     "label": "Page",
+     "sub": "shows it",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "hd",
+     "label": "Host directive",
+     "sub": "added behaviour",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Sometimes you do not know in advance which component to show, such as in a dialog.",
+     "on": [
+      "code"
+     ]
+    },
+    {
+     "say": "Choose a component class at runtime.",
+     "flow": [
+      "code>cmp:pick"
+     ]
+    },
+    {
+     "say": "ViewContainerRef creates it and places it in the page.",
+     "flow": [
+      "cmp>vcr:createComponent"
+     ]
+    },
+    {
+     "say": "It appears like any other component.",
+     "flow": [
+      "vcr>view:rendered"
+     ]
+    },
+    {
+     "say": "Host directives let a component apply a directive's behaviour to itself, without extra template code.",
+     "flow": [
+      "hd>cmp:applies"
+     ]
+    }
+   ]
+  },
+  "Angular ElementRef, Renderer2, HostBinding, HostListener and Legacy Decorators": {
+   "title": "Touching the DOM safely",
+   "nodes": [
+    {
+     "id": "dir",
+     "label": "Directive",
+     "sub": "needs the element",
+     "col": 0,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "ref",
+     "label": "ElementRef",
+     "sub": "the element",
+     "col": 1,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "ren",
+     "label": "Renderer2",
+     "sub": "safe changes",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "hb",
+     "label": "@HostBinding",
+     "sub": "set class, style",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "hl",
+     "label": "@HostListener",
+     "sub": "listen to events",
+     "col": 1,
+     "row": 2,
+     "kind": "model"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Sometimes you need to reach the element itself.",
+     "on": [
+      "dir"
+     ]
+    },
+    {
+     "say": "Inject ElementRef to get a handle on it.",
+     "flow": [
+      "dir>ref:inject"
+     ]
+    },
+    {
+     "say": "Prefer Renderer2 to change it, which keeps the code safe and portable.",
+     "flow": [
+      "ref>ren:change via"
+     ]
+    },
+    {
+     "say": "@HostBinding sets host properties, and @HostListener listens for host events.",
+     "flow": [
+      "dir>hb:set",
+      "dir>hl:listen"
+     ]
+    },
+    {
+     "say": "These decorators are the older style. Newer code uses the host metadata, but you will still read them.",
+     "on": [
+      "hb",
+      "hl"
+     ]
+    }
+   ]
+  },
+  "Angular Injection Tokens and Providers: Configuration and Testing": {
+   "title": "Tokens and providers",
+   "nodes": [
+    {
+     "id": "tok",
+     "label": "InjectionToken",
+     "sub": "API_URL",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "prov",
+     "label": "Provider",
+     "sub": "useValue, useClass",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "inj",
+     "label": "Injector",
+     "sub": "finds the value",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "use",
+     "label": "Your service",
+     "sub": "inject(API_URL)",
+     "col": 3,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "test",
+     "label": "Test provider",
+     "sub": "a fake value",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Not everything is a class. A token is a name for a value you want to inject, such as a URL.",
+     "on": [
+      "tok"
+     ]
+    },
+    {
+     "say": "A provider says which value the token gets.",
+     "flow": [
+      "tok>prov:token"
+     ]
+    },
+    {
+     "say": "The injector looks it up when something asks.",
+     "flow": [
+      "prov>inj:registered"
+     ]
+    },
+    {
+     "say": "Your service injects the token and receives the value.",
+     "flow": [
+      "inj>use:inject"
+     ]
+    },
+    {
+     "say": "In tests, provide a different value or a fake class, and your code does not change.",
+     "flow": [
+      "test>inj:override"
+     ]
+    }
+   ]
+  },
+  "Angular HTTP Interceptors: Auth Tokens, Errors and Loading State": {
+   "title": "An interceptor",
+   "nodes": [
+    {
+     "id": "cmp",
+     "label": "Any request",
+     "sub": "HttpClient",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "int",
+     "label": "Interceptor",
+     "sub": "a function",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "api",
+     "label": "API",
+     "sub": "server",
+     "col": 2,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "hdr",
+     "label": "Add auth header",
+     "sub": "token",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "err",
+     "label": "Handle errors",
+     "sub": "e.g. 401",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    }
+   ],
+   "steps": [
+    {
+     "say": "An interceptor sits between HttpClient and the network, and sees every request.",
+     "on": [
+      "int"
+     ]
+    },
+    {
+     "say": "A request goes out through it.",
+     "flow": [
+      "cmp>int:request"
+     ]
+    },
+    {
+     "say": "It can clone the request and add an auth token header.",
+     "flow": [
+      "int>hdr:add token",
+      "int>api:with header"
+     ]
+    },
+    {
+     "say": "It also sees the response, so it can handle errors in one place, such as sending the user to login on a 401.",
+     "flow": [
+      "api>err:response"
+     ]
+    },
+    {
+     "say": "A counter in an interceptor can drive one global loading bar. Register interceptors in provideHttpClient.",
+     "on": [
+      "int"
+     ]
+    }
+   ]
+  },
+  "Angular Project Architecture: Features, Folders and Clean Boundaries": {
+   "title": "Organising a project",
+   "nodes": [
+    {
+     "id": "core",
+     "label": "core",
+     "sub": "app-wide services",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "shared",
+     "label": "shared",
+     "sub": "reusable parts",
+     "col": 0,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "feat",
+     "label": "features",
+     "sub": "one folder per area",
+     "col": 1,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "page",
+     "label": "pages",
+     "sub": "routed components",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "rule",
+     "label": "Clear boundaries",
+     "sub": "no cross imports",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "As an app grows, the folder layout matters more than any single file.",
+     "on": [
+      "feat"
+     ]
+    },
+    {
+     "say": "Group code by feature: orders, users and so on, each with its own components and services.",
+     "on": [
+      "feat"
+     ]
+    },
+    {
+     "say": "Put app-wide services in core, and reusable components and pipes in shared.",
+     "flow": [
+      "core>feat:used by",
+      "shared>feat:used by"
+     ]
+    },
+    {
+     "say": "Features should not reach into each other. Share through core or shared.",
+     "flow": [
+      "rule>feat:keeps clean"
+     ]
+    },
+    {
+     "say": "Pages are routed components that combine the parts.",
+     "flow": [
+      "feat>page:routes"
+     ]
+    }
+   ]
+  },
+  "Angular App Configuration, Environment Variables and provideAppInitializer": {
+   "title": "Configuring an app",
+   "nodes": [
+    {
+     "id": "env",
+     "label": "Environment values",
+     "sub": "API URL",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "cfg",
+     "label": "app.config.ts",
+     "sub": "providers",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "init",
+     "label": "AppInitializer",
+     "sub": "runs before start",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "app",
+     "label": "App",
+     "sub": "starts after",
+     "col": 3,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "warn",
+     "label": "No secrets here",
+     "sub": "ships to browsers",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Settings that differ between development and production go in configuration.",
+     "on": [
+      "env"
+     ]
+    },
+    {
+     "say": "Provide them through app.config.ts, for example with an injection token.",
+     "flow": [
+      "env>cfg:provide"
+     ]
+    },
+    {
+     "say": "provideAppInitializer runs a function before the app starts, such as loading remote settings.",
+     "flow": [
+      "cfg>init:register"
+     ]
+    },
+    {
+     "say": "Once it has finished, the app starts with the config ready.",
+     "flow": [
+      "init>app:then bootstrap"
+     ]
+    },
+    {
+     "say": "Remember that anything in a browser app is public, so never put secrets in it.",
+     "on": [
+      "warn"
+     ]
+    }
+   ]
+  },
+  "Angular Error Handling: Global ErrorHandler, Custom Handlers and HTTP Errors": {
+   "title": "Catching errors",
+   "nodes": [
+    {
+     "id": "err",
+     "label": "Error",
+     "sub": "thrown anywhere",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "geh",
+     "label": "ErrorHandler",
+     "sub": "global catch",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "log",
+     "label": "Logging service",
+     "sub": "report it",
+     "col": 2,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "msg",
+     "label": "User message",
+     "sub": "friendly",
+     "col": 2,
+     "row": 1,
+     "kind": "out"
+    },
+    {
+     "id": "http",
+     "label": "HTTP error",
+     "sub": "handled near the call",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Errors will happen. The question is what the user sees.",
+     "on": [
+      "err"
+     ]
+    },
+    {
+     "say": "Provide a custom ErrorHandler to catch errors that nobody else caught.",
+     "flow": [
+      "err>geh:uncaught"
+     ]
+    },
+    {
+     "say": "Send details to a logging service so you can fix them.",
+     "flow": [
+      "geh>log:log"
+     ]
+    },
+    {
+     "say": "Show the user a short, friendly message, not a stack trace.",
+     "flow": [
+      "geh>msg:notify"
+     ]
+    },
+    {
+     "say": "Handle expected HTTP errors close to the request, and let the global handler catch the rest.",
+     "flow": [
+      "http>msg:friendly"
+     ]
+    }
+   ]
+  },
+  "Angular NgModules (Legacy), Module Routing, Lazy Modules and Migration to Standalone": {
+   "title": "NgModules to standalone",
+   "nodes": [
+    {
+     "id": "mod",
+     "label": "NgModule",
+     "sub": "declarations, imports",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "lazy",
+     "label": "Lazy module",
+     "sub": "loadChildren",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "mig",
+     "label": "Migration schematic",
+     "sub": "ng generate",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "sa",
+     "label": "Standalone",
+     "sub": "self-contained",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "app",
+     "label": "Same app",
+     "sub": "less boilerplate",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Older Angular apps group code into NgModules.",
+     "on": [
+      "mod"
+     ]
+    },
+    {
+     "say": "Modules had their own routing, and lazy modules loaded with loadChildren.",
+     "flow": [
+      "mod>lazy:routing"
+     ]
+    },
+    {
+     "say": "New code uses standalone components, which list their own imports.",
+     "on": [
+      "sa"
+     ]
+    },
+    {
+     "say": "Angular provides migration schematics that convert modules to standalone step by step.",
+     "flow": [
+      "mig>sa:convert"
+     ]
+    },
+    {
+     "say": "Your app does the same job with less boilerplate.",
+     "flow": [
+      "sa>app:result"
+     ]
+    }
+   ]
+  },
+  "Angular Custom Form Controls with ControlValueAccessor": {
+   "title": "Your own form control",
+   "nodes": [
+    {
+     "id": "form",
+     "label": "Form model",
+     "sub": "FormControl",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "cva",
+     "label": "ValueAccessor",
+     "sub": "the bridge",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "cmp",
+     "label": "Custom control",
+     "sub": "rating stars",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "user",
+     "label": "User clicks",
+     "sub": "a star",
+     "col": 2,
+     "row": 1,
+     "kind": "user"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Sometimes a built-in input is not enough, for example a star rating.",
+     "on": [
+      "cmp"
+     ]
+    },
+    {
+     "say": "ControlValueAccessor lets your component act like a form input.",
+     "on": [
+      "cva"
+     ]
+    },
+    {
+     "say": "writeValue receives the value from the form, so your control can show it.",
+     "flow": [
+      "form>cva:writeValue",
+      "cva>cmp:show"
+     ]
+    },
+    {
+     "say": "When the user picks a star, call onChange to send the value back.",
+     "flow": [
+      "user>cmp:click",
+      "cmp>cva:onChange"
+     ]
+    },
+    {
+     "say": "The form now treats it like any other control, with validation too.",
+     "flow": [
+      "cva>form:value"
+     ]
+    }
+   ]
+  },
+  "Angular FormArray and Dynamic Forms: Add and Remove Fields": {
+   "title": "Add and remove fields",
+   "nodes": [
+    {
+     "id": "grp",
+     "label": "FormGroup",
+     "sub": "the whole form",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "arr",
+     "label": "FormArray",
+     "sub": "list of controls",
+     "col": 1,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "add",
+     "label": "push()",
+     "sub": "add a field",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "rem",
+     "label": "removeAt(i)",
+     "sub": "remove a field",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    },
+    {
+     "id": "ui",
+     "label": "@for in template",
+     "sub": "one row each",
+     "col": 1,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A FormArray holds a list of controls, such as several phone numbers.",
+     "on": [
+      "arr"
+     ]
+    },
+    {
+     "say": "It lives inside your FormGroup.",
+     "flow": [
+      "grp>arr:contains"
+     ]
+    },
+    {
+     "say": "push adds a new control when the user clicks Add.",
+     "flow": [
+      "add>arr:push"
+     ]
+    },
+    {
+     "say": "removeAt removes one by its index.",
+     "flow": [
+      "rem>arr:removeAt"
+     ]
+    },
+    {
+     "say": "The template loops over the controls with @for, and the rows follow the array.",
+     "flow": [
+      "arr>ui:rows"
+     ]
+    }
+   ]
+  },
+  "Angular Signal Forms: Build Forms with Signals in Angular 22": {
+   "title": "Forms built on signals",
+   "nodes": [
+    {
+     "id": "model",
+     "label": "Model signal",
+     "sub": "your data",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "form",
+     "label": "Signal form",
+     "sub": "created from it",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "fld",
+     "label": "Field state",
+     "sub": "value, valid, touched",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "tpl",
+     "label": "Template",
+     "sub": "bound inputs",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "sub",
+     "label": "Submit",
+     "sub": "read model",
+     "col": 1,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Signal forms are a newer way to build forms, based on signals.",
+     "on": [
+      "form"
+     ]
+    },
+    {
+     "say": "You start with a signal holding your data as the model.",
+     "on": [
+      "model"
+     ]
+    },
+    {
+     "say": "The form is created from the model, and the validation rules are described next to it.",
+     "flow": [
+      "model>form:create"
+     ]
+    },
+    {
+     "say": "Each field exposes its state as signals: value, valid and touched.",
+     "flow": [
+      "form>fld:state"
+     ]
+    },
+    {
+     "say": "Inputs bind to the fields, and on submit you read the model. Check the current docs, as this API is still evolving.",
+     "flow": [
+      "tpl>form:bind",
+      "form>sub:submit"
+     ]
+    }
+   ]
+  },
+  "Angular State Management with a Signal Store Pattern": {
+   "title": "A signal store",
+   "nodes": [
+    {
+     "id": "ui",
+     "label": "Components",
+     "sub": "call methods",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "store",
+     "label": "Store service",
+     "sub": "one place for state",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "state",
+     "label": "State signal",
+     "sub": "private writable",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "sel",
+     "label": "Selectors",
+     "sub": "computed, read-only",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "view",
+     "label": "Views",
+     "sub": "read signals",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "As an app grows, shared state needs a clear owner.",
+     "on": [
+      "store"
+     ]
+    },
+    {
+     "say": "A store is a service that keeps the state in a private signal.",
+     "flow": [
+      "store>state:holds"
+     ]
+    },
+    {
+     "say": "Components never change the state directly. They call methods on the store.",
+     "flow": [
+      "ui>store:addItem()"
+     ]
+    },
+    {
+     "say": "The store exposes read-only computed signals as selectors.",
+     "flow": [
+      "state>sel:computed"
+     ]
+    },
+    {
+     "say": "Views read the selectors and update automatically.",
+     "flow": [
+      "sel>view:read"
+     ]
+    }
+   ]
+  },
+  "Advanced RxJS Patterns for Angular: Combine, Share and Flatten": {
+   "title": "Combining streams",
+   "nodes": [
+    {
+     "id": "a",
+     "label": "Stream A",
+     "sub": "search text",
+     "col": 0,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "b",
+     "label": "Stream B",
+     "sub": "filters",
+     "col": 0,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "comb",
+     "label": "combineLatest",
+     "sub": "latest of each",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "sw",
+     "label": "switchMap",
+     "sub": "cancel old, start new",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "share",
+     "label": "shareReplay",
+     "sub": "one request, shared",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Real screens depend on several streams at once.",
+     "on": [
+      "a",
+      "b"
+     ]
+    },
+    {
+     "say": "combineLatest emits whenever any of the streams changes, with the latest value of each.",
+     "flow": [
+      "a>comb:latest",
+      "b>comb:latest"
+     ]
+    },
+    {
+     "say": "switchMap then starts a request for that value, and cancels the previous one if it is still running.",
+     "flow": [
+      "comb>sw:new request"
+     ]
+    },
+    {
+     "say": "share or shareReplay lets many subscribers use one request.",
+     "flow": [
+      "sw>share:share"
+     ]
+    },
+    {
+     "say": "concatMap and mergeMap are other ways to flatten, when order or parallel work matters.",
+     "on": [
+      "sw"
+     ]
+    }
+   ]
+  },
+  "Advanced Angular Routing: Resolvers, Child Routes, Preloading and Transitions": {
+   "title": "Advanced routing",
+   "nodes": [
+    {
+     "id": "rt",
+     "label": "Router",
+     "sub": "navigation",
+     "col": 0,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "res",
+     "label": "Resolver",
+     "sub": "load data first",
+     "col": 1,
+     "row": 0,
+     "kind": "data"
+    },
+    {
+     "id": "par",
+     "label": "Layout page",
+     "sub": "router-outlet",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "kid",
+     "label": "Child routes",
+     "sub": "inside the layout",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "pre",
+     "label": "Preloading",
+     "sub": "lazy routes later",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Larger apps use routes inside routes.",
+     "on": [
+      "rt"
+     ]
+    },
+    {
+     "say": "A layout component has a router-outlet, and child routes appear inside it.",
+     "flow": [
+      "par>kid:outlet"
+     ]
+    },
+    {
+     "say": "A resolver fetches data before the page opens, so it never shows empty.",
+     "flow": [
+      "rt>res:resolve",
+      "res>par:data"
+     ]
+    },
+    {
+     "say": "Preloading downloads lazy routes in the background after the first load.",
+     "flow": [
+      "pre>kid:prefetch"
+     ]
+    },
+    {
+     "say": "View transitions can animate between pages when the browser supports it.",
+     "on": [
+      "rt"
+     ]
+    }
+   ]
+  },
+  "Angular Change Detection and Zoneless Apps: How Updates Really Work": {
+   "title": "How Angular updates the page",
+   "nodes": [
+    {
+     "id": "ev",
+     "label": "Trigger",
+     "sub": "event, signal, async",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "cd",
+     "label": "Change detection",
+     "sub": "checks templates",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "zone",
+     "label": "zone.js",
+     "sub": "tells when to check",
+     "col": 1,
+     "row": 1,
+     "kind": "store"
+    },
+    {
+     "id": "dom",
+     "label": "DOM",
+     "sub": "updated",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "sig",
+     "label": "Signals",
+     "sub": "know what changed",
+     "col": 2,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Change detection is how Angular finds out what to update on screen.",
+     "on": [
+      "cd"
+     ]
+    },
+    {
+     "say": "Something happens: a click, a timer, a response, or a signal change.",
+     "flow": [
+      "ev>cd:trigger"
+     ]
+    },
+    {
+     "say": "With zone.js, Angular is told after any async task and then checks components.",
+     "flow": [
+      "zone>cd:notify"
+     ]
+    },
+    {
+     "say": "Signals tell Angular exactly which view depends on what, so less work is needed.",
+     "flow": [
+      "sig>cd:marks view"
+     ]
+    },
+    {
+     "say": "In a zoneless app, Angular does not need zone.js. Signals and events trigger updates, and the DOM is updated.",
+     "flow": [
+      "cd>dom:update"
+     ]
+    }
+   ]
+  },
+  "Angular Server-Side Rendering (SSR) and Hydration: Fast, SEO-Friendly Pages": {
+   "title": "SSR and hydration",
+   "nodes": [
+    {
+     "id": "req",
+     "label": "Request",
+     "sub": "browser or bot",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "srv",
+     "label": "Server",
+     "sub": "runs Angular",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "html",
+     "label": "Full HTML",
+     "sub": "content included",
+     "col": 2,
+     "row": 0,
+     "kind": "out"
+    },
+    {
+     "id": "brw",
+     "label": "Browser",
+     "sub": "shows at once",
+     "col": 3,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "hyd",
+     "label": "Hydration",
+     "sub": "makes it interactive",
+     "col": 3,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A normal Angular app sends an almost empty page and builds the content in the browser.",
+     "on": [
+      "brw"
+     ]
+    },
+    {
+     "say": "With SSR, the server runs Angular and builds the page first.",
+     "flow": [
+      "req>srv:request"
+     ]
+    },
+    {
+     "say": "It sends full HTML, so people and search engines see content right away.",
+     "flow": [
+      "srv>html:render"
+     ]
+    },
+    {
+     "say": "The browser shows it at once.",
+     "flow": [
+      "html>brw:fast first view"
+     ]
+    },
+    {
+     "say": "Hydration then attaches Angular to the existing HTML so it becomes interactive, without redrawing.",
+     "flow": [
+      "brw>hyd:attach"
+     ]
+    }
+   ]
+  },
+  "Angular SEO: Title, Meta Tags, Canonical URLs, Lazy Images and SSR": {
+   "title": "SEO in Angular",
+   "nodes": [
+    {
+     "id": "route",
+     "label": "Route",
+     "sub": "each page",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "ttl",
+     "label": "Title service",
+     "sub": "unique title",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "meta",
+     "label": "Meta service",
+     "sub": "desc, canonical",
+     "col": 1,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "ssr",
+     "label": "SSR",
+     "sub": "HTML for crawlers",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "img",
+     "label": "Lazy images",
+     "sub": "faster load",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Search engines need each page to say what it is about.",
+     "on": [
+      "route"
+     ]
+    },
+    {
+     "say": "Set a unique title for every route with the Title service.",
+     "flow": [
+      "route>ttl:set title"
+     ]
+    },
+    {
+     "say": "Use the Meta service for the description and a canonical link.",
+     "flow": [
+      "route>meta:description"
+     ]
+    },
+    {
+     "say": "Server-side rendering puts all of this in the HTML crawlers receive.",
+     "flow": [
+      "ttl>ssr:in HTML",
+      "meta>ssr:in HTML"
+     ]
+    },
+    {
+     "say": "Lazy-load images below the fold with correct sizes, to keep pages fast.",
+     "flow": [
+      "ssr>img:fast"
+     ]
+    }
+   ]
+  },
+  "Advanced Angular Testing: Guards, Interceptors, Routing and Component Inputs": {
+   "title": "Testing the hard parts",
+   "nodes": [
+    {
+     "id": "tb",
+     "label": "TestBed",
+     "sub": "sets up",
+     "col": 0,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "grd",
+     "label": "Guard test",
+     "sub": "run the function",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "int",
+     "label": "Interceptor test",
+     "sub": "HttpTestingController",
+     "col": 1,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "rt",
+     "label": "Router test",
+     "sub": "harness",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "inp",
+     "label": "Input test",
+     "sub": "setInput()",
+     "col": 2,
+     "row": 1,
+     "kind": "data"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Guards, interceptors and routes can be tested without a real server.",
+     "on": [
+      "tb"
+     ]
+    },
+    {
+     "say": "Run a guard function with runInInjectionContext and check what it returns.",
+     "flow": [
+      "tb>grd:run"
+     ]
+    },
+    {
+     "say": "For interceptors, use HttpTestingController to see the request and send a fake response.",
+     "flow": [
+      "tb>int:fake backend"
+     ]
+    },
+    {
+     "say": "The router testing harness navigates and lets you check which component showed.",
+     "flow": [
+      "grd>rt:navigate"
+     ]
+    },
+    {
+     "say": "Use setInput on the component fixture to test component inputs.",
+     "flow": [
+      "int>inp:inputs"
+     ]
+    }
+   ]
+  },
+  "Angular End-to-End Testing with Playwright: Test Like a User": {
+   "title": "End-to-end test",
+   "nodes": [
+    {
+     "id": "test",
+     "label": "Playwright test",
+     "sub": "script",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "brw",
+     "label": "Real browser",
+     "sub": "Chromium",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "app",
+     "label": "Your app",
+     "sub": "running",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "act",
+     "label": "Click, type",
+     "sub": "like a user",
+     "col": 1,
+     "row": 1,
+     "kind": "user"
+    },
+    {
+     "id": "chk",
+     "label": "Assertions",
+     "sub": "what is on screen",
+     "col": 2,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "An end-to-end test uses your app the way a user does.",
+     "on": [
+      "test"
+     ]
+    },
+    {
+     "say": "Playwright opens a real browser and loads your running app.",
+     "flow": [
+      "test>brw:launch",
+      "brw>app:open"
+     ]
+    },
+    {
+     "say": "It clicks buttons and types into fields, finding them by role and label.",
+     "flow": [
+      "act>app:actions"
+     ]
+    },
+    {
+     "say": "Then it checks what appears on the screen.",
+     "flow": [
+      "app>chk:result"
+     ]
+    },
+    {
+     "say": "Keep a few tests for the most important journeys, such as sign-up and checkout.",
+     "on": [
+      "chk"
+     ]
+    }
+   ]
+  },
+  "Angular Security Best Practices: XSS, Tokens, CSRF and Headers": {
+   "title": "Staying safe",
+   "nodes": [
+    {
+     "id": "in",
+     "label": "User input",
+     "sub": "untrusted",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "san",
+     "label": "Angular sanitising",
+     "sub": "escapes by default",
+     "col": 1,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "tok",
+     "label": "Tokens",
+     "sub": "careful storage",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "hdr",
+     "label": "Security headers",
+     "sub": "CSP and more",
+     "col": 2,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "srv",
+     "label": "Server checks",
+     "sub": "the real protection",
+     "col": 2,
+     "row": 1,
+     "kind": "model"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Treat all input as untrusted.",
+     "on": [
+      "in"
+     ]
+    },
+    {
+     "say": "Angular escapes values in templates, which protects you from XSS. Avoid bypassSecurityTrust unless you really must.",
+     "flow": [
+      "in>san:escape"
+     ]
+    },
+    {
+     "say": "Store tokens carefully. HttpOnly cookies are safer than local storage, and cookies need CSRF protection.",
+     "on": [
+      "tok"
+     ]
+    },
+    {
+     "say": "Set security headers such as Content-Security-Policy on your server.",
+     "flow": [
+      "srv>hdr:headers"
+     ]
+    },
+    {
+     "say": "Never rely on the browser alone: the server must check every request.",
+     "flow": [
+      "tok>srv:verify"
+     ]
+    }
+   ]
+  },
+  "Angular CI/CD with GitHub Actions: Test, Build and Deploy Automatically": {
+   "title": "A CI/CD pipeline",
+   "nodes": [
+    {
+     "id": "push",
+     "label": "git push",
+     "sub": "to GitHub",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "wf",
+     "label": "GitHub Actions",
+     "sub": "workflow file",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "test",
+     "label": "Test and lint",
+     "sub": "must pass",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "build",
+     "label": "Build",
+     "sub": "ng build",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "dep",
+     "label": "Deploy",
+     "sub": "to your host",
+     "col": 3,
+     "row": 1,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "CI/CD runs your checks and deployment for you, every time.",
+     "on": [
+      "wf"
+     ]
+    },
+    {
+     "say": "Pushing code starts the workflow.",
+     "flow": [
+      "push>wf:trigger"
+     ]
+    },
+    {
+     "say": "The workflow installs dependencies, then runs lint and tests.",
+     "flow": [
+      "wf>test:run"
+     ]
+    },
+    {
+     "say": "If they pass, it builds the app.",
+     "flow": [
+      "test>build:pass"
+     ]
+    },
+    {
+     "say": "It then deploys the result. Keep secrets in GitHub secrets, never in the repository.",
+     "flow": [
+      "build>dep:deploy"
+     ]
+    }
+   ]
+  },
+  "Angular Troubleshooting: 404 on Refresh, ExpressionChanged, EventTarget and SSL on Localhost": {
+   "title": "Common problems",
+   "nodes": [
+    {
+     "id": "p1",
+     "label": "404 on refresh",
+     "sub": "server needs fallback",
+     "col": 0,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "p2",
+     "label": "ExpressionChanged",
+     "sub": "changed after check",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "p3",
+     "label": "EventTarget typing",
+     "sub": "cast to the element",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "p4",
+     "label": "SSL on localhost",
+     "sub": "trust a local cert",
+     "col": 1,
+     "row": 1,
+     "kind": "data"
+    },
+    {
+     "id": "fix",
+     "label": "Fix the cause",
+     "sub": "not the symptom",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A refreshed deep link shows 404 because the server does not know Angular routes. Send index.html for unknown paths.",
+     "on": [
+      "p1"
+     ]
+    },
+    {
+     "say": "ExpressionChanged means a value changed after Angular had checked it. Move the change earlier or use signals.",
+     "on": [
+      "p2"
+     ]
+    },
+    {
+     "say": "EventTarget typing errors happen because the event target is generic. Cast it to the element you expect.",
+     "on": [
+      "p3"
+     ]
+    },
+    {
+     "say": "For SSL on localhost, create and trust a local certificate for the dev server.",
+     "on": [
+      "p4"
+     ]
+    },
+    {
+     "say": "Read the error message, find the cause, and fix that.",
+     "flow": [
+      "p3>fix:diagnose"
+     ]
+    }
+   ]
+  },
+  "Angular Module Loaders: SystemJS, Webpack and Today's esbuild and Vite Build": {
+   "title": "Build tools over time",
+   "nodes": [
+    {
+     "id": "sjs",
+     "label": "SystemJS",
+     "sub": "early Angular",
+     "col": 0,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "web",
+     "label": "Webpack",
+     "sub": "long-time default",
+     "col": 1,
+     "row": 0,
+     "kind": "tool"
+    },
+    {
+     "id": "esb",
+     "label": "esbuild + Vite",
+     "sub": "today",
+     "col": 2,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "src",
+     "label": "Your source",
+     "sub": "TypeScript",
+     "col": 1,
+     "row": 1,
+     "kind": "app"
+    },
+    {
+     "id": "out",
+     "label": "Browser files",
+     "sub": "bundles",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "A module loader or bundler turns many source files into files a browser can load.",
+     "on": [
+      "src"
+     ]
+    },
+    {
+     "say": "Early Angular used SystemJS, which loaded modules in the browser.",
+     "on": [
+      "sjs"
+     ]
+    },
+    {
+     "say": "Webpack then bundled the app at build time, and was the default for years.",
+     "flow": [
+      "sjs>web:replaced by"
+     ]
+    },
+    {
+     "say": "Modern Angular builds with esbuild, and the dev server uses Vite, which is much faster.",
+     "flow": [
+      "web>esb:replaced by"
+     ]
+    },
+    {
+     "say": "You still run ng build and ng serve, so the commands stay the same.",
+     "flow": [
+      "src>esb:build",
+      "esb>out:bundles"
+     ]
+    }
+   ]
+  },
+  "Angular Advanced Capstone: Build and Ship a Production-Ready App": {
+   "title": "From idea to production",
+   "nodes": [
+    {
+     "id": "arch",
+     "label": "Architecture",
+     "sub": "features and routes",
+     "col": 0,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "state",
+     "label": "State and data",
+     "sub": "signals, HTTP",
+     "col": 1,
+     "row": 0,
+     "kind": "store"
+    },
+    {
+     "id": "qa",
+     "label": "Tests and a11y",
+     "sub": "quality gates",
+     "col": 2,
+     "row": 0,
+     "kind": "check"
+    },
+    {
+     "id": "perf",
+     "label": "SSR and speed",
+     "sub": "SEO ready",
+     "col": 2,
+     "row": 1,
+     "kind": "model"
+    },
+    {
+     "id": "ship",
+     "label": "CI/CD deploy",
+     "sub": "live app",
+     "col": 3,
+     "row": 0,
+     "kind": "out"
+    }
+   ],
+   "steps": [
+    {
+     "say": "The final project brings the whole course together.",
+     "on": [
+      "arch"
+     ]
+    },
+    {
+     "say": "Plan the architecture first: features, routes and clear boundaries.",
+     "on": [
+      "arch"
+     ]
+    },
+    {
+     "say": "Add state with signals and load data over HTTP, with errors handled.",
+     "flow": [
+      "arch>state:build"
+     ]
+    },
+    {
+     "say": "Test it, and check accessibility and security.",
+     "flow": [
+      "state>qa:verify"
+     ]
+    },
+    {
+     "say": "Add SSR and performance work, then let CI/CD ship it.",
+     "flow": [
+      "qa>perf:optimise",
+      "perf>ship:deploy"
+     ]
+    }
+   ]
+  }
+ }
+}
