@@ -1,5 +1,5 @@
 {
- "angular": {
+ "angular-tutorial": {
   "What is Angular? A Beginner's Introduction": {
    "title": "What Angular does for you",
    "nodes": [
@@ -2486,6 +2486,83 @@
      "say": "setValidators changes the rules at runtime. Call updateValueAndValidity afterwards.",
      "flow": [
       "set>ctl:new rules"
+     ]
+    }
+   ]
+  },
+  "Angular Routing Basics: Pages, RouterLink and RouterOutlet": {
+   "title": "How routing shows a page",
+   "nodes": [
+    {
+     "id": "url",
+     "label": "URL",
+     "sub": "/about",
+     "col": 0,
+     "row": 0,
+     "kind": "user"
+    },
+    {
+     "id": "rt",
+     "label": "Routes",
+     "sub": "path to component",
+     "col": 1,
+     "row": 0,
+     "kind": "model"
+    },
+    {
+     "id": "cmp",
+     "label": "About component",
+     "sub": "matched page",
+     "col": 2,
+     "row": 0,
+     "kind": "app"
+    },
+    {
+     "id": "out",
+     "label": "router-outlet",
+     "sub": "the page slot",
+     "col": 2,
+     "row": 1,
+     "kind": "tool"
+    },
+    {
+     "id": "lnk",
+     "label": "routerLink",
+     "sub": "links, no reload",
+     "col": 1,
+     "row": 1,
+     "kind": "check"
+    }
+   ],
+   "steps": [
+    {
+     "say": "Routing lets one Angular app show different pages for different URLs, without a full reload.",
+     "on": [
+      "rt"
+     ]
+    },
+    {
+     "say": "You list routes in app.routes.ts. Each route pairs a path with a component.",
+     "flow": [
+      "url>rt:path"
+     ]
+    },
+    {
+     "say": "When the URL matches, the router picks that component.",
+     "flow": [
+      "rt>cmp:match"
+     ]
+    },
+    {
+     "say": "router-outlet marks the spot in the layout where the chosen page is drawn.",
+     "flow": [
+      "cmp>out:renders in"
+     ]
+    },
+    {
+     "say": "Use routerLink instead of plain links, so clicking changes the page without reloading.",
+     "flow": [
+      "lnk>rt:navigate"
      ]
     }
    ]
