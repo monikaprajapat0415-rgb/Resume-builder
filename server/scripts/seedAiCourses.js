@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 import { course as c1, lessons as l1 } from "./learn-ai/course1.js";
 import { course as c2, lessons as l2 } from "./learn-ai/course2.js";
 import { course as c3, lessons as l3 } from "./learn-ai/course3.js";
+import { animations } from "./learn-ai/animations.js";
 
 const sets = [[c1, l1], [c2, l2], [c3, l3]];
 const draft = process.argv.includes('--draft');
@@ -22,7 +23,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 
 const build = ([course, lessons]) => ({
   course: { ...course, published: !draft },
-  lessons: lessons.map((l) => ({ ...l, published: !draft })),
+  lessons: lessons.map((l) => ({ ...l, ...(animations[l.slug] ? { animation: animations[l.slug] } : {}), published: !draft })),
 });
 
 if (jsonOnly) {

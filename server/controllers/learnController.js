@@ -6,6 +6,7 @@ import LessonFeedback from "../models/LessonFeedback.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks } from "../utils/blogSeo.js";
 import { downloadPath, isZip, safeName, saveUpload, removeUpload } from "../utils/learnFiles.js";
+import { cleanAnimation } from "../utils/lessonAnimation.js";
 import { cleanCourseFields, cleanLessonFields, courseCard, courseView, lessonView } from "../utils/learnSeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -339,4 +340,13 @@ export const downloadLessonFile = async (req, res) => {
         res.setHeader('X-Robots-Tag', 'noindex');
         return res.download(full, lesson.download.name || 'solution.zip');
     } catch (e) { return res.status(500).json({ message: e.message }); }
+};
+
+// POST /api/admin/learn/animation/preview  { animation } - the cleaned animation, or the reason it is not valid
+export const previewAnimation = (req, res) => {
+    try {
+        const animation = cleanAnimation(req.body?.animation);
+        if (!animation) return res.status(400).json({ message: 'Animation: nothing to show yet.' });
+        return res.status(200).json({ animation });
+    } catch (e) { return res.status(400).json({ message: e.message }); }
 };

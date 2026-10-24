@@ -1,0 +1,432 @@
+// Step-by-step animations shown above each lesson (format: server/utils/lessonAnimation.js).
+// Keyed by lesson slug. seedAiCourses.js attaches them to the lessons; `node scripts/seedAiCourses.js --json`
+// writes them into the import files. Keep each caption short, plain and true to what the lesson teaches.
+const n = (id, label, sub, col, row, kind) => ({ id, label, sub, col, row, kind });
+const A = (title, nodes, steps) => ({ title, nodes, steps });
+
+export const animations = {
+  // ---------------- Course 1: Generative AI & LLM Fundamentals ----------------
+  'what-is-artificial-intelligence': A('AI, machine learning and deep learning', [
+    n('ai', 'AI', 'the big field', 0, 0, 'store'), n('ml', 'Machine learning', 'learns from data', 1, 0, 'app'),
+    n('dl', 'Deep learning', 'many-layer networks', 2, 0, 'model'), n('gen', 'Generative AI', 'new text and images', 3, 0, 'out'),
+  ], [
+    { say: 'Artificial intelligence is the big idea: computers doing tasks that normally need human thinking.', on: ['ai'] },
+    { say: 'Machine learning sits inside it. Instead of writing every rule, we let the computer learn patterns from examples.', flow: ['ai>ml:inside'] },
+    { say: 'Deep learning is a kind of machine learning that uses neural networks with many layers.', flow: ['ml>dl:inside'] },
+    { say: 'Generative AI uses deep learning to create new text, images or code. Chat assistants belong here.', flow: ['dl>gen:powers'] },
+    { say: 'Today every system you meet is narrow AI: very good at some tasks, and not a general thinking mind.', on: ['ai', 'gen'] },
+  ]),
+  'math-and-statistics-for-ai': A('The maths behind learning', [
+    n('vec', 'Vectors', 'lists of numbers', 0, 0, 'data'), n('sim', 'Similarity', 'how close two are', 1, 0, 'check'),
+    n('prob', 'Probability', 'how likely', 0, 1, 'app'), n('loss', 'Loss', 'how wrong we are', 1, 1, 'tool'),
+    n('grad', 'Gradient descent', 'small step downhill', 2, 1, 'model'),
+  ], [
+    { say: 'AI turns words, pictures and data into vectors, which are just lists of numbers.', on: ['vec'] },
+    { say: 'Comparing two vectors tells us how similar they are. Search by meaning is built on this.', flow: ['vec>sim:compare'] },
+    { say: 'Probability tells us how likely each outcome is. A language model gives a probability to every possible next word.', on: ['prob'] },
+    { say: 'To learn, the model measures a loss: a number that says how wrong its answer was.', flow: ['prob>loss:error'] },
+    { say: 'Gradient descent changes the model a little in the direction that lowers the loss, and repeats this many times.', flow: ['loss>grad:adjust'] },
+  ]),
+  'machine-learning-basics': A('How a model is trained and tested', [
+    n('data', 'Data', 'examples', 0, 0, 'data'), n('train', 'Training set', 'learn from this', 1, 0, 'app'),
+    n('val', 'Validation set', 'tune choices', 1, 1, 'check'), n('model', 'Model', 'learned patterns', 2, 0, 'model'),
+    n('test', 'Test set', 'final honest score', 2, 1, 'out'),
+  ], [
+    { say: 'Start with data: many examples, ideally with the right answers attached.', on: ['data'] },
+    { say: 'Split it. Most of it goes into the training set that the model learns from.', flow: ['data>train:most'] },
+    { say: 'A separate validation set is used to compare settings while you build.', flow: ['data>val:some'] },
+    { say: 'The model learns patterns from the training set.', flow: ['train>model:learn'] },
+    { say: 'The test set is kept locked away until the end, so the score is an honest check on data the model never saw.', flow: ['model>test:final check'] },
+    { say: 'If the training score is high but the test score is low, the model has overfitted: it memorised instead of learning.', on: ['model', 'test'] },
+  ]),
+  'deep-learning-and-transformers': A('From words to a prediction', [
+    n('text', 'Words', 'your prompt', 0, 0, 'user'), n('emb', 'Embeddings', 'meaning as numbers', 1, 0, 'data'),
+    n('att', 'Attention', 'which words matter', 2, 0, 'model'), n('layers', 'Transformer layers', 'repeated blocks', 3, 0, 'model'),
+    n('out', 'Next word', 'most likely', 3, 1, 'out'),
+  ], [
+    { say: 'You type words. The model first breaks them into pieces called tokens.', on: ['text'] },
+    { say: 'Each token becomes an embedding: a list of numbers that carries its meaning.', flow: ['text>emb:tokens'] },
+    { say: 'Attention lets every word look at the other words and decide which ones matter for its meaning here.', flow: ['emb>att:relate'] },
+    { say: 'Many transformer layers repeat this, building a richer understanding each time.', flow: ['att>layers:stack'] },
+    { say: 'At the end the model gives a score to each possible next token and picks one.', flow: ['layers>out:predict'] },
+  ]),
+  'introduction-to-generative-ai': A('What a foundation model can do', [
+    n('base', 'Foundation model', 'trained on huge data', 1, 0, 'model'), n('text', 'Text', 'answers, summaries', 0, 1, 'out'),
+    n('img', 'Images', 'from descriptions', 1, 1, 'out'), n('code', 'Code', 'drafts and fixes', 2, 1, 'out'),
+    n('you', 'You', 'check the result', 1, 2, 'user'),
+  ], [
+    { say: 'A foundation model is trained once on a very large amount of data, so it can be used for many tasks.', on: ['base'] },
+    { say: 'Large language models focus on text: they write, summarise, translate and answer questions.', flow: ['base>text:LLM'] },
+    { say: 'Other models create images from a written description.', flow: ['base>img:diffusion'] },
+    { say: 'Models can also draft and explain code.', flow: ['base>code:assist'] },
+    { say: 'The output can be fluent and still wrong. A person must check anything that matters.', flow: ['text>you:verify'] },
+  ]),
+  'how-large-language-models-work': A('How an LLM writes one answer', [
+    n('prompt', 'Prompt', 'your text', 0, 0, 'user'), n('tok', 'Tokens', 'small pieces', 1, 0, 'data'),
+    n('model', 'Model', 'scores next tokens', 2, 0, 'model'), n('sample', 'Sampling', 'temperature, top-p', 2, 1, 'check'),
+    n('reply', 'Reply', 'grows token by token', 1, 1, 'out'),
+  ], [
+    { say: 'Your prompt is split into tokens: words or parts of words.', flow: ['prompt>tok:split'] },
+    { say: 'The model reads the tokens, within its context window, and scores every possible next token.', flow: ['tok>model:context'] },
+    { say: 'Sampling chooses one token. A low temperature picks the safest choices; a high one is more varied.', flow: ['model>sample:scores'] },
+    { say: 'The chosen token is added to the reply.', flow: ['sample>reply:token'] },
+    { say: 'The new token is fed back in and the loop repeats until the answer is complete.', flow: ['reply>tok:repeat'] },
+    { say: 'The model predicts likely text. It does not look facts up, so it can sound sure and still be wrong.', on: ['model', 'reply'] },
+  ]),
+  'llm-architecture-and-optimization': A('Making a big model cheaper to run', [
+    n('big', 'Large model', 'billions of numbers', 0, 0, 'model'), n('quant', 'Quantization', 'smaller numbers', 1, 0, 'tool'),
+    n('small', 'Smaller model', 'less memory', 2, 0, 'app'), n('gpu', 'GPU', 'does the maths fast', 2, 1, 'store'),
+    n('fast', 'Faster answers', 'cheaper inference', 1, 1, 'out'),
+  ], [
+    { say: 'A large model has billions of parameters, the numbers it learned. They take a lot of memory.', on: ['big'] },
+    { say: 'Quantization stores those numbers with fewer bits, so the model gets smaller.', flow: ['big>quant:compress'] },
+    { say: 'The result needs less memory and can run on smaller hardware, with a small loss in quality.', flow: ['quant>small:fits'] },
+    { say: 'Running the model to answer a question is called inference. GPUs do the many calculations in parallel.', flow: ['small>gpu:run'] },
+    { say: 'Smaller models, quantization and good hardware together give faster and cheaper answers.', flow: ['gpu>fast:result'] },
+  ]),
+  'prompt-engineering-basics': A('What a good prompt contains', [
+    n('role', 'Role', 'who the model is', 0, 0, 'tool'), n('task', 'Task', 'what to do', 1, 0, 'app'),
+    n('ctx', 'Context', 'facts it needs', 2, 0, 'data'), n('ex', 'Examples', 'few-shot', 1, 1, 'check'),
+    n('model', 'Model', 'writes the reply', 2, 1, 'model'), n('out', 'Answer', 'in your format', 3, 1, 'out'),
+  ], [
+    { say: 'Say clearly what the task is. A vague prompt gets a vague answer.', on: ['task'] },
+    { say: 'Give a role and constraints, for example who the reader is and how long the answer should be.', flow: ['role>task:guides'] },
+    { say: 'Add the context the model cannot know: your text, your data or your rules.', flow: ['ctx>task:adds'] },
+    { say: 'A few examples of the exact output you want teach the format better than a description.', flow: ['ex>model:show'] },
+    { say: 'The model uses all of this together to write the reply.', flow: ['task>model:prompt'] },
+    { say: 'You get an answer in the shape you asked for. Reuse the prompt as a template with variables.', flow: ['model>out:reply'] },
+  ]),
+  'advanced-prompting-techniques': A('Breaking a hard task into a chain', [
+    n('goal', 'Big task', 'too much at once', 0, 0, 'user'), n('s1', 'Step 1', 'extract facts', 1, 0, 'app'),
+    n('s2', 'Step 2', 'analyse', 2, 0, 'model'), n('s3', 'Step 3', 'write the answer', 3, 0, 'tool'),
+    n('crit', 'Critique', 'check and improve', 3, 1, 'check'),
+  ], [
+    { say: 'One huge prompt that asks for everything often gives a messy answer.', on: ['goal'] },
+    { say: 'Decompose it. The first prompt only extracts the facts.', flow: ['goal>s1:split'] },
+    { say: 'Its output becomes the input of the second prompt, which analyses those facts.', flow: ['s1>s2:chain'] },
+    { say: 'The third prompt writes the final answer from the analysis.', flow: ['s2>s3:chain'] },
+    { say: 'A reflection step asks the model to check its own draft against your rules, and fix what is wrong.', flow: ['s3>crit:review'] },
+    { say: 'Each small step is easier to test and debug than one giant prompt.', on: ['s1', 's2', 's3'] },
+  ]),
+  'structured-outputs-json': A('Getting reliable JSON', [
+    n('schema', 'Schema', 'the shape you want', 0, 0, 'data'), n('model', 'Model', 'writes JSON', 1, 0, 'model'),
+    n('valid', 'Validate', 'check every field', 2, 0, 'check'), n('retry', 'Retry or fallback', 'bad output', 2, 1, 'tool'),
+    n('app', 'Your app', 'uses safe data', 3, 0, 'app'),
+  ], [
+    { say: 'Describe the exact shape you want: field names, types and allowed values.', flow: ['schema>model:ask'] },
+    { say: 'The model writes JSON that follows the schema.', on: ['model'] },
+    { say: 'Never trust it blindly. Your code parses and validates every field.', flow: ['model>valid:reply'] },
+    { say: 'If the output is invalid, retry with the error message, or fall back to a safe default.', flow: ['valid>retry:fails'] },
+    { say: 'Only data that passes validation reaches the rest of your app.', flow: ['valid>app:passes'] },
+  ]),
+  'prompt-testing-and-security': A('Testing prompts and blocking injection', [
+    n('gold', 'Golden test set', 'known good cases', 0, 0, 'data'), n('prompt', 'Prompt v2', 'versioned', 1, 0, 'app'),
+    n('model', 'Model', 'answers each case', 2, 0, 'model'), n('score', 'Score', 'pass or fail', 2, 1, 'check'),
+    n('attack', 'Hidden instructions', 'in user text', 0, 1, 'tool'),
+  ], [
+    { say: 'Build a golden test set: real inputs with the answers you expect.', on: ['gold'] },
+    { say: 'Every change to a prompt is saved as a new version, so you can compare and roll back.', flow: ['gold>prompt:test'] },
+    { say: 'Run the prompt on every test case.', flow: ['prompt>model:run'] },
+    { say: 'Score the results. A new prompt must not make old cases fail.', flow: ['model>score:compare'] },
+    { say: 'Prompt injection is when text in a document or message tries to give the model new orders.', flow: ['attack>prompt:injects'] },
+    { say: 'Treat outside text as data, not as instructions, and never let the model alone approve risky actions.', on: ['prompt', 'score'] },
+  ]),
+
+  // ---------------- Course 2: Claude API & Tool Use ----------------
+  'what-is-anthropic-and-claude': A('Where the Claude API fits in your app', [
+    n('user', 'Reader', 'browser', 0, 0, 'user'), n('ng', 'Angular app', 'screen', 1, 0, 'app'),
+    n('node', 'Node.js server', 'holds the API key', 2, 0, 'tool'), n('claude', 'Claude', 'Anthropic API', 3, 0, 'model'),
+  ], [
+    { say: 'Claude is a family of AI models made by Anthropic. You use it through an API, or in the Claude apps.', on: ['claude'] },
+    { say: 'In our AI Lab the reader types a question in an Angular screen.', flow: ['user>ng:question'] },
+    { say: 'Angular sends it to your own Node.js server, never straight to Claude.', flow: ['ng>node:POST'] },
+    { say: 'The server adds the secret API key and calls the Claude API.', flow: ['node>claude:request'] },
+    { say: 'Claude writes the answer and the server sends it back to the screen.', flow: ['claude>node:answer'] },
+    { say: 'The key stays on the server, so nobody can steal it from the browser.', flow: ['node>ng:reply'] },
+  ]),
+  'set-up-claude-api-key-node': A('Keeping the API key safe', [
+    n('env', '.env file', 'secret key', 0, 0, 'store'), n('node', 'Node.js server', 'reads the key', 1, 0, 'tool'),
+    n('sdk', 'Anthropic SDK', 'makes the call', 2, 0, 'app'), n('claude', 'Claude API', 'answers', 3, 0, 'model'),
+    n('ng', 'Angular', 'no key here', 1, 1, 'user'),
+  ], [
+    { say: 'Get an API key from the Anthropic Console and put it in a .env file that is never committed to Git.', on: ['env'] },
+    { say: 'The Node.js server reads the key from the environment when it starts.', flow: ['env>node:key'] },
+    { say: 'The official SDK uses the key to call the Claude API.', flow: ['node>sdk:call'] },
+    { say: 'Claude replies, and the SDK returns the answer to your server.', flow: ['sdk>claude:message'] },
+    { say: 'The Angular app only talks to your server. It never sees the key.', flow: ['ng>node:question'] },
+    { say: 'If a key ever leaks, delete it in the Console at once and create a new one.', on: ['env'] },
+  ]),
+  'claude-api-pricing-limits-tokens': A('Tokens, cost and limits', [
+    n('text', 'Your text', 'prompt', 0, 0, 'user'), n('tok', 'Input tokens', 'counted', 1, 0, 'data'),
+    n('model', 'Claude', 'writes the reply', 2, 0, 'model'), n('outt', 'Output tokens', 'counted', 3, 0, 'data'),
+    n('bill', 'Cost', 'input + output', 2, 1, 'check'), n('limit', 'Rate limit', 'requests per minute', 1, 1, 'tool'),
+  ], [
+    { say: 'A token is a small piece of text. Everything you send and receive is counted in tokens.', flow: ['text>tok:split'] },
+    { say: 'Input tokens are what you send: instructions, history and documents.', flow: ['tok>model:input'] },
+    { say: 'Output tokens are what Claude writes back. They are usually priced differently from input.', flow: ['model>outt:output'] },
+    { say: 'Your cost comes from both counts, using the price list on the Anthropic site.', flow: ['outt>bill:add up'] },
+    { say: 'Rate limits cap how many requests or tokens you can use in a period. Handle them politely.', on: ['limit'] },
+    { say: 'To spend less: send shorter prompts, trim old history, choose a smaller model and cache repeated text.', on: ['tok', 'bill'] },
+  ]),
+  'claude-messages-api-explained': A('Claude has no memory: you send the history', [
+    n('ng', 'Angular chat', 'keeps messages', 0, 0, 'app'), n('node', 'Node.js server', 'cleans history', 1, 0, 'tool'),
+    n('claude', 'Claude', 'reads it all', 2, 0, 'model'), n('hist', 'Message list', 'user, assistant...', 1, 1, 'data'),
+  ], [
+    { say: 'Claude does not remember earlier requests. Every call must carry the whole conversation so far.', on: ['claude'] },
+    { say: 'The chat screen sends the new question to your server.', flow: ['ng>node:new message'] },
+    { say: 'The server builds the message list: a system prompt, then user and assistant turns in order.', flow: ['node>hist:build'] },
+    { say: 'It cleans the list on the server, so a user cannot slip in fake turns.', flow: ['hist>node:clean'] },
+    { say: 'The full list goes to Claude, which answers using all of it.', flow: ['node>claude:messages'] },
+    { say: 'The answer is added to the history. A longer history means more tokens and a higher cost.', flow: ['claude>node:answer'] },
+  ]),
+  'stream-claude-responses': A('Streaming an answer word by word', [
+    n('claude', 'Claude', 'generates tokens', 0, 0, 'model'), n('node', 'Node.js', 'streams events', 1, 0, 'tool'),
+    n('sse', 'SSE connection', 'stays open', 2, 0, 'data'), n('ng', 'Angular', 'shows text live', 3, 0, 'app'),
+    n('stop', 'Stop button', 'cancels', 1, 1, 'check'),
+  ], [
+    { say: 'Without streaming the reader waits for the whole answer. Streaming shows words as they are made.', on: ['claude'] },
+    { say: 'Claude sends the answer in small pieces to your server.', flow: ['claude>node:chunks'] },
+    { say: 'The server passes each piece on over a Server-Sent Events connection.', flow: ['node>sse:event'] },
+    { say: 'Angular reads the stream and appends each piece to the screen.', flow: ['sse>ng:text'] },
+    { say: 'A Stop button cancels the request, so you stop paying for text nobody wants.', flow: ['stop>node:abort'] },
+  ]),
+  'claude-error-handling-retries': A('Retry only what can heal', [
+    n('call', 'API call', 'your request', 0, 0, 'app'), n('res', 'Response', 'ok or error', 1, 0, 'data'),
+    n('retry', 'Retry', 'backoff + jitter', 2, 0, 'tool'), n('fix', 'Do not retry', 'bad request, bad key', 2, 1, 'check'),
+    n('user', 'Friendly message', 'safe details only', 1, 1, 'out'),
+  ], [
+    { say: 'AI calls fail for many reasons: busy servers, rate limits, timeouts or a mistake in the request.', flow: ['call>res:request'] },
+    { say: 'Temporary errors, such as overload or a rate limit, may succeed if you try again.', flow: ['res>retry:temporary'] },
+    { say: 'Wait longer each time (exponential backoff) and add a little random delay (jitter) so clients do not all retry together.', on: ['retry'] },
+    { say: 'Errors caused by your own request, like a wrong key or bad input, will never heal. Fix them instead of retrying.', flow: ['res>fix:permanent'] },
+    { say: 'Always show the reader a clear message, never raw error details or secrets.', flow: ['fix>user:explain'] },
+    { say: 'Set a timeout and allow cancellation, so one slow call cannot block the whole screen.', on: ['call', 'user'] },
+  ]),
+  'prompt-caching-and-batch-processing': A('Caching the part that never changes', [
+    n('stable', 'Stable prompt', 'long rules, documents', 0, 0, 'store'), n('var', 'Changing part', 'the new question', 0, 1, 'user'),
+    n('claude', 'Claude', 'prefix + question', 1, 0, 'model'), n('cache', 'Cache', 'remembers the prefix', 2, 0, 'data'),
+    n('batch', 'Batch', 'slower, cheaper', 2, 1, 'tool'),
+  ], [
+    { say: 'Many requests start with the same long text, such as rules or a document. Sending it again every time wastes tokens.', on: ['stable'] },
+    { say: 'Put the stable text first and mark it for caching. The changing question goes after it.', flow: ['stable>claude:cached prefix', 'var>claude:question'] },
+    { say: 'The first request writes the prefix to the cache.', flow: ['claude>cache:store'] },
+    { say: 'Later requests with the same prefix read it from the cache, which is cheaper and faster. Check the usage numbers to confirm.', flow: ['cache>claude:hit'] },
+    { say: 'A cache is not magic. It expires, and changing even one early word breaks it.', on: ['cache'] },
+    { say: 'If an answer can wait, the batch API processes many requests together at a lower price.', flow: ['var>batch:many requests'] },
+  ]),
+  'claude-vision-pdf-documents': A('Reading an image or PDF safely', [
+    n('user', 'Reader', 'uploads a file', 0, 0, 'user'), n('node', 'Node.js', 'checks type and size', 1, 0, 'check'),
+    n('claude', 'Claude', 'reads the file', 2, 0, 'model'), n('json', 'JSON answer', 'validated', 3, 0, 'out'),
+    n('del', 'Delete file', 'privacy first', 1, 1, 'store'),
+  ], [
+    { say: 'Claude can read images and PDFs as well as text.', on: ['claude'] },
+    { say: 'The reader uploads a file to your server.', flow: ['user>node:file'] },
+    { say: 'The server checks the type and size, and rejects anything unexpected.', on: ['node'] },
+    { say: 'The file is sent to Claude together with a clear question, often asking for JSON.', flow: ['node>claude:file + question'] },
+    { say: 'The answer is validated before the app uses it.', flow: ['claude>json:extract'] },
+    { say: 'Do not keep documents longer than needed. Delete the file when the job is done.', flow: ['node>del:clean up'] },
+  ]),
+  'claude-tool-use-explained': A('The tool-use loop', [
+    n('user', 'Reader', 'asks a question', 0, 0, 'user'), n('node', 'Your server', 'runs the loop', 1, 0, 'tool'),
+    n('claude', 'Claude', 'decides', 2, 0, 'model'), n('tool', 'Your tool', 'a function you wrote', 2, 1, 'app'),
+  ], [
+    { say: 'You describe your tools to Claude: a name, what it does and what inputs it needs.', on: ['node'] },
+    { say: 'The reader asks something that needs real data, such as an order status.', flow: ['user>node:question'] },
+    { say: 'Your server sends the question and the tool list to Claude.', flow: ['node>claude:question + tools'] },
+    { say: 'Claude does not run anything. It replies that it wants to use a tool, with the inputs.', flow: ['claude>node:tool_use'] },
+    { say: 'Your server runs the tool and gets a result.', flow: ['node>tool:run'] },
+    { say: 'The result is sent back to Claude as a tool result.', flow: ['tool>node:result', 'node>claude:tool_result'] },
+    { say: 'Claude uses the result to write the final answer. The loop stops when no more tools are needed.', flow: ['claude>node:final answer'] },
+  ]),
+  'safe-tool-design-and-permissions': A('Checks before a tool runs', [
+    n('claude', 'Claude', 'asks for a tool', 0, 0, 'model'), n('val', 'Validate input', 'never trust arguments', 1, 0, 'check'),
+    n('own', 'Check owner', 'is it their data?', 2, 0, 'check'), n('human', 'Ask a person', 'for risky actions', 2, 1, 'user'),
+    n('tool', 'Run the tool', 'least privilege', 3, 0, 'tool'),
+  ], [
+    { say: 'Claude can ask for any tool call, and it can be tricked. Your code is the last line of defence.', on: ['claude'] },
+    { say: 'Rule 1: validate the arguments as if a stranger typed them.', flow: ['claude>val:arguments'] },
+    { say: 'Rule 2: check that the signed-in user owns the data being asked for.', flow: ['val>own:valid'] },
+    { say: 'Rule 4: for risky actions, like deleting or paying, a human must approve first.', flow: ['own>human:risky'] },
+    { say: 'Rule 3: the tool has only the access it needs, nothing more.', flow: ['own>tool:allowed'] },
+    { say: 'Text returned by a tool is data, not orders. Never let it change your rules.', on: ['tool'] },
+  ]),
+  'build-resume-job-match-with-claude': A('Resume and job matching', [
+    n('resume', 'Resume text', 'from the reader', 0, 0, 'user'), n('job', 'Job description', 'pasted text', 0, 1, 'user'),
+    n('node', 'Node.js', 'limits and checks', 1, 0, 'tool'), n('claude', 'Claude', 'forced JSON tool', 2, 0, 'model'),
+    n('ng', 'Angular screen', 'honest result', 1, 1, 'out'),
+  ], [
+    { say: 'The reader pastes a resume and a job description. Plan the exact result you want before you code.', flow: ['resume>node:text', 'job>node:text'] },
+    { say: 'The server limits the size, and protects the endpoint from abuse.', on: ['node'] },
+    { say: 'It sends both texts to Claude with a careful system prompt and a tool that forces structured JSON.', flow: ['node>claude:prompt + schema'] },
+    { say: 'Claude returns a match score, matching skills and missing skills in that shape.', flow: ['claude>node:JSON'] },
+    { say: 'The server still validates the JSON before using it.', on: ['node'] },
+    { say: 'The screen shows the result as an estimate, not a promise, and says what is missing.', flow: ['node>ng:result'] },
+  ]),
+  'prompt-design-for-claude': A('Designing and testing a prompt', [
+    n('brief', 'Clear brief', 'task, why, format', 0, 0, 'app'), n('xml', 'XML tags', 'separate the parts', 1, 0, 'data'),
+    n('ex', 'Examples', 'show the output', 2, 0, 'tool'), n('claude', 'Claude', 'answers', 2, 1, 'model'),
+    n('test', 'Test cases', 'compare versions', 1, 1, 'check'),
+  ], [
+    { say: 'Write the prompt like a brief for a smart new colleague: the task, the reason and the format you want.', on: ['brief'] },
+    { say: 'Use XML tags to separate instructions, documents and the question, so nothing gets mixed up.', flow: ['brief>xml:structure'] },
+    { say: 'Add one or two examples of the output you want. They teach better than a description.', flow: ['xml>ex:add'] },
+    { say: 'Claude uses the whole prompt to answer.', flow: ['ex>claude:prompt'] },
+    { say: 'Run the same test cases on every new version of the prompt and compare the results.', flow: ['claude>test:outputs'] },
+    { say: 'Keep the change that scores better, and repeat. Do not trust one lucky answer.', flow: ['test>brief:improve'] },
+  ]),
+
+  // ---------------- Course 3: RAG, Agents & MCP ----------------
+  'what-is-rag': A('The RAG pipeline', [
+    n('docs', 'Your documents', 'knowledge', 0, 0, 'store'), n('q', 'Question', 'from the reader', 0, 1, 'user'),
+    n('search', 'Search', 'find relevant parts', 1, 0, 'tool'), n('prompt', 'Prompt', 'question + passages', 2, 0, 'data'),
+    n('llm', 'LLM', 'answers from them', 3, 0, 'model'),
+  ], [
+    { say: 'A model only knows what it was trained on. RAG gives it your own documents at question time.', on: ['docs'] },
+    { say: 'The reader asks a question.', flow: ['q>search:question'] },
+    { say: 'The system searches your documents and finds the passages most related to the question.', flow: ['docs>search:look up'] },
+    { say: 'Those passages are added to the prompt next to the question.', flow: ['search>prompt:top passages'] },
+    { say: 'The model answers using the passages in front of it, and can point to its sources.', flow: ['prompt>llm:ask'] },
+    { say: 'RAG is not magic: if the search finds the wrong passages, the answer will be wrong too.', on: ['search'] },
+  ]),
+  'chunking-embeddings-vector-search': A('Indexing and searching your documents', [
+    n('doc', 'Document', 'clean text', 0, 0, 'store'), n('chunk', 'Chunks', 'small pieces', 1, 0, 'app'),
+    n('emb', 'Embeddings', 'meaning as numbers', 2, 0, 'data'), n('db', 'Vector index', 'stores them', 3, 0, 'store'),
+    n('q', 'Question', 'also embedded', 2, 1, 'user'),
+  ], [
+    { say: 'First parse and clean the documents so only useful text remains.', on: ['doc'] },
+    { say: 'Cut the text into chunks: small enough to be focused, big enough to make sense alone.', flow: ['doc>chunk:split'] },
+    { say: 'Turn each chunk into an embedding, a list of numbers that captures its meaning.', flow: ['chunk>emb:embed'] },
+    { say: 'Store the embeddings in a vector index, with the original text and where it came from.', flow: ['emb>db:save'] },
+    { say: 'When a question arrives, embed it the same way.', on: ['q'] },
+    { say: 'Find the chunks whose embeddings are closest to the question, then put them in the prompt.', flow: ['q>db:nearest'] },
+  ]),
+  'vector-databases-explained': A('Choosing and securing a vector database', [
+    n('app', 'Your app', 'sends a query vector', 0, 0, 'app'), n('db', 'Vector database', 'pgvector, Qdrant...', 1, 0, 'store'),
+    n('metric', 'Distance metric', 'cosine, dot product', 1, 1, 'check'), n('top', 'Top matches', 'nearest chunks', 2, 0, 'out'),
+    n('sec', 'Access rules', 'who may see what', 2, 1, 'tool'),
+  ], [
+    { say: 'A vector database stores embeddings and finds the nearest ones quickly.', on: ['db'] },
+    { say: 'Your app sends the embedding of the question.', flow: ['app>db:query'] },
+    { say: 'The database compares vectors with a distance metric, such as cosine similarity.', flow: ['db>metric:compare'] },
+    { say: 'It returns the closest chunks, with their text and metadata.', flow: ['db>top:top results'] },
+    { say: 'Filter by permissions, so one user is never shown another user\'s private documents.', flow: ['sec>db:filter'] },
+    { say: 'Start simple. A database you already run may be enough before you add a new service.', on: ['db'] },
+  ]),
+  'advanced-rag-and-evaluation': A('Making retrieval better', [
+    n('q', 'Question', 'rewritten if unclear', 0, 0, 'user'), n('kw', 'Keyword search', 'exact words', 1, 0, 'tool'),
+    n('vec', 'Vector search', 'meaning', 1, 1, 'data'), n('rank', 'Reranker', 'orders the best', 2, 0, 'check'),
+    n('ans', 'Answer + citations', 'with sources', 3, 0, 'out'),
+  ], [
+    { say: 'Rewrite a vague question into a clear search query before searching.', on: ['q'] },
+    { say: 'Hybrid search runs two searches: one for exact words, one for meaning.', flow: ['q>kw:words', 'q>vec:meaning'] },
+    { say: 'Their results are merged into one list of candidates.', flow: ['kw>rank:candidates', 'vec>rank:candidates'] },
+    { say: 'A reranker reads each candidate with the question and puts the most useful first.', on: ['rank'] },
+    { say: 'The answer includes citations, so the reader can check the source.', flow: ['rank>ans:best passages'] },
+    { say: 'Measure retrieval with real questions: did the right passage appear in the top results?', on: ['rank', 'ans'] },
+  ]),
+  'ai-agents-explained': A('The agent loop', [
+    n('goal', 'Goal', 'from the user', 0, 0, 'user'), n('think', 'Think', 'plan next step', 1, 0, 'model'),
+    n('act', 'Act', 'call a tool', 2, 0, 'tool'), n('obs', 'Observe', 'read the result', 2, 1, 'data'),
+    n('done', 'Done?', 'or ask a person', 1, 1, 'check'),
+  ], [
+    { say: 'An agent is given a goal, not a single question.', flow: ['goal>think:goal'] },
+    { say: 'It thinks about the next step, using what it knows and its memory.', on: ['think'] },
+    { say: 'It acts by calling one of its tools, such as search or a database lookup.', flow: ['think>act:tool call'] },
+    { say: 'It observes the result of that action.', flow: ['act>obs:result'] },
+    { say: 'It checks whether the goal is reached. If not, it loops back and plans the next step.', flow: ['obs>done:check', 'done>think:not yet'] },
+    { say: 'Put limits on the loop and ask a person before risky actions. Agents can go wrong in ways a single answer cannot.', on: ['done'] },
+  ]),
+  'multi-agent-systems-and-frameworks': A('Several agents working together', [
+    n('lead', 'Lead agent', 'splits the work', 1, 0, 'model'), n('a1', 'Research agent', 'finds facts', 0, 1, 'app'),
+    n('a2', 'Writer agent', 'drafts', 1, 1, 'tool'), n('a3', 'Checker agent', 'reviews', 2, 1, 'check'),
+    n('out', 'Final result', 'combined', 2, 0, 'out'),
+  ], [
+    { say: 'A multi-agent system uses several agents, each with a focused job and its own instructions.', on: ['lead'] },
+    { say: 'The lead agent splits the task and hands out the parts.', flow: ['lead>a1:research', 'lead>a2:write'] },
+    { say: 'The agents work on their own parts, often in parallel.', on: ['a1', 'a2'] },
+    { say: 'A checker agent reviews the draft against the rules.', flow: ['a2>a3:draft'] },
+    { say: 'The lead agent combines the checked work into one answer.', flow: ['a3>out:approved'] },
+    { say: 'More agents mean more cost and more to go wrong. Add them only when one agent is not enough.', on: ['lead', 'out'] },
+  ]),
+  'what-is-mcp-model-context-protocol': A('MCP: host, client and server', [
+    n('user', 'You', 'ask for something', 0, 0, 'user'), n('host', 'Host app', 'with the model', 1, 0, 'app'),
+    n('client', 'MCP client', 'speaks the protocol', 2, 0, 'data'), n('server', 'MCP server', 'tools and data', 3, 0, 'tool'),
+    n('sys', 'Your data or system', 'files, database, API', 3, 1, 'store'),
+  ], [
+    { say: 'MCP, the Model Context Protocol, is a standard way to connect an AI app to tools and data.', on: ['client'] },
+    { say: 'The host app, with its model, takes your request.', flow: ['user>host:request'] },
+    { say: 'Inside the host, an MCP client connects to MCP servers using the same protocol every time.', flow: ['host>client:needs a tool'] },
+    { say: 'A server offers tools, resources and prompts. The client asks what is available, then calls one.', flow: ['client>server:call tool'] },
+    { say: 'The server does the work against your files, database or API.', flow: ['server>sys:access'] },
+    { say: 'Results flow back to the model. One standard replaces a custom connection for every app and tool.', flow: ['server>client:result'] },
+  ]),
+  'build-an-mcp-server-node': A('Your first MCP server', [
+    n('code', 'Node.js server', 'defines a tool', 0, 0, 'tool'), n('stdio', 'Connection', 'stdio', 1, 0, 'data'),
+    n('client', 'MCP client', 'in the host app', 2, 0, 'app'), n('model', 'Model', 'chooses the tool', 3, 0, 'model'),
+    n('test', 'Inspector', 'test it first', 1, 1, 'check'),
+  ], [
+    { say: 'Install the MCP SDK and write a server that registers a tool with a name, a description and an input schema.', on: ['code'] },
+    { say: 'Test it with the MCP inspector before connecting any AI app.', flow: ['test>code:try'] },
+    { say: 'The host app starts your server and talks to it over a local connection.', flow: ['code>stdio:starts', 'stdio>client:connected'] },
+    { say: 'The client lists your tools, so the model knows they exist.', flow: ['client>model:tool list'] },
+    { say: 'When the model chooses your tool, the client sends the call to your server and returns the result.', flow: ['model>client:use tool', 'client>stdio:call', 'stdio>code:call'] },
+    { say: 'Good practice: clear descriptions, validated inputs and small tools that do one job.', on: ['code'] },
+  ]),
+  'mcp-security-and-integration': A('Keeping MCP safe', [
+    n('model', 'Model', 'asks for an action', 0, 0, 'model'), n('consent', 'Consent', 'user approves', 1, 0, 'user'),
+    n('auth', 'Authentication', 'who is asking', 2, 0, 'check'), n('server', 'MCP server', 'least privilege', 3, 0, 'tool'),
+    n('out', 'Tool output', 'untrusted text', 3, 1, 'data'),
+  ], [
+    { say: 'An MCP server can touch real systems, so treat every connection as a security decision.', on: ['server'] },
+    { say: 'Give each server the least privilege it needs, such as read-only access.', on: ['server'] },
+    { say: 'Ask the user to approve actions that change things or send data out.', flow: ['model>consent:action'] },
+    { say: 'Check who is asking, and what that person is allowed to do.', flow: ['consent>auth:approved'] },
+    { say: 'Only then does the server run the tool.', flow: ['auth>server:allowed'] },
+    { say: 'Treat what comes back as untrusted text. It may hide instructions meant to trick the model. Install only servers you trust.', flow: ['server>out:result'] },
+  ]),
+  'evaluating-llm-applications': A('An evaluation loop', [
+    n('data', 'Test dataset', 'real questions', 0, 0, 'data'), n('app', 'Your AI app', 'prompt + model', 1, 0, 'app'),
+    n('score', 'Scoring', 'rules, judge, people', 2, 0, 'check'), n('report', 'Report', 'pass rate, cost', 3, 0, 'out'),
+    n('reg', 'Regression test', 'run on every change', 2, 1, 'tool'),
+  ], [
+    { say: 'Start with a dataset of real questions and what a good answer looks like.', on: ['data'] },
+    { say: 'Run every question through your app.', flow: ['data>app:run'] },
+    { say: 'Score the answers: with code rules, with a model acting as judge, or with people.', flow: ['app>score:answers'] },
+    { say: 'Look at more than correctness: also cost, speed and safety.', flow: ['score>report:results'] },
+    { say: 'Run the same tests on every change, so a new prompt or model cannot quietly make things worse.', flow: ['report>reg:baseline', 'reg>app:next change'] },
+  ]),
+  'ai-safety-privacy-and-responsible-ai': A('Protecting people when you use AI', [
+    n('user', 'User data', 'may be personal', 0, 0, 'user'), n('filter', 'Strip personal data', 'before sending', 1, 0, 'check'),
+    n('model', 'Model', 'answers', 2, 0, 'model'), n('verify', 'Check the answer', 'sources, facts', 3, 0, 'tool'),
+    n('human', 'Person decides', 'for important choices', 3, 1, 'user'),
+  ], [
+    { say: 'People trust AI features with real information, so protect them first.', on: ['user'] },
+    { say: 'Send only the data the task needs, and remove names, numbers and IDs you can do without.', flow: ['user>filter:data'] },
+    { say: 'The model answers. Remember that it can be wrong, biased or out of date.', flow: ['filter>model:minimal data'] },
+    { say: 'Reduce hallucinations: ground answers in real sources and check them before showing them.', flow: ['model>verify:answer'] },
+    { say: 'For decisions that affect people, such as hiring, health or money, a person must make the final call.', flow: ['verify>human:review'] },
+  ]),
+  'running-ai-in-production': A('An AI feature in production', [
+    n('user', 'Users', 'real traffic', 0, 0, 'user'), n('api', 'Your API', 'limits and cache', 1, 0, 'tool'),
+    n('model', 'Model', 'with fallback', 2, 0, 'model'), n('mon', 'Monitoring', 'cost, errors, speed', 3, 0, 'check'),
+    n('ship', 'Safe release', 'small steps, rollback', 2, 1, 'app'),
+  ], [
+    { say: 'In production, real users and real money are involved. Plan for that from day one.', on: ['user'] },
+    { say: 'Your API applies rate limits, a budget and a cache before it ever calls the model.', flow: ['user>api:request'] },
+    { say: 'It calls the model with timeouts and retries, and has a fallback if the model is unavailable.', flow: ['api>model:call'] },
+    { say: 'Monitor cost, errors, slow answers and quality, and alert when they change.', flow: ['model>mon:metrics'] },
+    { say: 'Release changes slowly, test them first and keep a way to roll back.', flow: ['mon>ship:findings'] },
+    { say: 'When something breaks, follow an incident plan, then fix the cause and add a test for it.', on: ['mon', 'ship'] },
+  ]),
+  'ai-learning-roadmap-and-projects': A('Your AI learning path', [
+    n('basics', 'Basics', 'how models work', 0, 0, 'store'), n('prompt', 'Prompting', 'clear and tested', 1, 0, 'app'),
+    n('api', 'APIs and tools', 'build with Claude', 2, 0, 'tool'), n('rag', 'RAG, agents, MCP', 'connect real data', 3, 0, 'model'),
+    n('proj', 'Projects', 'build and share', 2, 1, 'out'),
+  ], [
+    { say: 'Start with the basics: what AI, machine learning and language models are.', on: ['basics'] },
+    { say: 'Learn to write clear prompts and to test them.', flow: ['basics>prompt:next'] },
+    { say: 'Then build with the API: messages, streaming, errors and tools.', flow: ['prompt>api:next'] },
+    { say: 'Add your own data and actions with RAG, agents and MCP.', flow: ['api>rag:next'] },
+    { say: 'Practise with small projects and keep improving them. Building is how the ideas stick.', flow: ['rag>proj:practise'] },
+  ]),
+};

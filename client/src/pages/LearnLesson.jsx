@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
 import LessonFeedback from '../components/LessonFeedback'
+import LessonAnimation from '../components/LessonAnimation'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
 import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
@@ -155,6 +156,8 @@ const LearnLesson = () => {
             Lesson {data.position} of {data.total}<span className='mx-1.5 text-slate-300'>·</span>{lesson.readTime}
             <span className='mx-1.5 text-slate-300'>·</span>Updated <time dateTime={new Date(lesson.modifiedAt).toISOString()}>{fmtDate(lesson.modifiedAt)}</time>
           </p>
+
+          {lesson.animation && <div className='mt-6'><LessonAnimation key={lesson.slug} animation={lesson.animation} /></div>}
 
           <div className='mt-6'><BlockRenderer blocks={lesson.content} /></div>
 

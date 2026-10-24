@@ -234,10 +234,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\n\ntype Health = { ok: boolean; model: string; keyConfigured: boolean };\n\n@Component({\n  selector: 'app-models',\n  imports: [FormsModule],\n  template: `\n    <h1>Choose a model</h1>\n    <p class=\"hint\">Tell us about your task. We suggest where to start. Always confirm with your own test cases.</p>\n\n    <div class=\"card\">\n      <label>What is the task?</label>\n      <select [(ngModel)]=\"task\">\n        <option value=\"classify\">Sort items into labels (classification)</option>\n        <option value=\"extract\">Pull data out of text (extraction)</option>\n        <option value=\"summary\">Summarise text</option>\n        <option value=\"reasoning\">Hard multi-step thinking</option>\n        <option value=\"coding\">Write or fix code</option>\n      </select>\n\n      <label>How many requests per day?</label>\n      <select [(ngModel)]=\"volume\">\n        <option value=\"low\">A few hundred or fewer</option>\n        <option value=\"high\">Thousands or more</option>\n      </select>\n\n      <label><input type=\"checkbox\" [(ngModel)]=\"needFast\" style=\"width:auto\" /> Users are waiting, so speed matters</label>\n    </div>\n\n    <div class=\"card\">\n      <h2>Suggestion: {{ suggestion().tier }}</h2>\n      <p>{{ suggestion().why }}</p>\n    </div>\n\n    <div class=\"card\">\n      <h2>Server status</h2>\n      @if (health(); as h) {\n        <p class=\"ok\">Server is running. Model from .env: <strong>{{ h.model }}</strong></p>\n        <p [class]=\"h.keyConfigured ? 'ok' : 'bad'\">{{ h.keyConfigured ? 'API key found.' : 'No API key yet. Add ANTHROPIC_API_KEY to .env.' }}</p>\n      } @else if (offline()) {\n        <p class=\"bad\">Cannot reach the server. Run <code>npm run server</code> in another terminal.</p>\n      } @else {\n        <p class=\"muted\">Checking...</p>\n      }\n    </div>\n  `,\n})\nexport class ModelsPage {\n  private http = inject(HttpClient);\n\n  task = 'classify';\n  volume = 'low';\n  needFast = false;\n\n  health = signal<Health | null>(null);\n  offline = signal(false);\n\n  constructor() {\n    firstValueFrom(this.http.get<Health>('/api/health'))\n      .then((h) => this.health.set(h))\n      .catch(() => this.offline.set(true));\n  }\n\n  suggestion() {\n    const hard = this.task === 'reasoning' || this.task === 'coding';\n    if (hard && !this.needFast) {\n      return { tier: 'Start with a larger, more capable model', why: 'Hard tasks fail more often on small models. Start big, then check whether a smaller one is good enough on your test cases.' };\n    }\n    if (!hard && (this.volume === 'high' || this.needFast)) {\n      return { tier: 'Start with a smaller, faster model', why: 'Simple, repeated tasks do not need the biggest model. A smaller one is cheaper and replies faster. Test your own examples to confirm.' };\n    }\n    return { tier: 'Start with a mid-size model', why: 'A middle option is a safe first choice. Measure quality, speed and cost, then move up or down.' };\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 1 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-01.zip)"
-        },
-        {
           "type": "note",
           "text": "Notice that the page never contains an API key, and the health route only says whether a key exists. This habit will protect you in every later lesson."
         },
@@ -274,7 +270,84 @@
         }
       ],
       "keywords": "what is claude, anthropic claude models, claude api angular, claude api vs claude.ai, angular node ai project",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 1,
+      "animation": {
+        "title": "Where the Claude API fits in your app",
+        "nodes": [
+          {
+            "id": "user",
+            "label": "Reader",
+            "sub": "browser",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "ng",
+            "label": "Angular app",
+            "sub": "screen",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "node",
+            "label": "Node.js server",
+            "sub": "holds the API key",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "Anthropic API",
+            "col": 3,
+            "row": 0,
+            "kind": "model"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Claude is a family of AI models made by Anthropic. You use it through an API, or in the Claude apps.",
+            "on": [
+              "claude"
+            ]
+          },
+          {
+            "say": "In our AI Lab the reader types a question in an Angular screen.",
+            "flow": [
+              "user>ng:question"
+            ]
+          },
+          {
+            "say": "Angular sends it to your own Node.js server, never straight to Claude.",
+            "flow": [
+              "ng>node:POST"
+            ]
+          },
+          {
+            "say": "The server adds the secret API key and calls the Claude API.",
+            "flow": [
+              "node>claude:request"
+            ]
+          },
+          {
+            "say": "Claude writes the answer and the server sends it back to the screen.",
+            "flow": [
+              "claude>node:answer"
+            ]
+          },
+          {
+            "say": "The key stays on the server, so nobody can steal it from the browser.",
+            "flow": [
+              "node>ng:reply"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Getting started with Claude",
@@ -474,10 +547,6 @@
           "text": "// Turn any HTTP error into one friendly sentence for the screen.\nexport function errorText(e: unknown): string {\n  const err = e as { error?: { error?: { message?: string } }; message?: string };\n  return err?.error?.error?.message || 'Something went wrong. Please try again.';\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 2 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-02.zip)"
-        },
-        {
           "type": "note",
           "text": "Never paste your real key into a lesson, a chat or a screenshot. If you do by mistake, delete that key in the console and make a new one."
         },
@@ -514,7 +583,92 @@
         }
       ],
       "keywords": "claude api key, anthropic sdk node.js, first claude api request, angular call claude api, keep api key secret",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 2,
+      "animation": {
+        "title": "Keeping the API key safe",
+        "nodes": [
+          {
+            "id": "env",
+            "label": ".env file",
+            "sub": "secret key",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "node",
+            "label": "Node.js server",
+            "sub": "reads the key",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sdk",
+            "label": "Anthropic SDK",
+            "sub": "makes the call",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "claude",
+            "label": "Claude API",
+            "sub": "answers",
+            "col": 3,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "ng",
+            "label": "Angular",
+            "sub": "no key here",
+            "col": 1,
+            "row": 1,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Get an API key from the Anthropic Console and put it in a .env file that is never committed to Git.",
+            "on": [
+              "env"
+            ]
+          },
+          {
+            "say": "The Node.js server reads the key from the environment when it starts.",
+            "flow": [
+              "env>node:key"
+            ]
+          },
+          {
+            "say": "The official SDK uses the key to call the Claude API.",
+            "flow": [
+              "node>sdk:call"
+            ]
+          },
+          {
+            "say": "Claude replies, and the SDK returns the answer to your server.",
+            "flow": [
+              "sdk>claude:message"
+            ]
+          },
+          {
+            "say": "The Angular app only talks to your server. It never sees the key.",
+            "flow": [
+              "ng>node:question"
+            ]
+          },
+          {
+            "say": "If a key ever leaks, delete it in the Console at once and create a new one.",
+            "on": [
+              "env"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Getting started with Claude",
@@ -705,10 +859,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Pricing = { inputPerMillion: number | null; outputPerMillion: number | null; currency: string };\ntype Usage = { input_tokens: number; output_tokens: number };\n\n@Component({\n  selector: 'app-tokens',\n  imports: [FormsModule],\n  template: `\n    <h1>Tokens and cost</h1>\n    <p class=\"hint\">Count tokens before you send, then see what a real request used and what it cost.</p>\n\n    <div class=\"card\">\n      <label for=\"t\">Text</label>\n      <textarea id=\"t\" [(ngModel)]=\"text\" placeholder=\"Paste a job description or a resume here...\"></textarea>\n      <button class=\"secondary\" (click)=\"count()\" [disabled]=\"busy() || !text.trim()\">Count input tokens</button>\n      <button (click)=\"send()\" [disabled]=\"busy() || !text.trim()\">Send to Claude</button>\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n      @if (counted() !== null) { <p>This text is about <strong>{{ counted() }}</strong> input tokens.</p> }\n    </div>\n\n    @if (calls().length) {\n      <div class=\"card\">\n        <h2>Usage log</h2>\n        <table>\n          <thead><tr><th>#</th><th>Input</th><th>Output</th><th>Cost</th></tr></thead>\n          <tbody>\n            @for (c of calls(); track $index) {\n              <tr><td>{{ $index + 1 }}</td><td>{{ c.input_tokens }}</td><td>{{ c.output_tokens }}</td><td>{{ cost(c) }}</td></tr>\n            }\n          </tbody>\n        </table>\n        <p><strong>Total this session: {{ totalCost() }}</strong></p>\n        @if (!hasPrices()) {\n          <p class=\"muted\">Add PRICE_INPUT_PER_MTOK and PRICE_OUTPUT_PER_MTOK to your .env file to see money amounts.</p>\n        }\n      </div>\n    }\n  `,\n})\nexport class TokensPage {\n  private http = inject(HttpClient);\n\n  text = '';\n  busy = signal(false);\n  error = signal('');\n  counted = signal<number | null>(null);\n  calls = signal<Usage[]>([]);\n  pricing = signal<Pricing>({ inputPerMillion: null, outputPerMillion: null, currency: 'USD' });\n\n  constructor() {\n    firstValueFrom(this.http.get<Pricing>('/api/pricing')).then((p) => this.pricing.set(p)).catch(() => {});\n  }\n\n  hasPrices() {\n    const p = this.pricing();\n    return p.inputPerMillion !== null && p.outputPerMillion !== null;\n  }\n\n  cost(u: Usage): string {\n    const p = this.pricing();\n    if (!this.hasPrices()) return '-';\n    const money = (u.input_tokens / 1_000_000) * p.inputPerMillion! + (u.output_tokens / 1_000_000) * p.outputPerMillion!;\n    return `${money.toFixed(6)} ${p.currency}`;\n  }\n\n  totalCost(): string {\n    const p = this.pricing();\n    if (!this.hasPrices()) return '-';\n    const money = this.calls().reduce(\n      (sum, u) => sum + (u.input_tokens / 1_000_000) * p.inputPerMillion! + (u.output_tokens / 1_000_000) * p.outputPerMillion!,\n      0,\n    );\n    return `${money.toFixed(6)} ${p.currency}`;\n  }\n\n  async count() {\n    await this.run(async () => {\n      const r = await firstValueFrom(this.http.post<{ inputTokens: number }>('/api/count', { text: this.text }));\n      this.counted.set(r.inputTokens);\n    });\n  }\n\n  async send() {\n    await this.run(async () => {\n      const r = await firstValueFrom(this.http.post<{ usage: Usage }>('/api/ask', { question: this.text }));\n      this.calls.update((list) => [...list, r.usage]);\n    });\n  }\n\n  private async run(job: () => Promise<void>) {\n    this.busy.set(true);\n    this.error.set('');\n    try { await job(); } catch (e) { this.error.set(errorText(e)); } finally { this.busy.set(false); }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 3 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-03.zip)"
-        },
-        {
           "type": "note",
           "text": "The prices are deliberately not in the code. Prices change, so keep them in a setting that you can update without editing code."
         },
@@ -745,7 +895,101 @@
         }
       ],
       "keywords": "claude api pricing, token counting, claude rate limits, estimate llm cost angular, usage tracking",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 3,
+      "animation": {
+        "title": "Tokens, cost and limits",
+        "nodes": [
+          {
+            "id": "text",
+            "label": "Your text",
+            "sub": "prompt",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "tok",
+            "label": "Input tokens",
+            "sub": "counted",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "model",
+            "label": "Claude",
+            "sub": "writes the reply",
+            "col": 2,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "outt",
+            "label": "Output tokens",
+            "sub": "counted",
+            "col": 3,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "bill",
+            "label": "Cost",
+            "sub": "input + output",
+            "col": 2,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "limit",
+            "label": "Rate limit",
+            "sub": "requests per minute",
+            "col": 1,
+            "row": 1,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A token is a small piece of text. Everything you send and receive is counted in tokens.",
+            "flow": [
+              "text>tok:split"
+            ]
+          },
+          {
+            "say": "Input tokens are what you send: instructions, history and documents.",
+            "flow": [
+              "tok>model:input"
+            ]
+          },
+          {
+            "say": "Output tokens are what Claude writes back. They are usually priced differently from input.",
+            "flow": [
+              "model>outt:output"
+            ]
+          },
+          {
+            "say": "Your cost comes from both counts, using the price list on the Anthropic site.",
+            "flow": [
+              "outt>bill:add up"
+            ]
+          },
+          {
+            "say": "Rate limits cap how many requests or tokens you can use in a period. Handle them politely.",
+            "on": [
+              "limit"
+            ]
+          },
+          {
+            "say": "To spend less: send shorter prompts, trim old history, choose a smaller model and cache repeated text.",
+            "on": [
+              "tok",
+              "bill"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "The Messages API",
@@ -955,10 +1199,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Msg = { role: 'user' | 'assistant'; content: string };\ntype ChatReply = { text: string; usage: { input_tokens: number; output_tokens: number }; stopReason: string };\n\n@Component({\n  selector: 'app-chat',\n  imports: [FormsModule],\n  template: `\n    <h1>Chat with memory</h1>\n    <p class=\"hint\">Claude does not remember earlier calls. This page keeps the history and sends it every time.</p>\n\n    <div class=\"card\">\n      <label for=\"sys\">System prompt (rules and persona)</label>\n      <textarea id=\"sys\" [(ngModel)]=\"system\" style=\"min-height:70px\"></textarea>\n\n      <label for=\"keep\">Messages to send each time</label>\n      <select id=\"keep\" [(ngModel)]=\"keep\">\n        <option [ngValue]=\"4\">Last 4</option>\n        <option [ngValue]=\"10\">Last 10</option>\n        <option [ngValue]=\"20\">Last 20</option>\n      </select>\n    </div>\n\n    <div class=\"card\">\n      @for (m of history(); track $index) {\n        <p><strong>{{ m.role === 'user' ? 'You' : 'Claude' }}:</strong> <span class=\"answer\">{{ m.content }}</span></p>\n      } @empty {\n        <p class=\"muted\">No messages yet. Say hello.</p>\n      }\n      @if (cutOff()) { <div class=\"err\">The reply was cut off because it hit the length limit. Ask Claude to continue.</div> }\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n\n      <label for=\"msg\">Your message</label>\n      <textarea id=\"msg\" [(ngModel)]=\"draft\" style=\"min-height:70px\"></textarea>\n      <button (click)=\"send()\" [disabled]=\"busy() || !draft.trim()\">{{ busy() ? 'Thinking...' : 'Send' }}</button>\n      <button class=\"secondary\" (click)=\"clear()\">Clear chat</button>\n      <p class=\"muted\">Sending {{ toSend().length }} of {{ history().length }} messages.</p>\n    </div>\n  `,\n})\nexport class ChatPage {\n  private http = inject(HttpClient);\n\n  system = 'You are a careful career coach. Keep answers short and never invent facts about the user.';\n  keep = 10;\n  draft = '';\n  history = signal<Msg[]>([]);\n  busy = signal(false);\n  error = signal('');\n  cutOff = signal(false);\n\n  toSend() {\n    return this.history().slice(-this.keep);\n  }\n\n  async send() {\n    const text = this.draft.trim();\n    if (!text) return;\n    this.history.update((h) => [...h, { role: 'user', content: text }]);\n    this.draft = '';\n    this.busy.set(true);\n    this.error.set('');\n    this.cutOff.set(false);\n    try {\n      const r = await firstValueFrom(\n        this.http.post<ChatReply>('/api/chat', { system: this.system, messages: this.toSend() }),\n      );\n      this.history.update((h) => [...h, { role: 'assistant', content: r.text }]);\n      this.cutOff.set(r.stopReason === 'max_tokens');\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n\n  clear() {\n    this.history.set([]);\n    this.error.set('');\n    this.cutOff.set(false);\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 4 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-04.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -991,7 +1231,84 @@
         }
       ],
       "keywords": "claude messages api, system prompt claude, multi turn chat api, angular chat claude, claude conversation history",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 4,
+      "animation": {
+        "title": "Claude has no memory: you send the history",
+        "nodes": [
+          {
+            "id": "ng",
+            "label": "Angular chat",
+            "sub": "keeps messages",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "node",
+            "label": "Node.js server",
+            "sub": "cleans history",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "reads it all",
+            "col": 2,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "hist",
+            "label": "Message list",
+            "sub": "user, assistant...",
+            "col": 1,
+            "row": 1,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Claude does not remember earlier requests. Every call must carry the whole conversation so far.",
+            "on": [
+              "claude"
+            ]
+          },
+          {
+            "say": "The chat screen sends the new question to your server.",
+            "flow": [
+              "ng>node:new message"
+            ]
+          },
+          {
+            "say": "The server builds the message list: a system prompt, then user and assistant turns in order.",
+            "flow": [
+              "node>hist:build"
+            ]
+          },
+          {
+            "say": "It cleans the list on the server, so a user cannot slip in fake turns.",
+            "flow": [
+              "hist>node:clean"
+            ]
+          },
+          {
+            "say": "The full list goes to Claude, which answers using all of it.",
+            "flow": [
+              "node>claude:messages"
+            ]
+          },
+          {
+            "say": "The answer is added to the history. A longer history means more tokens and a higher cost.",
+            "flow": [
+              "claude>node:answer"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "The Messages API",
@@ -1186,10 +1503,6 @@
           "text": "import { Component, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\n\n@Component({\n  selector: 'app-stream',\n  imports: [FormsModule],\n  template: `\n    <h1>Streaming reply</h1>\n    <p class=\"hint\">Words appear as Claude writes them. Press Stop to cancel; the server stops the request too.</p>\n\n    <div class=\"card\">\n      <label for=\"p\">Your prompt</label>\n      <textarea id=\"p\" [(ngModel)]=\"prompt\"></textarea>\n      <button (click)=\"start()\" [disabled]=\"running() || !prompt.trim()\">Start</button>\n      <button class=\"secondary\" (click)=\"stop()\" [disabled]=\"!running()\">Stop</button>\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n      <div class=\"answer\">{{ output() }}@if (running()) { <span class=\"muted\"> ▍</span> }</div>\n      @if (info()) { <p class=\"muted\">{{ info() }}</p> }\n    </div>\n  `,\n})\nexport class StreamPage {\n  prompt = 'Write a short professional summary for a welder with 4 years of experience.';\n  output = signal('');\n  running = signal(false);\n  error = signal('');\n  info = signal('');\n  private controller: AbortController | null = null;\n\n  async start() {\n    this.output.set('');\n    this.error.set('');\n    this.info.set('');\n    this.running.set(true);\n    this.controller = new AbortController();\n\n    try {\n      const response = await fetch('/api/chat/stream', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify({ messages: [{ role: 'user', content: this.prompt }] }),\n        signal: this.controller.signal,\n      });\n      if (!response.ok || !response.body) throw new Error('bad response');\n\n      // Read the stream piece by piece. Events are separated by a blank line.\n      const reader = response.body.getReader();\n      const decoder = new TextDecoder();\n      let buffer = '';\n      while (true) {\n        const { value, done } = await reader.read();\n        if (done) break;\n        buffer += decoder.decode(value, { stream: true });\n        const events = buffer.split('\\n\\n');\n        buffer = events.pop() ?? '';\n        for (const raw of events) this.handle(raw);\n      }\n    } catch (e) {\n      if ((e as Error).name !== 'AbortError') this.error.set('Could not stream the reply. Please try again.');\n    } finally {\n      this.running.set(false);\n      this.controller = null;\n    }\n  }\n\n  private handle(raw: string) {\n    const event = /^event: (.*)$/m.exec(raw)?.[1];\n    const data = /^data: (.*)$/m.exec(raw)?.[1];\n    if (!event || data === undefined) return;\n    const value = JSON.parse(data);\n    if (event === 'text') this.output.update((t) => t + value);\n    if (event === 'done') this.info.set(`Done. ${value.usage.output_tokens} output tokens.`);\n    if (event === 'error') this.error.set(value.message);\n  }\n\n  stop() {\n    this.controller?.abort();\n    this.info.set('Stopped.');\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 5 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-05.zip)"
-        },
-        {
           "type": "note",
           "text": "If you put the server behind nginx, streaming only works smoothly when the proxy does not buffer. The X-Accel-Buffering header handles that for nginx. If your words still arrive all at once, check for compression or buffering in your proxy."
         },
@@ -1226,7 +1539,86 @@
         }
       ],
       "keywords": "claude streaming, server sent events express, angular fetch stream, stream llm response, abort controller",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 5,
+      "animation": {
+        "title": "Streaming an answer word by word",
+        "nodes": [
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "generates tokens",
+            "col": 0,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "node",
+            "label": "Node.js",
+            "sub": "streams events",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sse",
+            "label": "SSE connection",
+            "sub": "stays open",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ng",
+            "label": "Angular",
+            "sub": "shows text live",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "stop",
+            "label": "Stop button",
+            "sub": "cancels",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Without streaming the reader waits for the whole answer. Streaming shows words as they are made.",
+            "on": [
+              "claude"
+            ]
+          },
+          {
+            "say": "Claude sends the answer in small pieces to your server.",
+            "flow": [
+              "claude>node:chunks"
+            ]
+          },
+          {
+            "say": "The server passes each piece on over a Server-Sent Events connection.",
+            "flow": [
+              "node>sse:event"
+            ]
+          },
+          {
+            "say": "Angular reads the stream and appends each piece to the screen.",
+            "flow": [
+              "sse>ng:text"
+            ]
+          },
+          {
+            "say": "A Stop button cancels the request, so you stop paying for text nobody wants.",
+            "flow": [
+              "stop>node:abort"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "The Messages API",
@@ -1419,10 +1811,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { Subscription } from 'rxjs';\n\n@Component({\n  selector: 'app-reliable',\n  imports: [FormsModule],\n  template: `\n    <h1>Reliable requests</h1>\n    <p class=\"hint\">The server retries temporary errors. The page shows a clear message, lets you try again, and lets you cancel.</p>\n\n    <div class=\"card\">\n      <label for=\"q\">Question</label>\n      <textarea id=\"q\" [(ngModel)]=\"question\" style=\"min-height:70px\"></textarea>\n\n      <label for=\"sim\">Test mode</label>\n      <select id=\"sim\" [(ngModel)]=\"simulate\">\n        <option value=\"\">Real request</option>\n        <option value=\"flaky\">Fake: fails twice, then works (retry succeeds)</option>\n        <option value=\"down\">Fake: service is down (all retries fail)</option>\n        <option value=\"bad\">Fake: bad request (never retried)</option>\n      </select>\n\n      <button (click)=\"send()\" [disabled]=\"busy() || !question.trim()\">{{ busy() ? 'Working...' : 'Send' }}</button>\n      <button class=\"secondary\" (click)=\"cancel()\" [disabled]=\"!busy()\">Cancel</button>\n\n      @if (error(); as e) {\n        <div class=\"err\">\n          {{ e.message }} (attempts: {{ e.attempts }})\n          @if (e.retryable) { <button class=\"secondary\" (click)=\"send()\">Try again</button> }\n        </div>\n      }\n      @if (text()) {\n        <div class=\"answer\">{{ text() }}</div>\n        <p class=\"muted\">Worked after {{ attempts() }} attempt(s).</p>\n      }\n    </div>\n  `,\n})\nexport class ReliablePage {\n  private http = inject(HttpClient);\n  private sub: Subscription | null = null;\n\n  question = 'Give me one tip for a strong resume headline.';\n  simulate = 'flaky';\n  busy = signal(false);\n  text = signal('');\n  attempts = signal(0);\n  error = signal<{ message: string; retryable: boolean; attempts: number } | null>(null);\n\n  send() {\n    this.busy.set(true);\n    this.error.set(null);\n    this.text.set('');\n    this.sub = this.http\n      .post<{ text: string; attempts: number }>('/api/reliable-ask', { question: this.question, simulate: this.simulate })\n      .subscribe({\n        next: (r) => { this.text.set(r.text); this.attempts.set(r.attempts); this.busy.set(false); },\n        error: (e) => {\n          this.error.set(e?.error?.error ?? { message: 'Something went wrong.', retryable: true, attempts: 1 });\n          this.busy.set(false);\n        },\n      });\n  }\n\n  cancel() {\n    this.sub?.unsubscribe(); // the browser drops the request\n    this.busy.set(false);\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 6 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-06.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -1455,7 +1843,93 @@
         }
       ],
       "keywords": "claude api errors, retry exponential backoff, rate limit 429 handling, angular error handling http, llm reliability",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 6,
+      "animation": {
+        "title": "Retry only what can heal",
+        "nodes": [
+          {
+            "id": "call",
+            "label": "API call",
+            "sub": "your request",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Response",
+            "sub": "ok or error",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "retry",
+            "label": "Retry",
+            "sub": "backoff + jitter",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "fix",
+            "label": "Do not retry",
+            "sub": "bad request, bad key",
+            "col": 2,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "user",
+            "label": "Friendly message",
+            "sub": "safe details only",
+            "col": 1,
+            "row": 1,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "AI calls fail for many reasons: busy servers, rate limits, timeouts or a mistake in the request.",
+            "flow": [
+              "call>res:request"
+            ]
+          },
+          {
+            "say": "Temporary errors, such as overload or a rate limit, may succeed if you try again.",
+            "flow": [
+              "res>retry:temporary"
+            ]
+          },
+          {
+            "say": "Wait longer each time (exponential backoff) and add a little random delay (jitter) so clients do not all retry together.",
+            "on": [
+              "retry"
+            ]
+          },
+          {
+            "say": "Errors caused by your own request, like a wrong key or bad input, will never heal. Fix them instead of retrying.",
+            "flow": [
+              "res>fix:permanent"
+            ]
+          },
+          {
+            "say": "Always show the reader a clear message, never raw error details or secrets.",
+            "flow": [
+              "fix>user:explain"
+            ]
+          },
+          {
+            "say": "Set a timeout and allow cancellation, so one slow call cannot block the whole screen.",
+            "on": [
+              "call",
+              "user"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Advanced API features",
@@ -1647,10 +2121,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Row = { input: number; output: number; cacheWrite: number; cacheRead: number };\n\n@Component({\n  selector: 'app-caching',\n  imports: [FormsModule],\n  template: `\n    <h1>Prompt caching</h1>\n    <p class=\"hint\">Run the same check twice within a few minutes. The first call writes the long rules into the cache. The second reads them back at a lower cost.</p>\n\n    <div class=\"card\">\n      <label for=\"r\">Resume text</label>\n      <textarea id=\"r\" [(ngModel)]=\"resume\"></textarea>\n      <button (click)=\"run()\" [disabled]=\"busy() || !resume.trim()\">{{ busy() ? 'Working...' : 'Review resume' }}</button>\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n    </div>\n\n    @if (rows().length) {\n      <div class=\"card\">\n        <h2>Token usage per call</h2>\n        <table>\n          <thead><tr><th>Call</th><th>Normal input</th><th>Cache write</th><th>Cache read</th><th>Output</th></tr></thead>\n          <tbody>\n            @for (r of rows(); track $index) {\n              <tr>\n                <td>{{ $index + 1 }}</td><td>{{ r.input }}</td>\n                <td [class.ok]=\"r.cacheWrite > 0\">{{ r.cacheWrite }}</td>\n                <td [class.ok]=\"r.cacheRead > 0\">{{ r.cacheRead }}</td>\n                <td>{{ r.output }}</td>\n              </tr>\n            }\n          </tbody>\n        </table>\n        <p class=\"muted\">If both cache columns stay at 0, the rules text may be under the minimum size for caching on your model. Check the docs.</p>\n        <div class=\"answer\">{{ lastText() }}</div>\n      </div>\n    }\n  `,\n})\nexport class CachingPage {\n  private http = inject(HttpClient);\n\n  resume = 'Ravi Kumar, Pune. Electrician, 5 years. Installed wiring in houses and small shops. ITI certificate 2019. Skills: wiring, panel work, testing. Languages: Hindi, English.';\n  busy = signal(false);\n  error = signal('');\n  rows = signal<Row[]>([]);\n  lastText = signal('');\n\n  async run() {\n    this.busy.set(true);\n    this.error.set('');\n    try {\n      const r = await firstValueFrom(this.http.post<{ text: string; usage: Row }>('/api/cached', { resume: this.resume }));\n      this.rows.update((list) => [...list, r.usage]);\n      this.lastText.set(r.text);\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 7 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-07.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -1683,7 +2153,93 @@
         }
       ],
       "keywords": "claude prompt caching, cache_control ephemeral, message batches api, reduce claude cost, angular ai dashboard",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 7,
+      "animation": {
+        "title": "Caching the part that never changes",
+        "nodes": [
+          {
+            "id": "stable",
+            "label": "Stable prompt",
+            "sub": "long rules, documents",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "var",
+            "label": "Changing part",
+            "sub": "the new question",
+            "col": 0,
+            "row": 1,
+            "kind": "user"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "prefix + question",
+            "col": 1,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "cache",
+            "label": "Cache",
+            "sub": "remembers the prefix",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "batch",
+            "label": "Batch",
+            "sub": "slower, cheaper",
+            "col": 2,
+            "row": 1,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Many requests start with the same long text, such as rules or a document. Sending it again every time wastes tokens.",
+            "on": [
+              "stable"
+            ]
+          },
+          {
+            "say": "Put the stable text first and mark it for caching. The changing question goes after it.",
+            "flow": [
+              "stable>claude:cached prefix",
+              "var>claude:question"
+            ]
+          },
+          {
+            "say": "The first request writes the prefix to the cache.",
+            "flow": [
+              "claude>cache:store"
+            ]
+          },
+          {
+            "say": "Later requests with the same prefix read it from the cache, which is cheaper and faster. Check the usage numbers to confirm.",
+            "flow": [
+              "cache>claude:hit"
+            ]
+          },
+          {
+            "say": "A cache is not magic. It expires, and changing even one early word breaks it.",
+            "on": [
+              "cache"
+            ]
+          },
+          {
+            "say": "If an answer can wait, the batch API processes many requests together at a lower price.",
+            "flow": [
+              "var>batch:many requests"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Advanced API features",
@@ -1863,10 +2419,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Parsed = { name: string | null; skills: string[]; jobs: { title: string; company: string | null }[] };\n\n@Component({\n  selector: 'app-documents',\n  template: `\n    <h1>Read a resume file</h1>\n    <p class=\"hint\">Upload a PDF or a photo of a resume. Claude reads it and we show the details it found.</p>\n\n    <div class=\"card\">\n      <label for=\"f\">Resume file (PDF, PNG, JPG, WebP; up to 5 MB)</label>\n      <input id=\"f\" type=\"file\" accept=\"application/pdf,image/png,image/jpeg,image/webp\" (change)=\"pick($event)\" />\n      <button (click)=\"upload()\" [disabled]=\"busy() || !file\">{{ busy() ? 'Reading...' : 'Read file' }}</button>\n      <p class=\"muted\">Privacy: the file is sent to the AI service for reading. This lab does not store it. In your own product, tell users what you do with their files.</p>\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n    </div>\n\n    @if (result(); as r) {\n      <div class=\"card\">\n        <h2>{{ r.name || 'Name not found' }}</h2>\n        <h2>Skills</h2>\n        <div class=\"chips\">@for (s of r.skills; track s) { <span>{{ s }}</span> } @empty { <span class=\"muted\">None found</span> }</div>\n        <h2>Jobs</h2>\n        <ul>@for (j of r.jobs; track $index) { <li>{{ j.title }}@if (j.company) { at {{ j.company }} }</li> } @empty { <li class=\"muted\">None found</li> }</ul>\n      </div>\n    }\n  `,\n})\nexport class DocumentsPage {\n  private http = inject(HttpClient);\n\n  file: File | null = null;\n  busy = signal(false);\n  error = signal('');\n  result = signal<Parsed | null>(null);\n\n  pick(event: Event) {\n    this.file = (event.target as HTMLInputElement).files?.[0] ?? null;\n  }\n\n  async upload() {\n    if (!this.file) return;\n    const body = new FormData();\n    body.append('file', this.file);\n    this.busy.set(true);\n    this.error.set('');\n    this.result.set(null);\n    try {\n      const r = await firstValueFrom(this.http.post<{ data: Parsed }>('/api/read-document', body));\n      this.result.set(r.data);\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 8 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-08.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -1899,7 +2451,92 @@
         }
       ],
       "keywords": "claude pdf api, claude vision image, resume parsing ai, angular file upload, multer node upload",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 8,
+      "animation": {
+        "title": "Reading an image or PDF safely",
+        "nodes": [
+          {
+            "id": "user",
+            "label": "Reader",
+            "sub": "uploads a file",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "node",
+            "label": "Node.js",
+            "sub": "checks type and size",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "reads the file",
+            "col": 2,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "json",
+            "label": "JSON answer",
+            "sub": "validated",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "del",
+            "label": "Delete file",
+            "sub": "privacy first",
+            "col": 1,
+            "row": 1,
+            "kind": "store"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Claude can read images and PDFs as well as text.",
+            "on": [
+              "claude"
+            ]
+          },
+          {
+            "say": "The reader uploads a file to your server.",
+            "flow": [
+              "user>node:file"
+            ]
+          },
+          {
+            "say": "The server checks the type and size, and rejects anything unexpected.",
+            "on": [
+              "node"
+            ]
+          },
+          {
+            "say": "The file is sent to Claude together with a clear question, often asking for JSON.",
+            "flow": [
+              "node>claude:file + question"
+            ]
+          },
+          {
+            "say": "The answer is validated before the app uses it.",
+            "flow": [
+              "claude>json:extract"
+            ]
+          },
+          {
+            "say": "Do not keep documents longer than needed. Delete the file when the job is done.",
+            "flow": [
+              "node>del:clean up"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Tool use",
@@ -2101,10 +2738,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Step = { tool: string; input: unknown; output: unknown; isError: boolean };\n\n@Component({\n  selector: 'app-agent',\n  imports: [FormsModule],\n  template: `\n    <h1>Claude with tools</h1>\n    <p class=\"hint\">Claude can ask our server to run small functions. The trace shows every call it made.</p>\n\n    <div class=\"card\">\n      <label for=\"m\">Your request</label>\n      <textarea id=\"m\" [(ngModel)]=\"message\" style=\"min-height:150px\"></textarea>\n      <button (click)=\"run()\" [disabled]=\"busy() || !message.trim()\">{{ busy() ? 'Working...' : 'Run' }}</button>\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n    </div>\n\n    @if (text()) {\n      <div class=\"card\">\n        <h2>Answer</h2>\n        <div class=\"answer\">{{ text() }}</div>\n        <h2>Tool calls ({{ trace().length }})</h2>\n        @for (s of trace(); track $index) {\n          <p><strong>{{ $index + 1 }}. {{ s.tool }}</strong> <span [class]=\"s.isError ? 'bad' : 'ok'\">{{ s.isError ? 'error' : 'ok' }}</span></p>\n          <pre class=\"out\">in:  {{ pretty(s.input) }}\nout: {{ pretty(s.output) }}</pre>\n        } @empty {\n          <p class=\"muted\">Claude answered without using a tool.</p>\n        }\n      </div>\n    }\n  `,\n})\nexport class AgentPage {\n  private http = inject(HttpClient);\n\n  message = `Here is a job post:\\n\"We need a customer support executive. You will answer customer calls, solve billing problems in Zendesk and write clear emails. Experience with Zendesk and strong English communication is required. Zendesk training provided.\"\\n\\nWhich keywords should my resume include? Also, how many words is this job post?`;\n  busy = signal(false);\n  error = signal('');\n  text = signal('');\n  trace = signal<Step[]>([]);\n\n  pretty(v: unknown) {\n    return JSON.stringify(v);\n  }\n\n  async run() {\n    this.busy.set(true);\n    this.error.set('');\n    this.text.set('');\n    this.trace.set([]);\n    try {\n      const r = await firstValueFrom(this.http.post<{ text: string; trace: Step[] }>('/api/agent', { message: this.message }));\n      this.text.set(r.text);\n      this.trace.set(r.trace);\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 9 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-09.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -2137,7 +2770,91 @@
         }
       ],
       "keywords": "claude tool use, function calling claude, tool_use tool_result, angular ai agent, anthropic tools node",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 9,
+      "animation": {
+        "title": "The tool-use loop",
+        "nodes": [
+          {
+            "id": "user",
+            "label": "Reader",
+            "sub": "asks a question",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "node",
+            "label": "Your server",
+            "sub": "runs the loop",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "decides",
+            "col": 2,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "tool",
+            "label": "Your tool",
+            "sub": "a function you wrote",
+            "col": 2,
+            "row": 1,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You describe your tools to Claude: a name, what it does and what inputs it needs.",
+            "on": [
+              "node"
+            ]
+          },
+          {
+            "say": "The reader asks something that needs real data, such as an order status.",
+            "flow": [
+              "user>node:question"
+            ]
+          },
+          {
+            "say": "Your server sends the question and the tool list to Claude.",
+            "flow": [
+              "node>claude:question + tools"
+            ]
+          },
+          {
+            "say": "Claude does not run anything. It replies that it wants to use a tool, with the inputs.",
+            "flow": [
+              "claude>node:tool_use"
+            ]
+          },
+          {
+            "say": "Your server runs the tool and gets a result.",
+            "flow": [
+              "node>tool:run"
+            ]
+          },
+          {
+            "say": "The result is sent back to Claude as a tool result.",
+            "flow": [
+              "tool>node:result",
+              "node>claude:tool_result"
+            ]
+          },
+          {
+            "say": "Claude uses the result to write the final answer. The loop stops when no more tools are needed.",
+            "flow": [
+              "claude>node:final answer"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Tool use",
@@ -2341,10 +3058,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Note = { id: string; title: string; text: string };\ntype Action = { name: string; input: unknown };\ntype Reply = { sessionId: string; notes: Note[]; status: 'done' | 'needs_approval'; text?: string; actions?: Action[] };\ntype Line = { who: 'You' | 'Claude'; text: string };\n\n@Component({\n  selector: 'app-safe-agent',\n  imports: [FormsModule],\n  template: `\n    <h1>Safe tools with approval</h1>\n    <p class=\"hint\">Saving a note is fine. Deleting one needs your approval. Try: \"Save a note called Skills: add MIG welding\" and then \"Delete note 1\".</p>\n\n    <div class=\"card\">\n      @for (l of lines(); track $index) { <p><strong>{{ l.who }}:</strong> <span class=\"answer\">{{ l.text }}</span></p> }\n\n      @if (pending(); as actions) {\n        <div class=\"err\">\n          Claude wants to do this:\n          @for (a of actions; track $index) { <pre class=\"out\">{{ a.name }}({{ show(a.input) }})</pre> }\n          <button class=\"danger\" (click)=\"decide(true)\" [disabled]=\"busy()\">Approve</button>\n          <button class=\"secondary\" (click)=\"decide(false)\" [disabled]=\"busy()\">Deny</button>\n        </div>\n      }\n      @if (error()) { <div class=\"err\">{{ error() }}</div> }\n\n      <label for=\"m\">Message</label>\n      <textarea id=\"m\" [(ngModel)]=\"message\" style=\"min-height:70px\" [disabled]=\"!!pending()\"></textarea>\n      <button (click)=\"send()\" [disabled]=\"busy() || !!pending() || !message.trim()\">{{ busy() ? 'Working...' : 'Send' }}</button>\n    </div>\n\n    <div class=\"card\">\n      <h2>Saved notes</h2>\n      @for (n of notes(); track n.id) { <p><strong>#{{ n.id }} {{ n.title }}</strong><br />{{ n.text }}</p> } @empty { <p class=\"muted\">No notes.</p> }\n    </div>\n  `,\n})\nexport class SafeAgentPage {\n  private http = inject(HttpClient);\n  private sessionId = '';\n\n  message = '';\n  busy = signal(false);\n  error = signal('');\n  lines = signal<Line[]>([]);\n  notes = signal<Note[]>([]);\n  pending = signal<Action[] | null>(null);\n\n  show(v: unknown) { return JSON.stringify(v); }\n\n  async send() {\n    const text = this.message.trim();\n    this.lines.update((l) => [...l, { who: 'You', text }]);\n    this.message = '';\n    await this.call('/api/safe-agent', { sessionId: this.sessionId, message: text });\n  }\n\n  async decide(approve: boolean) {\n    this.lines.update((l) => [...l, { who: 'You', text: approve ? '(approved)' : '(denied)' }]);\n    await this.call('/api/safe-agent/decision', { sessionId: this.sessionId, approve });\n  }\n\n  private async call(url: string, body: object) {\n    this.busy.set(true);\n    this.error.set('');\n    try {\n      const r = await firstValueFrom(this.http.post<Reply>(url, body));\n      this.sessionId = r.sessionId;\n      this.notes.set(r.notes);\n      if (r.status === 'needs_approval') {\n        this.pending.set(r.actions ?? []);\n      } else {\n        this.pending.set(null);\n        this.lines.update((l) => [...l, { who: 'Claude', text: r.text ?? '' }]);\n      }\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 10 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-10.zip)"
-        },
-        {
           "type": "note",
           "text": "The sessions here live in memory, so they disappear when the server restarts and do not work across several servers. That is fine for learning. A real product should store sessions in a database."
         },
@@ -2381,7 +3094,92 @@
         }
       ],
       "keywords": "claude tool safety, prompt injection defense, zod validation tool input, human in the loop approval, angular ai approval",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 10,
+      "animation": {
+        "title": "Checks before a tool runs",
+        "nodes": [
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "asks for a tool",
+            "col": 0,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "val",
+            "label": "Validate input",
+            "sub": "never trust arguments",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "own",
+            "label": "Check owner",
+            "sub": "is it their data?",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "human",
+            "label": "Ask a person",
+            "sub": "for risky actions",
+            "col": 2,
+            "row": 1,
+            "kind": "user"
+          },
+          {
+            "id": "tool",
+            "label": "Run the tool",
+            "sub": "least privilege",
+            "col": 3,
+            "row": 0,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Claude can ask for any tool call, and it can be tricked. Your code is the last line of defence.",
+            "on": [
+              "claude"
+            ]
+          },
+          {
+            "say": "Rule 1: validate the arguments as if a stranger typed them.",
+            "flow": [
+              "claude>val:arguments"
+            ]
+          },
+          {
+            "say": "Rule 2: check that the signed-in user owns the data being asked for.",
+            "flow": [
+              "val>own:valid"
+            ]
+          },
+          {
+            "say": "Rule 4: for risky actions, like deleting or paying, a human must approve first.",
+            "flow": [
+              "own>human:risky"
+            ]
+          },
+          {
+            "say": "Rule 3: the tool has only the access it needs, nothing more.",
+            "flow": [
+              "own>tool:allowed"
+            ]
+          },
+          {
+            "say": "Text returned by a tool is data, not orders. Never let it change your rules.",
+            "on": [
+              "tool"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Tool use",
@@ -2571,10 +3369,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Report = { score: number; strong_matches: string[]; missing_keywords: string[]; suggestions: string[] };\n\n@Component({\n  selector: 'app-match',\n  imports: [FormsModule],\n  template: `\n    <h1>Resume and job match</h1>\n    <p class=\"hint\">Paste a resume and a job post. Claude fills a fixed report shape, and the server checks it before we show it.</p>\n\n    <div class=\"grid2\">\n      <div class=\"card\"><label for=\"r\">Resume</label><textarea id=\"r\" [(ngModel)]=\"resume\" style=\"min-height:200px\"></textarea></div>\n      <div class=\"card\"><label for=\"j\">Job description</label><textarea id=\"j\" [(ngModel)]=\"job\" style=\"min-height:200px\"></textarea></div>\n    </div>\n    <button (click)=\"run()\" [disabled]=\"busy() || resume.length < 30 || job.length < 30\">{{ busy() ? 'Comparing...' : 'Compare' }}</button>\n    @if (error()) { <div class=\"err\">{{ error() }}</div> }\n\n    @if (report(); as r) {\n      <div class=\"card\">\n        <h2>Match score: {{ r.score }} / 100</h2>\n        <div style=\"background:#e2e8f0;border-radius:99px;height:10px\"><div [style.width.%]=\"r.score\" style=\"background:#4f46e5;height:10px;border-radius:99px\"></div></div>\n        <h2>Strong matches</h2>\n        <div class=\"chips\">@for (s of r.strong_matches; track s) { <span>{{ s }}</span> } @empty { <span class=\"muted\">None</span> }</div>\n        <h2>Missing keywords</h2>\n        <div class=\"chips miss\">@for (s of r.missing_keywords; track s) { <span>{{ s }}</span> } @empty { <span class=\"muted\">None</span> }</div>\n        <h2>Suggestions</h2>\n        <ul>@for (s of r.suggestions; track s) { <li>{{ s }}</li> }</ul>\n        <p class=\"muted\">This is guidance only. It is not how any employer's system will score you.</p>\n      </div>\n    }\n  `,\n})\nexport class MatchPage {\n  private http = inject(HttpClient);\n\n  resume = '';\n  job = '';\n  busy = signal(false);\n  error = signal('');\n  report = signal<Report | null>(null);\n\n  async run() {\n    this.busy.set(true);\n    this.error.set('');\n    this.report.set(null);\n    try {\n      const r = await firstValueFrom(this.http.post<{ report: Report }>('/api/match', { resume: this.resume, job: this.job }));\n      this.report.set(r.report);\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 11 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-11.zip)"
-        },
-        {
           "type": "heading",
           "text": "What you learned"
         },
@@ -2607,7 +3401,93 @@
         }
       ],
       "keywords": "claude resume job match, forced tool structured output, tool_choice claude, angular resume matcher, rate limit express",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 11,
+      "animation": {
+        "title": "Resume and job matching",
+        "nodes": [
+          {
+            "id": "resume",
+            "label": "Resume text",
+            "sub": "from the reader",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "job",
+            "label": "Job description",
+            "sub": "pasted text",
+            "col": 0,
+            "row": 1,
+            "kind": "user"
+          },
+          {
+            "id": "node",
+            "label": "Node.js",
+            "sub": "limits and checks",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "forced JSON tool",
+            "col": 2,
+            "row": 0,
+            "kind": "model"
+          },
+          {
+            "id": "ng",
+            "label": "Angular screen",
+            "sub": "honest result",
+            "col": 1,
+            "row": 1,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The reader pastes a resume and a job description. Plan the exact result you want before you code.",
+            "flow": [
+              "resume>node:text",
+              "job>node:text"
+            ]
+          },
+          {
+            "say": "The server limits the size, and protects the endpoint from abuse.",
+            "on": [
+              "node"
+            ]
+          },
+          {
+            "say": "It sends both texts to Claude with a careful system prompt and a tool that forces structured JSON.",
+            "flow": [
+              "node>claude:prompt + schema"
+            ]
+          },
+          {
+            "say": "Claude returns a match score, matching skills and missing skills in that shape.",
+            "flow": [
+              "claude>node:JSON"
+            ]
+          },
+          {
+            "say": "The server still validates the JSON before using it.",
+            "on": [
+              "node"
+            ]
+          },
+          {
+            "say": "The screen shows the result as an estimate, not a promise, and says what is missing.",
+            "flow": [
+              "node>ng:result"
+            ]
+          }
+        ]
+      }
     },
     {
       "section": "Designing prompts for Claude",
@@ -2812,10 +3692,6 @@
           "text": "import { Component, inject, signal } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\nimport { HttpClient } from '@angular/common/http';\nimport { firstValueFrom } from 'rxjs';\nimport { errorText } from '../util';\n\ntype Result = { text: string; checks: { threeBullets: boolean; shortLines: boolean }; tokens: number };\ntype Row = { id: string; a: Result; b: Result };\ntype Run = { rows: Row[]; summary: { total: number; passedA: number; passedB: number } };\n\n@Component({\n  selector: 'app-prompt-lab',\n  imports: [FormsModule],\n  template: `\n    <h1>Prompt lab</h1>\n    <p class=\"hint\">Compare a plain prompt (A) with your improved prompt (B) on a small test set. Edit B until every check passes.</p>\n\n    <div class=\"grid2\">\n      <div class=\"card\"><h2>Prompt A (plain)</h2><pre class=\"out\">{{ promptA }}</pre></div>\n      <div class=\"card\"><label for=\"b\">Prompt B (you can edit this)</label><textarea id=\"b\" [(ngModel)]=\"promptB\" style=\"min-height:230px\"></textarea></div>\n    </div>\n    <button (click)=\"run()\" [disabled]=\"busy()\">{{ busy() ? 'Running 6 requests...' : 'Run the test set' }}</button>\n    @if (error()) { <div class=\"err\">{{ error() }}</div> }\n\n    @if (result(); as r) {\n      <div class=\"card\">\n        <h2>Pass rate: A {{ r.summary.passedA }}/{{ r.summary.total }} &nbsp; B {{ r.summary.passedB }}/{{ r.summary.total }}</h2>\n        <table>\n          <thead><tr><th>Job</th><th>Prompt A</th><th>Prompt B</th></tr></thead>\n          <tbody>\n            @for (row of r.rows; track row.id) {\n              <tr>\n                <td>{{ row.id }}</td>\n                <td><div class=\"answer\">{{ row.a.text }}</div>{{ badges(row.a) }}</td>\n                <td><div class=\"answer\">{{ row.b.text }}</div>{{ badges(row.b) }}</td>\n              </tr>\n            }\n          </tbody>\n        </table>\n      </div>\n    }\n  `,\n})\nexport class PromptLabPage {\n  private http = inject(HttpClient);\n\n  promptA = '';\n  promptB = '';\n  busy = signal(false);\n  error = signal('');\n  result = signal<Run | null>(null);\n\n  constructor() {\n    firstValueFrom(this.http.get<{ promptA: string; promptB: string }>('/api/prompt-lab/default')).then((d) => {\n      this.promptA = d.promptA;\n      this.promptB = d.promptB;\n    });\n  }\n\n  badges(r: Result) {\n    return `${r.checks.threeBullets ? '✔' : '✘'} exactly 3 bullets   ${r.checks.shortLines ? '✔' : '✘'} 20 words or fewer   (${r.tokens} output tokens)`;\n  }\n\n  async run() {\n    this.busy.set(true);\n    this.error.set('');\n    try {\n      this.result.set(await firstValueFrom(this.http.post<Run>('/api/prompt-lab', { promptB: this.promptB })));\n    } catch (e) {\n      this.error.set(errorText(e));\n    } finally {\n      this.busy.set(false);\n    }\n  }\n}"
         },
         {
-          "type": "paragraph",
-          "text": "[Download the lesson 12 solution (zip)](/api/learn/downloads/claude-api-tool-use/ai-lab-lesson-12.zip)"
-        },
-        {
           "type": "note",
           "text": "The lesson 12 zip is the complete AI Lab: all twelve pages and all the server routes. Run it as described in its README, and use it as the starting point for your own AI project."
         },
@@ -2852,7 +3728,92 @@
         }
       ],
       "keywords": "claude prompt engineering, xml tags prompts, prompt testing, prompt design angular, claude system prompt",
-      "published": true
+      "published": true,
+      "lab": "claude-api-tool-use",
+      "labStep": 12,
+      "animation": {
+        "title": "Designing and testing a prompt",
+        "nodes": [
+          {
+            "id": "brief",
+            "label": "Clear brief",
+            "sub": "task, why, format",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "xml",
+            "label": "XML tags",
+            "sub": "separate the parts",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ex",
+            "label": "Examples",
+            "sub": "show the output",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "claude",
+            "label": "Claude",
+            "sub": "answers",
+            "col": 2,
+            "row": 1,
+            "kind": "model"
+          },
+          {
+            "id": "test",
+            "label": "Test cases",
+            "sub": "compare versions",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Write the prompt like a brief for a smart new colleague: the task, the reason and the format you want.",
+            "on": [
+              "brief"
+            ]
+          },
+          {
+            "say": "Use XML tags to separate instructions, documents and the question, so nothing gets mixed up.",
+            "flow": [
+              "brief>xml:structure"
+            ]
+          },
+          {
+            "say": "Add one or two examples of the output you want. They teach better than a description.",
+            "flow": [
+              "xml>ex:add"
+            ]
+          },
+          {
+            "say": "Claude uses the whole prompt to answer.",
+            "flow": [
+              "ex>claude:prompt"
+            ]
+          },
+          {
+            "say": "Run the same test cases on every new version of the prompt and compare the results.",
+            "flow": [
+              "claude>test:outputs"
+            ]
+          },
+          {
+            "say": "Keep the change that scores better, and repeat. Do not trust one lucky answer.",
+            "flow": [
+              "test>brief:improve"
+            ]
+          }
+        ]
+      }
     }
   ],
   "replace": true
