@@ -94,6 +94,17 @@ export const part2 = {
     { say: 'A cross-field validator sits on the group and compares fields, like password and confirm.', flow: ['crs>ctl:group error'] },
     { say: 'setValidators changes the rules at runtime. Call updateValueAndValidity afterwards.', flow: ['set>ctl:new rules'] },
   ]),
+  'Angular Routing Basics: Pages, RouterLink and RouterOutlet': A('How routing shows a page', [
+    n('url', 'URL', '/about', 0, 0, 'user'), n('rt', 'Routes', 'path to component', 1, 0, 'model'),
+    n('cmp', 'About component', 'matched page', 2, 0, 'app'), n('out', 'router-outlet', 'the page slot', 2, 1, 'tool'),
+    n('lnk', 'routerLink', 'links, no reload', 1, 1, 'check'),
+  ], [
+    { say: 'Routing lets one Angular app show different pages for different URLs, without a full reload.', on: ['rt'] },
+    { say: 'You list routes in app.routes.ts. Each route pairs a path with a component.', flow: ['url>rt:path'] },
+    { say: 'When the URL matches, the router picks that component.', flow: ['rt>cmp:match'] },
+    { say: 'router-outlet marks the spot in the layout where the chosen page is drawn.', flow: ['cmp>out:renders in'] },
+    { say: 'Use routerLink instead of plain links, so clicking changes the page without reloading.', flow: ['lnk>rt:navigate'] },
+  ]),
   'Angular Route Parameters and Query Parameters': A('Parameters in a URL', [
     n('url', 'URL', '/products/42?sort=asc', 0, 0, 'user'), n('rt', 'Router', 'matches route', 1, 0, 'model'),
     n('par', 'Route param', 'id = 42', 2, 0, 'data'), n('q', 'Query param', 'sort = asc', 2, 1, 'data'),
