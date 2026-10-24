@@ -1,4 +1,5 @@
 import { slugify } from './slugify.js';
+import { cleanAnimation } from './lessonAnimation.js';
 import {
     SITE_NAME, siteUrl, absUrl, escapeHtml, stripInline, inlineHtml, blocksToHtml, headingIds, wordCount, readTimeFor, seoTitle, DEFAULT_AUTHOR,
 } from './blogSeo.js';
@@ -40,6 +41,8 @@ export const cleanLessonFields = (b) => {
     if (has('keywords')) out.keywords = str(b.keywords, 300);
     if (has('noindex')) out.noindex = Boolean(b.noindex);
     if (has('faqs')) out.faqs = (Array.isArray(b.faqs) ? b.faqs : []).map((f) => ({ q: str(f?.q, 200), a: str(f?.a, 1500) })).filter((f) => f.q && f.a).slice(0, 15);
+    // an empty value removes the animation; an invalid one throws a readable error (the controllers answer 400)
+    if (has('animation')) out.animation = cleanAnimation(b.animation) ?? null;
     return out;
 };
 
@@ -137,7 +140,7 @@ export const lessonView = (course, lesson, lessons) => {
         jsonLd.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: l.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: stripInline(f.a) } })) });
     }
     return {
-        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], download: l.download?.file ? { name: l.download.name, size: l.download.size || 0, url: `/api/learn/${c.slug}/${l.slug}/download` } : null, datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
+        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], animation: l.animation || null, download: l.download?.file ? { name: l.download.name, size: l.download.size || 0, url: `/api/learn/${c.slug}/${l.slug}/download` } : null, datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
         toc: content.filter((b) => b.type === 'heading').map((b) => ({ id: b.id, text: stripInline(b.text) })),
         course: { title: c.title, slug: c.slug, level: c.level, author: c.author || DEFAULT_AUTHOR },
         sections: groupSections(lessons), prev, next, position: idx + 1, total: lessons.length, seo, jsonLd, breadcrumbs: crumbs,
@@ -171,6 +174,7 @@ export const lessonHtml = (v) => `
   <h1 itemprop="headline">${escapeHtml(v.lesson.title)}</h1>
   <p class="meta">${escapeHtml(v.course.title)}${v.lesson.section ? ` · ${escapeHtml(v.lesson.section)}` : ''} · ${escapeHtml(v.lesson.readTime)} · Updated <time datetime="${new Date(v.lesson.modifiedAt).toISOString()}">${new Date(v.lesson.modifiedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time></p>
   ${v.toc.length > 2 ? `<nav aria-label="On this page"><h2>On this page</h2><ol>${v.toc.map((t) => `<li><a href="#${escapeHtml(t.id)}">${escapeHtml(t.text)}</a></li>`).join('')}</ol></nav>` : ''}
+  ${v.lesson.animation ? `<section aria-label="Animated walkthrough"><h2>${escapeHtml(v.lesson.animation.title || 'How it works, step by step')}</h2><ol>${v.lesson.animation.steps.map((s) => `<li>${escapeHtml(s.say)}</li>`).join('')}</ol></section>` : ''}
   <div itemprop="articleBody">${blocksToHtml(v.lesson.content)}</div>
   ${v.lesson.download ? `<p><a href="${escapeHtml(v.lesson.download.url)}" rel="nofollow">Download the solution (${escapeHtml(v.lesson.download.name)})</a></p>` : ''}
   ${v.lesson.faqs.length ? `<section><h2>Frequently asked questions</h2>${v.lesson.faqs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${inlineHtml(f.a)}</p>`).join('')}</section>` : ''}

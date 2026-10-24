@@ -37,6 +37,8 @@ const LessonSchema = new mongoose.Schema({
     keywords: { type: String, default: '' },
     noindex: { type: Boolean, default: false },
     download: { type: DownloadSchema, default: undefined },
+    // Optional step-by-step diagram played above the lesson text (see utils/lessonAnimation.js).
+    animation: { type: mongoose.Schema.Types.Mixed, default: undefined },
     modifiedAt: { type: Date },
 }, { timestamps: true });
 

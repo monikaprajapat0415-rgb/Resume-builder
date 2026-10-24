@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
-import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse, uploadLessonDownload, removeLessonDownload } from '../controllers/learnController.js';
+import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse, previewAnimation, uploadLessonDownload, removeLessonDownload } from '../controllers/learnController.js';
 import { getRoadmapsAdmin, getRoadmapAdmin, createRoadmap, updateRoadmap, deleteRoadmap } from '../controllers/roadmapController.js';
 import {
     adminSummary, adminListQuestions, adminGetQuestion, adminCreateQuestion, adminUpdateQuestion, adminDeleteQuestion,
@@ -58,6 +58,7 @@ adminRouter.get('/roadmaps/:id', getRoadmapAdmin);
 adminRouter.put('/roadmaps/:id', updateRoadmap);
 adminRouter.delete('/roadmaps/:id', deleteRoadmap);
 adminRouter.post('/learn/import', importCourse);
+adminRouter.post('/learn/animation/preview', previewAnimation);
 
 // Jobs community: interview questions + moderation of answers, salary reports and company reviews
 adminRouter.get('/inbox', adminInbox);

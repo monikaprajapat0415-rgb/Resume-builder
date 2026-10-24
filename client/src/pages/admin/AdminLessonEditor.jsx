@@ -4,6 +4,21 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
+import LessonAnimation from '../../components/LessonAnimation'
+
+const ANIMATION_EXAMPLE = {
+  title: 'How a request travels',
+  nodes: [
+    { id: 'user', label: 'Reader', sub: 'browser', col: 0, row: 0, kind: 'user' },
+    { id: 'app', label: 'Your app', sub: 'Angular', col: 1, row: 0, kind: 'app' },
+    { id: 'api', label: 'API', sub: 'Node.js', col: 2, row: 0, kind: 'tool' },
+  ],
+  steps: [
+    { say: 'The reader clicks a button in your app.', on: ['user'], flow: ['user>app:click'] },
+    { say: 'The app sends a request to your API.', flow: ['app>api:GET /data'] },
+    { say: 'The API answers and the app shows the result.', flow: ['api>app:JSON'], on: ['app'] },
+  ],
+}
 
 const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 const Field = ({ label, hint, children }) => (
@@ -26,6 +41,8 @@ const AdminLessonEditor = () => {
   const [blocks, setBlocks] = useState([{ type: 'paragraph', text: '' }])
   const [faqs, setFaqs] = useState([])
   const [download, setDownload] = useState(null)
+  const [animText, setAnimText] = useState('')
+  const [anim, setAnim] = useState({ ok: null, message: '', data: null })
   const [uploading, setUploading] = useState(false)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -43,6 +60,7 @@ const AdminLessonEditor = () => {
           setF({ title: l.title, slug: l.slug, section: l.section || '', description: l.description || '', readTime: l.readTime || '', published: l.published, metaTitle: l.metaTitle || '', keywords: l.keywords || '', noindex: Boolean(l.noindex) })
           setBlocks(l.content?.length ? l.content : [{ type: 'paragraph', text: '' }])
           setFaqs(l.faqs || [])
+          setAnimText(l.animation ? JSON.stringify(l.animation, null, 2) : '')
           setDownload(l.download?.file ? l.download : null)
         }
         const { data } = await api.get(`/api/admin/learn/courses/${cid}/lessons`, auth)
@@ -59,8 +77,24 @@ const AdminLessonEditor = () => {
     run()
   }, [lessonId, courseIdParam])
 
+  // check the animation JSON with the server's own rules (same code that cleans it on save) and show a live preview
+  useEffect(() => {
+    if (!animText.trim()) { setAnim({ ok: null, message: '', data: null }); return undefined }
+    let parsed
+    try { parsed = JSON.parse(animText) } catch (e) { setAnim({ ok: false, message: `Not valid JSON: ${e.message}`, data: null }); return undefined }
+    let live = true
+    const t = setTimeout(() => {
+      api.post('/api/admin/learn/animation/preview', { animation: parsed }, auth)
+        .then(({ data }) => { if (live) setAnim({ ok: true, message: '', data: data.animation }) })
+        .catch((e) => { if (live) setAnim({ ok: false, message: e.response?.data?.message || 'Could not check the animation.', data: null }) })
+    }, 500)
+    return () => { live = false; clearTimeout(t) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animText])
+
   const submit = async (e) => {
     e.preventDefault()
+    if (animText.trim() && anim.ok === false) { toast.error(anim.message || 'Fix the animation first.'); return }
     setSaving(true)
     try {
       const content = blocks.map((b) => {
@@ -69,7 +103,7 @@ const AdminLessonEditor = () => {
         if (b.type === 'code') return { type: 'code', lang: (b.lang || '').trim(), text: b.text || '' }
         return { type: b.type, text: (b.text || '').trim() }
       }).filter((b) => (b.items ? b.items.length > 0 : b.type === 'image' ? b.url : (b.text || '').trim().length > 0))
-      const payload = { ...f, content, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
+      const payload = { ...f, content, animation: animText.trim() ? JSON.parse(animText) : null, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
       if (isEdit) await api.put(`/api/admin/learn/lessons/${lessonId}`, payload, auth)
       else await api.post(`/api/admin/learn/courses/${courseId}/lessons`, payload, auth)
       toast.success(isEdit ? 'Lesson updated.' : 'Lesson created.')
@@ -172,6 +206,19 @@ const AdminLessonEditor = () => {
             </div>
           ))}
           <button type='button' onClick={() => setFaqs((p) => [...p, { q: '', a: '' }])} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>+ question</button>
+        </div>
+
+        <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>
+          <h2 className='text-sm font-semibold text-slate-800'>Animation <span className='text-slate-400 font-normal'>(optional step-by-step diagram with captions and a voice-over button, shown above the lesson text)</span></h2>
+          <p className='text-xs text-slate-500'>Write it as JSON: <code>nodes</code> sit on a grid (<code>col</code> 0-3, <code>row</code> 0-2) and each <code>step</code> has a <code>say</code> caption, optional <code>on</code> (nodes to light up) and <code>flow</code> (<code>"from&gt;to:label"</code> sends a packet along an arrow). Leave it empty for no animation.</p>
+          <textarea value={animText} onChange={(e) => setAnimText(e.target.value)} rows={10} spellCheck={false} className={`${input} font-mono text-xs`} placeholder='Paste the animation JSON here' />
+          <div className='flex flex-wrap items-center gap-3'>
+            <button type='button' onClick={() => setAnimText(JSON.stringify(ANIMATION_EXAMPLE, null, 2))} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>Insert an example</button>
+            {animText.trim() && <button type='button' onClick={() => setAnimText('')} className='text-xs text-red-500'>Remove the animation</button>}
+            {anim.ok === true && <span className='text-xs text-green-700'>Valid. Preview below.</span>}
+            {anim.ok === false && <span className='text-xs text-red-600'>{anim.message}</span>}
+          </div>
+          {anim.ok && anim.data && <LessonAnimation key={animText} animation={anim.data} />}
         </div>
 
         <details className='bg-white rounded-xl border border-slate-200 p-5'>
