@@ -1,3 +1,4 @@
+import { tr, intlTag } from '../../i18n/engine'
 import Bullets from './Bullets'
 // import { Mail, Phone, MapPin } from "lucide-react";
 import { LuMail,LuPhone, LuMapPin, LuLinkedin, LuGlobe } from "react-icons/lu";
@@ -6,7 +7,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
-        return new Date(year, month - 1).toLocaleDateString("en-US", {
+        return new Date(year, month - 1).toLocaleDateString(intlTag(), {
             year: "numeric",
             month: "short",
         });
@@ -34,10 +35,10 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                 {/* Name + Title */}
                 <div className="col-span-2 flex flex-col justify-center py-10 px-8">
                     <h1 className="text-4xl font-bold text-zinc-700 tracking-widest">
-                        {data.personal_info?.full_name || "Your Name"}
+                        {data.personal_info?.full_name || tr('Your Name')}
                     </h1>
                     <p className="uppercase text-zinc-600 font-medium text-sm tracking-widest">
-                        {data?.personal_info?.profession || "Profession"}
+                        {data?.personal_info?.profession || tr('Profession')}
                     </p>
                 </div>
 
@@ -48,7 +49,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {/* Contact */}
                     <section className="mb-8">
                         <h2 className="text-sm font-semibold tracking-widest text-zinc-600 mb-3">
-                            CONTACT
+                            {tr('Contact').toUpperCase()}
                         </h2>
                         <div className="space-y-2 text-sm">
                             {data.personal_info?.phone && (
@@ -88,7 +89,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {data.education && data.education.length > 0 && (
                         <section className="mb-8">
                             <h2 className="text-sm font-semibold tracking-widest text-zinc-600 mb-3">
-                                EDUCATION
+                                {tr('Education').toUpperCase()}
                             </h2>
                             <div className="space-y-4 text-sm">
                                 {data.education.map((edu, index) => (
@@ -109,7 +110,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {data.skills && data.skills.length > 0 && (
                         <section>
                             <h2 className="text-sm font-semibold tracking-widest text-zinc-600 mb-3">
-                                SKILLS
+                                {tr('Skills').toUpperCase()}
                             </h2>
                             <ul className="space-y-1 text-sm">
                                 {data.skills.map((skill, index) => (
@@ -127,7 +128,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {data.professional_summary && (
                         <section className="mb-8">
                             <h2 className="text-sm font-semibold tracking-widest mb-3" style={{ color: accentColor }} >
-                                SUMMARY
+                                {tr('Summary').toUpperCase()}
                             </h2>
                             <p className="text-zinc-700 leading-relaxed">
                                 {data.professional_summary}
@@ -139,7 +140,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {data.experience && data.experience.length > 0 && (
                         <section>
                             <h2 className="text-sm font-semibold tracking-widest mb-4" style={{ color: accentColor }} >
-                                EXPERIENCE
+                                {tr('Experience').toUpperCase()}
                             </h2>
                             <div className="space-y-6 mb-8">
                                 {data.experience.map((exp, index) => (
@@ -150,7 +151,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                                             </h3>
                                             <span className="text-xs text-zinc-500">
                                                 {formatDate(exp.start_date)} -{" "}
-                                                {exp.is_current ? "Present" : formatDate(exp.end_date)}
+                                                {exp.is_current ? tr('Present') : formatDate(exp.end_date)}
                                             </span>
                                         </div>
                                         <p className="text-sm mb-2" style={{ color: accentColor }} >
@@ -169,7 +170,7 @@ const MinimalImageTemplate = ({ data, accentColor }) => {
                     {data.project && data.project.length > 0 && (
                         <section>
                             <h2 className="text-sm uppercase tracking-widest font-semibold" style={{ color: accentColor }}>
-                                PROJECTS
+                                {tr('Projects').toUpperCase()}
                             </h2>
                             <div className="space-y-4">
                                 {data.project.map((project, index) => (

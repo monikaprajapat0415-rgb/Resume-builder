@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { isRtl } from '../i18n/engine'
 import { trackEvent } from '../components/Analytics'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -133,6 +134,8 @@ const CvBuilder = () => {
   const fileName = `${pi.full_name || 'cv'}-cv`
   const download = () => {
     if (!doc.generated) { toast.error('Generate your CV first'); return }
+    // The built-in PDF writer has no Arabic font, so for Arabic the browser's own "Save as PDF" prints the preview.
+    if (isRtl()) { toast('In the print window choose "Save as PDF" as the destination.'); window.print(); return }
     try { downloadCvPdf({ cv, personal: pi, template: doc.template, accentColor: doc.accent_color, level, fileName }) }
     catch (e) { console.error(e); toast.error('Could not create the PDF') }
   }
@@ -394,7 +397,7 @@ const CvBuilder = () => {
       </nav>
 
       <div className='grid lg:grid-cols-12 gap-6 items-start'>
-        <section className='lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm'>
+        <section className='min-w-0 lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm'>
           <h2 className='text-lg font-semibold text-slate-800 mb-4'>{STEPS[step]}</h2>
           {stepBody[step]}
           <div className='flex justify-between mt-6 pt-4 border-t border-slate-100'>
@@ -403,7 +406,7 @@ const CvBuilder = () => {
           </div>
         </section>
 
-        <section className='lg:col-span-7 lg:sticky lg:top-4'>
+        <section className='min-w-0 lg:col-span-7 lg:sticky lg:top-4'>
           <div className='flex flex-wrap items-center gap-3 mb-3'>
             <div className='flex flex-wrap items-center gap-1.5' role='group' aria-label='Template'>
               {CV_TEMPLATES.map((t) => (
@@ -415,7 +418,7 @@ const CvBuilder = () => {
                 {COLORS.map((c) => <button key={c} type='button' aria-label={`Colour ${c}`} onClick={() => patch({ accent_color: c })} className={`size-5 rounded-full border-2 ${doc.accent_color === c ? 'border-slate-800' : 'border-white ring-1 ring-slate-300'}`} style={{ background: c }} />)}
               </div>
             )}
-            <div className='flex gap-2 ml-auto'>
+            <div className='flex flex-wrap gap-2 ms-auto'>
               <button type='button' onClick={copyText} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuCopy className='size-3.5' />Copy text</button>
               <button type='button' onClick={() => window.print()} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuPrinter className='size-3.5' />Print</button>
               <button type='button' onClick={downloadWord} disabled={!doc.generated} className='inline-flex items-center gap-1.5 px-3 py-1.5 text-xs border border-slate-300 rounded-full hover:bg-slate-50 disabled:opacity-40'><LuFileText className='size-3.5' />Word</button>

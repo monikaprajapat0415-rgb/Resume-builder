@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 import Bullets from './Bullets'
 import { contactParts, range, formatDate } from './shared'
 
@@ -17,21 +18,21 @@ const TimelineTemplate = ({ data, accentColor }) => {
   return (
     <div className="max-w-4xl mx-auto px-10 py-9 bg-white text-gray-800 text-[14px] leading-relaxed font-sans">
       <header className="pb-4 border-b-2" style={{ borderColor: accentColor }}>
-        <h1 className="text-[34px] font-light tracking-tight text-gray-900">{p.full_name || 'Your Name'}</h1>
+        <h1 className="text-[34px] font-light tracking-tight text-gray-900">{p.full_name || tr('Your Name')}</h1>
         {p.profession && <p className="text-lg font-medium" style={{ color: accentColor }}>{p.profession}</p>}
         <p className="mt-2 text-[13px] text-gray-600">{contactParts(p).join('  •  ')}</p>
       </header>
 
       {data.professional_summary && (
         <section>
-          <Heading>Professional Summary</Heading>
+          <Heading>{tr('Professional Summary')}</Heading>
           <p className="whitespace-pre-line">{data.professional_summary}</p>
         </section>
       )}
 
       {data.experience?.length > 0 && (
         <section>
-          <Heading>Work Experience</Heading>
+          <Heading>{tr('Work Experience')}</Heading>
           <div className="ml-1.5">
             {data.experience.map((exp, i) => (
               <Entry key={i}>
@@ -47,7 +48,7 @@ const TimelineTemplate = ({ data, accentColor }) => {
 
       {data.education?.length > 0 && (
         <section>
-          <Heading>Education</Heading>
+          <Heading>{tr('Education')}</Heading>
           <div className="ml-1.5">
             {data.education.map((e, i) => (
               <Entry key={i}>
@@ -62,7 +63,7 @@ const TimelineTemplate = ({ data, accentColor }) => {
 
       {data.project?.length > 0 && (
         <section>
-          <Heading>Projects</Heading>
+          <Heading>{tr('Projects')}</Heading>
           <div className="space-y-3">
             {data.project.map((pr, i) => (
               <div key={i}>
@@ -76,7 +77,7 @@ const TimelineTemplate = ({ data, accentColor }) => {
 
       {data.skills?.length > 0 && (
         <section>
-          <Heading>Skills</Heading>
+          <Heading>{tr('Skills')}</Heading>
           <p>{data.skills.join(', ')}</p>
         </section>
       )}

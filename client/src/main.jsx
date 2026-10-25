@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { store } from './app/store'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { HelmetProvider } from 'react-helmet-async'
+import { I18nProvider } from './i18n/I18nProvider'
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
     <HelmetProvider>
       <Provider store={store}>
         <GoogleOAuthProvider clientId={googleClientId}>
-          <App />
+          <I18nProvider>
+            <App />
+          </I18nProvider>
         </GoogleOAuthProvider>
       </Provider>
     </HelmetProvider>

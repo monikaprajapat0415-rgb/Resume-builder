@@ -11,6 +11,7 @@ import MenuLink from './MenuLink';
 import { useMenu } from '../../utils/menu';
 import PageNav from '../PageNav';
 import { MENU_ICONS } from '../../utils/menuIcons';
+import { useI18n } from '../../i18n/I18nProvider';
 
 // Dropdown row: optional icon tile, label and one-line description.
 const SubLabel = ({ c, dark }) => {
@@ -31,6 +32,9 @@ export default function NavBar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
+    // Translated labels are longer, so outside English the full menu bar only shows on very wide screens (the menu button covers the rest).
+    const { lang } = useI18n();
+    const wide = lang !== 'en';
 
     // Links come from the admin-managed menu (Admin > Menus). Section links like
     // /#feature are handled inside MenuLink.
@@ -49,7 +53,7 @@ export default function NavBar() {
                     <Logo className='h-11 w-auto' />
                 </a>
 
-                <div className="hidden md:flex items-center gap-3 lg:gap-4 2xl:gap-8 text-sm lg:text-base whitespace-nowrap transition duration-500 text-slate-800">
+                <div className={`${wide ? 'hidden 2xl:flex items-center gap-3 2xl:gap-4 text-sm' : 'hidden md:flex items-center gap-3 lg:gap-4 2xl:gap-8 text-sm lg:text-base'} whitespace-nowrap transition duration-500 text-slate-800`}>
                     {header.map((item) => item.children?.length ? (
                         <div key={item._id} className="relative group" onMouseLeave={() => setOpenId(null)}
                             onKeyDown={(e) => { if (e.key === 'Escape') { setOpenId(null); document.activeElement?.blur?.() } }}>
@@ -59,7 +63,7 @@ export default function NavBar() {
                                 {item.label}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                             </button>
-                            <div className={`absolute left-0 top-full pt-2 z-50 w-72 max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
+                            <div className={`absolute start-0 top-full pt-2 z-50 w-72 max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
                                 <ul className="rounded-xl border border-slate-200 bg-white shadow-lg py-2">
                                     {item.children.map((c) => (
                                         <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-normal break-words"><SubLabel c={c} /></MenuLink></li>
@@ -73,26 +77,26 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex gap-2 shrink-0 whitespace-nowrap ml-3">
-                    <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white"
+                    <Link to='/app?state=register' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
                         hidden={user}>
                         Get started
                     </Link>
-                    <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
+                    <Link to='/app?state=login' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`}
                         hidden={user}>
                         Login
                     </Link>
-                    <Link to='/app/' className="hidden md:block px-8 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white"
+                    <Link to='/app/' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-8 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
                         hidden={!user}>
                         Dashboard
                     </Link>
                     {/* Logout button shown when user is logged in */}
-                    <button onClick={() => { dispatch(logout()); navigate('/'); }} className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={!user}>
+                    <button onClick={() => { dispatch(logout()); navigate('/'); }} className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`} hidden={!user}>
                         Logout
                     </button>
 
                 </div>
 
-                <button onClick={() => setMenuOpen(prev => !prev)} className="md:hidden active:scale-90 transition" >
+                <button onClick={() => setMenuOpen(prev => !prev)} className={`${wide ? '2xl:hidden' : 'md:hidden'} active:scale-90 transition`} >
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" className="lucide lucide-menu" >
                         <path d="M4 5h16M4 12h16M4 19h16" />
                     </svg>
@@ -100,7 +104,7 @@ export default function NavBar() {
 
             </nav>
             {/* Mobile Menu */}
-            <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-start text-lg gap-6 pt-4 pb-10 overflow-y-auto md:hidden transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
+            <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-start text-lg gap-6 pt-4 pb-10 overflow-y-auto ${wide ? '2xl:hidden' : 'md:hidden'} transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
                 <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="self-end mr-5 shrink-0 active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-brand-600 hover:bg-brand-700 transition text-white rounded-md flex" >
                     X
                 </button>

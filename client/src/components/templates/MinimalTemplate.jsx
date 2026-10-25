@@ -1,10 +1,11 @@
+import { tr, intlTag } from '../../i18n/engine'
 import Bullets from './Bullets'
 
 const MinimalTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
-        return new Date(year, month - 1).toLocaleDateString("en-US", {
+        return new Date(year, month - 1).toLocaleDateString(intlTag(), {
             year: "numeric",
             month: "short"
         });
@@ -15,7 +16,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {/* Header */}
             <header className="mb-10">
                 <h1 className="text-4xl font-thin mb-4 tracking-wide">
-                    {data.personal_info?.full_name || "Your Name"}
+                    {data.personal_info?.full_name || tr('Your Name')}
                 </h1>
                 {data.personal_info?.profession && (
                     <p className="text-base text-gray-600 -mt-2 mb-4">{data.personal_info.profession}</p>
@@ -47,7 +48,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {data.experience && data.experience.length > 0 && (
                 <section className="mb-10">
                     <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Experience
+                        {tr('Experience')}
                     </h2>
 
                     <div className="space-y-6">
@@ -56,7 +57,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
                                 <div className="flex justify-between items-baseline mb-1">
                                     <h3 className="text-lg font-medium">{exp.position}</h3>
                                     <span className="text-sm text-gray-500">
-                                        {formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}
+                                        {formatDate(exp.start_date)} - {exp.is_current ? tr('Present') : formatDate(exp.end_date)}
                                     </span>
                                 </div>
                                 <p className="text-gray-600 mb-2">{exp.company}</p>
@@ -73,7 +74,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {data.project && data.project.length > 0 && (
                 <section className="mb-10">
                     <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Projects
+                        {tr('Projects')}
                     </h2>
 
                     <div className="space-y-4">
@@ -91,7 +92,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {data.education && data.education.length > 0 && (
                 <section className="mb-10">
                     <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Education
+                        {tr('Education')}
                     </h2>
 
                     <div className="space-y-4">
@@ -117,7 +118,7 @@ const MinimalTemplate = ({ data, accentColor }) => {
             {data.skills && data.skills.length > 0 && (
                 <section>
                     <h2 className="text-sm uppercase tracking-widest mb-6 font-medium" style={{ color: accentColor }}>
-                        Skills
+                        {tr('Skills')}
                     </h2>
 
                     <div className="text-gray-700">

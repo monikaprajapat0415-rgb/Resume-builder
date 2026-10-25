@@ -1,3 +1,4 @@
+import { tr, intlTag } from '../../i18n/engine'
 import Bullets from './Bullets'
 // import { Mail, Phone, MapPin, Globe } from "lucide-react";
 import { FaLinkedin, FaGithub,FaGlobe } from "react-icons/fa";
@@ -8,7 +9,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "";
         const [year, month] = dateStr.split("-");
-        return new Date(year, month - 1).toLocaleDateString("en-US", {
+        return new Date(year, month - 1).toLocaleDateString(intlTag(), {
             year: "numeric",
             month: "short"
         });
@@ -19,7 +20,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {/* Header */}
             <header className="text-center mb-8 pb-6 border-b-2" style={{ borderColor: accentColor }}>
                 <h1 className="text-3xl font-bold mb-2" style={{ color: accentColor }}>
-                    {data.personal_info?.full_name || "Your Name"}
+                    {data.personal_info?.full_name || tr('Your Name')}
                 </h1>
                 {data.personal_info?.profession && (
                     <p className="text-base text-gray-600 mb-3">{data.personal_info.profession}</p>
@@ -63,7 +64,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.professional_summary && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-3" style={{ color: accentColor }}>
-                        PROFESSIONAL SUMMARY
+                        {tr('Professional Summary').toUpperCase()}
                     </h2>
                     <p className="text-gray-700 leading-relaxed whitespace-pre-line break-words">{data.professional_summary}</p>
                 </section>
@@ -73,7 +74,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.experience && data.experience.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
-                        PROFESSIONAL EXPERIENCE
+                        {tr('Professional Experience').toUpperCase()}
                     </h2>
 
                     <div className="space-y-4">
@@ -85,7 +86,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
                                         <p className="text-gray-700 font-medium">{exp.company}</p>
                                     </div>
                                     <div className="text-right text-sm text-gray-600">
-                                        <p>{formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}</p>
+                                        <p>{formatDate(exp.start_date)} - {exp.is_current ? tr('Present') : formatDate(exp.end_date)}</p>
                                     </div>
                                 </div>
                                 {exp.description && (
@@ -101,7 +102,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.project && data.project.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
-                        PROJECTS
+                        {tr('Projects').toUpperCase()}
                     </h2>
 
                     <ul className="space-y-3 ">
@@ -121,7 +122,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.education && data.education.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
-                        EDUCATION
+                        {tr('Education').toUpperCase()}
                     </h2>
 
                     <div className="space-y-3">
@@ -147,7 +148,7 @@ const ClassicTemplate = ({ data, accentColor }) => {
             {data.skills && data.skills.length > 0 && (
                 <section className="mb-6">
                     <h2 className="text-xl font-semibold mb-4" style={{ color: accentColor }}>
-                        CORE SKILLS
+                        {tr('Core Skills').toUpperCase()}
                     </h2>
 
                     <div className="flex gap-4 flex-wrap">
@@ -168,7 +169,7 @@ export default ClassicTemplate;
 //     const formatDate = (dateStr) => {
 //         if (!dateStr) return "";
 //         const [year, month] = dateStr.split("-");
-//         return new Date(year, month - 1).toLocaleDateString("en-US", {
+//         return new Date(year, month - 1).toLocaleDateString(intlTag(), {
 //             year: "numeric",
 //             month: "short",
 //         });
@@ -190,11 +191,11 @@ export default ClassicTemplate;
 //                     className="text-3xl font-bold tracking-tight"
 //                     style={{ color: accentColor }}
 //                 >
-//                     {data.personal_info?.full_name || "Your Name"}
+//                     {data.personal_info?.full_name || tr('Your Name')}
 //                 </h1>
 
 //                 <p className="text-lg text-gray-600 mt-1">
-//                     {data.personal_info?.title || "Professional Title"}
+//                     {data.personal_info?.title || tr('Professional Title')}
 //                 </p>
 
 //                 <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-600">
@@ -245,7 +246,7 @@ export default ClassicTemplate;
 //                                 <span className="text-xs text-gray-500">
 //                                     {formatDate(exp.start_date)} –{" "}
 //                                     {exp.is_current
-//                                         ? "Present"
+//                                         ? tr('Present')
 //                                         : formatDate(exp.end_date)}
 //                                 </span>
 //                             </div>

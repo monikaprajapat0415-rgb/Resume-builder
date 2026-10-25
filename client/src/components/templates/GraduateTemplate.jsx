@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 import Bullets from './Bullets'
 import { contactParts, range, formatDate, printSafe } from './shared'
 
@@ -10,21 +11,21 @@ const GraduateTemplate = ({ data, accentColor }) => {
   return (
     <div className="max-w-4xl mx-auto px-9 py-8 bg-white text-gray-800 text-[14px] leading-relaxed font-sans">
       <header className="text-center">
-        <h1 className="text-[30px] font-bold text-gray-900">{p.full_name || 'Your Name'}</h1>
+        <h1 className="text-[30px] font-bold text-gray-900">{p.full_name || tr('Your Name')}</h1>
         {p.profession && <p className="font-medium" style={{ color: accentColor }}>{p.profession}</p>}
         <p className="mt-1.5 text-[13px] text-gray-600">{contactParts(p).join('  |  ')}</p>
       </header>
 
       {data.professional_summary && (
         <section>
-          <Heading>Professional Summary</Heading>
+          <Heading>{tr('Professional Summary')}</Heading>
           <p className="whitespace-pre-line">{data.professional_summary}</p>
         </section>
       )}
 
       {data.education?.length > 0 && (
         <section>
-          <Heading>Education</Heading>
+          <Heading>{tr('Education')}</Heading>
           <div className="space-y-2">
             {data.education.map((e, i) => (
               <div key={i} className="flex justify-between items-baseline gap-4">
@@ -41,14 +42,14 @@ const GraduateTemplate = ({ data, accentColor }) => {
 
       {data.skills?.length > 0 && (
         <section>
-          <Heading>Skills</Heading>
+          <Heading>{tr('Skills')}</Heading>
           <p>{data.skills.join(', ')}</p>
         </section>
       )}
 
       {data.project?.length > 0 && (
         <section>
-          <Heading>Projects</Heading>
+          <Heading>{tr('Projects')}</Heading>
           <div className="space-y-3">
             {data.project.map((pr, i) => (
               <div key={i}>
@@ -62,7 +63,7 @@ const GraduateTemplate = ({ data, accentColor }) => {
 
       {data.experience?.length > 0 && (
         <section>
-          <Heading>Work Experience</Heading>
+          <Heading>{tr('Work Experience')}</Heading>
           <div className="space-y-3">
             {data.experience.map((exp, i) => (
               <div key={i}>

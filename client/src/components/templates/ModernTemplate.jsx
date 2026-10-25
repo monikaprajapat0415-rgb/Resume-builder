@@ -1,3 +1,4 @@
+import { tr, intlTag } from '../../i18n/engine'
 import Bullets from './Bullets'
 // import { Mail, Phone, MapPin, Briefcase, Globe } from "lucide-react";
 import {FaBriefcase, FaGlobe} from 'react-icons/fa';
@@ -6,7 +7,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 	const formatDate = (dateStr) => {
 		if (!dateStr) return "";
 		const [year, month] = dateStr.split("-");
-		return new Date(year, month - 1).toLocaleDateString("en-US", {
+		return new Date(year, month - 1).toLocaleDateString(intlTag(), {
 			year: "numeric",
 			month: "short"
 		});
@@ -17,7 +18,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 			{/* Header */}
 			<header className="p-8 text-white" style={{ backgroundColor: accentColor }}>
 				<h1 className="text-4xl font-light mb-3">
-					{data.personal_info?.full_name || "Your Name"}
+					{data.personal_info?.full_name || tr('Your Name')}
 				</h1>
 				{data.personal_info?.profession && (
 					<p className="text-lg font-light mb-3 opacity-90">{data.personal_info.profession}</p>
@@ -62,7 +63,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 				{data.professional_summary && (
 					<section className="mb-8">
 						<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
-							Professional Summary
+							{tr('Professional Summary')}
 						</h2>
 						<p className="text-gray-700 ">{data.professional_summary}</p>
 					</section>
@@ -72,7 +73,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 				{data.experience && data.experience.length > 0 && (
 					<section className="mb-8">
 						<h2 className="text-2xl font-light mb-6 pb-2 border-b border-gray-200">
-							Experience
+							{tr('Experience')}
 						</h2>
 
 						<div className="space-y-6">
@@ -85,7 +86,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 											<p className="font-medium" style={{ color: accentColor }}>{exp.company}</p>
 										</div>
 										<div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded">
-											{formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}
+											{formatDate(exp.start_date)} - {exp.is_current ? tr('Present') : formatDate(exp.end_date)}
 										</div>
 									</div>
 									{exp.description && (
@@ -101,7 +102,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 				{data.project && data.project.length > 0 && (
 					<section className="mb-8">
 						<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
-							Projects
+							{tr('Projects')}
 						</h2>
 
 						<div className="space-y-6">
@@ -128,7 +129,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 					{data.education && data.education.length > 0 && (
 						<section>
 							<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
-								Education
+								{tr('Education')}
 							</h2>
 
 							<div className="space-y-4">
@@ -152,7 +153,7 @@ const ModernTemplate = ({ data, accentColor }) => {
 					{data.skills && data.skills.length > 0 && (
 						<section>
 							<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
-								Skills
+								{tr('Skills')}
 							</h2>
 
 							<div className="flex flex-wrap gap-2">

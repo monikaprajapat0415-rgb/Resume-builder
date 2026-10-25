@@ -1,15 +1,16 @@
+import { tr, intlTag } from '../../i18n/engine'
 // Helpers shared by the ATS-focused templates. Everything here produces plain text so
 // resume parsers read the same words a person sees (no icons, images or tables).
 export const formatDate = (dateStr) => {
   if (!dateStr) return ''
   const [year, month] = String(dateStr).split('-')
   if (!month) return year
-  return new Date(year, month - 1).toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+  return new Date(year, month - 1).toLocaleDateString(intlTag(), { year: 'numeric', month: 'short' })
 }
 
 export const range = (start, end, current) => {
   const a = formatDate(start)
-  const b = current ? 'Present' : formatDate(end)
+  const b = current ? tr('Present') : formatDate(end)
   return [a, b].filter(Boolean).join(' – ')
 }
 
