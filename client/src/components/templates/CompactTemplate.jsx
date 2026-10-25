@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 import Bullets from './Bullets'
 import { contactParts, range, formatDate } from './shared'
 
@@ -11,7 +12,7 @@ const CompactTemplate = ({ data, accentColor }) => {
     <div className="max-w-4xl mx-auto px-8 py-7 bg-white text-gray-900 text-[12.5px] leading-snug font-sans">
       <header>
         <div className="flex justify-between items-end gap-4">
-          <h1 className="text-[26px] font-extrabold leading-none">{p.full_name || 'Your Name'}</h1>
+          <h1 className="text-[26px] font-extrabold leading-none">{p.full_name || tr('Your Name')}</h1>
           {p.profession && <p className="text-[13px] font-semibold text-gray-600">{p.profession}</p>}
         </div>
         <p className="mt-1.5 text-[12px] text-gray-600">{contactParts(p).join(' • ')}</p>
@@ -19,21 +20,21 @@ const CompactTemplate = ({ data, accentColor }) => {
 
       {data.professional_summary && (
         <section>
-          <Heading>Professional Summary</Heading>
+          <Heading>{tr('Professional Summary')}</Heading>
           <p className="text-gray-800 whitespace-pre-line">{data.professional_summary}</p>
         </section>
       )}
 
       {data.skills?.length > 0 && (
         <section>
-          <Heading>Skills</Heading>
+          <Heading>{tr('Skills')}</Heading>
           <p className="text-gray-800">{data.skills.join(' • ')}</p>
         </section>
       )}
 
       {data.experience?.length > 0 && (
         <section>
-          <Heading>Work Experience</Heading>
+          <Heading>{tr('Work Experience')}</Heading>
           <div className="space-y-2.5">
             {data.experience.map((exp, i) => (
               <div key={i}>
@@ -50,7 +51,7 @@ const CompactTemplate = ({ data, accentColor }) => {
 
       {data.project?.length > 0 && (
         <section>
-          <Heading>Projects</Heading>
+          <Heading>{tr('Projects')}</Heading>
           <div className="space-y-1.5">
             {data.project.map((pr, i) => (
               <div key={i}>
@@ -64,7 +65,7 @@ const CompactTemplate = ({ data, accentColor }) => {
 
       {data.education?.length > 0 && (
         <section>
-          <Heading>Education</Heading>
+          <Heading>{tr('Education')}</Heading>
           <ul className="space-y-0.5">
             {data.education.map((e, i) => (
               <li key={i} className="flex justify-between gap-3">

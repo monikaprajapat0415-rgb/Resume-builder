@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 import Bullets from './Bullets'
 import { contactParts, range, formatDate } from './shared'
 
@@ -10,21 +11,21 @@ const ExecutiveTemplate = ({ data, accentColor }) => {
   return (
     <div className="max-w-4xl mx-auto px-10 py-9 bg-white text-gray-900 text-[14px] leading-relaxed" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
       <header className="text-center pb-4 border-y-4 border-double py-5" style={{ borderColor: accentColor }}>
-        <h1 className="text-[32px] font-bold uppercase tracking-wide">{p.full_name || 'Your Name'}</h1>
+        <h1 className="text-[32px] font-bold uppercase tracking-wide">{p.full_name || tr('Your Name')}</h1>
         {p.profession && <p className="mt-1 text-base italic text-gray-600">{p.profession}</p>}
         <p className="mt-2 text-[13px] text-gray-700">{contactParts(p).join('  |  ')}</p>
       </header>
 
       {data.professional_summary && (
         <section>
-          <Heading>Professional Summary</Heading>
+          <Heading>{tr('Professional Summary')}</Heading>
           <p className="text-gray-800 whitespace-pre-line">{data.professional_summary}</p>
         </section>
       )}
 
       {data.experience?.length > 0 && (
         <section>
-          <Heading>Work Experience</Heading>
+          <Heading>{tr('Work Experience')}</Heading>
           <div className="space-y-4">
             {data.experience.map((exp, i) => (
               <div key={i}>
@@ -42,7 +43,7 @@ const ExecutiveTemplate = ({ data, accentColor }) => {
 
       {data.project?.length > 0 && (
         <section>
-          <Heading>Projects</Heading>
+          <Heading>{tr('Projects')}</Heading>
           <div className="space-y-3">
             {data.project.map((pr, i) => (
               <div key={i}>
@@ -56,7 +57,7 @@ const ExecutiveTemplate = ({ data, accentColor }) => {
 
       {data.education?.length > 0 && (
         <section>
-          <Heading>Education</Heading>
+          <Heading>{tr('Education')}</Heading>
           <div className="space-y-2">
             {data.education.map((e, i) => (
               <div key={i} className="flex justify-between items-baseline gap-4">
@@ -73,7 +74,7 @@ const ExecutiveTemplate = ({ data, accentColor }) => {
 
       {data.skills?.length > 0 && (
         <section>
-          <Heading>Skills</Heading>
+          <Heading>{tr('Skills')}</Heading>
           <p className="text-gray-800">{data.skills.join(', ')}</p>
         </section>
       )}

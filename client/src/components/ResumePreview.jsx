@@ -1,4 +1,5 @@
 import React from 'react'
+import { useI18n } from '../i18n/I18nProvider'
 import ClassicTemplate from './templates/ClassicTemplate'
 import ModernTemplate from './templates/ModernTemplate'
 import MinimalTemplate from './templates/MinimalTemplate'
@@ -21,6 +22,7 @@ import TwoToneTemplate from './templates/TwoToneTemplate'
 
 
 const ResumePreview = ({data,template, accentColor, classes="", previewId='resume-preview'}) => {
+  const { dir, lang } = useI18n() // re-renders the template when the country/language changes
   
     const renderTemplate = () => {
         switch(template) {
@@ -68,7 +70,7 @@ const ResumePreview = ({data,template, accentColor, classes="", previewId='resum
 
     return (
     <div className='w-full bg-gray-100'>
-        <div id={previewId} className={"border border-gray-200 print:shadow-none print:border-none" + classes}>
+        <div id={previewId} dir={dir} lang={lang} data-no-i18n className={"border border-gray-200 print:shadow-none print:border-none" + classes}>
             {renderTemplate()}
         </div>
     <style>

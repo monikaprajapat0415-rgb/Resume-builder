@@ -1,3 +1,4 @@
+import { tr, intlTag } from '../i18n/engine'
 // Shared by the CV preview (HTML) and the CV PDF so both always show the same content in the same order.
 
 export const CV_TEMPLATES = [
@@ -66,10 +67,10 @@ export const emptyInput = () => ({
   certifications: [], achievements: [], languages: [], additional_information: [],
 })
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 export const fmtMonth = (d) => {
   const m = /^(\d{4})-(\d{2})$/.exec(String(d || '').trim())
-  return m && MONTHS[+m[2] - 1] ? `${MONTHS[+m[2] - 1]} ${m[1]}` : String(d || '')
+  if (!m || +m[2] < 1 || +m[2] > 12) return String(d || '')
+  try { return new Date(+m[1], +m[2] - 1, 1).toLocaleDateString(intlTag(), { year: 'numeric', month: 'short' }) } catch { return `${m[2]}/${m[1]}` }
 }
 
 const dates = (e) => [e.start_date, e.end_date].filter(Boolean).join(' – ')
@@ -88,27 +89,27 @@ export const buildCvSections = (cv, personal = {}, level = 'fresher') => {
     bullets: e.responsibilities || [],
   })
   const map = {
-    summary: () => cv.professional_summary && { heading: 'Professional Summary', text: cv.professional_summary },
-    skills: () => cv.skills?.length && { heading: 'Technical Skills', text: cv.skills.join(', ') },
-    experience: () => cv.experience?.length && { heading: 'Professional Experience', blocks: cv.experience.map(jobBlock) },
-    internships: () => cv.internships?.length && { heading: 'Internships', blocks: cv.internships.map(jobBlock) },
+    summary: () => cv.professional_summary && { heading: tr('Professional Summary'), text: cv.professional_summary },
+    skills: () => cv.skills?.length && { heading: tr('Technical Skills'), text: cv.skills.join(', ') },
+    experience: () => cv.experience?.length && { heading: tr('Professional Experience'), blocks: cv.experience.map(jobBlock) },
+    internships: () => cv.internships?.length && { heading: tr('Internships'), blocks: cv.internships.map(jobBlock) },
     projects: () => cv.projects?.length && {
-      heading: 'Projects',
+      heading: tr('Projects'),
       blocks: cv.projects.map((p) => ({
         title: p.project_name,
-        meta: p.technologies?.length ? `Technologies: ${p.technologies.join(', ')}` : '',
+        meta: p.technologies?.length ? `${tr('Technologies')}: ${p.technologies.join(', ')}` : '',
         text: p.description,
         bullets: p.achievements || [],
       })),
     },
     education: () => cv.education?.length && {
-      heading: 'Education',
+      heading: tr('Education'),
       blocks: cv.education.map((e) => ({ title: e.qualification, meta: [e.institution, e.graduation_year].filter(Boolean).join('  |  ') })),
     },
-    certifications: () => cv.certifications?.length && { heading: 'Certifications', bullets: cv.certifications },
-    achievements: () => cv.achievements?.length && { heading: 'Achievements', bullets: cv.achievements },
-    languages: () => cv.languages?.length && { heading: 'Languages', text: cv.languages.join(', ') },
-    additional: () => cv.additional_information?.length && { heading: 'Additional Information', bullets: cv.additional_information },
+    certifications: () => cv.certifications?.length && { heading: tr('Certifications'), bullets: cv.certifications },
+    achievements: () => cv.achievements?.length && { heading: tr('Achievements'), bullets: cv.achievements },
+    languages: () => cv.languages?.length && { heading: tr('Languages'), text: cv.languages.join(', ') },
+    additional: () => cv.additional_information?.length && { heading: tr('Additional Information'), bullets: cv.additional_information },
   }
   sectionOrder(level).forEach((k) => { const s = map[k]?.(); if (s) out.push(s) })
   return out

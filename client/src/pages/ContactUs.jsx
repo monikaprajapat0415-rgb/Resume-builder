@@ -122,7 +122,7 @@ export default function ContactUs({ embedded = false }) {
           <input
             type="text" name="website" value={form.website} onChange={handleChange}
             tabIndex={-1} autoComplete="off" aria-hidden="true"
-            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+            className="sr-only"
           />
 
           <button

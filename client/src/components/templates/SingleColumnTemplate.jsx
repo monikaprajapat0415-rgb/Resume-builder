@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 export default function SingleColumnTemplate({ data }) {
   return (
     <div className="max-w-3xl mx-auto bg-white p-10 text-gray-900">
@@ -13,7 +14,7 @@ export default function SingleColumnTemplate({ data }) {
       {/* SUMMARY */}
       <section className="mb-6">
         <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-          Professional Summary
+          {tr('Professional Summary')}
         </h2>
         <p className="text-sm leading-relaxed">{data.summary}</p>
       </section>
@@ -21,7 +22,7 @@ export default function SingleColumnTemplate({ data }) {
       {/* SKILLS */}
       <section className="mb-6">
         <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-          Key Skills
+          {tr('Key Skills')}
         </h2>
         <ul className="flex flex-wrap gap-2 text-sm">
           {data.skills.map((skill, i) => (
@@ -35,7 +36,7 @@ export default function SingleColumnTemplate({ data }) {
       {/* EXPERIENCE */}
       <section className="mb-6">
         <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-          Experience
+          {tr('Experience')}
         </h2>
         {data.experience.map((job, i) => (
           <div key={i} className="mb-4">
@@ -57,7 +58,7 @@ export default function SingleColumnTemplate({ data }) {
       {/* EDUCATION */}
       <section className="mb-6">
         <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-          Education
+          {tr('Education')}
         </h2>
         {data.education.map((edu, i) => (
           <div key={i}>
@@ -74,7 +75,7 @@ export default function SingleColumnTemplate({ data }) {
       {/* PROJECTS */}
       <section className="mb-6">
         <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-          Projects
+          {tr('Projects')}
         </h2>
         {data.projects.map((project, i) => (
           <div key={i} className="mb-3">
@@ -91,7 +92,7 @@ export default function SingleColumnTemplate({ data }) {
       {data.certifications.length > 0 && (
         <section>
           <h2 className="font-semibold text-lg border-b pb-1 mb-2">
-            Certifications
+            {tr('Certifications')}
           </h2>
           {data.certifications.map((cert, i) => (
             <p key={i} className="text-sm">

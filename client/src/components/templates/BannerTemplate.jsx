@@ -1,3 +1,4 @@
+import { tr } from '../../i18n/engine'
 import Bullets from './Bullets'
 import { contactParts, range, formatDate, printSafe } from './shared'
 
@@ -10,21 +11,21 @@ const BannerTemplate = ({ data, accentColor }) => {
   return (
     <div className="max-w-4xl mx-auto bg-white text-gray-800 text-[14px] leading-relaxed font-sans">
       <header className="px-9 py-8 text-white" style={{ backgroundColor: accentColor, ...printSafe }}>
-        <h1 className="text-[34px] font-extrabold leading-tight">{p.full_name || 'Your Name'}</h1>
+        <h1 className="text-[34px] font-extrabold leading-tight">{p.full_name || tr('Your Name')}</h1>
         {p.profession && <p className="text-lg opacity-95">{p.profession}</p>}
         <p className="mt-3 text-[13px] opacity-95">{contactParts(p).join('  •  ')}</p>
       </header>
       <div className="px-9 pb-9">
         {data.professional_summary && (
           <section>
-            <Heading>Professional Summary</Heading>
+            <Heading>{tr('Professional Summary')}</Heading>
             <p className="whitespace-pre-line">{data.professional_summary}</p>
           </section>
         )}
 
         {data.skills?.length > 0 && (
           <section>
-            <Heading>Skills</Heading>
+            <Heading>{tr('Skills')}</Heading>
             <ul className="flex flex-wrap gap-2">
               {data.skills.map((s, i) => <li key={i} className="px-2.5 py-0.5 rounded bg-gray-100 text-[13px]" style={printSafe}>{s}</li>)}
             </ul>
@@ -33,7 +34,7 @@ const BannerTemplate = ({ data, accentColor }) => {
 
         {data.experience?.length > 0 && (
           <section>
-            <Heading>Work Experience</Heading>
+            <Heading>{tr('Work Experience')}</Heading>
             <div className="space-y-4">
               {data.experience.map((exp, i) => (
                 <div key={i}>
@@ -51,7 +52,7 @@ const BannerTemplate = ({ data, accentColor }) => {
 
         {data.project?.length > 0 && (
           <section>
-            <Heading>Projects</Heading>
+            <Heading>{tr('Projects')}</Heading>
             <div className="space-y-3">
               {data.project.map((pr, i) => (
                 <div key={i}>
@@ -65,7 +66,7 @@ const BannerTemplate = ({ data, accentColor }) => {
 
         {data.education?.length > 0 && (
           <section>
-            <Heading>Education</Heading>
+            <Heading>{tr('Education')}</Heading>
             <div className="space-y-2">
               {data.education.map((e, i) => (
                 <div key={i} className="flex justify-between items-baseline gap-4">

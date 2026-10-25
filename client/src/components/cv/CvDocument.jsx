@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useI18n } from '../../i18n/I18nProvider'
+import { tr } from '../../i18n/engine'
 import { buildCvSections, contactLine, cvStyle, cvRule, CV_SPACE, CV_PAGE, CV_LINE } from '../../utils/cvModel'
 
 // ATS-first CV: one column, real text, standard headings, no icons / tables / graphics.
@@ -12,6 +14,7 @@ const PAGE_PX = CV_PAGE.w * 4 / 3
 const MIN_SCALE = 0.4
 
 const CvDocument = ({ cv, personal = {}, template = 'standard', accentColor = '#1E3A8A', level = 'fresher', previewId = 'cv-preview' }) => {
+  const { dir, lang } = useI18n() // re-renders when the country/language changes
   const box = useRef(null)
   const [scale, setScale] = useState(1)
   useEffect(() => {
@@ -36,14 +39,14 @@ const CvDocument = ({ cv, personal = {}, template = 'standard', accentColor = '#
   return (
     <div ref={box} className={`${previewId}-fit`} style={{ width: '100%', minWidth: 0, maxWidth: '100%', contain: 'inline-size', overflowX: scale <= MIN_SCALE ? 'auto' : 'visible' }}>
     <div style={{ zoom: scale, width: px(CV_PAGE.w), margin: '0 auto' }} className={`${previewId}-zoom`}>
-    <div id={previewId} className='bg-white shadow-sm border border-gray-200'
+    <div id={previewId} dir={dir} lang={lang} data-no-i18n className='bg-white shadow-sm border border-gray-200'
       style={{ color: CV_SPACE.text, fontFamily: st.css, fontSize: px(st.base), lineHeight: CV_LINE, width: px(CV_PAGE.w), minHeight: px(CV_PAGE.h), padding: `${px(CV_PAGE.my)} ${px(CV_PAGE.mx)}`, boxSizing: 'border-box' }}>
-      <header style={{ textAlign: st.align, marginBottom: px(st.gap) }}>
-        <h1 style={{ fontSize: px(st.name), fontWeight: 700, margin: 0, color, lineHeight: CV_LINE, textTransform: st.nameCase === 'upper' ? 'uppercase' : 'none' }}>{personal.full_name || 'Your Name'}</h1>
+      <header style={{ textAlign: dir === 'rtl' && st.align === 'left' ? 'right' : st.align, marginBottom: px(st.gap) }}>
+        <h1 style={{ fontSize: px(st.name), fontWeight: 700, margin: 0, color, lineHeight: CV_LINE, textTransform: st.nameCase === 'upper' ? 'uppercase' : 'none' }}>{personal.full_name || tr('Your Name')}</h1>
         {contact.length > 0 && <p style={{ margin: `${px(CV_SPACE.contactTop)} 0 0`, color: CV_SPACE.contact }}>{contact.join(st.sep)}</p>}
       </header>
 
-      {sections.length === 0 && <p style={{ textAlign: 'center', color: '#9CA3AF', marginTop: 60 }}>Your CV will appear here after you generate it.</p>}
+      {sections.length === 0 && <p style={{ textAlign: 'center', color: '#9CA3AF', marginTop: 60 }}>{tr('Your CV will appear here after you generate it.')}</p>}
 
       {sections.map((s) => (
         <section key={s.heading} style={{ marginBottom: px(st.gap) }}>
