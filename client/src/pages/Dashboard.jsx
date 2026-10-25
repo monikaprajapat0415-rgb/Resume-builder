@@ -1,5 +1,4 @@
 // import { FilePenIcon, LoaderCircleIcon, PencilIcon, PlusIcon, TrashIcon, UploadCloud, UploadCloudIcon, XIcon } from 'lucide-react'
-import CountryBar from '../i18n/CountryBar'
 import { trackEvent } from '../components/Analytics'
 // import React from 'react'
 import {FaFileSignature,  } from 'react-icons/fa'
@@ -155,7 +154,6 @@ const Dashboard = () => {
       <div className='max-w-7xl mx-auto px-4 py-6 relative overflow-x-clip'>
         {/* soft green background shard */}
         <div className='absolute top-12 -z-10 right-1/4 rounded-full size-72 sm:size-96 bg-brand-300 blur-[100px] opacity-25 transform rotate-12'></div>
-        <CountryBar />
         {/* Header: greeting, summary stats and CTAs */}
         <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6'>
           <div>

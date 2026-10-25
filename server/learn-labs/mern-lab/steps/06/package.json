@@ -1,0 +1,17 @@
+{
+  "name": "mern-job-tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Job Tracker: a MongoDB, Express, React and Node.js app",
+  "scripts": {
+    "setup": "npm install --prefix server && npm install --prefix client",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently -n api,web -c blue,green \"npm:server\" \"npm:client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

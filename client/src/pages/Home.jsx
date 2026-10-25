@@ -12,6 +12,7 @@ import TemplatePreview from '../components/home/TemplatePreview'
 import CareerHub from '../components/home/CareerHub'
 import HomeFaq, { faqJsonLd, faqFrom } from '../components/home/HomeFaq'
 import ContactUs from './ContactUs'
+import CountryBar from '../i18n/CountryBar'
 import SEO from '../components/SEO'
 import { useSiteContent } from '../utils/siteContent'
 
@@ -41,6 +42,7 @@ const Home = () => {
 />
 
     <Banner />
+    <CountryBar />
     <Hero/>
     <WorkFlowSteps/>
     <Features/>

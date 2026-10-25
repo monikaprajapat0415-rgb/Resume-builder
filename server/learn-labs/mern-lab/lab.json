@@ -1,0 +1,7 @@
+{
+  "title": "MERN Job Tracker",
+  "folder": "mern-job-tracker",
+  "zipPrefix": "mern-lesson",
+  "readme": "readme.md",
+  "plain": true
+}

@@ -1,0 +1,37 @@
+### Open this file in VS Code with the "REST Client" extension and click "Send Request" above a line.
+### Or copy each one into Postman / Thunder Client / curl.
+
+@base = http://localhost:5000/api
+
+### Is the server up?
+GET {{base}}/health
+
+### List jobs
+GET {{base}}/jobs
+
+### Add a job
+POST {{base}}/jobs
+Content-Type: application/json
+
+{ "company": "Acme Logistics", "role": "Dispatcher", "status": "applied" }
+
+### Add a job with a mistake (expect 400 and a details object)
+POST {{base}}/jobs
+Content-Type: application/json
+
+{ "company": "", "status": "maybe" }
+
+### One job
+GET {{base}}/jobs/1
+
+### Change a job
+PUT {{base}}/jobs/1
+Content-Type: application/json
+
+{ "status": "interview" }
+
+### Delete a job
+DELETE {{base}}/jobs/1
+
+### A job that does not exist (expect 404)
+GET {{base}}/jobs/999
