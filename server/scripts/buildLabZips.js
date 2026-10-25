@@ -24,7 +24,8 @@ const stageIdx = process.argv.indexOf('--stage');
 const onlyStage = stageIdx > -1 ? Number(process.argv[stageIdx + 1]) : null;
 
 const lab = path.join(here, '..', 'learn-labs', name);
-const pages = JSON.parse(fs.readFileSync(path.join(lab, 'steps', 'pages.json'), 'utf8'));
+const pagesFile = path.join(lab, 'steps', 'pages.json');
+const pages = fs.existsSync(pagesFile) ? JSON.parse(fs.readFileSync(pagesFile, 'utf8')) : [];
 // Optional lab.json: { "title": "AI Basics Lab", "folder": "ai-basics-lab", "zipPrefix": "ai-basics-lesson", "readme": "readme.md" }
 // "readme" is a file in the lab folder with {{n}} and {{total}} placeholders. Without lab.json the original AI Lab defaults apply.
 const cfgFile = path.join(lab, 'lab.json');
@@ -106,9 +107,11 @@ for (const dir of stepDirs) {
   for (const d of stepDirs.filter((x) => Number(x) <= n)) {
     fs.cpSync(path.join(lab, 'steps', d), proj, { recursive: true, force: true });
   }
-  const list = pages.filter((p) => p.step <= n);
-  fs.writeFileSync(path.join(proj, 'src/app/app.ts'), appTs(list));
-  fs.writeFileSync(path.join(proj, 'src/app/app.routes.ts'), routesTs(list));
+  if (!cfg.plain) { // "plain": true in lab.json = not an Angular lab (e.g. the MERN lab): no generated router or menu
+    const list = pages.filter((p) => p.step <= n);
+    fs.writeFileSync(path.join(proj, 'src/app/app.ts'), appTs(list));
+    fs.writeFileSync(path.join(proj, 'src/app/app.routes.ts'), routesTs(list));
+  }
   fs.writeFileSync(path.join(proj, 'README.md'), readme(n, total));
 
   const out = path.join(zipsDir, `${PREFIX}-${String(n).padStart(2, '0')}.zip`);

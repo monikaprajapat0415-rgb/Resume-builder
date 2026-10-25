@@ -48,12 +48,12 @@ export default function NavBar() {
     return (
         <>
 
-            <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
+            <nav className="z-50 flex items-center justify-between w-full py-4 px-4 sm:px-6 lg:px-8 2xl:px-24 text-sm">
                 <a href="/" className="flex items-center gap-2">
                     <Logo className='h-11 w-auto' />
                 </a>
 
-                <div className={`${wide ? 'hidden 2xl:flex items-center gap-3 2xl:gap-4 text-sm' : 'hidden md:flex items-center gap-3 lg:gap-4 2xl:gap-8 text-sm lg:text-base'} whitespace-nowrap transition duration-500 text-slate-800`}>
+                <div className={`${wide ? 'hidden 2xl:flex items-center gap-3 2xl:gap-4 text-sm' : 'hidden xl:flex items-center gap-3 2xl:gap-8 text-sm 2xl:text-base'} whitespace-nowrap transition duration-500 text-slate-800`}>
                     {header.map((item) => item.children?.length ? (
                         <div key={item._id} className="relative group" onMouseLeave={() => setOpenId(null)}
                             onKeyDown={(e) => { if (e.key === 'Escape') { setOpenId(null); document.activeElement?.blur?.() } }}>
@@ -77,26 +77,26 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex gap-2 shrink-0 whitespace-nowrap ml-3">
-                    <Link to='/app?state=register' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
+                    <Link to='/app?state=register' className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
                         hidden={user}>
                         Get started
                     </Link>
-                    <Link to='/app?state=login' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`}
+                    <Link to='/app?state=login' className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`}
                         hidden={user}>
                         Login
                     </Link>
-                    <Link to='/app/' className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-8 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
+                    <Link to='/app/' className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-8 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
                         hidden={!user}>
                         Dashboard
                     </Link>
                     {/* Logout button shown when user is logged in */}
-                    <button onClick={() => { dispatch(logout()); navigate('/'); }} className={`${wide ? 'hidden 2xl:block' : 'hidden md:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`} hidden={!user}>
+                    <button onClick={() => { dispatch(logout()); navigate('/'); }} className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`} hidden={!user}>
                         Logout
                     </button>
 
                 </div>
 
-                <button onClick={() => setMenuOpen(prev => !prev)} className={`${wide ? '2xl:hidden' : 'md:hidden'} active:scale-90 transition`} >
+                <button onClick={() => setMenuOpen(prev => !prev)} className={`${wide ? '2xl:hidden' : 'xl:hidden'} active:scale-90 transition`} >
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" className="lucide lucide-menu" >
                         <path d="M4 5h16M4 12h16M4 19h16" />
                     </svg>
@@ -104,7 +104,7 @@ export default function NavBar() {
 
             </nav>
             {/* Mobile Menu */}
-            <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-start text-lg gap-6 pt-4 pb-10 overflow-y-auto ${wide ? '2xl:hidden' : 'md:hidden'} transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
+            <div className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-start text-lg gap-6 pt-4 pb-10 overflow-y-auto ${wide ? '2xl:hidden' : 'xl:hidden'} transition-transform duration-300 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`} >
                 <button onClick={() => setMenuOpen(false)} aria-label="Close menu" className="self-end mr-5 shrink-0 active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-brand-600 hover:bg-brand-700 transition text-white rounded-md flex" >
                     X
                 </button>

@@ -1,0 +1,40 @@
+### REST Client file (VS Code). Sign in first; the token is then reused below.
+@base = http://localhost:5000/api
+
+### Register
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "name": "Ana", "email": "ana@example.com", "password": "Password123" }
+
+### Login (the token is saved in the variable `token`)
+# @name login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "ana@example.com", "password": "Password123" }
+
+###
+@token = {{login.response.body.token}}
+
+### Who am I
+GET {{base}}/auth/me
+Authorization: Bearer {{token}}
+
+### My jobs (search, filter, page)
+GET {{base}}/jobs?q=bank&status=applied&page=1&limit=10
+Authorization: Bearer {{token}}
+
+### Add a job
+POST {{base}}/jobs
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{ "company": "Acme Logistics", "role": "Dispatcher", "status": "applied" }
+
+### Stats
+GET {{base}}/jobs/stats
+Authorization: Bearer {{token}}
+
+### Without a token (expect 401)
+GET {{base}}/jobs

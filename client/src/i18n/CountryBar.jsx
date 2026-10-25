@@ -8,16 +8,15 @@ const HINTS = {
   follow: 'Follow the job advert: add a photo or date of birth only if it asks for one.',
 }
 
-// Bar at the top of the dashboard: pick a country, and the app, resume and CV labels switch to its language.
+// Slim strip at the top of the home page: pick a country and the site (home, menus, resume and CV labels) switches to its language.
 export default function CountryBar() {
   const { t, countryInfo } = useI18n()
   return (
-    <div className='mb-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/80 px-4 py-3'>
-      <div className='min-w-0'>
-        <p className='text-sm font-medium text-slate-800'>{t('Country and language')}</p>
-        <p className='text-xs text-slate-500'>{t(HINTS[countryInfo?.hint] || HINTS.follow, { country: countryInfo?.name || '' })}</p>
+    <div className='border-b border-slate-200 bg-white/80'>
+      <div className='mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2 sm:px-6 lg:px-8'>
+        <p className='min-w-0 text-xs text-slate-500'>{t(HINTS[countryInfo?.hint] || HINTS.follow, { country: countryInfo?.name || '' })}</p>
+        <CountrySelect />
       </div>
-      <CountrySelect />
     </div>
   )
 }
