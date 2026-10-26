@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { LuSparkles, LuCheck } from 'react-icons/lu'
 
 // A decorative sample of the product: a resume summary being written by AI, then the ATS-friendly checks ticking.
@@ -11,6 +11,16 @@ const LINES = [
 const CHECKS = ['Clean single-column layout', 'Readable fonts and spacing', 'Skills and keywords in plain text']
 
 const HeroDemo = () => {
+  const wrap = useRef(null)
+  const card = useRef(null)
+  // gentle 3D tilt that follows a mouse; touch and keyboard users, and reduced-motion users, just see a still card
+  const onMove = (e) => {
+    if (e.pointerType !== 'mouse' || !card.current || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    const r = wrap.current.getBoundingClientRect()
+    const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5
+    card.current.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 6}deg)`
+  }
+  const onLeave = () => { if (card.current) card.current.style.transform = '' }
   const reduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
   const [line, setLine] = useState(reduce ? LINES.length : 0)
   const [chars, setChars] = useState(0)
@@ -38,7 +48,7 @@ const HeroDemo = () => {
   }, [reduce])
 
   return (
-    <div aria-hidden="true" className="relative mx-auto mt-12 w-full max-w-md select-none">
+    <div ref={wrap} onPointerMove={onMove} onPointerLeave={onLeave} aria-hidden="true" className="relative mx-auto mt-12 w-full max-w-md select-none">
       <div className="float-slow absolute -left-3 sm:-left-24 top-32 z-10 hidden sm:flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1.5 text-xs text-slate-700 shadow-md">
         <LuSparkles className="size-4 text-brand-600" /> AI suggestion
       </div>
@@ -46,7 +56,7 @@ const HeroDemo = () => {
         <span className="size-2 rounded-full bg-green-500 pulse-ring" /> ATS-friendly
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-left shadow-xl shadow-brand-900/5 ring-1 ring-black/5">
+      <div ref={card} className="tilt rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-left shadow-xl shadow-brand-900/5 ring-1 ring-black/5">
         <div className="flex items-center justify-between">
           <div>
             <p className="text-base font-semibold text-slate-800">Your Name</p>

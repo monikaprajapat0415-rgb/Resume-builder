@@ -16,6 +16,8 @@ import CountryBar from '../i18n/CountryBar'
 import TrustStats from '../components/home/TrustStats'
 import ClientsStrip from '../components/home/ClientsStrip'
 import ReviewsSection from '../components/home/ReviewsSection'
+import Reveal from '../components/Reveal'
+import ScrollProgress from '../components/ScrollProgress'
 import SEO from '../components/SEO'
 import { useSiteContent } from '../utils/siteContent'
 
@@ -35,7 +37,7 @@ const Home = () => {
   }, [location.hash])
 
   return (
-   <div>
+   <div className="overflow-x-clip">
     <SEO
   title="Prime Resume AI – Free AI Resume Builder & CV Maker Online"
   description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
@@ -44,20 +46,21 @@ const Home = () => {
   structuredData={faq.length ? faqJsonLd(faq) : undefined}
 />
 
+    <ScrollProgress />
     <Banner />
     <CountryBar />
     <Hero/>
     <TrustStats/>
     <ClientsStrip/>
-    <WorkFlowSteps/>
-    <Features/>
-    <JobsSection/>
-    <CareerHub/>
-    <Testimonials/>
+    <Reveal><WorkFlowSteps/></Reveal>
+    <Reveal><Features/></Reveal>
+    <Reveal><JobsSection/></Reveal>
+    <Reveal><CareerHub/></Reveal>
+    <Reveal><Testimonials/></Reveal>
     <ReviewsSection/>
-    <TemplatePreview/>
-    <HomeFaq/>
-    <CallToAction/>
+    <Reveal><TemplatePreview/></Reveal>
+    <Reveal><HomeFaq/></Reveal>
+    <Reveal><CallToAction/></Reveal>
     <ContactUs embedded />
     <Footer/>
    </div>

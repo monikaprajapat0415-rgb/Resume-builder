@@ -1,5 +1,6 @@
 import { FaRegEdit, FaMagic, FaBriefcase } from "react-icons/fa";
 import Title from "./Title";
+import Reveal from "../Reveal";
 import { LuZap } from "react-icons/lu";
 
 export default function WorkFlowSteps() {
@@ -35,12 +36,14 @@ export default function WorkFlowSteps() {
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-4 mt-8 ">
                 {steps.map((step, index) => (
-                    <div
+                    <Reveal
                         key={index}
+                        delay={index * 160}
+                        from="zoom"
                         className="flex flex-col items-center text-center max-w-xs hover:scale-105 transition-all"
                     >
                         {/* Icon */}
-                        <div className="w-14 h-14 flex items-center justify-center rounded-full bg-brand-100 text-brand-600 mb-4">
+                        <div className="bob pulse-ring w-14 h-14 flex items-center justify-center rounded-full bg-brand-100 text-brand-600 mb-4" style={{ animationDelay: `${index * 400}ms` }}>
                             {step.icon}
                         </div>
 
@@ -58,7 +61,7 @@ export default function WorkFlowSteps() {
                         <p className="text-sm text-slate-600 max-w-xs">
                             {step.description}
                         </p>
-                    </div>
+                    </Reveal>
                 ))}
             </div>
         </div>
