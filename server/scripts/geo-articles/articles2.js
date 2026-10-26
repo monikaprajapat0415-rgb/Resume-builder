@@ -23,7 +23,7 @@ export const articles2 = [
       { q: 'Do I need a certificate before I apply?', a: 'Not always, but showing recent learning helps. A short course, a small project or volunteer work in the new area proves that you are serious.' },
       { q: 'How do I explain the change?', a: 'Use one clear, positive sentence in the summary or cover letter, such as what drew you to the new field and what you have done to prepare.' },
     ],
-    sources: [SRC.cos, SRC.uk, SRC.jobbank],
+    sources: [SRC.uk, SRC.jobbank],
     content: [
       P('Changing careers is common, and employers see it often. The challenge is that your resume is organised around your past job titles, while the reader wants to know whether you can do the new job. A career change resume closes that gap by putting the parts of your background that carry over at the front.'),
       H('Step 1: Choose the target role and read real job posts'),
@@ -70,7 +70,7 @@ export const articles2 = [
       { q: 'Do I need to share health or family reasons?', a: 'No. You can say "career break for family care" or "health reasons, now fully available" without details. Share only what you are comfortable with.' },
       { q: 'What if I was just looking for work?', a: 'That is a valid reason. Say you were searching for the right role, and mention any skills you built or courses you took in that time.' },
     ],
-    sources: [SRC.cos, SRC.uk, SRC.jobbank],
+    sources: [SRC.uk, SRC.jobbank],
     content: [
       P('Gaps in work history are very common. People leave work to study, care for family, deal with illness, move to a new country, start a business that did not work out, or simply spend a long time searching during a hard job market. Recruiters know this. What worries them is not the gap, but a gap that is unexplained or an explanation that does not add up.'),
       H('First rule: be honest about the dates'),
@@ -116,7 +116,7 @@ export const articles2 = [
       { q: 'Are typos really a problem?', a: 'Yes. Spelling and grammar errors are easy for a reader to notice and suggest a lack of care. Read the resume aloud and ask someone else to read it too.' },
       { q: 'How can I check my resume quickly?', a: 'Run it through an ATS checker to see how the text is read, and compare it with the job post using a matcher.' },
     ],
-    sources: [SRC.cos, SRC.uk, SRC.ncs],
+    sources: [SRC.uk, SRC.ncs],
     content: [
       P('A recruiter may spend only a short time on a first look at your resume, and software may read it before any person does. Most resumes that do not get a call fail for ordinary reasons that are easy to fix. Here are twelve of the most common, with the fix for each.'),
       H('1. A generic summary'),
@@ -170,7 +170,7 @@ export const articles2 = [
       { q: 'What if I am a fresher?', a: 'Talk about your studies, projects, training and the skills you built. Then say why this role interests you.' },
       { q: 'Is it the same as my resume summary?', a: 'It is similar in content, but spoken. Use the same facts, and add a little more detail and personality.' },
     ],
-    sources: [SRC.cos, SRC.uk, SRC.ncs],
+    sources: [SRC.uk, SRC.ncs],
     content: [
       P('"Tell me about yourself" is usually the first question in a job interview. It is not a trap. The interviewer wants a short, relevant introduction and a sense of how you communicate. A rambling answer about your childhood or a nervous "I am hardworking and punctual" wastes the best opportunity in the interview.'),
       H('Use three parts: present, past, future'),
