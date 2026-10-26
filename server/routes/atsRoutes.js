@@ -1,6 +1,8 @@
 import express from 'express';
 import protect from '../middlewares/authMiddleware.js';
 import { aiLimiter } from '../middlewares/rateLimiter.js';
+import { requirePlanFor } from '../middlewares/planGate.js';
+import { applyReportFixes, proposeResumeFixes } from '../controllers/atsFixController.js';
 import { getStatus, analyze, listReports, getReport, handleUpload } from '../controllers/atsController.js';
 
 const atsRouter = express.Router();
@@ -9,6 +11,8 @@ atsRouter.get('/ping', (req, res) => res.status(200).json({ ok: true, feature: '
 atsRouter.get('/status', protect, getStatus);
 atsRouter.get('/reports', protect, listReports);
 atsRouter.get('/reports/:id', protect, getReport);
+atsRouter.post('/reports/:id/apply', protect, requirePlanFor('ai_writing'), aiLimiter, applyReportFixes);
+atsRouter.post('/apply-resume', protect, requirePlanFor('ai_writing'), aiLimiter, proposeResumeFixes);
 atsRouter.post('/analyze', protect, aiLimiter, handleUpload, analyze);
 
 export default atsRouter;

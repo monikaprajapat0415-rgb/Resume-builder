@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../configs/api'
-import { LuX, LuTarget } from 'react-icons/lu'
+import { handlePlanError } from '../utils/plan'
+import { LuX, LuTarget, LuWandSparkles } from 'react-icons/lu'
 import { BiLoaderAlt } from 'react-icons/bi'
 
 // Modal: paste a job description, get an AI-generated ATS match score for the
 // currently open resume, plus matched/missing keywords and suggestions.
-const AtsScoreModal = ({ resumeId, onClose }) => {
+const AtsScoreModal = ({ resumeId, onClose, onApplied }) => {
   const { token } = useSelector(state => state.auth);
   const [jobDescription, setJobDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [applying, setApplying] = useState(false);
 
   const scoreColor = (score) => {
     if (score >= 80) return 'text-green-600 ring-green-200 from-green-50 to-green-100';
@@ -34,6 +36,20 @@ const AtsScoreModal = ({ resumeId, onClose }) => {
       toast.error(error.response?.data?.message || error.message || 'Could not check ATS score. Please try again.');
     }
     setIsLoading(false);
+  }
+
+  const applyFixes = async () => {
+    setApplying(true);
+    try {
+      const { data } = await api.post('/api/ats/apply-resume', {
+        resumeId, jobDescription, suggestions: result.suggestions || [], missingKeywords: result.missingKeywords || [],
+      }, { headers: { Authorization: token }, timeout: 120000 });
+      onApplied?.(data);
+      onClose();
+    } catch (error) {
+      if (!handlePlanError(error)) toast.error(error.response?.data?.message || 'Could not apply the fixes. Nothing was changed.');
+    }
+    setApplying(false);
   }
 
   return (
@@ -97,6 +113,16 @@ const AtsScoreModal = ({ resumeId, onClose }) => {
                 <ul className='list-disc list-inside space-y-1 text-sm text-slate-600'>
                   {result.suggestions.map((s, i) => <li key={i}>{s}</li>)}
                 </ul>
+              </div>
+            )}
+
+            {onApplied && (
+              <div className='rounded-lg border border-brand-200 bg-brand-50/50 p-4'>
+                <p className='text-sm font-medium text-slate-800'>Want us to apply these fixes?</p>
+                <p className='text-xs text-slate-600 mt-0.5'>We reword your summary and bullet points in this resume. We never add numbers, skills or jobs you did not write. You can undo it, and edit everything afterwards.</p>
+                <button type='button' onClick={applyFixes} disabled={applying} className='mt-3 w-full py-2 bg-brand-600 text-white rounded hover:bg-brand-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-70'>
+                  {applying ? <BiLoaderAlt className='size-4 animate-spin' /> : <LuWandSparkles className='size-4' />}{applying ? 'Applying fixes…' : 'Apply fixes to this resume'}
+                </button>
               </div>
             )}
           </div>

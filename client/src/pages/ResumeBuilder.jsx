@@ -39,6 +39,7 @@ import ProjectForm from '../components/ProjectForm';
 import SkillForm from '../components/SkillForm';
 import AtsScoreModal from '../components/AtsScoreModal';
 import CoverLetterModal from '../components/CoverLetterModal';
+import AtsFixNotice from '../components/AtsFixNotice';
 import ReviewPrompt, { shouldAskForReview } from '../components/ReviewPrompt';
 import { useSiteContent } from '../utils/siteContent';
 import { useSelector } from 'react-redux';
@@ -227,6 +228,14 @@ const ResumeBuilder = () => {
   }
   const whatsappHref = () => `https://wa.me/?text=${encodeURIComponent('My resume: ' + shareUrl())}`
   const [askReview, setAskReview] = useState(false)
+  // After "Apply fixes" (from the ATS checker page or the ATS score window) a notice lists what changed.
+  const [fixNotice, setFixNotice] = useState(() => { try { const k = `ats_fix_${resumeId}`; const v = JSON.parse(sessionStorage.getItem(k) || 'null'); if (v) sessionStorage.removeItem(k); return v } catch { return null } })
+  const onAtsApplied = (data) => {
+    setFixNotice({ applied: data.applied || [], needsYou: data.needsYou || [], snapshot: structuredClone(resumeData) })
+    setResumeData((prev) => ({ ...prev, ...data.changes }))
+    toast.success('Fixes applied. Review and edit anything you like.')
+  }
+  const undoAtsFix = () => { if (fixNotice?.snapshot) { setResumeData(fixNotice.snapshot); setFixNotice(null); toast.success('Changes undone.') } }
   const maybeAskReview = () => { if (shouldAskForReview()) setTimeout(() => setAskReview(true), 1500) }
   const downloadResume = () => {
     window.print();
@@ -371,6 +380,7 @@ const ResumeBuilder = () => {
           <LuArrowLeft className='size-4' />Back to Deshboard
         </Link>
       </div>
+      {fixNotice && <AtsFixNotice applied={fixNotice.applied} needsYou={fixNotice.needsYou} onUndo={fixNotice.snapshot ? undoAtsFix : undefined} onClose={() => setFixNotice(null)} />}
       <div className='max-w-7xl mx-auto px-4 pb-8'>
         <div className='grid lg:grid-cols-12 gap-8'>
           {/* Left panel -- form */}
@@ -552,7 +562,7 @@ const ResumeBuilder = () => {
         </div>
       )}
       {showAtsModal && (
-        <AtsScoreModal resumeId={resumeData._id} onClose={() => setShowAtsModal(false)} />
+        <AtsScoreModal resumeId={resumeData._id} onClose={() => setShowAtsModal(false)} onApplied={onAtsApplied} />
       )}
       {askReview && <ReviewPrompt token={token} onClose={() => setAskReview(false)} />}
       {coverLetterEnabled && showCoverLetterModal && (
