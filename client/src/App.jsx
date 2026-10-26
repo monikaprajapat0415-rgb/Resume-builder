@@ -150,7 +150,7 @@ const App = () => {
     <>
     <SEO
       title="Prime Resume AI - AI-Powered Resume Builder for Job Seekers"
-      description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI!"
+      description="Create professional resumes in minutes with AI. Choose ATS-friendly templates and download your CV. Free resume builder for freshers and professionals."
     />
     {/* site-wide structured data stays on every page even though a page's own <SEO /> replaces the fallback tags */}
     <Helmet>

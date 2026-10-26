@@ -19,6 +19,7 @@ import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage 
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
 import { defaultRouter } from '../utils/aiRouter.js';
 import { getSiteContentAdmin, saveSiteContent } from '../controllers/siteContentController.js';
+import { getSeoPagesAudit } from '../controllers/seoPagesAuditController.js';
 import { adminListTrust, adminCreateTrust, adminUpdateTrust, adminDeleteTrust } from '../controllers/trustController.js';
 
 const adminRouter = express.Router();
@@ -46,6 +47,7 @@ adminRouter.post('/ai-status/test', async (req, res) => res.json({ results: awai
 
 adminRouter.get('/stats', getStats);
 adminRouter.get('/seo-audit', getSeoAudit);
+adminRouter.get('/seo-pages', getSeoPagesAudit);
 
 adminRouter.get('/blogs', getAllBlogsAdmin);
 adminRouter.get('/blogs/:id', getBlogByIdAdmin);

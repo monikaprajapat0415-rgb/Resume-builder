@@ -61,7 +61,6 @@ const allowedOrigins = [
 // }));
 app.use(cors());// for local testing, allow all origins. In production, consider restricting to allowedOrigins for better security.
 
-app.get('/', (req, res)=> res.send("Server is live..."))
 
 // Quick check from a browser/curl: http://localhost:3000/api/health -> { db: "connected" }
 app.get('/api/health', (req, res) => {
@@ -94,6 +93,8 @@ app.use('/api', publicRouter)
 app.use('/api/admin', adminRouter)
 // Crawler-friendly HTML for /blog pages, RSS and llms.txt (nginx forwards these paths here)
 app.use('/', seoRouter)
+// Health text for '/' only when the client is not built on this machine (otherwise seoRouter serves the home page).
+app.get('/', (req, res)=> res.send("Server is live..."))
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);

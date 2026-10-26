@@ -49,8 +49,8 @@ const CvLanding = () => {
   return (
     <>
       <SEO
-        title='Free AI CV Builder - Create an ATS-Friendly CV Online'
-        description='Build a professional, ATS-friendly CV in minutes. Enter your details and the target job, and AI writes a tailored CV. Fresher and experienced formats, text-based PDF download.'
+        title='Free AI CV Builder, ATS-Friendly'
+        description='Build a professional, ATS-friendly CV in minutes. Enter your details and the target job, and AI writes a tailored CV. Text-based PDF download.'
         keywords='CV builder, AI CV maker, ATS friendly CV, CV for freshers, create CV online, free CV builder'
         path='/cv-builder'
         structuredData={structured}

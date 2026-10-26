@@ -27,7 +27,7 @@ const LEARN_DESC = 'Free, step-by-step tutorials for new technologies, with clea
 export const renderLearnIndex = guard(async (req, res) => {
     const courses = await listPublishedCourses();
     sendShell(res, 200, {
-        fullTitle: seoTitle('Learn new technologies: free step-by-step tutorials'), description: LEARN_DESC, canonical: `${siteUrl()}/learn`,
+        fullTitle: seoTitle('Free Step-by-Step Tech Tutorials'), description: LEARN_DESC, canonical: `${siteUrl()}/learn`,
         robots: 'index, follow', type: 'website', keywords: 'tutorials, learn programming, free courses, web development tutorials',
         jsonLd: learnIndexJsonLd(courses), body: learnIndexHtml({ courses }),
     });

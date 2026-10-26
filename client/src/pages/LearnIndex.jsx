@@ -47,7 +47,7 @@ const LearnIndex = () => {
 
   return (
     <div>
-      <SEO title='Learn new technologies: free step-by-step tutorials' description={DESC} keywords='tutorials, learn programming, free courses, web development tutorials' path='/learn' structuredData={structuredData} />
+      <SEO title='Free Step-by-Step Tech Tutorials' description={DESC} keywords='tutorials, learn programming, free courses, web development tutorials' path='/learn' structuredData={structuredData} />
       <NavBar />
       <section className='max-w-5xl mx-auto px-4 py-16'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>

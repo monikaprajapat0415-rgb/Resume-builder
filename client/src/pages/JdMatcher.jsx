@@ -58,7 +58,7 @@ const JdMatcher = () => {
   return (
     <>
       <SEO
-        title='Resume Job Description Matcher - Tailor Your Resume Free'
+        title='Resume Job Description Matcher (Free)'
         description='Paste your resume and a job description to see which keywords match, which are weak and which are missing. Free, instant, and private: it runs in your browser.'
         keywords='tailor resume to job description, resume job match, resume keyword scanner, job description matcher, resume keyword match'
         path='/resume-job-description-matcher'

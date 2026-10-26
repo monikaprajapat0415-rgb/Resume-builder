@@ -19,7 +19,7 @@ const FEATURES = [
 const Features = () => (
   <>
     <SEO
-      title='Features - AI Resume Builder, ATS Checker, Cover Letters'
+      title='Features: Resume Builder & ATS Checker'
       description='Everything in Prime Resume AI: a free ATS resume checker, AI writing help, ATS-friendly templates, resume import and AI cover letters.'
       path='/features'
     />

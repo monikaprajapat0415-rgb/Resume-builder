@@ -22,6 +22,41 @@ const Card = ({ title, children, right, className = '' }) => (
   </section>
 )
 
+// Fetches every public page the way a crawler without JavaScript would and lists what is wrong.
+const PagesCheck = ({ headers }) => {
+  const [data, setData] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const run = async () => {
+    setBusy(true)
+    try { const { data: d } = await api.get('/api/admin/seo-pages', { headers }); setData(d) } catch { toast.error('Could not run the page check.') }
+    setBusy(false)
+  }
+  return (
+    <Card title='Public pages check (what crawlers and AI assistants see)' right={<button onClick={run} disabled={busy} className='inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-50 disabled:opacity-60'><LuRefreshCw className={`size-3.5 ${busy ? 'animate-spin' : ''}`} />{busy ? 'Checking…' : data ? 'Run again' : 'Run check'}</button>} className='mb-4'>
+      {!data && <p className='text-sm text-slate-500'>Loads each public page without JavaScript and checks the title, description, canonical, h1, structured data, text and sitemap. AI crawlers mostly do not run JavaScript, so a page with no server text is invisible to them.</p>}
+      {data && (
+        <>
+          <p className='text-sm text-slate-600 mb-3'>{data.summary.ok} of {data.summary.total} pages have no problems.{data.summary.notRendered > 0 && <span className='text-amber-700'> {data.summary.notRendered} are not server-rendered (on the live site nginx must send them to Node, see the nginx snippet).</span>}</p>
+          <div className='overflow-x-auto'>
+            <table className='w-full text-xs'>
+              <thead className='text-left text-slate-500'><tr><th className='py-1.5 pr-3 font-medium'>Page</th><th className='pr-3 font-medium'>Words</th><th className='pr-3 font-medium'>Title</th><th className='pr-3 font-medium'>Desc.</th><th className='pr-3 font-medium'>Data</th><th className='font-medium'>Problems</th></tr></thead>
+              <tbody>
+                {data.rows.map((r) => (
+                  <tr key={r.path} className='border-t border-slate-100 align-top'>
+                    <td className='py-1.5 pr-3'><a href={r.path} target='_blank' rel='noreferrer' className='text-brand-700 hover:underline break-all'>{r.path}</a></td>
+                    <td className='pr-3 text-slate-600'>{r.words}</td><td className='pr-3 text-slate-600'>{r.titleLen}</td><td className='pr-3 text-slate-600'>{r.descLen}</td><td className='pr-3 text-slate-600'>{r.jsonLd}</td>
+                    <td>{r.issues.length ? <ul className='text-red-600'>{r.issues.map((i) => <li key={i}>{i}</li>)}</ul> : <span className='text-green-600'>{r.noindex ? 'OK (hidden from search until it has enough content)' : 'OK'}</span>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+    </Card>
+  )
+}
+
 const Meter = ({ label, value }) => (
   <div>
     <div className='flex justify-between text-xs mb-1'><span className='text-slate-600'>{label}</span><span className='text-slate-500'>{value}%</span></div>
@@ -107,6 +142,8 @@ const AdminSeo = () => {
           </button>
         ))}
       </div>
+
+      <PagesCheck headers={{ Authorization: token }} />
 
       <div className='grid lg:grid-cols-2 gap-4'>
         <Card title='AI answer-engine readiness' right={<span className='text-xs text-slate-400'>% of published posts</span>}>
