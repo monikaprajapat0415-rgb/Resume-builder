@@ -13,6 +13,9 @@ import CareerHub from '../components/home/CareerHub'
 import HomeFaq, { faqJsonLd, faqFrom } from '../components/home/HomeFaq'
 import ContactUs from './ContactUs'
 import CountryBar from '../i18n/CountryBar'
+import TrustStats from '../components/home/TrustStats'
+import ClientsStrip from '../components/home/ClientsStrip'
+import ReviewsSection from '../components/home/ReviewsSection'
 import SEO from '../components/SEO'
 import { useSiteContent } from '../utils/siteContent'
 
@@ -44,11 +47,14 @@ const Home = () => {
     <Banner />
     <CountryBar />
     <Hero/>
+    <TrustStats/>
+    <ClientsStrip/>
     <WorkFlowSteps/>
     <Features/>
     <JobsSection/>
     <CareerHub/>
     <Testimonials/>
+    <ReviewsSection/>
     <TemplatePreview/>
     <HomeFaq/>
     <CallToAction/>

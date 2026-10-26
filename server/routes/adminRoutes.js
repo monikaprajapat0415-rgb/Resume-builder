@@ -19,6 +19,7 @@ import { getMessages, getUnreadCount, updateMessage, markAllRead, deleteMessage 
 import { getPagesAdmin, getPageByIdAdmin, createPage, updatePage, resetPage, deletePage } from '../controllers/pageController.js';
 import { defaultRouter } from '../utils/aiRouter.js';
 import { getSiteContentAdmin, saveSiteContent } from '../controllers/siteContentController.js';
+import { adminListTrust, adminCreateTrust, adminUpdateTrust, adminDeleteTrust } from '../controllers/trustController.js';
 
 const adminRouter = express.Router();
 
@@ -138,6 +139,11 @@ adminRouter.delete('/pages/:id', deletePage);
 
 adminRouter.get('/site-content', getSiteContentAdmin);
 adminRouter.put('/site-content', saveSiteContent);
+// Home page trust section: real reviews and "trusted by" clients
+adminRouter.get('/trust', adminListTrust);
+adminRouter.post('/trust', adminCreateTrust);
+adminRouter.put('/trust/:id', adminUpdateTrust);
+adminRouter.delete('/trust/:id', adminDeleteTrust);
 
 adminRouter.get('/users', getUsers);
 adminRouter.patch('/users/:id/role', setUserRole);
