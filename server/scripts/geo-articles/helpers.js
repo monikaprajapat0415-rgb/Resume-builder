@@ -9,5 +9,4 @@ export const SRC = {
   ncs: { title: 'National Career Service (Government of India)', url: 'https://www.ncs.gov.in/' },
   jobbank: { title: 'Job Bank (Government of Canada)', url: 'https://www.jobbank.gc.ca/' },
   uk: { title: 'National Careers Service (UK)', url: 'https://nationalcareers.service.gov.uk/' },
-  cos: { title: 'CareerOneStop (US Department of Labor)', url: 'https://www.careeronestop.org/' },
 };
