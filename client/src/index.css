@@ -32,3 +32,8 @@
   {@apply outline-none focus:ring border border-gray-300 
     focus:ring-blue-500 focus:border-blue-500 rounded-lg resize-none;}
 }
+/* Lesson reading options: the size comes from --ls (set on .lesson-text), the font family is set on the article. */
+.lesson-text p, .lesson-text li { font-size: var(--ls, 16px); }
+.lesson-text h2 { font-size: calc(var(--ls, 16px) * 1.5); }
+.lesson-text aside { font-size: calc(var(--ls, 16px) * 0.875); }
+.lesson-text pre { font-size: calc(var(--ls, 16px) * 0.8125); }
