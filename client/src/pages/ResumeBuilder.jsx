@@ -17,6 +17,8 @@ LuFileText,
 LuFolder,
 LuGraduationCap,
 LuShare2,
+LuMessageCircle,
+LuLink,
 LuSparkles,
 LuUser,
 LuTarget,
@@ -37,6 +39,7 @@ import ProjectForm from '../components/ProjectForm';
 import SkillForm from '../components/SkillForm';
 import AtsScoreModal from '../components/AtsScoreModal';
 import CoverLetterModal from '../components/CoverLetterModal';
+import ReviewPrompt, { shouldAskForReview } from '../components/ReviewPrompt';
 import { useSiteContent } from '../utils/siteContent';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -215,11 +218,19 @@ const ResumeBuilder = () => {
       navigator.share({ url: resumeUrl, text: 'My Resume', })
 
     } else {
-      alert('Share not supported on this browser.')
+      copyLink()
     }
   }
+  const shareUrl = () => window.location.href.split('/app/')[0] + '/view/' + resumeId
+  const copyLink = async () => {
+    try { await navigator.clipboard.writeText(shareUrl()); toast.success('Link copied') } catch { toast.error('Could not copy. Select the link in the address bar of the shared page.') }
+  }
+  const whatsappHref = () => `https://wa.me/?text=${encodeURIComponent('My resume: ' + shareUrl())}`
+  const [askReview, setAskReview] = useState(false)
+  const maybeAskReview = () => { if (shouldAskForReview()) setTimeout(() => setAskReview(true), 1500) }
   const downloadResume = () => {
     window.print();
+    maybeAskReview();
   }
 
   const downloadPdf = async () => {
@@ -255,6 +266,7 @@ const ResumeBuilder = () => {
 
       const fileName = `${(resumeData.personal_info?.full_name || resumeData.title || 'resume').replace(/[^a-z0-9]+/gi, '_')}.pdf`;
       pdf.save(fileName);
+      maybeAskReview();
     } catch (error) {
       console.error('PDF export failed:', error);
       toast.error('Could not generate the PDF. Try the Print option instead.');
@@ -478,6 +490,16 @@ const ResumeBuilder = () => {
                   bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
                     <LuShare2 className='size-4' />Share
                   </button>)}
+                {resumeData.public && (
+                  <a href={whatsappHref()} target='_blank' rel='noopener noreferrer' className='flex items-center p-2 px-4 gap-2 text-xs
+                  bg-gradient-to-br from-green-100 to-green-200 text-green-700 rounded-lg ring-green-300 hover:ring transition-colors'>
+                    <LuMessageCircle className='size-4' />WhatsApp
+                  </a>)}
+                {resumeData.public && (
+                  <button onClick={copyLink} className='flex items-center p-2 px-4 gap-2 text-xs
+                  bg-gradient-to-br from-slate-100 to-slate-200 text-slate-700 rounded-lg ring-slate-300 hover:ring transition-colors'>
+                    <LuLink className='size-4' />Copy link
+                  </button>)}
 
                 <button onClick={changeResumeVisibility} className='flex items-center p-2 px-4 gap-2 text-xs
                   bg-gradient-to-br from-purple-100 to-purple-200 text-purple-600 rounded-lg ring-blue-300 hover:ring transition-colors'>
@@ -532,6 +554,7 @@ const ResumeBuilder = () => {
       {showAtsModal && (
         <AtsScoreModal resumeId={resumeData._id} onClose={() => setShowAtsModal(false)} />
       )}
+      {askReview && <ReviewPrompt token={token} onClose={() => setAskReview(false)} />}
       {coverLetterEnabled && showCoverLetterModal && (
         <CoverLetterModal resumeId={resumeData._id} onClose={() => setShowCoverLetterModal(false)} />
       )}

@@ -7,7 +7,8 @@ import api from '../configs/api'
 import { stripInline } from '../utils/inlineText'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { CourseBadge } from './LearnIndex'
-import { LuArrowRight, LuBookOpen, LuSignal } from 'react-icons/lu'
+import { useCourseProgress, countDone } from '../utils/learnProgress'
+import { LuArrowRight, LuBookOpen, LuSignal, LuCheck, LuBookmarkCheck, LuAward } from 'react-icons/lu'
 
 const NotFound = ({ state }) => (
   <div>
@@ -29,6 +30,7 @@ const NotFound = ({ state }) => (
 const LearnCourse = () => {
   const { course: slug } = useParams()
   const [result, setResult] = useState({ key: '', data: null, state: 'loading' })
+  const progress = useCourseProgress(slug)
 
   useEffect(() => {
     let live = true
@@ -45,6 +47,13 @@ const LearnCourse = () => {
 
   if (state !== 'ok') return <NotFound state={state} />
   const { course, sections, seo } = data
+  const allLessons = sections.flatMap((sec) => sec.lessons)
+  const allSlugs = allLessons.map((l) => l.slug)
+  const doneCount = countDone(progress.done, allSlugs)
+  const lastLesson = allLessons.find((l) => l.slug === progress.last)
+  const nextUp = allLessons.find((l) => !progress.done.includes(l.slug))
+  const resumeTo = lastLesson && doneCount < allSlugs.length ? lastLesson : null
+  const saved = allLessons.filter((l) => progress.marks.includes(l.slug))
   const starts = sections.map((_, i) => sections.slice(0, i).reduce((sum, sec) => sum + sec.lessons.length, 0))
 
   return (
@@ -72,6 +81,20 @@ const LearnCourse = () => {
           </Link>
         )}
 
+        {(doneCount > 0 || resumeTo || saved.length > 0) && (
+          <div className='mt-8 rounded-xl border border-brand-200 bg-brand-50/40 p-5' data-no-i18n>
+            <div className='flex justify-between text-sm text-slate-700 mb-1.5'><span className='font-medium'>Your progress</span><span>{doneCount} of {allSlugs.length} lessons done</span></div>
+            <div className='h-2 rounded-full bg-white overflow-hidden' role='progressbar' aria-label='Course progress' aria-valuemin={0} aria-valuemax={allSlugs.length} aria-valuenow={doneCount}><div className='h-full bg-brand-500 transition-all duration-500' style={{ width: `${allSlugs.length ? (doneCount / allSlugs.length) * 100 : 0}%` }} /></div>
+            <div className='mt-3 flex flex-wrap items-center gap-3'>
+              {resumeTo && <Link to={`/learn/${course.slug}/${resumeTo.slug}`} className='inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-2 text-sm font-medium text-white hover:bg-brand-700'>Continue: {stripInline(resumeTo.title)} <LuArrowRight className='size-4' /></Link>}
+              {!resumeTo && nextUp && doneCount > 0 && <Link to={`/learn/${course.slug}/${nextUp.slug}`} className='inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-2 text-sm font-medium text-white hover:bg-brand-700'>Next lesson <LuArrowRight className='size-4' /></Link>}
+              {doneCount === allSlugs.length && allSlugs.length > 0 && <Link to={`/learn/${course.slug}/certificate`} className='inline-flex items-center gap-2 rounded-full border border-brand-300 bg-white px-5 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50'><LuAward className='size-4' />Get your certificate</Link>}
+              {doneCount > 0 && <button type='button' onClick={() => { if (window.confirm('Clear your progress and saved lessons for this course?')) progress.resetAll() }} className='text-xs text-slate-500 hover:text-slate-700 underline'>Clear progress</button>}
+            </div>
+            {saved.length > 0 && <p className='mt-3 text-sm text-slate-600'><LuBookmarkCheck className='inline size-4 text-amber-500 mr-1' />Saved: {saved.map((l, i) => <span key={l.slug}>{i > 0 && ', '}<Link to={`/learn/${course.slug}/${l.slug}`} className='text-brand-700 hover:underline'>{stripInline(l.title)}</Link></span>)}</p>}
+          </div>
+        )}
+
         <h2 className='text-xl font-semibold text-slate-800 mt-12 mb-4'>What you'll learn</h2>
         <div className='space-y-6'>
           {sections.map((s, si) => (
@@ -83,7 +106,7 @@ const LearnCourse = () => {
                   return (
                     <li key={l.slug}>
                       <Link to={`/learn/${course.slug}/${l.slug}`} className='flex items-start gap-3 px-5 py-3 hover:bg-brand-50/50 transition group'>
-                        <span className='text-xs text-slate-400 w-6 pt-0.5 shrink-0'>{n}.</span>
+                        <span className='text-xs text-slate-400 w-6 pt-0.5 shrink-0'>{progress.done.includes(l.slug) ? <LuCheck className='size-4 text-brand-600' aria-label='Completed' /> : `${n}.`}</span>
                         <span>
                           <span className='block text-sm font-medium text-slate-800 group-hover:text-brand-700'>{l.title}</span>
                           {l.description && <span className='block text-xs text-slate-500 mt-0.5 line-clamp-1'>{stripInline(l.description)}</span>}

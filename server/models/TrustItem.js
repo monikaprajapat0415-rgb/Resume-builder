@@ -15,6 +15,8 @@ const TrustItemSchema = new mongoose.Schema({
     reviewerType: { type: String, enum: ['job seeker', 'employer', 'client'], default: 'job seeker' },
     permission: { type: Boolean, default: false },                           // admin confirms they may show this publicly
     proof: { type: String, trim: true, maxlength: 300, default: '' },        // private note: where it came from (never shown)
+    source: { type: String, enum: ['admin', 'user'], default: 'admin' },    // 'user' = sent in from the resume builder, waiting for an admin to read it
+    submittedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null, index: true },
     published: { type: Boolean, default: false },
     order: { type: Number, default: 0 },
 }, { timestamps: true });

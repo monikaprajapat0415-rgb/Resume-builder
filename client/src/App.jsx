@@ -44,6 +44,7 @@ import JobDetail from "./pages/JobDetail";
 import AdminJobs from "./pages/admin/AdminJobs";
 import LearnCourse from "./pages/LearnCourse";
 import LearnLesson from "./pages/LearnLesson";
+import LearnCertificate from './pages/LearnCertificate'
 import TemplatesIndex from "./pages/TemplatesIndex";
 import ExamplesIndex from './pages/ExamplesIndex'
 import ExampleDetail from './pages/ExampleDetail'
@@ -177,6 +178,7 @@ const App = () => {
         <Route path="/hire" element={<HireLanding />} />
         <Route path="/learn" element={<LearnIndex />} />
         <Route path="/learn/:course" element={<LearnCourse />} />
+        <Route path="/learn/:course/certificate" element={<LearnCertificate />} />
         <Route path="/learn/:course/:lesson" element={<LearnLesson />} />
         <Route path="/roadmaps" element={<RoadmapIndex />} />
         <Route path="/roadmaps/:slug" element={<RoadmapView />} />

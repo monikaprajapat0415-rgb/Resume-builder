@@ -11,7 +11,8 @@ import LessonAnimation from '../components/LessonAnimation'
 import ReadingOptions, { useReadingPrefs } from '../components/ReadingOptions'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
-import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
+import { useCourseProgress, countDone } from '../utils/learnProgress'
+import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu, LuCheck, LuBookmark, LuBookmarkCheck, LuAward } from 'react-icons/lu'
 
 // Download through the same API client the page uses for its data, so the request always reaches the API
 // (a plain relative link can land on a host that only serves the web app and saves index.html instead).
@@ -35,7 +36,7 @@ const downloadSolution = async (e, d) => {
 }
 
 // Course menu: every lesson grouped by chapter, current lesson highlighted.
-const CourseMenu = ({ courseSlug, sections, current }) => {
+const CourseMenu = ({ courseSlug, sections, current, done = [], marks = [] }) => {
   const starts = sections.map((_, i) => sections.slice(0, i).reduce((sum, sec) => sum + sec.lessons.length, 0))
   return (
     <nav aria-label='Course lessons' className='text-sm'>
@@ -56,7 +57,7 @@ const CourseMenu = ({ courseSlug, sections, current }) => {
                   <li key={l.slug}>
                     <Link to={`/learn/${courseSlug}/${l.slug}`} aria-current={active ? 'page' : undefined}
                       className={`flex gap-2 rounded-md px-2 py-1.5 leading-snug transition ${active ? 'bg-brand-50 text-brand-700 font-medium' : 'text-slate-600 hover:bg-slate-100'}`}>
-                      <span className='text-slate-400 w-5 shrink-0'>{n}.</span><span>{l.title}</span>
+                      <span className='text-slate-400 w-5 shrink-0'>{done.includes(l.slug) ? <LuCheck className='size-4 text-brand-600' aria-label='Completed' /> : `${n}.`}</span><span>{l.title}{marks.includes(l.slug) && <LuBookmarkCheck className='inline size-3.5 ml-1 text-amber-500' aria-label='Bookmarked' />}</span>
                     </Link>
                   </li>
                 )
@@ -73,9 +74,12 @@ const LearnLesson = () => {
   const reading = useReadingPrefs()
   const { course: courseSlug, lesson: lessonSlug } = useParams()
   const key = `${courseSlug}/${lessonSlug}`
+  const progress = useCourseProgress(courseSlug)
+  const { visit } = progress
   const [result, setResult] = useState({ key: '', data: null, state: 'loading' })
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('')
+  useEffect(() => { if (result.state === 'ok' && result.key === key) visit(lessonSlug) }, [result, key, lessonSlug, visit])
 
   useEffect(() => {
     let live = true
@@ -129,6 +133,11 @@ const LearnLesson = () => {
   }
 
   const { lesson, course, sections, prev, next, toc, seo } = data
+  const allSlugs = sections.flatMap((sec) => sec.lessons.map((l) => l.slug))
+  const doneCount = countDone(progress.done, allSlugs)
+  const isDone = progress.done.includes(lesson.slug)
+  const isMarked = progress.marks.includes(lesson.slug)
+  const finished = allSlugs.length > 0 && doneCount === allSlugs.length
 
   return (
     <div>
@@ -144,7 +153,12 @@ const LearnLesson = () => {
             <LuChevronRight className={`size-4 transition ${menuOpen ? 'rotate-90' : ''}`} />
           </button>
           <div className={`${menuOpen ? 'block' : 'hidden'} lg:block mt-2`}>
-            <CourseMenu courseSlug={course.slug} sections={sections} current={lesson.slug} />
+            <div className='px-2 mb-3' data-no-i18n>
+              <div className='flex justify-between text-xs text-slate-500 mb-1'><span>Your progress</span><span>{doneCount}/{allSlugs.length}</span></div>
+              <div className='h-1.5 rounded-full bg-slate-100 overflow-hidden' role='progressbar' aria-label='Course progress' aria-valuemin={0} aria-valuemax={allSlugs.length} aria-valuenow={doneCount}><div className='h-full bg-brand-500 transition-all duration-500' style={{ width: `${allSlugs.length ? (doneCount / allSlugs.length) * 100 : 0}%` }} /></div>
+              {finished && <Link to={`/learn/${course.slug}/certificate`} className='mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-700 hover:underline'><LuAward className='size-3.5' />Get your certificate</Link>}
+            </div>
+            <CourseMenu courseSlug={course.slug} sections={sections} current={lesson.slug} done={progress.done} marks={progress.marks} />
           </div>
         </aside>
 
@@ -159,7 +173,13 @@ const LearnLesson = () => {
             Lesson {data.position} of {data.total}<span className='mx-1.5 text-slate-300'>·</span>{lesson.readTime}
             <span className='mx-1.5 text-slate-300'>·</span>Updated <time dateTime={new Date(lesson.modifiedAt).toISOString()}>{fmtDate(lesson.modifiedAt)}</time>
           </p>
-          <ReadingOptions prefs={reading.prefs} update={reading.update} reset={reading.reset} />
+          <div className='flex flex-wrap items-center gap-2' data-no-i18n>
+            <button type='button' onClick={() => progress.toggleMark(lesson.slug)} aria-pressed={isMarked}
+              className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm ${isMarked ? 'border-amber-300 bg-amber-50 text-amber-800' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'}`}>
+              {isMarked ? <LuBookmarkCheck className='size-4' aria-hidden='true' /> : <LuBookmark className='size-4' aria-hidden='true' />}{isMarked ? 'Saved' : 'Save'}
+            </button>
+            <ReadingOptions prefs={reading.prefs} update={reading.update} reset={reading.reset} />
+          </div>
           </div>
 
           {lesson.animation && <div className='mt-6'><LessonAnimation key={lesson.slug} animation={lesson.animation} /></div>}
@@ -197,7 +217,16 @@ const LearnLesson = () => {
 
           <LessonFeedback key={`${course.slug}/${lesson.slug}`} courseSlug={course.slug} lessonSlug={lesson.slug} />
 
-          <nav aria-label='Lesson navigation' className='mt-12 grid sm:grid-cols-2 gap-4'>
+          <div className='mt-10 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/60 p-4' data-no-i18n>
+            <p className='text-sm text-slate-600'>{isDone ? 'You finished this lesson.' : 'Finished reading? Mark it done to track your progress.'}</p>
+            <button type='button' onClick={() => progress.toggleDone(lesson.slug)} aria-pressed={isDone}
+              className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium ${isDone ? 'bg-brand-50 text-brand-700 border border-brand-200' : 'bg-brand-600 text-white hover:bg-brand-700'}`}>
+              <LuCheck className='size-4' aria-hidden='true' />{isDone ? 'Done' : 'Mark as done'}
+            </button>
+          </div>
+          {finished && <p className='mt-3 text-sm text-slate-600' data-no-i18n>You have finished every lesson. <Link to={`/learn/${course.slug}/certificate`} className='font-medium text-brand-700 hover:underline'>Get your certificate</Link>.</p>}
+
+          <nav aria-label='Lesson navigation' className='mt-8 grid sm:grid-cols-2 gap-4'>
             {prev ? (
               <Link to={`/learn/${course.slug}/${prev.slug}`} rel='prev' className='group rounded-xl border border-slate-200 p-4 hover:border-brand-300 hover:bg-brand-50/40 transition'>
                 <span className='flex items-center gap-1 text-xs text-slate-400'><LuArrowLeft className='size-3.5' />Previous</span>
