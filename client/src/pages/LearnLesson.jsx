@@ -8,6 +8,7 @@ import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
 import LessonFeedback from '../components/LessonFeedback'
 import LessonAnimation from '../components/LessonAnimation'
+import ReadingOptions, { useReadingPrefs } from '../components/ReadingOptions'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
 import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu } from 'react-icons/lu'
@@ -69,6 +70,7 @@ const CourseMenu = ({ courseSlug, sections, current }) => {
 }
 
 const LearnLesson = () => {
+  const reading = useReadingPrefs()
   const { course: courseSlug, lesson: lessonSlug } = useParams()
   const key = `${courseSlug}/${lessonSlug}`
   const [result, setResult] = useState({ key: '', data: null, state: 'loading' })
@@ -146,20 +148,23 @@ const LearnLesson = () => {
           </div>
         </aside>
 
-        <article className='min-w-0'>
+        <article className='min-w-0' style={{ fontFamily: reading.stack }}>
           <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-4'>
             <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/learn' className='hover:text-slate-600'>Learn</Link> › <Link to={`/learn/${course.slug}`} className='hover:text-slate-600'>{course.title}</Link>
           </nav>
           {lesson.section && <p className='text-xs font-medium text-brand-700 mb-2'>{lesson.section}</p>}
           <h1 className='text-3xl sm:text-4xl font-bold text-slate-800 leading-tight'>{lesson.title}</h1>
-          <p className='text-sm text-slate-500 mt-3'>
+          <div className='mt-3 flex flex-wrap items-center justify-between gap-3'>
+          <p className='text-sm text-slate-500'>
             Lesson {data.position} of {data.total}<span className='mx-1.5 text-slate-300'>·</span>{lesson.readTime}
             <span className='mx-1.5 text-slate-300'>·</span>Updated <time dateTime={new Date(lesson.modifiedAt).toISOString()}>{fmtDate(lesson.modifiedAt)}</time>
           </p>
+          <ReadingOptions prefs={reading.prefs} update={reading.update} reset={reading.reset} />
+          </div>
 
           {lesson.animation && <div className='mt-6'><LessonAnimation key={lesson.slug} animation={lesson.animation} /></div>}
 
-          <div className='mt-6'><BlockRenderer blocks={lesson.content} /></div>
+          <div className='mt-6 lesson-text' style={{ '--ls': `${reading.prefs.size}px` }}><BlockRenderer blocks={lesson.content} /></div>
 
           {lesson.download && (
             <aside aria-label='Solution download' className='mt-10 rounded-xl border border-brand-200 bg-brand-50/50 p-5 flex flex-wrap items-center justify-between gap-4'>

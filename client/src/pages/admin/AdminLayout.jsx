@@ -30,6 +30,7 @@ const groups = [
   { id: 'site', title: 'Site and growth', items: [
     { to: '/admin/seo', label: 'SEO & AI visibility', icon: LuSearch },
     { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
+    { to: '/admin/trust', label: 'Reviews and clients', icon: LuMessageSquare },
     { to: '/admin/menus', label: 'Menus', icon: LuMenu },
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },

@@ -67,6 +67,7 @@ import AdminMessages from "./pages/admin/AdminMessages";
 import AdminPages from "./pages/admin/AdminPages";
 import AdminPageEditor from "./pages/admin/AdminPageEditor";
 import AdminSiteContent from "./pages/admin/AdminSiteContent";
+import AdminTrust from "./pages/admin/AdminTrust";
 import CustomPage from "./pages/CustomPage";
 import Features from "./pages/Features";
 import AtsChecker from "./pages/AtsChecker";
@@ -205,6 +206,7 @@ const App = () => {
           <Route path="pages/new" element={<AdminPageEditor />} />
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />
           <Route path="site-content" element={<AdminSiteContent />} />
+          <Route path="trust" element={<AdminTrust />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="seo" element={<AdminSeo />} />
