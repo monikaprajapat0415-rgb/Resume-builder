@@ -55,6 +55,19 @@ const AdminUsers = () => {
     } catch (e) { toast.error(e.response?.data?.message || 'Could not update.') }
   }
 
+  const setPlan = async (u) => {
+    const input = window.prompt(`Paid plan for ${u.email}.\nType a number of days to add (30 = one month, 365 = one year), "life" for lifetime, or 0 to remove the plan:`, '30')
+    if (input === null) return
+    const t = input.trim().toLowerCase()
+    const body = t === 'life' ? { lifetime: true } : { days: parseInt(t, 10) }
+    if (!body.lifetime && !Number.isFinite(body.days)) return toast.error('Type 30, 365, life or 0.')
+    try {
+      const { data } = await api.post(`/api/admin/users/${u._id}/plan`, body, headers)
+      setData((d) => ({ ...d, users: d.users.map((x) => (x._id === u._id ? { ...x, planUntil: data.planUntil } : x)) }))
+      toast.success(data.planUntil ? 'Plan updated.' : 'Plan removed.')
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not update the plan.') }
+  }
+
   const toggleAts = async (u) => {
     const off = !u.ats?.disabled
     if (off && !window.confirm(`Turn the ATS checker off for ${u.email}? They will see a message that it is switched off.`)) return
@@ -84,6 +97,7 @@ const AdminUsers = () => {
               <th className='px-4 py-3 font-medium'>Verified</th>
               <th className='px-4 py-3 font-medium'>Joined</th>
               <th className='px-4 py-3 font-medium'>ATS checks</th>
+              <th className='px-4 py-3 font-medium'>Paid plan</th>
               <th className='px-4 py-3 font-medium'>Role</th>
               <th className='px-4 py-3 font-medium'><span className='sr-only'>Actions</span></th>
             </tr>
@@ -107,6 +121,12 @@ const AdminUsers = () => {
                   <button onClick={() => giveChecks(u)} className='ml-2 text-xs text-brand-700 hover:underline' title='Give or remove extra ATS checks'>+ add</button>
                   <button onClick={() => toggleAts(u)} className='ml-2 text-xs text-slate-500 hover:underline' title='Turn the ATS checker on or off for this user'>{u.ats?.disabled ? 'turn on' : 'turn off'}</button>
                 </td>
+                <td className='px-4 py-3 whitespace-nowrap'>
+                  {u.planUntil && new Date(u.planUntil) > new Date()
+                    ? <span className='text-brand-700'>{new Date(u.planUntil).getFullYear() > 2900 ? 'Lifetime' : `Until ${new Date(u.planUntil).toLocaleDateString()}`}</span>
+                    : <span className='text-slate-400'>Free</span>}
+                  <button onClick={() => setPlan(u)} className='ml-2 text-xs text-brand-700 hover:underline'>Plan</button>
+                </td>
                 <td className='px-4 py-3'>
                   {String(u._id) === String(me?._id) ? (
                     <span className='text-xs text-slate-400'>{u.role} (you)</span>
@@ -125,7 +145,7 @@ const AdminUsers = () => {
                 </td>
               </tr>
             ))}
-            {!loading && data.users.length === 0 && <tr><td colSpan={7} className='px-4 py-8 text-center text-slate-400'>No users found.</td></tr>}
+            {!loading && data.users.length === 0 && <tr><td colSpan={8} className='px-4 py-8 text-center text-slate-400'>No users found.</td></tr>}
           </tbody>
         </table>
       </div>

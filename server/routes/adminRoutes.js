@@ -145,6 +145,10 @@ adminRouter.post('/trust', adminCreateTrust);
 adminRouter.put('/trust/:id', adminUpdateTrust);
 adminRouter.delete('/trust/:id', adminDeleteTrust);
 
+import { adminGetPlan, adminSavePlan, adminSetUserPlan } from '../controllers/planController.js';
+adminRouter.get('/plan', adminGetPlan);
+adminRouter.put('/plan', adminSavePlan);
+adminRouter.post('/users/:id/plan', adminSetUserPlan);
 adminRouter.get('/users', getUsers);
 adminRouter.patch('/users/:id/role', setUserRole);
 adminRouter.delete('/users/:id', deleteUser);

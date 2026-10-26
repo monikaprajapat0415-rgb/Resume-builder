@@ -1,5 +1,6 @@
 import React from 'react'
-import { LuCircleCheck, LuTriangleAlert, LuCircleAlert, LuInfo, LuLightbulb, LuFileText } from 'react-icons/lu'
+import { LuCircleCheck, LuTriangleAlert, LuCircleAlert, LuInfo, LuLightbulb, LuFileText, LuWandSparkles } from 'react-icons/lu'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 const tone = (s) => (s >= 80 ? { text: 'text-green-600', bar: 'bg-green-500', ring: '#16a34a' } : s >= 60 ? { text: 'text-amber-600', bar: 'bg-amber-500', ring: '#d97706' } : { text: 'text-red-600', bar: 'bg-red-500', ring: '#dc2626' })
 
@@ -33,7 +34,7 @@ const Card = ({ title, children, className = '' }) => (
   </section>
 )
 
-const AtsReport = ({ report, fileName }) => {
+const AtsReport = ({ report, fileName, onApply, applying }) => {
   const { score, label, summary, categories, strengths, issues, keywords, sections, rewrites, stats, detectedRole, hasJobDescription } = report
   const t = tone(score)
   const fixFirst = issues.filter((i) => i.severity === 'critical' || i.severity === 'high').length
@@ -49,6 +50,19 @@ const AtsReport = ({ report, fileName }) => {
           {fixFirst > 0 && <p className='text-sm font-medium text-slate-800 mt-3'>{fixFirst} important {fixFirst === 1 ? 'fix' : 'fixes'} will raise your score the most. Start there.</p>}
         </div>
       </div>
+
+
+      {onApply && issues.length > 0 && (
+        <div className='rounded-xl border border-brand-200 bg-brand-50/50 p-5 flex flex-col sm:flex-row sm:items-center gap-4 justify-between'>
+          <div>
+            <p className='font-semibold text-slate-800'>Want us to fix these for you?</p>
+            <p className='text-sm text-slate-600 mt-0.5'>We make a new copy of your resume with the fixes applied. Your file is not changed, and you can edit everything afterwards. We never add numbers, skills or jobs you did not write.</p>
+          </div>
+          <button type='button' onClick={onApply} disabled={applying} className='inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-70'>
+            {applying ? <BiLoaderAlt className='size-4 animate-spin' aria-hidden='true' /> : <LuWandSparkles className='size-4' aria-hidden='true' />}{applying ? 'Applying fixes…' : 'Apply fixes to my resume'}
+          </button>
+        </div>
+      )}
 
       <Card title='Score breakdown'>
         <div className='grid sm:grid-cols-2 gap-x-8 gap-y-4'>

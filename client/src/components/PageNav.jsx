@@ -13,6 +13,7 @@ const SITE_URL = 'https://primeresumeai.com';
 const LABELS = {
   'contact-us': 'Contact Us',
   features: 'Features',
+  pricing: 'Pricing',
   'ats-checker': 'ATS Checker',
   'cv-builder': 'CV Builder',
   'resume-job-description-matcher': 'Job Match Tool',
@@ -46,7 +47,7 @@ const LABELS = {
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
   /^\/features$/, /^\/products$/, /^\/templates$/, /^\/examples$/, /^\/app$/, /^\/admin$/,
-  /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|appearance|users|seo|blogs|learn)$/,
+  /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|trust|plan|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
 

@@ -16,6 +16,8 @@ const UserSchema = new mongoose.Schema({
     isVerified:{type : Boolean, default:false},
     verificationToken: {type : String},
     verificationTokenExpire: {type : Date},
+    // paid plan: active while this date is in the future (set by an admin after payment). null = free.
+    planUntil: {type : Date, default: null},
     resetToken: {type : String, },
   resetTokenExpire:{type : Date }
 },

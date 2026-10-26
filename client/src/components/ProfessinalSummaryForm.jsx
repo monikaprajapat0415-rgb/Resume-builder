@@ -4,6 +4,7 @@ import { LuSparkles } from 'react-icons/lu';
 import {BiLoaderAlt} from 'react-icons/bi'
 import { useSelector } from 'react-redux'
 import api from '../configs/api';
+import { handlePlanError } from '../utils/plan'
 import toast from 'react-hot-toast';
 import React, { useState } from 'react'
 
@@ -23,7 +24,7 @@ const ProfessinalSummaryForm = ({data,onChange, setResumeData}) => {
             });
             setResumeData(prev => ({...prev, professional_summary: response.data.enhancedContent}))
         } catch (error) {
-            toast.error(error?.response?.data?.message || error.message || "An error occurred while generating summary. Please try again.")
+            if (!handlePlanError(error)) toast.error(error?.response?.data?.message || error.message || "An error occurred while generating summary. Please try again.")
         }
         finally{
             setIsGenerating(false);

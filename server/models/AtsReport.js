@@ -7,6 +7,9 @@ const AtsReportSchema = new mongoose.Schema({
     fileName: { type: String },
     score: { type: Number },
     report: { type: mongoose.Schema.Types.Mixed },
+    // the text read from the file, kept private to its owner so "Apply fixes" can work from it later
+    sourceText: { type: String, select: false, maxlength: 30000 },
+    fixedResumeId: { type: mongoose.Schema.Types.ObjectId, default: null },
 }, { timestamps: true });
 
 export default mongoose.model("AtsReport", AtsReportSchema);

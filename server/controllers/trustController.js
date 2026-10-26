@@ -87,3 +87,29 @@ export const adminDeleteTrust = async (req, res) => {
         return res.status(200).json({ message: 'Deleted' });
     } catch (error) { return res.status(400).json({ message: error.message }); }
 };
+
+// POST /api/home/trust/review (signed in). A user's own words, sent after they download a resume.
+// It is saved HIDDEN: nothing is shown on the site until an admin reads it and publishes it, and only if the
+// person ticked the box saying we may show it. One per person per 30 days.
+export const submitUserReview = async (req, res) => {
+    try {
+        const b = req.body || {};
+        if (b.website) return res.status(200).json({ message: 'Thank you!' }); // honeypot: bots fill hidden fields
+        const quote = String(b.quote || '').trim().slice(0, 500);
+        const rating = Math.round(Number(b.rating));
+        if (!(rating >= 1 && rating <= 5)) return res.status(400).json({ message: 'Please choose a star rating.' });
+        if (quote.length < 10) return res.status(400).json({ message: 'Please write at least a short sentence (10 characters).' });
+        const user = await User.findById(req.userId).select('name');
+        if (!user) return res.status(401).json({ message: 'Unauthorized' });
+        const recent = await TrustItem.findOne({ submittedBy: req.userId, createdAt: { $gt: new Date(Date.now() - 30 * 86400000) } }).select('_id');
+        if (recent) return res.status(200).json({ message: 'Thank you! We already have your feedback.' });
+        const consent = b.consent === true;
+        const name = String(b.name || '').trim().slice(0, 80) || String(user.name || '').split(' ')[0] || 'Job seeker';
+        await TrustItem.create({
+            kind: 'review', name, role: String(b.role || '').trim().slice(0, 80), location: String(b.location || '').trim().slice(0, 60),
+            quote, rating, reviewerType: 'job seeker', permission: consent, published: false, source: 'user', submittedBy: req.userId,
+            proof: `Sent from the resume builder by a signed-in user${consent ? ' (agreed to be shown)' : ' (did NOT agree to be shown)'}`,
+        });
+        return res.status(201).json({ message: 'Thank you! Your feedback was sent.' });
+    } catch (e) { console.error('[trust] user review failed:', e.message); return res.status(500).json({ message: 'Could not send your feedback. Please try again.' }); }
+};

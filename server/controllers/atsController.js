@@ -152,7 +152,7 @@ export const analyze = async (req, res) => {
             return res.status(502).json({ message: 'The analysis service is busy right now. Your check was not used - please try again in a moment.' });
         }
 
-        const saved = await AtsReport.create({ userId: user._id, email: key, fileName: String(file.originalname || 'resume').slice(0, 120), score: report.score, report });
+        const saved = await AtsReport.create({ userId: user._id, email: key, fileName: String(file.originalname || 'resume').slice(0, 120), score: report.score, report, sourceText: String(extracted.text || '').slice(0, 30000) });
         const left = await AtsUsage.findOne({ email: key });
         return res.status(200).json({
             id: saved._id, fileName: saved.fileName, createdAt: saved.createdAt, report,

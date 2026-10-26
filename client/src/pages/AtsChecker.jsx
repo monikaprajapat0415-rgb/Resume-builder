@@ -8,6 +8,8 @@ import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import AtsReport from '../components/ats/AtsReport'
 import api from '../configs/api'
+import { useNavigate } from 'react-router-dom'
+import { handlePlanError } from '../utils/plan'
 import { LuExternalLink, LuBriefcase, LuUpload, LuFileText, LuX, LuLock, LuInfo, LuShieldCheck, LuZap, LuTarget, LuChevronDown } from 'react-icons/lu'
 import { BiLoaderAlt } from 'react-icons/bi'
 
@@ -47,6 +49,22 @@ const AtsChecker = () => {
   const [busy, setBusy] = useState(false)
   const [result, setResult] = useState(null) // { report, fileName }
   const input = useRef(null)
+  const navigate = useNavigate()
+  const [applying, setApplying] = useState(false)
+  // Builds a new resume with the report's fixes applied, then opens it in the builder so it can be edited.
+  const applyFixes = async () => {
+    if (!result?.id || applying) return
+    setApplying(true)
+    try {
+      const { data } = await api.post(`/api/ats/reports/${result.id}/apply`, {}, { headers: { Authorization: token }, timeout: 120000 })
+      try { sessionStorage.setItem(`ats_fix_${data.resumeId}`, JSON.stringify({ applied: data.applied || [], needsYou: data.needsYou || [] })) } catch { /* ignore */ }
+      trackEvent('ats_fixes_applied', { score: result.report?.score })
+      navigate(`/app/builder/${data.resumeId}`)
+    } catch (err) {
+      if (!handlePlanError(err)) toast.error(err.response?.data?.message || 'Could not apply the fixes. Please try again.')
+    }
+    setApplying(false)
+  }
   const resultRef = useRef(null)
   const headers = { headers: { Authorization: token } }
 
@@ -72,7 +90,7 @@ const AtsChecker = () => {
       form.append('resume', file)
       if (jd.trim()) form.append('jobDescription', jd.trim())
       const { data } = await api.post('/api/ats/analyze', form, { headers: { Authorization: token }, timeout: 90000 })
-      setResult({ report: data.report, fileName: data.fileName })
+      setResult({ id: data.id, report: data.report, fileName: data.fileName })
       trackEvent('ats_check', { score: data.report?.score, for_job: job ? 'yes' : 'no' })
       trackEvent('ats_check_completed', { score: data.report?.score, for_job: job ? 'yes' : 'no' })
       setFile(null); loadStatus()
@@ -87,7 +105,7 @@ const AtsChecker = () => {
   const openLast = async () => {
     try {
       const { data } = await api.get(`/api/ats/reports/${status.last.id}`, headers)
-      setResult({ report: data.report, fileName: data.fileName })
+      setResult({ id: data.id, report: data.report, fileName: data.fileName })
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
     } catch { toast.error('Could not open that report.') }
   }
@@ -190,7 +208,7 @@ const AtsChecker = () => {
               </button>
               <p className='text-xs text-slate-400 text-center mt-3 flex items-center justify-center gap-1'>
                 <LuShieldCheck className='size-3.5' />
-                {status.left} of {status.limit} free checks left. We don't keep your file - only the report is saved to your account.
+                {status.left} of {status.limit} free checks left. We don't keep your file. We save the report, and the text read from it so you can apply fixes later. Only you can see them.
               </p>
             </form>
           )}
@@ -218,7 +236,7 @@ const AtsChecker = () => {
                 <span>That was your last ATS check. The ATS checker is now turned off for your account. If you need more checks, please <Link to='/contact-us' className='underline'>contact us</Link>.</span>
               </div>
             )}
-            {result && <AtsReport report={result.report} fileName={result.fileName} />}
+            {result && <AtsReport report={result.report} fileName={result.fileName} onApply={result.id ? applyFixes : undefined} applying={applying} />}
             {result && job && (
               <div className='mt-4 flex flex-wrap items-center gap-3 bg-white border border-slate-200 rounded-xl p-4'>
                 <p className='text-sm text-slate-600 flex-1 min-w-[12rem]'>Fix the missing keywords above, then apply for <b>{job.title}</b> at {job.company}.</p>
