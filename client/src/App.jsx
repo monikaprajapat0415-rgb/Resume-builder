@@ -69,6 +69,8 @@ import AdminPages from "./pages/admin/AdminPages";
 import AdminPageEditor from "./pages/admin/AdminPageEditor";
 import AdminSiteContent from "./pages/admin/AdminSiteContent";
 import AdminTrust from "./pages/admin/AdminTrust";
+import AdminPlan from "./pages/admin/AdminPlan";
+import Pricing from "./pages/Pricing";
 import CustomPage from "./pages/CustomPage";
 import Features from "./pages/Features";
 import AtsChecker from "./pages/AtsChecker";
@@ -190,6 +192,7 @@ const App = () => {
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/examples" element={<ExamplesIndex />} />
         <Route path="/examples/:slug" element={<ExampleDetail />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/templates" element={<TemplatesIndex />} />
         <Route path="/templates/:slug" element={<TemplateLanding />} />
 
@@ -209,6 +212,7 @@ const App = () => {
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />
           <Route path="site-content" element={<AdminSiteContent />} />
           <Route path="trust" element={<AdminTrust />} />
+          <Route path="plan" element={<AdminPlan />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="seo" element={<AdminSeo />} />

@@ -8,6 +8,7 @@ import { BiLoaderAlt } from 'react-icons/bi'
 import { LuArrowLeft, LuArrowRight, LuCheck, LuCopy, LuDownload, LuPrinter, LuSparkles, LuTriangleAlert, LuFileText, LuPlus, LuLightbulb, LuRefreshCw } from 'react-icons/lu'
 import SEO from '../components/SEO'
 import api from '../configs/api'
+import { handlePlanError } from '../utils/plan'
 import CvDocument from '../components/cv/CvDocument'
 import { Area, Field, Lines, Repeater, Text, inputCls } from '../components/cv/CvFields'
 import { ChipInput, ListInput } from '../components/cv/CvChips'
@@ -125,7 +126,7 @@ const CvBuilder = () => {
       trackEvent('resume_generated', { type: 'cv', regenerated: doc.generated ? 'yes' : 'no' })
       toast.success('Your CV is ready - review it below')
     } catch (e) {
-      toast.error(e.response?.data?.message || e.message || 'Could not generate your CV. Please try again.')
+      if (!handlePlanError(e)) toast.error(e.response?.data?.message || e.message || 'Could not generate your CV. Please try again.')
     }
     setGenerating(false)
   }

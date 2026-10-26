@@ -111,7 +111,7 @@ export const getUsers = async (req, res) => {
             filter.$or = [{ name: rx }, { email: rx }];
         }
         const [users, total] = await Promise.all([
-            User.find(filter).select('name email role isVerified authProvider createdAt').sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit),
+            User.find(filter).select('name email role isVerified authProvider createdAt planUntil').sort({ createdAt: -1 }).skip((page - 1) * limit).limit(limit),
             User.countDocuments(filter),
         ]);
         const usage = await AtsUsage.find({ email: { $in: users.map((u) => emailKey(u.email)) } });

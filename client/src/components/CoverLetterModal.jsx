@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../configs/api'
+import { handlePlanError } from '../utils/plan'
 import { LuX, LuMail, LuCopy, LuDownload } from 'react-icons/lu'
 import { BiLoaderAlt } from 'react-icons/bi'
 
@@ -27,7 +28,7 @@ const CoverLetterModal = ({ resumeId, onClose }) => {
       const { data } = await api.post('/api/ai/cover-letter', { resumeId, jobDescription, jobTitle, companyName }, { headers: { Authorization: token } });
       setLetter(data.coverLetter || '');
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message || 'Could not generate cover letter. Please try again.');
+      if (!handlePlanError(error)) toast.error(error.response?.data?.message || error.message || 'Could not generate cover letter. Please try again.');
     }
     setIsLoading(false);
   }

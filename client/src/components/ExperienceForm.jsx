@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import api from '../configs/api';
+import { handlePlanError } from '../utils/plan'
 import toast from 'react-hot-toast';
 // import { Loader2 } from 'lucide-react';
 import { FaBriefcase } from 'react-icons/fa';
@@ -43,7 +44,7 @@ const ExperienceForm = ({ data, onChange }) => {
             const { data } = await api.post('/api/ai/enhance-job-desc', { userContent: prompt }, { headers: { Authorization: token } });
             updateExperience(index, 'description', data.enhancedContent);
         } catch (error) {
-            toast.error(error?.response?.data?.message || error.message || "An error occurred while generating description. Please try again.");
+            if (!handlePlanError(error)) toast.error(error?.response?.data?.message || error.message || "An error occurred while generating description. Please try again.");
         } finally {
             setGeneratingIndex(-1);
         }

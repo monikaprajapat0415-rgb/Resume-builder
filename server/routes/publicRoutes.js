@@ -12,6 +12,8 @@ const publicRouter = express.Router();
 publicRouter.post('/contact', contactLimiter, submitMessage);
 publicRouter.get('/pages/:slug', getPublicPage);
 publicRouter.get('/site-content', getSiteContent);
+import { getPublicPlan } from '../controllers/planController.js';
+publicRouter.get('/plan', getPublicPlan);
 publicRouter.get('/home/trust', getHomeTrust);
 publicRouter.post('/home/trust/review', protect, feedbackLimiter, submitUserReview);
 export default publicRouter;

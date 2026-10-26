@@ -1,4 +1,5 @@
 import { communitySitemapEntries } from './communityController.js';
+import { isPlanEnabled } from './planController.js';
 import { STATIC_ROUTES, STATIC_LASTMOD } from '../utils/staticSitemapRoutes.js';
 import Blog from "../models/Blog.js";
 import Category from "../models/Category.js";
@@ -128,6 +129,7 @@ export const getBlogSitemapXml = async (req, res) => {
         posts.forEach((p) => { const t = +new Date(p.modifiedAt || p.date); if (p.category && (!newest[p.category] || t > newest[p.category])) newest[p.category] = t; });
 
         const urls = [
+            ...((await isPlanEnabled()) ? [entry('/pricing', STATIC_LASTMOD, 'monthly')] : []),
             ...STATIC_ROUTES.map((p) => entry(p, STATIC_LASTMOD, p === '/' ? 'daily' : 'weekly')),
             ...posts.map((post) => {
                 const img = absUrl(post.coverImage);
