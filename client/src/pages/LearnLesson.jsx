@@ -148,7 +148,7 @@ const LearnLesson = () => {
           </div>
         </aside>
 
-        <article className='min-w-0' style={{ fontFamily: reading.stack }}>
+        <article className='min-w-0 lesson-font' style={{ fontFamily: reading.stack, '--lf': reading.stack }}>
           <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-4'>
             <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/learn' className='hover:text-slate-600'>Learn</Link> › <Link to={`/learn/${course.slug}`} className='hover:text-slate-600'>{course.title}</Link>
           </nav>

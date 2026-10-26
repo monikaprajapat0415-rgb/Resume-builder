@@ -32,6 +32,9 @@
   {@apply outline-none focus:ring border border-gray-300 
     focus:ring-blue-500 focus:border-blue-500 rounded-lg resize-none;}
 }
+/* The global `* { font-family }` rule above sets a font on every element, so a font set on the article never reaches them. This applies the chosen font to everything inside, except code. */
+.lesson-font, .lesson-font * { font-family: var(--lf, 'Outfit', sans-serif); }
+.lesson-font pre, .lesson-font pre *, .lesson-font code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 /* Lesson reading options: the size comes from --ls (set on .lesson-text), the font family is set on the article. */
 .lesson-text p, .lesson-text li { font-size: var(--ls, 16px); }
 .lesson-text h2 { font-size: calc(var(--ls, 16px) * 1.5); }
