@@ -9,7 +9,7 @@ import { timeAgo } from '../utils/jobText'
 import { CATEGORIES, catShort } from '../utils/workTaxonomy'
 import { LuSearch, LuMapPin, LuBriefcase, LuWifi, LuArrowRight, LuUserCheck, LuBuilding2 } from 'react-icons/lu'
 
-const DESC = 'Jobs for office, factory and skilled workers worldwide. Find office jobs, factory work, trade jobs and daily wage work, and apply directly.'
+const DESC = 'Jobs for Office, Factory & Skilled Workers worldwide. Find office jobs, factory work, trade jobs and daily wage work, and apply directly.'
 
 const COUNTRY_SLUG = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 const KIND_SLUG = { corporate: 'office-jobs', factory: 'factory-jobs', skilled_trade: 'skilled-trade-jobs', daily_wage: 'daily-wage-jobs' }
@@ -60,13 +60,13 @@ const Jobs = ({ landing = false }) => {
   return (
     <div>
       {landing && page_?.seo ? <SEO title={page_.seo.title.replace(/ \| Prime Resume AI$/, '')} description={page_.seo.description} canonical={page_.seo.canonical} robots={filtered || page > 1 ? 'noindex, follow' : page_.seo.robots} structuredData={page_.seo.jsonLd} path={page_.content?.path} /> : landing ? <SEO title='Jobs' noindex /> :
-      <SEO title='Jobs for office, factory and skilled workers' description={DESC} keywords='jobs worldwide, factory jobs, daily wage jobs, electrician jobs, jobs in India, jobs in USA, jobs UK, jobs Canada, jobs Australia, jobs UAE, remote jobs' path='/jobs'
+      <SEO title='Jobs for Office, Factory & Skilled Workers' description={DESC} keywords='jobs worldwide, factory jobs, daily wage jobs, electrician jobs, jobs in India, jobs in USA, jobs UK, jobs Canada, jobs Australia, jobs UAE, remote jobs' path='/jobs'
         robots={filtered || page > 1 || category || country ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />}
       <NavBar />
       <section className='max-w-5xl mx-auto px-4 py-12'>
         <nav aria-label='Breadcrumb' className='text-sm text-slate-500 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › {landing && page_?.content ? <><Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{page_.content.h1}</span></> : <span>Jobs</span>}</nav>
         <div className='text-center max-w-2xl mx-auto mb-8'>
-          <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>{landing ? (page_?.content?.h1 || 'Jobs') : 'Jobs for office, factory and skilled workers'}</h1>
+          <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>{landing ? (page_?.content?.h1 || 'Jobs') : 'Jobs for Office, Factory & Skilled Workers'}</h1>
           {landing ? <p className='text-slate-500 mt-3'>{page_?.content?.intro}</p> : <p className='text-slate-500 mt-3'>{facets.total ? `${facets.total.toLocaleString()} open jobs. ` : ''}Office jobs, factory work, skilled trades and daily wage work in countries around the world. Never pay anyone to get a job.</p>}
         </div>
         <p className='text-center text-sm text-slate-500 -mt-4 mb-8'>Getting ready? <Link to='/jobs/interview-questions' className='text-brand-600 hover:underline'>Interview questions</Link> · <Link to='/jobs/salaries' className='text-brand-600 hover:underline'>Salaries</Link> · <Link to='/jobs/company-reviews' className='text-brand-600 hover:underline'>Company reviews</Link></p>

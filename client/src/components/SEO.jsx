@@ -58,6 +58,8 @@ const SEO = ({
   const isActive = activeId === id;
   useEffect(() => {
     if (isActive) document.head.querySelectorAll("[data-static-seo]").forEach((el) => el.remove());
+    // The server's copy of the structured data is only needed until the page draws its own.
+    if (isActive && structuredData) document.head.querySelectorAll("script[data-seo-ssr]").forEach((el) => el.remove());
   }, [isActive]);
   if (!isActive) return null;
 

@@ -481,7 +481,7 @@ export const ROWS = [
   ['See all', 'Ver todo', 'Tout voir', 'Ver tudo', 'عرض الكل'],
 
   // ---- Jobs, learn, interview, salaries, reviews ----
-  ['Jobs for office, factory and skilled workers', 'Empleos para oficina, fábrica y oficios especializados', "Emplois pour le bureau, l'usine et les métiers qualifiés", 'Vagas para escritório, fábrica e ofícios especializados', 'وظائف للمكاتب والمصانع والمهن الماهرة'],
+  ['Jobs for Office, Factory & Skilled Workers', 'Empleos para oficina, fábrica y oficios especializados', "Emplois pour le bureau, l'usine et les métiers qualifiés", 'Vagas para escritório, fábrica e ofícios especializados', 'وظائف للمكاتب والمصانع والمهن الماهرة'],
   ['Getting ready?', '¿Te estás preparando?', 'Vous vous préparez ?', 'Se preparando?', 'تستعد؟'],
   ['All jobs', 'Todos los empleos', 'Toutes les offres', 'Todas as vagas', 'كل الوظائف'],
   ['Job title, skill or company', 'Puesto, habilidad o empresa', 'Poste, compétence ou entreprise', 'Cargo, competência ou empresa', 'المسمى أو المهارة أو الشركة'],

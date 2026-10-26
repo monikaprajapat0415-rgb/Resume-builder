@@ -20,7 +20,7 @@ const Step = ({ n, title, children }) => (
 
 const HireLanding = () => (
   <div>
-    <SEO title='Hire workers or find work: office, factory and skilled labour' description='Workers anywhere in the world can mark themselves available for office, factory, trade and daily wage work. Approved employers contact them, and contact details stay private until the worker accepts.' keywords='hire workers worldwide, hire electrician, factory workers, daily wage workers, skilled labour, hire staff abroad, available to work' path='/hire' canonical='https://primeresumeai.com/hire'
+    <SEO title='Hire Workers or Find Work Worldwide' description='Workers anywhere can mark themselves available for office, factory, trade and daily wage work. Contact details stay private until the worker accepts.' keywords='hire workers worldwide, hire electrician, factory workers, daily wage workers, skilled labour, hire staff abroad, available to work' path='/hire' canonical='https://primeresumeai.com/hire'
       structuredData={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }} />
     <NavBar />
     <section className='max-w-5xl mx-auto px-4 py-14'>

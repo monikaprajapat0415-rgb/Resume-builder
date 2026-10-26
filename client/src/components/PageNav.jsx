@@ -4,6 +4,7 @@
 //    so there is never a double trail and their own JSON-LD stays the single source of truth.
 //  - Public pages with no breadcrumb of their own also get a BreadcrumbList JSON-LD block.
 //  - Private pages (app, admin, auth links) show the trail but no structured data.
+import { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -114,6 +115,12 @@ export default function PageNav({ className = '' }) {
       item: SITE_URL + (c.to || (pathname.replace(/\/+$/, '') || '/')),
     })),
   } : null;
+
+  // The server already put this breadcrumb in the page; drop its copy once this one draws so it is not listed twice.
+  useEffect(() => {
+    if (!jsonLd) return;
+    document.head.querySelectorAll('script[data-seo-ssr]').forEach((el) => { if (/"@type":"BreadcrumbList"/.test(el.textContent.replace(/\s/g, ''))) el.remove(); });
+  }, [jsonLd?.itemListElement?.length, pathname]);
 
   return (
     <div className={`max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>

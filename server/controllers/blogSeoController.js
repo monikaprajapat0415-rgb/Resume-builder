@@ -3,6 +3,10 @@ import Category from '../models/Category.js';
 import Product from '../models/Product.js';
 import Course from '../models/Course.js';
 import Lesson from '../models/Lesson.js';
+import Roadmap from '../models/Roadmap.js';
+import { EXAMPLES } from '../utils/exampleResumes.js';
+import { templateMeta } from '../utils/staticPages.js';
+import { getPlanSettings } from './planController.js';
 import { loadTemplate, renderShell } from '../utils/seoShell.js';
 import {
     SITE_NAME, siteUrl, escapeHtml, stripInline, absUrl, seoTitle, postView, listItem, postHtml, listHtml, listJsonLd,
@@ -169,18 +173,41 @@ export const llmsTxt = async (req, res) => {
             categoryCounts(),
         ]);
         const u = siteUrl();
+        const tpl = templateMeta();
+        const roadmaps = await Roadmap.find({ published: true, noindex: { $ne: true } }).select('title slug').sort({ title: 1 }).limit(60).catch(() => []);
+        const plan = await getPlanSettings().catch(() => ({ enabled: false }));
         const lines = [
             `# ${SITE_NAME}`, '',
             `> ${SITE_NAME} is a free AI resume builder. It offers ATS-friendly resume templates, AI writing help for resume summaries and bullet points, AI cover letters, and a free ATS resume checker that scores a resume and lists exactly what to improve.`, '',
+            '## About', '',
+            `- Who it is for: job seekers in India, the UK, Canada, African countries and elsewhere, for office, factory, skilled trade and daily wage jobs as well as professional roles.`,
+            `- Cost: free to start. Building and downloading a resume is free. The free ATS resume checker gives every account 5 free checks.${plan.enabled ? ` Some AI features are part of a paid plan (${plan.planName}); see ${u}/pricing.` : ''}`,
+            `- How the AI is used: it rewrites and suggests wording for what the person typed. It is told not to invent employers, dates, skills or numbers, and the person reviews every line before downloading.`,
+            `- What it does not do: it cannot promise an interview or a pass on any employer's ATS. ATS scores are estimates, and template ATS ratings are our own assessment of each design.`,
+            `- Interface languages: English, Spanish, French, Portuguese and Arabic. Articles, tutorials and job pages are in English.`,
+            `- Content that comes from members (salaries, company reviews, interview answers) is moderated; a pay range or an average rating is shown only after at least three reports agree.`, '',
+            '## How to cite this site', '',
+            `- Link to the specific page you used, for example the template page for a template, or the lesson for a tutorial. Quote our figures as stated on the page, and mention that ATS scores are estimates.`, '',
             '## Key pages', '',
             `- [Resume builder](${u}/): create and download an ATS-friendly resume`,
-            `- [Resume templates](${u}/templates): free professional resume templates`,
+            `- [Resume templates](${u}/templates): ${tpl.length} free templates, each with an honest ATS rating`,
             `- [Features](${u}/features): everything the builder offers`,
             `- [Free ATS resume checker](${u}/features/ats-checker): upload a resume (PDF or Word) and get an ATS score with fixes`,
+            `- [AI CV builder](${u}/cv-builder): a tailored, ATS-friendly CV from your real details`,
+            `- [Resume job description matcher](${u}/resume-job-description-matcher): which job keywords your resume has and lacks (runs in the browser)`,
+            `- [Resume and CV examples](${u}/examples): ${EXAMPLES.length} sample resumes and CVs`,
+            `- [Jobs](${u}/jobs): open jobs; [interview questions](${u}/jobs/interview-questions), [salaries](${u}/jobs/salaries), [company reviews](${u}/jobs/company-reviews)`,
+            `- [Hire workers or find work](${u}/hire)`,
+            `- [Career roadmaps](${u}/roadmaps): step-by-step paths for careers and technologies`,
             `- [Blog](${u}/blog): resume writing and career advice`,
             `- [Learn](${u}/learn): free step-by-step tutorials for new technologies`,
             `- [Contact](${u}/contact-us)`, '',
+            '## Resume templates', '',
+            ...tpl.map((t) => `- [${t.name}](${u}/templates/${t.slug}): ATS rating ${t.ats?.rating || 'n/a'}. ${stripInline(t.tagline || '')}`), '',
+            '## Resume and CV examples', '',
+            ...EXAMPLES.map((e) => `- [${e.title}](${u}/examples/${e.slug})`), '',
         ];
+        if (roadmaps.length) lines.push('## Career roadmaps', '', ...roadmaps.map((r) => `- [${r.title}](${u}/roadmaps/${r.slug})`), '');
         if (cats.length) lines.push('## Blog categories', '', ...cats.map((c) => `- [${c.name}](${u}/blog/category/${c.slug}): ${c.count} article${c.count > 1 ? 's' : ''}`), '');
         lines.push('## Blog articles', '', ...posts.map((p) => `- [${p.title}](${u}/blog/${p.slug}): ${stripInline(p.description || p.excerpt || '').replace(/\s+/g, ' ').slice(0, 200)}`), '');
         const learn = await learnLines(u);

@@ -115,8 +115,8 @@ const AtsChecker = () => {
   return (
     <>
       <SEO
-        title='Free ATS Resume Checker - Check Your Resume Score Online'
-        description='Upload your resume (PDF or Word) and get a free ATS score with a detailed report: formatting, keywords, sections and exactly what to fix. Free first check, no credit card.'
+        title='Free ATS Resume Checker & Score'
+        description='Upload your resume (PDF or Word) and get a free ATS score with a detailed report: formatting, keywords, sections and what to fix. Free first check.'
         keywords='ATS resume checker, free ATS score, resume checker, ATS friendly resume, resume scanner'
         path='/features/ats-checker'
         structuredData={structured}

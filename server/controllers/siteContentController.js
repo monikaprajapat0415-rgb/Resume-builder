@@ -1,7 +1,7 @@
 import SiteContent from "../models/SiteContent.js";
 import { SITE_FIELDS, SITE_DEFAULTS } from "../utils/siteContentDefaults.js";
 
-const merged = async () => {
+export const merged = async () => {
     const rows = await SiteContent.find({});
     const values = { ...SITE_DEFAULTS };
     rows.forEach((r) => { if (r.key in SITE_DEFAULTS && r.value !== '') values[r.key] = r.value; });

@@ -40,7 +40,7 @@ const Home = () => {
    <div className="overflow-x-clip">
     <SEO
   title="Prime Resume AI – Free AI Resume Builder & CV Maker Online"
-  description="Create professional resumes in minutes with AI. Choose modern, ATS-friendly templates and download your CV instantly. Free resume builder for freshers and professionals. Stand out with Prime Resume AI! "
+  description="Create professional resumes in minutes with AI. Choose ATS-friendly templates and download your CV. Free resume builder for freshers and professionals. "
   keywords="resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume"
   path="/"
   structuredData={faq.length ? faqJsonLd(faq) : undefined}
