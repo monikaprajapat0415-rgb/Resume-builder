@@ -7,6 +7,7 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
+import { useToolSettings } from '../utils/toolSettings'
 import C from '../content/imageEnhancer.json'
 
 // Product page + tool. The copy (title, FAQ, honesty note) lives in content/imageEnhancer.json and is also served as
@@ -72,6 +73,7 @@ const Compare = ({ before, after }) => {
 
 const ImageEnhancer = () => {
   const { token, user, loading } = useSelector((s) => s.auth)
+  const tools = useToolSettings()
   const [file, setFile] = useState(null)
   const [orig, setOrig] = useState(null)         // { url, w, h }
   const [status, setStatus] = useState(null)
@@ -138,15 +140,36 @@ const ImageEnhancer = () => {
     setBusy(false)
   }
 
+  const hidden = tools.loaded && !tools.imageEnhancer
+  const isAdmin = user?.role === 'admin'
   const left = status?.remaining
   const disabled8k = status && !status.eightK ? '8K is part of the paid plan' : ''
   const nextUrl = `/app?state=login&next=${encodeURIComponent(C.path)}`
 
+  if (hidden && !isAdmin && !loading) {
+    return (
+      <>
+        <SEO title='Image Enhancer is not available' description='This tool is switched off right now.' path={C.path} noindex />
+        <NavBar />
+        <main className='max-w-xl mx-auto px-4 py-24 text-center'>
+          <h1 className='text-2xl font-semibold text-slate-800'>The Image Enhancer is not available right now</h1>
+          <p className='text-slate-600 mt-3'>Please check back later. Meanwhile you can build a resume or check one for free.</p>
+          <p className='mt-6 flex flex-wrap justify-center gap-3'>
+            <Link to='/app' className='px-5 py-2.5 rounded-full bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium'>Free resume builder</Link>
+            <Link to='/features/ats-checker' className='px-5 py-2.5 rounded-full border border-slate-300 text-sm text-slate-700 hover:bg-slate-50'>ATS resume checker</Link>
+          </p>
+        </main>
+        <Footer />
+      </>
+    )
+  }
+
   return (
     <>
-      <SEO title={C.title} description={C.description} keywords={C.keywords} path={C.path} structuredData={structured} />
+      <SEO title={C.title} description={C.description} keywords={C.keywords} path={C.path} structuredData={structured} noindex={hidden} />
       <NavBar />
       <main>
+        {hidden && isAdmin && <p className='bg-amber-100 text-amber-900 text-sm text-center px-4 py-2' role='status'>This tool is hidden from visitors. You can see and try it because you are an admin. <Link to='/admin/tools' className='underline font-medium'>Show it</Link></p>}
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
           <div className='max-w-3xl mx-auto px-4 pt-12 pb-8 text-center'>
             <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuShieldCheck className='size-3.5' />Not saved on our servers</span>

@@ -148,6 +148,9 @@ adminRouter.put('/trust/:id', adminUpdateTrust);
 adminRouter.delete('/trust/:id', adminDeleteTrust);
 
 import { adminGetPlan, adminSavePlan, adminSetUserPlan } from '../controllers/planController.js';
+import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
+adminRouter.get('/tools', adminGetTools);
+adminRouter.put('/tools', adminSaveTools);
 adminRouter.get('/plan', adminGetPlan);
 adminRouter.put('/plan', adminSavePlan);
 adminRouter.post('/users/:id/plan', adminSetUserPlan);

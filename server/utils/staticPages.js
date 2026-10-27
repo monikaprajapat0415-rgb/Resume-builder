@@ -31,7 +31,8 @@ const page = ({ path: p, title, description, keywords, body, jsonLd = [], robots
     robots: robots || 'index, follow, max-image-preview:large', type: 'website', body: wrap(body), jsonLd,
 });
 
-const MAIN_LINKS = [
+export const flags = { imageEnhancer: true };   // set from Admin > Free tools by staticSeoController before a page is built
+const MAIN_LINKS_ALL = [
     ['Free resume builder', '/app', 'build and download an ATS-friendly resume'],
     ['Resume templates', '/templates', 'free ATS-friendly layouts, each with an honest ATS rating'],
     ['Free ATS resume checker', '/features/ats-checker', 'upload a PDF or Word resume and get a score with fixes'],
@@ -44,6 +45,7 @@ const MAIN_LINKS = [
     ['Free tutorials', '/learn', 'courses with lessons, tasks and downloads'],
     ['Blog', '/blog', 'resume writing and career advice'],
 ];
+const mainLinks = () => MAIN_LINKS_ALL.filter(([, h]) => flags.imageEnhancer || h !== '/products/image-enhancer');
 
 // ---- Home. `site` is the merged Admin > Homepage text, so the server copy follows what the admin edits.
 export const homePage = (site) => {
@@ -68,7 +70,7 @@ ${ul([
 <li><strong>Download, check and apply.</strong> Download your resume, test it with the ATS checker, then find jobs and prepare with interview questions.</li>
 </ol>
 <h2>What you can do here</h2>
-${links(MAIN_LINKS)}
+${links(mainLinks())}
 <h2>${esc(site.career_title)}</h2>
 <p>${esc(site.career_text)}</p>
 ${links([['Interview questions', '/jobs/interview-questions', 'with short model answers'], ['Salaries', '/jobs/salaries', 'ranges shown only when several reports agree'], ['Company reviews', '/jobs/company-reviews', 'ratings shown only with enough reviews'], ['Career roadmaps', '/roadmaps']])}
@@ -221,6 +223,7 @@ ${faqHtml(data().faqs.hire)}
 
 // ---- Image enhancer (a product: tool page). Copy comes from client/src/content/imageEnhancer.json.
 export const imageEnhancerPage = () => {
+    if (!flags.imageEnhancer) return null;   // hidden by the admin: the caller answers 404
     const c = data().imageEnhancer;
     return page({
         path: c.path, title: c.title, description: c.description, keywords: c.keywords,

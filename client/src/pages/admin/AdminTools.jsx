@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import toast from 'react-hot-toast'
+import api from '../../configs/api'
+import { invalidateToolSettings } from '../../utils/toolSettings'
+
+const Switch = ({ on, busy, onChange, label }) => (
+  <button type='button' role='switch' aria-checked={on} aria-label={label} disabled={busy} onClick={() => onChange(!on)}
+    className={`relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition disabled:opacity-60 ${on ? 'bg-brand-600' : 'bg-slate-300'}`}>
+    <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform ${on ? 'translate-x-6' : 'translate-x-1'}`} />
+  </button>
+)
+
+const AdminTools = () => {
+  const { token } = useSelector((s) => s.auth)
+  const headers = { headers: { Authorization: token } }
+  const [data, setData] = useState(null)
+  const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    api.get('/api/admin/tools', headers).then(({ data }) => setData(data)).catch(() => toast.error('Could not load the tool settings.'))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  if (!data) return <p className='text-slate-400'>Loading…</p>
+
+  const save = async (patch) => {
+    setBusy(true)
+    try {
+      const { data: d } = await api.put('/api/admin/tools', patch, headers)
+      setData((x) => ({ ...x, settings: d.settings })); invalidateToolSettings(); toast.success(d.message)
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not save.') }
+    setBusy(false)
+  }
+  const on = data.settings.imageEnhancer
+  const u = data.usage?.imageEnhancer
+
+  return (
+    <div className='max-w-3xl'>
+      <h1 className='text-2xl font-semibold text-slate-800 mb-1'>Free tools</h1>
+      <p className='text-sm text-slate-500 mb-6'>Show or hide the free tools on the website. A change takes effect within a few seconds.</p>
+
+      <section className='bg-white rounded-xl border border-slate-200 p-5'>
+        <div className='flex items-start justify-between gap-4'>
+          <div className='min-w-0'>
+            <h2 className='font-semibold text-slate-800 flex items-center gap-2'>Image Enhancer
+              <span className={`text-xs font-medium rounded-full px-2.5 py-0.5 ${on ? 'bg-green-100 text-green-700' : 'bg-slate-200 text-slate-600'}`}>{on ? 'Visible' : 'Hidden'}</span>
+            </h2>
+            <p className='text-sm text-slate-600 mt-1'>Sharpens photos and upscales them to 2K, 4K or 8K. Page: <Link to='/products/image-enhancer' className='text-brand-700 underline'>/products/image-enhancer</Link></p>
+          </div>
+          <Switch on={on} busy={busy} onChange={(v) => save({ imageEnhancer: v })} label='Show the Image Enhancer to visitors' />
+        </div>
+
+        <ul className='mt-4 text-sm text-slate-600 list-disc pl-5 space-y-1'>
+          {on
+            ? <>
+                <li>Visitors see the tool page, the card on the Products page, the sitemap entry and the link in llms.txt.</li>
+                <li>Today: {u?.today ?? 0} picture{u?.today === 1 ? '' : 's'} enhanced by {u?.usersToday ?? 0} user{u?.usersToday === 1 ? '' : 's'} (admins are not counted).</li>
+              </>
+            : <>
+                <li>Visitors see "not available right now" instead of the tool, and the card is removed from the Products page.</li>
+                <li>Search engines get a "not found" answer, and the page is taken out of the sitemap and llms.txt, so it drops out of search over time. Turn it back on and request indexing in Search Console to restore it.</li>
+                <li>Uploads are refused for everyone except admins, so you can still test it.</li>
+              </>}
+        </ul>
+        <p className='text-xs text-slate-400 mt-4'>Daily limits and the paid 8K option are set elsewhere: limits in the server code, 8K under Paid plan.</p>
+      </section>
+    </div>
+  )
+}
+
+export default AdminTools

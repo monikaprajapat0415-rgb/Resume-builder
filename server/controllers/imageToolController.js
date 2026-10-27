@@ -1,6 +1,7 @@
 import multer from 'multer';
 import User from '../models/User.js';
 import ToolUsage from '../models/ToolUsage.js';
+import { isToolOn } from './toolSettingsController.js';
 import { getPlanSettings, isPaidUser } from './planController.js';
 import { enhanceImage, TARGETS, STRENGTHS, FORMATS, MAX_INPUT_PIXELS } from '../utils/imageEnhance.js';
 
@@ -35,9 +36,10 @@ export const getStatus = async (req, res) => {
     try {
         const [user, plan] = await Promise.all([User.findById(req.userId).select('role planUntil'), getPlanSettings()]);
         const admin = user?.role === 'admin';
+        const on = await isToolOn('imageEnhancer');
         const used = admin ? 0 : await usedToday(req.userId);
         const eightK = !(plan.enabled && plan.gates?.image_8k) || isPaidUser(user);
-        return res.status(200).json({ limit: admin ? null : LIMITS.freePerDay, used, remaining: admin ? null : Math.max(0, LIMITS.freePerDay - used), eightK, maxFileMb: LIMITS.maxFileBytes / 1024 / 1024 });
+        return res.status(200).json({ enabled: on, limit: admin ? null : LIMITS.freePerDay, used, remaining: admin ? null : Math.max(0, LIMITS.freePerDay - used), eightK, maxFileMb: LIMITS.maxFileBytes / 1024 / 1024 });
     } catch (e) { return res.status(500).json({ message: 'Could not load your limits.' }); }
 };
 
@@ -52,6 +54,7 @@ export const enhance = async (req, res) => {
     try {
         const [user, plan] = await Promise.all([User.findById(req.userId).select('role planUntil'), getPlanSettings()]);
         const admin = user?.role === 'admin';
+        if (!admin && !(await isToolOn('imageEnhancer'))) return res.status(404).json({ code: 'TOOL_OFF', message: 'The image enhancer is not available right now.' });
         if (target === '8k' && plan.enabled && plan.gates?.image_8k && !isPaidUser(user)) {
             return res.status(402).json({ code: 'PLAN_REQUIRED', feature: 'image_8k', pricingUrl: '/pricing', message: `8K output is part of the ${plan.planName} plan. You can still make 4K for free.` });
         }

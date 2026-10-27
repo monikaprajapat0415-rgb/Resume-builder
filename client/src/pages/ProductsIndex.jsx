@@ -4,6 +4,7 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
+import { useToolSettings } from '../utils/toolSettings'
 import { formatPrice } from '../utils/inlineText'
 
 export const StockBadge = ({ status }) => {
@@ -18,6 +19,7 @@ const ProductsIndex = () => {
   const [loading, setLoading] = useState(true)
   const [params, setParams] = useSearchParams()
   const active = params.get('category') || ''
+  const tools = useToolSettings()
 
   useEffect(() => {
     api.get('/api/products/categories').then(({ data }) => setCategories(data.categories || [])).catch(() => {})
@@ -62,7 +64,7 @@ const ProductsIndex = () => {
           </div>
         )}
 
-        {!active && (
+        {!active && tools.imageEnhancer && (
           <Link to='/products/image-enhancer' className='group mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white p-5 sm:p-6 hover:shadow-md transition'>
             <span className='shrink-0 size-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg' aria-hidden>4K</span>
             <span className='min-w-0'>

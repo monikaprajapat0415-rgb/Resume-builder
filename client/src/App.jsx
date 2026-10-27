@@ -68,6 +68,7 @@ const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
 const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminTools = lazy(() => import("./pages/admin/AdminTools"));
 const AdminPlan = lazy(() => import("./pages/admin/AdminPlan"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const CustomPage = lazy(() => import("./pages/CustomPage"));
@@ -223,6 +224,7 @@ const App = () => {
           <Route path="site-content" element={<AdminSiteContent />} />
           <Route path="trust" element={<AdminTrust />} />
           <Route path="plan" element={<AdminPlan />} />
+          <Route path="tools" element={<AdminTools />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="seo" element={<AdminSeo />} />
