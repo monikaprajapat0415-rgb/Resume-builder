@@ -18,6 +18,7 @@ import employerRouter from './routes/employerRoutes.js'
 import { startRequestMaintenance } from './services/requestMaintenance.js'
 import { startJobScheduler } from "./services/jobSync.js";
 import adminRouter from "./routes/adminRoutes.js";
+import toolRouter from './routes/toolRoutes.js'
 import productRouter from "./routes/productRoutes.js";
 import menuRouter from "./routes/menuRoutes.js";
 import publicRouter from "./routes/publicRoutes.js";
@@ -88,6 +89,7 @@ app.use('/api/jobs', jobRouter)
 app.use('/api/talent', talentRouter)
 app.use('/api/employers', employerRouter)
 app.use('/api/products', productRouter)
+app.use('/api/tools', toolRouter)
 app.use('/api/menu', menuRouter)
 app.use('/api', publicRouter)
 app.use('/api/admin', adminRouter)

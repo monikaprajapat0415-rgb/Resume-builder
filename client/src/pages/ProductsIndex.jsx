@@ -62,6 +62,18 @@ const ProductsIndex = () => {
           </div>
         )}
 
+        {!active && (
+          <Link to='/products/image-enhancer' className='group mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white p-5 sm:p-6 hover:shadow-md transition'>
+            <span className='shrink-0 size-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-lg' aria-hidden>4K</span>
+            <span className='min-w-0'>
+              <span className='block text-xs font-medium text-brand-700'>Free tool</span>
+              <span className='block text-lg font-semibold text-slate-800 group-hover:text-brand-700 transition'>Image Enhancer</span>
+              <span className='block text-sm text-slate-600'>Sharpen soft photos and upscale them to 2K, 4K or 8K. Free with a daily limit, nothing is stored.</span>
+            </span>
+            <span className='sm:ml-auto text-sm font-medium text-brand-700 whitespace-nowrap'>Open the tool →</span>
+          </Link>
+        )}
+
         {loading ? (
           <p className='text-center text-slate-400'>Loading products…</p>
         ) : products.length === 0 ? (

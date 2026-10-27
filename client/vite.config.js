@@ -33,6 +33,7 @@ const staticRoutes = [
   '/resume-job-description-matcher',
   '/templates',
   '/products',
+  '/products/image-enhancer',
   ...templateSlugs.map((slug) => `/templates/${slug}`),
   '/examples',
   ...exampleSlugs.map((slug) => `/examples/${slug}`),

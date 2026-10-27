@@ -4,7 +4,7 @@ import { renderQuestionsIndex, renderQuestion, renderSalariesIndex, renderSalary
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
 import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
-import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire } from '../controllers/staticSeoController.js';
+import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderImageEnhancer } from '../controllers/staticSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
@@ -56,5 +56,6 @@ seoRouter.get('/resume-job-description-matcher', renderMatcher);
 seoRouter.get('/templates', renderTemplatesIndex);
 seoRouter.get('/templates/:slug', renderTemplate);
 seoRouter.get('/hire', renderHire);
+seoRouter.get('/products/image-enhancer', renderImageEnhancer);
 
 export default seoRouter;

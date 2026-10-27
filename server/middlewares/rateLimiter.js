@@ -62,3 +62,13 @@ export const employerLimiter = rateLimit({
     keyGenerator: (req) => req.userId || req.ip,
     message: { message: "Too many requests. Please slow down and try again in a few minutes." },
 });
+
+// Image enhancer: heavy on CPU and memory, so also cap bursts per signed-in user (the daily limit is separate).
+export const imageLimiter = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 15,
+    standardHeaders: true,
+    legacyHeaders: false,
+    keyGenerator: (req) => req.userId || req.ip,
+    message: { message: "You are sending images very quickly. Please wait a few minutes and try again." },
+});

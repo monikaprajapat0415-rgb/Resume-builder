@@ -76,6 +76,7 @@ const AtsChecker = lazy(() => import("./pages/AtsChecker"));
 const CvLanding = lazy(() => import("./pages/CvLanding"));
 const JdMatcher = lazy(() => import("./pages/JdMatcher"));
 const CvBuilder = lazy(() => import("./pages/CvBuilder"));
+const ImageEnhancer = lazy(() => import("./pages/ImageEnhancer"));
 const ProductsIndex = lazy(() => import("./pages/ProductsIndex"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 import SEO from "./components/SEO";
@@ -197,6 +198,7 @@ const App = () => {
         <Route path="/cv-builder" element={<CvLanding />} />
         <Route path="/resume-job-description-matcher" element={<JdMatcher />} />
         <Route path="/products" element={<ProductsIndex />} />
+        <Route path="/products/image-enhancer" element={<ImageEnhancer />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/examples" element={<ExamplesIndex />} />
         <Route path="/examples/:slug" element={<ExampleDetail />} />

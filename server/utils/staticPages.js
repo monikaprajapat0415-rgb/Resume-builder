@@ -38,6 +38,7 @@ const MAIN_LINKS = [
     ['AI CV builder', '/cv-builder', 'a tailored, ATS-friendly CV from your real details'],
     ['Resume job description matcher', '/resume-job-description-matcher', 'see which job keywords your resume has and lacks'],
     ['Resume and CV examples', '/examples', 'ten sample resumes and CVs'],
+    ['Image enhancer', '/products/image-enhancer', 'sharpen photos and upscale them to 2K, 4K or 8K'],
     ['Jobs', '/jobs', 'open jobs for office, factory and skilled work'],
     ['Career roadmaps', '/roadmaps', 'step-by-step paths for careers and technologies'],
     ['Free tutorials', '/learn', 'courses with lessons, tasks and downloads'],
@@ -217,3 +218,28 @@ ${faqHtml(data().faqs.hire)}
 <p>${a('/jobs', 'Browse jobs')} · ${a('/app', 'Create an account')}</p>`,
     jsonLd: [crumbs([['Home', '/'], ['Hire', '/hire']]), faqLd(data().faqs.hire)],
 });
+
+// ---- Image enhancer (a product: tool page). Copy comes from client/src/content/imageEnhancer.json.
+export const imageEnhancerPage = () => {
+    const c = data().imageEnhancer;
+    return page({
+        path: c.path, title: c.title, description: c.description, keywords: c.keywords,
+        body: `<h1>${esc(c.h1)}</h1>
+<p>${esc(c.intro)}</p>
+<h2>How it works</h2>
+<ol>${c.how.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+<h2>What to expect</h2>
+<p>${esc(c.honest)}</p>
+<h3>Works well for</h3>${ul(c.good.map(esc))}
+<h3>Not a fit for</h3>${ul(c.limits.map(esc))}
+<h2>Privacy</h2>
+<p>${esc(c.privacy)}</p>
+${faqHtml(c.faqs)}
+<p>${a('/app?state=register&next=/products/image-enhancer', 'Sign in and enhance a photo')} · ${a('/products', 'More products')} · ${a('/templates', 'Resume templates')}</p>`,
+        jsonLd: [
+            crumbs([['Home', '/'], ['Products', '/products'], [c.name, c.path]]),
+            { '@context': 'https://schema.org', '@type': 'WebApplication', name: `Prime Resume AI ${c.name}`, url: `${siteUrl()}${c.path}`, applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', description: c.description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+            faqLd(c.faqs),
+        ],
+    });
+};

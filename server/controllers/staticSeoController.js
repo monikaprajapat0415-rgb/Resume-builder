@@ -2,7 +2,7 @@ import { loadTemplate } from '../utils/seoShell.js';
 import { SITE_NAME, siteUrl } from '../utils/blogSeo.js';
 import { merged } from './siteContentController.js';
 import { sendShell } from './blogSeoController.js';
-import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage } from '../utils/staticPages.js';
+import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage, imageEnhancerPage } from '../utils/staticPages.js';
 
 // Server-rendered HTML for the public pages that live in the client code (see utils/staticPages.js).
 // Each handler falls through (next) when the client has not been built here or anything fails, so the site still works.
@@ -31,3 +31,4 @@ export const renderMatcher = send(() => matcherPage());
 export const renderTemplatesIndex = send(() => templatesIndexPage());
 export const renderTemplate = send((req) => templatePage(req.params.slug));
 export const renderHire = send(() => hirePage());
+export const renderImageEnhancer = send(() => imageEnhancerPage());
