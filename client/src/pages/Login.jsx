@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 
 
@@ -94,6 +94,8 @@ const Login = () => {
                 {googleEnabled && (
                     <>
                 <div className="flex justify-center mt-6">
+                        {/* Google's sign-in script is loaded only here, on the login screen, not on every page. */}
+                        <GoogleOAuthProvider clientId={googleClientId}>
                         <GoogleLogin
                             onSuccess={handleGoogleSuccess}
                             onError={() => toast.error("Google sign-in failed. Please try again.")}
@@ -101,6 +103,7 @@ const Login = () => {
                             shape="pill"
                             width="300"
                         />
+                        </GoogleOAuthProvider>
                     </div>
     
                     <div className="flex items-center gap-3 mt-6">

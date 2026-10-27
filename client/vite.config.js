@@ -40,6 +40,17 @@ const staticRoutes = [
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        // Libraries that rarely change get their own files, so repeat visitors keep them cached across deploys.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom|react-redux|@reduxjs|redux|immer|reselect)\//.test(id)) return 'vendor-react'
+        },
+      },
+    },
+  },
   plugins: [react(), tailwindcss(), sitemap({
       hostname: 'https://primeresumeai.com',
       dynamicRoutes: staticRoutes,
