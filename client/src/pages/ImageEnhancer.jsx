@@ -225,7 +225,7 @@ const ImageEnhancer = () => {
                     ? <span className='text-sm text-slate-500'>No daily limit for your account</span>
                     : <span className='text-sm text-slate-500'>{left} of {status.limit} free enhancements left today</span>)}
                 </div>
-                {busy && <p className='text-sm text-slate-500 mt-3' role='status'>{target === '8k' ? '8K pictures can take about 20 seconds. ' : ''}Please keep this page open.</p>}
+                {busy && <p className='text-sm text-slate-500 mt-3' role='status'>{target === '8k' ? '8K pictures can take 30 to 60 seconds. ' : 'AI enhancing takes about 10 to 20 seconds. '}Please keep this page open.</p>}
               </div>
             )}
 

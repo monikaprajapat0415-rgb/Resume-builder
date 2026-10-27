@@ -1,8 +1,10 @@
 import sharp from 'sharp';
+import { aiUpscale4x, isAiAvailable } from './aiUpscale.js';
 
 // Image enhancer: upscales a photo to a 2K / 4K / 8K long edge and sharpens it, using the sharp library on this server.
-// This is classic image processing (Lanczos resampling + unsharp masking), NOT an AI model. It makes a picture larger and
-// visibly crisper and can reduce a soft look, but it cannot recreate detail that the original never contained. The page says so.
+// Two engines: "ai" (Real-ESRGAN small model, 4x, on the CPU: rebuilds edges and texture in soft or small pictures; it
+// invents plausible detail, it does not recover the true original) and "classic" (Lanczos + unsharp masking, the fallback).
+// The page says so.
 // Nothing is written to disk: the upload and the result only live in memory for the length of the request.
 
 export const TARGETS = { '2k': 2560, '4k': 3840, '8k': 7680 };       // long edge in pixels
@@ -44,6 +46,24 @@ export async function enhanceImage(input, opts = {}) {
     let outW = Math.round(inWidth * scale), outH = Math.round(inHeight * scale);
     if (outW * outH > MAX_OUTPUT_PIXELS) { const k = Math.sqrt(MAX_OUTPUT_PIXELS / (outW * outH)); outW = Math.floor(outW * k); outH = Math.floor(outH * k); }
 
+    // AI pass: the model makes 4x. Feed it a picture whose 4x result is about the target size (never bigger than the
+    // input needs), so time stays reasonable, then the classic code below finishes the size and sharpening.
+    let engine = 'classic';
+    if (opts.engine !== 'classic' && !hasAlpha && upscaled && (await isAiAvailable())) {
+        const cap = Math.ceil(TARGETS[target] / 4);
+        let ai = { data, w: info.width, h: info.height };
+        const long = Math.max(info.width, info.height);
+        if (long > cap) {
+            const r = await sharp(data, rawOf(data, info)).resize(cap, cap, { fit: 'inside', kernel: 'lanczos3' }).raw().toBuffer({ resolveWithObject: true });
+            ai = { data: r.data, w: r.info.width, h: r.info.height };
+        }
+        try {
+            const up = await aiUpscale4x(ai.data, ai.w, ai.h);
+            data = up.data; info = { width: up.width, height: up.height, channels: 3 };
+            engine = 'ai';
+        } catch (e) { console.error('AI upscale failed, using classic:', e.message); }
+    }
+
     // Grow in steps of at most 2x with a light sharpen between steps; big jumps in one go look softer.
     let curW = info.width, curH = info.height;
     while (upscaled && outW / curW > 2.0001) {
@@ -53,11 +73,11 @@ export async function enhanceImage(input, opts = {}) {
     }
 
     // The final sharpen grows a little with the enlargement, because enlarged pictures look softer.
-    const grow = Math.min(2.2, Math.max(1, Math.sqrt(scale)));
+    const grow = engine === 'ai' ? 1 : Math.min(2.2, Math.max(1, Math.sqrt(scale)));
     let p = sharp(data, rawOf(data, info));
     if (upscaled || outW !== curW || outH !== curH) p = p.resize(outW, outH, { kernel: 'lanczos3', fit: 'fill' });
-    p = p.sharpen({ sigma: st.sigma * grow, m1: st.m1, m2: st.m2 });
-    if (st.clarity > 0) p = p.sharpen({ sigma: 3.5 * grow, m1: st.clarity * 0.5, m2: st.clarity * 0.5 }); // local contrast ("clarity")
+    p = engine === 'ai' ? p.sharpen({ sigma: 0.8, m1: st.m1 * 0.5, m2: st.m2 * 0.5 }) : p.sharpen({ sigma: st.sigma * grow, m1: st.m1, m2: st.m2 });
+    if (st.clarity > 0 && engine !== 'ai') p = p.sharpen({ sigma: 3.5 * grow, m1: st.clarity * 0.5, m2: st.clarity * 0.5 }); // local contrast ("clarity")
     if (opts.contrast) p = p.normalise({ lower: 1, upper: 99 }).modulate({ saturation: 1.05 });
 
     if (format === 'jpeg') p = p.flatten({ background: '#ffffff' }).jpeg({ quality: 92, chromaSubsampling: '4:4:4', mozjpeg: true });
@@ -65,5 +85,5 @@ export async function enhanceImage(input, opts = {}) {
     else p = p.webp({ quality: 92, effort: 3 });
 
     const out = await p.toBuffer({ resolveWithObject: true });
-    return { buffer: out.data, mime: FORMATS[format].mime, ext: FORMATS[format].ext, width: out.info.width, height: out.info.height, inWidth, inHeight, scale: out.info.width / inWidth, upscaled, hasAlpha };
+    return { buffer: out.data, mime: FORMATS[format].mime, ext: FORMATS[format].ext, width: out.info.width, height: out.info.height, inWidth, inHeight, scale: out.info.width / inWidth, upscaled, hasAlpha, engine };
 }

@@ -76,8 +76,8 @@ export const enhance = async (req, res) => {
             'Cache-Control': 'no-store',
             'X-Image-Width': String(out.width), 'X-Image-Height': String(out.height),
             'X-Image-In-Width': String(out.inWidth), 'X-Image-In-Height': String(out.inHeight),
-            'X-Image-Upscaled': out.upscaled ? '1' : '0',
-            'Access-Control-Expose-Headers': 'Content-Disposition, X-Image-Width, X-Image-Height, X-Image-In-Width, X-Image-In-Height, X-Image-Upscaled',
+            'X-Image-Upscaled': out.upscaled ? '1' : '0', 'X-Image-Engine': out.engine || 'classic',
+            'Access-Control-Expose-Headers': 'Content-Disposition, X-Image-Width, X-Image-Height, X-Image-In-Width, X-Image-In-Height, X-Image-Upscaled, X-Image-Engine',
         });
         return res.status(200).send(out.buffer);
     } catch (e) {
