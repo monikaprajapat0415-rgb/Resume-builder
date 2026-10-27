@@ -1,89 +1,95 @@
 import { StandalonePageNav } from './components/PageNav';
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, lazy, Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Analytics from "./components/Analytics";
-import Dashboard from "./pages/Dashboard";
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 // import Login from "./pages/Login";
-import Logout from "./pages/Logout";
-import Preview from "./pages/Preview";
-import ResumeBuilder from "./pages/ResumeBuilder";
-import Layouts from "./pages/Layouts";
-
+const Logout = lazy(() => import("./pages/Logout"));
+const Preview = lazy(() => import("./pages/Preview"));
+const ResumeBuilder = lazy(() => import("./pages/ResumeBuilder"));
+const Layouts = lazy(() => import("./pages/Layouts"));
 import { useDispatch } from "react-redux";
 import api from "./configs/api";
 import { login, setLoading } from "./app/features/authSlice";
 import{Toaster} from 'react-hot-toast'
-import ResetPassword from "./pages/ResetPasswordPage";
-import ForgotPassword from "./pages/ForgetPassword";
-import ContactUs from "./pages/ContactUs";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import VerifyEmail from "./pages/VerifyEmail";
-import BlogIndex from "./pages/BlogIndex";
-import BlogPost from "./pages/BlogPost";
-import AdminRoadmaps from "./pages/admin/AdminRoadmaps";
-import AdminRoadmapEditor from "./pages/admin/AdminRoadmapEditor";
-import InterviewQuestions from "./pages/community/InterviewQuestions";
-import InterviewQuestionView from "./pages/community/InterviewQuestionView";
-import Salaries from "./pages/community/Salaries";
-import SalaryRole from "./pages/community/SalaryRole";
-import CompanyReviews from "./pages/community/CompanyReviews";
-import CompanyView from "./pages/community/CompanyView";
-import AdminCommunity from "./pages/admin/AdminCommunity";
-import AdminInbox from "./pages/admin/AdminInbox";
-import RoadmapIndex from "./pages/RoadmapIndex";
-import RoadmapView from "./pages/RoadmapView";
-import LearnIndex from "./pages/LearnIndex";
-import Jobs from "./pages/Jobs";
-import HireLanding from "./pages/HireLanding";
-import OpenToWork from "./pages/OpenToWork";
-import Hire from "./pages/Hire";
-import AdminHiring from "./pages/admin/AdminHiring";
-import JobDetail from "./pages/JobDetail";
-import AdminJobs from "./pages/admin/AdminJobs";
-import LearnCourse from "./pages/LearnCourse";
-import LearnLesson from "./pages/LearnLesson";
-import LearnCertificate from './pages/LearnCertificate'
-import TemplatesIndex from "./pages/TemplatesIndex";
-import ExamplesIndex from './pages/ExamplesIndex'
-import ExampleDetail from './pages/ExampleDetail'
-import TemplateLanding from "./pages/TemplateLanding";
-import AdminSeo from './pages/admin/AdminSeo'
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminFeedback from "./pages/admin/AdminFeedback";
-import AdminBlogList from "./pages/admin/AdminBlogList";
-import AdminBlogEditor from "./pages/admin/AdminBlogEditor";
-import AdminCourses from "./pages/admin/AdminCourses";
-import AdminCourseEditor from "./pages/admin/AdminCourseEditor";
-import AdminCourseLessons from "./pages/admin/AdminCourseLessons";
-import AdminLessonEditor from "./pages/admin/AdminLessonEditor";
-import AdminOverview from "./pages/admin/AdminOverview";
-import AdminCategories from "./pages/admin/AdminCategories";
-import AdminProductList from "./pages/admin/AdminProductList";
-import AdminProductEditor from "./pages/admin/AdminProductEditor";
-import AdminUsers from "./pages/admin/AdminUsers";
-import AdminMenus from "./pages/admin/AdminMenus";
-import AdminMessages from "./pages/admin/AdminMessages";
-import AdminPages from "./pages/admin/AdminPages";
-import AdminPageEditor from "./pages/admin/AdminPageEditor";
-import AdminSiteContent from "./pages/admin/AdminSiteContent";
-import AdminTrust from "./pages/admin/AdminTrust";
-import AdminPlan from "./pages/admin/AdminPlan";
-import Pricing from "./pages/Pricing";
-import CustomPage from "./pages/CustomPage";
-import Features from "./pages/Features";
-import AtsChecker from "./pages/AtsChecker";
-import CvLanding from "./pages/CvLanding";
-import JdMatcher from "./pages/JdMatcher";
-import CvBuilder from "./pages/CvBuilder";
-import ProductsIndex from "./pages/ProductsIndex";
-import ProductDetail from "./pages/ProductDetail";
+const ResetPassword = lazy(() => import("./pages/ResetPasswordPage"));
+const ForgotPassword = lazy(() => import("./pages/ForgetPassword"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
+const BlogIndex = lazy(() => import("./pages/BlogIndex"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AdminRoadmaps = lazy(() => import("./pages/admin/AdminRoadmaps"));
+const AdminRoadmapEditor = lazy(() => import("./pages/admin/AdminRoadmapEditor"));
+const InterviewQuestions = lazy(() => import("./pages/community/InterviewQuestions"));
+const InterviewQuestionView = lazy(() => import("./pages/community/InterviewQuestionView"));
+const Salaries = lazy(() => import("./pages/community/Salaries"));
+const SalaryRole = lazy(() => import("./pages/community/SalaryRole"));
+const CompanyReviews = lazy(() => import("./pages/community/CompanyReviews"));
+const CompanyView = lazy(() => import("./pages/community/CompanyView"));
+const AdminCommunity = lazy(() => import("./pages/admin/AdminCommunity"));
+const AdminInbox = lazy(() => import("./pages/admin/AdminInbox"));
+const RoadmapIndex = lazy(() => import("./pages/RoadmapIndex"));
+const RoadmapView = lazy(() => import("./pages/RoadmapView"));
+const LearnIndex = lazy(() => import("./pages/LearnIndex"));
+const Jobs = lazy(() => import("./pages/Jobs"));
+const HireLanding = lazy(() => import("./pages/HireLanding"));
+const OpenToWork = lazy(() => import("./pages/OpenToWork"));
+const Hire = lazy(() => import("./pages/Hire"));
+const AdminHiring = lazy(() => import("./pages/admin/AdminHiring"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
+const AdminJobs = lazy(() => import("./pages/admin/AdminJobs"));
+const LearnCourse = lazy(() => import("./pages/LearnCourse"));
+const LearnLesson = lazy(() => import("./pages/LearnLesson"));
+const LearnCertificate = lazy(() => import('./pages/LearnCertificate'));
+const TemplatesIndex = lazy(() => import("./pages/TemplatesIndex"));
+const ExamplesIndex = lazy(() => import('./pages/ExamplesIndex'));
+const ExampleDetail = lazy(() => import('./pages/ExampleDetail'));
+const TemplateLanding = lazy(() => import("./pages/TemplateLanding"));
+const AdminSeo = lazy(() => import('./pages/admin/AdminSeo'));
+const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
+const AdminFeedback = lazy(() => import("./pages/admin/AdminFeedback"));
+const AdminBlogList = lazy(() => import("./pages/admin/AdminBlogList"));
+const AdminBlogEditor = lazy(() => import("./pages/admin/AdminBlogEditor"));
+const AdminCourses = lazy(() => import("./pages/admin/AdminCourses"));
+const AdminCourseEditor = lazy(() => import("./pages/admin/AdminCourseEditor"));
+const AdminCourseLessons = lazy(() => import("./pages/admin/AdminCourseLessons"));
+const AdminLessonEditor = lazy(() => import("./pages/admin/AdminLessonEditor"));
+const AdminOverview = lazy(() => import("./pages/admin/AdminOverview"));
+const AdminCategories = lazy(() => import("./pages/admin/AdminCategories"));
+const AdminProductList = lazy(() => import("./pages/admin/AdminProductList"));
+const AdminProductEditor = lazy(() => import("./pages/admin/AdminProductEditor"));
+const AdminUsers = lazy(() => import("./pages/admin/AdminUsers"));
+const AdminMenus = lazy(() => import("./pages/admin/AdminMenus"));
+const AdminMessages = lazy(() => import("./pages/admin/AdminMessages"));
+const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
+const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
+const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
+const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminPlan = lazy(() => import("./pages/admin/AdminPlan"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const CustomPage = lazy(() => import("./pages/CustomPage"));
+const Features = lazy(() => import("./pages/Features"));
+const AtsChecker = lazy(() => import("./pages/AtsChecker"));
+const CvLanding = lazy(() => import("./pages/CvLanding"));
+const JdMatcher = lazy(() => import("./pages/JdMatcher"));
+const CvBuilder = lazy(() => import("./pages/CvBuilder"));
+const ProductsIndex = lazy(() => import("./pages/ProductsIndex"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 import SEO from "./components/SEO";
 import { Helmet } from "react-helmet-async";
-import AdminAppearance from "./pages/admin/AdminAppearance";
+const AdminAppearance = lazy(() => import("./pages/admin/AdminAppearance"));
 import { useSiteContent, DEFAULT_SITE } from "./utils/siteContent";
 import { applyTheme } from "./utils/theme";
+// Pages load on demand so the first visit downloads only what it needs. While a page's code loads, the server-rendered
+// text that was already in the page (if any) stays visible, so there is no blank flash and search/AI crawlers are unaffected.
+const RouteFallback = () => (window.__ssrHtml && !window.__appReady
+  ? <div data-ssr-keep dangerouslySetInnerHTML={{ __html: window.__ssrHtml }} />
+  : <div className="min-h-[60vh] flex items-center justify-center" role="status" aria-label="Loading"><span className="size-8 rounded-full border-2 border-slate-300 border-t-brand-500 animate-spin" /></div>);
+const ReadyMark = () => { useEffect(() => { window.__appReady = true }, []); return null };
+
 const App = () => {
   // Apply the admin's chosen theme colour once the site settings arrive. Until then the
   // colour saved in this browser by the previous visit is already applied (see index.html).
@@ -159,6 +165,8 @@ const App = () => {
     <Toaster />
     <Analytics />
       <StandalonePageNav />
+      <Suspense fallback={<RouteFallback />}>
+      <ReadyMark />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
@@ -250,6 +258,7 @@ const App = () => {
         <Route path="/p/:slug" element={<CustomPage />} />
 
       </Routes>
+      </Suspense>
     </>
   );
 };

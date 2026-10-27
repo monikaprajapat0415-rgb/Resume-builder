@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* The Outfit font is loaded from index.html (preconnect + non-blocking stylesheet), not with a CSS @import, so it does not delay the first paint. */
 
 @import "tailwindcss";
 

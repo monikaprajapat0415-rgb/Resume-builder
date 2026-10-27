@@ -5,21 +5,20 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './app/store'
-import { GoogleOAuthProvider } from '@react-oauth/google'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nProvider } from './i18n/I18nProvider'
 
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+const rootEl = document.getElementById('root')
+// Keep a copy of any server-rendered page text so it can stay on screen while the page's code loads (see App.jsx).
+window.__ssrHtml = rootEl.innerHTML
 
-createRoot(document.getElementById('root')).render(
+createRoot(rootEl).render(
   <BrowserRouter>
     <HelmetProvider>
       <Provider store={store}>
-        <GoogleOAuthProvider clientId={googleClientId}>
           <I18nProvider>
             <App />
           </I18nProvider>
-        </GoogleOAuthProvider>
       </Provider>
     </HelmetProvider>
   </BrowserRouter>
