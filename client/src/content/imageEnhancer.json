@@ -1,0 +1,37 @@
+{
+  "path": "/products/image-enhancer",
+  "name": "Image Enhancer",
+  "title": "Free Image Enhancer: Upscale to 4K or 8K",
+  "description": "Sharpen soft photos and upscale them to 2K, 4K or 8K. Free with a daily limit, nothing stored. Classic sharpening, not AI, so results are honest.",
+  "keywords": "image enhancer, upscale image to 4k, upscale image to 8k, sharpen blurry photo, increase image resolution, photo sharpener online, enlarge image without losing quality",
+  "h1": "Image Enhancer: Sharpen Photos and Upscale to 4K or 8K",
+  "intro": "Upload a soft or small photo and get a larger, crisper copy at 2K, 4K or 8K size. It is built for profile photos, product pictures, scanned documents, screenshots and everyday phone photos.",
+  "how": [
+    "Sign in (it is free) and choose a JPG, PNG or WebP image.",
+    "Pick the size you want: 2K, 4K or 8K on the long edge.",
+    "Choose how strong the sharpening should be, and whether to reduce noise or improve contrast.",
+    "Press Enhance, compare before and after with the slider, then download the result."
+  ],
+  "honest": "How it works, honestly: this tool enlarges the picture with high-quality resampling and sharpens edges and local contrast. It is classic image processing, not an AI model. It makes a picture bigger and visibly crisper and can reduce a soft look, but it cannot bring back detail that the original photo never captured. A very small or very blurry photo will look better, not perfect.",
+  "good": [
+    "Photos that are a little soft, or look soft after being enlarged",
+    "Small images that need to be bigger for a screen, a print or a website",
+    "Screenshots, logos and scans where clean edges matter"
+  ],
+  "limits": [
+    "Not a miracle for badly out-of-focus or tiny thumbnails",
+    "Cannot read or restore blurred text or faces",
+    "Does not use AI to invent missing detail"
+  ],
+  "privacy": "Your picture is processed in memory and is not saved on our servers. We keep only a count of how many images you enhanced today, so we can apply the daily limit.",
+  "faqs": [
+    { "q": "Does it remove blur completely?", "a": "No. It sharpens edges and local contrast, which reduces a soft look. Blur caused by a missed focus or motion cannot be fully reversed by any sharpening tool, and this tool does not use AI to guess missing detail." },
+    { "q": "Is this AI upscaling?", "a": "No. It uses Lanczos resampling and unsharp masking on our server. That is reliable and keeps your image faithful, but it will not add new detail the way an AI model sometimes does." },
+    { "q": "What do 2K, 4K and 8K mean here?", "a": "The long edge of the result is 2560, 3840 or 7680 pixels. The other side follows your picture's shape. If your image is already at or above the size you choose, it keeps its size and is only sharpened." },
+    { "q": "Are my images stored?", "a": "No. The image is handled in memory during the request and is not written to disk or the database. Only a daily usage count is kept." },
+    { "q": "Why do I have to sign in?", "a": "Enlarging to 4K and 8K uses a lot of server power. A free account lets us apply a fair daily limit and keep the tool available for everyone." },
+    { "q": "Which file types and sizes work?", "a": "JPG, PNG and WebP, up to 15 MB and about 50 megapixels. Choose JPG or WebP for 8K, because 8K PNG files are very large." },
+    { "q": "Which output format should I choose?", "a": "JPG is the smallest and works everywhere. PNG keeps transparency and is lossless but large. WebP is small and keeps transparency, and is supported by modern browsers." },
+    { "q": "Is there a limit?", "a": "Yes, a daily limit per account, shown on the tool after you sign in. Depending on how the site owner has set it up, 8K output may be part of a paid plan while 4K stays free." }
+  ]
+}

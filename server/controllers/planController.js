@@ -5,6 +5,7 @@ export const GATES = {
     ai_writing: 'AI writing help (summary and bullet points)',
     cover_letter: 'AI cover letters',
     cv_generate: 'AI CV builder',
+    image_8k: 'Image enhancer: 8K output (4K stays free)',
 };
 const DEFAULTS = {
     enabled: false, planName: 'Pro', price: 0, currency: 'INR', period: 'month', tagline: '',

@@ -1,4 +1,5 @@
 import { siteUrl } from '../utils/blogSeo.js';
+import { getToolSettings } from './toolSettingsController.js';
 import { STATIC_ROUTES } from '../utils/staticSitemapRoutes.js';
 
 // Admin > SEO: fetches each public page from this server the way a crawler without JavaScript would, and reports what
@@ -47,12 +48,14 @@ const checkOne = async (base, p, inSitemap) => {
 export const getSeoPagesAudit = async (req, res) => {
     try {
         const base = `http://127.0.0.1:${process.env.PORT || 3000}`;
+        const toolsOn = await getToolSettings();
+        const PATHS_NOW = toolsOn.imageEnhancer ? PATHS : PATHS.filter((p) => p !== '/products/image-enhancer');
         let sitemap = '';
         try { sitemap = await (await fetch(`${base}/sitemap.xml`, { headers: { Accept: 'application/xml' } })).text(); } catch { /* reported per page */ }
         const locs = new Set([...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1].replace(/\/$/, '')));
         const inSitemap = (p) => locs.has(`${siteUrl()}${p === '/' ? '' : p}`);
         const rows = [];
-        for (let i = 0; i < PATHS.length; i += 4) rows.push(...await Promise.all(PATHS.slice(i, i + 4).map((p) => checkOne(base, p, inSitemap))));
+        for (let i = 0; i < PATHS_NOW.length; i += 4) rows.push(...await Promise.all(PATHS_NOW.slice(i, i + 4).map((p) => checkOne(base, p, inSitemap))));
         return res.status(200).json({ checkedAt: new Date().toISOString(), rows, summary: { total: rows.length, ok: rows.filter((r) => !r.issues.length).length, notRendered: rows.filter((r) => !r.rendered).length } });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };

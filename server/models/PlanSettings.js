@@ -19,6 +19,7 @@ const PlanSettingsSchema = new mongoose.Schema({
         ai_writing: { type: Boolean, default: false },   // AI summary and bullet-point help
         cover_letter: { type: Boolean, default: false }, // AI cover letters
         cv_generate: { type: Boolean, default: false },  // AI CV builder
+        image_8k: { type: Boolean, default: false },     // image enhancer 8K output
     },
 }, { timestamps: true });
 

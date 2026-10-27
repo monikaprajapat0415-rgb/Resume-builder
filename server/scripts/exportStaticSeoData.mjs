@@ -31,5 +31,6 @@ for (const [key, file] of [['cv', 'pages/CvLanding.jsx'], ['matcher', 'pages/JdM
 }
 
 const out = path.resolve(here, '../utils/staticSeoData.json');
-fs.writeFileSync(out, JSON.stringify({ templates, faqs }, null, 1));
+const imageEnhancer = JSON.parse(read('content/imageEnhancer.json'));
+fs.writeFileSync(out, JSON.stringify({ templates, faqs, imageEnhancer }, null, 1));
 console.log(`Wrote ${out}: ${templates.length} templates, FAQs: ${Object.entries(faqs).map(([k, v]) => `${k}=${v.length}`).join(', ')}`);

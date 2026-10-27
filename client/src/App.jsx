@@ -68,6 +68,7 @@ const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
 const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminTools = lazy(() => import("./pages/admin/AdminTools"));
 const AdminPlan = lazy(() => import("./pages/admin/AdminPlan"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const CustomPage = lazy(() => import("./pages/CustomPage"));
@@ -76,6 +77,7 @@ const AtsChecker = lazy(() => import("./pages/AtsChecker"));
 const CvLanding = lazy(() => import("./pages/CvLanding"));
 const JdMatcher = lazy(() => import("./pages/JdMatcher"));
 const CvBuilder = lazy(() => import("./pages/CvBuilder"));
+const ImageEnhancer = lazy(() => import("./pages/ImageEnhancer"));
 const ProductsIndex = lazy(() => import("./pages/ProductsIndex"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 import SEO from "./components/SEO";
@@ -197,6 +199,7 @@ const App = () => {
         <Route path="/cv-builder" element={<CvLanding />} />
         <Route path="/resume-job-description-matcher" element={<JdMatcher />} />
         <Route path="/products" element={<ProductsIndex />} />
+        <Route path="/products/image-enhancer" element={<ImageEnhancer />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/examples" element={<ExamplesIndex />} />
         <Route path="/examples/:slug" element={<ExampleDetail />} />
@@ -221,6 +224,7 @@ const App = () => {
           <Route path="site-content" element={<AdminSiteContent />} />
           <Route path="trust" element={<AdminTrust />} />
           <Route path="plan" element={<AdminPlan />} />
+          <Route path="tools" element={<AdminTools />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="seo" element={<AdminSeo />} />

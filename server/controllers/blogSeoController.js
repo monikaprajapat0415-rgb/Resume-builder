@@ -7,6 +7,7 @@ import Roadmap from '../models/Roadmap.js';
 import { EXAMPLES } from '../utils/exampleResumes.js';
 import { templateMeta } from '../utils/staticPages.js';
 import { getPlanSettings } from './planController.js';
+import { getToolSettings } from './toolSettingsController.js';
 import { loadTemplate, renderShell } from '../utils/seoShell.js';
 import {
     SITE_NAME, siteUrl, escapeHtml, stripInline, absUrl, seoTitle, postView, listItem, postHtml, listHtml, listJsonLd,
@@ -176,6 +177,7 @@ export const llmsTxt = async (req, res) => {
         const tpl = templateMeta();
         const roadmaps = await Roadmap.find({ published: true, noindex: { $ne: true } }).select('title slug').sort({ title: 1 }).limit(60).catch(() => []);
         const plan = await getPlanSettings().catch(() => ({ enabled: false }));
+        const tools = await getToolSettings();
         const lines = [
             `# ${SITE_NAME}`, '',
             `> ${SITE_NAME} is a free AI resume builder. It offers ATS-friendly resume templates, AI writing help for resume summaries and bullet points, AI cover letters, and a free ATS resume checker that scores a resume and lists exactly what to improve.`, '',
@@ -192,6 +194,7 @@ export const llmsTxt = async (req, res) => {
             `- [Resume builder](${u}/): create and download an ATS-friendly resume`,
             `- [Resume templates](${u}/templates): ${tpl.length} free templates, each with an honest ATS rating`,
             `- [Features](${u}/features): everything the builder offers`,
+            ...(tools.imageEnhancer ? [`- [Image enhancer](${u}/products/image-enhancer): sharpen photos and upscale them to 2K, 4K or 8K (classic sharpening, not AI)`] : []),
             `- [Free ATS resume checker](${u}/features/ats-checker): upload a resume (PDF or Word) and get an ATS score with fixes`,
             `- [AI CV builder](${u}/cv-builder): a tailored, ATS-friendly CV from your real details`,
             `- [Resume job description matcher](${u}/resume-job-description-matcher): which job keywords your resume has and lacks (runs in the browser)`,
