@@ -1,0 +1,3731 @@
+{
+  "course": {
+    "title": "Workplace English: Emails, Calls, Meetings and Customers",
+    "slug": "workplace-english-course",
+    "summary": "Practical English for work in 15 lessons: polite tone, emails, reports, phone calls, meetings, listening, presentations, customer service, feedback and a daily practice plan.",
+    "description": "Free workplace English course. 15 lessons on emails, phone calls, meetings, presentations, customer service and feedback, with ready phrases and practice tasks.",
+    "level": "Beginner",
+    "topic": "Communication",
+    "badge": "ENG",
+    "tags": [
+      "english",
+      "business english",
+      "workplace communication",
+      "email writing",
+      "spoken english"
+    ],
+    "order": 35,
+    "published": true,
+    "minWords": 540,
+    "metaTitle": "Workplace English: Free Course",
+    "keywords": "workplace english course, business english for beginners, english for work, email writing english, english phone calls, meeting english phrases, customer service english"
+  },
+  "lessons": [
+    {
+      "section": "Foundations",
+      "slug": "workplace-english-tone-and-politeness",
+      "title": "Workplace English: Tone, Politeness and Simple Words",
+      "metaTitle": "Workplace English: Tone and Politeness",
+      "description": "Learn the tone of English at work: when to be formal or friendly, how to ask politely, and why simple, clear words beat long, difficult ones.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This course is for people who use English at work as a second or third language, or who want their workplace English to be clearer and more confident. You do not need perfect grammar or an accent like a film actor. Millions of people around the world work in English, and most of them are not native speakers. What matters at work is being **clear**, **polite** and **easy to understand**. This first lesson gives you the foundation: the tone of workplace English and the habit of choosing simple words."
+        },
+        {
+          "type": "note",
+          "text": "A note on English: there are many correct kinds, including Indian, British, American, Canadian, Nigerian, Kenyan and South African English. Spelling and some words differ. This course uses simple, widely understood English, and points out differences when they matter. Follow the style your workplace uses, and be consistent."
+        },
+        {
+          "type": "heading",
+          "text": "Clear beats fancy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many learners think that long, rare words sound intelligent. At work the opposite is true. The best workplace writers use short words and short sentences, because busy people read fast and many readers are also working in a second language. Compare these pairs."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Fancy:   We would like to ascertain whether you can facilitate the\n         procurement of the requisite documentation.\nClear:   Can you please get the documents we need?\n\nFancy:   Kindly revert at the earliest.\nClear:   Please reply by Friday.\n\nFancy:   I am writing with regard to the aforementioned matter.\nClear:   I am writing about the invoice."
+        },
+        {
+          "type": "paragraph",
+          "text": "The clear versions are not rude or childish. They are professional. A useful rule: write the way you would speak to a respected colleague, but a little more carefully. Aim for sentences of about 15 to 20 words. If a sentence is long, split it into two."
+        },
+        {
+          "type": "heading",
+          "text": "Formal and informal"
+        },
+        {
+          "type": "paragraph",
+          "text": "English has levels of formality. You choose the level by looking at who you are speaking to and what the situation is."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Formal.** For people you do not know, senior managers, customers, official letters and first emails. Use full sentences, polite phrases, and no slang. Example: Dear Mr Khan, I would like to ask about the delivery date.",
+            "**Neutral.** For most workplace messages. Friendly and polite, but not stiff. Example: Hi Priya, could you send me the report by Friday?",
+            "**Informal.** For close colleagues and quick chats. Short, relaxed, perhaps with common spoken forms. Example: Hi Sam, got a minute?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When you are unsure, choose **neutral**, and watch how others write to you. If your manager writes Hi and your first name, you can do the same. If someone writes Dear and Mr, answer in the same style. Mirroring the style of the other person is a safe habit."
+        },
+        {
+          "type": "heading",
+          "text": "The power of please, thank you and could"
+        },
+        {
+          "type": "paragraph",
+          "text": "In English, politeness is mostly in the small words and in the way you ask. Commands sound hard. Questions with could or would sound polite."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Too direct:  Send me the file.\nPolite:      Could you send me the file, please?\nMore polite: Would it be possible to send me the file today?\n\nToo direct:  I want a day off.\nPolite:      I would like to take a day off on Friday. Is that all right?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say **please** when you ask, and **thank you** when you receive help. Do not say it only once. A short thanks at the end of a message is normal.",
+            "**Could you** and **Would you** are polite and very common for requests.",
+            "**I would like** is more polite than **I want**.",
+            "**Sorry** is for small mistakes or to get attention: Sorry, could you repeat that? **Apologise** more strongly for real errors (lesson 6)."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Soften a message"
+        },
+        {
+          "type": "paragraph",
+          "text": "Direct statements can sound hard in English, especially disagreement or bad news. Softening phrases make your message gentler without hiding your meaning."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hard:   You are wrong.\nSofter: I see it a little differently. Can we check the numbers?\n\nHard:   This will not work.\nSofter: I am not sure this will work. Could we try another way?\n\nHard:   You did not send it.\nSofter: I do not think I have received it yet. Could you check?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Useful softening words: **perhaps**, **maybe**, **a little**, **I think**, **I am not sure**, **it seems**. Use them in moderation. Too many make you sound unsure."
+        },
+        {
+          "type": "heading",
+          "text": "Say the main thing first"
+        },
+        {
+          "type": "paragraph",
+          "text": "In many workplaces, especially in the UK, Canada and the United States, people like the main point at the beginning. In some cultures, people give long background first, and then the request. When you write to a busy reader, start with what you need or what you want them to know. Then give the details."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Less clear: Last week we had a meeting and discussed the project, and\n            many things were talked about, so after that I checked\n            the schedule and found a problem. Could you help?\n\nClearer:    Could you help me with the project schedule? I found a\n            problem after last week's meeting. The delivery date\n            is before the approval date."
+        },
+        {
+          "type": "heading",
+          "text": "Respect and titles"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use **Mr**, **Ms** or **Dr** with a family name when you are unsure: Dear Ms Okafor. Ms works for any woman, without saying if she is married.",
+            "Use first names if the other person uses yours. In many modern workplaces first names are normal, even for senior managers.",
+            "In some places, titles such as Sir or Madam are common and respectful. In others they sound old-fashioned or odd. Follow what you hear.",
+            "Spell names correctly. If you are not sure, ask or check an email signature."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Words to avoid or use carefully"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Slang and jokes that depend on culture. They may not be understood.",
+            "Very strong words, such as urgent or immediately, unless it really is urgent.",
+            "Words about age, religion, gender, race or disability that could offend. Choose neutral words.",
+            "Local words that may not travel. For example, prepone is used in India but is not understood in many other places. If you work with people in other countries, use common words: move earlier."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Rewrite these three messages to be clearer and more polite: Send the report today. / I want the answer now. / Kindly revert at the earliest.",
+            "Take one long email or message you wrote, and split every sentence longer than 25 words.",
+            "Write the same request in a formal, a neutral and an informal version for a colleague, a manager and a customer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your rewrites use please, could or would, and keep each sentence short.",
+            "You can explain the difference between formal, neutral and informal.",
+            "Your messages put the main point near the start."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Make your message clear and polite",
+        "nodes": [
+          {
+            "id": "think",
+            "label": "Know the reader",
+            "sub": "manager, customer, friend",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "level",
+            "label": "Choose the tone",
+            "sub": "formal, neutral, informal",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "words",
+            "label": "Simple words",
+            "sub": "short, clear sentences",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "polite",
+            "label": "Polite and clear",
+            "sub": "main point first",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "First think about who will read or hear your message.",
+            "on": [
+              "think"
+            ]
+          },
+          {
+            "say": "Choose a tone: formal for new contacts, neutral for most work, informal for close colleagues.",
+            "flow": [
+              "think>level:choose"
+            ]
+          },
+          {
+            "say": "Use short, simple words and sentences, and put the main point first.",
+            "flow": [
+              "level>words:write"
+            ]
+          },
+          {
+            "say": "Add please, could and thank you. The message is clear, polite and easy to understand.",
+            "flow": [
+              "words>polite:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do I need perfect English to work in an English-speaking company?",
+          "a": "No. Clear, polite and understandable English is what matters. Many successful workers use English as a second language and keep improving with practice."
+        },
+        {
+          "q": "Is it rude to write short sentences?",
+          "a": "No. Short, clear sentences are professional and easier for busy readers, especially those who read English as a second language."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Foundations",
+      "slug": "introduce-yourself-and-small-talk",
+      "title": "Introduce Yourself and Make Small Talk at Work",
+      "metaTitle": "Introduce Yourself and Small Talk at Work",
+      "description": "Greet people, introduce yourself and others, and make friendly small talk in the first days at a new job. Includes useful phrases and sample conversations.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The first week at a new job, or the first minute in a meeting, you need to say who you are. Many learners know the grammar well, but feel nervous speaking. This lesson gives you ready phrases for introductions and for small talk, the light, friendly conversation that builds good working relationships. Small talk may feel unimportant, but in many workplaces it is how trust starts."
+        },
+        {
+          "type": "heading",
+          "text": "Greetings"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Time of day       Greeting\nMorning           Good morning.\nAfternoon         Good afternoon.\nEvening           Good evening.\nAny time, friendly  Hello. / Hi.\nMeeting someone   Nice to meet you. / Pleased to meet you.\nAsking about the other person   How are you? / How is your day going?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A common habit in English is that **How are you?** is a greeting more than a real question. The normal answer is short: **I am fine, thank you. And you?** or **Good, thanks. How about you?** You do not need to describe your health. Smile and give a short answer."
+        },
+        {
+          "type": "heading",
+          "text": "Introduce yourself"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep it short, and give your name, your role and one friendly detail."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello, I am Meena Iyer. I joined the accounts team this week.\nNice to meet you.\n\nHi, my name is Tunde. I work in the warehouse, on the evening shift.\n\nGood morning, I am Grace Wanjiru from the sales team. I am\nresponsible for customers in the north."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**My name is...** or **I am...** Both are fine. Say your name clearly. If your name is hard for others, say it slowly and spell it if needed.",
+            "**I work in / I work as...** I work in logistics. I work as a technician.",
+            "**I joined this week / last month / in March.**",
+            "**I am responsible for...** or **I look after...** to describe your tasks.",
+            "**I am from...** if you want to say where you come from."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Introduce another person"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Priya, this is Daniel. Daniel, this is Priya.\nDaniel works in IT. Priya is in HR.\n\nLet me introduce you to my colleague, Hassan.\nHave you met Aisha? She is our new designer."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you introduce two people, say the name of the more senior or older person first in formal situations, or just say both. Add a small fact so the two have something to talk about."
+        },
+        {
+          "type": "heading",
+          "text": "Handshakes and greetings"
+        },
+        {
+          "type": "paragraph",
+          "text": "Customs differ. In many workplaces a handshake is normal at a first meeting. In others people nod, say hello with a hand on the chest, or avoid touching. Some people prefer not to shake hands for personal or religious reasons. Watch what others do, and follow the lead of the other person. A smile and a clear greeting always work."
+        },
+        {
+          "type": "heading",
+          "text": "Remember and use names"
+        },
+        {
+          "type": "paragraph",
+          "text": "People like to hear their own name. After you are introduced, use the name in the conversation: Nice to meet you, Daniel. If you forget a name, it is fine to say: I am sorry, could you tell me your name again? That is much better than guessing."
+        },
+        {
+          "type": "heading",
+          "text": "Small talk: safe topics"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Work and the day.** How is your day going? Busy morning?",
+            "**The journey.** Did you have a good trip? How was the traffic?",
+            "**Weather.** It is very hot today, is it not? (This is a very common, easy topic.)",
+            "**Food and breaks.** Have you had lunch? Do you know a good place nearby?",
+            "**The weekend.** Did you have a good weekend? Any plans for the weekend?",
+            "**Sports, events and festivals,** if you know they are of interest to the other person.",
+            "**The company and place.** How long have you worked here? What do you like about this city?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Topics to be careful with"
+        },
+        {
+          "type": "paragraph",
+          "text": "At work it is best to avoid topics that can offend or make people uncomfortable, at least until you know the person well. These include religion, politics, salary and personal money, age, weight and appearance, family problems, health details and any joke that makes fun of a group of people. Questions that seem friendly in one culture can feel too personal in another. For example, asking someone about marriage or children is normal in some places and private in others. Follow the other person's lead."
+        },
+        {
+          "type": "heading",
+          "text": "Keep a conversation going"
+        },
+        {
+          "type": "paragraph",
+          "text": "A good small talk habit is: **answer, then ask back**. If someone asks, Did you have a good weekend?, do not only say Yes. Add one detail and ask a question."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "A: Did you have a good weekend?\nB: Yes, thank you. I visited my family. How about you?\nA: I stayed at home and watched a cricket match. Did you go far?\nB: No, just to my parents' house in the next town."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use **open questions** that cannot be answered with Yes or No, starting with what, how or where. How do you find the new office? is better than Do you like the office?."
+        },
+        {
+          "type": "heading",
+          "text": "End a conversation politely"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "It was nice talking to you.\nI should get back to work. See you later.\nGood to meet you. I hope we can talk again soon.\nExcuse me, I need to take a call."
+        },
+        {
+          "type": "heading",
+          "text": "When you do not understand"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sorry, could you say that again, please?\nCould you speak a little more slowly?\nSorry, I did not catch that.\nWhat does that word mean?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Asking is not a weakness. It shows that you want to understand, and it saves mistakes later. Lesson 11 covers listening in more detail."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write and say aloud your introduction in three versions: for a new team, for a customer and for a friendly colleague.",
+            "Prepare three small talk questions and three answers about your weekend, your journey and your day.",
+            "Practise an end-of-conversation phrase and a phrase for asking someone to repeat."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your introduction is under 20 seconds and includes your name, your role and one friendly detail.",
+            "You can answer a small talk question and ask one back.",
+            "You know at least three topics to avoid at work until you know people well."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A friendly first conversation",
+        "nodes": [
+          {
+            "id": "greet",
+            "label": "Greet",
+            "sub": "good morning, hello",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "intro",
+            "label": "Introduce yourself",
+            "sub": "name, role, detail",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "talk",
+            "label": "Small talk",
+            "sub": "answer, then ask back",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "end",
+            "label": "End politely",
+            "sub": "nice talking to you",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with a greeting that fits the time of day, and a smile.",
+            "on": [
+              "greet"
+            ]
+          },
+          {
+            "say": "Say your name, your role and one friendly detail.",
+            "flow": [
+              "greet>intro:then"
+            ]
+          },
+          {
+            "say": "Make small talk about safe topics. Answer the question, then ask one back.",
+            "flow": [
+              "intro>talk:then"
+            ]
+          },
+          {
+            "say": "End politely, for example: It was nice talking to you. See you later.",
+            "flow": [
+              "talk>end:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What should I answer when someone says How are you?",
+          "a": "A short, positive answer such as I am fine, thank you. And you? is normal. It is a greeting more than a real question."
+        },
+        {
+          "q": "What topics should I avoid in small talk at work?",
+          "a": "Avoid religion, politics, salary, age, appearance, health details and jokes about groups of people, until you know the person well. Safe topics are work, the journey, the weather and food."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Foundations",
+      "slug": "clear-sentences-and-common-english-mistakes",
+      "title": "Clear Sentences and Common English Mistakes at Work",
+      "metaTitle": "Common English Mistakes at Work",
+      "description": "Fix the mistakes that many workplace English learners make: verbs, articles, prepositions, plurals and word order. Short rules with before and after examples.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Grammar does not have to be perfect, but a few common mistakes can make your English harder to understand or sound less professional. The good news is that most learners make the same few mistakes again and again. If you fix these, your English improves a lot. This lesson goes through the most common ones with simple rules and examples. Read the wrong and the correct version aloud, because your ear will learn the right pattern."
+        },
+        {
+          "type": "heading",
+          "text": "1. Simple present and present continuous"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the **simple present** for habits and facts. Use the **present continuous** (am, is or are plus verb with ing) for something happening now or around now."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Habit:   I work in the accounts department.   (not: I am working in...)\nNow:     I am working on the report today.\nFact:    The office opens at 9.\nWrong:   I am having a laptop.      Correct: I have a laptop.\nWrong:   I am knowing the answer.   Correct: I know the answer."
+        },
+        {
+          "type": "paragraph",
+          "text": "Verbs of state, such as have (own), know, like, want, need, understand and believe, are normally not used with ing."
+        },
+        {
+          "type": "heading",
+          "text": "2. Past simple and present perfect"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the **past simple** for something finished at a definite time in the past. Use the **present perfect** (have or has plus past form) for experience, or a past action with a result now, without a specific time."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Past simple:   I sent the email yesterday.\nPresent perfect: I have sent the email. (It is done now.)\nExperience:    I have worked in a call centre.\nWith since/for: I have worked here since 2022. / for two years.\n\nWrong:   I am working here since 2022.\nCorrect: I have worked here since 2022.   (or: I have been working here)\nWrong:   I have sent it yesterday.\nCorrect: I sent it yesterday."
+        },
+        {
+          "type": "heading",
+          "text": "3. Subject and verb agreement"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Wrong:   The manager are coming.       Correct: The manager is coming.\nWrong:   He do not know.              Correct: He does not know.\nWrong:   My colleagues is helpful.    Correct: My colleagues are helpful.\nWrong:   She work on weekends.        Correct: She works on weekends."
+        },
+        {
+          "type": "paragraph",
+          "text": "In the simple present, add **s** to the verb after he, she and it: he works, she goes, it opens. After I, you, we and they, there is no s."
+        },
+        {
+          "type": "heading",
+          "text": "4. Articles: a, an, the"
+        },
+        {
+          "type": "paragraph",
+          "text": "Articles are difficult, especially if your first language does not have them. Basic rules:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use **a** or **an** for one of many, when you mention it first or it is any one: I need a laptop. (**an** before a vowel sound: an email, an hour.)",
+            "Use **the** when both people know which one: Please send me the report. (the one we talked about).",
+            "Use **no article** for general plural or uncountable things: I like coffee. Customers need support. Information is important."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Wrong:   I sent report yesterday.     Correct: I sent the report yesterday.\nWrong:   She is engineer.              Correct: She is an engineer.\nWrong:   I need an information.        Correct: I need some information."
+        },
+        {
+          "type": "heading",
+          "text": "5. Uncountable nouns"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some nouns are not counted in English, so they have no plural and take no a or an. The common ones at work: information, advice, news, equipment, furniture, work, feedback, luggage, software, staff (as a group), traffic and money."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Wrong:   informations, advices, equipments, feedbacks\nCorrect: information, advice, equipment, feedback\nUse:     a piece of advice, some information, a lot of equipment"
+        },
+        {
+          "type": "heading",
+          "text": "6. Prepositions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Prepositions (in, on, at, to, for, about, with) are hard because they do not follow simple rules. Learn them in phrases."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Time:   at 5 pm, on Monday, in June, in 2024, by Friday (not later than)\nPlace:  at the office, in the building, on the second floor\nVerbs:  discuss the plan (not: discuss about)\n        explain it to me (not: explain me)\n        reply to the email\n        wait for the answer\n        depend on, agree with, interested in, good at, responsible for\n        arrive at the office (small place) / arrive in Mumbai (city)\n        in time (early enough) vs on time (at the exact time)"
+        },
+        {
+          "type": "heading",
+          "text": "7. Question and word order"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a normal English statement the order is subject, verb, object. In questions, the helper verb goes before the subject."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Statement:  You can send it today.\nQuestion:   Can you send it today?\nWrong:      When you will send it?     Correct: When will you send it?\nWrong:      What you need?             Correct: What do you need?\nIndirect:   Could you tell me when the meeting starts?  (not: when does the meeting start)"
+        },
+        {
+          "type": "heading",
+          "text": "8. Said, told, asked"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "He said that the meeting was cancelled.\nHe told me that the meeting was cancelled.   (told needs a person)\nHe asked me to send the file.\nWrong: He said me that...      Correct: He told me that..."
+        },
+        {
+          "type": "heading",
+          "text": "9. Common word confusions"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Also, too, as well:** I also need a pen. I need a pen too. I need a pen as well. Do not put too at the start of a sentence in this meaning.",
+            "**Make and do:** make a mistake, make a decision, make a call. Do a job, do your best, do research.",
+            "**Take and bring:** bring it here (to the speaker), take it there (away from the speaker).",
+            "**Borrow and lend:** I borrow from you. You lend to me. Can I borrow your pen? Can you lend me your pen?",
+            "**Say and tell:** say something, tell someone something.",
+            "**Listen to and hear:** I listen to music. I hear a noise.",
+            "**Since and for:** since 2022 (a point in time). For two years (a length of time).",
+            "**Fewer and less:** fewer errors (countable), less time (uncountable)."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "10. Words that sound formal but are used in unusual ways"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some phrases that are common in your region may confuse others. Examples: do the needful, kindly revert, prepone, out of station, ex-colleague for a former colleague (ex- is fine in other places, but former colleague is more neutral). These are normal in some places and not in others. In international or mixed teams, use more widely understood versions, such as please take the necessary action, please reply, move earlier, away from the office."
+        },
+        {
+          "type": "note",
+          "text": "Do not try to fix everything at once. Choose the two or three mistakes that you make most. Check for them every time you write, for one week. Then choose the next ones. This steady method works better than studying all the rules in one night."
+        },
+        {
+          "type": "heading",
+          "text": "A simple checking routine"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Read your message slowly, out loud if you can, or use the speak or read aloud option on your computer.",
+            "Check the verbs: present, past, and the s after he or she.",
+            "Check articles before nouns: a, an, the.",
+            "Check prepositions in the common phrases.",
+            "Use a spelling checker, and also read carefully. A checker will not catch a correct word in the wrong place, such as their and there."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Correct these sentences: She do not know the answer. / I am working here since 2020. / Please send me informations. / Can you explain me the process? / What you want to do?",
+            "Write your own five sentences about your work using the present simple, past simple and present perfect.",
+            "Choose your two most frequent mistakes and write a note to remind yourself to check them in each email this week."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your corrected sentences are: She does not know the answer. / I have worked here since 2020. / Please send me information. / Can you explain the process to me? / What do you want to do?",
+            "You can explain when to use the present simple and the present continuous.",
+            "You have a list of the two or three mistakes to watch for."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Check, fix, repeat",
+        "nodes": [
+          {
+            "id": "write",
+            "label": "Write your message",
+            "sub": "in simple words",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "verbs",
+            "label": "Check verbs",
+            "sub": "tense, he works",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "small",
+            "label": "Check small words",
+            "sub": "a, the, in, on",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "send",
+            "label": "Read aloud, then send",
+            "sub": "clear and correct",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Write your message in simple words first.",
+            "on": [
+              "write"
+            ]
+          },
+          {
+            "say": "Check the verbs: the right tense and the s after he, she or it.",
+            "flow": [
+              "write>verbs:check"
+            ]
+          },
+          {
+            "say": "Check the small words: articles such as a and the, and prepositions such as in, on and at.",
+            "flow": [
+              "verbs>small:check"
+            ]
+          },
+          {
+            "say": "Read it aloud, fix what sounds wrong, and then send it.",
+            "flow": [
+              "small>send:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What are the most common English mistakes at work?",
+          "a": "Many learners confuse tenses, forget the s after he or she, miss articles, use the wrong prepositions and add s to uncountable nouns such as information and advice."
+        },
+        {
+          "q": "Is it better to learn all grammar rules first?",
+          "a": "No. Choose the two or three mistakes you make most, check for them in every message, and then move on to the next ones."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Emails and Messages",
+      "slug": "email-structure-subject-greeting-closing",
+      "title": "Write a Professional Email: Subject, Greeting, Body and Closing",
+      "metaTitle": "How to Write a Professional Email",
+      "description": "Learn the five parts of a clear work email: subject line, polite opening, short body, clear closing and signature. Sample emails included.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Email is still the main way of writing at work. A good email saves time. A confusing one creates more emails, delays and misunderstandings. The good news is that a professional email has a simple structure that you can learn once and use for the rest of your career. This lesson shows the five parts, with examples you can copy and change."
+        },
+        {
+          "type": "heading",
+          "text": "The five parts"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Subject line.** A short title that says what the email is about.",
+            "**Greeting.** Dear or Hello, plus a name.",
+            "**Opening line.** Why you are writing, in one sentence.",
+            "**Body.** The details, in short paragraphs or a list.",
+            "**Closing and signature.** What you want next, a polite ending, and your name and contact details."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "1. The subject line"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many people decide whether to open an email from the subject alone. A good subject is specific, short (under about 8 words) and tells the reader what to do or what it is about."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weak:    Hello         /    Urgent!!!     /    Question\nBetter:  Invoice 1042: payment confirmation needed\nBetter:  Meeting on Thursday 10 am: please confirm\nBetter:  Application for Sales Assistant: Priya Nair\nBetter:  Request: leave on 14 and 15 June"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Put the key word first, such as Request, Question, Reminder, Update or Invoice number.",
+            "Do not write in capitals or use many exclamation marks.",
+            "Change the subject when the topic of a long conversation changes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "2. The greeting"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Formal, name known:     Dear Mr Sharma,   /   Dear Ms Okafor,\nFormal, name unknown:   Dear Sir or Madam,   /   Dear Hiring Manager,\nNeutral:                Hello Priya,   /   Hi Priya,\nGroup:                  Hello everyone,   /   Dear team,\nInformal:               Hi Sam,"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always check the spelling of the name. If you do not know whether a person is a man or a woman, you can use the full name: Dear Alex Morgan. After the greeting, use a comma. Start the next line with a capital letter."
+        },
+        {
+          "type": "heading",
+          "text": "3. The opening line"
+        },
+        {
+          "type": "paragraph",
+          "text": "Say in one sentence why you are writing."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I am writing to ask about the delivery of order 5521.\nI am writing to confirm our meeting on Thursday.\nThank you for your email of 3 June.\nFollowing our call this morning, I am sending the details.\nI hope you are well.   (friendly, optional, for people you know)"
+        },
+        {
+          "type": "heading",
+          "text": "4. The body"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One main idea in each paragraph, two to four lines at most.",
+            "If you ask several things, use a numbered list so the reader can answer each one.",
+            "Give the facts the reader needs: dates, numbers, names, order numbers.",
+            "Put the most important information first.",
+            "Mention attachments in the text: I have attached the invoice."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I need three things from you:\n1. The signed contract.\n2. A copy of your ID.\n3. Your bank details for the payment.\n\nPlease send them by Friday 14 June."
+        },
+        {
+          "type": "heading",
+          "text": "5. Closing and signature"
+        },
+        {
+          "type": "paragraph",
+          "text": "End with what happens next, and thank the reader."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Please let me know if you need anything else.\nI look forward to your reply.\nThank you for your help.\n\nKind regards,        (neutral and safe)\nBest regards,        (friendly)\nYours sincerely,     (formal, when you used the person's name)\nYours faithfully,    (formal, when you used Dear Sir or Madam; mostly British)\nThanks,              (informal)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Add a simple signature with your full name, job title, company and phone number. This helps people to know who you are and how to reach you."
+        },
+        {
+          "type": "heading",
+          "text": "A complete sample email"
+        },
+        {
+          "type": "paragraph",
+          "text": "This sample is made up to show the shape. Names and numbers are invented."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Request: delivery date for order 5521\n\nDear Mr Khan,\n\nI am writing to ask about the delivery of order 5521, which we placed\non 3 June. The expected date was 10 June, but we have not received it.\n\nCould you please tell me:\n1. Where the order is now.\n2. When we can expect delivery.\n\nWe need the goods for a customer event on 17 June, so an answer by\nWednesday would be very helpful.\n\nThank you for your help.\n\nKind regards,\nRohan Mehta\nPurchasing Assistant, Bright Office Supplies\n+91 00000 00000"
+        },
+        {
+          "type": "heading",
+          "text": "Reply, Reply All and CC"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Reply** answers only the sender. **Reply All** answers everyone, so use it only when everyone needs your answer. Many people get annoyed by unnecessary Reply All messages.",
+            "**CC** (copy) is for people who should know, but do not need to act. **BCC** (blind copy) hides the names of recipients, which is useful for large mailings where people should not see each other's addresses.",
+            "Do not forward private emails without permission."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Check before you send"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Is the subject clear?",
+            "Is the person's name correct?",
+            "Did I include everything: dates, numbers, attachments?",
+            "Is the tone polite?",
+            "Did I read it once, slowly, for spelling and mistakes?",
+            "Is the right person in the To line? Check the address letter by letter."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A useful habit: write the email first, and add the address last. It stops you from sending an unfinished email by accident."
+        },
+        {
+          "type": "note",
+          "text": "Email may be read by others, kept for years and used as evidence. Do not write anything you would not want your manager, a customer or a lawyer to read. Do not send private or sensitive information such as passwords by email."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write an email to a supplier asking for a delivery update, using the five parts.",
+            "Write five subject lines for different situations: a leave request, a meeting invitation, a payment reminder, a job application, a question to HR.",
+            "Check your email using the six-point list. Read it aloud once."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your email has a clear subject, a greeting, an opening line, a short body and a closing with your name.",
+            "Your subject lines would make sense if read alone.",
+            "You can explain the difference between CC and BCC."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The five parts of an email",
+        "nodes": [
+          {
+            "id": "subj",
+            "label": "Subject",
+            "sub": "short and specific",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "greet",
+            "label": "Greeting",
+            "sub": "Dear Mr Khan,",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "body",
+            "label": "Opening and body",
+            "sub": "why you write, the details",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "close",
+            "label": "Closing",
+            "sub": "next step, thanks, name",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Write a short, specific subject line, so the reader knows what the email is about.",
+            "on": [
+              "subj"
+            ]
+          },
+          {
+            "say": "Greet the person by name, in the right level of formality.",
+            "flow": [
+              "subj>greet:then"
+            ]
+          },
+          {
+            "say": "Say why you are writing in one sentence, then give the details in short paragraphs or a list.",
+            "flow": [
+              "greet>body:then"
+            ]
+          },
+          {
+            "say": "Close with the next step and a thank you, then add your name and contact details.",
+            "flow": [
+              "body>close:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should a work email be?",
+          "a": "As short as possible while still being clear. Many good emails are under 150 words. Use short paragraphs and lists, and put the main point at the start."
+        },
+        {
+          "q": "Should I use Dear or Hi in an email?",
+          "a": "Use Dear for formal emails and first contact. Use Hello or Hi when the tone is neutral or friendly. Follow the style of the person you are writing to."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Emails and Messages",
+      "slug": "requests-replies-and-follow-up-emails",
+      "title": "Requests, Replies and Follow-Up Emails: Phrases You Can Use",
+      "metaTitle": "Email Requests, Replies and Follow-Ups",
+      "description": "Ready phrases and sample emails to ask for something, reply to a request, confirm a meeting, send a reminder and follow up politely when you get no answer.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Most work emails fall into a few types: you ask for something, you reply to a request, you confirm an arrangement, you remind someone, or you follow up when no one answered. If you have good phrases for these, you can write most emails quickly and confidently. This lesson gives you phrases and short samples for each type. Change the names, dates and details to fit your situation, and do not copy long text word for word without thinking."
+        },
+        {
+          "type": "heading",
+          "text": "Asking for something"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Could you please send me the report by Friday?\nWould it be possible to move the meeting to Thursday?\nI would be grateful if you could check this for me.\nPlease could you let me know when it will be ready?\nCan you help me with the access to the system?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Give a reason and a deadline when you can. A request with a reason is more likely to be accepted, and a clear deadline helps the other person plan."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Request: sales figures for May\n\nHi Anita,\n\nCould you please send me the sales figures for May? I need them for\nthe monthly report, which is due to Mr Verma on Friday 14 June.\n\nIf you can send them by Wednesday, I will have time to check them.\n\nThank you,\nRohan"
+        },
+        {
+          "type": "heading",
+          "text": "Replying to a request"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer clearly, say yes, no or what happens next, and say when. Always answer, even if the answer is that you need more time."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Yes:      Yes, of course. I will send it by 3 pm today.\nLater:    Thank you for your message. I need to check, and I will\n          reply by Wednesday.\nNeed more info:  Could you tell me which month you need?\nNo:       I am afraid I cannot do that this week, because I am\n          working on the audit. Could we do it next Monday?\nDone:     I have attached the file. Please let me know if you need\n          anything else."
+        },
+        {
+          "type": "paragraph",
+          "text": "Acknowledge messages quickly, even with a short Thank you, I have received this and will reply by Friday. It stops the other person from worrying and sending reminders."
+        },
+        {
+          "type": "heading",
+          "text": "Confirming a meeting or arrangement"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Meeting on Thursday 13 June, 10 am: confirmation\n\nDear Ms Okafor,\n\nThank you for your email. I am pleased to confirm our meeting on\nThursday 13 June at 10 am at your office.\n\nI will bring the sample designs. Please let me know if you need\nanything else beforehand.\n\nKind regards,\nDaniel Mensah"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Repeat the date, time and place. It avoids mistakes.",
+            "If you must change something, say it first: Unfortunately, I cannot attend at 10 am. Would 2 pm be possible?",
+            "Time zones matter for international work. Write the zone: 10 am IST, 3 pm GMT. Many calendar tools do this for you."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Sending an attachment"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I have attached the signed contract.\nPlease find attached the invoice for May.\nThe report is attached. Let me know if you cannot open it."
+        },
+        {
+          "type": "paragraph",
+          "text": "Attach the file before you write the final line. Many people forget. Say what the file is, and use a clear file name, such as `Invoice-1042-May.pdf`."
+        },
+        {
+          "type": "heading",
+          "text": "Reminders"
+        },
+        {
+          "type": "paragraph",
+          "text": "A reminder should be friendly and short. Assume the person was busy, not careless."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Reminder: invoice 1042, payment due 14 June\n\nDear Mr Khan,\n\nI hope you are well. This is a friendly reminder that invoice 1042\nis due for payment on 14 June. I have attached a copy for your\nconvenience.\n\nPlease let me know if you have any questions. If you have already\npaid, please ignore this message.\n\nKind regards,\nRohan Mehta"
+        },
+        {
+          "type": "heading",
+          "text": "Following up when no one replied"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you get no answer, wait a reasonable time, usually two to five working days, depending on how urgent it is. Then send a polite follow-up. Reply to your original email so that the history is there."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Re: Request: sales figures for May\n\nHi Anita,\n\nI am following up on my email of 6 June. Could you please send the\nMay figures by tomorrow? I need to send the report at 5 pm.\n\nThank you for your help. Please tell me if there is a problem.\n\nRohan"
+        },
+        {
+          "type": "list",
+          "items": [
+            "First follow-up: polite, short, with the deadline.",
+            "Second follow-up: shorter, perhaps add your manager in CC if the matter is important and urgent, and say so politely.",
+            "Another channel can help: a short chat message or phone call, if email is ignored.",
+            "Avoid sarcasm, such as As I mentioned in my previous three emails. It damages relationships."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Thanks and closing a conversation"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Thank you for your quick reply.\nThanks again for your help with this.\nI really appreciate your support.\nThank you, that is all I need for now."
+        },
+        {
+          "type": "heading",
+          "text": "Useful connecting words"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**First, then, after that, finally** to put steps in order.",
+            "**Because, so, therefore** to give reasons and results.",
+            "**However, but, although** to show a contrast.",
+            "**Also, in addition** to add a point.",
+            "**For example, such as** to give examples."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Think of three categories of phrases: ask, answer, remind. Collect the ones that you like from your colleagues' emails and keep them in a note on your phone or computer. Over time you will have your own phrase bank."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write an email asking a colleague for a document, with a reason and a deadline.",
+            "Write a reply that says you need more time, and gives a new date.",
+            "Write a polite reminder for something that was due last week.",
+            "Write a follow-up for an email that has had no answer for four working days."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each email has a clear request or answer and a date.",
+            "Your reminders sound friendly and avoid blame.",
+            "You can use at least five new phrases from this lesson."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Ask, answer, remind",
+        "nodes": [
+          {
+            "id": "ask",
+            "label": "Ask",
+            "sub": "reason and deadline",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "rep",
+            "label": "Reply",
+            "sub": "yes, no or later, with a date",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "rem",
+            "label": "Remind",
+            "sub": "friendly and short",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "fol",
+            "label": "Follow up",
+            "sub": "after 2 to 5 working days",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Ask clearly, give a reason, and give a deadline if you can.",
+            "on": [
+              "ask"
+            ]
+          },
+          {
+            "say": "The reader replies quickly, even if only to say when they will answer.",
+            "flow": [
+              "ask>rep:answer"
+            ]
+          },
+          {
+            "say": "If a due date passes, send a short, friendly reminder.",
+            "flow": [
+              "rep>rem:if late"
+            ]
+          },
+          {
+            "say": "If there is still no answer after a few working days, follow up politely, and try another channel if needed.",
+            "flow": [
+              "rem>fol:no reply"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should I wait before sending a follow-up email?",
+          "a": "Usually two to five working days, depending on how urgent the matter is. Be polite and short, repeat the deadline, and reply on the same email thread."
+        },
+        {
+          "q": "How do I say no politely in an email?",
+          "a": "Thank the person, say that you cannot do it, give a short reason, and offer an alternative if you can, such as another date."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Emails and Messages",
+      "slug": "apologies-complaints-and-saying-no-politely",
+      "title": "Apologies, Complaints and Saying No Politely",
+      "metaTitle": "Apologise, Complain and Say No Politely",
+      "description": "Write and say difficult messages with care: apologise for a mistake, make a complaint without anger, refuse a request, and give bad news clearly and kindly.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Not every message is easy. You will sometimes make mistakes and need to apologise. You will sometimes have to complain about a late delivery or a wrong invoice. You will sometimes have to say no to a request, or deliver bad news. These moments are where good English matters most, because the wrong tone can hurt a relationship. This lesson gives you a calm structure and exact phrases for each situation."
+        },
+        {
+          "type": "heading",
+          "text": "Apologising for a mistake"
+        },
+        {
+          "type": "paragraph",
+          "text": "A good apology has four parts: say sorry, say what happened in one clear sentence, say how you will fix it, and say how you will prevent it. Do not make long excuses and do not blame others."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Apology: error on invoice 1042\n\nDear Mr Khan,\n\nI am sorry for the mistake on invoice 1042. The quantity was entered\nas 50 instead of 15, and so the total was wrong.\n\nI have attached a corrected invoice. Please ignore the earlier one.\nTo avoid this in future, a second person now checks each invoice\nbefore it is sent.\n\nThank you for your patience.\n\nKind regards,\nRohan Mehta"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Light:   Sorry for the delay in replying.\nNormal:  I am sorry for the mistake.\nStrong:  I sincerely apologise for the inconvenience this has caused.\nDo not:  Sorry, but it was not really my fault... (this cancels the apology)"
+        },
+        {
+          "type": "paragraph",
+          "text": "For small things, a short **Sorry about that** is enough. For serious errors, use a stronger phrase and say what you are doing about it. Take responsibility. People forgive mistakes more easily when you are honest and act quickly."
+        },
+        {
+          "type": "heading",
+          "text": "Making a complaint politely"
+        },
+        {
+          "type": "paragraph",
+          "text": "A complaint works better when it is calm, factual and clear about what you want. Anger makes people defensive. Facts make them act."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Complaint: order 5521 not delivered\n\nDear Customer Service Team,\n\nI am writing about order 5521, which I placed on 3 June. The\ndelivery date was 10 June, but I have not received the goods, and\nI have not had a reply to my two earlier emails (6 and 8 June).\n\nI would like to know where the order is, and to receive it by 14 June.\nIf this is not possible, I would like a full refund.\n\nI would be grateful for a reply by Wednesday.\n\nYours sincerely,\nRohan Mehta"
+        },
+        {
+          "type": "list",
+          "items": [
+            "State the facts: the order number, dates, what happened.",
+            "Say what you want: delivery, refund, replacement, correction.",
+            "Give a deadline.",
+            "Keep the tone firm and polite. Avoid insults, capital letters and threats.",
+            "Keep a copy of your messages and receipts.",
+            "If the company does not answer, look for the formal complaints process, a consumer protection office or an ombudsman in your country."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Saying no"
+        },
+        {
+          "type": "paragraph",
+          "text": "Refusing is a normal part of work. The skill is to say no without damaging the relationship. A useful pattern: **thank, say no clearly, give a short reason, offer an alternative**."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Thank you for asking me to join the project.\nUnfortunately, I cannot take it on at the moment, because I am\nworking on the year-end accounts until 30 June.\nI could help in July, or I can suggest a colleague who might have time.\n\nI am afraid that is not possible this week.\nI would like to help, but I cannot finish it by Friday.\nUnfortunately, we cannot offer a discount on this order.\nI understand your request, but I cannot approve it. I will ask my manager."
+        },
+        {
+          "type": "paragraph",
+          "text": "**I am afraid** is a polite way to give bad news, and it does not mean you are afraid. **Unfortunately** also softens bad news. Do not say only No. in writing. It sounds cold. Do not promise something you cannot do just to avoid saying no. It causes more trouble later."
+        },
+        {
+          "type": "heading",
+          "text": "Giving bad news"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I am sorry to tell you that the shipment has been delayed by a week.\nThe delay is caused by a problem at the port. We will send the new\ndate as soon as we have it.\nI understand this causes difficulties, and I will keep you informed."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say it clearly near the start. Do not hide the bad news at the end of a long message.",
+            "Say what is known, and what is not yet known.",
+            "Say what you are doing, and when you will update them.",
+            "Be kind. Show that you understand the effect on the person."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Disagreeing politely"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I see your point, but I have a different view.\nI am not sure I agree. Could we look at the figures again?\nThat is a good idea. Another option might be...\nI understand, however I am concerned that..."
+        },
+        {
+          "type": "heading",
+          "text": "Handling a message that makes you angry"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Do not reply at once. Wait an hour, or until the next day if you can.",
+            "Read it again. Sometimes the tone is less hard than it first seemed.",
+            "Write your reply, then remove any emotional or personal words.",
+            "Ask a trusted colleague to read it if the matter is serious.",
+            "Send it, or talk to the person by phone or in person if the email has become a quarrel."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If someone treats you with disrespect, harasses you or threatens you at work, you do not have to accept it. Keep records and report it to your manager, HR or the proper authority in your country."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a short apology for a late reply, and a longer one for an error on a document.",
+            "Write a polite complaint about a late delivery using the four parts: facts, what you want, deadline, polite tone.",
+            "Write two refusals: one to a colleague who asks for help at a bad time, and one to a customer who asks for a discount.",
+            "Practise saying each one aloud with a calm voice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your apology does not blame anyone and says how you will fix it.",
+            "Your complaint states the facts and what you want in a calm voice.",
+            "Your refusals offer an alternative if possible."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Handle a difficult message",
+        "nodes": [
+          {
+            "id": "calm",
+            "label": "Stay calm",
+            "sub": "wait before replying",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "facts",
+            "label": "State the facts",
+            "sub": "what, when, which order",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "act",
+            "label": "Say the action",
+            "sub": "fix, request or alternative",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "tone",
+            "label": "Keep it polite",
+            "sub": "firm, not angry",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "If a message makes you angry or upset, wait before you reply.",
+            "on": [
+              "calm"
+            ]
+          },
+          {
+            "say": "State the facts: what happened, when and which order or document.",
+            "flow": [
+              "calm>facts:then"
+            ]
+          },
+          {
+            "say": "Say the action: how you will fix it, what you want, or what you can offer instead.",
+            "flow": [
+              "facts>act:then"
+            ]
+          },
+          {
+            "say": "Keep the tone firm and polite. A calm message gets a better result than an angry one.",
+            "flow": [
+              "act>tone:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How do I apologise professionally at work?",
+          "a": "Say sorry, explain what happened in one clear sentence, say how you will fix it, and say how you will prevent it. Avoid long excuses and blaming others."
+        },
+        {
+          "q": "How can I say no without sounding rude?",
+          "a": "Thank the person, say no clearly, give a short reason and offer an alternative. Phrases such as I am afraid or unfortunately soften the message."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Emails and Messages",
+      "slug": "chat-messages-teams-whatsapp-etiquette",
+      "title": "Chat Messages at Work: Teams, Slack and WhatsApp Etiquette",
+      "metaTitle": "Chat Message Etiquette at Work",
+      "description": "Write short, clear work chat messages, use greetings and emojis sensibly, respect working hours and time zones, and know when to use chat, email or a call.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many workplaces now use chat tools: Microsoft Teams, Slack, Google Chat and WhatsApp groups. Chat is fast and informal, but there are still rules. A badly written chat message can be confusing, rude or lost. This lesson shows you how to write short, clear messages, and how to behave in group chats so that you look professional."
+        },
+        {
+          "type": "heading",
+          "text": "Chat, email or call?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Chat** for quick questions, short updates and friendly contact, when a fast answer is useful.",
+            "**Email** for formal messages, longer explanations, anything that needs a record, and messages to people outside your company.",
+            "**Phone or video call** when the matter is complicated, emotional or urgent, or when messages are going back and forth many times.",
+            "**In person** for sensitive matters such as serious feedback or a personal problem."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are not sure, think about what the other person would prefer. If a reply to a chat message will take a long explanation, a short call may be quicker than 20 messages."
+        },
+        {
+          "type": "heading",
+          "text": "Write a clear chat message"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not send just Hi and wait. This forces the other person to reply Hi and wait for the question, wasting time. Put the question in the first message."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weak:   Hi\n        (waiting...)\n\nBetter: Hi Priya, do you have the latest sales sheet? I need it for\n        the 3 pm meeting.\n\nWeak:   Can you check?\nBetter: Could you check the invoice for Mr Khan? The total looks wrong\n        (5,000 instead of 1,500)."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Start with a short greeting and the person's name.",
+            "Give the context, the question and the deadline in one message if you can.",
+            "Use short sentences and one topic per message.",
+            "Use a list or separate lines for several points.",
+            "Mention people with @ when you need them to act, and do not mention everyone unless it is really necessary."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Replies"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Thanks, got it.\nSure, I will send it in 10 minutes.\nI will check and get back to you by 4 pm.\nSorry, I am in a meeting. Can I reply after 3?\nGood question. I am not sure. I will ask Dan."
+        },
+        {
+          "type": "paragraph",
+          "text": "Reply even with a quick acknowledgement. A thumbs-up or a short Thanks lets the sender know that you saw it. If you cannot help, say so and suggest someone else."
+        },
+        {
+          "type": "heading",
+          "text": "Tone in chat"
+        },
+        {
+          "type": "paragraph",
+          "text": "Without a voice or face, short messages can sound cold or angry. Add small friendly words (Thanks, please, no problem) and read your message before sending."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sounds cold:   Send it.\nFriendlier:    Could you send it when you can? Thanks!\n\nSounds cold:   No.\nFriendlier:    Sorry, I cannot do that today. Can we do it tomorrow?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Emojis are common in some workplaces and not in others. A smile or a thumbs-up is usually fine with colleagues you know. Avoid them in messages to customers or senior people you do not know, unless they use them first. Do not use many, and avoid ones that can have other meanings. CAPITAL LETTERS look like shouting. Avoid them."
+        },
+        {
+          "type": "heading",
+          "text": "Group chats and WhatsApp"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Check who is in the group** before you write. Do not post anything private or critical about a person in a group.",
+            "**Stay on topic.** Do not share jokes, forwards, religious or political messages in a work group, unless the group is meant for that.",
+            "**Do not send many short messages.** Put your point in one.",
+            "**Respect time.** Avoid messages late at night or on days off, unless it is urgent or the team has agreed to it. Many people mute notifications after work.",
+            "**Use voice messages carefully.** They are hard to search and slower to listen to. Ask before sending a long one.",
+            "**Keep personal and company data safe.** Do not share passwords, customers' private details or confidential files in a personal chat app, unless the company allows it.",
+            "**Do not forward private messages** without permission."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Time zones and availability"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you work with people in other countries, a good time for you may be the middle of the night for them. Check the other person's time before you expect a reply. Write times clearly with the zone: 3 pm IST, 10:30 GMT, 9:30 am EAT (East Africa Time). Set your status (available, busy, away), and tell your team when you are on leave."
+        },
+        {
+          "type": "heading",
+          "text": "Chat and the record"
+        },
+        {
+          "type": "paragraph",
+          "text": "Chat messages can be saved and read later, and they may be seen by managers or lawyers. Be as careful as in email. Do not write angry messages or comments you would not say in person. If something important is decided in chat, send a short email to confirm it."
+        },
+        {
+          "type": "heading",
+          "text": "Typing quickly but carefully"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use a spelling checker, and read the message once.",
+            "Do not use texting short forms such as u, r, pls, thx and gr8 with customers or senior people. Common abbreviations like FYI (for your information), ASAP (as soon as possible), EOD (end of day) and BRB (be right back) are used, but not everyone knows them, so write them out for new colleagues and customers.",
+            "Check the names. A message that goes to the wrong person can cause trouble."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Rewrite these chat messages to be clear and polite: Hi / Send file / Why no reply? / Call me now.",
+            "Write a chat message to a colleague in another time zone asking for a document, with the deadline in their time.",
+            "List three things you will not post in your team's group chat."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your messages contain the question or request in the first message.",
+            "Your deadlines include the time zone.",
+            "You know when to move from chat to a call."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Choose the right channel",
+        "nodes": [
+          {
+            "id": "q",
+            "label": "Your message",
+            "sub": "quick or complex?",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "chat",
+            "label": "Chat",
+            "sub": "quick, friendly",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "mail",
+            "label": "Email",
+            "sub": "formal, a record",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "call",
+            "label": "Call",
+            "sub": "complex or urgent",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Think about what you need to say and who will read it.",
+            "on": [
+              "q"
+            ]
+          },
+          {
+            "say": "Use chat for quick questions and short updates. Put the question in the first message.",
+            "flow": [
+              "q>chat:quick"
+            ]
+          },
+          {
+            "say": "Use email for formal messages, longer explanations and anything that needs a record.",
+            "flow": [
+              "chat>mail:longer"
+            ]
+          },
+          {
+            "say": "Use a call when it is complicated, emotional or urgent, or when messages go back and forth too many times.",
+            "flow": [
+              "mail>call:complex"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is it okay to use emojis in work chat?",
+          "a": "It depends on the workplace. A smile or thumbs-up is usually fine with colleagues you know. Avoid emojis with customers or senior people unless they use them first, and do not use many."
+        },
+        {
+          "q": "Should I message colleagues after work hours?",
+          "a": "Avoid it unless it is urgent or your team has agreed to it. Many people mute notifications after work. Schedule non-urgent messages or send them in the morning."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Emails and Messages",
+      "slug": "reports-notes-and-meeting-minutes",
+      "title": "Short Reports, Notes and Meeting Minutes in Plain English",
+      "metaTitle": "Write Reports, Notes and Meeting Minutes",
+      "description": "Write short work reports, daily updates and meeting minutes in plain English, with a clear structure, bullet points and action lists that people actually read.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Not all work writing is an email. You will also write daily updates, short reports, shift handovers, incident reports and notes of meetings. People who write these clearly are noticed, because many workplaces suffer from unclear, long or missing records. The good news is that useful workplace documents are short and follow simple patterns. In this lesson you learn these patterns and the plain English style that makes them easy to read."
+        },
+        {
+          "type": "heading",
+          "text": "Plain English rules"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Use short sentences.** Aim for 15 to 20 words. One idea in each sentence.",
+            "**Use simple words.** Use use instead of utilise, help instead of facilitate, start instead of commence, and about instead of in relation to.",
+            "**Use active sentences.** The team finished the report is clearer than The report was finished by the team. Use passive only when the doer is unknown or unimportant.",
+            "**Be specific.** Write 12 boxes were damaged, not several boxes were damaged. Do not invent numbers. If you do not know a number, say so.",
+            "**Use headings and lists.** They help readers find what they need quickly.",
+            "**Put the conclusion or the main message first,** and the details after it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A daily or weekly update"
+        },
+        {
+          "type": "paragraph",
+          "text": "A short update tells your manager what is done, what is next and what needs help. Three headings are enough."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weekly update: 10 to 14 June (Rohan Mehta)\n\nDone\n- Sent 42 invoices; 3 are waiting for customer approval.\n- Updated the supplier list with new bank details.\n\nNext week\n- Prepare the month-end report (due Friday 21 June).\n- Train the new assistant on the stock sheet.\n\nProblems / help needed\n- The stock system was slow on Tuesday and Wednesday. I need IT to check it."
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice the style: short lines, facts and clear tasks. There are no long explanations. Managers read these quickly, and they will ask if they need more detail."
+        },
+        {
+          "type": "heading",
+          "text": "A shift handover note"
+        },
+        {
+          "type": "paragraph",
+          "text": "In factories, warehouses, hospitals, security and service work, a handover note tells the next shift what they need to know. It must be clear, correct and short."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Handover: night shift to morning shift, 12 June\n\nMachines\n- Machine 3: stopped at 2 am, blade needs changing. Not yet fixed.\n- Machines 1, 2 and 4: running normally.\n\nStock\n- Low: packing tape (2 rolls left). Ordered, due tomorrow.\n\nSafety\n- Wet floor near loading bay. Sign placed. Please check again at 7 am.\n\nMessage from manager\n- Visitors from the customer are coming at 10 am."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use the same headings every day, so readers know where to look.",
+            "Write what happened, what is still open, and who must act.",
+            "Add the time and the date. Add your name."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "An incident report"
+        },
+        {
+          "type": "paragraph",
+          "text": "An incident report records what happened when there was an accident, an injury, a theft, damage or a serious problem. It must be factual, not emotional or full of opinions. Include these points."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**When and where:** date, time, exact place.",
+            "**Who:** names of the people involved or who saw it. Follow your company rules for personal data.",
+            "**What happened:** in order, in simple sentences, only facts. Not who is to blame.",
+            "**Action taken:** first aid, who was told, what was done.",
+            "**What happens next:** who will look into it, and what will be done to prevent it."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Incident report: 12 June, 3:20 pm, loading bay\n\nA pallet of boxes fell from the forklift when it turned. No one was\nhit. Two boxes were damaged (about 20 items). The driver, Samuel\nAdeyemi, stopped the forklift and told the supervisor at once.\n\nAction: the area was closed and cleaned. The load was checked.\nNext: the supervisor will check the forklift and the pallet wrapping,\nand the team will have a short safety talk on Friday."
+        },
+        {
+          "type": "note",
+          "text": "Write only facts you saw or know. If you think something, say I think. Do not guess or blame in a formal report. Keep a copy, and follow your company's reporting rules, including privacy rules."
+        },
+        {
+          "type": "heading",
+          "text": "A short report"
+        },
+        {
+          "type": "paragraph",
+          "text": "For a longer piece, such as a project update or a recommendation, use this simple structure."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Title and date.**",
+            "**Summary.** The main result or recommendation in two or three sentences.",
+            "**Background.** Why this report was written.",
+            "**What we found.** The main facts, with bullet points or a small table.",
+            "**Recommendation or next steps.** What should be done, by whom and by when."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Writing the summary last, after you know the full story, is easier. But it appears first in the report. Many busy readers will read only the summary."
+        },
+        {
+          "type": "heading",
+          "text": "Meeting minutes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Minutes are a short written record of a meeting. They help people remember what was agreed. The most important part is the **action list**: who will do what by when."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Minutes: Team meeting, Thursday 13 June, 10 am\nPresent: Rohan, Anita, Daniel, Meena (chair)\nApologies: Grace\n\n1. Month-end report\n   - The report is due Friday 21 June.\n   - Anita will send the sales figures by Monday.\n\n2. New stock system\n   - The training will be on 20 June at 2 pm.\n   - Daniel will book the room.\n\nActions\n- Anita: send sales figures (Monday 17 June)\n- Daniel: book the training room (Friday 14 June)\n- Rohan: write the report draft (Wednesday 19 June)\n\nNext meeting: Thursday 20 June, 10 am"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Send the minutes within a day or two, while people remember.",
+            "Use neutral words. Write the decisions, not every comment.",
+            "Put the action list at the top or bottom, clearly.",
+            "Use the same layout every time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Useful phrases"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "It was agreed that...        The team decided to...\nThe main points were...      The next step is...\nX will check the figures by Friday.\nWe still need more information about...\nBecause of the delay, the date has moved to 20 June.\nThe result was lower than expected.   (not: very bad)"
+        },
+        {
+          "type": "heading",
+          "text": "Edit your writing"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Delete words that do not add meaning (very, really, basically, in order to can often be to).",
+            "Cut long sentences in two.",
+            "Replace long or rare words with simple ones.",
+            "Check numbers, dates and names.",
+            "Read it as if you were the busy reader. Can they find the main point in ten seconds?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a weekly update with three headings: Done, Next week, Help needed.",
+            "Write a handover note for a real or imagined shift.",
+            "Take notes in a meeting or video you watch, and turn them into minutes with an action list.",
+            "Take a long paragraph you wrote before, and rewrite it in plain English with half the words."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your update fits on half a page, with facts and no long explanations.",
+            "The minutes have a clear action list with names and dates.",
+            "No sentence is longer than about 25 words."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From notes to a clear record",
+        "nodes": [
+          {
+            "id": "notes",
+            "label": "Rough notes",
+            "sub": "facts, names, dates",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "struct",
+            "label": "Structure",
+            "sub": "headings, lists",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "plain",
+            "label": "Plain English",
+            "sub": "short, simple, active",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "read",
+            "label": "Easy to read",
+            "sub": "main point in 10 seconds",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with rough notes: what happened, who, when and what must be done.",
+            "on": [
+              "notes"
+            ]
+          },
+          {
+            "say": "Put them in a simple structure with headings and bullet points.",
+            "flow": [
+              "notes>struct:organise"
+            ]
+          },
+          {
+            "say": "Rewrite in plain English: short sentences, simple words and active verbs.",
+            "flow": [
+              "struct>plain:edit"
+            ]
+          },
+          {
+            "say": "Check that a busy reader can find the main point and the actions in ten seconds.",
+            "flow": [
+              "plain>read:check"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What should meeting minutes include?",
+          "a": "The date, who was present, the decisions made and an action list with who will do what by when. Keep it short and send it within a day or two."
+        },
+        {
+          "q": "What does plain English mean?",
+          "a": "Writing that is easy to understand: short sentences, simple words, active verbs, specific facts and a clear structure with the main point first."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Speaking and Listening",
+      "slug": "phone-calls-and-voicemail-english",
+      "title": "Phone Calls in English: Answering, Spelling Names and Leaving Messages",
+      "metaTitle": "Phone Calls in English at Work",
+      "description": "Answer and make work phone calls with confidence: greetings, asking someone to repeat, spelling names and numbers, taking messages and leaving voicemail.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many people find phone calls harder than writing. You cannot see the other person's face, the line may be bad, and people speak fast. But phone calls are part of many jobs, from offices and shops to call centres, hotels, hospitals and logistics. The good news is that phone calls follow a pattern, and a small set of phrases will carry you through most of them. This lesson gives you those phrases and tips for the difficult moments."
+        },
+        {
+          "type": "heading",
+          "text": "Answering a call"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Company:  Good morning, Bright Office Supplies. Priya speaking.\n          How can I help you?\nDirect:   Hello, this is Rohan Mehta. How can I help?\nAsking:   May I ask who is calling?\n          Could I have your name, please?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Say the greeting, the company or department and your name. Speak a little slower than normal, and smile as you speak, because it makes your voice sound friendlier. Keep a pen and paper next to the phone."
+        },
+        {
+          "type": "heading",
+          "text": "Making a call"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello, this is Rohan Mehta from Bright Office Supplies.\nI am calling about order 5521.\nCould I speak to Mr Khan, please?\nIs this a good time to talk?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say who you are, and why you are calling, early.",
+            "Prepare notes with the main points and numbers before you call.",
+            "Ask if it is a good time, if the call was not planned."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Asking someone to repeat or slow down"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sorry, could you say that again, please?\nCould you speak a little more slowly?\nI am sorry, the line is not clear. Could you repeat that?\nCould you spell that for me, please?\nLet me check I understand. You said the delivery is on Friday, is that right?\nWould you mind sending that to me in an email?"
+        },
+        {
+          "type": "paragraph",
+          "text": "It is always better to ask than to guess. People do not mind repeating. Checking by repeating information back (Let me check...) prevents mistakes with numbers, dates and addresses."
+        },
+        {
+          "type": "heading",
+          "text": "Spelling names and email addresses"
+        },
+        {
+          "type": "paragraph",
+          "text": "Spelling on the phone is a common problem, because many letters sound alike: B, D, P, T, V; M and N; F and S. People use a spelling alphabet. The international one is below. You can also use easy words you invent, such as B for Banana, as long as the other person understands."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "A  Alpha      B  Bravo      C  Charlie    D  Delta     E  Echo\nF  Foxtrot    G  Golf       H  Hotel      I  India     J  Juliet\nK  Kilo       L  Lima       M  Mike       N  November  O  Oscar\nP  Papa       Q  Quebec     R  Romeo      S  Sierra    T  Tango\nU  Uniform    V  Victor     W  Whiskey    X  X-ray     Y  Yankee\nZ  Zulu"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "My name is Okafor. That is O, K, A, F, O, R.\nMy email is r.mehta at brightoffice dot com.\n(Say: R, dot, M, E, H, T, A, at, brightoffice, dot, com.)\nThe symbol @ is said at. The symbol _ is underscore. The symbol - is dash or hyphen."
+        },
+        {
+          "type": "heading",
+          "text": "Numbers, dates and times"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say phone numbers digit by digit, in small groups, with a pause: nine, eight, seven (pause) six, five, four.",
+            "For 0, you can say zero or oh. In British English, double five means 55.",
+            "Teen numbers and tens sound alike: 13 (thirteen) and 30 (thirty). Stress the end of 13 and the start of 30, or say the digits: one three and three zero.",
+            "Say dates clearly: the fourteenth of June, or June fourteenth. Check which one the other person means, because dd/mm and mm/dd are used differently.",
+            "Say times with am or pm, or the 24-hour clock, and the time zone if needed: three pm Indian time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Taking a message"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I am sorry, Mr Khan is not available at the moment. Can I take\na message?\nCould I have your name and phone number, please?\nWhat is this about?\nI will give him your message. He will call you back today.\nLet me read that back to you: Ms Okafor, 98765 43210, please call about\nthe invoice. Is that correct?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write down the caller's name (spelled), the company, the number, the message, the date and time of the call and your name. Read it back. Then pass it on. Missing messages cause lost customers."
+        },
+        {
+          "type": "heading",
+          "text": "Putting someone on hold or transferring"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Could you hold for a moment, please? I will check.\nThank you for waiting. I am sorry to keep you waiting.\nI will put you through to the accounts department.\nI am transferring your call. Please stay on the line."
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not leave people on hold for long without telling them. If it will take a while, offer to call back."
+        },
+        {
+          "type": "heading",
+          "text": "Leaving a voicemail"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep it short, clear and complete. Say who you are, why you are calling, what you need and your number, slowly. Say the number twice."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello Mr Khan, this is Rohan Mehta from Bright Office Supplies,\ncalling at about 10:30 on Thursday. I am calling about order 5521.\nCould you please call me back on 98765 43210? I repeat, 98765 43210.\nI am available until 5 pm today. Thank you. Goodbye."
+        },
+        {
+          "type": "heading",
+          "text": "Ending the call"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Is there anything else I can help you with?\nThank you for calling.\nThank you for your time. Have a good day.\nI will send you an email to confirm."
+        },
+        {
+          "type": "heading",
+          "text": "Difficult situations"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**You do not understand.** Say so. Ask to repeat, or ask for an email. Never say yes when you did not understand.",
+            "**The caller is angry.** Stay calm, speak slowly, listen without interrupting, say Sorry about that, and say what you can do (see the customer service lesson).",
+            "**Bad connection.** Say the line is not clear, offer to call back or to move to a message.",
+            "**A fast speaker.** Ask them to slow down. It is polite and common.",
+            "**An unfamiliar accent.** Listen for key words, repeat what you understood, and ask again. Accents differ everywhere, and the speaker would rather repeat than be misunderstood."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Practise with a friend by phone, or record yourself saying your greeting, a spelled name and a voicemail. Listening to yourself helps you hear if you are clear and not too fast."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your own phone greeting for your job.",
+            "Spell your full name and email address using the spelling alphabet, aloud, to a friend. Ask them to write it down and check.",
+            "Practise a phone number and a date, aloud, until you can say them clearly.",
+            "Record a voicemail message with your name, reason and phone number (said twice)."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your friend wrote down your name and email correctly.",
+            "Your voicemail includes who, why, number twice and time available.",
+            "You can ask someone to repeat or slow down politely, in two different ways."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A clear phone call",
+        "nodes": [
+          {
+            "id": "greet",
+            "label": "Greet",
+            "sub": "company, name, offer help",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "listen",
+            "label": "Listen and check",
+            "sub": "repeat names and numbers",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "act",
+            "label": "Help or take a message",
+            "sub": "who, number, message",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "end",
+            "label": "End politely",
+            "sub": "anything else? thank you",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Answer with a greeting, the company or department, and your name. Speak slowly and smile.",
+            "on": [
+              "greet"
+            ]
+          },
+          {
+            "say": "Listen carefully. Ask the caller to repeat or spell, and check names and numbers back.",
+            "flow": [
+              "greet>listen:then"
+            ]
+          },
+          {
+            "say": "Help the caller, or take a message with name, number, reason and the time of the call.",
+            "flow": [
+              "listen>act:then"
+            ]
+          },
+          {
+            "say": "End by asking if there is anything else, thank the caller, and say goodbye.",
+            "flow": [
+              "act>end:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How do I spell my name clearly on the phone?",
+          "a": "Use the spelling alphabet, such as A for Alpha and B for Bravo, or simple words everyone knows. Say each letter slowly and ask the other person to read it back."
+        },
+        {
+          "q": "What should I do if I do not understand what the caller said?",
+          "a": "Say so politely and ask them to repeat, speak slowly or spell it. Repeat the key points back to check. Never guess about numbers, dates or names."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Speaking and Listening",
+      "slug": "speak-up-in-meetings",
+      "title": "Speak Up in Meetings: Agree, Disagree and Ask Questions",
+      "metaTitle": "Speak Up in Meetings in English",
+      "description": "Join meetings with confidence: phrases to give an opinion, agree, disagree politely, ask questions, interrupt and summarise, plus online tips.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Meetings can be uncomfortable when English is not your first language. People speak fast, jokes fly by, and by the time you have prepared your sentence, the topic has moved on. Many capable people stay silent in meetings, and then others think they have nothing to say. You can change this with some preparation and a few phrases that you can use at the right moment. You do not need to speak a lot. A few clear, useful contributions are better than many unclear ones."
+        },
+        {
+          "type": "heading",
+          "text": "Prepare before the meeting"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Read the agenda.** Know what will be discussed. If there is no agenda, ask for one, or ask the organiser what the topics are.",
+            "**Prepare one or two points** you want to make, and write them in short sentences. Say them aloud once.",
+            "**Prepare one question.** A good question is a contribution.",
+            "**Know your numbers.** If you report progress, have the facts ready.",
+            "**Test your technology** for an online meeting."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Giving your opinion"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I think we should start with the smaller customers.\nIn my opinion, this is the better option.\nFrom my experience, it takes about two weeks.\nI would suggest that we check the numbers first.\nOne idea could be to ask the supplier for a discount.\nMy concern is that the deadline is too close."
+        },
+        {
+          "type": "heading",
+          "text": "Agreeing"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I agree with Meena.\nThat is a good point.\nYes, I think that is right.\nI see what you mean, and I would add that...\nExactly. That is what I found as well."
+        },
+        {
+          "type": "heading",
+          "text": "Disagreeing politely"
+        },
+        {
+          "type": "paragraph",
+          "text": "In English meetings, disagreement is normal, but it should be polite, and it is about ideas, not the person. Start by recognising the other person's idea, then give your different view and your reason."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I see your point, but I am not sure that will work, because...\nI understand, however I have a different view.\nThat is one option. Another way could be...\nCan I ask what the numbers are based on?\nI am not sure I agree. In my experience...\nCould we also consider the cost?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Avoid You are wrong. Use I see it differently.",
+            "Give a reason or a fact.",
+            "Offer an alternative when you can, so you are helping, not only blocking.",
+            "Keep a calm voice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Asking questions"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Could you explain that a little more?\nWhat do you mean by the new process?\nSorry, I did not understand. Could you give an example?\nCould you repeat the deadline, please?\nWhat is the next step?\nWho will do this, and by when?\nJust to check, are we saying that the delivery is on Friday?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A question that checks understanding is useful for everyone, because others may also be confused. People will thank you for it."
+        },
+        {
+          "type": "heading",
+          "text": "Interrupting politely"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sorry to interrupt, can I add something?\nMay I say something here?\nCould I just come in on that point?\nExcuse me, may I ask a quick question?\nSorry, could we go back to the cost for a moment?"
+        },
+        {
+          "type": "paragraph",
+          "text": "In some meetings, people interrupt a lot, and you may feel you never get a chance. Wait for a small pause, lean forward or raise your hand (in person or on video), and say Could I add something? Or write a note in the meeting chat and ask the chair to give you the floor. In a more formal meeting, wait for the chair to invite you."
+        },
+        {
+          "type": "heading",
+          "text": "When you do not catch what was said"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sorry, could you say that again?\nI missed the last part. Could you repeat it?\nCould you put that in the chat, please?\nCould we go over the timeline again?"
+        },
+        {
+          "type": "heading",
+          "text": "Report your progress"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "The report is almost ready. I will finish it by Wednesday.\nI have completed three out of five tasks.\nI am waiting for the figures from Anita.\nThere is a problem with the delivery. I need help from the supplier.\nNo problems from my side. I will send the update tomorrow."
+        },
+        {
+          "type": "heading",
+          "text": "Summarise and confirm"
+        },
+        {
+          "type": "paragraph",
+          "text": "Near the end of the meeting, a short summary shows leadership and helps everyone. If nobody else summarises, you can."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "So, to summarise: we agreed to move the deadline to 28 June.\nAnita will send the figures by Monday, and I will write the draft.\nIs that correct?\n\nJust to make sure I understand, my next step is to call the supplier\nand confirm the date. Is that right?"
+        },
+        {
+          "type": "heading",
+          "text": "Online meetings"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Join early. Mute your microphone when you are not speaking, and unmute when you speak.",
+            "Use the raise hand button or chat if there is a lot of talking.",
+            "Turn on your camera if the team does, in a tidy place with good light.",
+            "Speak a little more slowly than normal, because of delays and poor sound.",
+            "If your connection is bad, say so, and use chat to share your point.",
+            "Do not do other work or look at other screens during the meeting."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you are nervous, make your first contribution early, even if it is small, such as a short question or a comment that you agree. The first contribution is the hardest. After that, speaking becomes easier."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Choose a meeting you have next week. Write one opinion, one question and one progress update in short sentences.",
+            "Practise saying three phrases for disagreeing politely, with a friend, with different topics.",
+            "After a meeting or a video, write a three-sentence summary of the decisions and who will do what."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You have one opinion, one question and one update ready, and you can say them without reading.",
+            "You can disagree without saying you are wrong.",
+            "Your summary names the people, the tasks and the dates."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Contribute in a meeting",
+        "nodes": [
+          {
+            "id": "prep",
+            "label": "Prepare",
+            "sub": "agenda, one point, one question",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "say",
+            "label": "Speak early",
+            "sub": "opinion or question",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "resp",
+            "label": "Respond politely",
+            "sub": "agree or disagree with reasons",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "sum",
+            "label": "Summarise",
+            "sub": "decisions and actions",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Before the meeting, read the agenda and prepare one point and one question.",
+            "on": [
+              "prep"
+            ]
+          },
+          {
+            "say": "Speak early, even briefly. The first contribution is the hardest.",
+            "flow": [
+              "prep>say:contribute"
+            ]
+          },
+          {
+            "say": "Respond to others politely. Agree, or disagree with a reason and an alternative.",
+            "flow": [
+              "say>resp:discuss"
+            ]
+          },
+          {
+            "say": "Near the end, summarise what was decided and who will do what by when.",
+            "flow": [
+              "resp>sum:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How can I disagree in a meeting without being rude?",
+          "a": "Acknowledge the idea first, then say your different view with a reason, for example I see your point, but I am concerned that... Offer an alternative when you can."
+        },
+        {
+          "q": "What if people speak too fast in meetings?",
+          "a": "Ask politely: Could you say that again, please? or Could you put that in the chat? It is common, and others are usually glad you asked."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Speaking and Listening",
+      "slug": "understand-accents-and-listen-better",
+      "title": "Listening Skills: Understand Fast Speech and Different Accents",
+      "metaTitle": "Improve Your English Listening at Work",
+      "description": "Understand fast speakers and unfamiliar accents at work with practical listening strategies, clarifying phrases and daily practice you can do for free.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many learners say: I can read and write English well, but I cannot understand people when they speak. This is very common. Reading gives you time to think. Speech is fast, words join together, and different people have different accents. The good news is that listening is a skill that improves with regular practice, and there are strategies that help you in the meantime. This lesson explains why listening is hard and gives you tools for the workplace."
+        },
+        {
+          "type": "heading",
+          "text": "Why speech is hard to understand"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Words run together.** In natural speech people say What do you want to do? as Whaddya wanna do? and Did you eat? as Jeet?. This is called connected speech.",
+            "**Stress and rhythm.** English stresses the important words and says the others quickly and weakly. Because of this, small words like to, of and a nearly disappear.",
+            "**Accents.** English is spoken differently in India, Nigeria, Kenya, South Africa, the UK, Canada, the United States, Australia and everywhere else. The sounds, the rhythm and some words differ. No accent is wrong.",
+            "**Speed and nerves.** If you are afraid of not understanding, your brain works harder, and you understand less.",
+            "**Unknown words and idioms.** A phrase such as touch base or ballpark figure does not make sense word by word."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Strategies while listening"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Listen for key words.** You do not need every word. Numbers, names, dates, verbs and nouns carry the meaning. Focus on these.",
+            "**Use the context.** The topic of the meeting or call helps you guess what the speaker means.",
+            "**Do not stop at one unknown word.** If you stop to think about a word, you miss the next sentence. Note it and keep listening, then ask later.",
+            "**Watch the speaker.** On video or in person, faces and hands help.",
+            "**Write the key points.** Notes help memory, and you can check them at the end.",
+            "**Check what you heard.** Say it back in your own words."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Phrases to clarify"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Sorry, I did not catch that. Could you say it again?\nCould you speak a little slower, please?\nDo you mean that the deadline is Friday?\nSo, if I understand correctly, you want the report by Friday. Is that right?\nWhat does touch base mean?\nCould you write that down or send it to me by email?\nCould you give me an example?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Repeating back what you understood is one of the most powerful tools. It checks understanding, shows that you were listening and gives the speaker the chance to correct it."
+        },
+        {
+          "type": "heading",
+          "text": "Common spoken phrases at work"
+        },
+        {
+          "type": "paragraph",
+          "text": "Native and fluent speakers use many informal phrases in meetings. Learn the common ones."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "touch base            = make contact, have a short talk\nget back to you       = reply later\non the same page      = understand and agree\nheads up              = a warning or early notice\nloop you in           = include you in the messages\nbandwidth             = time and energy to do more work\ndeadline is tight     = there is little time\nballpark figure       = a rough number\nby the end of play / EOD = by the end of the working day\naction item           = a task from a meeting\nASAP                  = as soon as possible\nFYI                   = for your information"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you hear a phrase you do not know, ask: What does that mean? Most people are happy to explain. You can also search for the meaning later."
+        },
+        {
+          "type": "heading",
+          "text": "Understand accents"
+        },
+        {
+          "type": "paragraph",
+          "text": "The more you hear an accent, the easier it becomes. You do not need to be afraid of accents. Here is a way to improve."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Listen to English from several countries: news, talks and podcasts from the UK, Canada, India, Nigeria, Kenya, the United States and others.",
+            "When you work with someone, notice which sounds they use differently. Most differences follow patterns.",
+            "Do not feel shy about asking someone to repeat. People with strong accents are used to it.",
+            "Remember that others also find your accent new. Speak clearly and a bit slowly, and you will be understood."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A daily listening routine"
+        },
+        {
+          "type": "paragraph",
+          "text": "Fifteen to twenty minutes a day, for a few months, works better than a long session once a week."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Choose material you enjoy and mostly understand.** News in slow English, short talks, workplace videos, interviews or podcasts. Videos with subtitles help.",
+            "**First listening:** listen once without subtitles for the general idea.",
+            "**Second listening:** listen again in short pieces, and write the words you hear.",
+            "**Check:** read the subtitles or transcript, and see what you missed. Notice words that were hard because of connected speech.",
+            "**Repeat aloud:** say a few sentences, copying the speaker's rhythm. This is called shadowing, and it improves both listening and speaking.",
+            "**Keep a small list** of new words and phrases, and use them in your own sentences."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Free tools are enough: many news sites, public broadcasters, video platforms and podcast apps offer English listening with subtitles or transcripts. You do not need to pay for a course to practise daily."
+        },
+        {
+          "type": "heading",
+          "text": "In your workplace"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ask colleagues to send important instructions in writing as well.",
+            "In meetings, ask for the agenda and notes beforehand if you can.",
+            "Record a meeting only if it is allowed, and tell people. Some workplaces permit this. Others do not.",
+            "If you work in a call centre, ask for calls to be reviewed with a supervisor who can help you improve.",
+            "Take time. After a few months of regular practice, you will notice that people seem to speak more slowly. They have not changed. You have."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Choose a short video or podcast. Listen once for the main idea. Listen again in parts and write down 5 key words. Then check the transcript.",
+            "Shadow one minute of speech three times, copying the rhythm.",
+            "Write five clarifying phrases you will use in your next meeting or call, and use at least two.",
+            "Make a list of five workplace phrases you heard this week, with the meaning."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can say what the speaker's main point was, and name at least three key facts.",
+            "You used a clarifying phrase at work without feeling embarrassed.",
+            "You have a 15-minute listening routine for the next week."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Listen for meaning",
+        "nodes": [
+          {
+            "id": "hear",
+            "label": "Fast speech",
+            "sub": "words run together",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "key",
+            "label": "Catch key words",
+            "sub": "numbers, names, verbs",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "chk",
+            "label": "Check by repeating",
+            "sub": "so you mean Friday?",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "grow",
+            "label": "Practise daily",
+            "sub": "15 minutes, shadowing",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Natural speech is fast and words run together, so you will not catch every word.",
+            "on": [
+              "hear"
+            ]
+          },
+          {
+            "say": "Focus on the key words, such as numbers, names, dates and main verbs, and use the context.",
+            "flow": [
+              "hear>key:focus"
+            ]
+          },
+          {
+            "say": "Check by repeating what you understood: So you need it by Friday, is that right?",
+            "flow": [
+              "key>chk:confirm"
+            ]
+          },
+          {
+            "say": "Practise for 15 minutes a day with subtitles and shadowing. Listening improves steadily.",
+            "flow": [
+              "chk>grow:practise"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why can I read English well but not understand people who speak it?",
+          "a": "Speech is faster, words join together and accents differ. Listening is a separate skill that improves with daily practice, such as listening with subtitles and shadowing."
+        },
+        {
+          "q": "Is it rude to ask someone to repeat themselves?",
+          "a": "No. It is normal and polite. Most people would rather repeat than have a misunderstanding."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Speaking and Listening",
+      "slug": "presentations-and-explaining-your-work",
+      "title": "Presentations and Explaining Your Work in English",
+      "metaTitle": "Presentations and Explaining Your Work",
+      "description": "Plan and give a short presentation or explain your work: a simple structure, signposting phrases, clear slides, and handling nerves and questions.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "At some point in your career, you will need to explain something to a group: show a result, introduce a plan, train a new colleague, or present a project to a manager. For many people, speaking in front of others is the most stressful part of work, and doing it in a second language adds more pressure. But a short, simple presentation is a skill that anyone can learn. This lesson gives you a structure, phrases and habits that make it manageable."
+        },
+        {
+          "type": "heading",
+          "text": "Start with the audience and the message"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before you write anything, answer three questions."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Who is listening?** Managers, colleagues, customers, new staff? What do they know already?",
+            "**What is the one message** you want them to remember? If they remember only one thing, what should it be?",
+            "**What do you want them to do** afterwards? Approve a plan, give feedback, change a habit?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you cannot say the main message in one sentence, you are not ready yet. Example: This quarter our delivery time improved from five days to three, and I recommend we keep the new process."
+        },
+        {
+          "type": "heading",
+          "text": "A simple structure"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1. Opening       Greet. Say who you are and the topic. (30 seconds)\n2. Preview       Say the 3 points you will cover.\n3. Main part     Point 1, Point 2, Point 3, each with a fact or example.\n4. Summary       Repeat the main message in one sentence.\n5. Ending        Say thank you and invite questions."
+        },
+        {
+          "type": "paragraph",
+          "text": "An old rule helps: tell them what you will say, say it, and then tell them what you said. It sounds repetitive on paper, but listeners like it, especially when they listen in a second language, because it helps them follow."
+        },
+        {
+          "type": "heading",
+          "text": "Signposting phrases"
+        },
+        {
+          "type": "paragraph",
+          "text": "Signposts tell the audience where you are. They are very useful for non-native speakers because they give you a fixed sentence to say when you move to the next point."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Opening:     Good morning, everyone. Thank you for coming.\n             My name is Rohan, and today I will talk about our new\n             delivery process.\nPreview:     I will cover three things: what we changed, the results,\n             and the next steps.\nMoving on:   Let us move on to the results.\n             Now I would like to talk about...\nExample:     For example, last month we...\nEmphasis:    The most important point is...\nSummary:     To summarise, our delivery time is now three days.\nClosing:     Thank you for listening. I am happy to answer questions."
+        },
+        {
+          "type": "heading",
+          "text": "Slides that help, not hurt"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**One idea per slide.** A short title that says the point.",
+            "**Few words.** Aim for no more than six lines, with large text. If your audience has to read a lot, they stop listening to you.",
+            "**Use pictures, charts and numbers** instead of long sentences. A chart helps more than a table of numbers.",
+            "**Do not read the slide.** Say it in your own words, add the story or the reason. The slide is the outline, you are the explanation.",
+            "**Use a simple, clean design** with two or three colours and strong contrast.",
+            "**Check spelling,** and check how it looks on the screen in the room."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Explain a chart or a number"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "This chart shows our delivery time by month.\nAs you can see, it dropped from five days in March to three in June.\nThe main reason is the new packing process.\nThis means customers receive their orders two days earlier."
+        },
+        {
+          "type": "paragraph",
+          "text": "Four steps: introduce the chart, point out the key fact, give the reason, and say what it means. This pattern can be used for any chart or table."
+        },
+        {
+          "type": "heading",
+          "text": "Explain a process or your job"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use order words: first, next, then, after that, finally. Keep each step short. Use examples."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "First, the customer sends an order by email.\nNext, I check the stock in the system.\nThen I prepare the invoice and send it to the customer.\nAfter that, the warehouse packs the goods.\nFinally, the driver delivers them and the customer signs."
+        },
+        {
+          "type": "heading",
+          "text": "Handle nerves"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Prepare and practise aloud,** at least three times, ideally with a friend or in front of a mirror. Time yourself.",
+            "**Learn your opening by heart,** the first 30 seconds. A good start calms you.",
+            "**Breathe slowly** before you begin, and drink water.",
+            "**Speak slowly.** Nerves make us rush. A pause is not a failure. It gives people time to understand.",
+            "**Use short notes,** with key words, not full sentences. Do not read a script.",
+            "**Look at friendly faces,** and at different people in the room. Keep eye contact for a few seconds with each.",
+            "**Remember that listeners want you to do well.** Most people are kind, and they are thinking about their own work, not your mistakes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Pronunciation and clarity"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Slow down and stress the important words.",
+            "Practise the key words and names that you find hard. Check them in an online dictionary that has audio.",
+            "If you make a mistake, carry on. Do not apologise again and again.",
+            "Pause between sections."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Questions from the audience"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Thank you for your question.\nCould you repeat the question, please?\nThat is a good question. I do not have the exact figure now, but I will\nfind out and send it to you.\nDoes that answer your question?\nWe have time for one more question."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you do not know an answer, say so honestly and promise to follow up. It is better than a wrong answer. If a question is unclear, ask for it to be repeated, or repeat it in your own words: So you are asking about the cost?."
+        },
+        {
+          "type": "note",
+          "text": "Practice makes it easier. Start with small groups, such as team meetings and training for colleagues, before bigger presentations. Each short talk builds confidence."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Plan a three-minute presentation about your job or a recent project. Write the main message in one sentence, three points, and the summary.",
+            "Write your opening and your closing and say them aloud five times.",
+            "Explain a chart or a simple process using the four steps and the order words.",
+            "Practise the talk in front of a friend and ask for one thing to improve."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your talk is about three minutes and has a clear message, three points and a summary.",
+            "Your slides have few words and one idea each.",
+            "You have a prepared answer to the question, I do not know."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A simple presentation",
+        "nodes": [
+          {
+            "id": "open",
+            "label": "Opening",
+            "sub": "greet, topic, preview",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "main",
+            "label": "Three points",
+            "sub": "each with a fact",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "sum",
+            "label": "Summary",
+            "sub": "the one main message",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "qa",
+            "label": "Questions",
+            "sub": "thank you, invite questions",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Open with a greeting, the topic and a preview of your three points.",
+            "on": [
+              "open"
+            ]
+          },
+          {
+            "say": "Cover three points, each with a fact or example. Use signposts such as Now let us move on to...",
+            "flow": [
+              "open>main:then"
+            ]
+          },
+          {
+            "say": "Summarise the main message in one sentence.",
+            "flow": [
+              "main>sum:then"
+            ]
+          },
+          {
+            "say": "Thank the audience and invite questions. If you do not know an answer, say so and promise to follow up.",
+            "flow": [
+              "sum>qa:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How can I reduce nerves before a presentation in English?",
+          "a": "Prepare and practise aloud several times, learn your opening, speak slowly, breathe, and use short notes instead of a script. Start with small groups to build confidence."
+        },
+        {
+          "q": "How many words should a slide have?",
+          "a": "As few as possible, one idea per slide and no more than about six short lines. Use charts and pictures, and explain in your own words."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "People and Career",
+      "slug": "customer-service-english",
+      "title": "Customer Service English: Helping, Apologising and Staying Calm",
+      "metaTitle": "Customer Service English Phrases",
+      "description": "A simple method and phrases for customer service in English: greet, listen, solve, apologise and handle angry customers calmly.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Customer service is part of many jobs: shops, restaurants, hotels, banks, call centres, delivery, repair and support teams. Customers may be happy, in a hurry, confused or angry. In every case, they want the same few things: to be heard, to get clear information and to have the problem solved. If you follow a simple method and have the right phrases ready, you can stay calm and professional, even when English is not your first language."
+        },
+        {
+          "type": "heading",
+          "text": "A simple method: LEAP"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Listen.** Let the customer finish. Do not interrupt. Take notes.",
+            "**Empathise.** Show you understand how they feel.",
+            "**Act.** Solve the problem, or explain clearly what you will do.",
+            "**Perform the follow-up.** Check that they are happy, and do what you promised."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use any similar method. The point is a clear order: listen first, then solve."
+        },
+        {
+          "type": "heading",
+          "text": "Greeting the customer"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Good morning, welcome to Sunrise Hotel. How can I help you?\nHello, thank you for calling Fast Fix. My name is Priya.\nHi, can I help you find something?\nPlease take a seat. I will be with you in a moment."
+        },
+        {
+          "type": "heading",
+          "text": "Finding out what the customer needs"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "What can I do for you today?\nCould you tell me what happened?\nWhen did you first notice the problem?\nDo you have your order number or receipt?\nCould I have your name and phone number, please?\nLet me check that I understand. The parcel did not arrive, is that right?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Repeating the problem back in your own words shows you were listening, and it prevents mistakes."
+        },
+        {
+          "type": "heading",
+          "text": "Showing empathy"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I understand. That must be frustrating.\nI am sorry to hear that.\nThank you for telling us. I will help you with this.\nI can see why you are upset."
+        },
+        {
+          "type": "paragraph",
+          "text": "Empathy is not agreeing that the company is wrong, and it is not taking the blame personally. It is showing the person that you care about their problem."
+        },
+        {
+          "type": "heading",
+          "text": "Apologising"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I am sorry for the inconvenience.\nI apologise for the delay.\nSorry about that. Let me fix it for you.\nI am sorry we did not meet your expectations."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Apologise once, clearly, then move to the solution. Many apologies without action sound empty.",
+            "Say what you are sorry about.",
+            "Never blame a colleague or another team in front of the customer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Solving the problem"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Here is what I can do. I can send a replacement today, or I can\ngive you a refund. Which would you prefer?\nI will check with my supervisor and call you back by 3 pm.\nIt will take about two days. I will send you an email with the details.\nI will update you as soon as I have news."
+        },
+        {
+          "type": "paragraph",
+          "text": "Give choices when you can. Promise only what you can really do, and then do it on time. If you do not know, say you will find out, and give a time when you will reply."
+        },
+        {
+          "type": "heading",
+          "text": "When you cannot say yes"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I am sorry, but I am not able to do that. What I can do is...\nUnfortunately, that is outside our policy. However, I can offer...\nI understand your request. I will need to ask my manager.\nLet me explain why this is not possible, and what we can do instead."
+        },
+        {
+          "type": "paragraph",
+          "text": "A refusal with a reason and an alternative is much easier to accept than a plain no."
+        },
+        {
+          "type": "heading",
+          "text": "Angry customers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Stay calm.** The anger is about the problem, not about you. Breathe, and speak slowly and at a low, steady volume.",
+            "**Let them speak.** Do not interrupt or argue. Often anger falls after people have been heard.",
+            "**Show empathy and apologise.** I understand, I am sorry.",
+            "**Ask questions** to find the facts.",
+            "**Move to action.** Say what you will do and when.",
+            "**Do not promise what you cannot do,** and do not make excuses.",
+            "**Get help.** If the customer is abusive, threatens you or you feel unsafe, follow your company's rules and call your supervisor or security. You do not have to accept abuse."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Chat and email support"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello Ms Okafor, thank you for contacting us. I am sorry that your\norder arrived damaged. I have arranged a replacement, and it will be\nsent tomorrow. You will receive a tracking number by email. Is there\nanything else I can help you with?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Greet by name, and thank the customer.",
+            "Answer the question first, then add details.",
+            "Write short sentences, and avoid slang and emojis unless your company style allows them.",
+            "Re-read before sending, especially for spelling and numbers."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Ending the conversation"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Is there anything else I can help you with?\nThank you for your patience.\nThank you for calling. Have a good day.\nIf you have any other questions, please do not hesitate to contact us."
+        },
+        {
+          "type": "heading",
+          "text": "Tone and body language"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Smile, even on the phone. People can hear it.",
+            "In person, keep an open posture, eye contact where it suits the local culture, and a calm voice.",
+            "Use the customer's name, politely.",
+            "Different cultures have different habits about distance, eye contact and politeness. Watch and learn what customers in your area expect."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Write down your own most common situations (for example: late delivery, wrong item, price question, complaint) and prepare two or three sentences for each. Practise them aloud until they feel natural."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a short script for your most common customer situation, using greeting, empathy, solution and ending.",
+            "Role-play an angry customer with a friend, using the LEAP steps. Ask for feedback on your tone.",
+            "Write a reply to a customer complaint by email or chat in under 80 words."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your script has a greeting, one apology, a clear action and a polite ending.",
+            "Your reply names the problem, gives the next step and a time.",
+            "Your friend says that you sounded calm and clear."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Handle a customer problem",
+        "nodes": [
+          {
+            "id": "listen",
+            "label": "Listen",
+            "sub": "let them finish",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "emp",
+            "label": "Empathise",
+            "sub": "sorry to hear that",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "act",
+            "label": "Act",
+            "sub": "solution and time",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "fol",
+            "label": "Follow up",
+            "sub": "do what you promised",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Listen without interrupting, and ask questions to understand the problem.",
+            "on": [
+              "listen"
+            ]
+          },
+          {
+            "say": "Show you understand how the customer feels, and apologise once.",
+            "flow": [
+              "listen>emp:then"
+            ]
+          },
+          {
+            "say": "Say clearly what you will do and by when. Give choices if you can.",
+            "flow": [
+              "emp>act:then"
+            ]
+          },
+          {
+            "say": "Follow up and do what you promised. This builds trust.",
+            "flow": [
+              "act>fol:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How do I stay calm with an angry customer?",
+          "a": "Breathe, speak slowly, let the customer finish, say you understand and are sorry, then move to what you can do. Remember the anger is about the problem. If you feel unsafe, follow company rules and call a supervisor."
+        },
+        {
+          "q": "What do I say if I cannot give the customer what they ask for?",
+          "a": "Explain politely why, and offer what you can do instead, for example: I am sorry, I cannot do that, but I can offer you a replacement."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "People and Career",
+      "slug": "feedback-teamwork-and-your-manager",
+      "title": "Feedback, Teamwork and Talking to Your Manager",
+      "metaTitle": "Feedback and Teamwork English at Work",
+      "description": "Give and receive feedback, ask your manager for help, report problems early, discuss growth and work well in a multicultural team.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Good English at work is not only about grammar. It is also about relationships: how you ask for help, how you receive criticism, how you tell your manager about a problem, and how you work with people from different backgrounds. These conversations can feel difficult in any language. This lesson gives you simple patterns and phrases to make them easier."
+        },
+        {
+          "type": "heading",
+          "text": "Receiving feedback"
+        },
+        {
+          "type": "paragraph",
+          "text": "Feedback is information about how to do better. Even when it is delivered badly, it can contain something useful. Try to stay calm, listen, and ask questions."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Thank you for telling me.\nCould you give me an example?\nWhat would you like me to do differently?\nI understand. I will try to improve this by next week.\nCould we check again in two weeks?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Do not defend yourself straight away. First listen to the end.",
+            "Ask for specific examples. General comments such as not good enough are hard to act on.",
+            "Write the points down.",
+            "If you do not agree, say so politely and give your view later: I see it a little differently. Could we look at the figures together?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Giving feedback"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you lead a team or train someone, you will give feedback. A simple pattern helps: describe the situation, the behaviour, the effect, and the request."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Yesterday's report had several mistakes in the totals. This caused a\ndelay for the finance team. Could you check the formulas before\nsending next time? I am happy to help you with this.\n\nThank you for staying late to finish the order. It helped us deliver\non time, and the customer was very happy."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Talk about actions, not about the person's character. The report had mistakes is better than You are careless.",
+            "Say something positive and honest too, not only problems.",
+            "Give feedback soon, and in private for criticism.",
+            "End with support and a next step."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Asking for help"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Could you help me with this, please? I am not sure how to start.\nDo you have five minutes? I would like your advice on the schedule.\nI tried A and B, but they did not work. What would you suggest?\nCould you show me how to do it the first time?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Say what you have already tried. It shows effort, and it saves time. Asking early is better than staying silent and making a big mistake later."
+        },
+        {
+          "type": "heading",
+          "text": "Reporting a problem or a delay"
+        },
+        {
+          "type": "paragraph",
+          "text": "Managers prefer to hear bad news early. Tell them the problem, the effect, what you have done, and what you need."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I want to let you know that the supplier is late. The delivery will\ncome on Friday, not Wednesday. This may delay the customer order.\nI have called the supplier and asked for a firm date. Could you\napprove a different supplier as a backup?"
+        },
+        {
+          "type": "note",
+          "text": "Never hide a problem hoping it will go away. Telling your manager early is a sign of responsibility, not of weakness."
+        },
+        {
+          "type": "heading",
+          "text": "Saying no or setting limits"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I would be happy to help, but I have two tasks due today.\nCould we do this tomorrow, or could someone else help?\nI can finish A or B by Friday, not both. Which is the priority?\nI am not able to take this on right now. Can we talk about it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Asking about priorities is very useful. It makes the manager decide, and it makes your workload visible."
+        },
+        {
+          "type": "heading",
+          "text": "Talking about your career and pay"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "I would like to talk about my development. Could we find a time?\nI have completed the training, and I have taken more responsibility\nfor the monthly report. I would like to discuss my salary.\nWhat skills do I need to develop to move to the next role?\nCould you tell me what the goals for the next six months are?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Prepare facts: what you achieved, what you learned and what you now do.",
+            "Choose a good time, and ask for a meeting in advance. Do not raise it in a hallway.",
+            "Say what you want, honestly and politely, and listen to the answer.",
+            "Rules about pay differ by company and country, so check your contract and your company's process."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Working in a multicultural team"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Speak clearly and simply.** Avoid idioms and slang that people from other countries may not know.",
+            "**Check understanding.** Ask Does that make sense? and Let me summarise.",
+            "**Be patient** with accents and different English. Everyone is learning.",
+            "**Learn about differences.** Cultures differ in how direct people are, how they use titles, how they show disagreement and how they manage time. Ask and observe instead of assuming.",
+            "**Include everyone.** In meetings, invite quieter people: Meena, what do you think?",
+            "**Be careful with humour.** Jokes often do not travel across cultures."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Respect and boundaries"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Everyone deserves respect at work. Harassment, bullying and discrimination are not acceptable, and many countries have laws and company policies against them.",
+            "If you experience or see this, write down what happened (date, place, words, witnesses) and use your company's process, such as your manager, HR, a union or a legal helpline in your country.",
+            "Keep copies of important messages."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Think of one piece of feedback you received. Write how you could respond using three phrases from this lesson.",
+            "Write a message to your manager reporting a real or imagined delay, with the problem, effect, action and request.",
+            "Write a short message asking a colleague for help. Say what you have already tried.",
+            "Prepare three facts for a conversation about your development."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your delay message has the four parts and is under 80 words.",
+            "Your help request says what you tried.",
+            "You can give feedback about an action without criticising the person."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A good work conversation",
+        "nodes": [
+          {
+            "id": "fact",
+            "label": "Facts",
+            "sub": "what, when, effect",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "say",
+            "label": "Say it clearly",
+            "sub": "polite and specific",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "listen",
+            "label": "Listen",
+            "sub": "ask questions",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "next",
+            "label": "Agree next step",
+            "sub": "who does what by when",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Prepare the facts: what happened, when and what effect it had.",
+            "on": [
+              "fact"
+            ]
+          },
+          {
+            "say": "Say it clearly and politely, about the action and not the person.",
+            "flow": [
+              "fact>say:then"
+            ]
+          },
+          {
+            "say": "Listen to the answer and ask questions to understand the other side.",
+            "flow": [
+              "say>listen:then"
+            ]
+          },
+          {
+            "say": "Agree the next step: who will do what by when.",
+            "flow": [
+              "listen>next:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How do I tell my manager about a problem?",
+          "a": "Tell them early. Say what the problem is, what effect it has, what you have already done and what help you need."
+        },
+        {
+          "q": "How do I give feedback politely?",
+          "a": "Describe the specific action and its effect, not the person, say something positive too, and finish with a request and an offer to help."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "People and Career",
+      "slug": "improve-your-english-every-day-plan",
+      "title": "A Daily Plan to Keep Improving Your Workplace English",
+      "metaTitle": "Improve Your English Every Day: A Plan",
+      "description": "A realistic daily plan to improve work English: reading, listening, speaking and writing habits, a phrase book, free tools and tracking progress.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Courses help, but language grows through regular use. People who improve fastest are not always those with the most talent. They are the people who practise a little every day for months. The good news is that you can do this at work and at home with free tools, and the plan below takes only 20 to 40 minutes a day. In this last lesson you build a personal plan that fits your life, your job and your goals."
+        },
+        {
+          "type": "heading",
+          "text": "Start with your goals"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Why do you need English?** For example: to pass an interview, to talk to customers, to write emails, to move to another country, to get a promotion.",
+            "**Which skills matter most?** Speaking, listening, writing, reading? Choose one or two to focus on first.",
+            "**What is your situation?** How much time do you have, and who can you practise with?",
+            "**Set a clear, small target** for 30 days, for example: write five work emails without a template, or speak for two minutes about my job without stopping."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The four skills in a daily routine"
+        },
+        {
+          "type": "paragraph",
+          "text": "A balanced week includes all four skills. A short routine could look like this."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Listening  10 min  video or podcast with subtitles, then shadow 1 minute\nReading    10 min  a news article, a work document or a graded reader\nWriting     5 min  a diary entry or a message you really need to send\nSpeaking    5 min  say your plan for the day aloud, or record a voice note"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you only have ten minutes, do one skill a day and rotate. Short and regular is better than long and rare."
+        },
+        {
+          "type": "heading",
+          "text": "Listening"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use videos, talks and podcasts in English with subtitles or transcripts.",
+            "Choose topics you care about: your job, sport, cooking, technology. You will listen longer.",
+            "Listen once for the main idea, once for details, then read the transcript.",
+            "Shadow: repeat out loud, copying rhythm and stress."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Reading"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Read a little every day: news sites, blogs about your profession, manuals, company emails.",
+            "Do not look up every word. Guess from context, and look up only words that appear again and again.",
+            "Keep a list of useful phrases, not only single words, for example make a decision, meet a deadline, follow up."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Writing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Write a few lines every day: a diary, a summary of your day's work, a message to a friend in English.",
+            "Use the plain English rules of this course.",
+            "Check with a free spelling and grammar tool, then think about each suggestion before you accept it. The tool is not always right.",
+            "Ask a colleague or a teacher to look at an important text. Learn from your repeated mistakes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Speaking"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Speak every day, even alone: describe what you are doing, practise your self-introduction, say your plan for tomorrow.",
+            "Record yourself on your phone, and listen. You will hear your progress.",
+            "Find a language partner, a colleague, a friend or an online conversation group, and speak weekly.",
+            "Do not wait until you are perfect. Mistakes are normal, and they are how you learn.",
+            "Practise the situations you really face: meetings, calls, customers, interviews."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Make a personal phrase book"
+        },
+        {
+          "type": "paragraph",
+          "text": "A small notebook or phone note with the phrases you need at work is one of the best tools. Add every new useful phrase with an example. Review it often."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Phrase                  Meaning / use              My example\nfollow up              contact again later        I will follow up on Monday.\nmeet a deadline        finish on time             We must meet the deadline.\ncould you clarify...   please explain             Could you clarify the date?\nI will get back to you reply later                I will get back to you today."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Group phrases by situation: emails, calls, meetings, customers.",
+            "Add your own example sentence about your job.",
+            "Say each phrase aloud a few times. Review the list each week."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Use English at work"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Offer to write a short email or update in English, and ask a colleague to check it.",
+            "Join a meeting and make one comment each time.",
+            "Change the language of your phone or computer to English.",
+            "Read the English documents of your own profession, such as manuals, safety rules or product pages.",
+            "Find a work friend who speaks English and chat for a few minutes each day."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Free tools and resources"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Public broadcasters and news sites with English learning sections.",
+            "Video platforms with subtitles and many English talks.",
+            "Online dictionaries with audio (learner dictionaries explain words in simple English).",
+            "Public libraries often have graded readers and free language apps.",
+            "Free spelling and grammar checkers, used carefully."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Check the privacy and the cost of any app before using it, and never share work secrets, customer data or passwords with a free online tool."
+        },
+        {
+          "type": "heading",
+          "text": "Measure your progress"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Record the same 1-minute talk every month. Compare.",
+            "Keep your writing samples. Notice how many mistakes you make each month.",
+            "Track your habit on a calendar. A chain of days motivates.",
+            "Look for small wins: a call you handled well, an email without corrections, a meeting where you spoke.",
+            "Some people like a test of English, such as IELTS or TOEFL, if they need a certificate for study or immigration. Check what the organisation or country you apply to accepts."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When progress feels slow"
+        },
+        {
+          "type": "paragraph",
+          "text": "Everyone has plateaus, where it seems that nothing improves. This is normal. Your understanding often grows before your speaking does. Keep the routine, change materials when you are bored, and celebrate small steps. After three to six months of regular practice, most people notice a clear difference. How fast you improve depends on your starting level, your time and how much you use the language."
+        },
+        {
+          "type": "heading",
+          "text": "Your 30-day plan"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Week 1:** choose a goal. Start the daily routine. Start the phrase book.",
+            "**Week 2:** add one real use at work, such as an email or a comment in a meeting.",
+            "**Week 3:** find a speaking partner. Record yourself.",
+            "**Week 4:** review your phrase book. Compare your recordings. Set a new goal for the next month."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your goal for the next 30 days in one sentence.",
+            "Make a routine of 20 to 40 minutes, with times and days.",
+            "Start your phrase book with ten phrases from this course.",
+            "Record a one-minute talk about your job today. Keep it, and record the same talk again in a month."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your goal is specific and can be measured.",
+            "Your routine has all four skills in a week.",
+            "You have a recording to compare with later."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Your English routine",
+        "nodes": [
+          {
+            "id": "goal",
+            "label": "Set a goal",
+            "sub": "small and specific",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "daily",
+            "label": "Practise daily",
+            "sub": "20 to 40 minutes",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "use",
+            "label": "Use it at work",
+            "sub": "emails, meetings, calls",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "track",
+            "label": "Track progress",
+            "sub": "record and compare",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Choose a clear, small goal for the next 30 days.",
+            "on": [
+              "goal"
+            ]
+          },
+          {
+            "say": "Practise a little every day: listening, reading, writing and speaking.",
+            "flow": [
+              "goal>daily:then"
+            ]
+          },
+          {
+            "say": "Use your English in real situations at work, and keep a phrase book.",
+            "flow": [
+              "daily>use:then"
+            ]
+          },
+          {
+            "say": "Track your progress with recordings and writing samples, then set the next goal.",
+            "flow": [
+              "use>track:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long does it take to improve my English?",
+          "a": "It depends on your starting level, how much time you practise and how much you use English. Regular practice for a few months usually brings a noticeable difference, but there is no fixed timetable."
+        },
+        {
+          "q": "What is the best free way to practise every day?",
+          "a": "Listen to English with subtitles, read short texts about your work, write a few lines, and speak aloud or record yourself. Twenty minutes a day is better than a long session once a week."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}

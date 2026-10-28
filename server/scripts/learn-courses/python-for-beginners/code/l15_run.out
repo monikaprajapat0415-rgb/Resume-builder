@@ -1,0 +1,23 @@
+$ python l15_tracker.py --file demo.json list
+No expenses yet
+$ python l15_tracker.py --file demo.json add 250 food "Lunch"
+Saved #1: 250.00 on Food
+$ python l15_tracker.py --file demo.json add 120.5 travel Metro
+Saved #2: 120.50 on Travel
+$ python l15_tracker.py --file demo.json add 99 food "Snacks"
+Saved #3: 99.00 on Food
+$ python l15_tracker.py --file demo.json list
+  1  Food       250.00  Lunch
+  2  Travel     120.50  Metro
+  3  Food        99.00  Snacks
+$ python l15_tracker.py --file demo.json total
+Food       349.00
+Travel     120.50
+All        469.50
+$ python l15_tracker.py --file demo.json add -5 food
+Error: Amount must be more than zero
+(exit code 1)
+$ python l15_tracker.py --file demo.json add abc food
+usage: l15_tracker.py add [-h] amount category [note]
+l15_tracker.py add: error: argument amount: invalid float value: 'abc'
+(exit code 2)

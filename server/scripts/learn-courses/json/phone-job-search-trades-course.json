@@ -1,0 +1,2095 @@
+{
+  "course": {
+    "title": "Job Search on Your Phone: A Simple Guide for Skilled and Daily Wage Workers",
+    "slug": "phone-job-search-trades-course",
+    "summary": "A plain-language course in 10 short lessons for trade, factory, driving and service workers: set up your phone, write your skills, make a resume, find work, apply, avoid scams and prepare.",
+    "description": "Free course in plain words for skilled trade, factory and daily wage workers. Find and apply for jobs from your phone, avoid scams and know your rights.",
+    "level": "Beginner",
+    "topic": "Job search",
+    "badge": "JOB",
+    "tags": [
+      "job search",
+      "skilled trades",
+      "daily wage",
+      "phone",
+      "resume",
+      "job scams"
+    ],
+    "order": 39,
+    "published": true,
+    "minWords": 550,
+    "metaTitle": "Job Search on Your Phone: Free Course",
+    "keywords": "job search on phone, jobs for skilled trades, daily wage jobs, factory jobs, how to make a resume on phone, job scams, resume for trade jobs"
+  },
+  "lessons": [
+    {
+      "section": "Get Ready",
+      "slug": "your-phone-is-your-job-tool",
+      "title": "Your Phone Is Your Job Tool: Set It Up",
+      "metaTitle": "Set Up Your Phone for Job Hunting",
+      "description": "Get your phone ready for job hunting: a simple email, a clear voicemail, a tidy photo, saved storage and a place for your papers. Plain words, no extra cost.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many people look for work only with a phone. That is fine. A phone can find jobs, make a resume, send papers and talk to employers. This course shows you how, step by step, in plain words. You do not need a computer. You do not need to pay anything for the lessons or the tools we show."
+        },
+        {
+          "type": "paragraph",
+          "text": "This first lesson is about getting ready. Ten minutes of setup now will save you a lot of trouble later. Employers are busy. If they cannot reach you, they call the next person."
+        },
+        {
+          "type": "heading",
+          "text": "1. A phone number that works"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use one number for job hunting. Give only that number to employers.",
+            "Keep it charged. Keep some balance or data on it. A job call that you miss may not come again.",
+            "Save the numbers of employers when they call. Write their name and company, for example `Raj - Shah Builders`.",
+            "Answer politely: *Hello, this is your name.* A calm voice makes a good first picture."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "2. A voicemail or message that sounds good"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you cannot answer, the caller may leave a message. Make sure your phone says your name, or at least says a normal voice mail. A funny song or a long joke can make an employer hang up. Check your voicemail every day. Call back the same day if you can."
+        },
+        {
+          "type": "heading",
+          "text": "3. A simple email address"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most job sites and many employers need an email address. If you do not have one, make a free one. Keep the name simple and clear. Use your real name, such as `sunil.kumar.electrician` or `grace.mwangi.cook`. Do not use names like `cooldude99` or `lovely_girl`. Write down your password in a safe place, and do not share it. Turn on two-step sign in if the service offers it."
+        },
+        {
+          "type": "note",
+          "text": "Never give your email password, your bank PIN or an OTP (one-time code) to anyone. An honest employer or job site will never ask for them."
+        },
+        {
+          "type": "heading",
+          "text": "4. Your photo and your name on apps"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If you use WhatsApp or Telegram for work, check your profile photo. Use a clear photo of your face, with plain clothes and a plain background.",
+            "Use your real name.",
+            "Look at your status and your pictures. If you contact employers, they may look at them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "5. Make space on your phone"
+        },
+        {
+          "type": "paragraph",
+          "text": "Photos and videos can fill the phone, so you cannot take a picture of your papers when you need to. Delete what you do not need. Move photos to a cloud service or to another phone if you can. A phone with free space is also faster."
+        },
+        {
+          "type": "heading",
+          "text": "6. A folder for your job papers"
+        },
+        {
+          "type": "paragraph",
+          "text": "Make one folder on your phone called `Jobs`. Put all your job papers in it: your resume, photos of your certificates, photos of your ID (keep these private), and a list of the jobs you applied to. When an employer asks, you find the file in seconds. Make a second copy. Send the folder to a family member you trust, or save it online, in case the phone is lost or broken."
+        },
+        {
+          "type": "heading",
+          "text": "7. Save data and battery"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use Wi-Fi when you can, for example at home or at a library or a shop that allows it.",
+            "Download big files only on Wi-Fi.",
+            "Turn on battery saver. Carry a power bank if you have one.",
+            "Keep your phone safe from water and dust on the job site."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "8. Keep it safe"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use a screen lock, a PIN or a pattern that others cannot guess.",
+            "Keep your phone software updated when you can.",
+            "Do not click on links in messages from people you do not know.",
+            "Do not let anyone use your phone to log in to your accounts."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "These steps look small. But together they make you look ready and trusted. They also keep you safe."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Check that your phone number works, has balance, and that your voicemail says something polite.",
+            "Make or tidy one email address with your real name. Write the password in a safe place.",
+            "Make a folder called `Jobs` on your phone.",
+            "Free some space: delete five things that you do not need."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can find your `Jobs` folder in less than ten seconds.",
+            "Your email name looks serious, with your own name in it.",
+            "You have at least 1 GB of free space, or enough to take 20 photos."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A phone ready for work",
+        "nodes": [
+          {
+            "id": "phone",
+            "label": "Your phone",
+            "sub": "charged, space free",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "mail",
+            "label": "Email + number",
+            "sub": "simple and clear",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "folder",
+            "label": "Jobs folder",
+            "sub": "all papers in one place",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ready",
+            "label": "Ready for work",
+            "sub": "reachable and safe",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with the phone you already have. Keep it charged and keep some space free.",
+            "on": [
+              "phone"
+            ]
+          },
+          {
+            "say": "Use one phone number and one simple email address with your real name.",
+            "flow": [
+              "phone>mail:set up"
+            ]
+          },
+          {
+            "say": "Make a Jobs folder and keep your resume and papers in it.",
+            "flow": [
+              "mail>folder:save papers"
+            ]
+          },
+          {
+            "say": "Now employers can reach you, and you can send papers in seconds.",
+            "flow": [
+              "folder>ready:ready"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do I need a computer to look for a job?",
+          "a": "No. A phone is enough to find jobs, make a resume, send papers and talk to employers. This course is written for phone users."
+        },
+        {
+          "q": "What email name should I use?",
+          "a": "Use your real name, for example sunil.kumar.electrician. Avoid nicknames and numbers that look like a joke."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Get Ready",
+      "slug": "know-your-skills-and-write-them-down",
+      "title": "Know Your Skills and Write Them Down",
+      "metaTitle": "Know Your Work Skills and Write Them Down",
+      "description": "List what you can do: tasks, tools, machines, years and training. Use plain, true words so a resume and an interview are easy. Includes a worksheet.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many skilled people say: *I just do my work.* But an employer cannot see your work from a phone call. You must tell them clearly what you can do. The first step is to write it down for yourself. Take twenty minutes. It is the base of your resume, your messages and your interview."
+        },
+        {
+          "type": "heading",
+          "text": "Why this matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "A person who says *I can do plumbing* sounds like many others. A person who says *I fix leaks, fit bathrooms and install water tanks. I have worked 6 years on houses and shops* sounds clear. Real details are easy to trust. Use real facts only. Do not add things that are not true. An employer may ask you to show it."
+        },
+        {
+          "type": "heading",
+          "text": "Step 1: Write what you do, in small tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think about a normal week of work. What do you do with your hands, your tools and your head? Write one line for each task. Use action words."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Example: house electrician\n\n- Fit switches, sockets and lights\n- Find and fix wiring faults\n- Install fans and meters\n- Read simple wiring drawings\n- Test circuits before I leave\n- Talk to the house owner about work and cost"
+        },
+        {
+          "type": "heading",
+          "text": "Step 2: Write your tools and machines"
+        },
+        {
+          "type": "paragraph",
+          "text": "List the tools, machines and vehicles that you use well. For example: welding machine, angle grinder, forklift, tailor machine, sewing machine, drill, lathe, tractor, sprayer, POS machine, delivery bike. If you have a licence, write it. For example a driving licence, a forklift licence or a trade certificate."
+        },
+        {
+          "type": "heading",
+          "text": "Step 3: Write your years and places"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Where did you work? A company, a site, a shop, or on your own?",
+            "For how long? Years and months are enough. If you do not remember exactly, write about.",
+            "What did you build, fix or make there? Say what you are proud of.",
+            "If you worked for family or on your own, that is also work. Write it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Step 4: Training and papers"
+        },
+        {
+          "type": "paragraph",
+          "text": "List courses, trade tests, certificates and licences. Write the name, the place and the year. Also write the safety training you did. Many employers ask for it. Also note what languages you can speak. In many jobs, a second language is a real skill."
+        },
+        {
+          "type": "heading",
+          "text": "Step 5: Your good habits"
+        },
+        {
+          "type": "paragraph",
+          "text": "Employers like workers who come on time, finish work, keep the place clean and follow safety rules. If this is true for you, write one line with an example. For example: *I never missed a shift in two years.* Only write it if it is true."
+        },
+        {
+          "type": "heading",
+          "text": "A simple skills sheet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write this on paper, or in the notes app on your phone."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "My work: (for example welder, driver, cook, carpenter)\nYears of work: \nTasks I do well: \nTools and machines I use: \nLicences and certificates: \nPlaces I worked: \nLanguages: \nWhere I can work (town or area): \nHours I can work: \nWhen I can start: "
+        },
+        {
+          "type": "note",
+          "text": "Do not write a skill that you do not have. If an employer finds out, you can lose the job. It is fine to say: *I am learning this.* Honest learners are welcome in many places."
+        },
+        {
+          "type": "heading",
+          "text": "What if you have little formal work?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not worry. Think about work at home, on a farm, in a family shop, in a community or in a place of worship. Think about helping a relative with repair work. These show real skills. Write them as they are, in plain words."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your skills sheet. Fill every line that you can.",
+            "List at least five tasks that you do well, one on each line.",
+            "List your tools, machines, licences and certificates.",
+            "Ask a friend or family member what they think you do best. Add one more line."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your sheet has at least five true tasks, with clear action words.",
+            "Every line on your sheet is true, and you can explain it.",
+            "You can say in two sentences what work you do and for how long."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From work to words",
+        "nodes": [
+          {
+            "id": "work",
+            "label": "Your real work",
+            "sub": "tasks, tools, years",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "write",
+            "label": "Write it down",
+            "sub": "plain true words",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sheet",
+            "label": "Skills sheet",
+            "sub": "one page",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "use",
+            "label": "Use it",
+            "sub": "resume, messages, interview",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You already have real skills from your work, your tools and your years.",
+            "on": [
+              "work"
+            ]
+          },
+          {
+            "say": "Write them down in plain words, one task on each line. Use only true facts.",
+            "flow": [
+              "work>write:note"
+            ]
+          },
+          {
+            "say": "Put it all on one skills sheet.",
+            "flow": [
+              "write>sheet:collect"
+            ]
+          },
+          {
+            "say": "Use the sheet for your resume, your messages to employers and your interview answers.",
+            "flow": [
+              "sheet>use:reuse"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What if I learned my trade without a certificate?",
+          "a": "Many people do. Write your years of work and the tasks you can do. If you can, ask for a short trade test or a reference from a past employer."
+        },
+        {
+          "q": "Should I write skills that I am still learning?",
+          "a": "Yes, but say it honestly, for example: learning to use a CNC machine. Do not say you are an expert when you are not."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Get Ready",
+      "slug": "make-a-one-page-resume-on-your-phone",
+      "title": "Make a One-Page Resume on Your Phone",
+      "metaTitle": "Make a One-Page Resume on Your Phone",
+      "description": "Make a simple one-page resume on your phone for factory, trade, driving or service jobs: what to include and leave out, a sample, and saving a PDF.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A resume is one page that tells an employer who you are and what work you can do. Many employers ask for one, even for trade and factory jobs. You can make it on your phone in about thirty minutes. Use the skills sheet from lesson 2."
+        },
+        {
+          "type": "heading",
+          "text": "What a good resume looks like"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**One page.** Short and easy to read.",
+            "**Plain layout.** One column, simple letters, no pictures or colours that make it hard to read. Many companies use software to read resumes, and plain ones work best.",
+            "**True facts.** Only what you really did.",
+            "**Your newest work first.**",
+            "**Clear contact details:** your name, phone number, email and town."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "In some countries, employers like a photo, your age or your marital status on a resume. In other countries they do not. Check the job advert, or ask the employer. Never put your ID number or your bank details on a resume."
+        },
+        {
+          "type": "heading",
+          "text": "The parts, in order"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Name and contact:** your name, phone, email, town.",
+            "**Short summary:** two lines. Who you are, what work you do, how long.",
+            "**Skills:** five to eight short points, from your skills sheet.",
+            "**Work history:** place, job title, dates, and two or three lines about what you did.",
+            "**Training and licences:** name, place, year.",
+            "**Languages:** optional, but useful."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A made-up sample"
+        },
+        {
+          "type": "paragraph",
+          "text": "This person and company are made up. Use it as a guide for the shape, and write your own facts."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "SUNIL KUMAR\nPhone: 98XXXXXXXX   Email: sunil.kumar.electrician@example.com\nTown: Pune\n\nSUMMARY\nHouse and shop electrician with 6 years of work. I fit wiring, find\nfaults and finish work on time.\n\nSKILLS\n- Wiring for houses and shops\n- Fitting lights, fans, switches and meters\n- Finding and fixing electrical faults\n- Reading simple wiring drawings\n- Testing circuits and safety checks\n- Working with customers politely\n\nWORK\nElectrician, Shah Builders, Pune        Jan 2020 - now\n- Wired 40 houses in new buildings with a team of 4\n- Fixed faults in shops and offices when called\n- Trained 2 new helpers in safe work\n\nElectrician helper, Raj Electricals, Pune   2018 - 2019\n- Helped with wiring and repairs, learned the trade\n\nTRAINING\n- Electrician trade certificate, ITI Pune, 2018\n- Basic first aid, 2021\n\nLANGUAGES\nHindi, Marathi, basic English"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice the style. Every line is short. The numbers in this sample are made up. You should write your real numbers, or leave them out if you are not sure. Do not guess. Do not invent."
+        },
+        {
+          "type": "heading",
+          "text": "Make it on your phone"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Open the resume builder on this site, at [/app](/app). It works in a phone browser. Create a free account and choose a plain template.",
+            "Type your details into the boxes, one section at a time.",
+            "Check each line. Check your phone number and email twice. A wrong number means no calls.",
+            "Look at the preview. It should be one page and easy to read.",
+            "Download it as a PDF. A PDF looks the same on every phone and computer.",
+            "Save it in your `Jobs` folder. Give it a clear file name, such as `Sunil-Kumar-Electrician-Resume.pdf`."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can look at plain templates here: [resume templates](/templates). If you want ideas for factory, warehouse and trade resumes, read our guide [resume for factory, warehouse and skilled trade jobs](/blog/resume-for-factory-warehouse-skilled-trade-jobs). Habits are different from country to country, and our [resume format by country](/blog/resume-format-india-uk-canada-africa) guide explains them."
+        },
+        {
+          "type": "heading",
+          "text": "If you cannot make a resume yet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many daily wage and trade jobs do not ask for one. They ask for a call, a test or a visit. Still, a resume helps for bigger employers, for agencies and for job sites. Keep your skills sheet ready in your notes app. You can say the same things on the phone."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A wrong phone number or email.",
+            "A long resume of three or four pages.",
+            "Big words that you would not say.",
+            "Spelling mistakes. Ask someone to read it.",
+            "A funny email address.",
+            "Lying about work, tools or papers."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make your resume from your skills sheet, with the builder or in your notes app.",
+            "Check the phone number and email letter by letter.",
+            "Download it as a PDF and save it in your `Jobs` folder.",
+            "Ask a friend to read it and tell you if anything is not clear."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your resume fits on one page.",
+            "A friend can say what work you do after reading it for thirty seconds.",
+            "The PDF opens on your phone and shows the same text."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A resume on your phone",
+        "nodes": [
+          {
+            "id": "sheet",
+            "label": "Skills sheet",
+            "sub": "from lesson 2",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "build",
+            "label": "Resume builder",
+            "sub": "plain template",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pdf",
+            "label": "PDF file",
+            "sub": "one page",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "send",
+            "label": "Send to employers",
+            "sub": "from your Jobs folder",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start from your skills sheet. All the facts are already there.",
+            "on": [
+              "sheet"
+            ]
+          },
+          {
+            "say": "Type them into a plain resume template, one section at a time.",
+            "flow": [
+              "sheet>build:type"
+            ]
+          },
+          {
+            "say": "Download one clean page as a PDF and save it in your Jobs folder.",
+            "flow": [
+              "build>pdf:download"
+            ]
+          },
+          {
+            "say": "Send the PDF to employers by message or email when they ask for it.",
+            "flow": [
+              "pdf>send:share"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I put a photo on my resume?",
+          "a": "It depends on the country and the employer. Check the job advert. Many employers do not need one. Never put your ID number or bank details."
+        },
+        {
+          "q": "Is the resume builder free?",
+          "a": "You can create a resume on this site and check the current options on the page. If anything changes, the page will say so."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Get Ready",
+      "slug": "photos-of-your-papers-and-privacy",
+      "title": "Photos of Your Papers: Make Them Clear and Keep Them Safe",
+      "metaTitle": "Photograph Your Papers and Keep Them Safe",
+      "description": "Take clear phone photos of certificates and licences, make a tidy PDF, name the files, and learn what to send to an employer and what to keep private.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Employers may ask for copies of your papers: a certificate, a licence, a reference letter. You can take a picture with your phone. But a dark, bent or cut photo looks bad. And your papers have private information, so you must be careful about who gets them. This lesson shows both."
+        },
+        {
+          "type": "heading",
+          "text": "Take a clear photo"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Put the paper on a flat, plain surface, such as a table, with light from a window. Avoid shadows and the glare of a lamp.",
+            "Hold the phone straight above the paper. Do not take it from the side.",
+            "Make sure all four corners are in the picture, and the writing is sharp.",
+            "Zoom in on the picture, and check that you can read every word. If you cannot, take it again.",
+            "Many phones have a scan option in the camera or notes app. It makes the paper flat and clear. Try it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Make it small and tidy"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Big photos are slow to send and may not go through on a bad network. Many phones let you share a smaller size. Most scan tools do this for you.",
+            "A PDF is better than many loose photos. Put the pages of one paper into one PDF file. Free scanning apps and the built-in scan tool of many phones can do it.",
+            "Check that the file is smaller than a few MB. Employers often have a limit.",
+            "Name the files clearly: `Sunil-Electrician-Certificate-2018.pdf`. A name such as `IMG_4821.jpg` means nothing."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What you should show, and when"
+        },
+        {
+          "type": "paragraph",
+          "text": "Not every paper is for every employer. Think about **who** is asking and **why**."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Safe to send early:** your resume, your trade certificate, your safety training, a reference letter, your driving or work licence (a real employer for a driving job will need to see it).",
+            "**Send later, after you have an offer and have checked the employer:** a copy of your ID, your bank details, your tax or social number. A real employer needs them only for the paperwork of a real job.",
+            "**Do not send:** your ATM card, your card PIN, your OTP codes, or your online banking password. Never. No honest employer asks for these."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If someone asks for your ID or bank details before they have given you a clear job, a written offer and a real address, stop. This is a common trick of thieves. Lesson 7 explains how to spot it."
+        },
+        {
+          "type": "heading",
+          "text": "Cover what is not needed"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you must send a copy of an ID, you can write on it: *Copy for job application, name of company, date.* This stops others from reusing it. If you send a picture, add a note in the message: *Only for this job.* Some phone apps let you add this note on top of the picture."
+        },
+        {
+          "type": "heading",
+          "text": "Keep the originals safe"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep your original papers in a folder or a plastic cover, in a dry place.",
+            "Do not leave original papers with an employer or agent. A copy is enough for most jobs. If someone insists on keeping your original certificate or passport, ask why, and ask for it in writing. In many places, this is a warning sign, and in some places it is against the rules.",
+            "Keep a copy of every paper in your `Jobs` folder, and one more copy somewhere else."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Send safely"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Send papers to the exact person or company that you checked.",
+            "Prefer email or the job site over a stranger's private chat.",
+            "Delete the files from other people's group chats, and do not post them in public groups.",
+            "Remember who got what, and when. Write it in your notes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Take a clear photo of one certificate or licence. Zoom in and check you can read every word.",
+            "Save it as a PDF with a clear file name in your `Jobs` folder.",
+            "Write a short list: which papers you can send early, and which only after a real offer.",
+            "Make a second copy of the folder and keep it in a safe place."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can read all the words on your phone photo when you zoom in.",
+            "Your files have clear names and are in one folder.",
+            "You can name three things that you will never send to an employer."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Papers: share carefully",
+        "nodes": [
+          {
+            "id": "paper",
+            "label": "Paper",
+            "sub": "certificate, licence",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "photo",
+            "label": "Clear photo",
+            "sub": "flat, light, all corners",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pdf",
+            "label": "Named PDF",
+            "sub": "in Jobs folder",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "check",
+            "label": "Check first",
+            "sub": "who asks and why",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have papers such as certificates and licences.",
+            "on": [
+              "paper"
+            ]
+          },
+          {
+            "say": "Take a clear photo or scan: flat paper, good light, all four corners.",
+            "flow": [
+              "paper>photo:scan"
+            ]
+          },
+          {
+            "say": "Save it as a PDF with a clear name in your Jobs folder.",
+            "flow": [
+              "photo>pdf:save"
+            ]
+          },
+          {
+            "say": "Before you send anything, check who is asking and why. Never send card PINs or OTP codes.",
+            "flow": [
+              "pdf>check:before sending"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Can I send a photo of my ID to an employer?",
+          "a": "Only after you have checked the employer, and usually only when you have a real job offer. Add a note that it is only for that job, and never send card PINs or OTP codes."
+        },
+        {
+          "q": "Should an agent keep my original certificate?",
+          "a": "Be careful. A copy is enough for most jobs. If someone insists on keeping originals, ask why and get it in writing. It can be a warning sign."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Find and Apply",
+      "slug": "where-to-look-for-work",
+      "title": "Where to Look for Work: Online and Offline",
+      "metaTitle": "Where to Look for Work: Online and Offline",
+      "description": "Find real job openings with your phone and in your area: job sites, local contractors, licensed agencies, training centres and people you know.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "There is no single place for all jobs. People get work in many ways. The best plan is to use several at the same time. A phone helps with all of them. In this lesson you will learn where to look, and how to keep track."
+        },
+        {
+          "type": "heading",
+          "text": "1. Job websites and apps"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many sites list jobs for drivers, cooks, electricians, security guards, warehouse workers and more. On this site, you can look at [jobs here](/jobs). You can also look at jobs by country. Use the search box with your trade and your town, for example *electrician Pune*. Use filters for the place and the type of work."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Open the job and read all of it, not only the title.",
+            "Look for the company name, the town, the pay or pay range, the hours and how to apply.",
+            "A job with no company name, no place and no clear work is a warning sign."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "2. People you know"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many jobs in trades and daily work come through people. Tell your family, neighbours, old colleagues and friends what work you want. Say it clearly: *I am a welder with 5 years of work. I am looking for work in this area.* Ask them to tell you if they hear of anything. A good word from a person who knows you is strong."
+        },
+        {
+          "type": "heading",
+          "text": "3. Local contractors, shops and factories"
+        },
+        {
+          "type": "paragraph",
+          "text": "Visit or call small and big businesses in your area: building companies, workshops, factories, restaurants, hotels, shops, farms. Look at the gates, noticeboards and shop windows. Ask politely if they need workers. Carry your resume or write your name and phone number clearly on paper."
+        },
+        {
+          "type": "heading",
+          "text": "4. Training centres and government help"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many places have skill training centres, employment offices or job centres. Some give free training, trade tests or job lists. Ask what is in your area. Use official offices or websites. Do not pay a stranger who promises a government job."
+        },
+        {
+          "type": "heading",
+          "text": "5. Agencies"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some agencies find workers for companies. A real agency is registered, has an office, and does not take a fee from you for finding a job in many countries, because the company pays them. Rules are different in different countries. Ask your local labour office. If an agency asks for money before you have a job, be very careful. Lesson 7 explains this more."
+        },
+        {
+          "type": "heading",
+          "text": "6. Groups on WhatsApp, Facebook or Telegram"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some local groups share real jobs. Some share scams. Join groups with a known admin, with real local members. Do not share your ID or your bank details in a group. Contact the employer directly and check them before you share more."
+        },
+        {
+          "type": "heading",
+          "text": "7. Sites for employers: companies that hire you directly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at the websites or social pages of companies that you like. Many have a Careers or Jobs page. Local newspapers and radio also list jobs in some places."
+        },
+        {
+          "type": "heading",
+          "text": "Keep a simple list"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the notes app, or a small notebook. For each place that you contact, write one line."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Date | Company | What work | Who I spoke to | Phone | What next\n12 Mar | Shah Builders | electrician | Mr Shah | 98XXXXXXXX | call again Friday\n13 Mar | Green Hotel | maintenance | Reception | 02XXXXXXX | visit Monday 10 am"
+        },
+        {
+          "type": "paragraph",
+          "text": "This list stops you from forgetting names, and it helps you call back at the right time. It also shows you how much effort you have made."
+        },
+        {
+          "type": "note",
+          "text": "Looking for work is hard work. Many people need weeks or months. Use many ways at once, be patient, and do not take the first offer without checking it. No course can promise a job, but a steady plan helps."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Search this site's jobs page, or another job site, for your trade and your town. Save two jobs that look real.",
+            "Tell five people what work you want, in one clear sentence.",
+            "Make a list of five places in your area to visit or call.",
+            "Start your simple job list in the notes app."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You have at least two real openings, with a company name, place and way to apply.",
+            "Five people know exactly what work you want.",
+            "Your job list has your first three lines."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Many ways to find work",
+        "nodes": [
+          {
+            "id": "you",
+            "label": "You",
+            "sub": "clear about your work",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "online",
+            "label": "Online",
+            "sub": "job sites and apps",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "local",
+            "label": "Offline",
+            "sub": "people, shops, centres",
+            "col": 1,
+            "row": 1,
+            "kind": "tool"
+          },
+          {
+            "id": "list",
+            "label": "Your list",
+            "sub": "who, when, next step",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start by being clear about what work you do and where.",
+            "on": [
+              "you"
+            ]
+          },
+          {
+            "say": "Look online, on job sites and apps, and read each job fully.",
+            "flow": [
+              "you>online:search"
+            ]
+          },
+          {
+            "say": "At the same time, ask people and visit local employers and training centres.",
+            "flow": [
+              "you>local:ask"
+            ]
+          },
+          {
+            "say": "Write every contact in a simple list, so you can follow up at the right time.",
+            "flow": [
+              "online>list:note"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is it better to look online or offline?",
+          "a": "Use both. Many trade and daily jobs come through people and visits, and many companies post jobs online. More ways means more chances."
+        },
+        {
+          "q": "Should I pay an agency to find me a job?",
+          "a": "Be very careful. In many places, real agencies are paid by the employer. Ask your local labour office what is allowed in your country, and never pay a stranger who promises a sure job."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Find and Apply",
+      "slug": "apply-by-phone-messages-and-follow-up",
+      "title": "Apply by Phone: Messages, Calls and Follow-Up",
+      "metaTitle": "Apply for Jobs by Phone: Messages and Calls",
+      "description": "Write a short message or email to apply, make a clear phone call, send your resume and follow up politely. Simple scripts you can copy and change.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "When you find a job, you must contact the employer. Many people lose the chance because the message is too long, not clear, or never sent. Employers are busy. They like short, clear and polite messages. This lesson gives you simple scripts. Change the names and facts to your own. Use your own language if the employer uses it. The examples are in simple English."
+        },
+        {
+          "type": "heading",
+          "text": "A short message to apply"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use this when you contact an employer by WhatsApp, text or email. Keep it to a few lines."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Good morning, Mr Shah.\nMy name is Sunil Kumar. I saw your advert for an electrician in Pune.\nI have 6 years of work with wiring in houses and shops. My resume\nis attached.\nI can start in one week. Please call me on 98XXXXXXXX.\nThank you.\nSunil Kumar"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say hello and use the person's name if you know it.",
+            "Say who you are, and which job you want.",
+            "Say one or two real reasons you are a good choice.",
+            "Say that your resume is attached, and attach it.",
+            "Say when you can start, and how to reach you.",
+            "Say thank you. Sign with your name."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "An email needs a subject line"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you apply by email, the subject line should say the job and your name, for example: `Application: Electrician - Sunil Kumar`. This helps the employer find your message. Attach your resume as a PDF with a clear file name."
+        },
+        {
+          "type": "heading",
+          "text": "Making a phone call"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Prepare.** Write down your name, the job and two facts about you. Read the job advert again.",
+            "**Choose a good time.** Not too early, not at lunch time or late in the evening. Try mid-morning.",
+            "**Find a quiet place** with a good signal.",
+            "**Say who you are:** *Good morning. My name is Sunil Kumar. I am calling about the electrician job.*",
+            "**Ask a clear question:** *Is the job still open? May I send my resume?*",
+            "**Listen and write.** Write down the name, the address and the time. Repeat it back to check.",
+            "**Thank them,** even if the answer is no."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Caller:  Good morning. My name is Sunil Kumar. I am calling about\n         the electrician job in Pune. Is it still open?\nEmployer: Yes, it is.\nCaller:  Thank you. May I send my resume by WhatsApp? I have 6\n         years of work with house and shop wiring.\nEmployer: Send it, we will see.\nCaller:  Thank you. I will send it now. Can I call you again on\n         Friday?"
+        },
+        {
+          "type": "note",
+          "text": "If you do not understand, say so politely: *Sorry, can you say that again, please?* It is better to ask than to guess a time or an address."
+        },
+        {
+          "type": "heading",
+          "text": "Voice notes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some people like voice notes. But many employers do not listen to long ones. If you use one, keep it under 30 seconds. Say your name, your job and your phone number slowly. Text is usually better for numbers and addresses."
+        },
+        {
+          "type": "heading",
+          "text": "Follow up, politely"
+        },
+        {
+          "type": "paragraph",
+          "text": "If nobody answers, do not give up and do not send ten messages in one hour. Wait two or three days, then send one short message."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Good morning Mr Shah. This is Sunil Kumar. I sent my resume\nfor the electrician job on Monday. I am still interested. Please\ntell me if you need anything more. Thank you."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Follow up once or twice. After that, move on.",
+            "If someone says no, say thank you. Doors may open later.",
+            "If someone says *call me next week*, write it in your list and call at the right time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keep a record"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use your job list from lesson 5. After each message or call, write the date and what happened. It will help you when an employer calls back and you must remember who they are."
+        },
+        {
+          "type": "heading",
+          "text": "When employers call you"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Answer in a calm voice, even if you are at work. If you cannot talk, say: *I am at work. May I call you back at 6?* and do it.",
+            "Keep a pen or your notes app ready.",
+            "Do not say yes to everything. If you need to think, say so politely.",
+            "Save the number with the company name."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a message to apply for one real or sample job, using the script.",
+            "Say the phone call aloud three times with a friend, then make a real or practice call.",
+            "Write a follow-up message that you could send after three days.",
+            "Add the contact to your job list with the date and the next step."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your message has your name, the job, one or two facts, your resume and your phone number.",
+            "Your friend understood your call in the first twenty seconds.",
+            "Your list shows the date of each message and the next step."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Apply and follow up",
+        "nodes": [
+          {
+            "id": "find",
+            "label": "Find a job",
+            "sub": "read all of it",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "msg",
+            "label": "Short message",
+            "sub": "name, job, resume",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "wait",
+            "label": "Wait 2-3 days",
+            "sub": "then one follow-up",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "note",
+            "label": "Write it down",
+            "sub": "date and next step",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Find a real job and read all of the advert.",
+            "on": [
+              "find"
+            ]
+          },
+          {
+            "say": "Send a short, polite message or call. Say your name, the job, one or two facts, and attach your resume.",
+            "flow": [
+              "find>msg:apply"
+            ]
+          },
+          {
+            "say": "Wait two or three days. Then send one polite follow-up message.",
+            "flow": [
+              "msg>wait:wait"
+            ]
+          },
+          {
+            "say": "Write every contact in your list, with the date and what to do next.",
+            "flow": [
+              "wait>note:record"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should I wait before following up?",
+          "a": "Two or three days is usually fine. Send one short, polite message. If there is no answer after one or two follow-ups, move on to other jobs."
+        },
+        {
+          "q": "Should I send a voice note or a text?",
+          "a": "Short text is usually better, especially for numbers and addresses. If you use a voice note, keep it under 30 seconds and speak slowly."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Stay Safe and Succeed",
+      "slug": "spot-job-scams-and-stay-safe",
+      "title": "Spot Job Scams and Stay Safe",
+      "metaTitle": "Spot Job Scams and Stay Safe",
+      "description": "Learn the warning signs of fake job offers: fees, advance money, OTP requests, too-good pay and fake agents. Simple checks, what to do, and where to report.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Most employers are honest. But thieves know that people need work, and they make fake job offers. They want your money, your ID or your bank details. Anyone can be tricked, even smart people, especially when they are in a hurry. This lesson is about staying safe. Read it carefully, and tell your family and friends."
+        },
+        {
+          "type": "heading",
+          "text": "Warning signs"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**They ask you to pay money** before you start: for a form, a medical test, a uniform, training, a visa, a security deposit or *registration*. Real employers pay you. They do not charge you for a job. Some legal agencies for work abroad may charge in some countries, but there are strict rules about this. Check with your government before you pay anyone.",
+            "**The pay is too good.** A very high salary for easy work, with no experience, is a trap.",
+            "**They ask for your ID, bank details, ATM card, PIN or OTP** before a real offer.",
+            "**They hurry you:** *Pay today or lose the job.* Pressure is a sign of a trick.",
+            "**No real address, no company name, or a company that you cannot find.** Only a mobile number or a free email address.",
+            "**The offer comes from a person you do not know,** by message, and you never apply.",
+            "**They want to talk only on chat,** and refuse a call or a meeting at a real office.",
+            "**Bad writing,** a strange link, or a request to click and sign in to a website.",
+            "**A job that sends you money first** and then asks you to send some back. This is a cheque or payment trick."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Simple checks before you trust"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Search the company name.** Do they have a website, an address and a phone number that match? Do other people say it is a real company?",
+            "**Call them.** Use the number from their official website, not only the number in the message.",
+            "**Ask for the offer in writing,** with the company name, address, job, pay, hours and start date.",
+            "**Visit the place** in daytime if you can, and take a friend or tell a family member where you are going.",
+            "**Ask a person you trust,** such as a teacher, an older relative, a union representative or a local employment office.",
+            "**Slow down.** A real job will still be there tomorrow."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to do if you think it is a scam"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Stop. Do not send money or papers.",
+            "Do not click on strange links.",
+            "Save the messages and numbers as proof. Do not delete them.",
+            "Block the number.",
+            "If you shared your bank or card details, call your bank at once, using the number on your bank card, not the number in the message.",
+            "If you paid money, report it to the police or the local cybercrime service in your country, and tell your bank. Many countries have an online place to report fraud. Ask your local police station or look for the official government website.",
+            "Warn your friends and family."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "A person who has been tricked is not stupid and should not feel ashamed. Reporting helps others. Thieves often try again, so be careful for a while."
+        },
+        {
+          "type": "heading",
+          "text": "Work in another country"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many people dream of work abroad. It is also where many big scams happen, with fake visas and fake contracts. Be very careful."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use only official government channels and licensed agents in your country. Your government's labour or overseas employment office can tell you which agents are licensed.",
+            "Check the job with the **employer** in the other country, and ask your own embassy or labour office if the company is real.",
+            "Never travel on a *tourist visa* for a job unless an official source says it is allowed. Get the contract and read it, in a language you understand, before you pay or travel.",
+            "Never give your passport to an agent to keep.",
+            "If it sounds too easy, stop and ask an official office."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Safety at interviews and first days"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Meet at a business place, in daytime, and not in a private home or a hotel room.",
+            "Tell someone where you are and when you will be back. Keep your phone charged and share your location with a person you trust if you can.",
+            "If something feels wrong, leave. It is okay to say *I am sorry, I have to go*.",
+            "Women and young people should take extra care, and bring a friend if possible."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Protect your accounts"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Never share OTP codes, passwords or PINs with anyone, even a person who says they are from a bank or a job site.",
+            "Use a different password for your email.",
+            "Do not use public computers or open Wi-Fi to sign in to important accounts."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Remember this rule: **a real job never needs you to pay first, and never needs your PIN or OTP.**"
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Read the warning signs again. Say three of them aloud to a family member or friend.",
+            "Write the rule in your own words, and put it in your notes app.",
+            "Take one real job advert that you saw and check it: search the company, find a phone number and call it.",
+            "Find the official way to report fraud in your country, and save the web address or phone number in your phone."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can list at least five warning signs without looking.",
+            "You have saved the official place to report fraud or scams in your country.",
+            "You know the rule about fees, PINs and OTP codes."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Check before you trust",
+        "nodes": [
+          {
+            "id": "offer",
+            "label": "A job offer",
+            "sub": "by message or advert",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "signs",
+            "label": "Warning signs?",
+            "sub": "fee, hurry, OTP, high pay",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "check",
+            "label": "Check it",
+            "sub": "search, call, written offer",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "act",
+            "label": "Decide",
+            "sub": "continue or stop and report",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You get a job offer by message or from an advert.",
+            "on": [
+              "offer"
+            ]
+          },
+          {
+            "say": "Look for warning signs: fees, pressure, requests for OTP or ID, or pay that is too good.",
+            "flow": [
+              "offer>signs:look"
+            ]
+          },
+          {
+            "say": "Check the company: search for it, call a number you found yourself, and ask for the offer in writing.",
+            "flow": [
+              "signs>check:verify"
+            ]
+          },
+          {
+            "say": "If it is real, go on. If not, stop, keep the messages and report it.",
+            "flow": [
+              "check>act:decide"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is it normal to pay a fee to get a job?",
+          "a": "Honest employers pay you, they do not charge you. Some licensed agencies for work abroad may charge in some countries, under strict rules. Always check with your government labour office before paying anyone."
+        },
+        {
+          "q": "What should I do if I already sent money to a scammer?",
+          "a": "Stop sending more, tell your bank, keep all messages as proof, and report it to the police or the official fraud reporting service in your country. Warn others."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Stay Safe and Succeed",
+      "slug": "prepare-for-the-interview-and-trade-test",
+      "title": "Prepare for the Interview and Trade Test",
+      "metaTitle": "Prepare for the Interview and Trade Test",
+      "description": "Get ready for an interview or practical test: what to bring, how to arrive, simple answers, safety questions and what to ask about pay and hours.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An interview for a trade, factory, driving or service job is often short and simple. Many employers also give a practical test: they ask you to show your work. If you prepare a little, you will feel calmer and do better. This lesson tells you how."
+        },
+        {
+          "type": "heading",
+          "text": "Before the day"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Confirm.** Send a short message: *Thank you. I will come on Monday at 10 am to your address.* Check the place on a map and how long the trip takes.",
+            "**Plan the way.** Leave early. Plan for traffic and for a late bus.",
+            "**Prepare your clothes.** Clean, plain clothes. If you have work shoes or tools that you need for the test, bring them if allowed.",
+            "**Prepare your papers.** A few copies of your resume, your certificates and licences, and your ID. Put them in a clean folder or a plastic cover.",
+            "**Rest.** Sleep early. Eat something. Drink water.",
+            "**Practise your answers** aloud, with a friend."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to bring"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your resume, 2 or 3 copies.",
+            "Your trade certificates and licences, copies and, if asked, the originals to show.",
+            "Your ID. Show it only to the employer when asked, and take it back.",
+            "A pen and a small notebook.",
+            "Your phone, on silent.",
+            "Water, and money for transport."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "On the day"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Arrive ten or fifteen minutes early. If you will be late, call or message and say so.",
+            "Be polite to everyone, from the guard to the manager.",
+            "Greet, smile, and give your name. Stand or sit up straight.",
+            "Listen to the question fully before you answer.",
+            "Speak clearly and not too fast. If you do not understand, ask them to repeat.",
+            "Look at the person, if this is polite in your culture."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common questions and simple answers"
+        },
+        {
+          "type": "paragraph",
+          "text": "These answers are made-up examples. Use your own true words."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Q: Tell me about yourself.\nA: My name is Sunil. I am an electrician with 6 years of work in\n   houses and shops. I like to find faults and finish work on time.\n\nQ: Why do you want this job?\nA: I want to work with a good team and grow my skills. Your company\n   does work that I know.\n\nQ: What work have you done?\nA: I wired houses in new buildings, fixed faults and fitted fans\n   and meters.\n\nQ: What is your biggest strength?\nA: I am careful and I check my work before I leave.\n\nQ: Can you start soon? Can you work shifts?\nA: Yes, I can start in one week. I can work day and evening shifts."
+        },
+        {
+          "type": "paragraph",
+          "text": "Our page of [interview questions](/jobs/interview-questions) has more to practise, and our guide to [telling about yourself](/blog/tell-me-about-yourself-interview-answer) can help with the first question."
+        },
+        {
+          "type": "heading",
+          "text": "Safety questions"
+        },
+        {
+          "type": "paragraph",
+          "text": "In many trade and factory jobs, the employer will ask about safety. It is a good sign. Safe workers are valued. Be ready to say what you do to stay safe: you wear helmets, gloves and boots, you check tools before you use them, you switch off power before repair, you ask if you are not sure. Do not say you never need safety gear. If you have safety training, mention it."
+        },
+        {
+          "type": "heading",
+          "text": "The practical test"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Listen to the task. Ask a short question if something is not clear.",
+            "Check your tools first.",
+            "Work safely and keep the place clean. Employers watch how you work, not only the result.",
+            "Do not rush. A careful, correct job is better than a fast, wrong one.",
+            "If you make a mistake, say so calmly and fix it. Honest people are trusted.",
+            "Say thank you at the end, whatever happens."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your questions to them"
+        },
+        {
+          "type": "paragraph",
+          "text": "It is normal and polite to ask about the job. Ask clearly, near the end of the talk."
+        },
+        {
+          "type": "list",
+          "items": [
+            "What are the working hours and days, and is there overtime?",
+            "What is the pay, and how and when is it paid?",
+            "Is there a written agreement or contract?",
+            "What safety gear and training do you give?",
+            "Where will I work, and how will I get there?",
+            "When will I know your decision?"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Do not start with *how much money?* before they know your skills. But do ask about pay, hours and safety before you accept. It is your right to understand the job."
+        },
+        {
+          "type": "heading",
+          "text": "After the interview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Send a short thank-you message the same day or the next morning. *Thank you for your time today. I am interested in the job. I hope to hear from you.* Write in your job list what was said and when they will decide. If you do not hear back by that date, follow up once."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Practise the five questions aloud, with a friend, in your own true words.",
+            "Prepare your folder with copies of your resume and certificates.",
+            "Write five questions you will ask the employer about hours, pay and safety.",
+            "Plan your trip to a place: how long does it take, and when must you leave?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can answer the first question in about 30 seconds without reading.",
+            "Your folder has copies of your resume and papers.",
+            "You have your questions about pay, hours and safety written down."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Interview day",
+        "nodes": [
+          {
+            "id": "prep",
+            "label": "Prepare",
+            "sub": "papers, answers, trip",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "arrive",
+            "label": "Arrive early",
+            "sub": "10-15 minutes",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "show",
+            "label": "Talk and show",
+            "sub": "honest, safe, polite",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "after",
+            "label": "Thank and note",
+            "sub": "message, list",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Prepare your papers, your answers and your trip the day before.",
+            "on": [
+              "prep"
+            ]
+          },
+          {
+            "say": "Arrive ten or fifteen minutes early, or message if you will be late.",
+            "flow": [
+              "prep>arrive:go"
+            ]
+          },
+          {
+            "say": "Answer honestly, work safely in the test, and ask your questions about pay, hours and safety.",
+            "flow": [
+              "arrive>show:interview"
+            ]
+          },
+          {
+            "say": "Send a short thank-you message and write down what they said and when they will decide.",
+            "flow": [
+              "show>after:follow up"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What should I wear to a trade or factory interview?",
+          "a": "Clean, plain clothes. If a practical test is possible, ask the employer what to bring, and wear safe shoes. Being neat shows respect."
+        },
+        {
+          "q": "Is it rude to ask about pay?",
+          "a": "No, if you ask politely, and preferably after you have talked about your skills. You have a right to know the hours, pay and safety before you accept."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Stay Safe and Succeed",
+      "slug": "know-your-rights-pay-and-written-agreements",
+      "title": "Know Your Rights: Pay, Hours and a Written Agreement",
+      "metaTitle": "Know Your Work Rights: Pay and Agreements",
+      "description": "Know the basics before you start work: a written agreement, clear pay and pay days, hours, safety and keeping proof. General information, not legal advice.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You got the job. Good! Before you start, take a little time to understand what you have agreed to. Many problems at work, such as late pay, unpaid hours or unsafe places, start because nothing was clear at the beginning. This lesson gives you a short list of things to check, and ideas to protect yourself. It is **general information, not legal advice**. Rules are different in each country and each state, so always check your local rules."
+        },
+        {
+          "type": "heading",
+          "text": "Ask for the offer in writing"
+        },
+        {
+          "type": "paragraph",
+          "text": "A written offer or agreement does not have to be long. It should say clearly the things below. If an employer does not give anything in writing, you can write it yourself and send it by message: *Thank you for the job. I understand that I will work as a welder from Monday, 8 am to 5 pm, for 600 per day, paid every Saturday. Please confirm.* A reply of *yes* is proof. Keep it."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The name and address of the employer or company.",
+            "Your job and place of work.",
+            "The start date.",
+            "Pay: the amount, and whether it is by day, week, hour or month.",
+            "When and how you are paid: on which day, in cash, to a bank account or by mobile money.",
+            "Working hours, rest days, breaks and overtime pay.",
+            "Any trial period, and how much notice is needed if you or the employer want to stop.",
+            "What the employer will give: safety gear, tools, transport, food or a place to sleep."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you cannot read the agreement well, ask a trusted person to read it with you before you sign. Do not sign a blank page, and do not sign what you do not understand."
+        },
+        {
+          "type": "heading",
+          "text": "Pay"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pay for all the work you do, on the day that was agreed.",
+            "Ask for a **payslip** or a note that shows the hours, the pay and what was taken out, if the employer gives one. In some places it is required. If the employer pays in cash, write down the date and the amount, and ask for a signed note if you can.",
+            "In many countries there is a **minimum wage**, a legal lowest pay. Ask your local labour office or look at the official government website to see what it is where you work.",
+            "Deductions, such as tax, social insurance or fines, should be explained. Ask if something is taken out and why."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Hours and rest"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask what the normal hours are, and how overtime is paid. Many countries have rules about the length of the working day and the weekly rest day. If you work extra hours, write them down: date, start time, end time. Also note any break."
+        },
+        {
+          "type": "heading",
+          "text": "Safety"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You have a right in many places to a safe workplace. The employer should give safety gear and training for risky work.",
+            "If a machine or a place is not safe, tell your supervisor. Do not do work that you have not been trained for and that could hurt you.",
+            "Know where the first aid box and the exits are.",
+            "If you are hurt at work, tell a supervisor at once, ask for first aid and write down what happened. Keep your medical papers."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keep proof"
+        },
+        {
+          "type": "paragraph",
+          "text": "Proof protects you if there is a problem. Keep them in your `Jobs` folder, and keep a second copy."
+        },
+        {
+          "type": "list",
+          "items": [
+            "The offer or agreement, and messages that confirm the job.",
+            "Payslips or notes of pay, with dates.",
+            "A list of your days and hours.",
+            "Photos of the place and of your work if it matters, and if photos are allowed.",
+            "Names and phone numbers of the supervisor and the company."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "If something goes wrong"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Stay calm. Talk to your supervisor or employer politely and clearly, and say what you need: *My pay for last week was not paid. Please tell me when I will get it.*",
+            "Put it in writing, in a message. Keep a copy.",
+            "Ask a trusted person, such as a union representative, a worker centre or a community group, for help.",
+            "Contact your local labour office, labour inspector or legal aid service. Many countries have free or low-cost help for workers. Search for the official government website, and be careful of people who ask you for money to *fix* it.",
+            "Do not sign papers that you do not understand, and do not hand over your original documents."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Different groups of workers have different rules. Daily wage workers, domestic workers, farm workers and migrant workers may be treated differently by the law in your country. Ask a local worker organisation or official office what applies to you."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a message that you could send to an employer to confirm a job: place, start date, pay, pay day and hours.",
+            "Find your country's labour office or worker help service and save its web address or phone number.",
+            "Make a simple table in your notes app to write your days and hours: date, start, end.",
+            "Put a copy of your agreement and your contacts in the `Jobs` folder."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your message has the pay, the pay day, the hours and the start date.",
+            "You have saved one official place to ask about work rights.",
+            "You can name three kinds of proof to keep."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Clear start, safe work",
+        "nodes": [
+          {
+            "id": "offer",
+            "label": "Written offer",
+            "sub": "pay, hours, place",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "keep",
+            "label": "Keep proof",
+            "sub": "messages, payslips",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "safe",
+            "label": "Safe work",
+            "sub": "gear and training",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "help",
+            "label": "Ask for help",
+            "sub": "office, union, legal aid",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Before you start, get the offer in writing: pay, pay day, hours and place.",
+            "on": [
+              "offer"
+            ]
+          },
+          {
+            "say": "Keep proof, such as messages, payslips and a list of your days and hours.",
+            "flow": [
+              "offer>keep:save"
+            ]
+          },
+          {
+            "say": "Check that the place is safe and that you have gear and training for risky work.",
+            "flow": [
+              "keep>safe:check"
+            ]
+          },
+          {
+            "say": "If something goes wrong, talk, write it down, and ask an official office or a worker group for help.",
+            "flow": [
+              "safe>help:if needed"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do I need a written agreement for a short or daily job?",
+          "a": "It is wise. It can be a simple message that both sides confirm. Rules about written agreements are different in each country, so ask your local labour office."
+        },
+        {
+          "q": "Where can I get help if my pay is not paid?",
+          "a": "Talk to your employer in writing first, then ask a local worker group or union, or your government labour office or legal aid service. Use official channels and do not pay people who promise to fix it."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Stay Safe and Succeed",
+      "slug": "keep-learning-and-your-seven-day-plan",
+      "title": "Keep Learning and Your Seven-Day Plan",
+      "metaTitle": "Keep Learning and Your Seven-Day Plan",
+      "description": "Choose a skill to learn next, find free learning on your phone, and follow a simple seven-day plan to start your job search with what you made.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You have set up your phone, listed your skills, made a resume, found places to look, learned how to apply, avoid scams and prepare. Now it is time to put it into action. This last lesson gives you a simple plan for seven days, and ideas to keep learning so that better work comes your way. No plan can promise a job, but steady work, little by little, gives you the best chance."
+        },
+        {
+          "type": "heading",
+          "text": "A seven-day plan"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Day 1: Phone.** Do lesson 1. Charge it, free some space, make the `Jobs` folder, check your email and voicemail.",
+            "**Day 2: Skills.** Write your skills sheet. Ask one person what you do best.",
+            "**Day 3: Resume.** Make your one-page resume and save the PDF. Ask a friend to read it.",
+            "**Day 4: Papers.** Take clear photos of your certificates and licences. Name the files.",
+            "**Day 5: Look.** Search for jobs online and tell five people what work you want. Start your job list.",
+            "**Day 6: Apply.** Send three messages or make three calls using the scripts. Write them in your list.",
+            "**Day 7: Check.** Follow up where it is time. Check for scam signs again. Plan the next week."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Repeat Days 5 to 7 each week. Do a little every day. Looking for work is a job in itself. Many people find that doing something small each day is easier than a big push once a month."
+        },
+        {
+          "type": "heading",
+          "text": "Keep your energy up"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Rest, eat and move. Tired people give up.",
+            "Talk to a friend or family member about how it feels. A bad week is normal.",
+            "Celebrate small wins: a call back, a reply, a new contact.",
+            "If you feel very low or cannot cope, talk to someone you trust, or to a local health or support service. You are not alone."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Learn one new thing"
+        },
+        {
+          "type": "paragraph",
+          "text": "A new skill can open more jobs. Pick one that fits your work and your time. Some ideas:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A safety course or first aid.",
+            "A licence, such as for driving, forklift or machines, if it fits your work.",
+            "Basic maths for measuring and cost. It helps in almost every trade.",
+            "Basic English or the language of your region, for speaking with customers. Our course [Workplace English](/learn/workplace-english-course) teaches phrases for calls, messages and work.",
+            "Simple phone and computer skills, such as spreadsheets for jobs. Our [Excel for Jobs](/learn/excel-for-jobs-course) course can help if you work with lists and numbers.",
+            "A trade upgrade, for example from helper to skilled worker."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Ways to learn on your phone"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Free video lessons and local training channels in your language.",
+            "Library, community centre or training centre courses. Many have free or low-cost classes.",
+            "Lessons on this site: see all [free courses](/learn).",
+            "Ask a person with more experience if you can watch and learn for a short time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "See where your skills can go"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at our [career roadmaps](/roadmaps). They show steps and skills for different kinds of work, and you may see a next step that you can reach. Roadmaps are guides, not promises. Use them to choose what to learn next."
+        },
+        {
+          "type": "heading",
+          "text": "A short note for helpers"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are teaching a family member or a friend, sit with them and do the lessons together. Many people are shy about asking for help. Be patient. Let them do the typing, and you can explain."
+        },
+        {
+          "type": "note",
+          "text": "This course gives practical steps. It cannot promise that you will find a job, or tell you the exact rules in your country. Use it with local advice from official offices, worker organisations and people you trust."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your seven-day plan in your notes app, with the day and the time of each step.",
+            "Do Day 1 today.",
+            "Choose one skill that you want to learn in the next three months, and write the first step.",
+            "Tell one person about your plan, and ask them to check on you in one week."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You have a plan with seven days and a clear first step.",
+            "You did Day 1: your phone, your folder and your email are ready.",
+            "You know one skill that you want to learn next."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Seven days, one step at a time",
+        "nodes": [
+          {
+            "id": "d1",
+            "label": "Days 1-2",
+            "sub": "phone and skills",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "d3",
+            "label": "Days 3-4",
+            "sub": "resume and papers",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "d5",
+            "label": "Days 5-6",
+            "sub": "look and apply",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "d7",
+            "label": "Day 7",
+            "sub": "check and plan next week",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Days 1 and 2: set up your phone and write your skills.",
+            "on": [
+              "d1"
+            ]
+          },
+          {
+            "say": "Days 3 and 4: make your resume and take clear photos of your papers.",
+            "flow": [
+              "d1>d3:next"
+            ]
+          },
+          {
+            "say": "Days 5 and 6: look for jobs, tell people, and send three messages or calls.",
+            "flow": [
+              "d3>d5:next"
+            ]
+          },
+          {
+            "say": "Day 7: follow up, check for scam signs and plan the next week. Then repeat.",
+            "flow": [
+              "d5>d7:next"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long will it take to find a job?",
+          "a": "Nobody can say. It depends on your trade, your area and the season. Use many ways at once, work a little every day, and stay patient."
+        },
+        {
+          "q": "What should I learn next to get better work?",
+          "a": "Choose a skill that fits your trade, such as safety training, a licence, basic maths, or the local language for talking to customers. Check the career roadmaps for ideas."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}

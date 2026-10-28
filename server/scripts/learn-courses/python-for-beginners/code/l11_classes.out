@@ -1,0 +1,6 @@
+Asha: balance 550
+2 ('spend', 150, 'groceries')
+Blocked: Not enough money
+Expense(category='Food', amount=250.0, paid=False)
+250.0 True
+Ravi: balance 1050.0

@@ -1,0 +1,2067 @@
+{
+  "course": {
+    "title": "Git and GitHub Essentials: Version Control for Beginners",
+    "slug": "git-and-github-course",
+    "summary": "Learn Git and GitHub in 10 short lessons: commits, undoing mistakes, branches, merge conflicts, remotes, pull requests, good habits and using GitHub in your job search.",
+    "description": "Free Git and GitHub course for beginners. 10 lessons with real terminal sessions: commits, branches, merge conflicts, pull requests, secrets and portfolio tips.",
+    "level": "Beginner",
+    "topic": "Developer tools",
+    "badge": "GIT",
+    "tags": [
+      "git",
+      "github",
+      "version control",
+      "pull requests",
+      "developer tools"
+    ],
+    "order": 38,
+    "published": true,
+    "minWords": 600,
+    "metaTitle": "Git and GitHub: Free Course",
+    "keywords": "git and github for beginners, learn git free, git tutorial, github tutorial, merge conflict, pull request, git commands"
+  },
+  "lessons": [
+    {
+      "section": "Git Basics",
+      "slug": "what-is-git-and-github-install-and-setup",
+      "title": "What Are Git and GitHub? Install and Set Up Git",
+      "metaTitle": "What Are Git and GitHub? Install and Setup",
+      "description": "Understand what version control is, the difference between Git and GitHub, install Git on Windows, macOS or Linux, and set your name, email and default branch.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Imagine writing an important document and saving copies named `report_final.docx`, `report_final2.docx` and `report_really_final.docx`. Sooner or later you lose track of which one is the right one, and you cannot see what changed between them. Now imagine a team of five people editing the same set of files. Without a system, they overwrite each other's work. **Version control** solves both problems. It records every change, who made it and why, and lets you go back to any earlier state. **Git** is the most widely used version control tool in the world, and almost every software job expects you to know the basics."
+        },
+        {
+          "type": "heading",
+          "text": "Git and GitHub are not the same thing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Git** is a program that runs on your own computer. It keeps the history of your project in a hidden folder called `.git`. It works without the internet.",
+            "**GitHub** is a website that stores Git projects online. It lets you back them up, share them, collaborate and show your work. Other services, such as GitLab and Bitbucket, do a similar job. The Git commands you learn work with all of them.",
+            "A simple way to remember it: Git is the tool, GitHub is one place to keep what the tool makes, like a camera and a photo-sharing site."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Why it matters for your career"
+        },
+        {
+          "type": "paragraph",
+          "text": "In software, data and testing jobs, teams use Git every day, and employers often look at a candidate's GitHub page. Even outside software, anyone who works with text files, such as writing, configuration or data, can benefit from a history of changes. No tool can promise a job, but being comfortable with Git removes a barrier that stops many beginners, and a tidy GitHub profile can show your projects to employers."
+        },
+        {
+          "type": "heading",
+          "text": "Install Git"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Windows:** download **Git for Windows** from git-scm.com and run the installer. The default answers are fine. It includes **Git Bash**, a terminal where Git commands work the same as on Mac and Linux. You can also use PowerShell.",
+            "**macOS:** open Terminal and type `git --version`. If Git is missing, macOS offers to install the developer tools. Accept. You can also install a newer Git from git-scm.com.",
+            "**Linux:** use your package manager, for example `sudo apt install git` on Ubuntu or Debian."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Check that it works. Open a new terminal window and type the command below. The version number on your computer will be different, and that is fine."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "git --version"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "git version 2.43.0"
+        },
+        {
+          "type": "heading",
+          "text": "A very short terminal refresher"
+        },
+        {
+          "type": "paragraph",
+          "text": "Git is used from the terminal, so you need a few commands. `pwd` shows the folder you are in. `ls` (or `dir` in the Windows command prompt) lists files. `cd folder` moves into a folder, and `cd ..` goes up one level. `mkdir name` makes a folder. You do not need more than this for the whole course. If a command does something you did not expect, check which folder you are in first. Most beginner problems are caused by running a command in the wrong folder."
+        },
+        {
+          "type": "heading",
+          "text": "Tell Git who you are"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every change that Git records has an author. Set your name and email once on your computer. Use the same email you plan to use for GitHub, so that your commits are linked to your account. Be aware that this information becomes part of the history, and is visible if you share the project publicly. GitHub offers a private no-reply email address in its settings if you prefer not to show your real one."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "git config --global user.name \"Asha Verma\"\ngit config --global user.email \"asha@example.com\"\ngit config --global init.defaultBranch main"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`--global` means: use these settings for every project on this computer.",
+            "The third line makes the first branch of every new project be called `main`, which is the name GitHub uses today.",
+            "Replace the sample name and email with your own.",
+            "Check your settings at any time with `git config --list`."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The sample names, emails and folders in this course are made up. The terminal output you see in the lessons was recorded from real Git runs, but hash codes (the short letters and numbers beside each commit) and dates are different on every computer. That is normal."
+        },
+        {
+          "type": "heading",
+          "text": "What you will learn"
+        },
+        {
+          "type": "paragraph",
+          "text": "This course has ten short lessons. First the Git basics on your own computer: the first repository, saving changes, undoing mistakes, branches and merge conflicts. Then GitHub and teamwork: putting your project online, pull requests and good habits. Last come handy tools and how to use GitHub in your job search. To keep it safe and repeatable, we practise with small invented projects. You can follow along with exactly the same commands."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install Git and check `git --version`.",
+            "Set your name, email and default branch with `git config --global`.",
+            "Run `git config --list` and find your name and email in the output.",
+            "Make a folder called `git-practice` for the course and open a terminal in it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git --version` prints a version number.",
+            "`git config --global user.name` prints your name.",
+            "You can explain in one sentence the difference between Git and GitHub."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Git and GitHub",
+        "nodes": [
+          {
+            "id": "you",
+            "label": "You",
+            "sub": "edit files",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "git",
+            "label": "Git on your PC",
+            "sub": "keeps the history",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "hub",
+            "label": "GitHub",
+            "sub": "online copy",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "team",
+            "label": "Team",
+            "sub": "share and review",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You work on files on your own computer.",
+            "on": [
+              "you"
+            ]
+          },
+          {
+            "say": "Git records the history of those changes on your computer. It works without the internet.",
+            "flow": [
+              "you>git:save changes"
+            ]
+          },
+          {
+            "say": "GitHub is a website where you can store a copy of that history online, as a backup and to share.",
+            "flow": [
+              "git>hub:push"
+            ]
+          },
+          {
+            "say": "Teammates can get the project, add their own changes and send them back for review.",
+            "flow": [
+              "hub>team:collaborate"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Git the same as GitHub?",
+          "a": "No. Git is the version control tool on your computer. GitHub is a website that hosts Git projects online. GitLab and Bitbucket are similar sites."
+        },
+        {
+          "q": "Do I need to know programming to learn Git?",
+          "a": "No. Git works with any files, though it works best with text. Basic comfort with the terminal helps, and the first lesson gives you a short refresher."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Git Basics",
+      "slug": "your-first-git-repository-init-add-commit",
+      "title": "Your First Git Repository: init, add, commit and log",
+      "metaTitle": "Your First Git Repository: add and commit",
+      "description": "Create a repository, learn the working folder, staging area and history, save changes with add and commit, read status and diff, and use .gitignore.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A **repository** (repo) is a project folder that Git is tracking. In this lesson you create one, make your first commits and learn the three places where your changes live. These three places are the key to understanding Git, so we go slowly. Everything below is a real session recorded from Git, and you can type the same commands in an empty folder."
+        },
+        {
+          "type": "heading",
+          "text": "The three areas"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Working folder:** the files you see and edit, as normal.",
+            "**Staging area (the index):** a waiting room. You choose which changes go into the next snapshot with `git add`.",
+            "**Repository (history):** the saved snapshots, called **commits**. `git commit` takes what is in the staging area and stores it permanently."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Why the middle step? It lets you save a neat, focused commit even if you changed many things. You might fix a typo and add a feature in the same hour, and then commit them separately, so the history is easy to read."
+        },
+        {
+          "type": "heading",
+          "text": "Create a repository and the first commit"
+        },
+        {
+          "type": "paragraph",
+          "text": "Make a folder called `recipes`, go into it, and follow along. We use `git status` very often, because it tells you what is happening and often what to do next."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git init\nInitialized empty Git repository in /home/asha/recipes/.git/\n$ git status\nOn branch main\n\nNo commits yet\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n\tREADME.md\n\nnothing added to commit but untracked files present (use \"git add\" to track)\n$ git add README.md\n$ git status -s\nA  README.md\n$ git commit -m \"Add README\"\n[main (root-commit) 8205bb9] Add README\n 1 file changed, 2 insertions(+)\n create mode 100644 README.md\n$ git log --oneline\n8205bb9 Add README\n$ git diff\ndiff --git a/README.md b/README.md\nindex 7004fd6..6e63d1b 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,2 +1,4 @@\n # Recipes\n My favourite recipes.\n+\n+- Masala chai\n$ git status -s\n M README.md\n$ git add -A\n$ git commit -m \"Add masala chai to the list\"\n[main d50d959] Add masala chai to the list\n 1 file changed, 2 insertions(+)\n$ git status -s\n?? .gitignore\n$ git add .gitignore && git commit -m \"Ignore log files and private notes\"\n[main e50e5b8] Ignore log files and private notes\n 1 file changed, 2 insertions(+)\n create mode 100644 .gitignore\n$ git log --oneline\ne50e5b8 Ignore log files and private notes\nd50d959 Add masala chai to the list\n8205bb9 Add README"
+        },
+        {
+          "type": "heading",
+          "text": "What happened, step by step"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git init` created the hidden `.git` folder. The folder is now a repository on the branch `main`, with no commits yet.",
+            "After we created `README.md`, `git status` listed it as **untracked**: Git sees the file but is not tracking it.",
+            "`git add README.md` moved it into the staging area. `git status -s` (short form) shows `A` for added.",
+            "`git commit -m \"Add README\"` saved the snapshot with a message. Git printed a short commit code (the hash, such as `8205bb9`), which is different on your computer.",
+            "`git log --oneline` shows the history with one line for each commit, newest first.",
+            "After we edited the file, `git diff` showed exactly what changed: lines starting with `+` were added. The short status shows ` M`, which means modified but not staged.",
+            "`git add -A` stages every change, and the second commit stored it. Use `git add .` for the same effect inside the current folder."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The commit message in quotes after `-m` is not optional in practice. A good message says what changed and why, in a short line. Lesson 8 is about writing them well."
+        },
+        {
+          "type": "heading",
+          "text": "Ignoring files with .gitignore"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some files should not be in the history: temporary files, logs, passwords and large folders created by tools. List them in a file called `.gitignore`, one pattern per line. In the session, we ignored all `*.log` files and a folder called `notes_private/`. After that, `git status -s` stopped showing `debug.log`. Only `.gitignore` itself appeared as new, and we committed it, so the rule is shared with everyone who clones the project."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`*.log` matches every file that ends with `.log`.",
+            "`node_modules/` ignores a whole folder (a trailing slash means folder).",
+            "`.env` is a common line for files with secrets. Lesson 8 explains why this matters.",
+            "`.gitignore` only affects files that are **not yet tracked**. If you already committed a file, ignoring it later does not remove it from the history.",
+            "Many examples exist for each language and tool. Search for a ready-made `.gitignore` for the tools you use."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Reading git status"
+        },
+        {
+          "type": "paragraph",
+          "text": "`git status` is your compass. It tells you the branch, which files are untracked, which are changed and which are staged, and it usually suggests the next command. When you are unsure what state your project is in, run it. It changes nothing, and it is always safe."
+        },
+        {
+          "type": "heading",
+          "text": "Habits that make Git easy"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Commit small and often.** Each commit should be one logical change that you can describe in a short sentence.",
+            "**Run `git status` before and after** each command until it feels natural.",
+            "**Check `git diff`** before you add, so you know what you are saving.",
+            "**Do not commit generated files or secrets.**"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a folder `recipes`, run `git init`, and create `README.md` with two lines.",
+            "Run `git status`, `git add README.md`, and `git commit -m \"Add README\"`.",
+            "Edit the README, run `git diff` to see the change, then add and commit again.",
+            "Create a `.gitignore` that ignores `*.log`, create a file `debug.log`, and check that `git status -s` does not show it.",
+            "Run `git log --oneline` and count your commits."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git log --oneline` shows at least three commits, newest first.",
+            "`git status` says `nothing to commit, working tree clean` after your last commit.",
+            "`debug.log` never shows up in `git status`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Three areas of Git",
+        "nodes": [
+          {
+            "id": "work",
+            "label": "Working folder",
+            "sub": "you edit files",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "stage",
+            "label": "Staging area",
+            "sub": "git add",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "repo",
+            "label": "Repository",
+            "sub": "git commit",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "log",
+            "label": "History",
+            "sub": "git log",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You edit files in your working folder, as you always do.",
+            "on": [
+              "work"
+            ]
+          },
+          {
+            "say": "git add moves the changes you choose into the staging area, a waiting room for the next snapshot.",
+            "flow": [
+              "work>stage:git add"
+            ]
+          },
+          {
+            "say": "git commit stores the staged changes as a permanent snapshot, with a message, in the repository.",
+            "flow": [
+              "stage>repo:git commit"
+            ]
+          },
+          {
+            "say": "git log shows the history of snapshots, newest first.",
+            "flow": [
+              "repo>log:git log"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the staging area for?",
+          "a": "It lets you choose exactly which changes go into the next commit, so each commit can be small and focused even if you changed many things."
+        },
+        {
+          "q": "Why is my file not showing up in git status after I added it to .gitignore?",
+          "a": "That is the purpose of .gitignore. The file is hidden from Git. If it still appears, it was already tracked before, and you must remove it from tracking with git rm --cached."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Git Basics",
+      "slug": "undo-mistakes-restore-amend-revert",
+      "title": "Undo Mistakes in Git: restore, amend and revert",
+      "metaTitle": "Undo Mistakes in Git: restore and revert",
+      "description": "Learn safe ways to undo in Git: discard changes with restore, unstage files, fix the last commit with amend and undo shared commits with revert.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Everyone makes mistakes: a wrong edit, a file added by accident, a typo in a commit message. The comfort of Git is that you can undo most mistakes, as long as you know which tool fits which situation. This lesson covers the common cases, from the safest to the most careful. You will practise each in a small project, and the session below is a real one."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git status -s\n M menu.txt\n$ git restore menu.txt\n$ cat menu.txt\ntea\ncoffee\n$ git add menu.txt\n$ git restore --staged menu.txt\n$ git status -s\n M menu.txt\n$ git add menu.txt && git commit -m \"Add soup\"\n[main 682019c] Add soup\n 1 file changed, 1 insertion(+)\n$ git add menu.txt && git commit -m \"Add jus\"\n[main 0b5d67b] Add jus\n 1 file changed, 1 insertion(+)\n$ git commit --amend -m \"Add juice\"\n[main 19ae32e] Add juice\n 1 file changed, 1 insertion(+)\n$ git log --oneline\n19ae32e Add juice\n682019c Add soup\nf8c6f07 Add menu\n$ git revert --no-edit HEAD\n[main 4029f99] Revert \"Add juice\"\n 1 file changed, 1 deletion(-)\n$ cat menu.txt\ntea\ncoffee\nsoup\n$ git log --oneline\n4029f99 Revert \"Add juice\"\n19ae32e Add juice\n682019c Add soup\nf8c6f07 Add menu"
+        },
+        {
+          "type": "heading",
+          "text": "1. Discard changes you have not staged: git restore"
+        },
+        {
+          "type": "paragraph",
+          "text": "We added `soup` to `menu.txt` but changed our mind. `git restore menu.txt` replaced the file with the version from the last commit, and `cat menu.txt` shows only `tea` and `coffee` again. **Warning:** this throws away your edit for good, because Git never saved it. Use it only when you are sure."
+        },
+        {
+          "type": "heading",
+          "text": "2. Unstage a file: git restore --staged"
+        },
+        {
+          "type": "paragraph",
+          "text": "We staged the file with `git add` and then realised it should not be in this commit. `git restore --staged menu.txt` moves it out of the staging area, but keeps your edit in the working folder. The status goes back from staged to ` M` (modified). Nothing is lost."
+        },
+        {
+          "type": "heading",
+          "text": "3. Fix the last commit: git commit --amend"
+        },
+        {
+          "type": "paragraph",
+          "text": "We committed with the message `Add jus` and noticed the typo. `git commit --amend -m \"Add juice\"` replaced the last commit with a corrected one. You can also use `--amend` to add a forgotten file: stage it, then run `git commit --amend`. Notice that the commit code changed from `0b5d67b` to `19ae32e`. Amend creates a **new** commit that replaces the old one."
+        },
+        {
+          "type": "note",
+          "text": "Only amend a commit that you have **not pushed** to a shared place such as GitHub. Changing a commit that others already have causes confusion and trouble for the team."
+        },
+        {
+          "type": "heading",
+          "text": "4. Undo a commit safely: git revert"
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppose the `juice` commit was a mistake, and it is already shared. `git revert HEAD` makes a **new** commit that does the opposite of the last one. Look at the log: the old commit is still there, followed by `Revert \"Add juice\"`, and the menu no longer has juice. The history stays honest, and nobody's copy breaks. Revert is the safe choice for anything that is already published. `HEAD` means the latest commit. You can also revert an older commit by giving its code, such as `git revert 682019c`."
+        },
+        {
+          "type": "heading",
+          "text": "The dangerous commands"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**`git reset --hard`** moves your branch and throws away all uncommitted changes. It can destroy work. Never use it unless you understand exactly what it will remove.",
+            "**`git push --force`** overwrites the history on the remote. It can delete other people's work. Avoid it on shared branches. If you must use it on your own branch, prefer `--force-with-lease`, which stops if somebody else pushed meanwhile.",
+            "**`git clean -fd`** deletes untracked files. They are not in Git, so they cannot be recovered.",
+            "Before you try something risky, make a safety copy of your work, or create a new branch (lesson 4) so you can return to it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A safety net: the reflog"
+        },
+        {
+          "type": "paragraph",
+          "text": "Even after a bad reset, Git keeps a private log of where your branch was, called the **reflog**. `git reflog` lists recent positions, each with a code that you can go back to. It is a lifesaver for commits, but it cannot bring back uncommitted changes, and it is only kept for a limited time. Do not rely on it, but know that it exists."
+        },
+        {
+          "type": "heading",
+          "text": "Choosing the right tool"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Edited a file and want the old version back: `git restore file`.",
+            "Staged something by mistake: `git restore --staged file`.",
+            "Wrong message or forgot a file in the last commit, not pushed yet: `git commit --amend`.",
+            "A bad commit that others may have: `git revert <commit>`.",
+            "Not sure: run `git status` and read what Git suggests."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A note on the lines you see in the output: Git also prints a `Date:` line for `--amend` and `revert`. We left it out to keep the session short."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a project with a file and one commit. Edit the file, then use `git restore` to throw the edit away.",
+            "Edit again, stage with `git add`, and then unstage with `git restore --staged`.",
+            "Make a commit with a typo in the message, and fix it with `git commit --amend -m`.",
+            "Make a commit, then undo it with `git revert HEAD`. Look at `git log --oneline`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "After restore, the file has its old content.",
+            "After `git revert`, your log shows both the original commit and the revert commit.",
+            "You can say why revert is safer than reset for shared work."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Choosing an undo",
+        "nodes": [
+          {
+            "id": "edit",
+            "label": "Edit not staged",
+            "sub": "git restore",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "staged",
+            "label": "Staged",
+            "sub": "git restore --staged",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "last",
+            "label": "Last commit",
+            "sub": "git commit --amend",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "old",
+            "label": "Shared commit",
+            "sub": "git revert",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Different mistakes need different tools. For an edit you have not staged, git restore brings back the committed version.",
+            "on": [
+              "edit"
+            ]
+          },
+          {
+            "say": "If you staged something by mistake, git restore --staged takes it out of the staging area and keeps your edit.",
+            "flow": [
+              "edit>staged:next stage"
+            ]
+          },
+          {
+            "say": "If the last commit has a typo or misses a file, git commit --amend replaces it, as long as it is not pushed.",
+            "flow": [
+              "staged>last:next stage"
+            ]
+          },
+          {
+            "say": "For a commit that is already shared, git revert adds a new commit that undoes it, and it keeps the history honest.",
+            "flow": [
+              "last>old:next stage"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between git revert and git reset?",
+          "a": "Revert adds a new commit that undoes an earlier one, which is safe for shared history. Reset moves the branch back and can discard work, so it is risky on shared branches."
+        },
+        {
+          "q": "Can I recover a commit after a bad reset?",
+          "a": "Often yes, with git reflog, which lists recent positions of your branch. It cannot recover changes that were never committed."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Git Basics",
+      "slug": "git-branches-and-merging",
+      "title": "Git Branches and Merging: Work on Ideas Safely",
+      "metaTitle": "Git Branches and Merging for Beginners",
+      "description": "Learn what a branch is, create and switch branches, merge your work back with fast-forward and merge commits, read the graph and delete finished branches.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A **branch** is a separate line of work. You make one when you want to try a new feature or fix a bug without touching the stable version. If the idea works, you **merge** it back. If it does not, you throw the branch away, and nothing else is harmed. Branches are cheap in Git: creating one takes a moment, so professionals use them for almost everything. This lesson uses a tiny website project and a real recorded session."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git branch\n* main\n$ git switch -c contact-page\nSwitched to a new branch 'contact-page'\n$ git add contact.txt && git commit -m \"Add contact page\"\n[contact-page c102ae8] Add contact page\n 1 file changed, 1 insertion(+)\n create mode 100644 contact.txt\n$ git switch main\nSwitched to branch 'main'\n$ ls\nindex.txt\n$ git merge contact-page\nUpdating ec7feed..c102ae8\nFast-forward\n contact.txt | 1 +\n 1 file changed, 1 insertion(+)\n create mode 100644 contact.txt\n$ ls\ncontact.txt\nindex.txt\n$ git branch -d contact-page\nDeleted branch contact-page (was c102ae8).\n$ git switch -c about-page\nSwitched to a new branch 'about-page'\n$ git add about.txt && git commit -m \"Add about page\"\n[about-page 38e1b3d] Add about page\n 1 file changed, 1 insertion(+)\n create mode 100644 about.txt\n$ git switch main\nSwitched to branch 'main'\n$ git add index.txt && git commit -m \"Add welcome line\"\n[main f1b5255] Add welcome line\n 1 file changed, 1 insertion(+)\n$ git merge --no-edit about-page\nMerge made by the 'ort' strategy.\n about.txt | 1 +\n 1 file changed, 1 insertion(+)\n create mode 100644 about.txt\n$ git log --oneline --graph --all\n*   8c59a4f Merge branch 'about-page'\n|\\  \n| * 38e1b3d Add about page\n* | f1b5255 Add welcome line\n|/  \n* c102ae8 Add contact page\n* ec7feed Add home page\n$ git branch -d about-page\nDeleted branch about-page (was 38e1b3d)."
+        },
+        {
+          "type": "heading",
+          "text": "Understanding branches"
+        },
+        {
+          "type": "paragraph",
+          "text": "A branch is just a movable label that points to a commit. The branch you are on is the one that moves forward when you commit. A special pointer called `HEAD` shows which branch you are currently on. When you switch branches, Git changes the files in your folder to match that branch, so `contact.txt` was missing on `main` before the merge and appeared after it."
+        },
+        {
+          "type": "heading",
+          "text": "The commands"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git branch` lists branches, and the `*` marks the current one.",
+            "`git switch -c contact-page` creates the branch `contact-page` and moves to it. Older tutorials use `git checkout -b`, which does the same job.",
+            "`git switch main` moves back to `main`.",
+            "`git merge contact-page` brings the work of that branch into the one you are on. Always switch to the branch that should **receive** the changes first.",
+            "`git branch -d contact-page` deletes a branch that is already merged. Git refuses if it is not merged, to protect your work."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Two kinds of merge"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the first merge, `main` had not changed since we created `contact-page`, so Git simply moved the `main` label forward. The output says **Fast-forward**. There is no extra commit, and the history stays a straight line."
+        },
+        {
+          "type": "paragraph",
+          "text": "In the second case, both `main` and `about-page` had new commits. Git combined them with a new **merge commit**, and said `Merge made by the 'ort' strategy`. The graph makes this visible."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "*   8c59a4f Merge branch 'about-page'\n|\\  \n| * 38e1b3d Add about page\n* | f1b5255 Add welcome line\n|/  \n* c102ae8 Add contact page\n* ec7feed Add home page"
+        },
+        {
+          "type": "paragraph",
+          "text": "Read the graph from the bottom up. Two lines run in parallel, and then join at the merge commit on top. `git log --oneline --graph --all` gives you this picture, and it is a great way to understand where you are."
+        },
+        {
+          "type": "heading",
+          "text": "A good branch workflow"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Start from an up-to-date `main`.",
+            "Create a branch with a clear name, such as `fix-login-typo` or `add-contact-page`.",
+            "Commit your work on the branch in small steps.",
+            "Switch back to `main` and merge the branch, or open a pull request on GitHub (lesson 7).",
+            "Delete the branch when it is merged."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Before you switch branches"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you have uncommitted changes, Git may refuse to switch, or it may carry them along. The cleanest habit is to commit, or to put the work aside with `git stash` (lesson 9), before switching. Run `git status` first. It takes two seconds and avoids a lot of confusion."
+        },
+        {
+          "type": "heading",
+          "text": "Naming branches"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use lowercase words with hyphens: `add-search-box`.",
+            "Describe the purpose, and not yourself: `fix-footer-link` is better than `asha-work`.",
+            "Many teams add a prefix such as `feature/` or `fix/`. Follow your team's rule.",
+            "Keep `main` for stable work that others can rely on."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Merging can cause conflicts when both branches changed the same lines. That is not an error. It is Git asking you to decide. The next lesson shows how."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a practice repo with a file and one commit. Create a branch `feature-one`, add a file and commit it.",
+            "Switch back to `main` and check that the new file is not there. Merge the branch. Is it a fast-forward?",
+            "Create a second branch, commit on it. Then switch to `main`, make a different commit, and merge the second branch to see a merge commit.",
+            "Run `git log --oneline --graph --all` and draw the result on paper."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The new file is missing on `main` before the merge and present after it.",
+            "Your graph shows two lines joining in a merge commit for the second branch.",
+            "`git branch` lists only `main` after you delete the merged branches."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A branch and a merge",
+        "nodes": [
+          {
+            "id": "main",
+            "label": "main",
+            "sub": "stable line",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "branch",
+            "label": "feature branch",
+            "sub": "try an idea",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "commits",
+            "label": "Commits on branch",
+            "sub": "small steps",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "merge",
+            "label": "Merge to main",
+            "sub": "bring it back",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The main branch holds the stable version of the project.",
+            "on": [
+              "main"
+            ]
+          },
+          {
+            "say": "You create a new branch to try an idea without touching main.",
+            "flow": [
+              "main>branch:git switch -c"
+            ]
+          },
+          {
+            "say": "You commit your work on the branch in small steps. Main stays unchanged.",
+            "flow": [
+              "branch>commits:commit"
+            ]
+          },
+          {
+            "say": "When the idea works, you merge the branch into main. If it fails, you simply delete the branch.",
+            "flow": [
+              "commits>merge:git merge"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is a fast-forward merge?",
+          "a": "When the target branch has no new commits, Git just moves its label forward to the other branch. No extra merge commit is made."
+        },
+        {
+          "q": "Is it safe to delete a branch after merging?",
+          "a": "Yes. The commits are now part of the target branch. Git also refuses to delete an unmerged branch with -d, so you cannot lose work by accident."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Git Basics",
+      "slug": "resolve-git-merge-conflicts",
+      "title": "Resolve Git Merge Conflicts Step by Step",
+      "metaTitle": "Resolve Git Merge Conflicts Step by Step",
+      "description": "Learn why merge conflicts happen, read the conflict markers, decide what to keep, finish the merge and avoid conflicts. A calm real session.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Almost every beginner is afraid of the first **merge conflict**. It is not a disaster. It simply means: two people (or two branches) changed the same lines in different ways, and Git cannot know which version you want. It stops and asks you to decide. Once you have done it two or three times, it becomes a routine job. This lesson walks through one calmly."
+        },
+        {
+          "type": "heading",
+          "text": "The situation"
+        },
+        {
+          "type": "paragraph",
+          "text": "A price file says `Tea: 20`. On the branch `update-tea`, someone changed it to 25. Meanwhile on `main`, someone changed it to 22. Both changes are on the same line, so Git cannot combine them automatically. Here is the real session."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git merge update-tea\nAuto-merging price.txt\nCONFLICT (content): Merge conflict in price.txt\nAutomatic merge failed; fix conflicts and then commit the result.\n$ git status -s\nUU price.txt\n$ cat price.txt\n<<<<<<< HEAD\nTea: 22\n=======\nTea: 25\n>>>>>>> update-tea\nCoffee: 30\n$ git add price.txt\n$ git commit --no-edit\n[main 1012b0b] Merge branch 'update-tea'\n$ git log --oneline --graph\n*   1012b0b Merge branch 'update-tea'\n|\\  \n| * 586290f Tea costs 25\n* | 0c40438 Tea costs 22\n|/  \n* c156a1b Add prices"
+        },
+        {
+          "type": "heading",
+          "text": "Reading what Git tells you"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`CONFLICT (content): Merge conflict in price.txt` names the file with the problem. Other files merged fine.",
+            "`git status -s` shows `UU` for the file: unmerged on both sides.",
+            "Git changed the file itself and added **markers**: the lines between `<<<<<<< HEAD` and `=======` are your current branch's version (main: 22). The lines between `=======` and `>>>>>>> update-tea` are the other branch's version (25).",
+            "The line `Coffee: 30` was not marked, because both sides agree about it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to resolve it"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Open the file** in your editor and find the markers.",
+            "**Decide** what the final text should be. You can keep one side, the other, or write something new. We agreed on a price of 24.",
+            "**Delete all three marker lines** (`<<<<<<<`, `=======`, `>>>>>>>`) and leave only the final text. The file must look like normal text again.",
+            "**Save**, then `git add price.txt` to tell Git the file is resolved.",
+            "**Finish** with `git commit --no-edit`, which uses the default merge message. In the log graph, you can see the two lines joining at the merge commit."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Never commit a file that still contains conflict markers. Search the project for `<<<<<<<` before you commit. Many editors, such as VS Code, show the conflict with buttons such as Accept Current, Accept Incoming and Accept Both, and these are simply doing the editing for you."
+        },
+        {
+          "type": "heading",
+          "text": "Changed your mind? Abort"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you start a merge and feel lost, run `git merge --abort`. Git puts everything back as it was before the merge. There is no shame in a fresh start, and it is much better than guessing."
+        },
+        {
+          "type": "heading",
+          "text": "How to have fewer conflicts"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pull the latest changes often, so your branch does not drift far from `main`.",
+            "Keep branches short-lived. A branch that lives for weeks collects conflicts.",
+            "Make small commits and small pull requests.",
+            "Talk to your team: two people changing the same file at the same moment is a signal to coordinate.",
+            "Do not reformat whole files, for example by changing indentation everywhere, because the diff touches every line and creates conflicts for others."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Conflicts are about people, not only code"
+        },
+        {
+          "type": "paragraph",
+          "text": "The tool shows the clash, but the answer is often a decision. Which price is right? Which wording should stay? If you are not sure, ask the person who made the other change. Do not simply pick one side to make the conflict go away, because you could lose someone's work."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a project with `price.txt` containing `Tea: 20`. Make two branches that change that line differently and commit on each.",
+            "Merge one into the other and see the conflict. Run `git status` and open the file.",
+            "Resolve it by writing a final value, remove the markers, add and commit.",
+            "Repeat, but this time run `git merge --abort` and check that everything returned to its state before the merge."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The final file has no `<<<<<<<`, `=======` or `>>>>>>>` lines.",
+            "`git status` says the working tree is clean after the merge commit.",
+            "After `git merge --abort`, the file contents are what they were before the merge."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A merge conflict",
+        "nodes": [
+          {
+            "id": "a",
+            "label": "main: Tea 22",
+            "sub": "one change",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "b",
+            "label": "update-tea: 25",
+            "sub": "another change",
+            "col": 1,
+            "row": 1,
+            "kind": "data"
+          },
+          {
+            "id": "git",
+            "label": "git merge",
+            "sub": "cannot choose",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "you",
+            "label": "You decide",
+            "sub": "edit, add, commit",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Two branches changed the same line in different ways: one made the price 22, the other 25.",
+            "on": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "say": "When you merge, Git cannot decide which one is right.",
+            "flow": [
+              "b>git:merge"
+            ]
+          },
+          {
+            "say": "Git stops and marks the file with conflict markers that show both versions.",
+            "flow": [
+              "a>git:merge"
+            ]
+          },
+          {
+            "say": "You choose the final text, remove the markers, run git add, and commit to complete the merge.",
+            "flow": [
+              "git>you:resolve"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why do merge conflicts happen?",
+          "a": "Two branches changed the same lines in different ways, or one deleted what the other changed. Git cannot decide which to keep, so it asks you."
+        },
+        {
+          "q": "How do I cancel a merge in the middle of a conflict?",
+          "a": "Run git merge --abort. Git returns your files to the state they had before you started the merge."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "GitHub and Teamwork",
+      "slug": "github-remotes-push-pull-and-clone",
+      "title": "Put Your Project on GitHub: Remotes, push, pull and clone",
+      "metaTitle": "Git Remotes: push, pull and clone to GitHub",
+      "description": "Create a GitHub account and repository, connect it with git remote, push, clone and pull, sign in safely with SSH or a token, and fix a rejected push.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Until now, your history lived only on your computer. If the laptop is lost, the work is lost, and nobody else can see or use it. A **remote** is another copy of your repository that lives somewhere else, usually on GitHub. You send your commits to it with `git push`, and you fetch other people's commits with `git pull`. In this lesson you connect your project to GitHub and learn the daily rhythm of pull, work, commit and push."
+        },
+        {
+          "type": "heading",
+          "text": "Create your GitHub account and a repository"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Go to github.com and sign up for a free account. Choose a sensible username, because it appears in your profile address, and it can be seen by employers. Turn on two-step login in your security settings.",
+            "Click the button to create a **new repository**. Give it a name, such as `recipes`, and choose **Public** (anyone can see it) or **Private** (only people you invite).",
+            "If you already have a project on your computer, do **not** tick the options to add a README, a `.gitignore` or a licence. An empty remote is easiest to connect to an existing project. If you do add them, you must first pull them (see the end of this lesson).",
+            "GitHub then shows a page with the address of the repository, which is called the **remote URL**, and a few commands to copy."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Menus and button names on GitHub change from time to time. The ideas, a repository, a remote URL and a push, stay the same. If a screen looks different from our description, look for the same idea, or open GitHub's own help pages."
+        },
+        {
+          "type": "heading",
+          "text": "Connect and push"
+        },
+        {
+          "type": "paragraph",
+          "text": "In your project folder, add the remote and push. The name `origin` is the usual nickname for the main remote. Replace the address with the one GitHub shows you. It looks like `https://github.com/yourname/recipes.git`."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "git remote add origin https://github.com/yourname/recipes.git\ngit push -u origin main"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `-u` option links your local `main` with `origin/main`, so from then on a plain `git push` and `git pull` know where to go. After this, refresh the GitHub page, and your files and commits are there. In the next session, we used a folder on the same computer as the \"remote\", in place of the website, because the commands are exactly the same. The only difference is the address."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git remote add origin ../remote.git\n$ git remote -v\norigin\t../remote.git (fetch)\norigin\t../remote.git (push)\n$ git push -u origin main\nTo ../remote.git\n * [new branch]      main -> main\nbranch 'main' set up to track 'origin/main'.\n$ git status\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean\n$ git clone remote.git friend\nCloning into 'friend'...\ndone.\n$ git push\nTo ../remote.git\n ! [rejected]        main -> main (fetch first)\nerror: failed to push some refs to '../remote.git'\nhint: Updates were rejected because the remote contains work that you do not\nhint: have locally. This is usually caused by another repository pushing to\nhint: the same ref. If you want to integrate the remote changes, use\nhint: 'git pull' before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.\n$ git pull --no-rebase --no-edit\nFrom ../remote\n   fc367a6..069b3ff  main       -> origin/main\nAuto-merging app.txt\nMerge made by the 'ort' strategy.\n app.txt | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n$ cat app.txt\nBetter title\nbody\nfooter\n$ git push\nTo ../remote.git\n   069b3ff..1446436  main -> main\n$ git log --oneline --graph\n*   1446436 Merge branch 'main' of ../remote\n|\\  \n| * 069b3ff Friend improves the title\n* | 221c047 I add a footer\n|/  \n* fc367a6 First version"
+        },
+        {
+          "type": "heading",
+          "text": "What happened"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git remote -v` lists your remotes. `push -u` sent the commits and set up tracking, and `git status` now says the branch is up to date with `origin/main`.",
+            "`git clone` makes a full copy of a repository, with its whole history, into a new folder. It also sets `origin` for you. Use it when you join a project that already exists.",
+            "A friend pushed a change first. When we ran `git push`, Git **rejected** it: the remote has work that we do not have. This is very common in teams, and it is not an error to fear. Git protects the other person's work.",
+            "The fix is `git pull`, which fetches the new commits and merges them into your branch. Here the changes did not clash, so Git merged them automatically. Then `git push` worked.",
+            "The graph shows the two lines of work joined by a merge commit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "fetch and pull"
+        },
+        {
+          "type": "paragraph",
+          "text": "`git pull` is really two steps in one: `git fetch` downloads the new commits and updates the `origin/main` label, and then a merge brings them into your branch. If you want to look first before changing your own files, run `git fetch` and then `git log origin/main` or `git diff main origin/main`. Many people also set `git config --global pull.rebase false` so that pull always merges, or learn rebase later when they are comfortable."
+        },
+        {
+          "type": "heading",
+          "text": "Signing in safely"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you push to GitHub, it must know that you are allowed to. GitHub does not accept your account password for Git commands over HTTPS. You have these options. Check GitHub's current help pages for the exact steps, because they change."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Git Credential Manager** (included with Git for Windows and available for macOS and Linux): when you first push, a browser window opens, you sign in, and it remembers you. This is the easiest option on a personal computer.",
+            "**A personal access token:** a long generated text that you use in place of a password. Give it the smallest permissions and an expiry date, and treat it like a password.",
+            "**SSH keys:** you create a pair of keys with `ssh-keygen -t ed25519 -C \"your email\"`, add the **public** key (the file that ends with `.pub`) to your GitHub settings, and use the SSH address of the repository, which starts with `git@github.com:`. Never share the private key file.",
+            "**GitHub CLI** (`gh auth login`) is a separate tool that handles sign-in and many GitHub tasks from the terminal."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Never put a token or password into a file in your project, and never paste one into a chat or a public post. If you do, delete the token on GitHub straight away and create a new one."
+        },
+        {
+          "type": "heading",
+          "text": "A healthy daily rhythm"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Start the day with `git pull`, so you have everyone's latest work.",
+            "Create a branch for your task (lesson 4).",
+            "Commit small steps.",
+            "Before you push, `git pull` again if others may have pushed.",
+            "Push your branch, and open a pull request (lesson 7)."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "If GitHub already has files that you do not have"
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppose you created the repository on GitHub **with** a README and then tried to push an existing project. Git rejects the push, because the two histories have nothing in common. Run `git pull origin main --allow-unrelated-histories`, resolve any conflicts and push. You can avoid the problem by creating an empty repository, or by cloning the one with the README and adding your files to it."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a free GitHub account, with two-step login, and a new empty repository.",
+            "Connect your `recipes` project with `git remote add origin` and push with `git push -u origin main`. Refresh the page and see your files.",
+            "Clone your repository to a second folder, change a file there and push. Then pull in the first folder.",
+            "Run `git remote -v`, `git status` and `git log --oneline --graph` and explain each line."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your files and commits appear on the GitHub page.",
+            "A change pushed from the second folder appears in the first after `git pull`.",
+            "You can explain why a push can be rejected and how you fix it."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Local and remote",
+        "nodes": [
+          {
+            "id": "local",
+            "label": "Your repository",
+            "sub": "on your computer",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "push",
+            "label": "git push",
+            "sub": "send commits",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "remote",
+            "label": "GitHub (origin)",
+            "sub": "shared copy",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "pull",
+            "label": "git pull",
+            "sub": "get new commits",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Your repository lives on your computer with all your commits.",
+            "on": [
+              "local"
+            ]
+          },
+          {
+            "say": "git push sends your new commits to the remote, which is usually named origin.",
+            "flow": [
+              "local>push:commits"
+            ]
+          },
+          {
+            "say": "The remote on GitHub now holds a shared copy that teammates and tools can reach.",
+            "flow": [
+              "push>remote:upload"
+            ]
+          },
+          {
+            "say": "When someone else pushes, you run git pull to download and merge their commits into your copy.",
+            "flow": [
+              "remote>pull:download"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why was my push rejected?",
+          "a": "The remote has commits that you do not have locally, usually from someone else. Run git pull to bring them in, resolve any conflicts, then push again."
+        },
+        {
+          "q": "What is the difference between clone and pull?",
+          "a": "Clone makes a new full copy of a repository. Pull updates a copy you already have with the newest commits from the remote."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": true
+    },
+    {
+      "section": "GitHub and Teamwork",
+      "slug": "pull-requests-forks-and-code-review",
+      "title": "Pull Requests, Forks and Code Review on GitHub",
+      "metaTitle": "GitHub Pull Requests, Forks and Code Review",
+      "description": "Learn the pull request workflow used by teams and open source: branch, push, open a pull request, review, merge, fork a project and keep your fork up to date.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A **pull request** (PR) is a way to say to your team: *I have finished some work on a branch. Please look at it, and if it is good, merge it into the main branch.* It is the central habit of working on GitHub. A pull request is a conversation around a set of changes, where people can comment on single lines, ask for changes and approve. Even if you work alone, the practice builds good habits. In a team, it is how mistakes are caught before they reach everyone."
+        },
+        {
+          "type": "heading",
+          "text": "The basic flow inside one repository"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Update your `main`: `git switch main`, then `git pull`.",
+            "Create a branch for one task: `git switch -c fix-footer-link`.",
+            "Make small commits on the branch.",
+            "Push the branch: `git push -u origin fix-footer-link`. The first push prints a link to open a pull request, or GitHub shows a banner with a button when you open the repository page.",
+            "On GitHub, open the pull request. Choose `main` as the base and your branch as the one to compare. Write a clear title and description.",
+            "Teammates review the changes, comment and request improvements. You push more commits to the same branch, and the pull request updates itself.",
+            "When it is approved, someone merges it on GitHub. Then you delete the branch, switch to `main` and `git pull` to get the merged work."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Write a good pull request"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**A short title** that says what changed: `Fix broken footer link on the contact page`.",
+            "**A description** that explains what and why: the problem, how you solved it, how to check it, and a screenshot if it is visual.",
+            "**Small size.** A pull request with 50 lines gets a careful review. A pull request with 2,000 lines gets a quick glance and a thumbs-up. Split big work.",
+            "**Link the issue** it solves. Writing `Closes #12` in the description closes issue 12 when the pull request is merged.",
+            "**Check your own work first.** Read the diff on the pull request page as if you were the reviewer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Being reviewed and reviewing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Read comments as help with the code, and not as criticism of you. Reply politely. If you agree, fix it. If you disagree, explain your reason.",
+            "As a reviewer, be specific and kind. Say what you suggest and why. Praise good parts too.",
+            "Look for: does it work, is it clear, are there tests, could it break something, are there secrets or private data in it?",
+            "Mark questions as questions and suggestions as suggestions, so the author knows what is required.",
+            "Do not approve what you did not read."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The three ways to merge"
+        },
+        {
+          "type": "paragraph",
+          "text": "GitHub offers different buttons to merge a pull request, and a repository owner can choose which ones are allowed. A **merge commit** keeps all your commits and adds a merge commit. **Squash and merge** combines all the commits of the branch into a single one, which keeps the main history short. **Rebase and merge** replays your commits on top of main in a straight line. A beginner can use whatever the team chooses. Squash is popular for keeping a tidy history."
+        },
+        {
+          "type": "heading",
+          "text": "Forks: contributing to someone else's project"
+        },
+        {
+          "type": "paragraph",
+          "text": "You usually cannot push to a project that belongs to someone else. Instead, you make your own copy on GitHub, a **fork**, and work there. Then you send a pull request from your fork back to the original project. The steps are these."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Click **Fork** on the project's page. GitHub creates a copy under your account.",
+            "Clone **your fork**: `git clone https://github.com/yourname/project.git`.",
+            "Add the original project as a second remote called `upstream`: `git remote add upstream https://github.com/original-owner/project.git`.",
+            "Create a branch, make your change and push it to **your fork**: `git push -u origin my-change`.",
+            "On GitHub, open a pull request from your branch to the original project, and follow its contribution rules, which are usually in a file called `CONTRIBUTING.md`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keep your fork up to date"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "git fetch upstream\ngit switch main\ngit merge upstream/main\ngit push origin main"
+        },
+        {
+          "type": "paragraph",
+          "text": "Those four commands bring the original project's newest work into your fork's main branch. Do this before you start a new branch, so that you work from the current version."
+        },
+        {
+          "type": "heading",
+          "text": "Issues and other team tools"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Issues** are tasks, bugs and ideas, with a discussion for each. Write a clear title and describe how to reproduce a bug.",
+            "**Labels** such as `bug` or `good first issue` organise them. Many projects use `good first issue` for tasks suitable for newcomers.",
+            "**Checks:** many projects run automatic tests when you open a pull request, and show a green tick or a red cross. Read the log of a red check, fix the problem and push again.",
+            "**Branch protection:** owners can require reviews and passing checks before anything is merged into `main`. This protects the stable branch."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Pull requests are a social tool as much as a technical one. Be patient with replies, thank the reviewers and keep the conversation friendly. Maintainers of free projects are often volunteers."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a practice repository on GitHub. Create a branch, change a file, push the branch and open a pull request into `main`.",
+            "Read the \"Files changed\" tab of your own pull request and leave one comment on a line, as a reviewer would.",
+            "Merge the pull request with the button, delete the branch, then update your local `main` with `git pull`.",
+            "Find a small open source project that you like, and read its `CONTRIBUTING.md` and the issues with the label `good first issue`. You do not have to contribute yet."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your pull request shows the changes of your branch and can be merged.",
+            "After merging, `git pull` on `main` brings in your change.",
+            "You can explain what a fork is and when you need one."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A pull request",
+        "nodes": [
+          {
+            "id": "branch",
+            "label": "Branch",
+            "sub": "your small change",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "pr",
+            "label": "Pull request",
+            "sub": "describe and compare",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "review",
+            "label": "Review",
+            "sub": "comments, approval",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "main",
+            "label": "main branch",
+            "sub": "merged work",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You do your work on a separate branch and push it to GitHub.",
+            "on": [
+              "branch"
+            ]
+          },
+          {
+            "say": "You open a pull request that asks to merge the branch into main, with a clear description.",
+            "flow": [
+              "branch>pr:open"
+            ]
+          },
+          {
+            "say": "Teammates review the changes, comment on lines and ask for improvements. You push more commits if needed.",
+            "flow": [
+              "pr>review:discuss"
+            ]
+          },
+          {
+            "say": "When it is approved and the checks pass, it is merged into main and the branch can be deleted.",
+            "flow": [
+              "review>main:merge"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between a fork and a branch?",
+          "a": "A branch is a line of work inside one repository. A fork is a whole copy of someone else repository under your own account, which you use when you cannot push to the original."
+        },
+        {
+          "q": "How big should a pull request be?",
+          "a": "Small and focused on one change. Small pull requests get better reviews and are easier to undo."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "GitHub and Teamwork",
+      "slug": "good-commits-gitignore-and-keeping-secrets-safe",
+      "title": "Good Commits, Clean Repositories and Keeping Secrets Safe",
+      "metaTitle": "Good Commits and Keeping Secrets Safe",
+      "description": "Write commit messages that help, keep commits small, use a README and a .gitignore, and learn what to do when a password or API key is committed by mistake.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Git remembers everything, which is wonderful and also dangerous. A history full of messages like `fix` and `stuff` is hard to use. A history that contains a password is a security problem that stays until you deal with it. This lesson is about the habits that keep a repository useful and safe, and they matter a lot when employers or teammates read your work."
+        },
+        {
+          "type": "heading",
+          "text": "Commit messages that help"
+        },
+        {
+          "type": "paragraph",
+          "text": "The message is a note to your future self and to your team. A good one says what changed and, when it is not obvious, why. Many teams follow this shape."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A **first line** of about 50 characters, in the imperative, as if giving an order: `Add search box to the header`, `Fix crash when the list is empty`. It should finish the sentence: *If applied, this commit will...*",
+            "A **blank line**, then, if needed, a longer explanation of the reason and any side effects.",
+            "No full stop is needed at the end of the first line.",
+            "Avoid `fix`, `update`, `changes`, `asdf`. Six months later, nobody knows what they mean.",
+            "If your team uses a style such as Conventional Commits (`feat:`, `fix:`, `docs:`), follow it."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "git commit -m \"Fix crash when the task list is empty\" -m \"The list page read the first item without checking the length.\nIt now shows a friendly message instead.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Using `-m` twice makes the second text a separate paragraph. Without `-m`, `git commit` opens your editor, which is easier for longer messages. If you end up in an editor you do not know, such as Vim, press `Esc`, type `:q!` and press Enter to leave without saving, then set another editor with `git config --global core.editor`."
+        },
+        {
+          "type": "heading",
+          "text": "Small, focused commits"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One commit = one idea. Fixing a typo and adding a feature belong in two commits.",
+            "Use `git add -p` to choose parts of a file for a commit. Git shows each changed block and asks yes or no. This is how you split a messy afternoon into clean commits.",
+            "Do not commit work that is broken, if you can avoid it. A commit should leave the project in a working state.",
+            "Commit often. Small commits are easy to understand, easy to revert and easy to review."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A README is the front door"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `README.md` file is shown on the front page of your repository on GitHub. For any project that you share, it should say what the project is, how to install and run it, how to use it, and what to do about problems. For a portfolio, add a screenshot and the main technologies. Lesson 10 returns to this. A repository without a README looks unfinished."
+        },
+        {
+          "type": "heading",
+          "text": "What does not belong in a repository"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Secrets:** passwords, API keys, tokens, private keys, database addresses with passwords, `.env` files with real values.",
+            "**Personal data:** other people's names, phone numbers, ID numbers, customer lists.",
+            "**Generated or downloaded files:** `node_modules/`, build folders, caches, virtual environments, compiled files. They can be rebuilt, and they make the repository heavy.",
+            "**Large binary files:** big videos and datasets. Git is built for text. Hosts also have size limits.",
+            "**Editor and system files:** `.DS_Store`, `Thumbs.db`, `.idea/`. Put these in your `.gitignore`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keep secrets out: the .env pattern"
+        },
+        {
+          "type": "paragraph",
+          "text": "Programs often need secrets. The standard way is to keep them in a file named `.env` that is **in `.gitignore`**, and to read them from the environment in your code. Commit a sample file named `.env.example` with fake values, so others know which settings are needed. Services and hosts also let you store secrets in their own settings, and GitHub has a feature for secrets used by automatic workflows."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "# .gitignore\n.env\n\n# .env.example  (this one is committed; the values are fake)\nDATABASE_URL=put-your-address-here\nAPI_KEY=put-your-key-here"
+        },
+        {
+          "type": "heading",
+          "text": "What if I committed a secret?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Act in this order. The first step is the most important."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Treat the secret as stolen.** Go to the service that issued it, and **revoke or rotate it at once**: delete the key and create a new one. Automated bots scan public repositories within minutes, so assume that a public secret has been seen.",
+            "Put the file in `.gitignore` and remove it from tracking: `git rm --cached .env`, then commit.",
+            "Understand that the old commits still contain the secret. Deleting the file in a new commit does not remove it from the history.",
+            "If it matters, and especially for a repository that others have copied, rewrite the history with a tool such as `git filter-repo` or the BFG Repo-Cleaner, and then force-push. This is advanced, and it disturbs everyone who has a copy, so read the documentation first and ask for help.",
+            "Check the service's logs for use you did not make."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Rotating the secret is what really protects you. Cleaning the history is a second step, and it is not a replacement for it. GitHub can also warn you about some kinds of secrets that it recognises, but you should never rely on that alone."
+        },
+        {
+          "type": "heading",
+          "text": "Licences"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you put code on GitHub publicly, and you want others to be able to reuse it, add a licence file. Without one, by default others do not have the right to copy and use your work, even though they can see it. Popular simple choices include MIT and Apache 2.0. GitHub can add a licence file for you when you create a repository, and sites such as choosealicense.com explain the differences. For a legal question about your own work or an employer's code, ask a qualified person."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Rewrite three bad commit messages you can imagine (for example `fix`, `update`, `changes`) as clear, imperative ones.",
+            "In a practice repo, change two unrelated things in one file and use `git add -p` to commit them separately.",
+            "Create `.env` with a fake secret and `.gitignore` containing `.env`. Check that `git status` does not list it. Add a `.env.example`.",
+            "Write a README with: what it is, how to run it, and one example."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git log --oneline` shows messages that you could understand in six months.",
+            "`git status` never shows your `.env` file.",
+            "You can list the first two things to do if a key is committed by mistake."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Keep secrets out of Git",
+        "nodes": [
+          {
+            "id": "secret",
+            "label": "Secret in .env",
+            "sub": "real values",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ign",
+            "label": ".gitignore",
+            "sub": "lists .env",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "repo",
+            "label": "Repository",
+            "sub": "no secrets inside",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "hub",
+            "label": "GitHub",
+            "sub": "safe to share",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Passwords and keys live in a local .env file, and the code reads them from the environment.",
+            "on": [
+              "secret"
+            ]
+          },
+          {
+            "say": "The .gitignore file lists .env, so Git never tracks or commits it.",
+            "flow": [
+              "secret>ign:ignored"
+            ]
+          },
+          {
+            "say": "The repository holds only code and a .env.example file with fake values.",
+            "flow": [
+              "ign>repo:clean"
+            ]
+          },
+          {
+            "say": "Pushing to GitHub is safe, because no real secret is in the history. If one ever is, rotate it first.",
+            "flow": [
+              "repo>hub:push"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What should I do if I accidentally commit a password or API key?",
+          "a": "Revoke or rotate it immediately at the service that issued it, because it may already have been copied. Then remove it from tracking, and consider rewriting history with a tool like git filter-repo."
+        },
+        {
+          "q": "What makes a good commit message?",
+          "a": "A short imperative first line that says what changed, such as Fix crash when the list is empty, and, when needed, a longer explanation of why."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Tools and Next Steps",
+      "slug": "stash-tags-and-exploring-history",
+      "title": "Stash, Tags and Exploring History: log, show and blame",
+      "metaTitle": "Git Stash, Tags, log, show and blame",
+      "description": "Put unfinished work aside with stash, mark releases with tags, explore history with log, show and blame, and learn what cherry-pick and rebase are for.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As your projects grow, you will want to answer questions such as: *What did I change last week? Who changed this line, and why? How do I put my half-finished work aside and fix a quick bug?* Git has tools for all of these. This lesson shows the most useful ones, with a real session, and gives careful guidance about the two commands that can cause trouble, `cherry-pick` and `rebase`."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ git stash\nSaved working directory and index state WIP on main: 210368e Add line two\n$ git status -s\n$ git stash list\nstash@{0}: WIP on main: 210368e Add line two\n$ git stash pop\nOn branch main\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n  (use \"git restore <file>...\" to discard changes in working directory)\n\tmodified:   notes.txt\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\nDropped refs/stash@{0} (f3e0c547c2b5f9d7b8ee38c028ceeb1c3957d9a2)\n$ git restore notes.txt\n$ git tag -a v1.0 -m \"First release\"\n$ git tag\nv1.0\n$ git log --oneline --decorate\n210368e (HEAD -> main, tag: v1.0) Add line two\n3aaeccc Start notes\n$ git show --stat HEAD\ncommit 210368e1de2cb7bf263b971168aa3b67aa55cd5c\nAuthor: Asha Verma <asha@example.com>\nDate:   Fri Nov 17 17:13:20 2023 +0000\n\n    Add line two\n\n notes.txt | 1 +\n 1 file changed, 1 insertion(+)\n$ git blame notes.txt\n^3aaeccc (Asha Verma 2023-11-17 16:13:20 +0000 1) line one\n210368e1 (Asha Verma 2023-11-17 17:13:20 +0000 2) line two\n$ git log --oneline -- notes.txt\n210368e Add line two\n3aaeccc Start notes"
+        },
+        {
+          "type": "heading",
+          "text": "Stash: put work aside"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the session, we had a half-done idea in `notes.txt`, and needed a clean folder, for example to switch branches or pull. `git stash` saved the uncommitted changes in a hidden shelf and returned the files to the last commit. `git status -s` printed nothing, so the folder was clean. `git stash list` shows what is on the shelf, and `git stash pop` puts the work back and removes it from the shelf. If you stash several times, the newest is `stash@{0}`."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Stash only keeps changes to files that Git tracks. Add `-u` to include new untracked files.",
+            "Give a stash a name so you can find it later: `git stash push -m \"half-done idea\"`.",
+            "A stash lives on your computer only. It is not pushed to GitHub, so do not use it as a backup. For a lasting save, commit on a branch.",
+            "`git stash drop` deletes a stash, so use it carefully."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Tags: name an important moment"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **tag** is a permanent label on a commit, typically used for releases such as `v1.0`. `git tag -a v1.0 -m \"First release\"` created an annotated tag, which stores a message, the date and your name. `git tag` lists tags, and `git log --oneline --decorate` shows them next to the commits. Tags are not pushed automatically. Send one with `git push origin v1.0`, or all of them with `git push --tags`."
+        },
+        {
+          "type": "heading",
+          "text": "Exploring history"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git log --oneline` is the short list. Add `--graph --all` to see branches. `git log -5` shows only the last five commits.",
+            "`git log -- notes.txt` lists only the commits that changed that file. `git log -p` also shows the changes.",
+            "`git log --author=\"Asha\"` and `git log --since=\"2 weeks ago\"` filter by person and time.",
+            "`git show HEAD` shows the latest commit with its changes. `git show --stat HEAD` adds a summary of the files, as in the session. You can also show an older commit by its code.",
+            "`git diff main feature-branch` compares two branches. `git diff HEAD~1` compares your folder to the commit before the last one.",
+            "`git blame notes.txt` shows who changed each line, in which commit and when. The name sounds harsh, but it is meant to help you find the commit that explains a line, and then to read its message. It is not for blaming people."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Searching"
+        },
+        {
+          "type": "paragraph",
+          "text": "`git log -S\"password\"` finds commits that added or removed that text, which is useful for tracking down when something appeared. `git grep \"TODO\"` searches the current files of the project quickly. When a bug has appeared and you do not know which commit caused it, `git bisect` helps you find it by binary search. You mark one good commit and one bad one, and Git checks out the middle commits for you to test. It is advanced, but it is worth knowing that it exists."
+        },
+        {
+          "type": "heading",
+          "text": "cherry-pick: take one commit"
+        },
+        {
+          "type": "paragraph",
+          "text": "`git cherry-pick <commit>` copies a single commit from another branch onto your current branch. It is useful for taking one bug fix to a release branch without merging everything else. The copy gets a new commit code. If you use it often, ask whether a merge would be simpler. We do not show a session for it here because the idea is small: one commit, copied."
+        },
+        {
+          "type": "heading",
+          "text": "rebase: handle with care"
+        },
+        {
+          "type": "paragraph",
+          "text": "`git rebase main`, when you are on your feature branch, moves your commits so that they start from the newest `main`, as if you had begun your work just now. It gives a straight, tidy history. But rebase **rewrites commits**, which means that they get new codes. The rule is simple: **never rebase commits that you have already pushed and that others may use.** Rebase your own local, unshared branch if you want, and until you are comfortable, a normal merge is perfectly fine. Many professional teams use merges only."
+        },
+        {
+          "type": "heading",
+          "text": "Tips to feel at home"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Run `git status` and `git log --oneline --graph --all` often. They show you where you are.",
+            "A graphical tool, such as the Git panel in VS Code, GitHub Desktop or the history view on GitHub itself, helps you see the same things as pictures.",
+            "`git help <command>` and `git <command> --help` open the manual, which is clear once you know the words.",
+            "If you are afraid to try a command, copy the whole project folder first, and experiment on the copy."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The hash codes, dates and times in the session are from the recorded run and are different in yours. The commands and the shape of the output are the same."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "In a practice repository, make an uncommitted change, stash it, check that the folder is clean, and pop it back.",
+            "Create a tag `v1.0`, list tags and look at `git log --oneline --decorate`.",
+            "Use `git log -- file`, `git show --stat HEAD` and `git blame file` on your own repo, and explain each output.",
+            "Write in your own words when you should *not* use rebase."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "After `git stash`, `git status` shows a clean folder, and after `pop` your change is back.",
+            "`git log --oneline --decorate` shows the tag next to the right commit.",
+            "You can explain why rewriting pushed history causes problems for others."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Put work aside and look back",
+        "nodes": [
+          {
+            "id": "wip",
+            "label": "Unfinished work",
+            "sub": "not ready to commit",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "stash",
+            "label": "git stash",
+            "sub": "put it on the shelf",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "clean",
+            "label": "Clean folder",
+            "sub": "switch, pull, fix",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "pop",
+            "label": "git stash pop",
+            "sub": "get it back",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have unfinished work that is not ready for a commit, but you need to do something else.",
+            "on": [
+              "wip"
+            ]
+          },
+          {
+            "say": "git stash puts those changes on a hidden shelf.",
+            "flow": [
+              "wip>stash:stash"
+            ]
+          },
+          {
+            "say": "Your folder is clean again, so you can switch branches, pull or fix a quick bug.",
+            "flow": [
+              "stash>clean:clean"
+            ]
+          },
+          {
+            "say": "git stash pop brings your unfinished work back and removes it from the shelf.",
+            "flow": [
+              "clean>pop:pop"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is git stash safe as a backup?",
+          "a": "No. A stash stays only on your computer and is easy to drop by mistake. For a lasting save, commit your work on a branch and push it."
+        },
+        {
+          "q": "What does git blame do?",
+          "a": "It shows who last changed each line of a file, and in which commit. Use it to find the commit message that explains why a line is there."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Tools and Next Steps",
+      "slug": "git-and-github-for-your-job-search-and-cheat-sheet",
+      "title": "Using GitHub in Your Job Search, and a Git Cheat Sheet",
+      "metaTitle": "GitHub for Your Job Search + Cheat Sheet",
+      "description": "Turn GitHub into a portfolio: good READMEs, pinned repositories, a profile README, GitHub Pages and honest contributions. Ends with a one-page Git cheat sheet.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "For many technical jobs, your GitHub page is a second CV. Recruiters and hiring managers often look at it to see whether you can write clear code, finish projects and work with others. A tidy profile with a few honest, well-explained projects usually says more than a long list of skills. This lesson shows how to prepare yours, and ends with a cheat sheet of the commands you have learned. No profile can promise an interview, but a clear one helps people understand what you can do."
+        },
+        {
+          "type": "heading",
+          "text": "Start with your profile"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Username and photo:** professional and recognisable. Employers will see them.",
+            "**Bio:** one line about what you do or are learning, for example `Learning back-end development with Node.js and Python`.",
+            "**Location and links:** add your city or country if you are comfortable, and a link to your LinkedIn page or your resume.",
+            "**Email privacy:** if you do not want your real email visible in commits, use the private no-reply address that GitHub provides in its email settings, and set it with `git config`.",
+            "**Profile README:** if you create a repository with exactly the same name as your username, its README is shown on top of your profile. Use it for a short introduction: who you are, what you are learning, your best projects and how to contact you."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Choose and pin your best projects"
+        },
+        {
+          "type": "paragraph",
+          "text": "Quality beats quantity. Three or four finished projects with a clear README are better than thirty empty repositories. GitHub lets you **pin** up to six on your profile. Choose the ones that show different skills. Ideas for projects are the ones you built in these courses: the Python expense tracker, the SQL queries on a shop database, and the Node task API. Make each of them your own, with a real purpose, and do not simply copy a tutorial without adding something."
+        },
+        {
+          "type": "heading",
+          "text": "A README that sells your project"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Title and one sentence:** what it is and who it is for.",
+            "**A screenshot or a short demo** for anything visual.",
+            "**Features:** three to five bullet points.",
+            "**Technologies used.**",
+            "**How to install and run it:** exact commands that work on a fresh computer. Test them yourself.",
+            "**What you learned or what is next:** shows that you can reflect on your work.",
+            "**Licence and contact**, if you like."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Never put secrets, personal data or an employer's confidential code in a public repository. If a project comes from a previous job, check that you are allowed to show it, and when in doubt, leave it out."
+        },
+        {
+          "type": "heading",
+          "text": "Show your project live: GitHub Pages"
+        },
+        {
+          "type": "paragraph",
+          "text": "For a static website, made of HTML, CSS and JavaScript files only, GitHub can host it for free with a feature called **GitHub Pages**, which you switch on in the repository settings. Your portfolio or a small project then has a public web address that you can put on your resume. Back-end projects that need a database or a server cannot run on Pages. For them, use a hosting service, or record a short video and describe the setup in the README. Check GitHub's own help pages for the current steps and limits."
+        },
+        {
+          "type": "heading",
+          "text": "Contribute to other projects"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Start small. Fix a typo in documentation, improve an example, or translate a sentence. These are real contributions and good practice for the pull request flow in lesson 7.",
+            "Look for the label `good first issue` in projects that you use.",
+            "Read `CONTRIBUTING.md` and the code of conduct first, and follow them.",
+            "Be patient and polite. Not every pull request is accepted, and every one teaches you something.",
+            "Do not open pull requests only to collect activity. Maintainers notice, and it wastes their time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Be honest about your history"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Do not fake activity. Employers who read your commits can see when and how you worked, and genuine, regular small commits look better than a rush of meaningless ones.",
+            "Do not claim other people's code as yours. Credit sources in your README.",
+            "It is fine to have beginner code in old repositories. You can make them private or archive them, and pin your current best."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "On your resume"
+        },
+        {
+          "type": "paragraph",
+          "text": "Put your GitHub link in the contact line at the top, and name two or three projects with one line each: what it does, the tools used and a result that you can honestly state. Our [resume templates](/templates) are built to stay readable by applicant tracking systems, and the [ATS checker](/features/ats-checker) can show you how a resume reads. Look at the [career roadmaps](/roadmaps) to see which skills match the role you want, and use our other courses on [Python](/learn/python-for-beginners-course) and [Node.js and Express](/learn/nodejs-express-course) to build projects worth pinning."
+        },
+        {
+          "type": "heading",
+          "text": "One-page Git cheat sheet"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "SET UP (once)\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\ngit config --global init.defaultBranch main\n\nSTART\ngit init                          new repository in this folder\ngit clone <url>                   copy a repository from GitHub\n\nEVERY DAY\ngit status                        what is going on? (safe, run it often)\ngit diff                          see unstaged changes\ngit add <file>   |  git add -A    stage changes\ngit commit -m \"Clear message\"     save a snapshot\ngit log --oneline --graph --all   see the history\n\nUNDO\ngit restore <file>                discard edits in the folder\ngit restore --staged <file>       unstage\ngit commit --amend -m \"New text\"  fix the last commit (not pushed)\ngit revert <commit>               undo a commit safely (shared work)\n\nBRANCHES\ngit branch                        list branches\ngit switch -c <name>              create and move to a branch\ngit switch <name>                 move to a branch\ngit merge <name>                  bring a branch into the current one\ngit merge --abort                 cancel a merge in trouble\ngit branch -d <name>              delete a merged branch\n\nREMOTE\ngit remote add origin <url>       connect to GitHub\ngit push -u origin <branch>       first push of a branch\ngit push  |  git pull             send / receive changes\ngit fetch                         download without merging\n\nEXTRAS\ngit stash  |  git stash pop       put work aside / get it back\ngit tag -a v1.0 -m \"Release\"      mark a release\ngit show <commit>                 see one commit\ngit blame <file>                  who changed each line\n\nAVOID unless you are sure:  reset --hard,  push --force,  clean -fd,\nrebase on shared branches."
+        },
+        {
+          "type": "paragraph",
+          "text": "Print it, or keep it open while you practise. After a few weeks of daily use, you will not need it for the first two sections."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make or tidy your GitHub profile: photo, short bio, links.",
+            "Pick one project, write a README with the seven parts above, and pin it.",
+            "Create a profile README repository with your username, and write four lines about yourself.",
+            "Add your GitHub link to your resume, with one line for each of two projects."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A stranger can understand what your pinned project does in under a minute.",
+            "The install commands in your README work on a fresh clone.",
+            "No secrets or private data are in any of your public repositories."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From projects to profile",
+        "nodes": [
+          {
+            "id": "proj",
+            "label": "Real projects",
+            "sub": "built and finished",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "read",
+            "label": "Clear README",
+            "sub": "what, how, why",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pin",
+            "label": "Pinned profile",
+            "sub": "best three or four",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "cv",
+            "label": "Resume link",
+            "sub": "show your work",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Build real, finished projects, such as the ones in these courses, and make them your own.",
+            "on": [
+              "proj"
+            ]
+          },
+          {
+            "say": "Write a clear README with what it is, how to run it and what you learned.",
+            "flow": [
+              "proj>read:document"
+            ]
+          },
+          {
+            "say": "Pin your best three or four projects and add a short profile README.",
+            "flow": [
+              "read>pin:choose"
+            ]
+          },
+          {
+            "say": "Add your GitHub link and one honest line per project to your resume.",
+            "flow": [
+              "pin>cv:share"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do employers really look at GitHub profiles?",
+          "a": "For many technical roles, some do. A tidy profile with a few clear, honest projects helps them see what you can do. It does not replace a good resume or interview preparation, and it cannot promise a job."
+        },
+        {
+          "q": "Can I host a website on GitHub?",
+          "a": "Yes, static sites made of HTML, CSS and JavaScript can be hosted for free with GitHub Pages. Projects that need a server or database need another host."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}

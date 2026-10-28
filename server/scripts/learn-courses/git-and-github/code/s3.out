@@ -1,0 +1,49 @@
+$ git branch
+* main
+$ git switch -c contact-page
+Switched to a new branch 'contact-page'
+$ git add contact.txt && git commit -m "Add contact page"
+[contact-page c102ae8] Add contact page
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.txt
+$ git switch main
+Switched to branch 'main'
+$ ls
+index.txt
+$ git merge contact-page
+Updating ec7feed..c102ae8
+Fast-forward
+ contact.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 contact.txt
+$ ls
+contact.txt
+index.txt
+$ git branch -d contact-page
+Deleted branch contact-page (was c102ae8).
+$ git switch -c about-page
+Switched to a new branch 'about-page'
+$ git add about.txt && git commit -m "Add about page"
+[about-page 38e1b3d] Add about page
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.txt
+$ git switch main
+Switched to branch 'main'
+$ git add index.txt && git commit -m "Add welcome line"
+[main f1b5255] Add welcome line
+ 1 file changed, 1 insertion(+)
+$ git merge --no-edit about-page
+Merge made by the 'ort' strategy.
+ about.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 about.txt
+$ git log --oneline --graph --all
+*   8c59a4f Merge branch 'about-page'
+|\  
+| * 38e1b3d Add about page
+* | f1b5255 Add welcome line
+|/  
+* c102ae8 Add contact page
+* ec7feed Add home page
+$ git branch -d about-page
+Deleted branch about-page (was 38e1b3d).

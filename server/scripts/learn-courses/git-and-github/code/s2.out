@@ -1,0 +1,35 @@
+$ git status -s
+ M menu.txt
+$ git restore menu.txt
+$ cat menu.txt
+tea
+coffee
+$ git add menu.txt
+$ git restore --staged menu.txt
+$ git status -s
+ M menu.txt
+$ git add menu.txt && git commit -m "Add soup"
+[main 682019c] Add soup
+ 1 file changed, 1 insertion(+)
+$ git add menu.txt && git commit -m "Add jus"
+[main 0b5d67b] Add jus
+ 1 file changed, 1 insertion(+)
+$ git commit --amend -m "Add juice"
+[main 19ae32e] Add juice
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+19ae32e Add juice
+682019c Add soup
+f8c6f07 Add menu
+$ git revert --no-edit HEAD
+[main 4029f99] Revert "Add juice"
+ 1 file changed, 1 deletion(-)
+$ cat menu.txt
+tea
+coffee
+soup
+$ git log --oneline
+4029f99 Revert "Add juice"
+19ae32e Add juice
+682019c Add soup
+f8c6f07 Add menu

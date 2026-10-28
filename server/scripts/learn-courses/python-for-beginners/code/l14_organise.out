@@ -1,0 +1,17 @@
+Left alone: README
+Moved budget.xlsx -> spreadsheets/
+Moved cv.pdf -> documents/
+Moved notes.txt -> documents/
+Moved photo1.jpg -> images/
+Moved photo2.JPG -> images/
+Moved report.pdf -> documents/
+README
+documents
+documents/cv.pdf
+documents/notes.txt
+documents/report.pdf
+images
+images/photo1.jpg
+images/photo2.jpg
+spreadsheets
+spreadsheets/budget.xlsx

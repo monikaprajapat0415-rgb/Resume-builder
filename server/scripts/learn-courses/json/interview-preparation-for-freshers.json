@@ -1,0 +1,3457 @@
+{
+  "course": {
+    "title": "Interview Preparation for Freshers: Answers, Tests and Confidence",
+    "slug": "interview-preparation-for-freshers",
+    "summary": "A 15-lesson course for first-time job seekers: how interviews work, common questions, STAR stories, aptitude and technical rounds, online interviews, pay questions and staying safe from job scams.",
+    "description": "Free interview course for freshers. 15 lessons with sample answers: tell me about yourself, STAR, tests, group discussion, video interviews and pay.",
+    "level": "Beginner",
+    "topic": "Career",
+    "badge": "INT",
+    "tags": [
+      "interview",
+      "freshers",
+      "career",
+      "job search",
+      "star method"
+    ],
+    "order": 33,
+    "minWords": 700,
+    "published": true,
+    "metaTitle": "Interview Preparation for Freshers",
+    "keywords": "interview preparation for freshers, fresher interview questions, tell me about yourself, star method, aptitude test preparation, group discussion tips, video interview tips"
+  },
+  "lessons": [
+    {
+      "section": "Before the Interview",
+      "slug": "how-fresher-interviews-work",
+      "title": "How Fresher Interviews Work: Rounds and What to Expect",
+      "metaTitle": "How Fresher Interviews Work: Rounds",
+      "description": "Understand the usual stages of a fresher hiring process, from application to offer, and what each round is really testing, in India, the UK, Canada and Africa.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Your first interview feels scary mostly because it is unknown. Nobody has told you what happens, how long it takes, or what the people on the other side are looking for. This lesson removes the mystery. When you can picture the whole process, from the moment you apply to the moment you get an answer, each step becomes a smaller problem that you can prepare for."
+        },
+        {
+          "type": "paragraph",
+          "text": "One honest note first. Hiring processes differ between companies, industries and countries. A large company that visits colleges hires in a very different way from a small workshop, a shop or an agency. What follows is the common pattern, not a rule. Always read the message you receive from the employer, because it usually tells you what to expect."
+        },
+        {
+          "type": "heading",
+          "text": "The usual stages"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Application.** You send your resume or CV, sometimes with a cover letter or a form. Many companies use software to read it first. A clear, plain resume helps here.",
+            "**Screening.** A recruiter or HR person checks your details by phone, video or message. They confirm that you meet the basic needs and ask simple questions: where you live, when you can start, what pay you expect, whether you can work in that country.",
+            "**Written or online test.** Common for larger employers and for technical and finance roles. It can test aptitude (numbers, logic, English), subject knowledge or coding.",
+            "**Interview rounds.** One to four conversations. They may be technical (the work itself), managerial (the person you would work for) and HR (fit, pay, rules).",
+            "**Offer and checks.** An offer, then document checks and sometimes a reference or background check, then a joining date."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Not every job has all of these. A shop assistant job might be one conversation on the same day. A campus placement drive might run a test, a group discussion and two interviews in a single day. A graduate scheme in the UK may have an online form, a video exercise and an assessment day that takes many weeks. Expect more steps for bigger employers and fewer for small ones."
+        },
+        {
+          "type": "heading",
+          "text": "What each round is really testing"
+        },
+        {
+          "type": "paragraph",
+          "text": "Knowing the purpose of each stage helps you decide how to prepare."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**The screening call** tests whether you are reachable, clear and basically suitable. Be on time, speak clearly and have your facts ready. This stage removes many candidates who forgot to prepare for it.",
+            "**The test** checks a basic skill level at scale. It is usually about accuracy under time pressure, so practice with a timer.",
+            "**The technical or skills round** checks whether you can do the work or learn it. Interviewers know you are a fresher. They look for solid basics, honest answers and how you think when you do not know something.",
+            "**The managerial round** asks whether they would like to work with you every day. Attitude, curiosity and reliability matter a lot here.",
+            "**The HR round** checks fit, expectations and logistics: pay, notice period, location, the company rules. It is also a chance for you to ask your questions."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How it differs by country"
+        },
+        {
+          "type": "paragraph",
+          "text": "These are general habits, not laws, and they change between companies."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**India.** Large employers often recruit through campus drives, with a written round, group discussion, technical interview and an HR interview. Questions about family background, marital status and similar topics sometimes come up. You may politely answer briefly and steer back to your skills. Notice periods and joining dates are discussed openly.",
+            "**United Kingdom.** Many employers use competency-based questions (“tell me about a time when...”) and ask about your right to work in the UK. Graduate employers often use online tests and assessment centres. Equality rules mean personal questions such as age or marital status should not be used in hiring decisions.",
+            "**Canada.** Behavioural questions are very common, and employers often ask for examples of teamwork and problem solving. Clear, direct answers and concrete examples are valued. Questions about age, family status or religion are not appropriate in hiring.",
+            "**African countries.** Practice varies widely between countries and sectors. Large companies and organisations often use written tests and panel interviews. Smaller firms may rely on one conversation and references from people they trust. Bring clear copies of your documents."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If anything in an interview makes you uncomfortable, such as being asked to pay a fee or share a bank password, stop. Lesson 14 explains how to spot fake job offers."
+        },
+        {
+          "type": "heading",
+          "text": "How long does it take?"
+        },
+        {
+          "type": "paragraph",
+          "text": "There is no fixed time. Some small employers decide within a day. Large employers can take weeks or months, and sometimes never reply. Do not stop applying while you wait for one answer. A calm approach is to apply to several roles at once, keep a simple list of what you sent, when and to whom, and follow up politely after a week or two if they gave no date."
+        },
+        {
+          "type": "heading",
+          "text": "Types of interview formats"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**One to one.** You and one interviewer. The most common format.",
+            "**Panel.** Two to five interviewers. Look at the person who asks the question, but include the others when you answer.",
+            "**Group interview or group discussion.** Several candidates together. They watch how you listen and contribute.",
+            "**Phone or video.** Common for screening. Lesson 12 covers how to set up well.",
+            "**Walk-in.** You arrive at a set time and wait your turn. Bring copies of documents and be ready for a quick conversation."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your first checklist"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before you study any questions, set up the basics. These take an hour and remove many small worries."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make sure your resume is clear and honest. You can build one with the [free resume builder](/app) on this site and check how software reads it with the [ATS checker](/features/ats-checker).",
+            "Write a list of the companies and roles you applied to, with dates.",
+            "Set up a professional email address and a phone voicemail message. Check them daily.",
+            "Prepare a folder, on your phone and on paper, with your certificates, ID, photos and copies of your resume.",
+            "Choose a quiet place and a time for phone calls."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "An interview is a two-way conversation. The employer is also trying to win you. You are allowed to ask questions and to decide that a job is not right for you."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write the stages you think the last job you applied for will use. Then check the job advert or message for clues.",
+            "List the people you could ask for a reference (a teacher, lecturer, previous manager or community leader) and ask their permission.",
+            "Create the document folder described above."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can name the usual five stages in order.",
+            "You know which stage you find hardest and can name one thing you will do about it.",
+            "Your documents and a copy of your resume are ready on paper and on your phone."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The usual hiring path",
+        "nodes": [
+          {
+            "id": "apply",
+            "label": "Apply",
+            "sub": "resume or CV",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "screen",
+            "label": "Screening",
+            "sub": "call or message",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "test",
+            "label": "Test",
+            "sub": "aptitude or skills",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "talk",
+            "label": "Interviews",
+            "sub": "technical, manager, HR",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "offer",
+            "label": "Offer",
+            "sub": "checks, joining date",
+            "col": 3,
+            "row": 1,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You apply with a clear resume. Software or a person reads it first.",
+            "on": [
+              "apply"
+            ]
+          },
+          {
+            "say": "A short screening call or message confirms the basics.",
+            "flow": [
+              "apply>screen:shortlisted"
+            ]
+          },
+          {
+            "say": "Many employers add a written or online test to check basic skills.",
+            "flow": [
+              "screen>test:passed"
+            ]
+          },
+          {
+            "say": "You then meet one to four interviewers: technical, manager and HR.",
+            "flow": [
+              "test>talk:passed"
+            ]
+          },
+          {
+            "say": "If it goes well, you get an offer and document checks before the joining date.",
+            "flow": [
+              "talk>offer:selected"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How many interview rounds are normal for a fresher?",
+          "a": "It varies. A small employer may hold one conversation. Larger employers often have a test and two or three interviews. Read the message from the employer for the exact steps."
+        },
+        {
+          "q": "Is it normal to be asked about marital status or family in an interview?",
+          "a": "It happens in some places, but in many countries such questions should not be used in hiring. You can answer briefly and politely and return to your skills and availability."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Before the Interview",
+      "slug": "research-the-company-and-role",
+      "title": "Research the Company and the Role Before You Go",
+      "metaTitle": "Research the Company Before an Interview",
+      "description": "Learn quick, honest research: read the job advert closely, understand the company, find the skills they need and prepare your own questions.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many fresh candidates walk into an interview knowing only the name of the company. Interviewers notice this immediately. The question “What do you know about us?” is common and easy to prepare for. One hour of good research makes you more confident, gives you better answers and shows you are serious about this job, not just any job."
+        },
+        {
+          "type": "heading",
+          "text": "Start with the job advert"
+        },
+        {
+          "type": "paragraph",
+          "text": "The job advert is the best clue to what the employer wants. Read it slowly, twice. Then do this."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Copy the advert into a document so you do not lose it if the link disappears.",
+            "Underline every skill, tool and duty it mentions. These are the words the interviewer will use.",
+            "Split them into two groups: **must have** and **nice to have**. Adverts often list too many things. The first items and repeated items are usually the important ones.",
+            "Next to each must-have, write one real example from your life where you used or learned it: a college project, an internship, volunteer work, a part-time job, a course."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Now you have a map. For each key requirement, you already hold a short story. That story becomes your answer when the interviewer asks about it. It also shows you where you have gaps, so you can prepare an honest reply for them (lesson 8)."
+        },
+        {
+          "type": "note",
+          "text": "Do not claim skills you do not have. A fresher who says “I have not used that tool yet, but I have used a similar one and I learn quickly” is trusted more than someone who bluffs and is caught in the next question."
+        },
+        {
+          "type": "heading",
+          "text": "Learn about the company"
+        },
+        {
+          "type": "paragraph",
+          "text": "You do not need to know everything. You need a few clear facts and your own thoughts about them. Look at these places."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**The company website.** Read the About page, the products or services, and any news or blog. Notice who their customers are.",
+            "**Their social media or LinkedIn page.** See what they share and how they describe themselves.",
+            "**Recent news.** Search for the company name with the word “news”. Look for something recent and positive, such as a new product, a new branch or an award.",
+            "**Company reviews.** On this site and elsewhere, employees sometimes describe working there. Read them carefully, remember that they are one person's view, and look for patterns.",
+            "**The people.** If you know who will interview you, look at their role. Never contact them in a way that feels intrusive."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Write five lines: what the company does, who it serves, how big it is (if you can tell), one recent thing you noticed, and one thing you like about it. This takes about twenty minutes and gives you material for “Tell me what you know about us” and “Why do you want to work here?”."
+        },
+        {
+          "type": "heading",
+          "text": "Understand the role in daily terms"
+        },
+        {
+          "type": "paragraph",
+          "text": "A job title does not tell you what a person does all day. Try to picture a normal Tuesday in the role. What tasks will you do? Who will you work with? What does a good day look like? You can find clues in the advert, in descriptions of similar roles, and in the roadmap pages on this site, which explain typical steps and skills for many careers."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you know someone who works in a similar role, ask them for ten minutes. Good questions are: What is a normal day like? What do you wish you had known when you started? What do new people struggle with? Say thank you, and do not ask for a job in the same breath."
+        },
+        {
+          "type": "heading",
+          "text": "Know the basics of the industry"
+        },
+        {
+          "type": "paragraph",
+          "text": "A little background helps. If you apply to a bank, know what kind of customers a bank serves. If you apply to a hospital, understand the roles of the people around you. If you apply to a factory or workshop, be familiar with safety rules and shifts. For a technical role, read about the main tools in your field. You do not need to be an expert. You need to sound like someone who has taken an interest."
+        },
+        {
+          "type": "heading",
+          "text": "Prepare your own questions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Almost every interview ends with “Do you have any questions for us?”. Saying “No” sounds uninterested. Prepare three to five real questions, based on your research. Good examples:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "“What would a successful first three months look like in this role?”",
+            "“How does the team work together day to day?”",
+            "“What training or support do new people receive?”",
+            "“What are the biggest challenges the team faces right now?”",
+            "“What are the next steps in the process?”"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Avoid asking about pay, leave or perks as your first question. These matter, and you should learn about them, but they are better raised later, or when the interviewer brings them up (lesson 13)."
+        },
+        {
+          "type": "heading",
+          "text": "A one-page prep sheet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Put what you learned on a single page you can read quickly before the interview."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "COMPANY: what they do, who they serve, one recent fact\nROLE: three main tasks, three skills they ask for\nMY EXAMPLES: one real story for each skill\nGAPS: what I have not done yet and how I will learn it\nQUESTIONS: 3 to 5 questions I will ask\nLOGISTICS: place, time, who to ask for, phone number"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reading this page for ten minutes before you go is more helpful than a long night of panic study. Keep your prep sheets for each application. They are a record, and you can reuse parts for similar roles."
+        },
+        {
+          "type": "heading",
+          "text": "What not to do"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Do not repeat the company's slogan as your answer. Say it in your own words.",
+            "Do not criticise a competitor or a previous employer.",
+            "Do not pretend to know more than you do. A sincere “I read that you are expanding into the city, and I would like to learn how that works” is better than a made-up opinion.",
+            "Do not rely on a single source. Read more than one."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Choose a real job advert. Mark the must-haves and write one real example from your life for each of the top five.",
+            "Write your five-line company summary, using the company's website and one news search.",
+            "Write three questions you would ask the interviewer.",
+            "Fill in the one-page prep sheet."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every top requirement has a real example next to it, or a gap that you named honestly.",
+            "Your questions are about the job and team, not only about pay.",
+            "You can say in two sentences what the company does and why you want to work there."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Turn research into answers",
+        "nodes": [
+          {
+            "id": "ad",
+            "label": "Job advert",
+            "sub": "must-haves",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "co",
+            "label": "Company facts",
+            "sub": "website, news",
+            "col": 0,
+            "row": 1,
+            "kind": "data"
+          },
+          {
+            "id": "map",
+            "label": "Your examples",
+            "sub": "stories for each skill",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "sheet",
+            "label": "Prep sheet",
+            "sub": "one page",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "int",
+            "label": "Interview",
+            "sub": "calm and specific",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Read the job advert closely and mark the skills it asks for.",
+            "on": [
+              "ad"
+            ]
+          },
+          {
+            "say": "Find a few real facts about the company from its own website and recent news.",
+            "on": [
+              "co"
+            ]
+          },
+          {
+            "say": "Match each key skill with one real example from your studies, work or projects.",
+            "flow": [
+              "ad>map:must-haves"
+            ]
+          },
+          {
+            "say": "Put the facts, examples, gaps and your questions on one page.",
+            "flow": [
+              "map>sheet:summarise",
+              "co>map:facts"
+            ]
+          },
+          {
+            "say": "In the interview your answers are specific, and your questions show real interest.",
+            "flow": [
+              "sheet>int:ready"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How much research is enough?",
+          "a": "About an hour is enough for most fresher roles. Read the job advert closely, learn what the company does, find one recent fact, and prepare a few questions."
+        },
+        {
+          "q": "What if I cannot find anything about a small company?",
+          "a": "Use the job advert, the owner or team page if any, and ask the recruiter a few questions. Showing curiosity about a small business is itself a good sign."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Before the Interview",
+      "slug": "know-your-resume-and-projects",
+      "title": "Know Your Resume: Projects, Internships and Skills",
+      "metaTitle": "Know Your Resume Before the Interview",
+      "description": "Interviewers ask about everything on your resume. Learn to prepare each line, explain projects clearly and answer follow-up questions honestly.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Your resume is a list of promises. Every line says: ask me about this, I know it. Interviewers do exactly that. They pick something from your page and dig. “You wrote Excel. What is a pivot table?” “You listed a project on student attendance. What was your part in it?” Candidates who cannot explain their own resume lose trust fast. This lesson shows you how to prepare so that your own page becomes your biggest strength."
+        },
+        {
+          "type": "heading",
+          "text": "The rule: only write what you can explain"
+        },
+        {
+          "type": "paragraph",
+          "text": "Go through your resume line by line. For each skill, tool, project and responsibility ask three questions. Can I explain it in two sentences? Can I give an example of using it? If the interviewer asks one more question, can I answer honestly? If the answer to any of these is no, either learn it before the interview or remove it. Our resume checker and templates push you to put real, checkable facts on the page, and not to pad it with keywords you cannot back up."
+        },
+        {
+          "type": "note",
+          "text": "Being honest protects you. Exaggerated claims are easy to test in an interview, and on the job they can be found out later, which can cost you the role."
+        },
+        {
+          "type": "heading",
+          "text": "The three-part story for each project"
+        },
+        {
+          "type": "paragraph",
+          "text": "Freshers often have more projects than jobs, so projects carry your resume. Prepare each one with this three-part story. It takes about a minute to say."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**The problem.** What was the project for? Who would use it? “We built a small app to help our college library track borrowed books.”",
+            "**Your part.** What did you personally do? Use “I”, not only “we”. “I designed the database tables and wrote the search page.”",
+            "**The result and the lesson.** What happened, and what did you learn? “It handled about 200 books in our test, and I learned how important it is to check user input.”"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Only give numbers that are true. If you did not measure anything, do not invent a figure. Say what you observed instead: “Our teacher and four classmates tested it and found two bugs I then fixed.” That is believable and specific."
+        },
+        {
+          "type": "paragraph",
+          "text": "Then prepare for the follow-up questions every project invites."
+        },
+        {
+          "type": "list",
+          "items": [
+            "What was the hardest part and how did you solve it?",
+            "What would you do differently now?",
+            "Why did you choose this tool or method?",
+            "How did you work with others? What if someone disagreed with you?",
+            "What happened when it did not work?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Internships, part-time jobs and volunteering"
+        },
+        {
+          "type": "paragraph",
+          "text": "For each experience, be ready to describe what you did on a normal day, one thing you are proud of, one difficulty you solved, and what you learned about working with other people. Jobs that seem small, such as serving in a shop, helping in a family business or tutoring younger students, show reliability, patience, customer care and responsibility. These are things every employer wants. Do not apologise for them. Explain what they taught you."
+        },
+        {
+          "type": "heading",
+          "text": "Skills: prove each one"
+        },
+        {
+          "type": "paragraph",
+          "text": "A skills list is the easiest part of a resume to challenge. Prepare a quick proof for each skill."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Skill: Microsoft Excel\nProof: Used it to track my family shop's weekly sales for six months;\n       learned SUM, filters and a simple pivot table.\n\nSkill: Python (basic)\nProof: Wrote a script that renamed 300 photos by date; finished a\n       beginner course; can explain loops and functions.\n\nSkill: Customer service\nProof: Worked weekends at a phone shop; handled returns and complaints."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a skill is basic, say so with the level: “basic”, “working knowledge”, “comfortable”. Interviewers respect honest levels and will not expect you to be an expert in something you list as basic."
+        },
+        {
+          "type": "heading",
+          "text": "Education: be ready for details"
+        },
+        {
+          "type": "paragraph",
+          "text": "Know your marks or grades, your main subjects, and why you chose your course. Be ready for questions about a low result or a failed subject. Answer calmly: what happened, what you did about it, what you learned. Blaming teachers or other people sounds weak, and a clear and brief explanation of what changed sounds strong."
+        },
+        {
+          "type": "heading",
+          "text": "Check the facts on the page"
+        },
+        {
+          "type": "paragraph",
+          "text": "Small mistakes cause large doubts. Before every interview, check these things on the version you sent that employer."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Dates are correct and match your documents.",
+            "Names of companies, colleges and tools are spelled correctly.",
+            "Your phone number and email work. Call yourself from another phone to be sure.",
+            "Anything you claim, such as a certificate, can be shown if asked.",
+            "The resume is your latest version. Keep a copy of exactly what you sent each employer, because you might have tailored it."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you want a clean starting point, build your resume with the [free tools on this site](/templates), then print it. The [ATS checker](/features/ats-checker) also shows you what a reading program can and cannot extract from your file, which is useful before you hit send."
+        },
+        {
+          "type": "heading",
+          "text": "Practise out loud"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reading in your head is not the same as speaking. Ask a friend or family member to pick any line from your resume and ask “Tell me about this”. Do it ten times. You will notice which lines you explain well and which make you stumble. Fix the stumbling ones with more practice or by changing the resume. Record yourself on your phone and listen once. Everyone dislikes their own voice, but it is the fastest way to catch “um”, “like” and very long answers."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Print your resume. Next to each project and skill, write the three-part story or the one-line proof.",
+            "Ask a friend to question you on three random lines for five minutes each. Note any line you struggled with.",
+            "Remove or fix any claim you could not support."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every project has a problem, your part and a result written in your own words.",
+            "You can talk about each project for one minute without reading.",
+            "There is nothing on your resume that you would be embarrassed to be asked about."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Every line can become a question",
+        "nodes": [
+          {
+            "id": "line",
+            "label": "Resume line",
+            "sub": "project, skill, job",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "story",
+            "label": "Your short story",
+            "sub": "problem, part, result",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "ask",
+            "label": "Interviewer asks",
+            "sub": "tell me more",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "trust",
+            "label": "Trust",
+            "sub": "clear honest answer",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Every line on your resume is something the interviewer may ask about.",
+            "on": [
+              "line"
+            ]
+          },
+          {
+            "say": "For each line, you prepare a short true story: the problem, your part and the result.",
+            "flow": [
+              "line>story:prepare"
+            ]
+          },
+          {
+            "say": "The interviewer picks a line and asks you to tell more, or asks a follow-up question.",
+            "flow": [
+              "story>ask:question"
+            ]
+          },
+          {
+            "say": "A clear, honest answer builds trust. A claim you cannot explain loses it quickly.",
+            "flow": [
+              "ask>trust:honest answer"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What if I have no projects or internships?",
+          "a": "Use coursework, volunteering, family business help, part-time work, or a small project you do on your own. The lesson on having no experience shows how to talk about these honestly."
+        },
+        {
+          "q": "Should I remove skills I only know a little?",
+          "a": "You can keep them if you mark the level honestly, such as basic, and you can explain what you have done with them. Remove anything you could not discuss for two minutes."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Common Questions",
+      "slug": "tell-me-about-yourself-answer",
+      "title": "Tell Me About Yourself: A Simple Answer That Works",
+      "metaTitle": "Tell Me About Yourself: Fresher Answer",
+      "description": "Build a 60-second answer to the most common opening question using a clear structure: who you are, what you can do, and why this job. Made-up samples included.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "“Tell me about yourself.” Almost every interview begins with it. It sounds friendly and open, which is exactly why candidates ramble, start from childhood or read their resume aloud. The interviewer is not asking for your life story. They want to know in about a minute: Who are you now? What can you do? Why are you here? A simple structure answers all three."
+        },
+        {
+          "type": "paragraph",
+          "text": "There is also a longer [guide on this question](/blog/tell-me-about-yourself-interview-answer) on this site. This lesson gives the practical method and lets you build and practise your own answer."
+        },
+        {
+          "type": "heading",
+          "text": "The three-part structure: Present, Past, Future"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Present.** Who are you right now? Your current studies or job, and what you are focused on.",
+            "**Past.** The two or three most relevant things you have done, such as projects, internships or skills, that connect to this role.",
+            "**Future.** Why you want this job and what you hope to do or learn there."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep it to about 60 to 90 seconds, which is roughly 150 to 200 words. A good answer ends with a clear link to the role, so the interviewer can ask their next question easily."
+        },
+        {
+          "type": "heading",
+          "text": "A made-up sample for a college graduate"
+        },
+        {
+          "type": "paragraph",
+          "text": "The names and facts below are invented, to show the shape. Use your own true details."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"I'm Anjali, and I've just finished my B.Com at a college in Pune.\nI enjoyed accounting and spreadsheets most. During my final year I\nhelped my uncle's hardware shop keep its monthly sales records in\nExcel, which cut the time he spent on it each week. I also finished\na short online course in Tally basics. I'm looking for my first\nrole in accounts, and your junior accounts assistant job interested\nme because it involves invoices and reconciliation, which are the\nparts I enjoy. I want to learn how a larger team handles them.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice what this does. In the present, Anjali is a recent graduate. In the past, one concrete experience and one skill. In the future, she names the role and what she wants to learn. It has no exaggeration, and each sentence invites a follow-up question: “How did you set up the records?”"
+        },
+        {
+          "type": "heading",
+          "text": "A made-up sample for a school leaver or skilled trade applicant"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"My name is Samuel. I finished secondary school last year and\nsince then I've been helping my cousin, who is an electrician. I\ncan wire a room, fit sockets and switches, and I've learned to read\na simple circuit diagram. I have a safe working record and I'm\nlearning for my trade certificate. I'm applying here because you\nare hiring a trainee electrician and I want to learn from a\ncompany that does bigger installations.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Simple words, true facts, and a clear reason. Interviewers for practical roles care about reliability, safety and willingness to learn. This answer says all three without bragging."
+        },
+        {
+          "type": "heading",
+          "text": "What to include, what to leave out"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Include** facts that match the job: skills, studies, experience, an achievement.",
+            "**Include** one personal touch if it is natural and relevant, such as a hobby that shows teamwork or discipline. One line is enough.",
+            "**Leave out** your full life story, your age and family details, and anything that is not connected to the job.",
+            "**Leave out** negative comments about people or places.",
+            "**Leave out** things you cannot discuss in more detail if asked."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Starting with “My name is...” and then reading your resume in order. The interviewer has already read it.",
+            "Being too long. After two minutes, people stop listening.",
+            "Being too short: “I am a hard-working fresher.” That gives them nothing to work with.",
+            "Using the same answer for every job without changing the last part.",
+            "Memorising word for word. It sounds stiff and you panic if you forget a line. Memorise the three parts and a few key facts instead."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to build your own answer"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write the present in one sentence: who you are and what you are doing now.",
+            "Choose two things from the past that fit this job. Write one sentence each, with a real detail.",
+            "Write the future in one or two sentences: why this role and what you want to learn.",
+            "Read it aloud and time it. Cut to 60 to 90 seconds.",
+            "Practise with three versions of the ending for three different jobs."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For example, a template you can fill in:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"I'm [name]. I [studied / worked / trained] in [subject or field]\nand I'm currently [what you do now].\nRecently I [one concrete thing you did] and I [second thing / skill].\nI'm interested in this [role] because [one honest reason linked to\nthe job], and I'd like to [what you want to learn or contribute].\""
+        },
+        {
+          "type": "heading",
+          "text": "Special cases"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Career gap.** Mention it briefly in the past part if it matters, with what you did or learned, then move on. The lesson on gaps and having no experience gives wording.",
+            "**Career change.** In the past part, explain the skills you bring from your earlier work, and say why you chose this new direction.",
+            "**Nervous?** Slow down and breathe before you start. A calm first sentence sets the tone for the whole interview.",
+            "**Online interview.** Look at the camera, and keep your notes out of view, with a few key words only."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your own present, past and future answer using the template and keep it under 200 words.",
+            "Say it aloud while timing yourself. Aim for 60 to 90 seconds.",
+            "Change only the last sentence for two different jobs.",
+            "Say it to one person and ask: What would you ask me next?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The answer takes 60 to 90 seconds and contains no untrue claims.",
+            "Each part has at least one concrete detail.",
+            "Your listener could name your main strength afterwards."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Present, past, future",
+        "nodes": [
+          {
+            "id": "pres",
+            "label": "Present",
+            "sub": "who you are now",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "past",
+            "label": "Past",
+            "sub": "2 relevant things",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "fut",
+            "label": "Future",
+            "sub": "why this job",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "next",
+            "label": "Next question",
+            "sub": "they pick a detail",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with the present: who you are and what you are doing now, in one sentence.",
+            "on": [
+              "pres"
+            ]
+          },
+          {
+            "say": "Move to the past: two real things that fit this job, with one concrete detail each.",
+            "flow": [
+              "pres>past:then"
+            ]
+          },
+          {
+            "say": "Finish with the future: why this role, and what you want to learn there.",
+            "flow": [
+              "past>fut:then"
+            ]
+          },
+          {
+            "say": "In about 60 to 90 seconds you have given the interviewer an easy next question.",
+            "flow": [
+              "fut>next:invites a question"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should my answer to tell me about yourself be?",
+          "a": "About 60 to 90 seconds, or roughly 150 to 200 words. Long enough to give facts, short enough to keep attention."
+        },
+        {
+          "q": "Should I mention my family or hobbies?",
+          "a": "Keep the focus on the job. One short, natural line about a hobby that shows a useful quality is fine. Leave out family details unless they are directly relevant."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Common Questions",
+      "slug": "strengths-and-weaknesses-answers",
+      "title": "Strengths and Weaknesses: Honest Answers Without Cliches",
+      "metaTitle": "Strengths and Weaknesses Interview Answers",
+      "description": "Answer the strengths and weaknesses questions with real examples and honest, safe weaknesses. Learn what to avoid and how to show progress.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Two questions come up in a huge number of interviews: “What are your strengths?” and “What is your biggest weakness?”. They seem simple, but they are easy to answer badly. Candidates say “I am hard-working and a perfectionist” and everyone in the room has heard it a hundred times. This lesson shows a better way: choose honestly, use a small example, and show how you work on it."
+        },
+        {
+          "type": "heading",
+          "text": "Strengths: say it, then prove it"
+        },
+        {
+          "type": "paragraph",
+          "text": "A strength is only believable with evidence. A claim alone (“I am a good team player”) is weak. A claim with a short example is strong. Use this pattern: **the strength, a short example, why it matters for this job**."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weak:   \"I am very hard-working and a quick learner.\"\n\nBetter: \"I learn new tools quickly. In my final year I had two weeks\n        to learn basic SQL for a project, and I finished with a\n        working report. In this role you'll use new software often,\n        so I think that will help.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "How do you choose which strengths to talk about? Look at your prep sheet from lesson 2. Pick two or three strengths that match the job's top requirements and that you can support with real examples."
+        },
+        {
+          "type": "heading",
+          "text": "Ideas for fresher strengths"
+        },
+        {
+          "type": "paragraph",
+          "text": "Pick what is true for you. Here are some real strengths that employers value, with the kind of evidence you can give."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Learning fast.** You picked up a tool, language or process in a short time. Say what and how long.",
+            "**Reliability.** You never missed a shift or deadline in a job or project. Say for how long.",
+            "**Teamwork.** You worked with others and helped finish a group project. Say what your role was.",
+            "**Communication.** You explained things to customers, classmates or younger students.",
+            "**Attention to detail.** You found mistakes in a report, a count or a design before they caused problems.",
+            "**Problem solving.** You faced a problem and worked out a way through it.",
+            "**Responsibility.** You looked after a shop, a younger sibling or a group's money. Real life counts."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Weaknesses: be honest, be safe, show progress"
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers do not ask this to catch you out. They want to know whether you know yourself, whether you can be honest, and whether you work on improving. A good weakness answer has three parts: **a real, small weakness, what you do about it, and the progress you have seen**."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"I used to get nervous speaking in front of groups and avoided it.\nI knew that would hold me back, so in college I volunteered to present\nin two classes. It's still not my favourite thing, but I now prepare\na short outline and practise once aloud, and my last presentation\nwent well. I'm still working on it.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "This answer is honest (it names a real weakness), safe (public speaking is not a core requirement for most entry-level roles) and shows action and progress. It also sounds like a real person."
+        },
+        {
+          "type": "heading",
+          "text": "Choose a safe weakness"
+        },
+        {
+          "type": "paragraph",
+          "text": "A safe weakness is real, is not essential to the job, and can be improved. Examples: nervousness when speaking, being new to a particular tool, taking on too much and having to learn to prioritise, finding it hard to say no to extra requests, or finding it hard to ask for help at first."
+        },
+        {
+          "type": "paragraph",
+          "text": "Avoid these."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Cliches.** “I'm a perfectionist” or “I work too hard”. They sound like a trick and interviewers dislike them.",
+            "**Weaknesses that hurt the role.** Saying you are always late when applying to a job that needs punctuality, or that you cannot work in a team for a team role.",
+            "**Blaming others.** “My weakness is that other people are lazy.”",
+            "**Saying you have none.** Everyone has areas to improve."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Say what you do about it"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most important part is what you do. Name a specific habit, tool or action. “I use a to-do list and check it twice a day” beats “I am working on it”. If you have only started, say so: “I am only beginning, but I have started...”."
+        },
+        {
+          "type": "heading",
+          "text": "Related questions"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**“What is your biggest achievement?”** Use the same pattern as strengths: the situation, what you did, the result. It does not need to be big. A fresher's real achievement can be finishing a hard course, a project or helping a team win a college event.",
+            "**“How would your friends or teachers describe you?”** Choose a quality and add a short example. Use words that someone would really say about you.",
+            "**“What do you do when you do not know something?”** Honest answer: you try to find out first (documentation, notes, searching), then you ask a colleague, and you note it down for next time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practise the delivery"
+        },
+        {
+          "type": "paragraph",
+          "text": "Say your answers aloud. Keep strengths to one or two sentences plus an example. Keep the weakness answer to about thirty seconds. Smile naturally and speak at a normal pace. If an interviewer follows up (“And how is that going?”), give a short true update. You will sound confident because you are being honest."
+        },
+        {
+          "type": "note",
+          "text": "If you cannot think of examples, ask a friend, a teacher or a family member: “When have you seen me do something well?” You may be surprised by what they remember."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Choose two strengths from your prep sheet and write one real example for each, using the strength-example-relevance pattern.",
+            "Choose one safe weakness and write the three parts: the weakness, what you do, the progress.",
+            "Write one answer to “What is your biggest achievement?”."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each strength has a small true example attached.",
+            "Your weakness is real, not a cliche, and you can describe one action you have taken.",
+            "You can say each answer aloud in under a minute."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A believable strength answer",
+        "nodes": [
+          {
+            "id": "claim",
+            "label": "Strength",
+            "sub": "quick learner",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "proof",
+            "label": "Short example",
+            "sub": "what you really did",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "why",
+            "label": "Why it matters",
+            "sub": "for this job",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "trust",
+            "label": "Believable",
+            "sub": "specific, not a cliche",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Name one real strength that fits the job, such as learning new tools quickly.",
+            "on": [
+              "claim"
+            ]
+          },
+          {
+            "say": "Back it with a short example: what you did, in what time and with what result.",
+            "flow": [
+              "claim>proof:example"
+            ]
+          },
+          {
+            "say": "Link it to the job so the interviewer sees why it helps them.",
+            "flow": [
+              "proof>why:link"
+            ]
+          },
+          {
+            "say": "An answer with proof sounds believable. A list of adjectives does not.",
+            "flow": [
+              "why>trust:believable"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is a good weakness to say in an interview?",
+          "a": "Choose a real weakness that is not essential to the job, such as nervousness speaking to groups or being new to a tool, and explain what you are doing to improve it."
+        },
+        {
+          "q": "Is it bad to say I am a perfectionist?",
+          "a": "It is a cliche that most interviewers have heard many times and often find unconvincing. A specific, honest weakness with an action plan is more credible."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Common Questions",
+      "slug": "why-this-company-why-hire-you",
+      "title": "Why Do You Want This Job? Why Should We Hire You?",
+      "metaTitle": "Why This Job? Why Should We Hire You?",
+      "description": "Answer the two big motivation questions with honest, specific reasons. Learn to link your skills to the employer needs without bragging.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After the opening, interviewers usually test your motivation with two questions: “Why do you want to work here?” and “Why should we hire you?”. They are the same question from two sides. The first asks what draws you to the company. The second asks what you bring to it. Both are chances to show that you did your homework (lesson 2) and that you understand what the employer needs."
+        },
+        {
+          "type": "heading",
+          "text": "Why do you want to work here?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A weak answer talks only about you: “I need a job” or “It is a big company with a good salary”. These may be true, but they give the employer no reason to choose you. A strong answer has two parts: something real about the company or the role, and how it matches something you care about or want to learn."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weak:   \"I want a job in IT and your company is well known.\"\n\nBetter: \"I've followed your work on school management software. I did\n        a small project for my college's attendance, so I can see\n        how much time good software saves teachers. I'd like to\n        learn how a professional team builds that kind of product.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "The better answer shows a real link (the attendance project), real interest (school software) and a learning goal (how a team builds it). The reasons are honest. They do not need to be dramatic."
+        },
+        {
+          "type": "heading",
+          "text": "Where do honest reasons come from?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**The work itself.** The tasks in the advert match what you enjoy or are good at.",
+            "**What you can learn.** Training, tools, mentors or kinds of customers you want to meet.",
+            "**The company's product or mission.** Something real that you noticed in your research.",
+            "**Location and practical fit.** Distance, shifts or hours that you can sustain. This is a valid reason when stated politely and not as the only one.",
+            "**Growth.** A path from trainee to a more senior role, if the company has described one."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "It is fine to also need the income. You do not have to hide that you need a job. Just do not make it the only reason. Pair it with a reason that is about the work."
+        },
+        {
+          "type": "heading",
+          "text": "Why should we hire you?"
+        },
+        {
+          "type": "paragraph",
+          "text": "This question can feel like asking you to boast. Think of it as a short summary: **what the job needs, what you have, and the proof**. You are connecting your best two or three matches from the prep sheet to the employer's top needs."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"From your advert I understand you need someone who can handle\ncustomer calls calmly and keep accurate records. I worked weekends\nat a phone shop for a year, where I handled returns and complaints\nand kept the daily sales sheet, which my manager checked and found\ncorrect. I'm also quick to learn new software. I think that\ncombination would help me do well in this role quickly.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice that it does not compare you to other candidates, and it does not claim you are the best. You cannot know who else applied. Say what you offer and why it fits."
+        },
+        {
+          "type": "heading",
+          "text": "A simple formula"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Need.** Say what you understand the job requires.",
+            "**Match.** Tell the interviewer two things you have that fit.",
+            "**Proof.** Give one short real example.",
+            "**Close.** One sentence about how this would help the team."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Related questions you may meet"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**“What do you know about our company?”** Use the five lines from your research. Mention what they do, who they serve and one recent fact.",
+            "**“Where do you see yourself in five years?”** Interviewers want to see ambition that fits the role. An honest answer sounds like: “I would like to have grown into a confident member of the team, taking on more responsibility, and learning skills such as ... ”. Avoid naming a job at the company that is far above the role. Avoid saying that you will probably leave.",
+            "**“Why did you choose this career or course?”** Tell the true story in a few sentences: what interested you, what you did to find out more, what you enjoy.",
+            "**“What other jobs are you applying for?”** You can say you are looking at similar roles in the same field, without naming other companies. Be honest, and say this role is a strong interest."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Avoid these answers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Answers that could be said about any company. If you could swap the company's name and the answer still works, it is too general.",
+            "Saying money is the main reason. You may be paid for your work, but employers prefer people who care about the job as well.",
+            "Criticising a previous employer, college or teacher.",
+            "Over-flattery. “It is the best company in the world” sounds fake. Be specific and sincere instead."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you honestly do not know much about the company, say so in a positive way: “I have only had a few days to learn about you, but what I have found is X. I would like to learn more.” Then ask a good question. Honest curiosity works better than pretending."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write your answer to “Why do you want to work here?” for one real company, using one fact from your research and one reason that is about you.",
+            "Write your answer to “Why should we hire you?” using the need, match, proof and close pattern.",
+            "Write an honest, short answer to “Where do you see yourself in five years?”."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your answers mention something specific that could not be said about every company.",
+            "Your hire-you answer has one real example and does not compare you with other people.",
+            "None of your answers criticises anyone."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Need, match, proof",
+        "nodes": [
+          {
+            "id": "need",
+            "label": "Their need",
+            "sub": "from the advert",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "match",
+            "label": "Your match",
+            "sub": "two real strengths",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "proof",
+            "label": "Proof",
+            "sub": "one short example",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "close",
+            "label": "Close",
+            "sub": "how it helps the team",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with what the job needs, using the words from the advert.",
+            "on": [
+              "need"
+            ]
+          },
+          {
+            "say": "Say two things you have that match that need.",
+            "flow": [
+              "need>match:match it"
+            ]
+          },
+          {
+            "say": "Give one short, true example as proof.",
+            "flow": [
+              "match>proof:show it"
+            ]
+          },
+          {
+            "say": "Finish with one sentence on how this would help the team.",
+            "flow": [
+              "proof>close:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is it wrong to say I need the job?",
+          "a": "No. Many people need income. Just do not make it your only reason. Add something specific about the work, the company or what you want to learn."
+        },
+        {
+          "q": "How do I answer where I see myself in five years?",
+          "a": "Describe growth that fits the role, such as becoming confident, taking on more responsibility and learning specific skills. Avoid naming a far higher job or saying you plan to leave."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Common Questions",
+      "slug": "behavioural-questions-star-method",
+      "title": "Behavioural Questions and the STAR Method",
+      "metaTitle": "Behavioural Interview Questions: STAR",
+      "description": "Answer questions that start with \"Tell me about a time when...\" using the STAR method. Includes made-up samples, example questions and fresher-friendly stories.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "“Tell me about a time when you worked in a team.” “Describe a situation where you handled a difficult customer.” These are **behavioural questions**, and they are standard in many UK and Canadian interviews and increasingly in India and across Africa. The idea is simple: past behaviour is a good guide to future behaviour. So instead of asking what you would do, the interviewer asks what you did."
+        },
+        {
+          "type": "paragraph",
+          "text": "Freshers often say: “I have no work experience, so I have nothing to say.” This is not true. You have stories from college, projects, sports, volunteering, family work and part-time jobs. This lesson shows you how to find them and tell them clearly with the STAR method."
+        },
+        {
+          "type": "heading",
+          "text": "What is STAR?"
+        },
+        {
+          "type": "paragraph",
+          "text": "STAR is a way to organise a story in four short parts."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**S: Situation.** Set the scene in one or two sentences. Where were you, and what was happening?",
+            "**T: Task.** What was your job or the problem to solve?",
+            "**A: Action.** What did you do? This is the longest part. Use “I”, and say what you personally did and why.",
+            "**R: Result.** What happened? Add what you learned. If you can, say what you would do differently."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A good STAR answer takes one to two minutes. The most common mistake is spending too long on the situation and too little on the action and result."
+        },
+        {
+          "type": "heading",
+          "text": "A made-up sample: teamwork"
+        },
+        {
+          "type": "paragraph",
+          "text": "Question: “Tell me about a time you worked in a team.” The story below is invented to show the shape."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "S: \"In my final year, four of us had to build a mini-project for our\n   database course. One teammate stopped replying a week before the\n   deadline.\"\nT: \"I was the group's coordinator, so I had to make sure we still\n   delivered.\"\nA: \"I messaged him and he said he was struggling with a family issue.\n   I asked what part he could still do, and he agreed to write the test\n   cases. I took over his coding part and split the rest between the two\n   others. I also set up a shared checklist so we could all see what was\n   left.\"\nR: \"We submitted on time and got a good grade. I learned that asking\n   what someone can do works better than blaming, and I now check in\n   with the team earlier.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "The story is honest, ordinary and specific. There is no hero speech. Notice the action: it shows communication, kindness and organisation, qualities teams like."
+        },
+        {
+          "type": "heading",
+          "text": "Another made-up sample: a difficult customer"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "S: \"I worked weekends at a mobile accessories shop. One Saturday a\n   customer came back angry because a charger had stopped working.\"\nT: \"I had to help him without a long argument, and follow the shop's\n   return rule.\"\nA: \"I listened without interrupting, apologised that it hadn't worked,\n   checked the receipt and the warranty, and offered a replacement as\n   the rule allowed. I explained how to check the cable too.\"\nR: \"He thanked me and bought a case. My manager said the way I handled\n   it was good. I learned to stay calm and let people finish talking.\""
+        },
+        {
+          "type": "heading",
+          "text": "Common behavioural questions for freshers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tell me about a time you worked in a team.",
+            "Describe a time you had a disagreement with someone. What happened?",
+            "Tell me about a time you made a mistake. What did you do?",
+            "Give an example of a time you had to learn something quickly.",
+            "Tell me about a time you met a tight deadline.",
+            "Describe a time you helped someone.",
+            "Tell me about a time you took the lead.",
+            "Describe a goal you set and how you reached it.",
+            "Tell me about a time you handled pressure or a lot of tasks at once."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Build a story bank"
+        },
+        {
+          "type": "paragraph",
+          "text": "You do not need a new story for each question. Prepare five to seven good stories, and a story can answer several questions if you shift the emphasis. A group project story can answer teamwork, leadership, conflict and deadline questions."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List ten moments from college, work, volunteering, sports, hobbies or family life where something happened and you did something. Include moments that did not go well.",
+            "Choose the five to seven that show your qualities best and that you can explain in detail.",
+            "Write each as a short STAR outline of four lines.",
+            "Beside each, write which questions it could answer.",
+            "Practise telling each in under two minutes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Stories about mistakes and failures"
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers ask about mistakes because they want to see honesty, responsibility and learning. A good answer: you own the mistake, you fix it, you learn. A bad answer: you blame others, or pretend you never made one. Pick a mistake that is real but not serious, and make the Result part about what you changed."
+        },
+        {
+          "type": "heading",
+          "text": "Tips for telling the story"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say what **you** did. Even in a team story, interviewers need to know your contribution.",
+            "Keep names out. Say “a teammate” instead of using real names, to be polite.",
+            "Avoid exaggeration. A small, true story is better than a huge claim.",
+            "Finish with what you learned. It shows you grow from experience.",
+            "It is fine to pause and think. “That is a good question. Let me think of an example” is a natural thing to say."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "In some countries, including the UK and Canada, interviewers may score your answer against a fixed checklist, so being specific and complete matters. In other places, the interview is more of a conversation. The STAR method works well in both."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write six moments in your life where you did something useful. Choose four and write them as short STAR outlines.",
+            "Practise one aloud and time it. Cut it to under two minutes.",
+            "Write one honest mistake story with a clear lesson.",
+            "Match each story to at least two questions from the list."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each story has all four parts, and the Action part is the longest.",
+            "You used “I” for your own actions.",
+            "You have at least five stories ready."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The four parts of STAR",
+        "nodes": [
+          {
+            "id": "s",
+            "label": "Situation",
+            "sub": "set the scene",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "t",
+            "label": "Task",
+            "sub": "your job or problem",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "a",
+            "label": "Action",
+            "sub": "what you did",
+            "col": 2,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "r",
+            "label": "Result",
+            "sub": "outcome and lesson",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Situation: set the scene in one or two sentences, where and when.",
+            "on": [
+              "s"
+            ]
+          },
+          {
+            "say": "Task: say what your job or problem was in that situation.",
+            "flow": [
+              "s>t:then"
+            ]
+          },
+          {
+            "say": "Action: explain what you personally did and why. This is the longest part.",
+            "flow": [
+              "t>a:then"
+            ]
+          },
+          {
+            "say": "Result: what happened, what you learned, and what you would change.",
+            "flow": [
+              "a>r:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What if I have no work experience for STAR stories?",
+          "a": "Use college projects, group work, sports, volunteering, part-time jobs and family responsibilities. Interviewers expect freshers to use these."
+        },
+        {
+          "q": "How long should a STAR answer be?",
+          "a": "About one to two minutes. Spend most of the time on the Action and the Result."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Common Questions",
+      "slug": "no-experience-gaps-career-change-questions",
+      "title": "No Experience, a Gap or a Career Change: Honest Answers",
+      "metaTitle": "No Experience, Gaps, Career Change Answers",
+      "description": "How to answer the hard questions: \"You have no experience\", \"Why is there a gap?\", \"Why change careers?\", low marks and a failed subject.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Almost everyone has something they worry the interviewer will ask about. You may have no work experience. You may have taken a break for health, family, money or because you could not find a job. Maybe your marks were low in one year. Maybe you are changing careers. The good news is that these are normal, interviewers have heard them before, and the way you answer matters more than the fact itself."
+        },
+        {
+          "type": "paragraph",
+          "text": "This lesson gives you a calm approach and sample wording for each. The samples are made up to show the shape, so use your own true facts. Never invent an explanation."
+        },
+        {
+          "type": "heading",
+          "text": "The calm formula for any hard question"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Acknowledge it simply.** Do not argue or get defensive. “Yes, that is right.”",
+            "**Give a short, honest reason.** One or two sentences. You do not owe more private detail than you want to share.",
+            "**Show what you did meanwhile.** Learning, working, caring, building.",
+            "**Return to the present and the job.** End by connecting to why you are ready now."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Practise saying it aloud, because the tone matters as much as the words. Aim for calm and matter-of-fact."
+        },
+        {
+          "type": "heading",
+          "text": "“You have no experience”"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is the most common challenge for freshers. Do not apologise. Instead, say what you do have: learning, projects, relevant practice, and enthusiasm to learn."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"That's true, I haven't had a full-time job in this field yet. What I\ndo have is two projects and a course in it, and I helped my family's\nshop with its accounts for two years. I learn quickly and I'm\nlooking for a place to build real experience, and your trainee\nprogramme looked like a good place to do that.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Practical ideas to build evidence before the interview: do a small project, volunteer for a local organisation, take a short course and finish it, help a small business with a real task, or contribute to a group effort. Even one or two real things change the conversation."
+        },
+        {
+          "type": "paragraph",
+          "text": "There is a full guide for resumes with no experience on this site, called [fresher resume with no experience](/blog/fresher-resume-no-experience), which helps you present these things on paper as well."
+        },
+        {
+          "type": "heading",
+          "text": "An employment gap"
+        },
+        {
+          "type": "paragraph",
+          "text": "A gap is time between jobs or studies. Employers see gaps for many reasons. Health, family care, moving, a business that closed, searching for work, or study. They are mainly worried about two things: Are you reliable? Are your skills still current? Answer both."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"After my diploma I took about a year out to look after my\nfather while he recovered from surgery. During that time I kept my\nskills fresh by taking an online bookkeeping course and doing\nthe accounts for a neighbour's shop. He's recovered well, and I'm\nready to work full time.\""
+        },
+        {
+          "type": "list",
+          "items": [
+            "State the reason briefly. You do not have to share medical or family details.",
+            "Say what you did to stay active or learn, if anything. If you did nothing formal, caring for someone or searching for work is real work, and you can say so.",
+            "Say you are ready now, and give your availability.",
+            "Do not lie about dates to hide a gap. Dates are easy to check."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "More ideas are in our guide to [explaining an employment gap](/blog/how-to-explain-employment-gap-on-resume)."
+        },
+        {
+          "type": "heading",
+          "text": "A career change"
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers will ask: why leave a field where you have experience? Show that your move is a thought-out decision and that your old skills carry over."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"I worked for three years in retail, mainly in customer service and\nstock control. I became interested in data when I started tracking\nour sales on a spreadsheet. I've since done an Excel and SQL course\nand a small analysis project. The customer knowledge and attention\nto accuracy from retail fits this analyst role, and I'm ready to\nstart on a junior level.\""
+        },
+        {
+          "type": "list",
+          "items": [
+            "Name the old skills that carry over, such as customer care, accuracy, planning and teamwork.",
+            "Show steps you took to learn the new field.",
+            "Be ready to accept a more junior start. Saying you understand this shows realism."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "See also our [career change guide](/blog/career-change-resume-guide)."
+        },
+        {
+          "type": "heading",
+          "text": "Low marks or a failed subject"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not blame teachers or bad luck. Say what happened simply, what you did, and what changed."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "\"I did poorly in my second year because I was working part-time\nand not managing my time well. I failed one subject and passed it on\nthe retake. After that I made a weekly plan, and my marks in the\nfinal year were much better.\""
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers like to see that you learn from setbacks. If you have more recent results or projects that show your ability, point to them."
+        },
+        {
+          "type": "heading",
+          "text": "Being asked something you cannot answer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes you simply do not know the answer. It is normal. Stay calm and say so honestly: “I haven't come across that. Here is how I would find out ...”. Then describe your approach: who you would ask, what you would read, what you would test. Interviewers are often more interested in how you think than in a memorised fact."
+        },
+        {
+          "type": "heading",
+          "text": "Questions you may be asked that are not appropriate"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some interviewers ask about age, marriage, children, religion, health or family plans. In many countries, including the UK and Canada, these should not influence hiring, and asking can be against the law. In others, it is common for personal questions to be asked. You have choices. You can answer briefly and move on. You can politely redirect: “I'm happy to talk about my availability and how I would manage the job.” Or you can decline to answer. Choose what feels right and safe for you."
+        },
+        {
+          "type": "note",
+          "text": "If you feel you are being treated unfairly, remember that you can leave an interview, and that you can report serious concerns to the relevant authority in your country. You do not have to accept disrespect to get a job."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write short honest answers for the questions that worry you most from the list above.",
+            "Check each answer for the four parts: acknowledge, short reason, what you did meanwhile, return to the present.",
+            "Say each aloud until it sounds calm. Time it. Each should be under 45 seconds."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your answers are true and use no invented reasons.",
+            "None of them blames anyone else.",
+            "Each ends by returning to why you are ready now."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Answer a hard question calmly",
+        "nodes": [
+          {
+            "id": "q",
+            "label": "Hard question",
+            "sub": "gap, no experience",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ack",
+            "label": "Acknowledge",
+            "sub": "short and calm",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "did",
+            "label": "What you did",
+            "sub": "learned, worked, cared",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "now",
+            "label": "Ready now",
+            "sub": "back to the job",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A hard question comes up, such as a gap or no experience. Stay calm.",
+            "on": [
+              "q"
+            ]
+          },
+          {
+            "say": "Acknowledge it simply and give a short, honest reason.",
+            "flow": [
+              "q>ack:answer"
+            ]
+          },
+          {
+            "say": "Say what you did in that time, such as learning, work or caring for someone.",
+            "flow": [
+              "ack>did:then"
+            ]
+          },
+          {
+            "say": "Return to the present: you are ready now and here is why you fit the job.",
+            "flow": [
+              "did>now:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I hide a gap on my resume?",
+          "a": "Do not falsify dates. Be brief and honest, and say what you did in that time. Many employers care more about whether your skills are current than about the gap itself."
+        },
+        {
+          "q": "How do I answer a personal question I think is inappropriate?",
+          "a": "You can answer briefly, politely steer back to your skills and availability, or decline to answer. Choose what feels right to you."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Tests and Technical Rounds",
+      "slug": "aptitude-and-written-tests",
+      "title": "Aptitude and Written Tests: How to Prepare",
+      "metaTitle": "Aptitude Tests: How to Prepare",
+      "description": "Prepare for numerical, verbal and logical tests with a simple weekly plan, timing habits and calm test-day tactics. No tricks, just practice.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many large employers, campus drives and graduate schemes start with a written or online test. You may see it called an aptitude test, a screening test, a psychometric test or an online assessment. The reason is simple: when thousands of people apply, a test is a fast, fair-looking way to reduce the list. This lesson tells you what these tests usually contain and how to prepare in a sensible way."
+        },
+        {
+          "type": "paragraph",
+          "text": "A note first. Do not pay anyone who promises you a pass or sells leaked papers. They are scams or cheating, and the second can end your career before it starts. Real preparation is free or cheap and takes steady practice."
+        },
+        {
+          "type": "heading",
+          "text": "What is usually tested"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Numerical ability.** Percentages, ratios, averages, simple interest, profit and loss, time and work, reading tables and charts.",
+            "**Verbal ability.** Reading short passages and answering questions, grammar, synonyms and antonyms, sentence correction, filling gaps.",
+            "**Logical reasoning.** Number and letter series, patterns, coding and decoding, puzzles, seating arrangements, statements and conclusions.",
+            "**Subject or technical questions.** Basics of your degree or the job, such as accounting, programming, engineering or computer basics.",
+            "**Situational judgement.** Short workplace situations where you choose the best response, used often by UK employers.",
+            "**Typing or computer skills tests** for office roles, and **trade or practical tests** for skilled jobs."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The test described in the job advert or invitation is the one that matters. Look for the name of the test provider and the topics. If the message does not say, ask the recruiter politely what to expect."
+        },
+        {
+          "type": "heading",
+          "text": "Know the format"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before you study, learn how the test works."
+        },
+        {
+          "type": "list",
+          "items": [
+            "How many questions and how long? This tells you the time per question.",
+            "Is there negative marking, meaning points lost for wrong answers? If so, guessing carefully matters.",
+            "Can you go back to earlier questions, or is it one question at a time?",
+            "Is it on a computer or paper? A calculator allowed or not?",
+            "Is there a section cut-off, meaning a minimum score in each section?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Time per question is the key number. A test with 30 questions in 30 minutes gives you about a minute each. Some questions take 20 seconds, so you can spend longer on harder ones, but you must learn to leave a question and move on."
+        },
+        {
+          "type": "heading",
+          "text": "A four-week plan"
+        },
+        {
+          "type": "paragraph",
+          "text": "A little each day beats a long study night. About 45 minutes a day is a good rhythm."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Week 1: Basics.** Revisit the school-level topics: percentages, fractions, ratios and averages. Revise grammar rules. Take one short test to see where you are.",
+            "**Week 2: Topic practice.** Spend two days on each topic, with untimed practice at first, then timed sets of ten questions. Keep a notebook of mistakes.",
+            "**Week 3: Speed.** Do mixed timed sets. Learn shortcuts that you understand, not ones you memorise without meaning.",
+            "**Week 4: Full mock tests.** Take full-length timed tests, at the real time of day if possible. Review every wrong answer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Habits that raise your score"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Keep an error log.** Write every mistake and why it happened: a calculation slip, not reading carefully, not knowing the method. Review the log each weekend.",
+            "**Learn to estimate.** In a numbers question, rounding to nearby values often shows which option is right.",
+            "**Read the question twice.** Many wrong answers come from missing the word “not” or the units.",
+            "**Skip and return.** If a question takes too long, mark it and move on. Easy marks wait later in the paper.",
+            "**Practise mental maths.** Times tables up to 20 and common fractions as percentages (one eighth is 12.5 per cent) save time.",
+            "**Read English daily.** A newspaper article or a news website for 15 minutes a day builds speed for verbal passages."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Good practice sources"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use free and low-cost resources and avoid paying large amounts. Past-paper style questions from your college, reputable free practice websites, school textbooks for the maths basics, and free mock tests offered by many employers and test providers themselves, which show you the real interface. Practise on the kind of device you will use."
+        },
+        {
+          "type": "heading",
+          "text": "Test-day tactics"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Sleep and eat before the test. A tired brain makes silly mistakes.",
+            "Arrive early, or log in early for online tests, and check your internet and device.",
+            "Bring what is needed: ID, pens, a calculator if allowed, and a watch.",
+            "Read the instructions fully before starting the timer.",
+            "Do the questions you know first. Keep an eye on the clock.",
+            "If there is negative marking, only guess when you can remove at least one or two options.",
+            "In the last minutes, check that every question has an answer, unless guessing costs marks."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you feel a panic wave, close your eyes for five seconds, breathe out slowly, and restart with the next question. One bad question does not decide your result."
+        },
+        {
+          "type": "heading",
+          "text": "Typing and computer skills tests"
+        },
+        {
+          "type": "paragraph",
+          "text": "Office roles may test typing speed and accuracy and basic Word and Excel tasks. Practise typing with free tools for ten minutes a day. Focus on accuracy first, then speed. Learn basic Excel tasks such as sum, sort and filter. Our [Excel for jobs course](/learn/excel-for-jobs-course) on this site is a good place to start."
+        },
+        {
+          "type": "heading",
+          "text": "Practical and trade tests"
+        },
+        {
+          "type": "paragraph",
+          "text": "For skilled trades, the test may be practical: wiring a board, welding a joint, using a machine or reading a drawing. Safety comes first in these tests. Show that you check safety, use tools correctly and keep the work area tidy. Ask if you do not understand an instruction. Doing it slowly and safely beats doing it fast and unsafe."
+        },
+        {
+          "type": "note",
+          "text": "If you do not pass a test, you can try again with other employers, and you will already know the format. Many successful candidates failed several tests first. Review your error log and keep going."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Choose the next test you expect to take. Find out the format: number of questions, time, negative marking.",
+            "Make a four-week plan with 45 minutes a day. Write the days and topics on a calendar.",
+            "Start an error log in a notebook. Add every mistake from your first practice set.",
+            "Take one timed practice set and calculate the time per question."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You know the time per question for your test.",
+            "Your error log has at least ten entries with a reason for each.",
+            "You have booked time each day for practice."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Practise, review, repeat",
+        "nodes": [
+          {
+            "id": "fmt",
+            "label": "Know the format",
+            "sub": "time, marking",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "prac",
+            "label": "Timed practice",
+            "sub": "daily sets",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "log",
+            "label": "Error log",
+            "sub": "why you were wrong",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "mock",
+            "label": "Full mock test",
+            "sub": "review every mistake",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "First learn the format: the number of questions, the time and whether wrong answers lose marks.",
+            "on": [
+              "fmt"
+            ]
+          },
+          {
+            "say": "Practise a little each day with timed sets of questions.",
+            "flow": [
+              "fmt>prac:plan"
+            ]
+          },
+          {
+            "say": "Write each mistake and its reason in an error log, and review the log each week.",
+            "flow": [
+              "prac>log:mistakes"
+            ]
+          },
+          {
+            "say": "Finish with full timed mock tests, and review every wrong answer.",
+            "flow": [
+              "log>mock:improve"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should I prepare for an aptitude test?",
+          "a": "About four weeks at 45 minutes a day suits many people. Start earlier if the basics such as percentages and grammar feel weak."
+        },
+        {
+          "q": "Is it worth paying for leaked papers or a guaranteed pass?",
+          "a": "No. These are usually scams, and using leaked papers is cheating. Real preparation uses free or low-cost practice and steady review."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Tests and Technical Rounds",
+      "slug": "technical-round-preparation",
+      "title": "The Technical Round: Basics, Projects and Thinking Aloud",
+      "metaTitle": "Technical Interview Round: How to Prepare",
+      "description": "Prepare for the technical interview as a fresher: know the basics, explain your projects, think aloud and handle questions you cannot answer.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The technical round is where an interviewer checks that you can do the work, or learn it. It could be about programming, accounting, electrical wiring, customer support tools, design, laboratory methods or machine operation. The subject changes. The pattern stays the same: they test your basics, your projects and the way you think. Freshers are not expected to know everything. They are expected to know the basics well and to be honest and curious."
+        },
+        {
+          "type": "heading",
+          "text": "What interviewers look for in a fresher"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Strong basics.** Not tricks. The core ideas from your degree or training, explained clearly.",
+            "**Your own work.** Evidence that you have used what you learned: projects, practicals, a workshop, a lab.",
+            "**Clear thinking.** How you approach a problem, even if you do not reach the answer.",
+            "**Honesty.** Saying “I don't know” and then reasoning, instead of guessing wildly.",
+            "**Willingness to learn.** Interest in the field outside class, such as reading, tools you tried, small experiments."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Prepare the basics properly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Go back to the main topics of your subject and the job advert. For each topic, you should be able to explain it simply, give an example, and say where it is used. Explaining to a friend or a younger student is a strong test. If you cannot explain a topic simply, you have not fully learned it yet."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use a short list. Choose 15 to 25 core topics for the role. For a software role they could be variables and loops, functions, object-oriented ideas, a database basic, how the web works and one language in depth. For an accounts role: the accounting equation, debit and credit, journal and ledger, bank reconciliation and common spreadsheet functions. For an electrical or mechanical trade role: safety rules, tools, reading drawings, basic measurements and common faults. Revise one topic a day and say it aloud."
+        },
+        {
+          "type": "note",
+          "text": "Depth beats breadth. Knowing eight topics deeply is better than knowing thirty at name level. If you say you know a topic, expect a second and third question on it."
+        },
+        {
+          "type": "heading",
+          "text": "Explain your projects"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your resume projects are the most likely start of a technical conversation. Prepare them as in lesson 3, and also prepare the technical side: the tools you used and why, the design in simple terms, the part you found hardest, what you would improve, and how you tested that it worked. If you used a framework or tutorial, say so honestly, and be clear about what you built yourself."
+        },
+        {
+          "type": "heading",
+          "text": "Think aloud"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you get a problem, say what you are thinking. Silence is hard for an interviewer to judge. This is especially true for coding or calculation questions. A good pattern:"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Repeat the problem** in your own words to be sure you understand. Ask a clarifying question if needed.",
+            "**Give a simple example** to show you understand: “If the input is 3 and 5, the answer should be ...”.",
+            "**Start with an obvious approach**, even if it is not the best, and say it.",
+            "**Work through it step by step** while talking. If you hit a wall, say so and try a different angle.",
+            "**Check your answer** with your example, and think of edge cases, such as an empty list or zero.",
+            "**Say how you could improve it** if you have time."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers like candidates who stay calm, ask good questions and correct their own mistakes. That matters more than a flawless answer."
+        },
+        {
+          "type": "heading",
+          "text": "Coding and technical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "For programming roles, you may get a coding exercise on paper, on a whiteboard, in a browser or as a take-home task. Practise on small problems regularly in the language you list. Free practice sites exist for this. Start with simple loops and strings, then lists and dictionaries, then basic searching and sorting ideas. Type the code yourself rather than reading solutions. After you solve a problem, ask what edge cases you missed."
+        },
+        {
+          "type": "paragraph",
+          "text": "For take-home tasks, read the instructions carefully, keep the solution clear and simple, add a short README on how to run it, and submit before the deadline. Do not copy another person's solution. Interviewers often ask you to explain every line."
+        },
+        {
+          "type": "heading",
+          "text": "When you do not know the answer"
+        },
+        {
+          "type": "paragraph",
+          "text": "It will happen. Here is a calm way to handle it."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Say honestly: “I'm not sure about that.”",
+            "Share what you do know that is related: “I know how X works, so I think Y may be similar.”",
+            "Reason aloud to a sensible guess, and mark it as a guess.",
+            "If you are stuck, ask for a hint. It is a normal thing to do, and how you use the hint is informative.",
+            "Afterwards, look up the answer and add it to your notes. The same question may come back."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Never invent a confident wrong answer. A wrong answer said confidently is worse than an honest “I don't know, but here's how I would find out”."
+        },
+        {
+          "type": "heading",
+          "text": "Practical and trade interviews"
+        },
+        {
+          "type": "paragraph",
+          "text": "For hands-on roles you may be asked about a job you did: “Tell me how you would fix a motor that won't start” or “What do you check before using this machine?”. Answer in order, in plain words, starting with safety. If you have worked on real equipment, describe it. If not, describe how you learned and what you practised."
+        },
+        {
+          "type": "heading",
+          "text": "Ask a good question at the end"
+        },
+        {
+          "type": "paragraph",
+          "text": "A thoughtful technical question shows interest: “What tools does the team use day to day?” or “What would I learn in the first month?”. It is a chance to show you think about the work."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List 15 to 25 core topics for the role you want. Mark each one as strong, medium or weak.",
+            "Pick three weak ones and spend a week turning them to strong. Explain each aloud to someone.",
+            "Write the technical summary for each of your projects: tools, design, hardest part, testing, improvement.",
+            "Practise one problem aloud, using the six-step thinking-aloud method."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can explain every item on your topic list in simple words.",
+            "You have a technical summary of each project that you can say in two minutes.",
+            "You have a calm plan for a question you cannot answer."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Think aloud on a problem",
+        "nodes": [
+          {
+            "id": "rep",
+            "label": "Repeat it",
+            "sub": "confirm the problem",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "ex",
+            "label": "Simple example",
+            "sub": "check your idea",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "try",
+            "label": "Try an approach",
+            "sub": "talk through steps",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "chk",
+            "label": "Check and improve",
+            "sub": "edge cases",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Repeat the problem in your own words, and ask a question if anything is unclear.",
+            "on": [
+              "rep"
+            ]
+          },
+          {
+            "say": "Give a small example to show you understand what is wanted.",
+            "flow": [
+              "rep>ex:example"
+            ]
+          },
+          {
+            "say": "Start with an obvious approach and explain each step as you go.",
+            "flow": [
+              "ex>try:approach"
+            ]
+          },
+          {
+            "say": "Check it against your example and edge cases, then say how you could improve it.",
+            "flow": [
+              "try>chk:verify"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What if I do not know the answer in a technical interview?",
+          "a": "Say so honestly, share what you do know that is related, and reason aloud. Asking for a hint is acceptable. Never invent a confident wrong answer."
+        },
+        {
+          "q": "How much should a fresher know?",
+          "a": "Interviewers expect solid basics and your own projects, not expert knowledge. Depth on the core topics matters more than a long list of names."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Tests and Technical Rounds",
+      "slug": "group-discussion-and-case-questions",
+      "title": "Group Discussions and Case Questions",
+      "metaTitle": "Group Discussion and Case Questions Tips",
+      "description": "Do well in group discussions and case-style questions: how to start, listen, add value, handle loud people and structure a short problem-solving answer.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Some employers, especially large companies and campus drives, put several candidates in one room and give them a topic to discuss. This is a **group discussion**, or GD. Others ask a short business problem, called a **case question** or a guesstimate. Both look at the same things: how you think, how you speak, and how you behave with other people. You do not have to be the loudest person to do well. You have to be clear, respectful and useful."
+        },
+        {
+          "type": "heading",
+          "text": "What observers watch in a group discussion"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Content.** Do your points make sense and show you thought about the topic?",
+            "**Communication.** Is your speech clear, and do you stay on the topic?",
+            "**Listening.** Do you respond to what others say, and not just wait to talk?",
+            "**Teamwork.** Do you include quiet people and help the group reach a point?",
+            "**Behaviour.** Are you calm, polite and confident without being aggressive?"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice that talking the most is not on the list. Candidates who shout and interrupt are usually marked down. Candidates who say fewer, better points, listen and summarise, often score higher."
+        },
+        {
+          "type": "heading",
+          "text": "Before you speak: take a few moments"
+        },
+        {
+          "type": "paragraph",
+          "text": "When the topic is given, use the first minute to write two or three ideas. Think of the topic from several angles, which you can remember with this checklist: **people** (who is affected), **money** (costs and benefits), **society**, **technology**, **time** (short and long term) and **risks**. Even one point from each angle gives you material for the whole discussion."
+        },
+        {
+          "type": "heading",
+          "text": "A simple plan for the discussion"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Start well, if you can.** A good opening gives a short definition or context and one main point. “Social media is used by most young people. I think the key question is how to get its benefits while reducing the harm.” A clear start earns credit. But do not rush if you are not ready. A thoughtful second or third contribution is also fine.",
+            "**Add one new point each time.** Do not repeat what others said. Build on it: “Building on what Ravi said about schools, I'd add that ...”.",
+            "**Use examples.** A real example makes your point stronger than a general claim. Avoid made-up statistics. If you do not know a number, do not invent one.",
+            "**Include others.** If someone has been quiet, say: “We haven't heard from Meena. What do you think?”. It shows leadership.",
+            "**Redirect gently if the group drifts.** “We are talking about cost. Let's return to the main question.”",
+            "**Summarise near the end**, if no one has. Two or three sentences covering the main points the group raised."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Handling difficult situations"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**A loud person dominates.** Do not shout back. Wait for a gap and say: “That's a good point. Can I add something?”. Speak calmly and firmly.",
+            "**Someone interrupts you.** Say politely: “Let me finish this point, and then I will hear yours.”",
+            "**You disagree.** Do it respectfully: “I see your point, but I see it differently because ...”. Disagree with ideas, never with people.",
+            "**The discussion is chaos.** Suggest a structure: “Maybe we can discuss advantages first, then disadvantages.”",
+            "**You are nervous.** Take a breath, speak slowly and make your first point short. The first contribution is the hardest. It gets easier after that."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Topics you may get"
+        },
+        {
+          "type": "paragraph",
+          "text": "Topics usually fall into a few groups: current affairs, social issues, business and economy, technology and abstract topics (“Is it better to be a leader or a follower?”). Read news regularly, from more than one source. Form a balanced view on a few big topics, and practise saying one point for and one point against. Stay away from rude or offensive statements on religion, politics or groups of people, and stay calm if others are strong in their views."
+        },
+        {
+          "type": "heading",
+          "text": "Case questions and guesstimates"
+        },
+        {
+          "type": "paragraph",
+          "text": "A case question gives you a small business problem: “A local café's sales have dropped. What would you check?”. A guesstimate asks you to estimate something, such as the number of tea cups sold in your city per day. Nobody expects the exact number. They watch your **structure** and your **reasoning**."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use this structure for a problem question."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Clarify.** Ask two quick questions to understand: “Over what period did sales drop? Is it all products or only some?”.",
+            "**Structure.** Divide the problem into a few parts and say them: “I'd look at customers, the product, the price, and competitors.”",
+            "**Explore.** Take each part and give a reasonable idea of what you would check, in order of importance.",
+            "**Conclude.** Give a short recommendation and say what you would do first."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For an estimation, state your assumptions and do the maths aloud."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Estimate: cups of tea sold daily at street stalls in a town of\n200,000 people. (Made-up numbers for practice only.)\n\n- Assume 1 in 4 people drink tea from a stall on a given day: 50,000.\n- Assume they have 2 cups on average: 100,000.\n- So roughly 100,000 cups a day.\n- I would adjust this if I knew the real habits of the town."
+        },
+        {
+          "type": "paragraph",
+          "text": "The answer is not important. The method, the stated assumptions and the readiness to adjust them are what the interviewer wants to see."
+        },
+        {
+          "type": "heading",
+          "text": "Practising on your own"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Practise with friends. Pick a topic, set a timer for ten minutes, and have someone observe and give feedback.",
+            "Record yourself discussing a topic alone for two minutes. Check for structure and filler words.",
+            "Read a short news article daily and write two points for, two against.",
+            "Practise a quick structure for case questions on everyday businesses: a shop, a school, a bus service."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "In group discussions, quality beats quantity. Two or three strong, relevant contributions, along with active listening and a closing summary, usually score better than constant talking."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Pick a topic from the news. Write one point from each angle: people, money, society, technology, time and risks.",
+            "Hold a 10-minute practice discussion with two or three friends. Ask them to note who listened well and who added new points.",
+            "Practise a case question aloud using clarify, structure, explore and conclude."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You made at least two new points in the discussion and one summary.",
+            "You invited a quiet person to speak, or used the polite way to join a busy group.",
+            "Your case answer had a clear structure."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A strong group discussion",
+        "nodes": [
+          {
+            "id": "think",
+            "label": "Think first",
+            "sub": "write 2 or 3 ideas",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "say",
+            "label": "Add new points",
+            "sub": "with examples",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "listen",
+            "label": "Listen and include",
+            "sub": "build on others",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "sum",
+            "label": "Summarise",
+            "sub": "main points",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Take a minute to note two or three ideas from different angles.",
+            "on": [
+              "think"
+            ]
+          },
+          {
+            "say": "Contribute new points, each with a short example, and avoid repeating others.",
+            "flow": [
+              "think>say:speak"
+            ]
+          },
+          {
+            "say": "Listen, build on what others say, and invite quiet people to join.",
+            "flow": [
+              "say>listen:respond"
+            ]
+          },
+          {
+            "say": "Near the end, summarise the main points in two or three sentences.",
+            "flow": [
+              "listen>sum:close"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I always speak first in a group discussion?",
+          "a": "Not necessarily. A clear, thoughtful opening can earn credit, but a good second or third contribution is fine. Do not speak first if you would only ramble."
+        },
+        {
+          "q": "What if I disagree with someone in the group?",
+          "a": "Disagree with the idea and not the person, politely: I see your point, but I see it differently because... Then give your reason."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "The Day and After",
+      "slug": "phone-and-video-interviews",
+      "title": "Phone and Video Interviews: Setup, Voice and Body Language",
+      "metaTitle": "Phone and Video Interview Tips",
+      "description": "Set up for online and phone interviews: internet, light, sound, camera and background, plus voice and eye contact that make a good first impression.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A large share of first interviews now happen by phone or video. They look easy because you are at home, but they have their own problems: a poor connection, echo, a noisy house, a laptop camera that makes people look at the ceiling. The good news is that nearly all of these are fixed with an hour of preparation. This lesson helps you set up properly and shows how to make a strong impression through a screen or a phone."
+        },
+        {
+          "type": "heading",
+          "text": "Check your technology a day before"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Internet.** Test your connection. If it is weak, move closer to the router, ask others at home not to stream or download during your interview, or use mobile data as a backup.",
+            "**The software.** Many interviews use Zoom, Google Meet, Microsoft Teams or similar. Install the app, create an account if needed, and open the link in advance. Check that you can join a test meeting.",
+            "**Charge your device** and plug in the charger. A phone call ends badly when the battery dies.",
+            "**Audio.** Use earphones with a microphone if you have them. They reduce echo and background noise. Do a quick recording to hear how you sound.",
+            "**Camera.** Place it at eye level. A laptop on a stack of books works well. Looking slightly down into a camera is unflattering and hard to look at.",
+            "**A backup plan.** Keep the recruiter's phone number and be ready to switch to a phone call if the video fails."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Prepare your space"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Quiet.** Tell people at home the time. Close the doors and windows. Put a note on the door if needed.",
+            "**Background.** A plain wall or tidy corner is enough. Avoid a messy bed or clutter. Do not use a silly virtual background. A slight blur is fine if the tool offers it.",
+            "**Light.** Face a window or a lamp so the light falls on your face. Do not sit with a bright window behind you, because you will look like a dark shape.",
+            "**Phone settings.** Turn off notifications and silent-mode your other devices.",
+            "**What you need on the table.** A glass of water, a pen, paper, your resume and your prep sheet. Keep notes out of the camera view, or have just a few key words in reach."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Dress properly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dress as you would for an in-person interview in that workplace, at least from the waist up and preferably fully. Dressing well changes how you feel and sit. Choose plain colours that are not too bright. For a casual workplace, neat and clean is enough."
+        },
+        {
+          "type": "heading",
+          "text": "Phone interviews"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a phone interview the interviewer cannot see you, so your voice carries everything."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Stand or sit upright.** Your voice sounds clearer and more confident.",
+            "**Smile when you speak.** You can hear a smile in a voice.",
+            "**Speak a little slower than normal**, and clearly. Mobile networks can distort fast speech.",
+            "**Pause instead of saying “um”.** A short pause sounds thoughtful.",
+            "**Answer in a quiet place with good signal.** Use the same place every time and test it.",
+            "**Take notes** of names and details, and have your resume in front of you."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If the line is bad, say so politely: “I'm sorry, the line is not clear. Could you repeat that?”. Asking is better than guessing."
+        },
+        {
+          "type": "heading",
+          "text": "Video interview behaviour"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Join 5 to 10 minutes early.** Be on time, never late.",
+            "**Look at the camera when you speak**, not at your own face on the screen. It feels odd, but it looks like eye contact to the other person. Look at the screen when you listen.",
+            "**Sit up with relaxed shoulders.** Keep your hands visible and natural. Move a little as you talk, but not too much.",
+            "**Nod and smile** to show you are listening. Delays can make people hesitate, so wait a second after the question ends before you answer, to avoid talking over them.",
+            "**Do not read from a script.** A few key words are fine. Reading sounds flat and interviewers notice eye movements.",
+            "**Do not eat or look at other screens.**"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Recorded video interviews"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some employers ask you to record answers to set questions on a platform, with no live person. You usually have a short time to prepare and one or two attempts per question. Treat it as a real interview. Read the instructions, test the camera, and practise on the platform if it has a practice question. Use the same structure as in person: a clear answer with an example, within the time limit. It is natural to feel awkward talking to a screen. Imagine you are talking to a friendly person on the other side."
+        },
+        {
+          "type": "heading",
+          "text": "If something goes wrong"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Connection drops:** Rejoin quickly, or call or message the recruiter. Say sorry briefly and carry on.",
+            "**Noise starts:** Say “I'm sorry, there's some noise. One moment.” and mute while it passes, if you can.",
+            "**You freeze on a question:** It is fine to say, “Could I take a moment to think about that?”.",
+            "**Your mind goes blank:** Take a slow breath, sip water, and ask them to repeat the question."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewers know that technology is not perfect. They notice how calmly you handle a problem."
+        },
+        {
+          "type": "heading",
+          "text": "Close well"
+        },
+        {
+          "type": "paragraph",
+          "text": "At the end, thank the interviewer, say you enjoyed the conversation, and confirm the next steps. Smile and wait for them to end the call. Do not rush to turn off the camera. A short thank-you message the same day is a good habit (lesson 15)."
+        },
+        {
+          "type": "note",
+          "text": "Practise once with a friend on the same platform. Ask them to tell you honestly how you look and sound. This single practice run fixes most problems."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Test your internet, camera, microphone and lighting. Record a one-minute answer and watch it back.",
+            "Set up the space: background, light and a place for notes. Take a photo of your setup and fix one thing.",
+            "Do a 10-minute practice interview with a friend on the platform your interview will use."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can hear yourself clearly and your face is lit and at eye level.",
+            "You know where you will look when you speak.",
+            "You have a backup plan if the video fails."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Set up for a video interview",
+        "nodes": [
+          {
+            "id": "tech",
+            "label": "Check technology",
+            "sub": "internet, camera, audio",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "space",
+            "label": "Prepare space",
+            "sub": "quiet, light, background",
+            "col": 1,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "beh",
+            "label": "Behave well",
+            "sub": "look at camera, smile",
+            "col": 2,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "close",
+            "label": "Close well",
+            "sub": "thank and confirm steps",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The day before, test your internet, camera and microphone, and charge your device.",
+            "on": [
+              "tech"
+            ]
+          },
+          {
+            "say": "Prepare a quiet space with light on your face and a tidy background.",
+            "flow": [
+              "tech>space:then"
+            ]
+          },
+          {
+            "say": "During the call, look at the camera, sit upright, speak clearly and listen actively.",
+            "flow": [
+              "space>beh:interview"
+            ]
+          },
+          {
+            "say": "At the end, thank the interviewer and confirm the next steps.",
+            "flow": [
+              "beh>close:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Where should I look during a video interview?",
+          "a": "Look at the camera when you speak, because that looks like eye contact to the other person. Glance at the screen when you listen."
+        },
+        {
+          "q": "What should I do if my internet fails during an interview?",
+          "a": "Rejoin quickly or switch to a phone call, and message the recruiter if needed. Apologise briefly and carry on calmly. Keep a backup like mobile data."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "The Day and After",
+      "slug": "salary-notice-period-and-your-questions",
+      "title": "Salary, Notice Period and Questions to Ask",
+      "metaTitle": "Salary and Questions to Ask in Interviews",
+      "description": "Handle salary, notice period and benefits questions honestly, and learn which questions to ask the interviewer. Includes cautions about pay and contracts.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Near the end of an interview, practical questions appear: What salary do you expect? When can you join? Do you have any questions for us? Many freshers freeze on these, because nobody taught them. This lesson explains how to handle them calmly. A note: pay and employment rules differ by country and employer. This lesson gives general habits, not legal or financial advice. For legal details in your country, check official government sources or a trusted adviser."
+        },
+        {
+          "type": "heading",
+          "text": "Expected salary: do some research first"
+        },
+        {
+          "type": "paragraph",
+          "text": "The question “What are your salary expectations?” is not a trap, but it needs preparation. If you name a number without knowing the market, you may ask for too little or too much. Research gives you a sensible range."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Look at pay ranges stated in job adverts for similar roles in the same city. Some countries now require pay ranges in adverts.",
+            "Look at salary pages and reports on this site and others. Remember that each is a limited sample, and that pay changes between cities and company sizes.",
+            "Ask friends, seniors, teachers or people in similar roles what a fresher can reasonably expect.",
+            "Consider your own needs: transport, rent and basic costs. Work out the lowest amount you could accept."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Pay may be quoted per month, per year or per hour, and in different currencies. Be careful to compare like with like. Check whether a number includes bonuses or allowances, or is before or after tax."
+        },
+        {
+          "type": "heading",
+          "text": "How to answer"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**You can ask first.** “Could you tell me the range for this role?” This is polite and often works.",
+            "**If they ask you, give a range**, not one number, based on your research. “Based on my research for similar roles in this city, I'm looking for something in the range of X to Y, and I'm open to discussing it.”",
+            "**If you have no idea,** say so honestly and ask about their budget: “I'd like to understand the full package first. What is the range you have in mind?”",
+            "**Show flexibility** when appropriate. For a first job, learning and a good start matter as well as pay, but do not accept pay below what you can live on."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not lie about your current or past pay. In some countries it is also against the rules for employers to ask for it. If you are asked, you can say that you would rather talk about the pay for this role."
+        },
+        {
+          "type": "heading",
+          "text": "Notice period and joining date"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **notice period** is the time you must give your current employer before leaving. A fresher with no job usually has none and can join soon. If you do have one, state it honestly, check your contract, and say whether it can be shortened by agreement. In India, notice periods of one to three months are common in many companies, while in other countries they may be shorter. Never promise a date you cannot meet."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are still studying, say when your exams finish and when you can start. If you need to relocate, say how long it takes."
+        },
+        {
+          "type": "heading",
+          "text": "Other practical topics"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Working hours, shifts and location.** Be honest about what you can manage, such as travel time or night shifts.",
+            "**Probation or training period.** Ask how long and what pay and rules apply.",
+            "**Bonds or service agreements.** Some employers ask new staff to sign a bond to stay for a period or repay training costs. Read it very carefully before signing. Ask what happens if you leave early. If anything is unclear, ask a trusted person to read it.",
+            "**Documents.** Employers may ask for ID and certificates for verification. Original certificates should not be handed over permanently. Provide copies and show originals for checking. Be careful about any request to give up original documents or pay a deposit."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "A legitimate employer does not charge you money to give you a job. Never pay a fee for a job, a “registration” or an “interview”. See the next lesson for more about scams."
+        },
+        {
+          "type": "heading",
+          "text": "The question: “Do you have any questions for us?”"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always have two or three. Good questions show interest in the work and the team, and they also help you decide if the job is right for you."
+        },
+        {
+          "type": "list",
+          "items": [
+            "“What would a typical day or week look like in this role?”",
+            "“What are the most important things to achieve in the first three months?”",
+            "“How is a new person trained and supported?”",
+            "“How does the team measure success?”",
+            "“What are the opportunities for learning and growth?”",
+            "“What are the next steps in the process, and when can I expect to hear from you?”"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Avoid questions you could answer with a quick look at the company website, and avoid asking about leave and perks first. When it comes to the offer, it is fine to ask about them."
+        },
+        {
+          "type": "heading",
+          "text": "Questions to avoid"
+        },
+        {
+          "type": "list",
+          "items": [
+            "“What does your company do?” It shows you did not research.",
+            "Questions only about holidays, breaks or how soon you can leave early.",
+            "Anything negative about other staff or the company."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When you get an offer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask for the offer in writing, with the job title, pay, hours, start date and any conditions. It is normal to take a day or two to consider it. Thank them and say when you will reply. If you want to ask for a little more, be polite and give a reason, for example: “I'm very happy to join. Based on my research, I was hoping for X. Is there any flexibility?”. The answer may be no. Decide whether the whole offer works for you."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Research the pay range for a role you want in your city. Write a range you would give, and your lowest acceptable amount.",
+            "Write an honest answer about your notice period or start date.",
+            "Write your three best questions to ask the interviewer.",
+            "Look up what an employment contract in your country should include, using an official government website."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your pay answer uses a researched range and is not a single number guessed.",
+            "You know to read any bond or agreement before signing.",
+            "You have at least three good questions prepared."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Handle the practical questions",
+        "nodes": [
+          {
+            "id": "res",
+            "label": "Research pay",
+            "sub": "ranges for similar roles",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "ans",
+            "label": "Give a range",
+            "sub": "be flexible, be honest",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "ask",
+            "label": "Ask questions",
+            "sub": "about work and training",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "off",
+            "label": "Offer in writing",
+            "sub": "read before accepting",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Before the interview, research pay ranges for similar roles in your city.",
+            "on": [
+              "res"
+            ]
+          },
+          {
+            "say": "When asked, give a researched range and stay open to discussion.",
+            "flow": [
+              "res>ans:range"
+            ]
+          },
+          {
+            "say": "Ask your own questions about the work, the team and training.",
+            "flow": [
+              "ans>ask:then"
+            ]
+          },
+          {
+            "say": "If an offer comes, ask for it in writing and read it carefully before you accept.",
+            "flow": [
+              "ask>off:offer"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I give one salary number or a range?",
+          "a": "A researched range is usually better than one number, because it leaves room to discuss. Base it on similar roles in your city and your own needs."
+        },
+        {
+          "q": "Is it normal to be asked to sign a bond?",
+          "a": "Some employers use bonds or service agreements. Read it very carefully, ask what happens if you leave early, and get advice if anything is unclear."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "The Day and After",
+      "slug": "interview-day-checklist-and-job-scams",
+      "title": "Interview Day Checklist and How to Avoid Job Scams",
+      "metaTitle": "Interview Day Checklist and Job Scams",
+      "description": "A practical checklist for the day before and the day of your interview, plus clear signs of fake job offers and what to do if you suspect a scam.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The last day before an interview and the interview day itself are full of small decisions: what to wear, how to get there, what to carry, how to feel calm. This lesson gives you a checklist so you do not rely on memory when you are nervous. It also covers something that is sadly necessary for job seekers everywhere: how to avoid fake job offers."
+        },
+        {
+          "type": "heading",
+          "text": "The day before"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Confirm the details.** Place, time, who to ask for, and the phone number. If there is any doubt, send a short polite message or call to confirm.",
+            "**Plan your journey.** Check the route, the transport timetable and the time it takes at that hour. Plan to arrive 15 minutes early, and have a backup plan for delays. If you can, do a trial trip or look at the location on a map.",
+            "**Prepare your clothes.** Clean, ironed, comfortable and appropriate. For most offices and customer jobs, neat formal or smart casual clothes. For a workshop, factory or practical role, clean and sensible clothing, with safety shoes if you have them. Check the fit and try them on.",
+            "**Pack your bag.** See the list below.",
+            "**Review your prep sheet** and practise your main answers once. Do not study all night.",
+            "**Sleep.** Aim for a regular bedtime. Tired people give weaker answers."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to carry"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Several printed copies of your resume, on clean paper.",
+            "Copies of your ID, certificates and mark sheets, and the originals to show if asked.",
+            "A pen and a small notebook.",
+            "Your prep sheet and your questions.",
+            "A reference list, with permission from each person.",
+            "A bottle of water, a handkerchief, and any medicine you need.",
+            "Your phone, on silent, with the employer's number saved.",
+            "Some cash or a card for transport."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The morning of the interview"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Eat something light. A shaky stomach and a low-energy brain are not helpful.",
+            "Dress and check yourself in a mirror.",
+            "Leave early. Being late is the most common avoidable mistake.",
+            "Silence your phone before you walk in. Do not look at it in the waiting area.",
+            "On the way, say your first answer to yourself, but do not cram."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When you arrive"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Be polite to everyone, from the security guard to the receptionist. They may be asked what they thought of you.",
+            "Greet the interviewer with a smile and a clear “Good morning”. A handshake, if offered, should be firm and brief. In some places or situations other greetings are normal, so follow the lead of the person you meet.",
+            "Sit when invited. Sit upright with your feet on the floor and your bag beside you.",
+            "Listen to the whole question before you begin to answer.",
+            "Speak at a steady pace. Pause when you need to think.",
+            "Keep your answers true, specific and short."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Calming your nerves"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Nerves are normal, and a little adrenaline helps. Every candidate has them.",
+            "Breathe in for four counts and out for six, a few times, before you go in.",
+            "Remember that the interviewers want to find a good person. They are not trying to trap you.",
+            "If you make a mistake, correct it calmly and carry on. Nobody expects perfection."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Job scams: how they work"
+        },
+        {
+          "type": "paragraph",
+          "text": "Fake job offers are a serious problem in many countries, and they target people who really need work. Scammers copy real company names, create fake websites and send messages that seem professional. They want your money or your personal information. Learn the warning signs."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**They ask for money.** A registration fee, training fee, uniform fee, laptop deposit or “security deposit”. Real employers do not charge you to hire you. This is the biggest sign.",
+            "**The offer comes without a real interview.** You get a job offer after a short chat on a messaging app, with no live interview.",
+            "**The pay is too good.** Very high pay for little work or for no skills is a classic trap.",
+            "**They use free email addresses** such as a personal Gmail instead of a company email address, or the email address is slightly different from the real company.",
+            "**They ask for sensitive details early.** Bank account passwords, card numbers, one-time passwords (OTPs) or copies of your ID before you have signed a contract.",
+            "**They pressure you.** “Pay today or lose the job.” Real employers allow time.",
+            "**They ask you to buy equipment** and promise to repay you, or to receive money into your account and move it onwards. This can make you part of a crime.",
+            "**The interview is only by text message** or the interviewer refuses a video or phone call."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check an offer"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Search the company name and the word “scam” or “fake”, and look for reviews, including on this site's company review pages.",
+            "Find the company's own official website yourself, not through a link in the message. See whether the job is listed on their careers page. Contact them through the details on the official site to check.",
+            "Check that the email address uses the company's real domain.",
+            "Look for a physical address, and compare with a map.",
+            "Ask a trusted person, a teacher or an older relative, to look at the message with you.",
+            "Never send money or share a password, OTP or card details."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you have paid or shared something, act quickly: contact your bank at once, change your passwords, and report it to the police or the cybercrime reporting service of your country. Do not feel ashamed. Scammers are skilled and many people are caught."
+        },
+        {
+          "type": "heading",
+          "text": "Your safety at interviews"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tell a family member or friend where you are going, with the address and time.",
+            "Prefer interviews in a company office, or a public place for a first meeting. Be cautious about interviews in private homes or isolated places.",
+            "Trust your feelings. If something feels wrong, you can leave.",
+            "Use a safe route home, particularly after dark."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make your own checklist from this lesson. Pack your bag and lay out your clothes for your next interview.",
+            "Look at a real job message you have received. Check it against the scam signs.",
+            "Write the address of the cybercrime reporting service in your country, so you know it before you need it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your bag is packed with copies of your resume and documents.",
+            "You know your route and have a backup plan.",
+            "You can name at least five signs of a job scam."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Spot a fake job offer",
+        "nodes": [
+          {
+            "id": "msg",
+            "label": "Job message",
+            "sub": "too good to be true?",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "check",
+            "label": "Check signs",
+            "sub": "fees, free email",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "site",
+            "label": "Official site",
+            "sub": "find it yourself",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "safe",
+            "label": "Decide safely",
+            "sub": "never pay or share OTP",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A job message arrives. Be careful if it promises high pay for little work.",
+            "on": [
+              "msg"
+            ]
+          },
+          {
+            "say": "Look for scam signs: fees, free email addresses, no real interview or pressure.",
+            "flow": [
+              "msg>check:inspect"
+            ]
+          },
+          {
+            "say": "Find the company website yourself and check that the job and contact details are real.",
+            "flow": [
+              "check>site:verify"
+            ]
+          },
+          {
+            "say": "Never pay money or share passwords or OTPs. If unsure, walk away and ask someone you trust.",
+            "flow": [
+              "site>safe:decide"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do real employers charge a fee for a job?",
+          "a": "No. A legitimate employer does not charge you to hire you. Requests for registration, training or deposit fees are a major sign of a scam."
+        },
+        {
+          "q": "What should I do if I paid money to a fake job offer?",
+          "a": "Contact your bank immediately, change your passwords, keep the messages as evidence and report to the police or the cybercrime reporting service in your country."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "The Day and After",
+      "slug": "after-the-interview-follow-up-and-rejection",
+      "title": "After the Interview: Follow-Up, Offers and Rejection",
+      "metaTitle": "After the Interview: Follow Up, Rejection",
+      "description": "Write a good thank-you message, follow up politely, handle waiting, learn from rejection and keep your search moving. Includes sample messages.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The interview ends, you walk out, and then comes the waiting. This part is hard. You replay your answers, wait for a call, and may feel anxious or discouraged. What you do next matters. A short thank-you, a polite follow-up and a calm attitude to rejection help you in this job search and in every later one. This lesson gives you a plan."
+        },
+        {
+          "type": "heading",
+          "text": "Right after the interview"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Write notes the same day.** Note the questions you were asked, what you answered well, what you could improve, and anything new you learned about the role. These notes are valuable for your next interview.",
+            "**Send a thank-you message within 24 hours.** It is polite, it keeps you in mind and gives you a chance to add one point you forgot.",
+            "**Keep records.** Note the date, the people you met and the next steps you were told."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A sample thank-you email"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep it short, friendly and specific. This sample is made up, so use your own details."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Thank you - Junior Accounts Assistant interview\n\nDear Ms Sharma,\n\nThank you for taking the time to meet me today. I enjoyed learning\nabout how your team handles invoices and month-end checks, and it\nmade me even more interested in the role.\n\nI'd like to add that I have also used Excel pivot tables for my\nuncle's shop, which may be useful for the reporting you mentioned.\n\nPlease let me know if I can provide anything more. I look forward\nto hearing from you.\n\nKind regards,\nAnjali Kulkarni\n+91 00000 00000"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice: it thanks the person, mentions something real from the conversation, adds one useful fact, and offers help. It is short. Check the spelling of names. If you have more than one interviewer, send each a short message, or one to the main contact and ask them to pass on your thanks."
+        },
+        {
+          "type": "heading",
+          "text": "Waiting: how long and what to do"
+        },
+        {
+          "type": "paragraph",
+          "text": "The interviewer may have told you when to expect an answer. If they did not, ask at the end: “When might I hear back?”. Then try to be patient. Hiring can be slow, because other candidates are being interviewed and managers are busy."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep applying. Do not stop your search because of one interview, however good it felt.",
+            "Use the time to prepare for the next one, and to learn skills.",
+            "Avoid checking your phone every five minutes. Set times to check, such as morning and evening."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Following up politely"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the date has passed, or a week or two went by without news, a polite follow-up is acceptable. Keep it short and positive."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subject: Following up - Junior Accounts Assistant\n\nDear Ms Sharma,\n\nI hope you are well. I'm writing to ask whether there is any update\non the Junior Accounts Assistant position. I remain very interested\nin the role and would be glad to provide anything else you need.\n\nThank you for your time.\n\nKind regards,\nAnjali Kulkarni"
+        },
+        {
+          "type": "paragraph",
+          "text": "Send one follow-up after about a week, and a second after another week or two if you hear nothing. After that, move on. Do not send many messages or call repeatedly. It can harm your chances."
+        },
+        {
+          "type": "heading",
+          "text": "If you get an offer"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Say thank you and show you are pleased.",
+            "Ask for the offer in writing with title, pay, hours, location, start date and conditions.",
+            "Read it carefully, including any bond, probation or notice terms. Ask about anything unclear.",
+            "Take a day or two to decide, and tell them when you will answer.",
+            "If you accept, reply in writing. If you decline, do it politely and quickly so they can offer the job to someone else.",
+            "If you have several offers, compare pay, learning, the manager, location, hours and growth."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "If you are rejected"
+        },
+        {
+          "type": "paragraph",
+          "text": "Rejection hurts, and nearly everyone gets it, many times. It does not mean you are a poor person or a bad candidate. It often means another candidate matched slightly better, or the company changed plans, or the role was filled from inside. A calm response protects your reputation and your wellbeing."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Reply politely.** “Thank you for letting me know. I enjoyed meeting the team. I would be grateful for any feedback, and I'd like to be considered for future roles.”",
+            "**Ask for feedback, once.** Many employers do not give it, but some do, and it is valuable.",
+            "**Review your notes.** What questions were hard? What can you practise?",
+            "**Choose one or two things to improve** and work on them before the next interview.",
+            "**Look after yourself.** Talk to a friend, take a walk, rest. Then restart."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If rejections make you feel hopeless for a long time, or you feel very low, please talk to someone you trust, such as a family member, a friend, a teacher or a health professional. A job search is stressful, and support helps."
+        },
+        {
+          "type": "heading",
+          "text": "Keep a simple job search tracker"
+        },
+        {
+          "type": "paragraph",
+          "text": "Make a table in a notebook or spreadsheet with these columns."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Company | Role | Date applied | Stage | Contact | Next step | Result\n-------|------|--------------|-------|---------|-----------|-------\n..."
+        },
+        {
+          "type": "paragraph",
+          "text": "Update it after each step. It stops you forgetting follow-ups and lets you see progress, which is encouraging in a long search."
+        },
+        {
+          "type": "heading",
+          "text": "The big picture"
+        },
+        {
+          "type": "paragraph",
+          "text": "Interviewing is a skill, and like any skill it improves with practice and honest review. Each interview teaches you something. Your first interviews may feel clumsy. By the fifth or tenth you will be calmer and more natural. Keep your resume updated, learn something new every week, and ask for help when you need it. Use the interview questions pages, resume tools and roadmaps on this site to keep practising. We wish you a good start to your career."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a thank-you message for your next interview, or for a past one, using the sample as a guide.",
+            "Create your job search tracker with at least five applications.",
+            "Write a polite reply to a rejection, asking for feedback.",
+            "Write three things you will improve before your next interview."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your thank-you message is under 120 words, specific and error free.",
+            "Your tracker has a next step and date for each live application.",
+            "You have a plan for what you will do if a rejection comes."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "After the interview",
+        "nodes": [
+          {
+            "id": "note",
+            "label": "Write notes",
+            "sub": "same day",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "thx",
+            "label": "Thank-you message",
+            "sub": "within 24 hours",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "wait",
+            "label": "Wait and keep applying",
+            "sub": "follow up after a week",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "res",
+            "label": "Offer or learn",
+            "sub": "read offer, review notes",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Right after the interview, write notes on what was asked and how you answered.",
+            "on": [
+              "note"
+            ]
+          },
+          {
+            "say": "Send a short, specific thank-you message within a day.",
+            "flow": [
+              "note>thx:then"
+            ]
+          },
+          {
+            "say": "While you wait, keep applying. If there is no news after a week, send one polite follow-up.",
+            "flow": [
+              "thx>wait:then"
+            ]
+          },
+          {
+            "say": "If you get an offer, read it carefully. If not, ask for feedback and use your notes to improve.",
+            "flow": [
+              "wait>res:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long should I wait before following up after an interview?",
+          "a": "If the employer gave a date, wait until it passes. If not, about a week is reasonable. Send one polite message, and another after a week or two at most."
+        },
+        {
+          "q": "Is it okay to ask for feedback after a rejection?",
+          "a": "Yes, politely and once. Not every employer will reply, but feedback can help you improve for the next interview."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}

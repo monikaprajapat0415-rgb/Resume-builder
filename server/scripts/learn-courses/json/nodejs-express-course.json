@@ -1,0 +1,3382 @@
+{
+  "course": {
+    "title": "Node.js and Express: Build a Back End API from Scratch",
+    "slug": "nodejs-express-course",
+    "summary": "Learn back-end development with Node.js and Express in 15 lessons: modules, async code, routing, middleware, a task API, MongoDB, login with JWT, security, tests and deployment.",
+    "description": "Free Node.js and Express course. 15 lessons: async code, routes, middleware, REST API, MongoDB, JWT login, security, tests and deployment with tested code.",
+    "level": "Beginner",
+    "topic": "Back end",
+    "badge": "JS",
+    "tags": [
+      "nodejs",
+      "express",
+      "rest api",
+      "mongodb",
+      "jwt",
+      "backend"
+    ],
+    "order": 36,
+    "published": true,
+    "minWords": 600,
+    "metaTitle": "Node.js and Express: Free Course",
+    "keywords": "node js course, express js tutorial, learn nodejs for beginners, rest api tutorial, node js mongodb, jwt login node, node js backend course"
+  },
+  "lessons": [
+    {
+      "section": "Node.js Basics",
+      "slug": "what-is-nodejs-and-your-first-script",
+      "title": "What Is Node.js? Install It and Run Your First Script",
+      "metaTitle": "What Is Node.js? Install and First Script",
+      "description": "Learn what Node.js is, what it is used for, how to install it, and how to run JavaScript on your own computer outside the browser. Beginner friendly.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JavaScript began as a language that runs inside web browsers. It made buttons click and menus open. **Node.js** takes the same language and lets it run on a computer or server, outside the browser. That one change means a person who knows JavaScript can also write the back end of a website: the part that stores data, checks passwords and answers requests from the front end."
+        },
+        {
+          "type": "paragraph",
+          "text": "Node.js is not a new language and it is not a framework. It is a **runtime**: a program that reads your JavaScript file and runs it. Under the hood it uses V8, the same engine that runs JavaScript in Chrome, plus a library of tools for things a browser does not allow, such as reading files, opening network connections and starting servers. In this course you will use Node.js to build a real back end, a small task API with login, step by step."
+        },
+        {
+          "type": "heading",
+          "text": "What people build with Node.js"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Web servers and APIs** that a website or a mobile app talks to. This is what you will build.",
+            "**Command line tools**, for example scripts that rename a thousand files or clean a spreadsheet export.",
+            "**Build tools.** Many front end tools you may already use, such as Vite and webpack, run on Node.js.",
+            "**Real-time apps** such as chat, using web sockets.",
+            "**Automation and scheduled jobs**, such as sending a daily report."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Node.js is a good fit when your program spends most of its time waiting for things, such as the network or a database. It is less suited to heavy number crunching on a single thread, such as video editing. We will see why in the lesson on async code."
+        },
+        {
+          "type": "heading",
+          "text": "Install Node.js"
+        },
+        {
+          "type": "paragraph",
+          "text": "Go to the official website, nodejs.org, and download the version marked **LTS**. LTS means long-term support: it receives security fixes for a long time, so it is the safe choice for learning and for real projects. Run the installer and keep the default options. This course needs Node.js 20.11 or newer, and newer LTS versions are fine. If you already have Node.js, you only need to check the version."
+        },
+        {
+          "type": "paragraph",
+          "text": "Open a terminal. On Windows, use PowerShell or the Terminal app. On macOS, use Terminal. On Linux, use your usual terminal. Then type these two commands."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node -v\nnpm -v"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each prints a version number such as `v22.12.0` for Node and `10.9.0` for npm. The numbers on your computer will probably be different, and that is fine. **npm** is Node's package manager. It comes with Node and downloads libraries that other people wrote. You will use it from the next lesson."
+        },
+        {
+          "type": "note",
+          "text": "If the terminal says the command is not found, close it and open a new one. The installer changes your system path, and an old window does not see the change. If it still fails, run the installer again."
+        },
+        {
+          "type": "heading",
+          "text": "The REPL: try JavaScript instantly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Type `node` on its own and press Enter. You get a prompt where you can type JavaScript and see the result straight away. This is called the REPL (read, evaluate, print, loop). It is great for quick experiments."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "> 2 + 3\n5\n> const prices = [120, 80, 650]\nundefined\n> prices.reduce((a, b) => a + b, 0)\n850\n> .exit"
+        },
+        {
+          "type": "paragraph",
+          "text": "Press Ctrl+C twice, or type `.exit`, to leave. The REPL is for testing small ideas. Real programs live in files."
+        },
+        {
+          "type": "heading",
+          "text": "Your first script"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create a new folder called `taskapi` for the whole course, and open it in your editor (VS Code is a popular free choice). Create a file named `hello.js` with the code below."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const name = 'Asha';\nconst hours = 3;\nconsole.log(`Hello, ${name}! You have studied for ${hours} hours.`);\nconsole.log(process.version.startsWith('v') ? 'Node is running' : 'odd');\nconsole.log(process.argv.slice(2));"
+        },
+        {
+          "type": "paragraph",
+          "text": "Run it from the terminal, in the same folder, and add two extra words after the file name."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node hello.js one two"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello, Asha! You have studied for 3 hours.\nNode is running\n[ 'one', 'two' ]"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at what happened. `console.log` printed to the terminal instead of the browser console. The backtick string with `${name}` is a template string, which puts a variable inside text. And `process.argv` is a list of the words typed on the command line. We removed the first two entries with `slice(2)`, because those are the path to Node and the path to your script. `process` is a global object that Node gives you. It describes the running program."
+        },
+        {
+          "type": "heading",
+          "text": "What is different from the browser?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "There is **no** `window` and **no** `document`. A server has no web page. Code that touches the page, such as `document.getElementById`, will fail.",
+            "There **is** a `process` object, a way to read files, and a way to start a server.",
+            "Your code runs **once**, on your machine, and you control the version of Node. In a browser, your code runs on every visitor's device and version.",
+            "The rest of the language is the same: variables, functions, arrays, objects, classes, promises, `async` and `await`."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Because the language is the same, you can already read most of the code in this course. The new part is the tools Node provides, and the habits of back-end work: validating input, handling errors and protecting data."
+        },
+        {
+          "type": "heading",
+          "text": "Where this course goes"
+        },
+        {
+          "type": "paragraph",
+          "text": "There are 15 lessons. First the basics: modules, files and async code. Then plain Node servers, then Express, a library that makes servers easier to write. Then you build and test a small task API with login, store data in a file and in MongoDB, protect it, and get it ready for a server. Every code sample in the course was run before it was written here."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install the LTS version of Node.js and run `node -v` and `npm -v`.",
+            "Create the folder `taskapi` and the file `hello.js`. Change the name and the number of hours.",
+            "Run `node hello.js` with three words after it and check that all three appear in the list.",
+            "Open the REPL, work out the total of three numbers with `reduce`, and leave with `.exit`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`node -v` prints a version that starts with `v20` or higher.",
+            "Running `node hello.js one two` prints your greeting and the list `[ 'one', 'two' ]`.",
+            "You can explain in one sentence why `document` does not exist in Node.js."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From file to running program",
+        "nodes": [
+          {
+            "id": "code",
+            "label": "hello.js",
+            "sub": "your JavaScript",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "node",
+            "label": "Node.js",
+            "sub": "runtime, V8 engine",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "os",
+            "label": "Your computer",
+            "sub": "files, network",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "out",
+            "label": "Terminal output",
+            "sub": "console.log",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You write a JavaScript file, such as hello.js.",
+            "on": [
+              "code"
+            ]
+          },
+          {
+            "say": "You run it with the node command. Node reads the file and runs it with the V8 engine.",
+            "flow": [
+              "code>node:node hello.js"
+            ]
+          },
+          {
+            "say": "Node can use your computer directly: files, the network and the command line.",
+            "flow": [
+              "node>os:uses"
+            ]
+          },
+          {
+            "say": "The results appear in the terminal, because console.log writes there and not in a browser.",
+            "flow": [
+              "os>out:prints"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Node.js a programming language?",
+          "a": "No. The language is JavaScript. Node.js is a runtime that runs JavaScript outside the browser and adds tools for files, networks and servers."
+        },
+        {
+          "q": "Which Node.js version should I install?",
+          "a": "The current LTS (long-term support) version from nodejs.org. It gets security fixes for a long time. This course needs Node.js 20.11 or newer."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Node.js Basics",
+      "slug": "modules-npm-and-package-json",
+      "title": "Modules, npm and package.json Explained",
+      "metaTitle": "Node.js Modules, npm and package.json",
+      "description": "Understand ES modules with import and export, how npm installs packages, what package.json and node_modules are, and how to add scripts to your project.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As a program grows, you cannot keep everything in one file. A **module** is simply a file whose code you can use from other files. Node.js supports the same module system as modern browsers, called **ES modules**, with `import` and `export`. In this lesson you will split code into files, start a proper project with `package.json`, install your first package and add scripts."
+        },
+        {
+          "type": "heading",
+          "text": "Turn on ES modules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Node can read two module styles. The older one, CommonJS, uses `require`. The newer one, ES modules, uses `import`. Most new code and most documentation now use `import`, so this course does too. To tell Node that your project uses it, create a `package.json` file. The easiest way is to let npm do it. Run this inside `taskapi`."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm init -y\nnpm pkg set type=module"
+        },
+        {
+          "type": "paragraph",
+          "text": "`npm init -y` creates `package.json` with default answers. `npm pkg set type=module` adds one line, `\"type\": \"module\"`, which makes every `.js` file in the project an ES module. Without that line, using `import` gives an error such as *Cannot use import statement outside a module*."
+        },
+        {
+          "type": "heading",
+          "text": "Export and import"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create `math.js`. It shares three things: a named function, a named constant, and a default export."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "export function add(a, b) { return a + b; }\nexport const TAX = 0.18;\nexport default function price(net) { return Math.round(net * (1 + TAX)); }"
+        },
+        {
+          "type": "paragraph",
+          "text": "A file can have many **named** exports but only one **default** export. Now create `app.js` and use them."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import price, { add, TAX } from './math.js';\nimport os from 'node:os';\nconsole.log(add(2, 3), TAX, price(100));\nconsole.log(typeof os.cpus().length);"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node app.js"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "5 0.18 118\nnumber"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three rules to remember. First, named imports go inside curly braces and must match the exported names. A default import has no braces, and you choose any name for it. Second, for your own files you must write the **file extension**, `./math.js`, and not just `./math`. Browsers and bundlers sometimes let you skip it, but Node does not. Third, paths for your own files start with `./` or `../`. A name with no dot, such as `express`, means a package from `node_modules`."
+        },
+        {
+          "type": "note",
+          "text": "The check on the last line, `typeof os.cpus().length`, prints `number` whatever your computer is, so the output is the same for everybody. Printing the real number of processor cores would differ per machine."
+        },
+        {
+          "type": "heading",
+          "text": "Built-in modules and the node: prefix"
+        },
+        {
+          "type": "paragraph",
+          "text": "Node ships with many modules that need no installation, such as `node:fs` for files, `node:path` for file paths, `node:os` for facts about the computer, `node:http` for servers, `node:crypto` for security tools and `node:test` for tests. Write the `node:` prefix when you import them, as in `import os from 'node:os'`. It shows the reader, and Node, that this is built in and not a package from the internet."
+        },
+        {
+          "type": "heading",
+          "text": "npm and packages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most real projects use packages that other people wrote and shared on the npm registry, a huge public library. To add one, use `npm install`. Try it with the package we will use later."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm install express"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three things happen. A folder named `node_modules` appears with the package and everything it needs. `package.json` gets a `dependencies` section that lists `express` with a version. And a file named `package-lock.json` records the exact versions installed, so every computer gets the same result."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**`node_modules`** can be huge. Never edit it by hand and never commit it to git. Add `node_modules` to `.gitignore`.",
+            "**`package.json`** lists what your project needs. Commit it.",
+            "**`package-lock.json`** locks exact versions. Commit it too.",
+            "To rebuild `node_modules` on another computer, run `npm install` and npm reads the two files."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Some packages are needed only while you develop, such as test or formatting tools. Install those with `npm install --save-dev name`, and npm lists them under `devDependencies`. On a server, `npm install --omit=dev` skips them."
+        },
+        {
+          "type": "heading",
+          "text": "Version numbers"
+        },
+        {
+          "type": "paragraph",
+          "text": "A version such as `5.3.0` has three parts: major, minor and patch. A patch is a bug fix. A minor adds features without breaking old code. A major may break old code. In `package.json` you will see something like `^5.1.0`. The caret means npm may install newer minor and patch versions, but not a new major one. That protects you from surprise breaking changes while still receiving fixes."
+        },
+        {
+          "type": "heading",
+          "text": "npm scripts"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `scripts` section of `package.json` holds short names for commands. Add these three. We will create the files they use in later lessons, so do not run them yet."
+        },
+        {
+          "type": "code",
+          "lang": "json",
+          "text": "\"scripts\": {\n  \"start\": \"node --env-file=.env server.js\",\n  \"dev\": \"node --watch --env-file=.env server.js\",\n  \"test\": \"node --test\"\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Run `npm start` or `npm test` directly. Other names need `run`, for example `npm run dev`. The flag `--watch` restarts the program every time you save a file, so you do not need a separate tool. The flag `--env-file=.env` loads settings from a file named `.env`. You will meet it in lesson 11."
+        },
+        {
+          "type": "heading",
+          "text": "Safety with packages"
+        },
+        {
+          "type": "paragraph",
+          "text": "A package is code from strangers, and it runs with your permissions. Choose well-known packages with many users and recent updates. Read the name carefully, because fake packages with names that look like popular ones exist. Run `npm audit` now and then to see reported problems in what you have installed, and keep dependencies updated."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run `npm init -y` and `npm pkg set type=module` in `taskapi`.",
+            "Create `math.js` and `app.js` as shown and run `node app.js`.",
+            "Change `TAX` to `0.05`, run again, and check that the price of 100 changes.",
+            "Run `npm install express`, then look at `package.json` and the new files.",
+            "Create `.gitignore` containing the line `node_modules`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`node app.js` prints `5 0.18 118` and then `number`.",
+            "`package.json` shows `\"type\": \"module\"` and a `dependencies` section with `express`.",
+            "Deleting `node_modules` and running `npm install` brings it back."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Your project at a glance",
+        "nodes": [
+          {
+            "id": "pkg",
+            "label": "package.json",
+            "sub": "name, scripts, deps",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "npm",
+            "label": "npm install",
+            "sub": "downloads packages",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "mods",
+            "label": "node_modules",
+            "sub": "library code",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "app",
+            "label": "Your files",
+            "sub": "import ... from",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "package.json describes your project and lists the packages it needs.",
+            "on": [
+              "pkg"
+            ]
+          },
+          {
+            "say": "npm install reads that list and downloads the packages from the npm registry.",
+            "flow": [
+              "pkg>npm:read list"
+            ]
+          },
+          {
+            "say": "The packages are stored in the node_modules folder. Do not edit it and do not commit it.",
+            "flow": [
+              "npm>mods:saves"
+            ]
+          },
+          {
+            "say": "Your own files then load those packages and your other files with import.",
+            "flow": [
+              "mods>app:import"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between dependencies and devDependencies?",
+          "a": "dependencies are needed to run the app. devDependencies are only for development, such as test tools. Install them with --save-dev."
+        },
+        {
+          "q": "Why must I write the file extension in imports?",
+          "a": "In Node.js ES modules, import paths for your own files must include the extension, such as ./math.js. Without it, Node cannot find the file."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Node.js Basics",
+      "slug": "files-paths-and-built-in-modules",
+      "title": "Working with Files and Paths: fs, path and JSON",
+      "metaTitle": "Read and Write Files in Node.js with fs",
+      "description": "Read and write files with node:fs/promises, build safe file paths with node:path, store data as JSON and handle errors such as a missing file.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A browser page is not allowed to read files from your disk. Node.js is. That makes it good for tools that process files, and for small apps that save data in a file. In this lesson you will use two built-in modules, `node:fs/promises` to read and write files, and `node:path` to build file paths, and you will store data as JSON. The file store you write here is the same idea we use for the task API later."
+        },
+        {
+          "type": "heading",
+          "text": "Reading and writing a file"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `fs` module has older callback functions and newer promise functions. Use the promise version, `node:fs/promises`. It works with `async` and `await`, which you will study in the next lesson. In ES modules you can use `await` at the top level of a file, so this works as it is."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { readFile, writeFile } from 'node:fs/promises';\nimport path from 'node:path';\nconst file = path.join(import.meta.dirname, 'tasks.json');\nconst tasks = [{ id: 1, title: 'Learn Node', done: false }];\nawait writeFile(file, JSON.stringify(tasks, null, 2));\nconst text = await readFile(file, 'utf8');\nconst back = JSON.parse(text);\nconsole.log(back.length, back[0].title);\ntry {\n  await readFile(path.join(import.meta.dirname, 'missing.json'), 'utf8');\n} catch (err) {\n  console.log(err.code, err.message.slice(0,40));\n}"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node files.js"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1 Learn Node\nENOENT ENOENT: no such file or directory, open "
+        },
+        {
+          "type": "paragraph",
+          "text": "Walk through it line by line. `writeFile` creates the file, or replaces it if it exists. `readFile` with the encoding `'utf8'` returns text, and without an encoding it returns raw bytes. `JSON.stringify(tasks, null, 2)` turns the array into text with two-space indentation, which is easy to read. `JSON.parse` turns the text back into JavaScript objects. The last part reads a file that does not exist, and the `catch` block shows the error. The text in the output above is cut short because the real message continues with the full path of the missing file, which is different on every computer."
+        },
+        {
+          "type": "heading",
+          "text": "Build paths with the path module"
+        },
+        {
+          "type": "paragraph",
+          "text": "Never join paths by hand with `'/'` or `'\\'`. Windows and Linux use different separators. `path.join` does it correctly for the system it runs on. And never depend on the **current folder**, which is wherever you started the program. If you run `node` from another folder, a path like `./tasks.json` points to a different place. Instead, build paths from the folder that contains the script."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`import.meta.dirname` is the folder of the current file. It is available in current Node versions (20.11 and newer).",
+            "`path.join(import.meta.dirname, 'tasks.json')` builds a full path to a file beside your script.",
+            "`path.extname('photo.png')` returns `.png`, and `path.basename('/a/b/c.txt')` returns `c.txt`.",
+            "`path.resolve('data')` turns a relative path into an absolute one, starting from the current folder."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Error codes"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a file operation fails, the error has a `code`. The most common are `ENOENT` (the file or folder does not exist), `EACCES` (no permission) and `EEXIST` (it already exists). Check `err.code` to decide what to do. A missing file at start-up is often fine, for example the first time the app runs, and the program should create an empty list. Any other error should stop the program or be reported."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "async function loadTasks(file) {\n  try {\n    return JSON.parse(await readFile(file, 'utf8'));\n  } catch (err) {\n    if (err.code === 'ENOENT') return [];   // first run: no file yet\n    throw err;                              // anything else is a real problem\n  }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The last line, `throw err`, passes the problem on instead of hiding it. Silent failures are the hardest bugs to find."
+        },
+        {
+          "type": "heading",
+          "text": "Other useful file functions"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`readdir(folder)` lists the names inside a folder.",
+            "`mkdir(folder, { recursive: true })` creates a folder and any missing parent folders, and does nothing if it already exists.",
+            "`appendFile(file, text)` adds text to the end of a file. It suits simple logs.",
+            "`rename`, `copyFile` and `rm` move, copy and delete files. Be careful with `rm`: it does not use a recycle bin.",
+            "`stat(file)` returns information such as size and last modified time."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Limits of storing data in a file"
+        },
+        {
+          "type": "paragraph",
+          "text": "A JSON file is a very good way to learn, and it is fine for a tiny personal tool. But it has real limits. The whole file must be rewritten on every change. If two requests write at the same moment, one change can be lost. It cannot search large data quickly. And if the program crashes in the middle of writing, the file can be left half written. Databases solve these problems. Later in this course you will use a file first, because it is simple, and then MongoDB."
+        },
+        {
+          "type": "note",
+          "text": "Never save passwords, tokens or secrets as plain text in a file that is committed to git or served to the public. We will deal with secrets properly in lesson 11."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `files.js` as shown and run it. Open `tasks.json` in your editor and look at it.",
+            "Add a second task to the array and run again. Check that the file has two tasks.",
+            "Write a function `loadTasks(file)` that returns an empty list when the file is missing, and test it with a file name that does not exist.",
+            "Use `appendFile` to write a line with the current date and time to `log.txt` each time the script runs."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`node files.js` prints `1 Learn Node` and then an `ENOENT` line.",
+            "`tasks.json` contains your tasks with two-space indentation.",
+            "`loadTasks('nothing.json')` returns `[]` instead of crashing."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Saving and loading data",
+        "nodes": [
+          {
+            "id": "obj",
+            "label": "JS object",
+            "sub": "tasks array",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "json",
+            "label": "JSON text",
+            "sub": "JSON.stringify",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "file",
+            "label": "tasks.json",
+            "sub": "writeFile",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "back",
+            "label": "Objects again",
+            "sub": "readFile + parse",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Your data lives in memory as JavaScript objects and arrays.",
+            "on": [
+              "obj"
+            ]
+          },
+          {
+            "say": "JSON.stringify turns it into text that can be saved.",
+            "flow": [
+              "obj>json:stringify"
+            ]
+          },
+          {
+            "say": "writeFile saves the text in a file on disk.",
+            "flow": [
+              "json>file:writeFile"
+            ]
+          },
+          {
+            "say": "Later, readFile and JSON.parse bring the data back as objects.",
+            "flow": [
+              "file>back:readFile"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What does ENOENT mean?",
+          "a": "It means the file or folder does not exist. It is the usual error code when you read a missing file."
+        },
+        {
+          "q": "Why use path.join instead of joining strings?",
+          "a": "path.join uses the right separator for the operating system and cleans up extra slashes, so the same code works on Windows, macOS and Linux."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Node.js Basics",
+      "slug": "async-javascript-promises-and-event-loop",
+      "title": "Async JavaScript in Node: Promises, async/await and the Event Loop",
+      "metaTitle": "Async Node.js: Promises, await, Event Loop",
+      "description": "Understand why Node.js is asynchronous, how promises and async/await work, how to handle errors, run tasks in parallel and avoid blocking the event loop.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Almost everything useful in a server takes time: reading a file, asking a database, calling another service. If the program stopped and waited for each one, a single slow request would freeze every other visitor. Node.js avoids this with **asynchronous** code. This lesson is the most important idea in the whole course, so take your time."
+        },
+        {
+          "type": "heading",
+          "text": "One thread and an event loop"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your JavaScript runs on a single thread, which means one line at a time. But slow work, such as file and network operations, is handed to the operating system. While the system works, Node carries on with other code. When the work is done, the result is put in a queue, and the **event loop** takes it from the queue and runs your code that was waiting for it. Think of a waiter in a restaurant. The waiter does not stand at the kitchen door until your meal is ready. They take your order, serve other tables, and bring your food when the kitchen calls."
+        },
+        {
+          "type": "paragraph",
+          "text": "This design handles thousands of waiting connections with little memory. The price is one rule: **never block the thread** with long work. If you run a loop that takes five seconds, no other request is answered for five seconds."
+        },
+        {
+          "type": "heading",
+          "text": "Promises"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **promise** is an object that stands for a value that is not ready yet. It is in one of three states: pending, fulfilled (with a value) or rejected (with an error). You attach code to it with `.then` for success and `.catch` for failure. Most modern Node functions, including `fs/promises` and `fetch`, return promises."
+        },
+        {
+          "type": "heading",
+          "text": "async and await"
+        },
+        {
+          "type": "paragraph",
+          "text": "`async` and `await` let you write promise code that reads from top to bottom. Putting `await` before a promise pauses **that function** until the promise settles, and gives you the value. The program as a whole is not paused: other work continues. You can use `await` only inside an `async` function, or at the top level of an ES module file. Run this example."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));\nconsole.log('1 start');\nsetTimeout(() => console.log('3 timer'), 0);\nPromise.resolve().then(() => console.log('2.5 promise'));\nconsole.log('2 end of script');\nasync function getUser(id) {\n  await sleep(50);\n  if (id !== 1) throw new Error('No user ' + id);\n  return { id, name: 'Asha' };\n}\ntry {\n  console.log(await getUser(1));\n  console.log(await getUser(2));\n} catch (e) { console.log('caught:', e.message); }\nconst t = Date.now();\nconst [a, b] = await Promise.all([getUser(1), getUser(1)]);\nconsole.log('parallel ok', Date.now() - t < 120, a.name, b.name);"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node async.js"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1 start\n2 end of script\n2.5 promise\n3 timer\n{ id: 1, name: 'Asha' }\ncaught: No user 2\nparallel ok true Asha Asha"
+        },
+        {
+          "type": "paragraph",
+          "text": "Study the order of the first four lines. The code runs from top to bottom: line `1`, then it schedules a timer and a promise, then line `2`. Only after the main script finishes does Node run the waiting work. Promise callbacks run **before** timer callbacks, even a timer set to zero milliseconds. This surprises many beginners, and you do not need to memorise it. Just remember that async results never appear in the middle of your current code."
+        },
+        {
+          "type": "heading",
+          "text": "Handling errors"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an awaited promise is rejected, `await` throws the error, and you catch it with an ordinary `try` and `catch`, as shown with `getUser(2)`. If you forget, an unhandled rejection can crash your program or leave a request hanging. Two habits help: use `try` and `catch` where you can do something useful about the error, and let other errors travel upwards to one central place. In Express, that central place is an error handler, which you will build in lesson 10."
+        },
+        {
+          "type": "heading",
+          "text": "Sequential or parallel?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two awaits one after the other run one after the other. If the two tasks do not depend on each other, start both first and wait for both together with `Promise.all`. In the example, two 50 ms calls finish in about 50 ms in total, not 100 ms. If one promise in `Promise.all` rejects, the whole thing rejects. Use `Promise.allSettled` when you want every result, whether it worked or failed."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "// slower: one after the other\nconst a = await getUser(1);\nconst b = await getUser(2);\n\n// faster when independent: both at once\nconst [x, y] = await Promise.all([getUser(1), getUser(1)]);"
+        },
+        {
+          "type": "heading",
+          "text": "A common mistake: forgetting await"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you forget `await`, you get a promise object instead of the value. You will see output such as `Promise { <pending> }`, and a later line fails with an odd error. When a value looks strange, check that every async call has `await`. Another mistake is using `await` inside `forEach`. The loop does not wait. Use a `for...of` loop, or `Promise.all` with `map`."
+        },
+        {
+          "type": "heading",
+          "text": "Do not block the event loop"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Avoid long synchronous work in request code, such as huge loops or reading a big file with `readFileSync`.",
+            "Functions ending in `Sync` block the thread. They are fine in a start-up script, but not while serving requests.",
+            "For truly heavy computing, use worker threads or a separate service."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "You do not need to understand every detail of the event loop to write good Node code. The practical rules are: use `await` for slow work, use `Promise.all` for independent work, catch errors, and never run long loops inside a request."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `async.js` and run it. Predict the order of the first four lines before you run it.",
+            "Add `getUser(3)` and `getUser(4)` inside `Promise.all` and measure the time with `Date.now()`.",
+            "Change `Promise.all` to `Promise.allSettled` and print the results. Make one of the calls fail on purpose.",
+            "Remove one `await` on purpose and see what is printed. Then put it back."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The first four lines print in the order `1`, `2`, `2.5`, `3`.",
+            "The parallel version takes about 50 ms, not 100 ms, and prints `parallel ok true`.",
+            "You can say what `await` does in your own words."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The event loop in action",
+        "nodes": [
+          {
+            "id": "code",
+            "label": "Your code",
+            "sub": "runs one line at a time",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "os",
+            "label": "System work",
+            "sub": "files, network, timers",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "queue",
+            "label": "Queue",
+            "sub": "finished results wait",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "loop",
+            "label": "Event loop",
+            "sub": "runs waiting code",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Your code runs on one thread. When it asks for slow work, it does not wait.",
+            "on": [
+              "code"
+            ]
+          },
+          {
+            "say": "The slow work is handed to the system, such as reading a file or waiting for the network.",
+            "flow": [
+              "code>os:start"
+            ]
+          },
+          {
+            "say": "When the work is done, its result is put in a queue.",
+            "flow": [
+              "os>queue:done"
+            ]
+          },
+          {
+            "say": "The event loop takes results from the queue and runs the code that was waiting, such as the code after await.",
+            "flow": [
+              "queue>loop:next"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Node.js single-threaded?",
+          "a": "Your JavaScript runs on one thread, but slow work like file and network operations is done by the system and its results come back through the event loop. Heavy computing can still block it."
+        },
+        {
+          "q": "When should I use Promise.all?",
+          "a": "When you have several independent async tasks. Start them together and wait for all, which is faster than awaiting them one after the other."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Node.js Basics",
+      "slug": "your-first-http-server-with-node",
+      "title": "Your First HTTP Server with Plain Node.js",
+      "metaTitle": "Build a Plain Node.js HTTP Server",
+      "description": "Learn how HTTP requests and responses work and build a small server with node:http. See why frameworks like Express exist and how to test with curl.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before using Express, it is worth building one tiny server with only what Node provides. It takes five minutes, and afterwards Express will make sense, because you will see the work that it does for you. In this lesson you will learn how a web request is structured, write a server with the built-in `node:http` module and test it with `curl`."
+        },
+        {
+          "type": "heading",
+          "text": "What happens in a web request"
+        },
+        {
+          "type": "paragraph",
+          "text": "HTTP is the conversation between a client, such as a browser, a phone app or `curl`, and a server. The client sends a **request**: a **method** (what to do), a **path** (which thing), headers (extra information) and sometimes a body (data). The server sends back a **response**: a **status code** (how it went), headers and usually a body. Learn these methods first."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**GET** reads data. It should not change anything.",
+            "**POST** creates something new, usually with data in the body.",
+            "**PUT** and **PATCH** change something that exists. PUT replaces it, PATCH changes part of it.",
+            "**DELETE** removes something."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "And these status codes. The first digit tells the story: 2 means success, 3 means redirect, 4 means the client made a mistake, and 5 means the server had a problem."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**200 OK**: it worked. **201 Created**: something new was made. **204 No Content**: it worked and there is nothing to send back.",
+            "**400 Bad Request**: the request data is wrong. **401 Unauthorized**: log in first. **403 Forbidden**: you are logged in but not allowed. **404 Not Found**: no such thing.",
+            "**429 Too Many Requests**: slow down. **500 Internal Server Error**: the server broke."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A server in a few lines"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create `server.js` in a new folder, or in `taskapi` for this lesson."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import http from 'node:http';\nconst server = http.createServer((req, res) => {\n  if (req.method === 'GET' && req.url === '/') {\n    res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });\n    res.end('Hello from plain Node');\n  } else if (req.method === 'GET' && req.url === '/api/time') {\n    res.writeHead(200, { 'Content-Type': 'application/json' });\n    res.end(JSON.stringify({ iso: new Date().toISOString() }));\n  } else {\n    res.writeHead(404, { 'Content-Type': 'application/json' });\n    res.end(JSON.stringify({ error: 'Not found' }));\n  }\n});\nserver.listen(3000, () => console.log('Listening on http://localhost:3000'));"
+        },
+        {
+          "type": "paragraph",
+          "text": "`http.createServer` takes a function that runs for **every** request. It receives `req`, which describes the request, and `res`, which you use to answer. `res.writeHead` sets the status code and headers, and `res.end` sends the body and finishes the response. `server.listen(3000)` starts waiting for connections on port 3000. A port is like a door number on your computer. Run it."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node server.js"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Listening on http://localhost:3000"
+        },
+        {
+          "type": "paragraph",
+          "text": "The program does not finish. It keeps running and waiting for requests. Leave it running, open a **second** terminal, and test it with `curl`, a command line tool for making requests. Windows 10 and 11, macOS and most Linux systems include it. Or just open the address in a browser."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl http://localhost:3000/\ncurl http://localhost:3000/api/time\ncurl -i http://localhost:3000/nope"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello from plain Node\n{\"iso\":\"2026-10-28T04:00:00.000Z\"}\nHTTP/1.1 404 Not Found\n...\n{\"error\":\"Not found\"}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The time in your output will be the time on your computer. The `-i` flag makes curl print the status line and headers as well. Stop the server with Ctrl+C in the first terminal."
+        },
+        {
+          "type": "note",
+          "text": "If you see an error saying the address is already in use (`EADDRINUSE`), another program, or an old copy of your server, is using port 3000. Stop it, or change the number."
+        },
+        {
+          "type": "heading",
+          "text": "Why people use Express"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at what you had to do by hand. You compared `req.method` and `req.url` with an `if` chain. You set the content type each time. You turned objects into JSON text yourself. For a real API, you would also have to read the request body in pieces, parse the JSON, split the query string from the path, pull out values from URLs such as `/api/tasks/7`, handle errors in one place and check logins. That is a lot of repeated, easy-to-get-wrong code."
+        },
+        {
+          "type": "paragraph",
+          "text": "Express is a small, popular library that handles all this for you. It is built directly on `node:http`, so everything you learned here still applies. In the next lesson you will build the same server in about half the lines."
+        },
+        {
+          "type": "heading",
+          "text": "Do not leave the server open to the world"
+        },
+        {
+          "type": "paragraph",
+          "text": "By default, a server started on your own computer is reachable from your own machine, and on some systems also from the local network, depending on your firewall. While learning, that is fine. Do not put real passwords or private data into a practice server, and never expose a practice server to the internet."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `server.js` and start it. Test all three URLs with curl or the browser.",
+            "Add a route `GET /api/hello` that returns `{ \"message\": \"Hello\" }` as JSON.",
+            "Change the port to 3010 and test again.",
+            "Use `curl -i` and find the status code and the `Content-Type` header of each response."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`curl http://localhost:3000/` prints `Hello from plain Node`.",
+            "An unknown path returns status 404 and a JSON error.",
+            "You can name one thing Express would do for you that you wrote by hand here."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "One request, one response",
+        "nodes": [
+          {
+            "id": "client",
+            "label": "Client",
+            "sub": "browser, app, curl",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "req",
+            "label": "Request",
+            "sub": "GET /api/time",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "server",
+            "label": "Your server",
+            "sub": "createServer",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Response",
+            "sub": "200 + JSON",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A client, such as a browser, a phone app or curl, wants some data.",
+            "on": [
+              "client"
+            ]
+          },
+          {
+            "say": "It sends a request with a method and a path, for example GET /api/time.",
+            "flow": [
+              "client>req:sends"
+            ]
+          },
+          {
+            "say": "Your server function runs for the request and decides what to answer.",
+            "flow": [
+              "req>server:arrives"
+            ]
+          },
+          {
+            "say": "It sends a response with a status code and a body, and the client shows or uses it.",
+            "flow": [
+              "server>res:answers"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between 401 and 403?",
+          "a": "401 means the client is not logged in or has no valid login. 403 means the client is logged in but is not allowed to do that action."
+        },
+        {
+          "q": "Do I need Express to build a server?",
+          "a": "No. node:http is enough, but you must write much repeated code for routing, JSON bodies and errors. Express removes most of that."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Express",
+      "slug": "your-first-express-server",
+      "title": "Your First Express Server: Routes, Requests and Responses",
+      "metaTitle": "Your First Express Server Step by Step",
+      "description": "Install Express, create a server with routes, learn what req and res contain, send text and JSON, and restart automatically while you edit with node --watch.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Express is the most used web framework for Node.js. It is small, it has been around for many years and a huge amount of documentation and examples exist for it. Express does not change how Node works. It adds a clean way to describe which code answers which request. In this lesson you will build the same kind of server as in lesson 5, but with far less code."
+        },
+        {
+          "type": "heading",
+          "text": "Install and start"
+        },
+        {
+          "type": "paragraph",
+          "text": "Inside your `taskapi` folder, you already ran `npm install express` in lesson 2. If not, run it now. Create a file `server.js` with this code. This course uses Express 5, which is the current major version. Most of what you learn also applies to Express 4, and we point out the differences where they matter."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\n\nconst app = express();\n\napp.get('/', (req, res) => {\n  res.send('Hello from Express');\n});\n\napp.get('/api/health', (req, res) => {\n  res.json({ ok: true, time: new Date().toISOString() });\n});\n\nconst PORT = 3000;\napp.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));"
+        },
+        {
+          "type": "paragraph",
+          "text": "Start it with `node server.js`, or better, with `npm run dev` after you have added the scripts from lesson 2. Then test it."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl http://localhost:3000/\ncurl http://localhost:3000/api/health"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello from Express\n{\"ok\":true,\"time\":\"2026-10-28T04:00:00.000Z\"}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The time you see will be your current time. Now look at the code in four parts."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`express()` creates the **app**, an object that holds your routes and settings.",
+            "`app.get(path, handler)` says: when a GET request arrives for this path, run this function. There are matching methods `app.post`, `app.patch`, `app.put` and `app.delete`.",
+            "The handler receives `req` (the request) and `res` (the response).",
+            "`app.listen(port, callback)` starts the server. The callback runs once it is ready."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The request object, req"
+        },
+        {
+          "type": "paragraph",
+          "text": "The request object describes what the client sent. You will use these parts all the time."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`req.method` and `req.originalUrl`: the method and the full URL path with the query string.",
+            "`req.params`: values taken from the path, such as the `7` in `/api/tasks/7`. Lesson 7 covers this.",
+            "`req.query`: values after the question mark, such as `?done=true`.",
+            "`req.body`: the data sent in the body of a POST or PATCH. It needs a body parser, which lesson 8 covers.",
+            "`req.get('Authorization')`: reads one request header.",
+            "`req.ip`: the address of the client."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The response object, res"
+        },
+        {
+          "type": "paragraph",
+          "text": "You must send exactly one response for each request. If you never send one, the client waits until it times out. If you send two, Node throws an error. These are the methods you will use."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`res.send('text')` sends text, HTML or a buffer, and sets the content type for you.",
+            "`res.json(object)` converts a JavaScript object into JSON and sets `Content-Type: application/json`. This is the main method for APIs.",
+            "`res.status(404)` sets the status code and returns `res`, so you can chain: `res.status(404).json({ error: 'Not found' })`.",
+            "`res.status(204).end()` sends an empty response, used after a delete.",
+            "`res.set('Header-Name', 'value')` sets a header.",
+            "`res.redirect('/other')` sends the client to another URL."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "A very common beginner mistake: writing `res.json(...)` and then, in the next line, running more code that also calls `res.send`. After you respond, use `return`, as in `return res.status(404).json(...)`, so that the function stops."
+        },
+        {
+          "type": "heading",
+          "text": "Restart automatically while you work"
+        },
+        {
+          "type": "paragraph",
+          "text": "Node reads your file once at start-up. If you change the code, the old version keeps running until you restart. Instead of stopping and starting by hand, run `node --watch server.js`. Node watches the files it loaded and restarts whenever one changes. That is what the `dev` script from lesson 2 does."
+        },
+        {
+          "type": "heading",
+          "text": "Ports and the PORT variable"
+        },
+        {
+          "type": "paragraph",
+          "text": "We used the fixed port 3000. On a real server, you often cannot choose the port yourself, because a hosting service or a process manager gives it to you through an environment variable called `PORT`. Lesson 11 shows how to read it with a fallback, so the same code runs on your laptop and on a server."
+        },
+        {
+          "type": "heading",
+          "text": "Express 5 handles async errors"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Express 4, if an `async` handler threw an error or rejected a promise, the error was not caught and you had to wrap every handler by hand. Express 5 catches rejected promises from handlers and passes them to the error handler for you. That makes async handlers much simpler, and you will rely on it from lesson 9."
+        },
+        {
+          "type": "heading",
+          "text": "Common problems"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**`Cannot GET /something`**: no route matches. Check the path and the method. A POST route does not answer a GET request.",
+            "**The browser shows old content**: your code did not restart. Use `--watch`.",
+            "**`EADDRINUSE`**: the port is already used by another copy of the server. Stop it.",
+            "**`Error [ERR_MODULE_NOT_FOUND]`**: you forgot `.js` in a file import, or the package is not installed."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `server.js` with the code above and start it with `node --watch server.js`.",
+            "Add a route `GET /api/hello/world` that returns `{ \"message\": \"Hello, world\" }`.",
+            "Change the text of the home page while the server runs and refresh. Check that the change appears.",
+            "Use `curl -i` on `/api/health` and find the `Content-Type` header."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The browser shows `Hello from Express` at `http://localhost:3000/`.",
+            "`/api/health` returns JSON with `ok` set to `true`.",
+            "After saving a change, the terminal shows that the server restarted and the new text appears."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Express answers a request",
+        "nodes": [
+          {
+            "id": "req",
+            "label": "Request",
+            "sub": "GET /api/health",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "app",
+            "label": "Express app",
+            "sub": "finds the route",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "handler",
+            "label": "Your handler",
+            "sub": "(req, res) => ...",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Response",
+            "sub": "res.json({ ok })",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A request arrives, for example GET /api/health.",
+            "on": [
+              "req"
+            ]
+          },
+          {
+            "say": "Express looks for a route that matches the method and the path.",
+            "flow": [
+              "req>app:arrives"
+            ]
+          },
+          {
+            "say": "It calls your handler function and gives it the request and response objects.",
+            "flow": [
+              "app>handler:calls"
+            ]
+          },
+          {
+            "say": "Your handler sends one response, for example with res.json.",
+            "flow": [
+              "handler>res:sends"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between res.send and res.json?",
+          "a": "res.send sends text, HTML or a buffer. res.json converts an object to JSON and sets the JSON content type. Use res.json for APIs."
+        },
+        {
+          "q": "Why does my browser show the old version after I edit the code?",
+          "a": "Node does not reload code by itself. Restart the server, or start it with node --watch so it restarts when files change."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Express",
+      "slug": "express-routing-params-query-and-routers",
+      "title": "Express Routing: URL Params, Query Strings and Routers",
+      "metaTitle": "Express Routing, Params and Query Strings",
+      "description": "Learn how Express routes work: method and path, URL parameters, query strings, status codes, route order and splitting routes into files with Router.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Routing means deciding which code answers which request. Each route is a combination of an HTTP method and a path. A good API uses the method to say what to do and the path to say which thing, for example `GET /api/tasks/7` means read task 7 and `DELETE /api/tasks/7` means remove it. In this lesson you will build read-only task routes with parameters and filters, and then learn how to organise routes in separate files."
+        },
+        {
+          "type": "heading",
+          "text": "Route parameters"
+        },
+        {
+          "type": "paragraph",
+          "text": "A segment of the path that starts with a colon is a **parameter**. Express puts the matching part of the real URL into `req.params`. For the route `/api/tasks/:id` and the request `/api/tasks/2`, `req.params.id` is the **text** `'2'`. Parameters are always strings, so convert them with `Number()` when you need a number."
+        },
+        {
+          "type": "heading",
+          "text": "Query strings"
+        },
+        {
+          "type": "paragraph",
+          "text": "The part of the URL after a question mark is the **query string**, such as `?done=true&sort=title`. Express parses it into `req.query`. Use the path for *which thing*, and the query string for *how to filter, sort or page the list*. Query values are also strings, and a key can come as an array if it is repeated, so check the value before using it. Try the next example."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\nconst app = express();\n\nconst tasks = [\n  { id: 1, title: 'Learn Node', done: true },\n  { id: 2, title: 'Learn Express', done: false },\n  { id: 3, title: 'Build an API', done: false },\n];\n\napp.get('/api/tasks', (req, res) => {\n  const { done } = req.query;               // /api/tasks?done=true\n  let list = tasks;\n  if (done === 'true') list = tasks.filter((t) => t.done);\n  if (done === 'false') list = tasks.filter((t) => !t.done);\n  res.json(list);\n});\n\napp.get('/api/tasks/:id', (req, res) => {\n  const task = tasks.find((t) => t.id === Number(req.params.id));\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\napp.listen(3000, () => console.log('Server running'));"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl \"http://localhost:3000/api/tasks?done=false\"\ncurl http://localhost:3000/api/tasks/2\ncurl -i http://localhost:3000/api/tasks/99"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "[{\"id\":2,\"title\":\"Learn Express\",\"done\":false},{\"id\":3,\"title\":\"Build an API\"...}]\n{\"id\":2,\"title\":\"Learn Express\",\"done\":false}\nHTTP/1.1 404 Not Found\n...\n{\"error\":\"Task not found\"}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice the filter. We compare `done` with the text `'true'` and `'false'`, because the query string only holds text. Any other value, such as `?done=maybe`, simply returns the full list here. In a stricter API you could answer 400. Notice also that the one-task route answers `404` with a JSON message when the id is not found. A request to `/api/tasks/abc` also gets 404, because `Number('abc')` is `NaN`, which matches no id."
+        },
+        {
+          "type": "note",
+          "text": "Put quotation marks around a URL that contains `?` or `&` when you use curl, as above. Otherwise your terminal may treat the `&` as a command separator."
+        },
+        {
+          "type": "heading",
+          "text": "Choose good status codes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`200` for a successful read or update.",
+            "`201` after creating something, ideally with a `Location` header that gives its address.",
+            "`204` for a successful delete with nothing to return.",
+            "`400` when the client's data is invalid, `404` when the thing does not exist.",
+            "Do not return `200` with a body that says `{ error: ... }`. Clients, tests and monitoring tools rely on the status code."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Route order matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Express tries routes **in the order you wrote them** and uses the first one that sends a response. A general route placed before a specific one can swallow requests. For example, if `/api/tasks/:id` comes before `/api/tasks/stats`, then a request to `/api/tasks/stats` is matched with `id` equal to `stats`. Put the specific routes first and the ones with parameters after them."
+        },
+        {
+          "type": "heading",
+          "text": "Express 5 path syntax"
+        },
+        {
+          "type": "paragraph",
+          "text": "Express 5 uses a stricter path syntax than Express 4. A plain `*` wildcard is no longer allowed, and `app.get('/old/*', ...)` throws an error on start-up. A wildcard must have a name, as in `/files/*splat`, and the matched parts are then found in `req.params.splat`. An optional part is written with braces, as in `/users{/:id}`, which matches both `/users` and `/users/7`. If you copy older Express 4 examples from the internet and get a `Missing parameter name` error, this is the reason."
+        },
+        {
+          "type": "heading",
+          "text": "Split routes into files with Router"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an app grows past a few routes, one file becomes hard to read. Express has `Router`, a small mini-app that holds a group of routes. You write the routes with paths that are relative to the place where you mount the router."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "// routes/tasks.js\nimport { Router } from 'express';\n\nexport function tasksRouter() {\n  const router = Router();\n  router.get('/', (req, res) => res.json([]));          // GET /api/tasks\n  router.get('/:id', (req, res) => res.json({}));       // GET /api/tasks/5\n  return router;\n}\n\n// app.js\nimport { tasksRouter } from './routes/tasks.js';\napp.use('/api/tasks', tasksRouter());"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the router file, the route `'/'` means the root of wherever the router is mounted. `app.use('/api/tasks', ...)` mounts it under that prefix. Wrapping the router in a function, as we did here, lets you pass dependencies in, such as a data store, and it makes the code easy to test. The final project in this course uses exactly this layout, with one router for tasks and one for login."
+        },
+        {
+          "type": "heading",
+          "text": "Keep URLs predictable"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use nouns in the plural for things: `/api/tasks`, `/api/users`.",
+            "Do not put verbs in paths: prefer `POST /api/tasks` over `/api/createTask`.",
+            "Use lowercase letters and hyphens.",
+            "Keep a prefix such as `/api` or `/api/v1`, so you can add a front end on the same domain, and you can change the API later without breaking old clients."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `server.js` with the routes above and test the three curl commands.",
+            "Add `?sort=title` support: when it is present, return the tasks sorted by title.",
+            "Add a route `GET /api/tasks/stats` that returns how many tasks are done and how many are not. Put it **before** the `:id` route and test it. Then move it after and see what happens.",
+            "Move the task routes into `routes/tasks.js` using `Router`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`/api/tasks?done=true` returns only tasks that are done.",
+            "`/api/tasks/99` returns status 404 with a JSON message.",
+            "`/api/tasks/stats` returns your counts, not a 404."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Matching a URL to a route",
+        "nodes": [
+          {
+            "id": "url",
+            "label": "URL",
+            "sub": "/api/tasks/2?x=1",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "match",
+            "label": "Route match",
+            "sub": "method + path",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "parts",
+            "label": "params + query",
+            "sub": "id = 2, x = 1",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "send",
+            "label": "Response",
+            "sub": "200 or 404",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The request URL has a path and an optional query string.",
+            "on": [
+              "url"
+            ]
+          },
+          {
+            "say": "Express compares the method and path with your routes in order and picks the first match.",
+            "flow": [
+              "url>match:compare"
+            ]
+          },
+          {
+            "say": "The values in the path go to req.params and the values after the question mark go to req.query.",
+            "flow": [
+              "match>parts:extract"
+            ]
+          },
+          {
+            "say": "Your code uses them to build the response, with the right status code.",
+            "flow": [
+              "parts>send:respond"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why is req.params.id a string?",
+          "a": "URLs are text, so every parameter and query value arrives as a string. Convert it with Number() when you need a number, and check that the result is valid."
+        },
+        {
+          "q": "Why does the order of routes matter?",
+          "a": "Express uses the first matching route. A general route written before a specific one can capture requests meant for the specific one."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Express",
+      "slug": "express-middleware-explained",
+      "title": "Express Middleware Explained: next(), Logging and express.json()",
+      "metaTitle": "Express Middleware: next() and Logging",
+      "description": "Understand Express middleware: functions that run in order on every request. Write a logger, parse JSON bodies and apply middleware to chosen routes.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Middleware is the idea that makes Express flexible. A middleware is a function that runs **between** the arrival of a request and your route handler. It can look at the request, change it, stop it with a response, or pass it on to the next function by calling `next()`. Logging, reading JSON bodies, checking logins, handling cross-origin requests and limiting traffic are all middleware. If you understand this lesson, the rest of Express becomes easy."
+        },
+        {
+          "type": "heading",
+          "text": "The shape of a middleware"
+        },
+        {
+          "type": "paragraph",
+          "text": "A middleware takes three arguments: `req`, `res` and `next`. It must do one of two things. Either it sends a response, which ends the chain, or it calls `next()`, which passes control on. If it does neither, the request hangs until the client gives up. You register middleware with `app.use`. Here is a small logger and a JSON body parser."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\nconst app = express();\n\napp.use((req, res, next) => {\n  const start = Date.now();\n  res.on('finish', () => {\n    console.log(`${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`);\n  });\n  next();\n});\n\napp.use(express.json());\n\napp.post('/api/echo', (req, res) => {\n  res.json({ youSent: req.body });\n});\n\napp.listen(3000, () => console.log('Server running'));"
+        },
+        {
+          "type": "paragraph",
+          "text": "The first middleware records the start time, asks Node to run a function when the response is finished, and then calls `next()`. When the response finishes, it prints the method, the URL, the status code and the time taken. The second one, `express.json()`, is built into Express. It reads the request body, and if the content type is JSON, it parses it and puts the result in `req.body`. Then the route can use `req.body`. Try it."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl -X POST http://localhost:3000/api/echo -H \"Content-Type: application/json\" -d '{\"title\":\"Hi\"}'"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"youSent\":{\"title\":\"Hi\"}}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The server terminal prints one line for each request, such as `POST /api/echo 200 9ms`. The number of milliseconds will differ on your computer. If you use Windows PowerShell, quoting rules for curl are different. A simple way is to test with a tool such as the REST Client extension for VS Code, or to use `curl.exe` with the data in a file. The code works the same."
+        },
+        {
+          "type": "heading",
+          "text": "Order is everything"
+        },
+        {
+          "type": "paragraph",
+          "text": "Middleware and routes run in the order you write them. The logger must be registered **before** the routes you want it to log. `express.json()` must come before any route that reads `req.body`. If you put a route first, its response ends the chain and the middleware below never runs. When something does not work, a good first check is the order of the `app.use` lines."
+        },
+        {
+          "type": "heading",
+          "text": "What express.json() does when things go wrong"
+        },
+        {
+          "type": "list",
+          "items": [
+            "If the request has no JSON content type, `req.body` is `undefined` in Express 5, not an empty object. A line such as `req.body.title` then throws an error. Always check the body before you use it, which is what the validation helper in lesson 10 does.",
+            "If the body is not valid JSON, the parser rejects the request with a 400 error. Without your own error handler, Express answers with an HTML page that contains a stack trace. Lesson 10 replaces that with a clean JSON message.",
+            "By default, the parser accepts bodies up to 100 kilobytes. You can set a smaller limit with `express.json({ limit: '10kb' })`, which is a good protection for an API that only receives small objects."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Middleware for some routes only"
+        },
+        {
+          "type": "paragraph",
+          "text": "You do not have to apply middleware to everything. You can give a path to `app.use('/api', mw)`, or put middleware as an argument before a handler. We will do this in lesson 13 to protect the task routes and leave the login route open."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "function requireJson(req, res, next) {\n  if (!req.is('application/json')) {\n    return res.status(415).json({ error: 'Send JSON with Content-Type: application/json' });\n  }\n  next();\n}\n\napp.post('/api/tasks', requireJson, (req, res) => {\n  // runs only if requireJson called next()\n});"
+        },
+        {
+          "type": "heading",
+          "text": "Middleware that other people wrote"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many packages are middleware. You install them with npm and add them with `app.use`. Some you will use in this course: `cors` (lesson 14), `helmet` (security headers, lesson 14) and `express-rate-limit` (limit repeated requests, lesson 14). Express itself includes `express.json()`, `express.urlencoded()` for HTML form data, and `express.static('public')`, which serves files from a folder, such as a built React app or images."
+        },
+        {
+          "type": "heading",
+          "text": "Passing data along with the request"
+        },
+        {
+          "type": "paragraph",
+          "text": "A middleware can attach information to `req` so that later functions can use it. For example, an authentication middleware can set `req.user`, and then every route that comes after can read `req.user.id`. That is exactly how the login check in lesson 13 will work. Choose clear names, and do not overwrite built-in properties of `req`."
+        },
+        {
+          "type": "heading",
+          "text": "A word about error middleware"
+        },
+        {
+          "type": "paragraph",
+          "text": "There is a special kind of middleware with **four** parameters: `(err, req, res, next)`. Express recognises it by the count and uses it for errors. It must be registered **after** the routes. You will build one in lesson 10."
+        },
+        {
+          "type": "note",
+          "text": "If you ever see `next is not a function` or a request that never finishes, check that each middleware either responds or calls `next()` exactly once, and that you did not forget the third parameter."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add the logger and `express.json()` to your server and the `/api/echo` route. Send a JSON body with curl and check the log line.",
+            "Move the logger below the echo route and see why it stops logging that route.",
+            "Send an invalid JSON body such as `{bad` and see the HTML error. Keep this in mind for lesson 10.",
+            "Write a middleware called `addRequestId` that sets `req.id` to a random value from `crypto.randomUUID()` and add it to the log line."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each request prints one log line with method, URL, status and time.",
+            "`/api/echo` returns the JSON you sent.",
+            "Moving the logger after the route proves to you that order matters."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Middleware chain",
+        "nodes": [
+          {
+            "id": "in",
+            "label": "Request",
+            "sub": "arrives",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "log",
+            "label": "Logger",
+            "sub": "notes the time, next()",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "json",
+            "label": "express.json()",
+            "sub": "fills req.body",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "route",
+            "label": "Route handler",
+            "sub": "sends response",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A request comes in. Express runs your middleware in the order you wrote it.",
+            "on": [
+              "in"
+            ]
+          },
+          {
+            "say": "The logger notes the start time and calls next() to pass the request on.",
+            "flow": [
+              "in>log:enter"
+            ]
+          },
+          {
+            "say": "express.json() reads the body, parses the JSON and stores it in req.body.",
+            "flow": [
+              "log>json:next()"
+            ]
+          },
+          {
+            "say": "Finally the route handler runs and sends the response. If a middleware had responded earlier, the chain would have stopped there.",
+            "flow": [
+              "json>route:next()"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What happens if middleware never calls next()?",
+          "a": "If it also sends no response, the request hangs until the client times out. A middleware must either respond or call next()."
+        },
+        {
+          "q": "Why is req.body undefined in my route?",
+          "a": "The body parser did not run or did not match. Check that express.json() is registered before the route, and that the client sends the Content-Type: application/json header."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Express",
+      "slug": "build-a-rest-api-crud-routes",
+      "title": "Build a REST API: Create, Read, Update and Delete Tasks",
+      "metaTitle": "Build a REST API with Express: CRUD Routes",
+      "description": "Build a complete Express task API with routes to create, read, update and delete tasks, correct status codes and curl tests. Data is kept in memory first.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Now you will put the pieces together. A **REST API** is a set of URLs where each URL stands for a thing, and the HTTP method says what to do with it. For the task list, the pattern is always the same: list, read one, create, update and delete. Programmers call these four jobs **CRUD**: create, read, update, delete. Almost every app you will ever build is CRUD with extra rules added on top."
+        },
+        {
+          "type": "heading",
+          "text": "The five routes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`GET /api/tasks`: list all tasks. Answer `200`.",
+            "`GET /api/tasks/:id`: one task. Answer `200`, or `404`.",
+            "`POST /api/tasks`: create a task from the JSON body. Answer `201` with the new task.",
+            "`PATCH /api/tasks/:id`: change some fields of a task. Answer `200` with the updated task, or `404`.",
+            "`DELETE /api/tasks/:id`: remove it. Answer `204`, or `404`."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "We start with the data in a plain JavaScript array in memory. That keeps the code simple. The data disappears when the server stops, and we fix that in lesson 11. Create `server.js` like this."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\n\nconst app = express();\napp.use(express.json());\n\nlet tasks = [\n  { id: 1, title: 'Learn Node', done: true },\n  { id: 2, title: 'Learn Express', done: false },\n];\nlet nextId = 3;\n\n// Read all\napp.get('/api/tasks', (req, res) => {\n  res.json(tasks);\n});\n\n// Read one\napp.get('/api/tasks/:id', (req, res) => {\n  const task = tasks.find((t) => t.id === Number(req.params.id));\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\n// Create\napp.post('/api/tasks', (req, res) => {\n  const task = { id: nextId++, title: req.body.title, done: false };\n  tasks.push(task);\n  res.status(201).json(task);\n});\n\n// Update part of a task\napp.patch('/api/tasks/:id', (req, res) => {\n  const task = tasks.find((t) => t.id === Number(req.params.id));\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  if ('title' in req.body) task.title = req.body.title;\n  if ('done' in req.body) task.done = req.body.done;\n  res.json(task);\n});\n\n// Delete\napp.delete('/api/tasks/:id', (req, res) => {\n  const before = tasks.length;\n  tasks = tasks.filter((t) => t.id !== Number(req.params.id));\n  if (tasks.length === before) return res.status(404).json({ error: 'Task not found' });\n  res.status(204).end();\n});\n\napp.listen(3000, () => console.log('Server running at http://localhost:3000'));"
+        },
+        {
+          "type": "paragraph",
+          "text": "Read each handler and notice the pattern. For the routes with an id, we find the task in the array, and if it does not exist, we `return` a 404 straight away. Then we do the work. `nextId++` gives each new task a new number, and the `++` adds one **after** the value is used. The delete route filters the task out and checks that the array became shorter, which tells us the task really existed."
+        },
+        {
+          "type": "heading",
+          "text": "Test every route with curl"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl -X POST http://localhost:3000/api/tasks -H \"Content-Type: application/json\" -d '{\"title\":\"Ship it\"}'\ncurl -X PATCH http://localhost:3000/api/tasks/3 -H \"Content-Type: application/json\" -d '{\"done\":true}'\ncurl -i -X DELETE http://localhost:3000/api/tasks/3\ncurl http://localhost:3000/api/tasks"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"id\":3,\"title\":\"Ship it\",\"done\":false}\n{\"id\":3,\"title\":\"Ship it\",\"done\":true}\nHTTP/1.1 204 No Content\n...\n[{\"id\":1,\"title\":\"Learn Node\",\"done\":true},{\"id\":2,\"title\":\"Learn Express\",\"done\":false}]"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each call matches what you expect: the new task has id 3, the update marks it done, the delete answers with status 204 and no body, and the last list is back to the two original tasks. Doing this by hand is slow but valuable. It shows you exactly what a front end will send."
+        },
+        {
+          "type": "heading",
+          "text": "What is still wrong?"
+        },
+        {
+          "type": "paragraph",
+          "text": "This API works for polite clients, but it trusts everything. Try sending an empty object to the create route."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl -X POST http://localhost:3000/api/tasks -H \"Content-Type: application/json\" -d '{}'"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"id\":4,\"done\":false}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The server created a task with no title. Worse, a client could send `{ \"title\": 12345 }`, a huge text, or the wrong type for `done`, and `PATCH` would store it. Never trust data from outside your program. In the next lesson you will add validation and proper error handling. Other limits of this version: anyone can see and change every task, because there is no login yet, and everything is lost on restart."
+        },
+        {
+          "type": "heading",
+          "text": "PUT or PATCH?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Both change an existing thing. **PUT** means replace the whole thing with the data sent, so the client must send every field. **PATCH** means change only the fields that were sent. For task apps, where you might only tick a box, PATCH is the more practical one. Many APIs support both. We use PATCH."
+        },
+        {
+          "type": "heading",
+          "text": "Why return the new object?"
+        },
+        {
+          "type": "paragraph",
+          "text": "After a create or an update, we send back the full task as the server now stores it. The client then has the id and any fields that the server added, so it does not need a second request. It is a small habit that makes front-end code much simpler."
+        },
+        {
+          "type": "heading",
+          "text": "Using the API from a front end"
+        },
+        {
+          "type": "paragraph",
+          "text": "A React app can now call this API with `fetch`. For example, `fetch('http://localhost:3000/api/tasks')` returns the list. A browser blocks requests from one origin to another unless the server allows it. That rule is called CORS and we will configure it in lesson 14, together with the other security settings."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `server.js` with the CRUD routes and test all five routes with curl.",
+            "Send a PATCH to a task that does not exist. Check the status code is 404.",
+            "Add `GET /api/tasks?done=false` support to the list route (you did it in lesson 7).",
+            "Write down three kinds of bad data a client could send that this code would accept."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Create, update, delete and list all return the results shown above.",
+            "The delete route returns 204 with no body, and a second delete of the same id returns 404.",
+            "You listed at least three bad inputs the server does not reject yet."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "CRUD on tasks",
+        "nodes": [
+          {
+            "id": "post",
+            "label": "POST",
+            "sub": "create a task",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "get",
+            "label": "GET",
+            "sub": "list or read",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "patch",
+            "label": "PATCH",
+            "sub": "change fields",
+            "col": 2,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "del",
+            "label": "DELETE",
+            "sub": "remove a task",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "api",
+            "label": "Task API",
+            "sub": "/api/tasks",
+            "col": 1,
+            "row": 1,
+            "kind": "app"
+          },
+          {
+            "id": "data",
+            "label": "Task list",
+            "sub": "array in memory",
+            "col": 2,
+            "row": 1,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A client uses four kinds of requests to work with tasks: create, read, change and delete.",
+            "on": [
+              "post",
+              "get",
+              "patch",
+              "del"
+            ]
+          },
+          {
+            "say": "Each request goes to the same API address, and the method tells the API what to do.",
+            "flow": [
+              "get>api:request"
+            ]
+          },
+          {
+            "say": "The API reads or changes the list of tasks. For now the list lives in memory.",
+            "flow": [
+              "api>data:read or write"
+            ]
+          },
+          {
+            "say": "The API answers with a status code, such as 200, 201, 204 or 404, and usually the task as JSON.",
+            "on": [
+              "api"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What does CRUD mean?",
+          "a": "Create, read, update and delete: the four basic jobs most apps do with data. In HTTP they are POST, GET, PATCH or PUT, and DELETE."
+        },
+        {
+          "q": "Why return 201 instead of 200 after creating something?",
+          "a": "201 Created tells the client that a new resource was made. It is more precise than 200, and many tools and clients expect it."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Express",
+      "slug": "validation-and-error-handling-in-express",
+      "title": "Validation and Error Handling in Express",
+      "metaTitle": "Validate Input and Handle Errors in Express",
+      "description": "Never trust client data: validate request bodies, return clear 400 and 404 errors, and write one central Express error handler with no leaked stack traces.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A server receives data from strangers, so everything in `req.body`, `req.params` and `req.query` must be treated as untrusted until you have checked it. Validation is your first line of defence against broken data and many attacks. Error handling is the second: it makes sure that when something fails, the client receives a clear, safe message and not a crash or a page of internal details. In this lesson you will add both to the task API."
+        },
+        {
+          "type": "heading",
+          "text": "Write a validation function"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use a library such as Zod or Joi, and many teams do. For a small API a short function is enough, and it shows exactly what validation means. This function checks a task. It returns either a clean value or an error message. The `partial` option is for PATCH, where fields are optional."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "// Returns { value } for good input or { error } with a message for the client.\nexport function checkTask(body, { partial = false } = {}) {\n  if (typeof body !== 'object' || body === null) return { error: 'Send a JSON object' };\n  const out = {};\n  if ('title' in body || !partial) {\n    if (typeof body.title !== 'string' || body.title.trim() === '') return { error: 'title is required' };\n    if (body.title.length > 120) return { error: 'title must be 120 characters or fewer' };\n    out.title = body.title.trim();\n  }\n  if ('done' in body) {\n    if (typeof body.done !== 'boolean') return { error: 'done must be true or false' };\n    out.done = body.done;\n  }\n  return { value: out };\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It checks the **type** of every field. A title must be a text, not a number or an array.",
+            "It **trims** spaces and sets a **maximum length**.",
+            "It builds a **new object** with only the allowed fields. Extra fields sent by the client, such as `id` or `ownerId`, are ignored. This stops a client from changing fields they should not control.",
+            "It returns the first problem as a plain message that the client can show to a user."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Use it in the routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the create and update routes, call it first, and answer 400 if there is an error. `400 Bad Request` means the client sent something wrong. Compare this with 500, which means the server itself failed. Never use 500 for bad input."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\nimport { checkTask } from './validate.js';\n\nconst app = express();\napp.use(express.json());\n\nlet tasks = [{ id: 1, title: 'Learn Node', done: true }];\nlet nextId = 2;\n\napp.get('/api/tasks', (req, res) => res.json(tasks));\n\napp.get('/api/tasks/:id', (req, res) => {\n  const task = tasks.find((t) => t.id === Number(req.params.id));\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\napp.post('/api/tasks', (req, res) => {\n  const { value, error } = checkTask(req.body);\n  if (error) return res.status(400).json({ error });\n  const task = { id: nextId++, title: value.title, done: false };\n  tasks.push(task);\n  res.status(201).json(task);\n});\n\napp.get('/api/crash', async () => {\n  throw new Error('Something broke on purpose');   // Express 5 catches this\n});\n\n// 1. Anything that did not match a route above\napp.use((req, res) => {\n  res.status(404).json({ error: 'Not found' });\n});\n\n// 2. The error handler: it has FOUR parameters\napp.use((err, req, res, next) => {\n  if (err.type === 'entity.parse.failed') return res.status(400).json({ error: 'Body is not valid JSON' });\n  if (err.type === 'entity.too.large') return res.status(413).json({ error: 'Body is too large' });\n  console.error(err);\n  res.status(500).json({ error: 'Something went wrong' });\n});\n\napp.listen(3000, () => console.log('Server running at http://localhost:3000'));"
+        },
+        {
+          "type": "heading",
+          "text": "404 for unknown routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "When no route matches a request, Express sends a plain HTML message by default. For an API you want JSON. Add a middleware **after** all routes. Because it comes last, it only runs when nothing else answered."
+        },
+        {
+          "type": "heading",
+          "text": "One central error handler"
+        },
+        {
+          "type": "paragraph",
+          "text": "The error handler is a middleware with four parameters, registered **last**. Express sends to it any error that is thrown in a handler, passed to `next(err)`, or caused by a rejected promise in an async handler (this works automatically in Express 5). It is the one place where you decide how errors look to the client."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Errors you can predict, such as invalid JSON or a body that is too big, get a clear 400 or 413 message. Those errors come from `express.json()` and have an `err.type`.",
+            "Everything else is a surprise. Log the full error on the **server** with `console.error`, and send the client only a general `Something went wrong` with status 500.",
+            "Never send `err.stack` or `err.message` of unexpected errors to the client. They can reveal file paths, library versions and database details that help an attacker."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The sample above includes a route `GET /api/crash` that throws on purpose. Test the handler."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl -X POST http://localhost:3000/api/tasks -H \"Content-Type: application/json\" -d '{}'\ncurl -X POST http://localhost:3000/api/tasks -H \"Content-Type: application/json\" -d '{bad'\ncurl http://localhost:3000/api/crash\ncurl http://localhost:3000/nothing"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"error\":\"title is required\"}\n{\"error\":\"Body is not valid JSON\"}\n{\"error\":\"Something went wrong\"}\n{\"error\":\"Not found\"}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each failure now returns clean JSON with the right status code. In the server terminal you will see the full stack trace for the crash, which is what you want for debugging. The client never sees it. Remove the `/api/crash` route after testing, because it is only for practice."
+        },
+        {
+          "type": "heading",
+          "text": "Express 4 note"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you ever work on an Express 4 project, async handlers need extra care. Wrap them, or call `next(err)` inside `catch`, because errors in promises are not caught by Express 4. That is the main reason many older tutorials contain wrappers such as `asyncHandler`. In Express 5 you do not need them."
+        },
+        {
+          "type": "heading",
+          "text": "Use consistent error responses"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Always the same shape, for example `{ \"error\": \"message\" }`, so the front end can handle all errors in one place.",
+            "Use codes that people can act on: 400 invalid data, 401 not logged in, 403 not allowed, 404 not found, 409 conflict (for example, an email already used), 413 too large, 429 too many requests, 500 server error.",
+            "Write messages for the person who will read them. They should say what to fix. They should not reveal how the server works."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Validation on the front end is for convenience. Validation on the server is for security. A client can always bypass your front end, so the server must check everything again."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add `validate.js` and call `checkTask` in the create route. Test an empty body, a number as title and a 200-character title.",
+            "Add the 404 middleware and the error handler at the end of the file. Test the four curl commands above.",
+            "Change the validation to also accept an optional `priority` that must be `low`, `medium` or `high`.",
+            "Make `GET /api/tasks/:id` return 400 when the id is not a whole number, and 404 when it is a number that does not exist."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "An empty or wrong-typed title returns 400 with a clear message.",
+            "Invalid JSON returns 400 JSON, not an HTML page.",
+            "The crash route returns `Something went wrong`, and the stack trace is only in the server terminal."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Safe request handling",
+        "nodes": [
+          {
+            "id": "in",
+            "label": "Client data",
+            "sub": "untrusted",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "val",
+            "label": "Validate",
+            "sub": "type, length, fields",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "work",
+            "label": "Do the work",
+            "sub": "save, read, update",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "err",
+            "label": "Error handler",
+            "sub": "clean JSON message",
+            "col": 1,
+            "row": 1,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Everything that arrives from a client is untrusted until you check it.",
+            "on": [
+              "in"
+            ]
+          },
+          {
+            "say": "The validation step checks types, length and allowed fields. Bad data is turned away with a 400 message.",
+            "flow": [
+              "in>val:check"
+            ]
+          },
+          {
+            "say": "Good data goes on to the real work, such as saving the task.",
+            "flow": [
+              "val>work:valid"
+            ]
+          },
+          {
+            "say": "If anything fails, the central error handler logs the details and sends a safe, short message to the client.",
+            "flow": [
+              "val>err:invalid"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I use a validation library?",
+          "a": "For bigger projects, yes: libraries like Zod or Joi save time and handle many cases. For a small API, a short function is enough and shows what validation does."
+        },
+        {
+          "q": "Why not send the error message to the client?",
+          "a": "Unexpected error messages and stack traces can reveal file paths, library versions or database details that help attackers. Log them on the server and send a general message."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": true
+    },
+    {
+      "section": "Data, Login and Going Live",
+      "slug": "environment-variables-and-saving-data-to-a-file",
+      "title": "Environment Variables and Saving Your Data to a File",
+      "metaTitle": "Env Variables and a File Store in Node.js",
+      "description": "Keep settings and secrets out of your code with environment variables and a .env file, and save API data to a JSON file so it survives a restart.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Two problems remain in the task API. The settings, such as the port number, are written inside the code, and the data vanishes every time the server restarts. In this lesson you will fix both. First you will learn about **environment variables**, the standard way to give a program its settings and secrets. Then you will move the data into a small store that saves tasks to a JSON file."
+        },
+        {
+          "type": "heading",
+          "text": "Why settings do not belong in code"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your program runs in different places: your laptop, a test machine and a live server. Each place needs different values: the port, the address of the database, the secret used for logins. If these values sit inside your code, you must edit the code for each place, and passwords end up in git, where many people can see them and where they stay in the history forever. The fix is to keep settings **outside** the code, in the environment, and have the code read them."
+        },
+        {
+          "type": "heading",
+          "text": "process.env"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every running program has a set of **environment variables**: named values given to it by the system that starts it. In Node.js they are in the object `process.env`. All values are strings, or `undefined` when missing. Read the port like this."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const port = Number(process.env.PORT) || 3000;"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `Number(...)` converts text to a number. If `PORT` is not set, `Number(undefined)` is `NaN`, which counts as false, so `|| 3000` supplies the default. Hosting services and process managers often set `PORT` for you, which is why the code should always read it."
+        },
+        {
+          "type": "heading",
+          "text": "A .env file"
+        },
+        {
+          "type": "paragraph",
+          "text": "Typing variables in the terminal for every run is tedious. The usual solution is a text file named `.env` in the project folder, with one `NAME=value` per line. Recent versions of Node.js can load it directly with the flag `--env-file=.env`, which is what the `start` and `dev` scripts from lesson 2 use. You do not need an extra package."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "# .env  (never commit this file)\nPORT=3100\nJWT_SECRET=change-me-to-a-long-random-string\nDATA_FILE=./data/tasks.json"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Add `.env` to `.gitignore` **now**, before your first commit.",
+            "Commit a copy named `.env.example` with the variable names and harmless sample values, so other people know what to set.",
+            "No spaces around `=`, and no quotes needed for simple values.",
+            "On a live server, do not upload a `.env` file at all if your host has a place to set environment variables. Use that instead."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you ever commit a real secret by mistake, deleting it in the next commit is not enough, because it stays in the history. Change the secret straight away, as if it had been stolen."
+        },
+        {
+          "type": "heading",
+          "text": "Fail early when something is missing"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a required setting is missing, the program should stop at start-up with a clear message, and not fail in a confusing way later. You will see this in the final `server.js` in lesson 15, where a missing or short `JWT_SECRET` stops the server."
+        },
+        {
+          "type": "heading",
+          "text": "A store that saves to a file"
+        },
+        {
+          "type": "paragraph",
+          "text": "Now the data. We move all work with tasks into a separate module, a **store**. The routes will call the store and will not care how data is kept. Today the store uses a file. In the next lesson, you can replace it with a database without changing the routes much. That is why separating the two is a good habit."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { readFile, writeFile } from 'node:fs/promises';\n\n// Keeps tasks in memory and, if you give it a file, saves after every change.\nexport function createStore(file) {\n  let tasks = [];\n  let nextId = 1;\n\n  const ready = file\n    ? readFile(file, 'utf8')\n        .then((text) => {\n          tasks = JSON.parse(text);\n          nextId = tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;\n        })\n        .catch((err) => {\n          if (err.code !== 'ENOENT') throw err;   // no file yet is fine, anything else is not\n        })\n    : Promise.resolve();\n\n  const save = () => (file ? writeFile(file, JSON.stringify(tasks, null, 2)) : Promise.resolve());\n\n  return {\n    async list() { await ready; return tasks; },\n    async get(id) { await ready; return tasks.find((t) => t.id === id); },\n    async create(data) {\n      await ready;\n      const task = { id: nextId++, title: data.title, done: false, createdAt: new Date().toISOString() };\n      tasks.push(task);\n      await save();\n      return task;\n    },\n    async update(id, data) {\n      await ready;\n      const task = tasks.find((t) => t.id === id);\n      if (!task) return undefined;\n      Object.assign(task, data);\n      await save();\n      return task;\n    },\n    async remove(id) {\n      await ready;\n      const before = tasks.length;\n      tasks = tasks.filter((t) => t.id !== id);\n      if (tasks.length === before) return false;\n      await save();\n      return true;\n    },\n  };\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Take your time with this file. `createStore(file)` returns an object with five functions. The `ready` promise loads the file once at start-up. If the file does not exist, which is normal the first time, `ENOENT` is ignored and the list starts empty. Any other error is thrown, so a damaged file is not silently replaced. Each function starts with `await ready`, so requests that arrive during start-up wait for the data to load. After each change, `save()` writes the whole list to the file. The next id is the highest id so far plus one, so ids stay unique after a restart."
+        },
+        {
+          "type": "paragraph",
+          "text": "Now use the store in the server. The routes become short, because the store does the work and `checkTask` from lesson 10 does the validation. Put `validate.js` (from lesson 10) and `store.js` (this lesson's store) in the project folder next to `server.js`."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\nimport { createStore } from './store.js';\nimport { checkTask } from './validate.js';\n\nconst port = Number(process.env.PORT) || 3000;\nconst store = createStore(process.env.DATA_FILE || './data/tasks.json');\n\nconst app = express();\napp.use(express.json());\n\napp.get('/api/tasks', async (req, res) => {\n  res.json(await store.list());\n});\n\napp.post('/api/tasks', async (req, res) => {\n  const { value, error } = checkTask(req.body);\n  if (error) return res.status(400).json({ error });\n  res.status(201).json(await store.create(value));\n});\n\napp.patch('/api/tasks/:id', async (req, res) => {\n  const { value, error } = checkTask(req.body, { partial: true });\n  if (error) return res.status(400).json({ error });\n  const task = await store.update(Number(req.params.id), value);\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\napp.delete('/api/tasks/:id', async (req, res) => {\n  const removed = await store.remove(Number(req.params.id));\n  if (!removed) return res.status(404).json({ error: 'Task not found' });\n  res.status(204).end();\n});\n\napp.listen(port, () => console.log(`Server running on port ${port}`));"
+        },
+        {
+          "type": "paragraph",
+          "text": "Start the server with `npm run dev`, create a task, then stop the server and start it again. The task is still there, and `data/tasks.json` contains it."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "curl -X POST http://localhost:3100/api/tasks -H \"Content-Type: application/json\" -d '{\"title\":\"Saved\"}'\ncurl http://localhost:3100/api/tasks"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"id\":1,\"title\":\"Saved\",\"done\":false,\"createdAt\":\"2026-10-28T04:10:56.259Z\"}\n[{\"id\":1,\"title\":\"Saved\",\"done\":false,\"createdAt\":\"2026-10-28T04:10:56.259Z\"}]"
+        },
+        {
+          "type": "paragraph",
+          "text": "The dates in your output will show the time of your own request. Create the `data` folder first if it does not exist, because `writeFile` creates files but not folders."
+        },
+        {
+          "type": "heading",
+          "text": "Honest limits of a file store"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It rewrites the whole file on every change, so it slows down as data grows.",
+            "If two changes arrive at the same moment, the second write can overwrite the first. Writes of tiny files are quick, so this is rare in a practice project, but it is a real risk on a busy server.",
+            "It lives on one machine. If you run several copies of the server, each has its own data.",
+            "There are no searches, indexes or relationships.",
+            "On many hosting services, the file system is wiped on every deploy. A file store is for learning and tiny tools. Anything that matters belongs in a database, which is the next lesson."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `.env` and `.env.example`, and add `.env` to `.gitignore`.",
+            "Use `process.env.PORT` in the server and start it on a different port by changing `.env`.",
+            "Add `store.js` and move the routes to use it. Create a task, restart the server and check that it survived.",
+            "Delete `data/tasks.json` and start the server. Check it starts with an empty list and does not crash."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`npm run dev` starts on the port from `.env`.",
+            "A task created before a restart is still listed after it.",
+            "`git status` does not list `.env`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Settings and data outside the code",
+        "nodes": [
+          {
+            "id": "env",
+            "label": ".env file",
+            "sub": "port, secrets",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "proc",
+            "label": "process.env",
+            "sub": "read at start-up",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "app",
+            "label": "Your server",
+            "sub": "routes + store",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "file",
+            "label": "tasks.json",
+            "sub": "saved data",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Settings and secrets live in a .env file that is not committed to git.",
+            "on": [
+              "env"
+            ]
+          },
+          {
+            "say": "Node loads the file and your code reads the values from process.env.",
+            "flow": [
+              "env>proc:--env-file"
+            ]
+          },
+          {
+            "say": "The server uses the settings and calls the store to work with tasks.",
+            "flow": [
+              "proc>app:settings"
+            ]
+          },
+          {
+            "say": "The store saves the tasks to a file after every change, so they survive a restart.",
+            "flow": [
+              "app>file:save"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why not put secrets directly in the code?",
+          "a": "Code is shared and stored in git, so a secret in it can leak and stays in the history. Environment variables keep secrets outside the code and let each machine use its own values."
+        },
+        {
+          "q": "Do I need the dotenv package?",
+          "a": "Not with current Node.js versions. The --env-file flag loads a .env file for you. The dotenv package is still common in older projects."
+        }
+      ],
+      "readTime": "8 min read",
+      "published": true
+    },
+    {
+      "section": "Data, Login and Going Live",
+      "slug": "mongodb-and-mongoose-for-your-api",
+      "title": "MongoDB and Mongoose: Store Your API Data in a Real Database",
+      "metaTitle": "MongoDB and Mongoose with Express",
+      "description": "Connect your Express API to MongoDB with Mongoose: schemas, models, CRUD queries, validation and bad ids. Use a local install or an Atlas cluster.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A file is fine for learning, but real applications keep data in a database. MongoDB is a popular choice for Node.js projects, and it is the M in the MERN stack. It stores data as **documents**, which look like JavaScript objects, grouped in **collections**, which are like tables. **Mongoose** is a library that sits between your code and MongoDB and adds structure: schemas, validation and handy query functions. In this lesson you will replace the file store with MongoDB."
+        },
+        {
+          "type": "note",
+          "text": "Set-up note: the code in this lesson follows the Mongoose documentation. You need a running MongoDB to try it. Install the free Community Server on your computer, or create a free cluster on MongoDB Atlas, the company's hosted service. Both are explained on mongodb.com. The free hosted tier has limits and its terms can change, so check the current page. Never use production data while you practise."
+        },
+        {
+          "type": "heading",
+          "text": "Install and connect"
+        },
+        {
+          "type": "paragraph",
+          "text": "Install the library in your project, and add the connection string to `.env`. For a local server it looks like `mongodb://127.0.0.1:27017/taskapi`. Atlas gives you a longer address that includes a user name and a password, and so it is a secret: it belongs in `.env` and never in git."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm install mongoose"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "# .env\nMONGODB_URI=mongodb://127.0.0.1:27017/taskapi"
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import mongoose from 'mongoose';\n\nconst uri = process.env.MONGODB_URI;\nif (!uri) {\n  console.error('Set MONGODB_URI in your .env file.');\n  process.exit(1);\n}\n\nawait mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });\nconsole.log('Connected to MongoDB');"
+        },
+        {
+          "type": "paragraph",
+          "text": "`mongoose.connect` returns a promise. `await` it before you start the server, so no request arrives before the database is ready. The option `serverSelectionTimeoutMS` makes the program fail after five seconds if it cannot reach the database, and not wait for a long time. In `server.js`, put the connect step before `app.listen`."
+        },
+        {
+          "type": "heading",
+          "text": "Schemas and models"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **schema** describes the shape of a document: its fields, their types and rules. A **model** is built from a schema and gives you the functions to read and write that collection. Mongoose creates the collection from the model name, in lowercase and plural, so `Task` becomes `tasks`."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import mongoose from 'mongoose';\n\nconst taskSchema = new mongoose.Schema(\n  {\n    title: { type: String, required: [true, 'title is required'], trim: true, maxlength: 120 },\n    done: { type: Boolean, default: false },\n  },\n  { timestamps: true },\n);\n\nexport const Task = mongoose.model('Task', taskSchema);"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`required` with a message: saving without a title fails with that message.",
+            "`trim` removes spaces at both ends. `maxlength` limits the length.",
+            "`default: false` fills in `done` when it is not given.",
+            "`timestamps: true` adds `createdAt` and `updatedAt` and keeps them up to date.",
+            "Mongoose adds an `_id` field to every document. It is an `ObjectId`, a 24-character identifier, and not a small number like our earlier ids."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can check a document without a database by calling `await new Task({ title: '   ' }).validate()`. It rejects with an error whose `errors.title.message` is `title is required`, because trimming leaves an empty text. A document with the title ` Read docs ` passes, and its title becomes `Read docs`. Schema rules are a second layer of protection after your own `checkTask` function."
+        },
+        {
+          "type": "heading",
+          "text": "The routes with Mongoose"
+        },
+        {
+          "type": "paragraph",
+          "text": "The routes now call the model. Compare them with the store version. Every function is async, which Express 5 handles for us."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { Router } from 'express';\nimport mongoose from 'mongoose';\nimport { Task } from './models.js';\nimport { checkTask } from './validate.js';\n\nexport const tasksRouter = Router();\n\n// A bad id would make Mongoose throw a CastError, so check it first\nconst validId = (req, res, next) => {\n  if (!mongoose.isValidObjectId(req.params.id)) return res.status(404).json({ error: 'Task not found' });\n  next();\n};\n\ntasksRouter.get('/', async (req, res) => {\n  const filter = {};\n  if (req.query.done === 'true') filter.done = true;\n  if (req.query.done === 'false') filter.done = false;\n  res.json(await Task.find(filter).sort({ createdAt: -1 }).limit(100));\n});\n\ntasksRouter.get('/:id', validId, async (req, res) => {\n  const task = await Task.findById(req.params.id);\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\ntasksRouter.post('/', async (req, res) => {\n  const { value, error } = checkTask(req.body);\n  if (error) return res.status(400).json({ error });\n  res.status(201).json(await Task.create(value));\n});\n\ntasksRouter.patch('/:id', validId, async (req, res) => {\n  const { value, error } = checkTask(req.body, { partial: true });\n  if (error) return res.status(400).json({ error });\n  const task = await Task.findByIdAndUpdate(req.params.id, value, { returnDocument: 'after', runValidators: true });\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.json(task);\n});\n\ntasksRouter.delete('/:id', validId, async (req, res) => {\n  const task = await Task.findByIdAndDelete(req.params.id);\n  if (!task) return res.status(404).json({ error: 'Task not found' });\n  res.status(204).end();\n});"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at the functions used. `Task.find(filter)` returns the matching documents, `.sort({ createdAt: -1 })` puts the newest first and `.limit(100)` caps the list, so one request can never pull in a million documents. `findById` finds one. `Task.create(value)` validates and inserts. `findByIdAndUpdate` changes a document, and the option `returnDocument: 'after'` returns the new version, while `runValidators: true` applies the schema rules to updates, which Mongoose does not do by default. `findByIdAndDelete` removes it."
+        },
+        {
+          "type": "paragraph",
+          "text": "The small `validId` middleware matters. If a client calls `/api/tasks/abc`, Mongoose cannot turn `abc` into an `ObjectId`, and it throws a `CastError`. We check with `mongoose.isValidObjectId` first and answer 404, which is what the client should see."
+        },
+        {
+          "type": "heading",
+          "text": "Handling database errors"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A **duplicate key** error (code `11000`) happens when a unique field repeats, for example two users with the same email. Catch it and answer 409.",
+            "A **validation** error from Mongoose has the name `ValidationError`. Answer 400.",
+            "A connection problem is a server problem. Let it reach the error handler, which answers 500 and logs the details."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Safety rules for databases"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Never build a query from raw request data. For example, `Task.find(req.body)` lets a client send operators such as `{ \"$gt\": \"\" }` and change the meaning of the query. This kind of attack is called NoSQL injection. Pick the fields you accept yourself, as `checkTask` does, and check that they are the types you expect.",
+            "Do not let clients choose which fields to update. `checkTask` copies only `title` and `done`.",
+            "Use a database user with only the rights the app needs, never an admin account.",
+            "Limit the size of lists with `.limit()` and paging.",
+            "Keep backups, and test restoring one."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When you are ready, ask which indexes your queries need. An index lets MongoDB find documents without reading the whole collection. A field you search or sort by often, such as `owner` or `createdAt`, is a candidate. Add `index: true` to the field, and measure before you add many, since indexes cost space and slow down writes."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Set up MongoDB locally or on Atlas. Put the connection string in `.env`.",
+            "Install Mongoose, add `models.js` and connect before `app.listen`.",
+            "Replace the store with the Mongoose routes. Create, read, update and delete a task with curl, and look at the document in a viewer such as MongoDB Compass.",
+            "Try `/api/tasks/abc` and a valid-looking id that does not exist. Both should give 404."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A task you created is still there after you restart the server.",
+            "Updating `done` returns the document with the new value.",
+            "`/api/tasks/abc` returns 404 JSON and not a 500 error."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Express, Mongoose and MongoDB",
+        "nodes": [
+          {
+            "id": "route",
+            "label": "Express route",
+            "sub": "validate input",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "model",
+            "label": "Mongoose model",
+            "sub": "schema rules",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "db",
+            "label": "MongoDB",
+            "sub": "documents",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "json",
+            "label": "JSON response",
+            "sub": "to the client",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "An Express route receives a request and checks the input.",
+            "on": [
+              "route"
+            ]
+          },
+          {
+            "say": "It calls the Mongoose model, for example Task.create or Task.find.",
+            "flow": [
+              "route>model:call"
+            ]
+          },
+          {
+            "say": "Mongoose applies the schema rules and sends the query to MongoDB, which stores or returns documents.",
+            "flow": [
+              "model>db:query"
+            ]
+          },
+          {
+            "say": "The result comes back and the route sends it to the client as JSON.",
+            "flow": [
+              "db>json:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between MongoDB and Mongoose?",
+          "a": "MongoDB is the database. Mongoose is a Node.js library that adds schemas, validation and convenient query functions on top of it."
+        },
+        {
+          "q": "Why is my _id not a number?",
+          "a": "MongoDB creates a 24-character ObjectId for every document. Treat it as text, and check ids with mongoose.isValidObjectId before querying."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": true
+    },
+    {
+      "section": "Data, Login and Going Live",
+      "slug": "user-login-with-password-hashing-and-jwt",
+      "title": "User Login: Password Hashing and JSON Web Tokens",
+      "metaTitle": "Login in Node.js: Password Hashing and JWT",
+      "description": "Add registration and login to your API: hash passwords with bcrypt, issue and verify JSON Web Tokens, and keep each person’s tasks private.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "So far anyone can read and change every task. A real app needs accounts, and it needs to know who is making each request. In this lesson you will add registration, login and a check that protects the task routes, so each user sees only their own tasks. Authentication is easy to get subtly wrong, so we will go slowly and explain the reason for each choice."
+        },
+        {
+          "type": "heading",
+          "text": "Rule one: never store a password"
+        },
+        {
+          "type": "paragraph",
+          "text": "A database can be stolen, and staff can read it. If it holds real passwords, every account is at risk, and because people reuse passwords, accounts on other sites too. Instead, store a **hash**: the result of a one-way mathematical function. You cannot turn a hash back into the password, but you can hash what the user types at login and compare the two. Use a slow function made for passwords, such as **bcrypt**, which also adds a random **salt** so that two users with the same password have different hashes. Never use plain SHA or MD5 for passwords, and never invent your own method."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm install bcryptjs jsonwebtoken"
+        },
+        {
+          "type": "paragraph",
+          "text": "We use `bcryptjs`, a pure JavaScript version that installs without a compiler on any system. The `bcrypt` package is faster, but it has native parts. The functions are the same: `bcrypt.hash(password, 10)` and `bcrypt.compare(password, hash)`. The number 10 is the cost: higher is slower and harder to break."
+        },
+        {
+          "type": "heading",
+          "text": "Rule two: prove who you are with a token"
+        },
+        {
+          "type": "paragraph",
+          "text": "HTTP has no memory. Each request stands alone, so after login, the client needs a way to prove its identity on every later request. One common way is a **JSON Web Token (JWT)**. At login, the server creates a signed text that contains the user's id and an expiry time. The client sends it back in the `Authorization` header with every request: `Authorization: Bearer <token>`. The server checks the signature with its secret. If the signature is valid and the token has not expired, the server trusts the contents. Nobody can change the contents without the secret, because the signature would no longer match."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A JWT is signed, **not encrypted**. Anyone who holds it can read what is inside. Never put passwords or private data in it.",
+            "The secret must be long and random, and stored only in the environment. Whoever has it can create tokens for any user.",
+            "Give tokens a short life, as we do with `expiresIn: '1h'`. A stolen token then stops working soon.",
+            "Always use HTTPS in production, so tokens and passwords cannot be read on the way."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The login routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "The router handles registration and login. Read it carefully, especially the comments in the text below the code."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { Router } from 'express';\nimport bcrypt from 'bcryptjs';\nimport jwt from 'jsonwebtoken';\n\nexport function authRouter({ secret, users }) {\n  const router = Router();\n  const sign = (user) => jwt.sign({ sub: user.id, email: user.email }, secret, { expiresIn: '1h' });\n  const emailOk = (e) => typeof e === 'string' && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(e);\n\n  router.post('/register', async (req, res) => {\n    const { email, password } = req.body ?? {};\n    if (!emailOk(email)) return res.status(400).json({ error: 'Enter a valid email' });\n    if (typeof password !== 'string' || password.length < 8) {\n      return res.status(400).json({ error: 'Password must be at least 8 characters' });\n    }\n    const key = email.toLowerCase();\n    if (users.has(key)) return res.status(409).json({ error: 'That email is already registered' });\n    const user = { id: users.size + 1, email: key, passwordHash: await bcrypt.hash(password, 10) };\n    users.set(key, user);\n    res.status(201).json({ token: sign(user) });\n  });\n\n  router.post('/login', async (req, res) => {\n    const { email, password } = req.body ?? {};\n    const user = typeof email === 'string' ? users.get(email.toLowerCase()) : undefined;\n    const ok = user && typeof password === 'string' && (await bcrypt.compare(password, user.passwordHash));\n    if (!ok) return res.status(401).json({ error: 'Wrong email or password' });\n    res.json({ token: sign(user) });\n  });\n\n  return router;\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The check of the email and password length happens **before** any work is done. The minimum of 8 characters is a modest rule. Longer is better, and it is wise to allow long passphrases.",
+            "The email is lowercased, so `Asha@Example.com` and `asha@example.com` are the same account.",
+            "A duplicate email returns `409 Conflict`.",
+            "At login, a wrong email and a wrong password give **the same** message. A different message would tell an attacker which emails have accounts.",
+            "`await bcrypt.compare` is slow on purpose, so guessing is slow."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "In this course the users are kept in a `Map` in memory, so they disappear when the server restarts. That is only to keep the lesson short. In a real application, store users in your database, with a unique index on the email, as lesson 12 showed. The hashing and tokens work in exactly the same way."
+        },
+        {
+          "type": "heading",
+          "text": "The check that protects routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "This middleware reads the header, verifies the token and sets `req.user`. Any route placed after it can trust `req.user`. If the token is missing or wrong, it answers 401 and the route never runs."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import jwt from 'jsonwebtoken';\n\nexport function requireAuth(secret) {\n  return (req, res, next) => {\n    const header = req.get('Authorization') || '';\n    const [scheme, token] = header.split(' ');\n    if (scheme !== 'Bearer' || !token) return res.status(401).json({ error: 'Log in first' });\n    try {\n      const payload = jwt.verify(token, secret);\n      req.user = { id: payload.sub, email: payload.email };\n      next();\n    } catch {\n      res.status(401).json({ error: 'Token is invalid or expired' });\n    }\n  };\n}"
+        },
+        {
+          "type": "heading",
+          "text": "Each user sees only their own tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Logging in is not enough. The routes must also use `req.user.id` so that one user cannot read or change another user's tasks. In the store, every function now takes the owner's id, and finds a task only if both the id and the owner match. Other users' tasks then look like they do not exist, so the answer is 404 and not 403. Here is the complete store. Compare it with lesson 11: every function now takes `ownerId` first."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { readFile, writeFile } from 'node:fs/promises';\n\n// A tiny store that keeps everything in memory and, if you give it a file, saves after each change.\nexport function createStore(file) {\n  let tasks = [];\n  let nextId = 1;\n  let ready = Promise.resolve();\n\n  if (file) {\n    ready = readFile(file, 'utf8')\n      .then((text) => {\n        tasks = JSON.parse(text);\n        nextId = tasks.reduce((max, t) => Math.max(max, t.id), 0) + 1;\n      })\n      .catch((err) => {\n        if (err.code !== 'ENOENT') throw err;      // no file yet is fine, anything else is not\n      });\n  }\n\n  const save = () => (file ? writeFile(file, JSON.stringify(tasks, null, 2)) : Promise.resolve());\n\n  return {\n    async list(ownerId) { await ready; return tasks.filter((t) => t.ownerId === ownerId); },\n    async get(ownerId, id) { await ready; return tasks.find((t) => t.id === id && t.ownerId === ownerId); },\n    async create(ownerId, data) {\n      await ready;\n      const task = { id: nextId++, ownerId, title: data.title, done: false, createdAt: new Date().toISOString() };\n      tasks.push(task);\n      await save();\n      return task;\n    },\n    async update(ownerId, id, data) {\n      await ready;\n      const task = tasks.find((t) => t.id === id && t.ownerId === ownerId);\n      if (!task) return undefined;\n      Object.assign(task, data);\n      await save();\n      return task;\n    },\n    async remove(ownerId, id) {\n      await ready;\n      const before = tasks.length;\n      tasks = tasks.filter((t) => !(t.id === id && t.ownerId === ownerId));\n      if (tasks.length === before) return false;\n      await save();\n      return true;\n    },\n  };\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "And the task router. The first argument of each store call is `req.user.id`, which the middleware set. Create a task, and the owner is stored with it."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { Router } from 'express';\nimport { checkTask } from '../validate.js';\n\nexport function tasksRouter(store) {\n  const router = Router();\n\n  router.get('/', async (req, res) => {\n    const list = await store.list(req.user.id);\n    const { done } = req.query;\n    if (done === 'true') return res.json(list.filter((t) => t.done));\n    if (done === 'false') return res.json(list.filter((t) => !t.done));\n    res.json(list);\n  });\n\n  router.get('/:id', async (req, res) => {\n    const task = await store.get(req.user.id, Number(req.params.id));\n    if (!task) return res.status(404).json({ error: 'Task not found' });\n    res.json(task);\n  });\n\n  router.post('/', async (req, res) => {\n    const { value, error } = checkTask(req.body);\n    if (error) return res.status(400).json({ error });\n    const task = await store.create(req.user.id, value);\n    res.status(201).location(`/api/tasks/${task.id}`).json(task);\n  });\n\n  router.patch('/:id', async (req, res) => {\n    const { value, error } = checkTask(req.body, { partial: true });\n    if (error) return res.status(400).json({ error });\n    const task = await store.update(req.user.id, Number(req.params.id), value);\n    if (!task) return res.status(404).json({ error: 'Task not found' });\n    res.json(task);\n  });\n\n  router.delete('/:id', async (req, res) => {\n    const removed = await store.remove(req.user.id, Number(req.params.id));\n    if (!removed) return res.status(404).json({ error: 'Task not found' });\n    res.status(204).end();\n  });\n\n  return router;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The app mounts everything: the auth routes are open, and the task routes sit behind `requireAuth`."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "app.use('/api/auth', authRouter({ secret, users }));\napp.use('/api/tasks', requireAuth(secret), tasksRouter(store));"
+        },
+        {
+          "type": "heading",
+          "text": "Try the whole flow"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "# 1. register and keep the token\ncurl -X POST http://localhost:3100/api/auth/register -H \"Content-Type: application/json\" -d '{\"email\":\"asha@example.com\",\"password\":\"correct-horse\"}'\n\n# 2. no token: refused\ncurl -X POST http://localhost:3100/api/tasks -H \"Content-Type: application/json\" -d '{\"title\":\"x\"}'\n\n# 3. with the token: works\ncurl -X POST http://localhost:3100/api/tasks -H \"Authorization: Bearer PASTE_TOKEN_HERE\" -H \"Content-Type: application/json\" -d '{\"title\":\"Learn Express\"}'"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "{\"token\":\"eyJhbGciOiJIUzI1NiIs...\"}\n{\"error\":\"Log in first\"}\n{\"id\":1,\"ownerId\":1,\"title\":\"Learn Express\",\"done\":false,\"createdAt\":\"2026-10-28T04:08:15.718Z\"}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The token in your output will be a different long text. We also tested the other cases: registering the same email twice returns 409 with `That email is already registered`, a wrong password returns 401 with `Wrong email or password`, and a bad token returns 401. Notice that the task response includes `ownerId`. For this exercise that is harmless, but in a real API you would decide which fields to send, and leave out internal ones."
+        },
+        {
+          "type": "heading",
+          "text": "What this does not cover"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Logout and revoking tokens.** A pure JWT cannot be cancelled before it expires. Short lifetimes help. Bigger apps add refresh tokens or a server-side list.",
+            "**Where the client keeps the token.** Browser storage is easy but readable by any script on the page. A cookie with the `HttpOnly` flag is safer against script theft but needs protection against cross-site requests. Each choice has trade-offs. Read about both before you build a real front end.",
+            "**Password reset, email checks, two-step login.** Use a tested service or library for these, and do not write them from scratch for real users.",
+            "**Roles.** Add a `role` to the token for things like admin pages and check it in a middleware."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install `bcryptjs` and `jsonwebtoken` and add the auth router and the `requireAuth` middleware.",
+            "Register two users. Create a task as the first user and check that the second user cannot see it, and gets 404 when asking for its id.",
+            "Decode the middle part of a token with `Buffer.from(part, 'base64url').toString()` and look at what is inside. Confirm that there is no password in it.",
+            "Set `expiresIn` to `'5s'`, wait, and try again. You should get the message about an expired token."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Registering returns 201 and a token, and registering the same email returns 409.",
+            "A request without a token gets 401, and with a valid token it works.",
+            "The second user cannot read, change or delete the first user's tasks."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Login and token check",
+        "nodes": [
+          {
+            "id": "login",
+            "label": "Login",
+            "sub": "email + password",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "hash",
+            "label": "bcrypt compare",
+            "sub": "checks the hash",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "token",
+            "label": "JWT token",
+            "sub": "signed, expires",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "guard",
+            "label": "requireAuth",
+            "sub": "verifies each request",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The user sends an email and a password to the login route.",
+            "on": [
+              "login"
+            ]
+          },
+          {
+            "say": "The server compares the password with the stored hash using bcrypt. The real password is never stored.",
+            "flow": [
+              "login>hash:compare"
+            ]
+          },
+          {
+            "say": "If it matches, the server signs a token that holds the user id and an expiry time.",
+            "flow": [
+              "hash>token:sign"
+            ]
+          },
+          {
+            "say": "On later requests, the client sends the token. The requireAuth middleware verifies it before any task route runs.",
+            "flow": [
+              "token>guard:send"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why hash passwords instead of encrypting them?",
+          "a": "Encryption can be reversed with a key. A hash cannot be reversed, so a stolen database does not give attackers the passwords. Use a slow password hash such as bcrypt."
+        },
+        {
+          "q": "Is a JWT secret or private?",
+          "a": "The signature stops people changing it, but the contents are only encoded, not encrypted. Anyone with the token can read it, so never put private data in it."
+        }
+      ],
+      "readTime": "12 min read",
+      "published": true
+    },
+    {
+      "section": "Data, Login and Going Live",
+      "slug": "secure-your-express-api-cors-helmet-rate-limit",
+      "title": "Secure Your Express API: CORS, Helmet and Rate Limiting",
+      "metaTitle": "Secure an Express API: CORS, Helmet, Limits",
+      "description": "Harden your Express API: set CORS for your front end, add Helmet headers, limit repeated requests, cap body size and avoid common mistakes.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An API on the internet will be probed by strangers and by automated scripts within hours. You do not need to be a security expert to block the most common problems. A few well-known libraries and some careful habits remove a great deal of risk. This lesson adds them to the task API, and ends with a checklist to use before every launch. Security is never finished, and no list can promise that an app is safe. Treat this as a solid beginning."
+        },
+        {
+          "type": "heading",
+          "text": "CORS: allow your front end, and only it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Browsers have a rule: a web page may only call APIs on its **own origin** (the same protocol, domain and port) unless the API says otherwise. If your React app runs at `http://localhost:5173` and your API at `http://localhost:3100`, the browser blocks the calls. The API opts in with **CORS** headers, and the `cors` package sets them. Allow the exact origin of your front end, and not every origin."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm install cors helmet express-rate-limit"
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "app.use(cors({ origin: allowedOrigin || false }));   // false: no cross-origin access"
+        },
+        {
+          "type": "list",
+          "items": [
+            "CORS is enforced by **browsers**. It does not protect your API from `curl` or scripts. Authentication and validation do that.",
+            "Do not use `origin: '*'` together with logins, unless you understand the effect.",
+            "When you test with curl and a different `Origin` header, the server still answers. A string origin makes the package always send your configured origin, and it is the **browser** that refuses to give the response to a page from another origin.",
+            "Read the allowed origin from `.env`, so development and production can differ."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Helmet: safer headers"
+        },
+        {
+          "type": "paragraph",
+          "text": "`helmet` is a middleware that sets a group of HTTP headers that tell browsers to be careful. For example, `X-Content-Type-Options: nosniff` stops browsers guessing types, `Strict-Transport-Security` asks them to use HTTPS, and `Content-Security-Policy` limits where scripts may load from. It is one line, and it is a good default for any Express app. Express also announces itself with an `X-Powered-By: Express` header, which only helps attackers, so switch it off with `app.disable('x-powered-by')`."
+        },
+        {
+          "type": "heading",
+          "text": "Rate limiting"
+        },
+        {
+          "type": "paragraph",
+          "text": "Without a limit, a script can try thousands of passwords a minute against your login, or overload your server. `express-rate-limit` counts requests per client address and answers `429 Too Many Requests` after a limit. Use a strict limit on login and registration, and a more relaxed one for the rest."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "const authLimiter = rateLimit({\n  windowMs: 15 * 60 * 1000,   // 15 minutes\n  limit: 20,                  // 20 requests per window per client\n  standardHeaders: 'draft-7',\n  legacyHeaders: false,\n});\napp.use('/api/auth', authLimiter, authRouter({ secret, users }));"
+        },
+        {
+          "type": "paragraph",
+          "text": "We tested it: the first 20 login attempts get `401` (wrong password), and the 21st and 22nd get `429` with a `Retry-After` header. The store behind this limiter is the memory of one process. If you run several copies of your server, or restart often, use a shared store such as Redis. Also, behind a proxy like nginx, every request seems to come from the proxy's address unless you tell Express to trust it with `app.set('trust proxy', 1)`. Do that only when a proxy really sits in front of Node, because otherwise clients can fake their address."
+        },
+        {
+          "type": "heading",
+          "text": "Limit what you accept"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`express.json({ limit: '10kb' })`: a task needs only a few hundred bytes. A small limit prevents huge bodies from using up memory. Bigger bodies get `413`, which our error handler explains.",
+            "Validate every field, as in lesson 10.",
+            "Cap list sizes and page through them.",
+            "Do not let users choose file paths or run commands with their input."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The full app so far"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is the whole `app.js` with everything combined. It exports a function that builds the app, which is useful for testing in the next lesson, and it is the only place that knows the order of middleware."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import express from 'express';\nimport cors from 'cors';\nimport helmet from 'helmet';\nimport rateLimit from 'express-rate-limit';\nimport { createStore } from './store.js';\nimport { authRouter } from './routes/auth.js';\nimport { tasksRouter } from './routes/tasks.js';\nimport { requireAuth } from './middleware/auth.js';\n\nexport function createApp({ secret, dataFile, allowedOrigin } = {}) {\n  if (!secret) throw new Error('A JWT secret is required');\n  const app = express();\n  const store = createStore(dataFile);\n  const users = new Map();\n\n  app.disable('x-powered-by');\n  app.use(helmet());\n  app.use(cors({ origin: allowedOrigin || false }));\n  app.use(express.json({ limit: '10kb' }));\n\n  app.use((req, res, next) => {\n    const start = Date.now();\n    res.on('finish', () => {\n      if (process.env.NODE_ENV !== 'test') console.log(`${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`);\n    });\n    next();\n  });\n\n  app.get('/api/health', (req, res) => res.json({ ok: true }));\n\n  const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 20, standardHeaders: 'draft-7', legacyHeaders: false });\n  app.use('/api/auth', authLimiter, authRouter({ secret, users }));\n  app.use('/api/tasks', requireAuth(secret), tasksRouter(store));\n\n  app.use((req, res) => res.status(404).json({ error: 'Not found' }));\n\n  // Error handler: four arguments. Express 5 sends rejected promises here too.\n  app.use((err, req, res, next) => {\n    if (err.type === 'entity.parse.failed') return res.status(400).json({ error: 'Body is not valid JSON' });\n    if (err.type === 'entity.too.large') return res.status(413).json({ error: 'Body is too large' });\n    console.error(err);\n    res.status(500).json({ error: 'Something went wrong' });\n  });\n\n  return app;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Read the order. Security headers and CORS come first, then the body parser, then the logger. The login routes are limited. The task routes need a login. The 404 handler and the error handler are last. We checked the headers with curl and saw `Content-Security-Policy`, `Strict-Transport-Security` and `X-Content-Type-Options`, and no `X-Powered-By`."
+        },
+        {
+          "type": "heading",
+          "text": "Habits that protect you"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Keep secrets out of git** and out of logs. Do not log passwords, tokens or full request bodies.",
+            "**Keep dependencies updated.** Run `npm audit` regularly and read what it says before you run automatic fixes.",
+            "**Use HTTPS** everywhere in production.",
+            "**Give each secret one job**, and replace it if you think it leaked.",
+            "**Check ownership** of every record, not just login.",
+            "**Return the same error for a wrong email and a wrong password.**",
+            "**Run the app as a normal user**, not as root, on your server.",
+            "**Back up your data** and test restoring."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "These steps reduce common risks. They do not make an app unhackable. If your app holds sensitive data such as health, payment or children's information, rules and laws apply in many countries, and you should get qualified advice."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install `cors`, `helmet` and `express-rate-limit` and add them to `app.js` in the order shown.",
+            "Run `curl -I` on `/api/health` and check for the security headers. Check that `X-Powered-By` is gone.",
+            "Send 22 wrong logins in a loop and watch the status change to 429.",
+            "Send a JSON body of more than 10 kilobytes and see the 413 response."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The health check response has `X-Content-Type-Options` and no `X-Powered-By`.",
+            "The 21st login attempt within 15 minutes returns 429.",
+            "A request with an oversized body returns 413 with a JSON message."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Layers of protection",
+        "nodes": [
+          {
+            "id": "req",
+            "label": "Request",
+            "sub": "from anywhere",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "helmet",
+            "label": "Helmet + CORS",
+            "sub": "headers, allowed origin",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "limit",
+            "label": "Rate limit",
+            "sub": "too many? 429",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "auth",
+            "label": "Login + validation",
+            "sub": "only valid data",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Requests arrive from anywhere on the internet, some friendly and some not.",
+            "on": [
+              "req"
+            ]
+          },
+          {
+            "say": "Helmet adds safe headers and CORS only lets your own front end call the API from a browser.",
+            "flow": [
+              "req>helmet:first"
+            ]
+          },
+          {
+            "say": "The rate limiter slows down clients that send too many requests, which blocks password guessing.",
+            "flow": [
+              "helmet>limit:then"
+            ]
+          },
+          {
+            "say": "Login checks and validation make sure only the right people send only valid data to your routes.",
+            "flow": [
+              "limit>auth:then"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Does CORS protect my API from attackers?",
+          "a": "No. CORS is enforced by browsers to protect users of web pages. Scripts and tools such as curl ignore it, so you still need authentication, validation and rate limits."
+        },
+        {
+          "q": "What is a good rate limit?",
+          "a": "It depends on your app. Use a strict limit for login and registration, such as a few dozen attempts per 15 minutes per client, and a more relaxed one for ordinary routes. Watch real traffic and adjust."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Data, Login and Going Live",
+      "slug": "test-and-deploy-your-node-api",
+      "title": "Test and Deploy Your Node.js API: node:test, pm2 and nginx",
+      "metaTitle": "Test and Deploy a Node.js API",
+      "description": "Write API tests with the built-in node:test runner, then take your Express API live with pm2, an nginx proxy, HTTPS and a launch checklist.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You now have a working API with validation, login and security. Two jobs remain, and both are about trust. **Tests** let you change code without fear, because a failing test tells you what you broke. **Deployment** puts the API on a server where other people can reach it. In this final lesson you will write tests with the test runner that is built into Node.js, then walk through the steps to run the API on a Linux server."
+        },
+        {
+          "type": "heading",
+          "text": "Make the app testable"
+        },
+        {
+          "type": "paragraph",
+          "text": "In lesson 14, `app.js` exports a function `createApp` and does not call `listen`. A separate `server.js` reads the settings, creates the app and starts it. This split is what makes testing easy: a test can create its own app with its own settings, start it on a random free port and talk to it with `fetch`, with no need for any extra library."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import { createApp } from './app.js';\n\nconst secret = process.env.JWT_SECRET;\nif (!secret || secret.length < 16) {\n  console.error('Set JWT_SECRET (at least 16 characters) before starting.');\n  process.exit(1);\n}\n\nconst app = createApp({\n  secret,\n  dataFile: process.env.DATA_FILE || './data/tasks.json',\n  allowedOrigin: process.env.CLIENT_ORIGIN,\n});\n\nconst port = Number(process.env.PORT) || 3000;\nconst server = app.listen(port, () => console.log(`API listening on port ${port}`));\n\nprocess.on('SIGTERM', () => {\n  console.log('Shutting down');\n  server.close(() => process.exit(0));\n});"
+        },
+        {
+          "type": "paragraph",
+          "text": "The server file also does two production jobs. It refuses to start without a long enough secret. And it listens for `SIGTERM`, the signal that process managers send to stop a program, and closes the server tidily so running requests can finish."
+        },
+        {
+          "type": "heading",
+          "text": "Tests with node:test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Node.js includes a test runner. A test is a function with a name. `assert` checks that things are as expected. The file below tests the main paths: a login is required, a user can register and create a task, bad input is rejected, and a task can be updated and deleted."
+        },
+        {
+          "type": "code",
+          "lang": "js",
+          "text": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { createApp } from '../app.js';\n\nprocess.env.NODE_ENV = 'test';\nlet server, base, token;\n\ntest.before(async () => {\n  const app = createApp({ secret: 'test-secret-1234567890' });\n  server = app.listen(0);\n  base = `http://localhost:${server.address().port}`;\n});\ntest.after(() => server.close());\n\nconst call = (path, { method = 'GET', body, auth = true } = {}) =>\n  fetch(base + path, {\n    method,\n    headers: { 'Content-Type': 'application/json', ...(auth && token ? { Authorization: `Bearer ${token}` } : {}) },\n    body: body ? JSON.stringify(body) : undefined,\n  });\n\ntest('tasks need a login', async () => {\n  const res = await call('/api/tasks', { auth: false });\n  assert.equal(res.status, 401);\n});\n\ntest('register, then create and read a task', async () => {\n  const reg = await call('/api/auth/register', { method: 'POST', body: { email: 'a@example.com', password: 'longenough1' } });\n  assert.equal(reg.status, 201);\n  token = (await reg.json()).token;\n\n  const created = await call('/api/tasks', { method: 'POST', body: { title: 'Write tests' } });\n  assert.equal(created.status, 201);\n  const task = await created.json();\n  assert.equal(task.title, 'Write tests');\n  assert.equal(task.done, false);\n\n  const list = await (await call('/api/tasks')).json();\n  assert.equal(list.length, 1);\n});\n\ntest('bad input is rejected with 400', async () => {\n  const res = await call('/api/tasks', { method: 'POST', body: { title: '' } });\n  assert.equal(res.status, 400);\n  assert.equal((await res.json()).error, 'title is required');\n});\n\ntest('a task can be updated and deleted', async () => {\n  const { id } = await (await call('/api/tasks', { method: 'POST', body: { title: 'Temp' } })).json();\n  const patched = await call(`/api/tasks/${id}`, { method: 'PATCH', body: { done: true } });\n  assert.equal((await patched.json()).done, true);\n  assert.equal((await call(`/api/tasks/${id}`, { method: 'DELETE' })).status, 204);\n  assert.equal((await call(`/api/tasks/${id}`)).status, 404);\n});"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at the structure. `test.before` starts the app on port `0`, which means the system picks any free port, and `test.after` stops it. The small `call` helper sends JSON and adds the token when we have one. Each `test(...)` block checks one behaviour. The tests run in order and share the `token` variable, which is simple, but it also means that one failure can cause later ones to fail. For bigger suites, give each test its own setup."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm test"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "ok 1 - tasks need a login\nok 2 - register, then create and read a task\nok 3 - bad input is rejected with 400\nok 4 - a task can be updated and deleted\n# tests 4\n# pass 4\n# fail 0"
+        },
+        {
+          "type": "paragraph",
+          "text": "The real output also shows timings and other details, and the timings will be different on your computer. The `test` script runs `node --test`, which finds files that end in `.test.js` and runs them. Make a habit of running the tests before every commit. When you find a bug, write a test that fails because of it, then fix the code until the test passes. The bug can then never return unnoticed."
+        },
+        {
+          "type": "heading",
+          "text": "Preparing for production"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Set `NODE_ENV=production`. Express and many libraries then switch to faster, safer behaviour. For example, the default error page no longer shows stack traces.",
+            "Install only what you need: `npm install --omit=dev`.",
+            "Set every secret and setting in the server's environment: `JWT_SECRET`, `MONGODB_URI` or `DATA_FILE`, `CLIENT_ORIGIN`, `PORT`.",
+            "Use a **long random** `JWT_SECRET` that exists only on the server. You can make one with `node -e \"console.log(require('crypto').randomBytes(48).toString('base64url'))\"`.",
+            "Use a database, not a JSON file, for anything you cannot afford to lose."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keep it running with pm2"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you start the API with `node server.js` in a terminal, it stops when you close the terminal or when it crashes. A **process manager** keeps it running, restarts it after a crash and starts it again after a reboot. **pm2** is a popular one for Node.js. These commands run on your server."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm install -g pm2\npm2 start server.js --name taskapi --node-args=\"--env-file=.env\"\npm2 logs taskapi          # watch the logs\npm2 restart taskapi       # after deploying new code\npm2 save                  # remember the list of processes\npm2 startup               # prints a command to start pm2 on boot"
+        },
+        {
+          "type": "paragraph",
+          "text": "The program listens on a port on the server, such as 3100. You do not want visitors to type that port, and you want HTTPS."
+        },
+        {
+          "type": "heading",
+          "text": "Put nginx in front"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **reverse proxy**, usually nginx, accepts connections on the normal ports 80 and 443, handles HTTPS, and passes requests to your Node.js program on its own port. Here is a minimal server block. It is a sketch to adapt, and not a complete production setup."
+        },
+        {
+          "type": "code",
+          "lang": "nginx",
+          "text": "server {\n    server_name api.example.com;\n\n    location / {\n        proxy_pass http://127.0.0.1:3100;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Get a free certificate for HTTPS from Let's Encrypt, with a tool such as `certbot`, and let it set up the renewal.",
+            "Because nginx now sits in front, add `app.set('trust proxy', 1)` to the app, so the rate limiter sees real client addresses and not the proxy's.",
+            "Only open ports 80 and 443 to the world. Keep the Node port closed in the firewall.",
+            "`example.com` is a placeholder. Use your own domain."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Health checks and logs"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `/api/health` route gives monitoring tools and load balancers something to call. Check it after each deploy. Read logs with `pm2 logs`, and watch for repeated errors. Do not log passwords, tokens or personal data. For a busy service, send logs to a central service, so they survive a server loss."
+        },
+        {
+          "type": "heading",
+          "text": "A deploy routine"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run the tests on your machine. Commit and push.",
+            "On the server, pull the new code: `git pull`.",
+            "Install what is needed: `npm install --omit=dev`.",
+            "Restart: `pm2 restart taskapi`.",
+            "Check `/api/health` and read the first lines of the logs.",
+            "If something is wrong, go back to the last good commit and restart."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Before you launch: a short checklist"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tests pass, and secrets are not in git.",
+            "HTTPS works, and the secret is long and random.",
+            "CORS allows only your front end.",
+            "Rate limits are on for login and registration.",
+            "The database has a restricted user, and backups run.",
+            "Errors show a general message to clients and full detail in the logs.",
+            "You know who to call, and what to do, if something breaks."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Where to go next"
+        },
+        {
+          "type": "paragraph",
+          "text": "You now know the core of back-end work with Node.js: modules, async code, Express, validation, storage, login, security, tests and deployment. Next, connect a front end. Our [MERN stack course](/learn/mern-stack-full-course) builds a complete app with React on top of an API like this one. Add features to your task API: due dates, tags, paging, password reset with email. And read the official documentation for Node.js, Express and Mongoose when you meet something new, because it is the most reliable source. The [career roadmaps](/roadmaps) show how this skill fits into back-end and full stack roles."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add `test` and `start` scripts, write the tests above and run `npm test`.",
+            "Write a new test for a case of your own, for example that a second user cannot read the first user's task, and make it pass.",
+            "Make a plan for deployment of your API: where it would run, where the secrets would be kept, and how you would roll back.",
+            "If you have a server, deploy the API with pm2 and check `/api/health`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`npm test` shows all tests passing.",
+            "The server refuses to start when `JWT_SECRET` is missing, and prints a clear message.",
+            "You can describe, in your own words, what pm2 and nginx each do."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From your laptop to a live API",
+        "nodes": [
+          {
+            "id": "tests",
+            "label": "Tests pass",
+            "sub": "npm test",
+            "col": 0,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "server",
+            "label": "Server",
+            "sub": "git pull, install",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pm2",
+            "label": "pm2",
+            "sub": "keeps Node running",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "nginx",
+            "label": "nginx + HTTPS",
+            "sub": "public address",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Before anything goes live, the tests must pass on your machine.",
+            "on": [
+              "tests"
+            ]
+          },
+          {
+            "say": "On the server you pull the new code and install the packages you need.",
+            "flow": [
+              "tests>server:deploy"
+            ]
+          },
+          {
+            "say": "A process manager such as pm2 starts the API, restarts it after a crash and starts it again after a reboot.",
+            "flow": [
+              "server>pm2:start"
+            ]
+          },
+          {
+            "say": "nginx accepts public HTTPS requests and passes them to your Node.js program.",
+            "flow": [
+              "pm2>nginx:behind"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why export createApp instead of calling listen in app.js?",
+          "a": "It lets tests create their own app and start it on a random port, without side effects. The separate server.js reads settings and starts the real server."
+        },
+        {
+          "q": "Why do I need nginx if Node can serve requests itself?",
+          "a": "nginx handles HTTPS, standard ports, compression and static files efficiently, and protects the Node process from direct exposure. It is a common and well-tested setup, though not the only one."
+        }
+      ],
+      "readTime": "9 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}
