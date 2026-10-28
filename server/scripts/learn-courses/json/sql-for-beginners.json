@@ -1,0 +1,3997 @@
+{
+  "course": {
+    "title": "SQL for Beginners: Learn Databases Step by Step",
+    "slug": "sql-for-beginners",
+    "summary": "Learn SQL from zero in 15 lessons with one small shop database: SELECT, JOIN, GROUP BY, subqueries, window functions, indexes and interview practice.",
+    "description": "Free SQL course for beginners. 15 lessons in simple English with a practice database: joins, grouping, changing data, window functions and interview questions.",
+    "level": "Beginner",
+    "topic": "Data",
+    "badge": "SQL",
+    "tags": [
+      "sql",
+      "database",
+      "sqlite",
+      "joins",
+      "data analysis"
+    ],
+    "order": 32,
+    "minWords": 600,
+    "published": true,
+    "metaTitle": "SQL for Beginners: Free Course",
+    "keywords": "sql for beginners, learn sql, sql course free, sql tutorial, sql joins, sql interview questions, sqlite tutorial"
+  },
+  "lessons": [
+    {
+      "section": "Start Here",
+      "slug": "what-is-sql-and-a-database",
+      "title": "What Is SQL and What Is a Database?",
+      "metaTitle": "What Is SQL? A Database Guide for Beginners",
+      "description": "Learn what a database is, what SQL does, and why almost every company that stores data uses it. Easy words, no code to install yet.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "SQL is the language people use to ask questions of a database. The letters stand for Structured Query Language, and most people say it as “ess-cue-el” or “sequel”. If you have ever used a spreadsheet to sort a list, filter a column or add up a total, you already know the kind of thinking SQL needs. The difference is size and safety. A spreadsheet is good for a few thousand rows that one person edits. A database holds millions of rows that many people and programs read and change at the same moment, and SQL is how they all talk to it."
+        },
+        {
+          "type": "paragraph",
+          "text": "This first lesson has no software to install. It explains the ideas in plain words, so every later lesson makes sense. Read it slowly. The ideas here, tables, rows, columns and keys, come back in every lesson of the course."
+        },
+        {
+          "type": "heading",
+          "text": "What is a database?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **database** is an organised place to keep data so it can be found, changed and shared quickly. When you order food on a phone app, the restaurant list, your address, your past orders and the delivery status all live in a database. When a bank shows your balance, a database holds it. When a company like the one you may apply to keeps its staff records, a database holds those too."
+        },
+        {
+          "type": "paragraph",
+          "text": "Most databases that people meet at work are **relational databases**. The word relational means the data is stored in tables, and the tables are linked to each other. You can picture each table as a sheet in a workbook. One sheet holds customers, another holds products, another holds orders. A relational database keeps these sheets separate on purpose, and then lets you connect them when you ask a question."
+        },
+        {
+          "type": "heading",
+          "text": "Tables, rows and columns"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every table has **columns** and **rows**. A column is one kind of fact, such as `name` or `price`. A row is one thing described by those facts, such as one customer or one product. If a `products` table has the columns `id`, `name`, `category` and `price`, then a row might say: product 1 is called Notebook, belongs to Stationery and costs 120."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "products\nid | name      | category   | price\n1  | Notebook  | Stationery | 120\n2  | Pen pack  | Stationery | 80\n3  | Desk lamp | Home       | 650"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each column has a **data type**. Prices are numbers. Names are text. A joining date is a date. The database checks the type, so it will refuse to store the word “cheap” in a price column. This small rule saves a lot of mistakes."
+        },
+        {
+          "type": "heading",
+          "text": "Keys: how rows are told apart"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two people can have the same name. Two products can have the same price. So every table needs a column that is different for every row, and it is called the **primary key**. Most of the time it is a column called `id` with the numbers 1, 2, 3 and so on. When you need exactly one row, you ask for it by its primary key."
+        },
+        {
+          "type": "paragraph",
+          "text": "Now think about orders. An order belongs to a customer. Instead of copying the customer's name and city into every order, the order stores only the customer's `id`. That column in the `orders` table is called a **foreign key**, because it points to the primary key of another table. Storing the name once and pointing to it from many places is the heart of a relational database. If a customer changes city, you update one row and every order is still correct."
+        },
+        {
+          "type": "note",
+          "text": "A simple way to remember it: the primary key says “who am I?”, and the foreign key says “who do I belong to?”."
+        },
+        {
+          "type": "heading",
+          "text": "What SQL actually does"
+        },
+        {
+          "type": "paragraph",
+          "text": "SQL lets you do four main jobs with a database. Many people remember them as CRUD."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Create** new rows (`INSERT`).",
+            "**Read** rows that match a question (`SELECT`).",
+            "**Update** values in existing rows (`UPDATE`).",
+            "**Delete** rows you no longer need (`DELETE`)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Most of your time, especially in a data, analyst, support or testing job, goes to the second job: reading. In the first half of this course you will learn to read data well. After that you will learn to change it safely, design tables and make queries fast."
+        },
+        {
+          "type": "paragraph",
+          "text": "A SQL statement is a sentence that reads almost like English. For example: `SELECT name, price FROM products WHERE price > 500;` means “show me the name and price from the products table, only where the price is more than 500”. You will write sentences like this in the next lessons."
+        },
+        {
+          "type": "heading",
+          "text": "Different databases, one language"
+        },
+        {
+          "type": "paragraph",
+          "text": "You will hear the names MySQL, PostgreSQL, SQL Server, Oracle and SQLite. They are database programs, often called database engines, and all of them understand SQL. The basics are the same everywhere: `SELECT`, `WHERE`, `JOIN`, `GROUP BY` work in all of them. Small things differ, such as how you get the current date or limit the number of rows. This course uses **SQLite** for practice because it is free, small and needs no server. Where another engine does something differently, the lesson says so."
+        },
+        {
+          "type": "paragraph",
+          "text": "That means the skills you build here transfer. If your future job uses MySQL or PostgreSQL, you will spend a day learning the small differences, not weeks learning SQL again."
+        },
+        {
+          "type": "heading",
+          "text": "Who uses SQL, and for what?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Data and business analysts** pull numbers for reports: sales by month, customers by city.",
+            "**Software developers** store and fetch the data behind apps and websites.",
+            "**Testers** check that the data in the database matches what the screen shows.",
+            "**Support and operations staff** look up an order or a user to answer a question.",
+            "**Finance and HR teams** often use SQL-based reporting tools."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "SQL appears in many job descriptions, especially for analyst and developer roles, and it is a common topic in interviews. It is not a guarantee of any job, but it is a practical skill that is useful in many kinds of work."
+        },
+        {
+          "type": "heading",
+          "text": "What you will build in this course"
+        },
+        {
+          "type": "paragraph",
+          "text": "You will work with one small shop database: customers, products, orders and the items inside each order. It has only a few rows, so you can see every answer with your own eyes and check your thinking. By the end you will be able to answer questions such as: Which customers have not ordered anything? What did each customer spend? Which product sells the most in each category?"
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Take any spreadsheet you know, such as a contact list or a price list. Write down its column names and say what data type each one holds (number, text or date).",
+            "Decide which column could be a primary key, meaning it is different on every row. If none is, invent an `id` column.",
+            "Think of a second sheet that connects to it, such as orders for customers. Which column would the second sheet use to point to the first? That is your foreign key."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can say in one sentence what a table, a row and a column are.",
+            "You can explain why orders store a customer id instead of the customer's full name.",
+            "You can name the four basic jobs of SQL: create, read, update and delete."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From your question to your answer",
+        "nodes": [
+          {
+            "id": "you",
+            "label": "You",
+            "sub": "write a question",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "sql",
+            "label": "SQL statement",
+            "sub": "SELECT ... FROM",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "engine",
+            "label": "Database engine",
+            "sub": "finds the rows",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "tables",
+            "label": "Tables",
+            "sub": "customers, orders",
+            "col": 2,
+            "row": 1,
+            "kind": "store"
+          },
+          {
+            "id": "result",
+            "label": "Result",
+            "sub": "rows and columns",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have a question about your data, such as which products cost more than 500.",
+            "on": [
+              "you"
+            ]
+          },
+          {
+            "say": "You write the question as a SQL statement.",
+            "flow": [
+              "you>sql:write"
+            ]
+          },
+          {
+            "say": "The database engine reads the statement and plans how to answer it.",
+            "flow": [
+              "sql>engine:send"
+            ]
+          },
+          {
+            "say": "It looks in the tables, where the data is stored as rows and columns.",
+            "flow": [
+              "engine>tables:look up"
+            ]
+          },
+          {
+            "say": "The matching rows come back as a result table you can read.",
+            "flow": [
+              "engine>result:rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is SQL a programming language?",
+          "a": "SQL is a query language. It describes what data you want, and the database works out how to get it. It does not have the loops and functions of a general language like Python, but it is a real, useful skill."
+        },
+        {
+          "q": "Do I need to know coding before learning SQL?",
+          "a": "No. SQL is one of the easier first technical skills, because statements read almost like English. This course starts from zero."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Start Here",
+      "slug": "set-up-sqlite-practice-database",
+      "title": "Set Up a Free Practice Database with SQLite",
+      "metaTitle": "Set Up SQLite and a Practice Database",
+      "description": "Install free SQLite tools, create the shop database used in every lesson, and run your first query. Copy-and-paste setup script included.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You learn SQL by running it. In this lesson you set up a free practice database on your own computer. It takes about fifteen minutes and you only do it once. Every later lesson uses the same small shop database, so you can run each example and see the same answers shown in the lesson."
+        },
+        {
+          "type": "heading",
+          "text": "Choose your tool"
+        },
+        {
+          "type": "paragraph",
+          "text": "SQLite is a tiny database engine that stores everything in one file. There is no server to install and no password. Choose one of these free ways to use it. Any of them works for the whole course."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**DB Browser for SQLite**: a free desktop app with a window where you type SQL and see results in a table. This is the easiest for most beginners. Search for “DB Browser for SQLite” and download it from its official site.",
+            "**The sqlite3 command line**: a small program. It is already installed on many Mac and Linux computers. On Windows you can download the “sqlite-tools” package from the official SQLite website.",
+            "**An online SQLite playground**: several free websites let you run SQLite in the browser with nothing to install. They come and go, so search for “online SQLite” and pick a well-known one. Do not paste private or work data into a website."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you use the command line, open a terminal and type `sqlite3 shop.db`. This creates a file called `shop.db` in the current folder and opens a prompt. If you use DB Browser, choose **New Database**, save it as `shop.db`, and close the dialog that asks you to create a table. Then open the **Execute SQL** tab, which is where you will paste and run the script below."
+        },
+        {
+          "type": "heading",
+          "text": "Create the shop database"
+        },
+        {
+          "type": "paragraph",
+          "text": "The script below does two things. First it creates four tables: `customers`, `products`, `orders` and `order_items`. Then it fills them with a small amount of data. You do not need to understand every word yet. By lesson 12 you will be able to read it line by line."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "CREATE TABLE customers (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  city TEXT,\n  joined DATE\n);\nCREATE TABLE products (\n  id INTEGER PRIMARY KEY,\n  name TEXT NOT NULL,\n  category TEXT,\n  price INTEGER NOT NULL\n);\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  customer_id INTEGER NOT NULL,\n  order_date DATE,\n  status TEXT,\n  FOREIGN KEY (customer_id) REFERENCES customers(id)\n);\nCREATE TABLE order_items (\n  id INTEGER PRIMARY KEY,\n  order_id INTEGER NOT NULL,\n  product_id INTEGER NOT NULL,\n  quantity INTEGER NOT NULL,\n  FOREIGN KEY (order_id) REFERENCES orders(id),\n  FOREIGN KEY (product_id) REFERENCES products(id)\n);\n\nINSERT INTO customers (id, name, city, joined) VALUES\n (1, 'Asha Rao', 'Bengaluru', '2024-01-15'),\n (2, 'Ben Carter', 'London', '2024-02-03'),\n (3, 'Chidi Okafor', 'Lagos', '2024-02-20'),\n (4, 'Divya Nair', 'Chennai', '2024-03-11'),\n (5, 'Emma Wilson', 'Toronto', '2024-04-02'),\n (6, 'Farid Hassan', 'Nairobi', '2024-04-18'),\n (7, 'Grace Mwangi', 'Nairobi', '2024-05-09'),\n (8, 'Hari Singh', NULL, '2024-06-01');\n\nINSERT INTO products (id, name, category, price) VALUES\n (1, 'Notebook', 'Stationery', 120),\n (2, 'Pen pack', 'Stationery', 80),\n (3, 'Desk lamp', 'Home', 650),\n (4, 'Backpack', 'Bags', 1400),\n (5, 'Water bottle', 'Home', 300),\n (6, 'Laptop stand', 'Office', 1800),\n (7, 'Mouse', 'Office', 700),\n (8, 'Sticky notes', 'Stationery', 60);\n\nINSERT INTO orders (id, customer_id, order_date, status) VALUES\n (1, 1, '2024-06-02', 'delivered'),\n (2, 1, '2024-06-20', 'delivered'),\n (3, 2, '2024-06-21', 'delivered'),\n (4, 3, '2024-07-01', 'cancelled'),\n (5, 4, '2024-07-04', 'delivered'),\n (6, 5, '2024-07-09', 'shipped'),\n (7, 2, '2024-07-15', 'delivered'),\n (8, 6, '2024-07-18', 'delivered'),\n (9, 1, '2024-08-02', 'shipped'),\n (10, 7, '2024-08-05', 'pending');\n\nINSERT INTO order_items (id, order_id, product_id, quantity) VALUES\n (1, 1, 1, 3),\n (2, 1, 2, 2),\n (3, 2, 4, 1),\n (4, 3, 6, 1),\n (5, 3, 7, 1),\n (6, 4, 3, 2),\n (7, 5, 5, 2),\n (8, 5, 1, 5),\n (9, 6, 7, 1),\n (10, 7, 8, 10),\n (11, 7, 1, 2),\n (12, 8, 3, 1),\n (13, 9, 6, 1),\n (14, 9, 5, 1),\n (15, 10, 2, 4);"
+        },
+        {
+          "type": "paragraph",
+          "text": "Copy the whole script, paste it into your tool and run it. In DB Browser, press the play button or the keyboard shortcut shown on the tab. In the command line, paste it and press Enter, or save it as `setup.sql` and type `.read setup.sql`. If you run it twice you will see an error saying a table already exists. That is fine. Delete the `shop.db` file and start again, or run `DROP TABLE` commands first as you will learn later."
+        },
+        {
+          "type": "heading",
+          "text": "Run your first query"
+        },
+        {
+          "type": "paragraph",
+          "text": "Now ask the database to show you everything in the `customers` table. The star `*` means “all columns”."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT * FROM customers;"
+        },
+        {
+          "type": "paragraph",
+          "text": "You should see eight rows. The last one, Hari Singh, has an empty city. Databases call an empty value **NULL**, meaning “not known”. NULL is important and has its own lesson. For now just notice it."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | name         | city      | joined\n1  | Asha Rao     | Bengaluru | 2024-01-15\n2  | Ben Carter   | London    | 2024-02-03\n3  | Chidi Okafor | Lagos     | 2024-02-20\n4  | Divya Nair   | Chennai   | 2024-03-11\n5  | Emma Wilson  | Toronto   | 2024-04-02\n6  | Farid Hassan | Nairobi   | 2024-04-18\n7  | Grace Mwangi | Nairobi   | 2024-05-09\n8  | Hari Singh   | NULL      | 2024-06-01"
+        },
+        {
+          "type": "heading",
+          "text": "A map of the shop database"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep this picture in your head, because every lesson uses it."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**customers** has 8 rows. Each customer has an `id`, a `name`, a `city` and the date they `joined`.",
+            "**products** has 8 rows. Each product has an `id`, a `name`, a `category` and a `price` as a whole number.",
+            "**orders** has 10 rows. Each order has an `id`, a `customer_id` that points to a customer, an `order_date` and a `status` such as delivered, shipped, pending or cancelled.",
+            "**order_items** has 15 rows. Each one says which product was in which order and the `quantity`. One order can have several items."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Prices are plain numbers like 120 or 1800 so the sums are easy to check in your head. Think of them as any currency you like. Dates are written as year-month-day, for example `2024-06-02`. This format is the safest in databases because sorting the text also sorts the dates correctly."
+        },
+        {
+          "type": "heading",
+          "text": "The basic rules of writing SQL"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A statement ends with a semicolon `;`. Some tools forgive a missing one, but write it anyway.",
+            "SQL keywords like `SELECT` and `FROM` are not case sensitive. Writing them in capitals is a habit that makes queries easier to read.",
+            "Text values go in single quotes: `'Nairobi'`. Numbers do not: `500`.",
+            "You can split a statement over many lines. Spaces and line breaks do not change its meaning.",
+            "Comments start with two dashes: `-- this is a note`. The database ignores them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "If something goes wrong"
+        },
+        {
+          "type": "paragraph",
+          "text": "Errors are normal and the messages are helpful. “no such table” means you spelled a table name wrong, or the setup script did not run. “no such column” means a column name is misspelled. “near ...: syntax error” means the database got confused near the word it shows, so look for a missing comma, a missing quote or an extra comma just before a `FROM`. Read the message, look at the word it points to, and fix one thing at a time."
+        },
+        {
+          "type": "note",
+          "text": "Practice habit: type the queries yourself instead of only pasting them. Typing makes your fingers remember the shape of a statement, and you will make small mistakes that teach you the most."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install one of the tools above and create `shop.db`.",
+            "Run the setup script. Then run `SELECT * FROM products;` and count the rows. You should see 8.",
+            "Run `SELECT * FROM orders;` and `SELECT * FROM order_items;`. Note the row counts (10 and 15) and look at how `customer_id` and `order_id` link rows to other tables.",
+            "Add a comment line above a query, run it again, and confirm nothing changes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`SELECT * FROM customers;` returns 8 rows and Hari Singh has no city.",
+            "You can say which table holds the quantity of items in an order (`order_items`).",
+            "You know how to open a fresh start: delete the file and run the script again."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Your practice setup",
+        "nodes": [
+          {
+            "id": "tool",
+            "label": "Your SQL tool",
+            "sub": "DB Browser or sqlite3",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "script",
+            "label": "Setup script",
+            "sub": "CREATE and INSERT",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "file",
+            "label": "shop.db",
+            "sub": "one small file",
+            "col": 2,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "query",
+            "label": "Your query",
+            "sub": "SELECT * ...",
+            "col": 1,
+            "row": 1,
+            "kind": "tool"
+          },
+          {
+            "id": "rows",
+            "label": "Result rows",
+            "sub": "seen in the grid",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You open a free SQL tool and create an empty database file called shop.db.",
+            "on": [
+              "tool",
+              "file"
+            ]
+          },
+          {
+            "say": "You paste the setup script into the tool and run it.",
+            "flow": [
+              "tool>script:paste"
+            ]
+          },
+          {
+            "say": "The script creates four tables and fills them with data inside shop.db.",
+            "flow": [
+              "script>file:create and insert"
+            ]
+          },
+          {
+            "say": "Now you type a query such as SELECT * FROM customers.",
+            "flow": [
+              "tool>query:type"
+            ]
+          },
+          {
+            "say": "The rows from the table appear in the results grid.",
+            "flow": [
+              "file>rows:rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why SQLite and not MySQL or PostgreSQL?",
+          "a": "SQLite needs no server or password, so you can start in minutes. The core SQL you learn works in MySQL and PostgreSQL too, and the lessons mention small differences."
+        },
+        {
+          "q": "Can I use the practice database on my phone?",
+          "a": "Setup is much easier on a computer. A few online SQLite playgrounds work in a phone browser, but typing long SQL on a phone is slow, so a computer is recommended."
+        }
+      ],
+      "readTime": "8 min read",
+      "published": true
+    },
+    {
+      "section": "Reading Data",
+      "slug": "select-from-where-basics",
+      "title": "SELECT, FROM and WHERE: Your First Queries",
+      "metaTitle": "SQL SELECT, FROM and WHERE Explained",
+      "description": "Write your first real queries: choose columns with SELECT, name the table with FROM, and keep only matching rows with WHERE. Includes NULL.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Almost every SQL query you will ever read starts with the same three ideas. `SELECT` says which columns you want to see. `FROM` says which table to look in. `WHERE` says which rows to keep. In this lesson you learn all three, and a fourth idea that surprises every beginner: NULL."
+        },
+        {
+          "type": "heading",
+          "text": "SELECT and FROM: choose columns"
+        },
+        {
+          "type": "paragraph",
+          "text": "The shortest useful query asks for everything in a table."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT * FROM products;"
+        },
+        {
+          "type": "paragraph",
+          "text": "The star means every column. This is fine for a quick look, but in real work you usually name the columns you need. Naming columns makes the result easier to read, faster for big tables and safer when the table gains new columns later."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price FROM products;"
+        },
+        {
+          "type": "paragraph",
+          "text": "The order you write the columns is the order you get them. Try `SELECT price, name FROM products;` and the two columns swap places. The table itself does not change. A query only reads data, it never changes it."
+        },
+        {
+          "type": "heading",
+          "text": "Give a column a nicer name with AS"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can rename a column in the result with `AS`. This is called an **alias**. It is useful when a column name is unclear or when you calculate a new value."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name AS product, price AS price_in_rupees FROM products;"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also calculate. Suppose you want the price with 18 per cent tax added, the way a shop in India might show GST. The database does the sum for every row."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price, price * 1.18 AS price_with_tax FROM products;"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the tax rate of your own country and your own case, this is only an example. The idea to keep is that a SELECT list can hold calculations, not just column names."
+        },
+        {
+          "type": "heading",
+          "text": "WHERE: keep only the rows you want"
+        },
+        {
+          "type": "paragraph",
+          "text": "`WHERE` filters rows. It comes after `FROM`. Only rows where the condition is true are kept."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nWHERE price > 500;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price\nDesk lamp    | 650\nBackpack     | 1400\nLaptop stand | 1800\nMouse        | 700"
+        },
+        {
+          "type": "paragraph",
+          "text": "Four of the eight products cost more than 500, so four rows come back. The comparison signs are the ones you know from school: `=` equal, `<>` or `!=` not equal, `>` greater, `<` less, `>=` greater or equal, `<=` less or equal. Notice that SQL uses a single `=` to compare, not `==`."
+        },
+        {
+          "type": "heading",
+          "text": "Comparing text and dates"
+        },
+        {
+          "type": "paragraph",
+          "text": "Text goes in single quotes, and in SQLite the match is case sensitive for `=`, so `'nairobi'` and `'Nairobi'` are different. Other engines may ignore case, so it is a good habit to write values exactly as stored."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, city FROM customers WHERE city = 'Nairobi';"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dates saved as `YYYY-MM-DD` text compare correctly with the same signs, because 2024-06-01 sorts before 2024-07-01."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, joined FROM customers WHERE joined >= '2024-04-01';"
+        },
+        {
+          "type": "paragraph",
+          "text": "That returns the four customers who joined from April 2024 onward: Emma, Farid, Grace and Hari."
+        },
+        {
+          "type": "heading",
+          "text": "NULL: a value that is not there"
+        },
+        {
+          "type": "paragraph",
+          "text": "Hari Singh has no city in our table. The city is NULL, which means “unknown or missing”. NULL is not zero and not an empty text. It is the absence of a value. Because of this, you cannot test for it with `=`."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- This returns nothing, even though Hari has no city:\nSELECT name FROM customers WHERE city = NULL;\n\n-- This is the correct way:\nSELECT name, city FROM customers WHERE city IS NULL;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name       | city\nHari Singh | NULL"
+        },
+        {
+          "type": "paragraph",
+          "text": "To find rows that do have a value, use `IS NOT NULL`. The reason `= NULL` fails is logical: if a value is unknown, the database cannot say that it equals something. “Unknown equals unknown” is also unknown, and `WHERE` only keeps rows that are definitely true. Many real bugs, and many interview questions, come from forgetting this."
+        },
+        {
+          "type": "note",
+          "text": "Rule to remember: use `IS NULL` and `IS NOT NULL` for missing values. Never `= NULL`."
+        },
+        {
+          "type": "heading",
+          "text": "The order the database thinks in"
+        },
+        {
+          "type": "paragraph",
+          "text": "You write `SELECT` first, but the database reads the query in a different order. It first looks at `FROM` to find the table, then applies `WHERE` to keep the rows, and only then picks the columns in `SELECT`. This is why you cannot use a new alias from `SELECT` inside `WHERE` in most engines. You can use the real column or repeat the calculation."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- Works: repeat the calculation\nSELECT name, price * 1.18 AS price_with_tax\nFROM products\nWHERE price * 1.18 > 1000;"
+        },
+        {
+          "type": "heading",
+          "text": "Common beginner mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Forgetting the quotes around text: `WHERE city = Nairobi` makes the database look for a column named Nairobi.",
+            "Using double quotes for text. Use single quotes for text values.",
+            "Putting a comma after the last column before `FROM`: `SELECT name, price, FROM products` is a syntax error.",
+            "Writing `WHERE` before `FROM`. The order is always `SELECT`, `FROM`, `WHERE`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List the name and category of every product in the Stationery category.",
+            "List the names of customers who joined before `'2024-03-01'`.",
+            "Find customers whose city is missing, then find customers whose city is not missing and count them yourself (it should be 7).",
+            "Show each product name with a column called `price_with_tax` that is the price times 1.18."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Stationery query returns three rows: Notebook, Pen pack and Sticky notes.",
+            "The date query returns Asha, Ben and Chidi.",
+            "`city IS NULL` returns only Hari Singh."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The path of a simple query",
+        "nodes": [
+          {
+            "id": "from",
+            "label": "FROM",
+            "sub": "pick the table",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "where",
+            "label": "WHERE",
+            "sub": "keep matching rows",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "select",
+            "label": "SELECT",
+            "sub": "pick the columns",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "out",
+            "label": "Result",
+            "sub": "rows you asked for",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You write SELECT first, but the database starts with FROM and opens the products table.",
+            "on": [
+              "from"
+            ]
+          },
+          {
+            "say": "WHERE looks at each row and keeps only the ones where price > 500 is true.",
+            "flow": [
+              "from>where:all 8 rows"
+            ]
+          },
+          {
+            "say": "SELECT then picks only the columns you named, such as name and price.",
+            "flow": [
+              "where>select:4 rows"
+            ]
+          },
+          {
+            "say": "The result is a small table with just those rows and columns.",
+            "flow": [
+              "select>out:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does WHERE city = NULL return nothing?",
+          "a": "NULL means unknown, so nothing is equal to it, not even another NULL. Use IS NULL to find missing values."
+        },
+        {
+          "q": "Do I have to type SELECT in capital letters?",
+          "a": "No. SQL keywords are not case sensitive. Capitals are only a habit that makes queries easier to read."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Reading Data",
+      "slug": "filter-with-and-or-in-between-like",
+      "title": "Filter Rows: AND, OR, IN, BETWEEN and LIKE",
+      "metaTitle": "SQL AND, OR, IN, BETWEEN and LIKE",
+      "description": "Combine conditions with AND and OR, use brackets correctly, and write shorter filters with IN, BETWEEN and LIKE. Real examples and common traps.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A single `WHERE price > 500` answers simple questions. Real questions have more parts: customers in Nairobi who joined after May, or products that are cheap or in the Home category. In this lesson you combine conditions and learn the shortcuts that make long filters short and clear."
+        },
+        {
+          "type": "heading",
+          "text": "AND: both must be true"
+        },
+        {
+          "type": "paragraph",
+          "text": "`AND` keeps a row only when both conditions are true."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, city, joined\nFROM customers\nWHERE city = 'Nairobi' AND joined >= '2024-05-01';"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | city    | joined\nGrace Mwangi | Nairobi | 2024-05-09"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two customers live in Nairobi, Farid and Grace, but only Grace joined in May or later, so only Grace remains. Each extra `AND` makes the result smaller or the same, never bigger."
+        },
+        {
+          "type": "heading",
+          "text": "OR: at least one must be true"
+        },
+        {
+          "type": "paragraph",
+          "text": "`OR` keeps a row when either condition is true."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, category, price\nFROM products\nWHERE category = 'Bags' OR price < 100;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | category   | price\nPen pack     | Stationery | 80\nBackpack     | Bags       | 1400\nSticky notes | Stationery | 60"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each extra `OR` makes the result bigger or the same. A good way to remember: AND narrows, OR widens."
+        },
+        {
+          "type": "heading",
+          "text": "Brackets: the trap in mixing AND and OR"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you mix `AND` and `OR` in one `WHERE`, SQL does `AND` first, like multiplication before addition in maths. This often gives a different answer than you meant. Use brackets to say exactly what you want."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- What you may mean: Office or Bags products that cost under 1500\nSELECT name, category, price\nFROM products\nWHERE (category = 'Office' OR category = 'Bags') AND price < 1500;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name     | category | price\nBackpack | Bags     | 1400\nMouse    | Office   | 700"
+        },
+        {
+          "type": "paragraph",
+          "text": "Without the brackets, SQL would read `category = 'Office'` OR (`category = 'Bags'` AND `price < 1500`). Then the Laptop stand at 1800 would sneak into the result, because every Office product passes the first test. Whenever you use both words together, add brackets even when you think you do not need them. It costs nothing and protects you from wrong reports."
+        },
+        {
+          "type": "heading",
+          "text": "IN: a short way to write many ORs"
+        },
+        {
+          "type": "paragraph",
+          "text": "Writing `category = 'Home' OR category = 'Bags' OR category = 'Office'` is long. `IN` does the same with a list."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name FROM products WHERE category IN ('Home', 'Bags');"
+        },
+        {
+          "type": "paragraph",
+          "text": "This returns Desk lamp, Backpack and Water bottle. Add `NOT` in front to get everything else: `category NOT IN ('Home', 'Bags')`. A warning for later: if the list could contain NULL, `NOT IN` can behave strangely. You will meet this in the subqueries lesson."
+        },
+        {
+          "type": "heading",
+          "text": "BETWEEN: a range, with both ends included"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nWHERE price BETWEEN 100 AND 700\nORDER BY price DESC;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price\nMouse        | 700\nDesk lamp    | 650\nWater bottle | 300\nNotebook     | 120"
+        },
+        {
+          "type": "paragraph",
+          "text": "`BETWEEN 100 AND 700` is the same as `price >= 100 AND price <= 700`. Both ends are included, which is why the Mouse at exactly 700 appears. It also works with dates: `joined BETWEEN '2024-02-01' AND '2024-03-31'`."
+        },
+        {
+          "type": "heading",
+          "text": "LIKE: match patterns in text"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you do not know the exact text, `LIKE` searches by pattern. Two special signs are used. The percent sign `%` stands for any number of characters, including none. The underscore `_` stands for exactly one character."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- names that start with A\nSELECT name FROM customers WHERE name LIKE 'A%';\n\n-- names that end with 'Rao'\nSELECT name FROM customers WHERE name LIKE '%Rao';\n\n-- names with a letter 'k' anywhere\nSELECT name FROM customers WHERE name LIKE '%k%';\n\n-- a three-letter product code starting with P, like P01\nSELECT name FROM products WHERE name LIKE 'P__';"
+        },
+        {
+          "type": "paragraph",
+          "text": "In SQLite, `LIKE` ignores upper and lower case for ordinary English letters. In some other engines it does not, so check your database if case matters. Be careful with `%` at the start of a pattern, such as `'%k%'`. The database has to look at every row, because it cannot jump straight to a match. On a small table you will not notice. On a table with millions of rows, it can be slow."
+        },
+        {
+          "type": "heading",
+          "text": "Putting it all together"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is a realistic request: “Show orders that are either shipped or pending, placed in July or August 2024.” You can build it from the parts."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT id, customer_id, order_date, status\nFROM orders\nWHERE status IN ('shipped', 'pending')\n  AND order_date BETWEEN '2024-07-01' AND '2024-08-31'\nORDER BY order_date;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | customer_id | order_date | status\n6  | 5           | 2024-07-09 | shipped\n9  | 1           | 2024-08-02 | shipped\n10 | 7           | 2024-08-05 | pending"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice how the query is laid out: one condition per line, with `AND` at the start of the line. This is not required, but it makes long conditions easy to read and easy to fix. People who read your SQL later, including you in a month, will be thankful."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Mixing `AND` and `OR` without brackets and getting a bigger or smaller list than expected.",
+            "Writing `WHERE price BETWEEN 700 AND 100`. The smaller number must come first, or nothing is returned.",
+            "Using `=` with `%`. `name = 'A%'` looks for the exact text A%. Use `LIKE`.",
+            "Forgetting that NULL rows never match a comparison. A row with a missing city will not appear in `city <> 'Nairobi'`. Add `OR city IS NULL` if you want it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Find products in the Stationery category that cost less than 100.",
+            "Find customers in Nairobi or Chennai (write it once with OR and once with IN).",
+            "Find orders that are not delivered (`status <> 'delivered'`) and were placed after `'2024-07-01'`.",
+            "Find product names that contain the word `note`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The first query returns Pen pack and Sticky notes.",
+            "Both versions of the Nairobi or Chennai query return the same three customers: Divya, Farid and Grace.",
+            "The product search for `%note%` returns Notebook and Sticky notes."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "AND narrows, OR widens",
+        "nodes": [
+          {
+            "id": "all",
+            "label": "All rows",
+            "sub": "the table",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "and",
+            "label": "AND",
+            "sub": "both true",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "or",
+            "label": "OR",
+            "sub": "either true",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "res",
+            "label": "Your result",
+            "sub": "after brackets",
+            "col": 2,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with every row in the table.",
+            "on": [
+              "all"
+            ]
+          },
+          {
+            "say": "AND keeps a row only if both conditions are true, so the list gets shorter.",
+            "flow": [
+              "all>and:test each row"
+            ]
+          },
+          {
+            "say": "OR keeps a row if either condition is true, so the list gets longer.",
+            "flow": [
+              "all>or:test each row"
+            ]
+          },
+          {
+            "say": "Brackets make clear which conditions belong together, so the result is what you meant.",
+            "flow": [
+              "and>res:narrow",
+              "or>res:widen"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Does AND or OR run first?",
+          "a": "AND runs before OR. Use brackets whenever you mix them so the meaning is clear."
+        },
+        {
+          "q": "Is BETWEEN inclusive?",
+          "a": "Yes. BETWEEN 100 AND 700 includes both 100 and 700."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Reading Data",
+      "slug": "order-by-limit-distinct",
+      "title": "Sort and Trim Results: ORDER BY, LIMIT, DISTINCT",
+      "metaTitle": "SQL ORDER BY, LIMIT and DISTINCT",
+      "description": "Sort rows with ORDER BY, get a top-N list with LIMIT, remove repeats with DISTINCT, and use functions like UPPER, LENGTH, COALESCE and CASE.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "By default a database gives you rows in no promised order. Sometimes they come out in the order they were added, but you must never depend on it. If order matters to you, ask for it. In this lesson you learn to sort results, cut them to the top few, remove duplicates, and use a few helpful built-in functions."
+        },
+        {
+          "type": "heading",
+          "text": "ORDER BY: sort the result"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nORDER BY price;"
+        },
+        {
+          "type": "paragraph",
+          "text": "That sorts from the smallest price to the largest. This is called ascending order and it is the default. Add `DESC` for descending, largest first."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nORDER BY price DESC;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price\nLaptop stand | 1800\nBackpack     | 1400\nMouse        | 700\nDesk lamp    | 650\nWater bottle | 300\nNotebook     | 120\nPen pack     | 80\nSticky notes | 60"
+        },
+        {
+          "type": "paragraph",
+          "text": "`ORDER BY` is always near the end of the query, after `WHERE`. Text sorts alphabetically and dates sort from earliest to latest when they are written as `YYYY-MM-DD`."
+        },
+        {
+          "type": "heading",
+          "text": "Sort by more than one column"
+        },
+        {
+          "type": "paragraph",
+          "text": "When two rows tie on the first column, a second column decides. List them with commas. Each one can have its own direction."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT category, name, price\nFROM products\nORDER BY category ASC, price DESC;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "category   | name         | price\nBags       | Backpack     | 1400\nHome       | Desk lamp    | 650\nHome       | Water bottle | 300\nOffice     | Laptop stand | 1800\nOffice     | Mouse        | 700\nStationery | Notebook     | 120\nStationery | Pen pack     | 80\nStationery | Sticky notes | 60"
+        },
+        {
+          "type": "paragraph",
+          "text": "Categories are in alphabetical order, and inside each category the dearest product comes first. You can also sort by a calculated column or by its alias, for example `ORDER BY price_with_tax`."
+        },
+        {
+          "type": "heading",
+          "text": "LIMIT: only the first few rows"
+        },
+        {
+          "type": "paragraph",
+          "text": "`LIMIT` cuts the result to the first N rows. Combined with `ORDER BY` it gives a “top N” list, one of the most common requests in reporting."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nORDER BY price DESC\nLIMIT 3;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price\nLaptop stand | 1800\nBackpack     | 1400\nMouse        | 700"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always use `ORDER BY` with `LIMIT`. A `LIMIT` without a sort returns some rows, but which ones is not promised. To skip rows, for example for page 2 of a list, add `OFFSET`: `LIMIT 3 OFFSET 3` skips the first three and returns the next three."
+        },
+        {
+          "type": "note",
+          "text": "Engine difference: MySQL, PostgreSQL and SQLite use `LIMIT`. SQL Server uses `SELECT TOP 3 ...` or `OFFSET ... FETCH`. Oracle uses `FETCH FIRST 3 ROWS ONLY`. The idea is the same."
+        },
+        {
+          "type": "heading",
+          "text": "DISTINCT: remove repeated values"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two customers live in Nairobi. If you ask for the city column, Nairobi appears twice. `DISTINCT` returns each different value once."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT DISTINCT city FROM customers ORDER BY city;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "city\nNULL\nBengaluru\nChennai\nLagos\nLondon\nNairobi\nToronto"
+        },
+        {
+          "type": "paragraph",
+          "text": "NULL counts as a value here, and in SQLite it sorts first. `DISTINCT` works on the whole row you select. `SELECT DISTINCT category, price` returns each different pair of values, not each different category."
+        },
+        {
+          "type": "heading",
+          "text": "Handy functions"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **function** takes a value and returns a changed one. You call it with its name and brackets. Here are the ones you will use most. They work the same in nearly all engines, with small name differences."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT UPPER(name) AS shout, LENGTH(name) AS letters\nFROM customers\nWHERE id <= 3;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "shout        | letters\nASHA RAO     | 8\nBEN CARTER   | 10\nCHIDI OKAFOR | 12"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`UPPER(x)` and `LOWER(x)` change the case of text.",
+            "`LENGTH(x)` counts characters (`LEN` in SQL Server).",
+            "`ROUND(x, 2)` rounds a number to 2 decimal places.",
+            "`SUBSTR(x, start, length)` takes part of a text (`SUBSTRING` in other engines). `SUBSTR(order_date, 1, 7)` gives the year and month, like `2024-06`.",
+            "`x || y` joins text in SQLite and PostgreSQL. MySQL uses `CONCAT(x, y)`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "COALESCE: give NULL a fallback"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reports look odd with blank cells. `COALESCE(a, b)` returns the first value that is not NULL, so you can show a friendly default."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, COALESCE(city, 'Unknown') AS city\nFROM customers\nWHERE id >= 7;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | city\nGrace Mwangi | Nairobi\nHari Singh   | Unknown"
+        },
+        {
+          "type": "paragraph",
+          "text": "This changes only the result you see. The table still holds NULL."
+        },
+        {
+          "type": "heading",
+          "text": "CASE: if this, then that"
+        },
+        {
+          "type": "paragraph",
+          "text": "`CASE` lets a query choose a value by a rule, like an if statement. This is how you turn numbers into labels."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price,\n  CASE\n    WHEN price < 100 THEN 'cheap'\n    WHEN price < 1000 THEN 'medium'\n    ELSE 'premium'\n  END AS band\nFROM products\nORDER BY price;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price | band\nSticky notes | 60    | cheap\nPen pack     | 80    | cheap\nNotebook     | 120   | medium\nWater bottle | 300   | medium\nDesk lamp    | 650   | medium\nMouse        | 700   | medium\nBackpack     | 1400  | premium\nLaptop stand | 1800  | premium"
+        },
+        {
+          "type": "paragraph",
+          "text": "The database checks the `WHEN` lines from top to bottom and uses the first one that is true. The `ELSE` is what you get when none match. Without an `ELSE`, unmatched rows become NULL. `CASE` is useful in reports, and it often comes up in interviews."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List all customers sorted by `joined`, newest first.",
+            "Show the three cheapest products.",
+            "List the different order statuses used in the `orders` table, each only once.",
+            "Show each customer name with their city, but show `'Not given'` when the city is missing.",
+            "Label each order as `'open'` when its status is `shipped` or `pending`, and `'closed'` otherwise."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The newest customer first is Hari Singh (2024-06-01).",
+            "The three cheapest are Sticky notes, Pen pack and Notebook.",
+            "There are four different statuses: cancelled, delivered, pending and shipped."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Sort, then trim",
+        "nodes": [
+          {
+            "id": "rows",
+            "label": "Matching rows",
+            "sub": "from WHERE",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "dist",
+            "label": "DISTINCT",
+            "sub": "drop repeats",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "sort",
+            "label": "ORDER BY",
+            "sub": "sort the rows",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "lim",
+            "label": "LIMIT",
+            "sub": "keep the top few",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "After FROM and WHERE, you have a set of rows with no promised order.",
+            "on": [
+              "rows"
+            ]
+          },
+          {
+            "say": "DISTINCT removes rows that are exact repeats.",
+            "flow": [
+              "rows>dist:all rows"
+            ]
+          },
+          {
+            "say": "ORDER BY puts the rows in the order you asked for, such as price from high to low.",
+            "flow": [
+              "dist>sort:unique rows"
+            ]
+          },
+          {
+            "say": "LIMIT keeps only the first rows, which gives you a top-3 or top-10 list.",
+            "flow": [
+              "sort>lim:sorted rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What order do rows come in without ORDER BY?",
+          "a": "No order is promised. It may look sorted today and change later, so always add ORDER BY when order matters."
+        },
+        {
+          "q": "Can I use LIMIT in SQL Server?",
+          "a": "SQL Server uses TOP or OFFSET and FETCH instead of LIMIT. The idea of taking the first N rows is the same."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Summaries and Groups",
+      "slug": "aggregate-functions-count-sum-avg",
+      "title": "Aggregate Functions: COUNT, SUM, AVG, MIN, MAX",
+      "metaTitle": "SQL COUNT, SUM, AVG, MIN and MAX",
+      "description": "Turn many rows into one answer with COUNT, SUM, AVG, MIN and MAX. Learn how NULL changes the result and what COUNT(*) really counts.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "So far every query returned one result row for each matching row in the table. Business questions are often different. How many orders do we have? What is the total quantity sold? What is the average price? These questions squeeze many rows into one answer. SQL does this with **aggregate functions**."
+        },
+        {
+          "type": "heading",
+          "text": "COUNT: how many rows?"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT COUNT(*) AS customers FROM customers;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "customers\n8"
+        },
+        {
+          "type": "paragraph",
+          "text": "`COUNT(*)` counts rows. You can add a `WHERE` to count only some of them. The `WHERE` runs first, and the count is done on the rows that remain."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT COUNT(*) AS delivered_orders\nFROM orders\nWHERE status = 'delivered';"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "delivered_orders\n6"
+        },
+        {
+          "type": "heading",
+          "text": "SUM, AVG, MIN and MAX"
+        },
+        {
+          "type": "paragraph",
+          "text": "These four work on a number column."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT\n  COUNT(*)   AS products,\n  SUM(price) AS total,\n  AVG(price) AS average,\n  MIN(price) AS cheapest,\n  MAX(price) AS dearest\nFROM products;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "products | total | average | cheapest | dearest\n8        | 5110  | 638.75  | 60       | 1800"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`SUM(x)` adds up all the values.",
+            "`AVG(x)` is the sum divided by the number of values. Use `ROUND(AVG(x), 2)` for a tidy number.",
+            "`MIN(x)` and `MAX(x)` give the smallest and largest. They also work on text (alphabetical order) and dates (earliest and latest)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Because there is a single row of output, all five answers appear together. You can mix several aggregates in one query, as above. What you cannot do yet is mix an aggregate with a normal column, such as `SELECT name, MAX(price)`. The database would not know which name to show with the average. The next lesson shows how `GROUP BY` solves this."
+        },
+        {
+          "type": "heading",
+          "text": "How NULL behaves"
+        },
+        {
+          "type": "paragraph",
+          "text": "Aggregate functions skip NULL values. This surprises many people and is a favourite interview question. Look at the customers table, where Hari has no city."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT\n  COUNT(*)             AS all_rows,\n  COUNT(city)          AS with_city,\n  COUNT(DISTINCT city) AS different_cities\nFROM customers;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "all_rows | with_city | different_cities\n8        | 7         | 6"
+        },
+        {
+          "type": "paragraph",
+          "text": "`COUNT(*)` counts every row, so it is 8. `COUNT(city)` counts only the rows where `city` is not NULL, so it is 7. `COUNT(DISTINCT city)` counts different values: Nairobi appears twice, so seven cities give six different ones. The rule: `COUNT(*)` counts rows, and `COUNT(column)` counts non-NULL values in that column."
+        },
+        {
+          "type": "paragraph",
+          "text": "The same skipping applies to `AVG`, `SUM`, `MIN` and `MAX`. The average of three values 10, 20 and NULL is 15, not 10, because the NULL is ignored and the divide is by 2. If you want NULL treated as zero, say so with `AVG(COALESCE(x, 0))`."
+        },
+        {
+          "type": "note",
+          "text": "If no rows match, `COUNT` returns 0, but `SUM`, `AVG`, `MIN` and `MAX` return NULL. For example `SELECT AVG(price) FROM products WHERE category = 'Nothing'` gives NULL. Use `COALESCE(SUM(x), 0)` when you want a zero."
+        },
+        {
+          "type": "heading",
+          "text": "Calculations inside an aggregate"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can put a calculation inside the brackets. To find the total number of items ever ordered, add the quantity column. To find money, multiply price by quantity for each row first. The money needs the `products` table, which you will join in lesson 9. For now, one table at a time:"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT SUM(quantity) AS items_sold FROM order_items;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "items_sold\n37"
+        },
+        {
+          "type": "heading",
+          "text": "Counting with a condition"
+        },
+        {
+          "type": "paragraph",
+          "text": "A powerful trick is to put a `CASE` inside an aggregate. This lets you count different groups in a single pass, in one row, like a small summary table."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT\n  SUM(CASE WHEN status = 'delivered' THEN 1 ELSE 0 END) AS delivered,\n  SUM(CASE WHEN status = 'shipped'   THEN 1 ELSE 0 END) AS shipped,\n  SUM(CASE WHEN status NOT IN ('delivered', 'shipped') THEN 1 ELSE 0 END) AS other\nFROM orders;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "delivered | shipped | other\n6         | 2       | 2"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each order adds 1 to one of the three columns and 0 to the others. This pattern, sometimes called a conditional count or pivot, is used constantly in reports."
+        },
+        {
+          "type": "heading",
+          "text": "Which date is the latest?"
+        },
+        {
+          "type": "paragraph",
+          "text": "`MIN` and `MAX` work on dates stored as `YYYY-MM-DD`. The first and last order are easy to find."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT MIN(order_date) AS first_order, MAX(order_date) AS last_order FROM orders;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "first_order | last_order\n2024-06-02  | 2024-08-05"
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Putting an aggregate in `WHERE`, such as `WHERE COUNT(*) > 2`. `WHERE` filters rows before counting. Use `HAVING` for conditions on aggregates (next lesson).",
+            "Mixing an aggregate and a plain column without `GROUP BY`.",
+            "Forgetting that `COUNT(column)` skips NULL while `COUNT(*)` does not.",
+            "Dividing two whole numbers in some engines and getting a whole number back. In SQLite and SQL Server, `7 / 2` is `3`. Write `7 / 2.0` or use `CAST` to get 3.5."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Count how many products there are in total, and how many cost more than 500.",
+            "Find the cheapest and the most expensive product price in the Stationery category.",
+            "Count how many different customers have placed an order (use `COUNT(DISTINCT customer_id)` on `orders`). The answer is 7.",
+            "Find the average price rounded to one decimal place."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "There are 8 products and 4 cost more than 500.",
+            "The Stationery prices run from 60 to 120.",
+            "The rounded average price is 638.8."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Many rows become one answer",
+        "nodes": [
+          {
+            "id": "rows",
+            "label": "Many rows",
+            "sub": "8 product rows",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "fn",
+            "label": "Aggregate",
+            "sub": "COUNT, SUM, AVG",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "skip",
+            "label": "NULLs skipped",
+            "sub": "COUNT(city) = 7",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "one",
+            "label": "One row",
+            "sub": "5110, 638.75",
+            "col": 2,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You start with many rows, such as the eight rows in the products table.",
+            "on": [
+              "rows"
+            ]
+          },
+          {
+            "say": "An aggregate function reads all the rows and works out one summary value.",
+            "flow": [
+              "rows>fn:every row"
+            ]
+          },
+          {
+            "say": "Missing values (NULL) are skipped, which is why COUNT(city) can be smaller than COUNT(*).",
+            "flow": [
+              "rows>skip:NULL rows"
+            ]
+          },
+          {
+            "say": "The answer is a single row, such as the total 5110 or the average 638.75.",
+            "flow": [
+              "fn>one:one result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between COUNT(*) and COUNT(column)?",
+          "a": "COUNT(*) counts all rows. COUNT(column) counts only the rows where that column is not NULL."
+        },
+        {
+          "q": "Why does my average ignore some rows?",
+          "a": "AVG skips NULL values. If you want them counted as zero, use AVG(COALESCE(column, 0))."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Summaries and Groups",
+      "slug": "group-by-and-having",
+      "title": "GROUP BY and HAVING: Summaries for Each Group",
+      "metaTitle": "SQL GROUP BY and HAVING Explained",
+      "description": "Get one summary row for each category, city or customer with GROUP BY, filter groups with HAVING, and understand WHERE versus HAVING.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An aggregate on the whole table gives one number. Most real questions want one number for each group: orders per customer, sales per month, products per category. `GROUP BY` does this. It splits the rows into groups and runs the aggregate on each group separately. Learning `GROUP BY` is a big step. It is the tool behind most reports."
+        },
+        {
+          "type": "heading",
+          "text": "Your first GROUP BY"
+        },
+        {
+          "type": "paragraph",
+          "text": "How many products are in each category?"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT category, COUNT(*) AS products\nFROM products\nGROUP BY category\nORDER BY category;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "category   | products\nBags       | 1\nHome       | 2\nOffice     | 2\nStationery | 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "The database puts all products with the same category together. It counts each pile and shows one row for each. The column after `SELECT` that is not inside an aggregate, here `category`, must also appear in `GROUP BY`. That is the main rule."
+        },
+        {
+          "type": "heading",
+          "text": "Several aggregates per group"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT\n  category,\n  COUNT(*)   AS products,\n  MIN(price) AS cheapest,\n  MAX(price) AS dearest\nFROM products\nGROUP BY category\nORDER BY category;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "category   | products | cheapest | dearest\nBags       | 1        | 1400     | 1400\nHome       | 2        | 300      | 650\nOffice     | 2        | 700      | 1800\nStationery | 3        | 60       | 120"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can add as many aggregates as you like. Each of them is worked out inside every group."
+        },
+        {
+          "type": "heading",
+          "text": "Group by more than one column"
+        },
+        {
+          "type": "paragraph",
+          "text": "List several columns, separated by commas, to make groups from each combination. For example, the number of orders for every customer in each status:"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT customer_id, status, COUNT(*) AS orders\nFROM orders\nGROUP BY customer_id, status\nORDER BY customer_id, status;"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each different pair of customer and status becomes its own group. Customer 1 has two delivered orders and one shipped order, so customer 1 gives two rows."
+        },
+        {
+          "type": "heading",
+          "text": "Groups made from NULL"
+        },
+        {
+          "type": "paragraph",
+          "text": "All NULL values are put in one group together. Look at orders per city for customers."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT city, COUNT(*) AS customers\nFROM customers\nGROUP BY city\nORDER BY customers DESC, city;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "city      | customers\nNairobi   | 2\nNULL      | 1\nBengaluru | 1\nChennai   | 1\nLagos     | 1\nLondon    | 1\nToronto   | 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nairobi has two customers. The row with NULL is Hari, who has no city. If you do not want that row, add `WHERE city IS NOT NULL` before the `GROUP BY`."
+        },
+        {
+          "type": "heading",
+          "text": "HAVING: filter the groups"
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppose you only want categories with at least two products. You might try `WHERE COUNT(*) >= 2`, but that fails. `WHERE` works on single rows before any groups exist. To filter groups after counting, use `HAVING`."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT category, COUNT(*) AS products\nFROM products\nGROUP BY category\nHAVING COUNT(*) >= 2;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "category   | products\nHome       | 2\nOffice     | 2\nStationery | 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "Bags has only one product, so its group is removed."
+        },
+        {
+          "type": "heading",
+          "text": "WHERE versus HAVING"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is one of the most common SQL interview questions, so learn it well."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`WHERE` filters **rows** before grouping. It cannot use aggregates.",
+            "`HAVING` filters **groups** after grouping. It is where you use aggregates like `COUNT(*)` or `SUM(x)`.",
+            "You can use both in one query. Use `WHERE` first to throw away rows you do not need, because that is faster, then `HAVING` for the group test."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Here both are used together. Count each customer's orders that were not cancelled, and keep only customers with two or more."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT customer_id, COUNT(*) AS orders\nFROM orders\nWHERE status <> 'cancelled'\nGROUP BY customer_id\nHAVING COUNT(*) >= 2\nORDER BY customer_id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "customer_id | orders\n1           | 3\n2           | 2"
+        },
+        {
+          "type": "heading",
+          "text": "The full order of a query"
+        },
+        {
+          "type": "paragraph",
+          "text": "Now that you know most parts, here is the full written order, which is also the order you must write them in. The database works in a different logical order, shown on the right."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Write it like this     The database thinks like this\nSELECT                 5. choose columns\nFROM                   1. find the table\nWHERE                  2. keep rows\nGROUP BY               3. make groups\nHAVING                 4. keep groups\nORDER BY               6. sort\nLIMIT                  7. cut"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you ever wonder why something does not work, check this order. For example, `WHERE` runs before `SELECT`, so a new alias from `SELECT` is not known inside `WHERE`. In many engines `ORDER BY` runs after `SELECT`, so it can use the alias."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A selected column that is not in `GROUP BY` and not inside an aggregate. Some engines such as SQLite and older MySQL allow it and pick an arbitrary row's value, which gives wrong answers quietly. PostgreSQL and SQL Server give an error. Treat it as an error.",
+            "Using `WHERE` where `HAVING` is needed.",
+            "Counting groups when you meant to count rows, or the reverse. Always ask: what is one row of the answer? Here it is one category, or one customer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Count the customers in each city, leaving out customers with no city.",
+            "Show the number of orders in each status, most common first.",
+            "Show each order's id and the total quantity of items in it from `order_items`, and keep only orders with more than 6 items. Orders 5 and 7 should appear.",
+            "Count orders per month with `SUBSTR(order_date, 1, 7)` as the month."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Nairobi has 2 customers and the others 1.",
+            "Delivered is the most common status with 6 orders.",
+            "The monthly counts are 3 (2024-06), 5 (2024-07) and 2 (2024-08)."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Rows become groups, groups become rows",
+        "nodes": [
+          {
+            "id": "rows",
+            "label": "All rows",
+            "sub": "products table",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "grp",
+            "label": "GROUP BY",
+            "sub": "category piles",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "agg",
+            "label": "Aggregate",
+            "sub": "COUNT each pile",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "hav",
+            "label": "HAVING",
+            "sub": "keep some groups",
+            "col": 2,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "out",
+            "label": "One row per group",
+            "sub": "",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You begin with all rows, after any WHERE has removed unwanted ones.",
+            "on": [
+              "rows"
+            ]
+          },
+          {
+            "say": "GROUP BY puts rows with the same category into the same pile.",
+            "flow": [
+              "rows>grp:make piles"
+            ]
+          },
+          {
+            "say": "The aggregate, such as COUNT(*), is worked out for every pile separately.",
+            "flow": [
+              "grp>agg:each pile"
+            ]
+          },
+          {
+            "say": "HAVING can drop groups, for example piles with fewer than two products.",
+            "flow": [
+              "agg>hav:test groups"
+            ]
+          },
+          {
+            "say": "You get one result row for each group that is left.",
+            "flow": [
+              "hav>out:groups kept"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between WHERE and HAVING?",
+          "a": "WHERE filters single rows before grouping. HAVING filters groups after the aggregate is calculated, so it can use COUNT, SUM and similar functions."
+        },
+        {
+          "q": "Why does my query say a column must appear in GROUP BY?",
+          "a": "Every selected column must either be in the GROUP BY list or inside an aggregate function. Otherwise the database does not know which value to show for the group."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Several Tables",
+      "slug": "primary-foreign-keys-table-design",
+      "title": "Keys and Table Design: Why Data Is Split Into Tables",
+      "metaTitle": "SQL Keys and Table Design for Beginners",
+      "description": "Understand primary keys, foreign keys and one-to-many relationships, and why good designs split data into several tables. Prepares you for JOIN.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before you learn `JOIN`, you need to understand why the data is in several tables at all. Beginners often ask: why not keep everything in one big table, like a spreadsheet? The answer is the heart of database design, and it explains the shape of every database you will meet at work."
+        },
+        {
+          "type": "heading",
+          "text": "The one-big-table problem"
+        },
+        {
+          "type": "paragraph",
+          "text": "Imagine a single sheet that records every order line with all the details copied in:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "order | customer     | city      | product   | price | qty\n1     | Asha Rao     | Bengaluru | Notebook  | 120   | 3\n1     | Asha Rao     | Bengaluru | Pen pack  | 80    | 2\n2     | Asha Rao     | Bengaluru | Backpack  | 1400  | 1\n3     | Ben Carter   | London    | Laptop... | 1800  | 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "Asha's name and city are written again on every row. This causes three problems that database people give names to."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Waste and mistakes.** If Asha moves to Pune you must change every row she appears in. Miss one and the data now disagrees with itself.",
+            "**Cannot add partial facts.** You cannot record a new product until someone orders it, or a new customer until she buys something, because every row needs an order.",
+            "**Lost facts on delete.** If you delete the only order of a customer, you also lose the fact that she exists."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The cure is to store each fact once, in the table where it belongs. People call this process **normalisation**. You do not need the formal rules to design a good small database. One idea covers most of it: **one table for each kind of thing**."
+        },
+        {
+          "type": "heading",
+          "text": "One table for each kind of thing"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the shop there are four kinds of things: customers, products, orders and order lines. Each gets a table. Facts about a customer, such as name and city, live in `customers` once. Facts about a product, such as its name and price, live in `products` once."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "customers: id, name, city, joined\nproducts:  id, name, category, price\norders:    id, customer_id, order_date, status\norder_items: id, order_id, product_id, quantity"
+        },
+        {
+          "type": "heading",
+          "text": "Primary key: every row has its own identity"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **primary key** is a column, or a small group of columns, whose value is different on every row and is never NULL. Most tables use a column called `id`. In SQLite, `INTEGER PRIMARY KEY` makes the database fill the numbers for you. In MySQL the same idea is written `AUTO_INCREMENT`, in PostgreSQL `GENERATED ... AS IDENTITY` or `SERIAL`."
+        },
+        {
+          "type": "paragraph",
+          "text": "A good primary key is stable. Do not use a person's name or phone number, since these can change or repeat. A simple number that has no meaning outside the database is safest."
+        },
+        {
+          "type": "heading",
+          "text": "Foreign key: a link to another table"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **foreign key** is a column that holds the primary key value of a row in another table. In `orders`, the column `customer_id` holds the `id` of a customer. It means: this order belongs to that customer."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "orders\nid | customer_id | order_date | status\n1  | 1           | 2024-06-02 | delivered     <- customer 1 is Asha Rao\n2  | 1           | 2024-06-20 | delivered\n3  | 2           | 2024-06-21 | delivered     <- customer 2 is Ben Carter"
+        },
+        {
+          "type": "paragraph",
+          "text": "When foreign keys are declared and the database enforces them, it will refuse to insert an order for a customer id that does not exist, and it will refuse to delete a customer that still has orders. In SQLite you must turn this on with `PRAGMA foreign_keys = ON;` for each connection. MySQL (InnoDB) and PostgreSQL enforce them by default. This protects you from **orphan rows**, orders that point to nobody."
+        },
+        {
+          "type": "heading",
+          "text": "Relationships: one-to-many and many-to-many"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **one-to-many** relationship is the most common. One customer has many orders, but each order belongs to one customer. The foreign key goes on the “many” side: `orders.customer_id`."
+        },
+        {
+          "type": "paragraph",
+          "text": "A **many-to-many** relationship is where each side can have many of the other. An order can contain many products, and a product can be in many orders. A single column cannot hold that, so you add a third table in the middle, called a **junction table** (or bridge table). Here it is `order_items`. Each row says: this order has this product, this many times."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "orders  <--  order_items  -->  products\n(one)        (many rows)         (one)\n\norder_items: order_id -> orders.id\n             product_id -> products.id\n             quantity"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reading it from the middle: each `order_items` row points to one order and one product. That is two foreign keys. This pattern appears in nearly every shop, booking, school and library system you will see."
+        },
+        {
+          "type": "heading",
+          "text": "How to read a database you have not seen before"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you start a new job, you will often get a database with dozens of tables and no guide. These habits help."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List the tables and the columns of each (your tool has a schema view, or in SQLite type `.schema`).",
+            "Find the primary key of each table, usually `id`.",
+            "Find the columns that end with `_id`. They are probably foreign keys. Note which table each points to.",
+            "Draw boxes and arrows on paper. One arrow from each foreign key to the table it references.",
+            "Run `SELECT * FROM table LIMIT 5` on each table to see real examples."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Ten minutes of this gives you a map. Without it, joins become guesswork."
+        },
+        {
+          "type": "heading",
+          "text": "Naming habits that help"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use one clear style. This course uses lower case with underscores: `order_items`, `customer_id`.",
+            "Name foreign keys after what they point to: `customer_id` points to `customers.id`.",
+            "Keep table names plural or singular, but be consistent. Many teams use plural.",
+            "Avoid spaces and special characters in names. They force you to quote everything."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Design is a judgement. Splitting data into more tables saves space and mistakes, but each query needs more joins. For reports that read huge amounts of data, teams sometimes copy data on purpose (denormalise) to make reading faster. Learn the rules first, break them later with a reason."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Draw the four tables of the shop database as boxes. Write the primary key in each and draw an arrow for each of the three foreign keys.",
+            "Run `SELECT * FROM orders WHERE customer_id = 1;` and write down which customer it is by looking in `customers`.",
+            "Think of a library: books, members and loans. Decide which table holds the foreign keys, and say whether the relationship between members and books is one-to-many or many-to-many."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You found three foreign keys: `orders.customer_id`, `order_items.order_id` and `order_items.product_id`.",
+            "You can explain why `order_items` exists: orders and products are many-to-many.",
+            "For the library, loans is the junction table with a member id and a book id."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Tables linked by keys",
+        "nodes": [
+          {
+            "id": "cust",
+            "label": "customers",
+            "sub": "id (primary key)",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "ord",
+            "label": "orders",
+            "sub": "customer_id (foreign)",
+            "col": 1,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "items",
+            "label": "order_items",
+            "sub": "order_id, product_id",
+            "col": 2,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "prod",
+            "label": "products",
+            "sub": "id (primary key)",
+            "col": 3,
+            "row": 0,
+            "kind": "store"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Each customer is stored once in the customers table with its own id.",
+            "on": [
+              "cust"
+            ]
+          },
+          {
+            "say": "An order stores only the customer id, which points back to the customer.",
+            "flow": [
+              "ord>cust:customer_id"
+            ]
+          },
+          {
+            "say": "Order items connect an order to the things in it.",
+            "flow": [
+              "items>ord:order_id"
+            ]
+          },
+          {
+            "say": "Each item also points to a product, so a product is stored once and used in many orders.",
+            "flow": [
+              "items>prod:product_id"
+            ]
+          },
+          {
+            "say": "Because every fact lives in one place, a change such as a new city is made once.",
+            "on": [
+              "cust",
+              "ord",
+              "items",
+              "prod"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between a primary key and a foreign key?",
+          "a": "A primary key uniquely identifies a row in its own table. A foreign key is a column that stores the primary key of a row in another table, creating a link."
+        },
+        {
+          "q": "Why do we need a junction table?",
+          "a": "When two kinds of things can each have many of the other, such as orders and products, a middle table with two foreign keys stores each pairing."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Several Tables",
+      "slug": "sql-joins-inner-left",
+      "title": "SQL JOINs: INNER JOIN and LEFT JOIN Explained",
+      "metaTitle": "SQL INNER JOIN and LEFT JOIN Explained",
+      "description": "Combine tables with INNER JOIN and LEFT JOIN. Find customers with no orders, build order totals across three tables, and avoid common join mistakes.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A `JOIN` combines rows from two tables into one result by matching a column in one with a column in the other. It is the single most important SQL skill after `SELECT`, and it is the most common interview topic. Take it slowly, and use the pictures in your head: two piles of cards, matched by an id."
+        },
+        {
+          "type": "heading",
+          "text": "The problem: names live in another table"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at `orders`. It shows `customer_id` 1, 1, 2. That is not very friendly. You want the customer's name. The name is in `customers`. A join connects the two."
+        },
+        {
+          "type": "heading",
+          "text": "INNER JOIN"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT o.id, c.name, o.order_date, o.status\nFROM orders AS o\nINNER JOIN customers AS c ON c.id = o.customer_id\nORDER BY o.id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | name         | order_date | status\n1  | Asha Rao     | 2024-06-02 | delivered\n2  | Asha Rao     | 2024-06-20 | delivered\n3  | Ben Carter   | 2024-06-21 | delivered\n4  | Chidi Okafor | 2024-07-01 | cancelled\n5  | Divya Nair   | 2024-07-04 | delivered\n6  | Emma Wilson  | 2024-07-09 | shipped\n7  | Ben Carter   | 2024-07-15 | delivered\n8  | Farid Hassan | 2024-07-18 | delivered\n9  | Asha Rao     | 2024-08-02 | shipped\n10 | Grace Mwangi | 2024-08-05 | pending"
+        },
+        {
+          "type": "paragraph",
+          "text": "Read it in parts."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`FROM orders AS o` starts with the orders table and gives it the short name `o`. A short name is called a table alias.",
+            "`INNER JOIN customers AS c` brings in the customers table, short name `c`.",
+            "`ON c.id = o.customer_id` is the matching rule: a customer row and an order row are joined when the customer's `id` equals the order's `customer_id`.",
+            "In the `SELECT`, `o.id` and `c.name` say which table each column comes from. When two tables have a column with the same name, such as `id`, you must say which one you mean."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "`INNER JOIN` keeps only rows that have a match on both sides. Ten orders matched ten customers, so ten rows come back. Hari Singh has no orders, so Hari does not appear at all. You can write just `JOIN` instead of `INNER JOIN`. It means the same."
+        },
+        {
+          "type": "heading",
+          "text": "LEFT JOIN: keep everything from the left table"
+        },
+        {
+          "type": "paragraph",
+          "text": "What if you want all customers, including those with no orders? `LEFT JOIN` keeps every row from the first (left) table. When there is no match on the right side, the right columns are filled with NULL."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT c.name, COUNT(o.id) AS orders\nFROM customers AS c\nLEFT JOIN orders AS o ON o.customer_id = c.id\nGROUP BY c.id\nORDER BY orders DESC, c.name;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | orders\nAsha Rao     | 3\nBen Carter   | 2\nChidi Okafor | 1\nDivya Nair   | 1\nEmma Wilson  | 1\nFarid Hassan | 1\nGrace Mwangi | 1\nHari Singh   | 0"
+        },
+        {
+          "type": "paragraph",
+          "text": "Hari appears with 0 orders. With an inner join Hari would be missing. Notice that we counted `o.id`, not `*`. For Hari the order columns are NULL, and `COUNT(o.id)` skips NULL, so the count is 0. `COUNT(*)` would say 1, which is wrong."
+        },
+        {
+          "type": "heading",
+          "text": "Find rows with no match"
+        },
+        {
+          "type": "paragraph",
+          "text": "A very common request: which customers have never ordered? Do a `LEFT JOIN`, then keep only rows where the right side is NULL."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT c.name\nFROM customers AS c\nLEFT JOIN orders AS o ON o.customer_id = c.id\nWHERE o.id IS NULL;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name\nHari Singh"
+        },
+        {
+          "type": "paragraph",
+          "text": "This works because only unmatched customers have a NULL `o.id`. The same pattern finds products that nobody has ordered, employees with no manager assigned, and so on. In our data every product has been ordered at least once, so that query returns nothing."
+        },
+        {
+          "type": "heading",
+          "text": "Joining three tables"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can keep joining. To see the lines of an order with product names and the money for each line, join `order_items` to `products`."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT oi.order_id, p.name, oi.quantity, p.price * oi.quantity AS line_total\nFROM order_items AS oi\nJOIN products AS p ON p.id = oi.product_id\nWHERE oi.order_id IN (1, 3)\nORDER BY oi.id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "order_id | name         | quantity | line_total\n1        | Notebook     | 3        | 360\n1        | Pen pack     | 2        | 160\n3        | Laptop stand | 1        | 1800\n3        | Mouse        | 1        | 700"
+        },
+        {
+          "type": "paragraph",
+          "text": "Now go further and combine joins with grouping to answer a real business question: how much has each customer spent, ignoring cancelled orders?"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT c.name, SUM(p.price * oi.quantity) AS spent\nFROM customers AS c\nJOIN orders AS o       ON o.customer_id = c.id\nJOIN order_items AS oi ON oi.order_id = o.id\nJOIN products AS p     ON p.id = oi.product_id\nWHERE o.status <> 'cancelled'\nGROUP BY c.id\nORDER BY spent DESC;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | spent\nAsha Rao     | 4020\nBen Carter   | 3340\nDivya Nair   | 1200\nEmma Wilson  | 700\nFarid Hassan | 650\nGrace Mwangi | 320"
+        },
+        {
+          "type": "paragraph",
+          "text": "Chidi's only order was cancelled, and Hari has no orders, so neither appears. Read the query as a chain: customer to orders, orders to items, items to products. Each `ON` line is one link in the chain. When a join returns strange numbers, check the chain one link at a time by removing the later joins."
+        },
+        {
+          "type": "heading",
+          "text": "Why join results sometimes grow"
+        },
+        {
+          "type": "paragraph",
+          "text": "A join returns one row for every matching pair. If one order has three items, joining orders to items gives three rows for that order. This is correct, but if you then sum an order-level number such as a delivery fee, you would count it three times. When totals look too big, suspect a join that multiplied your rows. Check by counting rows before and after each join."
+        },
+        {
+          "type": "heading",
+          "text": "Other joins you will meet"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**RIGHT JOIN** keeps all rows from the right table. It is a LEFT JOIN written backwards, so most people just swap the table order and use LEFT JOIN. SQLite supports it in recent versions.",
+            "**FULL OUTER JOIN** keeps all rows from both sides. It exists in PostgreSQL, SQL Server and Oracle. MySQL does not have it.",
+            "**CROSS JOIN** pairs every row with every row. It is rarely wanted by accident and often a bug.",
+            "**Self join** joins a table to itself, for example an employee table to find each person's manager. Give the two copies different aliases."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Forgetting the `ON` rule. In some engines this gives a cross join and a huge result.",
+            "Writing a condition on the right table in `WHERE` after a `LEFT JOIN`, for example `WHERE o.status = 'delivered'`. It removes the NULL rows, so the result behaves like an inner join. Put such conditions in the `ON` clause instead.",
+            "Not qualifying a column that exists in both tables. You get an error like “ambiguous column name”.",
+            "Counting with `COUNT(*)` after a left join and counting the unmatched rows as one."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Show each product name with the total quantity ever ordered. Use `order_items` and `products`. Notebook and Sticky notes are both 10.",
+            "List every order with the customer's name and city, only for customers in Nairobi. Two rows come back.",
+            "Find the total value of each order (price times quantity summed per order). Order 3 should be 2500.",
+            "List customers who have at least one shipped order. Use joins and not a subquery."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The Nairobi query returns orders 8 and 10.",
+            "Order values are 520, 1400, 2500, 1300, 1200, 700, 840, 650, 2100 and 320 for orders 1 to 10.",
+            "The shipped query returns Emma Wilson and Asha Rao."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Matching rows with a JOIN",
+        "nodes": [
+          {
+            "id": "left",
+            "label": "customers",
+            "sub": "8 rows",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "on",
+            "label": "ON c.id = customer_id",
+            "sub": "matching rule",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "right",
+            "label": "orders",
+            "sub": "10 rows",
+            "col": 2,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "inner",
+            "label": "INNER JOIN",
+            "sub": "matches only",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "lj",
+            "label": "LEFT JOIN",
+            "sub": "all customers",
+            "col": 3,
+            "row": 1,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have two tables: customers on the left and orders on the right.",
+            "on": [
+              "left",
+              "right"
+            ]
+          },
+          {
+            "say": "The ON rule says a customer and an order match when the customer id equals the order customer_id.",
+            "flow": [
+              "left>on:id",
+              "right>on:customer_id"
+            ]
+          },
+          {
+            "say": "INNER JOIN returns only the pairs that match, so a customer with no orders is left out.",
+            "flow": [
+              "on>inner:matches"
+            ]
+          },
+          {
+            "say": "LEFT JOIN keeps every customer. When there is no matching order, the order columns are NULL.",
+            "flow": [
+              "on>lj:matches and NULLs"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between INNER JOIN and LEFT JOIN?",
+          "a": "INNER JOIN returns only rows that match in both tables. LEFT JOIN returns all rows from the left table and fills the right side with NULL when there is no match."
+        },
+        {
+          "q": "How do I find rows with no match in another table?",
+          "a": "Use a LEFT JOIN and filter for rows where a column from the right table IS NULL."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": true
+    },
+    {
+      "section": "Several Tables",
+      "slug": "subqueries-exists-and-ctes",
+      "title": "Subqueries, EXISTS and CTEs: Queries Inside Queries",
+      "metaTitle": "SQL Subqueries, EXISTS and CTEs",
+      "description": "Use a query inside another query with subqueries, EXISTS and WITH (CTEs). Learn the NOT IN with NULL trap and how to split big queries into readable steps.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Sometimes the answer to one question depends on the answer to another. Which products cost more than the average price? To know that, you first need the average. SQL lets you put one query inside another. It is called a **subquery**. In this lesson you learn three tools that solve this kind of problem: subqueries, `EXISTS` and the `WITH` clause, also called a common table expression or CTE."
+        },
+        {
+          "type": "heading",
+          "text": "A subquery that returns one value"
+        },
+        {
+          "type": "paragraph",
+          "text": "Put a query in brackets where a single value is expected."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nWHERE price > (SELECT AVG(price) FROM products)\nORDER BY price;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | price\nDesk lamp    | 650\nMouse        | 700\nBackpack     | 1400\nLaptop stand | 1800"
+        },
+        {
+          "type": "paragraph",
+          "text": "The inner query runs first and returns one number, 638.75. Then the outer query uses it like a normal value. If the inner query returned more than one row here, you would get an error or a wrong answer, so make sure it returns exactly one value."
+        },
+        {
+          "type": "heading",
+          "text": "A subquery that returns a list"
+        },
+        {
+          "type": "paragraph",
+          "text": "When the inner query returns a column of values, use it with `IN`."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name\nFROM customers\nWHERE id IN (SELECT customer_id FROM orders WHERE status = 'shipped');"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name\nAsha Rao\nEmma Wilson"
+        },
+        {
+          "type": "paragraph",
+          "text": "The inner query lists the customer ids that have a shipped order. The outer query finds the names that go with those ids. The same result can be written with a join. Joins and subqueries are often two ways to say the same thing. Choose the one that is easier to read."
+        },
+        {
+          "type": "heading",
+          "text": "The NOT IN trap with NULL"
+        },
+        {
+          "type": "paragraph",
+          "text": "`NOT IN` finds rows whose value is not in a list. It has a serious catch. If the list contains even one NULL, `NOT IN` returns no rows at all."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- This returns Hari Singh, because customer_id is never NULL in orders:\nSELECT name FROM customers WHERE id NOT IN (SELECT customer_id FROM orders);\n\n-- But this returns nothing at all:\nSELECT name FROM customers WHERE id NOT IN (1, 2, NULL);"
+        },
+        {
+          "type": "paragraph",
+          "text": "The reason is the same as with `= NULL`. For a customer with id 5, the test is “5 is not 1 and not 2 and not NULL”. The last part is unknown, so the whole test is not definitely true and the row is dropped. If a column in your data can be NULL, use `NOT EXISTS` or a `LEFT JOIN` instead."
+        },
+        {
+          "type": "heading",
+          "text": "EXISTS: does a matching row exist?"
+        },
+        {
+          "type": "paragraph",
+          "text": "`EXISTS` is true when the inner query returns at least one row. It is often written with a link back to the outer row. This is called a **correlated subquery**, because the inner query uses a value from the outer query."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT c.name\nFROM customers AS c\nWHERE NOT EXISTS (\n  SELECT 1 FROM orders AS o WHERE o.customer_id = c.id\n);"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name\nHari Singh"
+        },
+        {
+          "type": "paragraph",
+          "text": "For each customer, the database asks: is there any order for this customer? `SELECT 1` simply means we do not care about the column, only whether a row exists. Use `EXISTS` for “has at least one” and `NOT EXISTS` for “has none”. It is safe with NULLs and stops looking as soon as it finds one row, which is good for speed."
+        },
+        {
+          "type": "heading",
+          "text": "A subquery in FROM"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also treat a subquery as a temporary table. It must have a name."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT category, avg_price\nFROM (\n  SELECT category, AVG(price) AS avg_price\n  FROM products\n  GROUP BY category\n) AS cat\nWHERE avg_price > 500;"
+        },
+        {
+          "type": "paragraph",
+          "text": "This works, but deeper nesting quickly becomes hard to read. That is where CTEs help."
+        },
+        {
+          "type": "heading",
+          "text": "WITH: name each step (CTE)"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **CTE** gives a name to a query so you can use it like a table in the main query. It reads from top to bottom like a recipe: first do this, then do that."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "WITH totals AS (\n  SELECT o.customer_id, SUM(p.price * oi.quantity) AS spent\n  FROM orders AS o\n  JOIN order_items AS oi ON oi.order_id = o.id\n  JOIN products AS p     ON p.id = oi.product_id\n  WHERE o.status <> 'cancelled'\n  GROUP BY o.customer_id\n)\nSELECT c.name, t.spent\nFROM totals AS t\nJOIN customers AS c ON c.id = t.customer_id\nWHERE t.spent > 1000\nORDER BY t.spent DESC;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name       | spent\nAsha Rao   | 4020\nBen Carter | 3340\nDivya Nair | 1200"
+        },
+        {
+          "type": "paragraph",
+          "text": "The first part, `totals`, works out what each customer spent. The second part uses it. You can write several CTEs one after another, separated by commas, and later ones can use earlier ones. CTEs work in SQLite, MySQL 8 and later, PostgreSQL, SQL Server and Oracle. Older MySQL versions do not have them."
+        },
+        {
+          "type": "heading",
+          "text": "Which one should I use?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A single value to compare with: scalar subquery, like `price > (SELECT AVG(price) ...)`.",
+            "A list to test membership: `IN`. Mind NULLs with `NOT IN`.",
+            "“Has at least one” or “has none”: `EXISTS` or `NOT EXISTS`, or a `LEFT JOIN ... IS NULL`.",
+            "A long query with several steps: a CTE, so each step has a clear name."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Readability is not decoration. In a team, a query is read many more times than it is written. If you cannot explain a query in a sentence per step, split it with CTEs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Find the products priced below the average price. Four products qualify: Notebook, Pen pack, Sticky notes and Water bottle.",
+            "List customers who have at least one delivered order, using `IN`, then again using `EXISTS`. Both should return Asha, Ben, Divya and Farid.",
+            "Using a CTE, work out the number of items in each order, then show only orders with more than 4 items.",
+            "Explain in your own words why `id NOT IN (1, 2, NULL)` returns nothing."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The below-average list has four products.",
+            "Both delivered-order queries give the same four names.",
+            "The CTE query returns orders 1 (5 items), 5 (7 items) and 7 (12 items)."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Inner query first, then the outer query",
+        "nodes": [
+          {
+            "id": "inner",
+            "label": "Inner query",
+            "sub": "AVG(price) = 638.75",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "val",
+            "label": "One value",
+            "sub": "638.75",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "outer",
+            "label": "Outer query",
+            "sub": "price > that value",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Result",
+            "sub": "4 products",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A subquery is a query inside brackets. The inner one runs first.",
+            "on": [
+              "inner"
+            ]
+          },
+          {
+            "say": "Here it works out the average price, a single value.",
+            "flow": [
+              "inner>val:average"
+            ]
+          },
+          {
+            "say": "The outer query uses that value in its WHERE condition.",
+            "flow": [
+              "val>outer:use it"
+            ]
+          },
+          {
+            "say": "Only products above the average remain in the result.",
+            "flow": [
+              "outer>res:rows kept"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is a CTE in SQL?",
+          "a": "A CTE (common table expression) is a named query written with WITH that you can use like a table in the main query. It makes long queries easier to read."
+        },
+        {
+          "q": "Should I use a join or a subquery?",
+          "a": "Often both work. Pick the one that is clearer. Use EXISTS or a LEFT JOIN for no-match tests, and a join when you need columns from both tables."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Changing Data",
+      "slug": "insert-update-delete-safely",
+      "title": "INSERT, UPDATE and DELETE: Change Data Safely",
+      "metaTitle": "SQL INSERT, UPDATE and DELETE Safely",
+      "description": "Add, change and remove rows with INSERT, UPDATE and DELETE. Learn the safe habits that protect real data: SELECT first, always WHERE, and transactions.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Until now you only read data. Real work also means changing it: adding a new customer, fixing a wrong price, removing a test row. These statements are powerful. A single careless `UPDATE` without a condition can change every row in a table, and in a live system that can mean a very bad day. This lesson teaches the three statements and, more importantly, the habits that keep you safe."
+        },
+        {
+          "type": "note",
+          "text": "Practice on your own `shop.db` only. If you break it, delete the file and run the setup script again. Never practise change statements on a company database."
+        },
+        {
+          "type": "heading",
+          "text": "INSERT: add a new row"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "INSERT INTO customers (name, city, joined)\nVALUES ('Ivy Dube', 'Durban', '2024-07-01');"
+        },
+        {
+          "type": "paragraph",
+          "text": "You name the table, then the columns in brackets, then the values in the same order. You do not give `id`: because it is an integer primary key, SQLite picks the next free number, which is 9. Check the result."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT id, name FROM customers WHERE id >= 8;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | name\n8  | Hari Singh\n9  | Ivy Dube"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always write the column list. `INSERT INTO customers VALUES (...)` without names depends on the exact column order of the table, and it breaks the day someone adds a column. To add several rows at once, list several value groups separated by commas, as the setup script does."
+        },
+        {
+          "type": "paragraph",
+          "text": "Columns you leave out get their default value, which is NULL unless the table says otherwise. A column marked `NOT NULL` with no default must be given a value, or the insert fails."
+        },
+        {
+          "type": "heading",
+          "text": "UPDATE: change existing rows"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "UPDATE customers\nSET city = 'Pune'\nWHERE id = 8;"
+        },
+        {
+          "type": "paragraph",
+          "text": "`SET` says what to change. `WHERE` says which rows. Hari had no city, and now has Pune. You can set several columns by separating them with commas, and use the old value in a calculation:"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "UPDATE products\nSET price = price + 10\nWHERE category = 'Stationery';"
+        },
+        {
+          "type": "paragraph",
+          "text": "This raises the price of the three Stationery products by 10. The database tells you how many rows changed. If you expected 3 and it says 8, something is wrong, and you should stop and check."
+        },
+        {
+          "type": "note",
+          "text": "The most dangerous mistake in SQL: an `UPDATE` or `DELETE` without a `WHERE`. It affects every row. Always type the `WHERE` first."
+        },
+        {
+          "type": "heading",
+          "text": "DELETE: remove rows"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "DELETE FROM customers WHERE id = 9;"
+        },
+        {
+          "type": "paragraph",
+          "text": "This removes Ivy. Again, `WHERE` decides which rows go. `DELETE FROM customers;` with no `WHERE` empties the whole table. In many companies, rows are not really deleted. Instead a column such as `active` or `deleted_at` is set, which is called a **soft delete**, so the data can be recovered and old reports still add up."
+        },
+        {
+          "type": "heading",
+          "text": "The three safety habits"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**SELECT first.** Before an `UPDATE` or `DELETE`, run a `SELECT` with the same `WHERE` and look at the rows. If the list is what you expect, change `SELECT *` to `DELETE` and keep the same `WHERE`.",
+            "**Check the row count.** After the statement, read how many rows were affected. A surprise number means stop.",
+            "**Use a transaction** when the change matters. It lets you undo."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "-- Step 1: look at what would change\nSELECT * FROM products WHERE category = 'Stationery';\n\n-- Step 2: change it\nUPDATE products SET price = price + 10 WHERE category = 'Stationery';"
+        },
+        {
+          "type": "heading",
+          "text": "Transactions: a safety net"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **transaction** groups statements into one all-or-nothing unit. You start with `BEGIN`, make changes, and finish with `COMMIT` to keep them or `ROLLBACK` to undo them all. Nobody else sees half-done work, and if something fails in the middle, you can go back."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "BEGIN;\nUPDATE products SET price = 0;      -- oops, forgot the WHERE\nSELECT SUM(price) FROM products;    -- 0, that is wrong\nROLLBACK;                           -- undo everything\nSELECT SUM(price) FROM products;    -- 5110 again"
+        },
+        {
+          "type": "paragraph",
+          "text": "After `ROLLBACK` the prices are back. Real systems use transactions all the time, for example when moving money: take it from one account and add it to another. Both steps must happen, or neither. In MySQL and PostgreSQL the start is `BEGIN` or `START TRANSACTION`. Some tools auto-commit each statement unless you start a transaction yourself, so check your tool's setting."
+        },
+        {
+          "type": "heading",
+          "text": "What foreign keys do when you change data"
+        },
+        {
+          "type": "paragraph",
+          "text": "Remember the foreign keys from lesson 8? When they are enforced, the database protects the links. In SQLite, turn them on first with `PRAGMA foreign_keys = ON;`."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "PRAGMA foreign_keys = ON;\n\nDELETE FROM customers WHERE id = 1;\n-- Error: FOREIGN KEY constraint failed (Asha still has orders)\n\nINSERT INTO orders (customer_id, order_date, status)\nVALUES (99, '2024-09-01', 'pending');\n-- Error: FOREIGN KEY constraint failed (there is no customer 99)"
+        },
+        {
+          "type": "paragraph",
+          "text": "These errors are good news. The database is stopping you from creating orphan data. You can design a foreign key with `ON DELETE CASCADE`, which deletes the child rows automatically, or `ON DELETE SET NULL`. Use cascade carefully, because it can delete much more than you planned."
+        },
+        {
+          "type": "heading",
+          "text": "Other useful things"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`INSERT ... SELECT` copies rows from one table into another.",
+            "`UPDATE` can use a subquery in `SET` or `WHERE` to decide the new value or rows.",
+            "`REPLACE` or `INSERT ... ON CONFLICT` (an upsert) inserts a row, or updates it if it already exists. The syntax differs between engines.",
+            "`TRUNCATE TABLE` empties a table quickly in MySQL, PostgreSQL and SQL Server. SQLite uses `DELETE FROM table`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "No `WHERE` on `UPDATE` or `DELETE`.",
+            "A `WHERE` that matches more rows than you thought, for example `city = 'Nairobi'` also matching rows you did not mean to change.",
+            "Putting text without quotes, or a number in quotes where a number is needed.",
+            "Forgetting to `COMMIT` and then wondering why other people cannot see your change, or the opposite: committing by habit before checking."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Insert a new product called `Eraser` in the `Stationery` category with price 20, and select it back.",
+            "Raise the price of the `Mouse` by 50, but first run the matching SELECT.",
+            "Start a transaction, delete the order item with id 15, check the row count in `order_items`, then roll back and check again.",
+            "Turn on foreign keys and try to delete customer 1. Read the error message."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "After the insert the products table has 9 rows.",
+            "After the rollback the `order_items` table has 15 rows again.",
+            "The foreign key error appears when you delete a customer who has orders."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "The safe way to change data",
+        "nodes": [
+          {
+            "id": "sel",
+            "label": "SELECT first",
+            "sub": "check the rows",
+            "col": 0,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "tx",
+            "label": "BEGIN",
+            "sub": "start a transaction",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "chg",
+            "label": "UPDATE / DELETE",
+            "sub": "with a WHERE",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "ok",
+            "label": "COMMIT",
+            "sub": "keep the change",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "undo",
+            "label": "ROLLBACK",
+            "sub": "undo it",
+            "col": 3,
+            "row": 1,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Before you change anything, run a SELECT with the same WHERE and look at the rows.",
+            "on": [
+              "sel"
+            ]
+          },
+          {
+            "say": "Start a transaction so the change can be undone.",
+            "flow": [
+              "sel>tx:rows look right"
+            ]
+          },
+          {
+            "say": "Run the UPDATE or DELETE with a WHERE and read how many rows changed.",
+            "flow": [
+              "tx>chg:run it"
+            ]
+          },
+          {
+            "say": "If the numbers are as expected, COMMIT keeps the change.",
+            "flow": [
+              "chg>ok:correct"
+            ]
+          },
+          {
+            "say": "If something looks wrong, ROLLBACK puts everything back as it was.",
+            "flow": [
+              "chg>undo:wrong"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What happens if I forget WHERE in an UPDATE?",
+          "a": "Every row in the table is changed. Always write the WHERE first and check with a SELECT. Use a transaction so you can ROLLBACK."
+        },
+        {
+          "q": "What is a soft delete?",
+          "a": "Instead of removing the row, you mark it, for example with an active column set to 0. The data stays available for old reports and for recovery."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Changing Data",
+      "slug": "create-table-data-types-constraints",
+      "title": "CREATE TABLE, Data Types and Constraints",
+      "metaTitle": "SQL CREATE TABLE and Constraints",
+      "description": "Design your own tables: data types, PRIMARY KEY, NOT NULL, UNIQUE, DEFAULT, CHECK and FOREIGN KEY, plus ALTER TABLE and DROP TABLE.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You can now read the setup script from lesson 2 line by line. In this lesson you learn how to create tables yourself, with rules that stop bad data from entering. Good tables make later queries simple. Bad tables, with no rules, fill up with blanks, duplicates and nonsense that someone must clean up later."
+        },
+        {
+          "type": "heading",
+          "text": "CREATE TABLE"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "CREATE TABLE reviews (\n  id          INTEGER PRIMARY KEY,\n  product_id  INTEGER NOT NULL,\n  reviewer    TEXT    NOT NULL,\n  stars       INTEGER NOT NULL CHECK (stars BETWEEN 1 AND 5),\n  comment     TEXT,\n  created_on  DATE    DEFAULT CURRENT_DATE,\n  FOREIGN KEY (product_id) REFERENCES products(id)\n);"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each line inside the brackets is a column, written as a name, a data type, then any rules. Table-level rules such as `FOREIGN KEY` come after the columns. Columns are separated by commas, and there is no comma after the last line."
+        },
+        {
+          "type": "heading",
+          "text": "Data types"
+        },
+        {
+          "type": "paragraph",
+          "text": "A data type says what kind of value a column holds. The names change a little between engines, but the ideas are the same."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Whole numbers**: `INTEGER` (also `INT`, `BIGINT`). Use for ids, counts and quantities.",
+            "**Decimal numbers**: `DECIMAL(10,2)` or `NUMERIC` in most engines. Use for money, because it does not round oddly. `REAL` or `FLOAT` are approximate and not good for money.",
+            "**Text**: `TEXT`, or `VARCHAR(100)` with a length limit in MySQL, PostgreSQL and SQL Server.",
+            "**Dates and times**: `DATE`, `TIME`, `TIMESTAMP` or `DATETIME`. SQLite has no special date type, and stores dates as text like `2024-06-02`, which is why the format matters.",
+            "**True or false**: `BOOLEAN` in PostgreSQL, `TINYINT(1)` in MySQL, and 0 or 1 in SQLite."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The shop uses a whole number for price to keep examples easy. A real shop with paise, cents or pence would store `DECIMAL(10,2)`, or store the smallest unit as an integer, for example 12050 for 120.50."
+        },
+        {
+          "type": "heading",
+          "text": "Constraints: rules for the data"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **constraint** is a rule the database checks every time you insert or update a row. If the rule is broken, the statement fails and nothing is stored. Here are the five you will use all the time."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`PRIMARY KEY`: unique and never empty. Identifies the row.",
+            "`NOT NULL`: the column must have a value.",
+            "`UNIQUE`: no two rows may have the same value in this column, such as an email address.",
+            "`DEFAULT x`: the value to use when none is given, such as `'active'` or today's date.",
+            "`CHECK (rule)`: any condition the value must satisfy, such as `age >= 18`."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "See them work on a small test table."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "CREATE TABLE members (\n  id     INTEGER PRIMARY KEY,\n  email  TEXT NOT NULL UNIQUE,\n  age    INTEGER CHECK (age >= 18),\n  status TEXT DEFAULT 'active'\n);\n\nINSERT INTO members (email, age) VALUES ('a@example.com', 20);\nSELECT * FROM members;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | email         | age | status\n1  | a@example.com | 20  | active"
+        },
+        {
+          "type": "paragraph",
+          "text": "The status was not given, so the default `active` was used. Now try three bad inserts:"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "INSERT INTO members (email, age) VALUES ('a@example.com', 30);\n-- UNIQUE constraint failed: members.email\n\nINSERT INTO members (email, age) VALUES (NULL, 30);\n-- NOT NULL constraint failed: members.email\n\nINSERT INTO members (email, age) VALUES ('b@example.com', 10);\n-- CHECK constraint failed: age >= 18"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each message names the rule that was broken. This is the database protecting its own data, so that you do not have to rely on every program and every person to remember the rules."
+        },
+        {
+          "type": "heading",
+          "text": "Foreign keys and what they allow"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `FOREIGN KEY (product_id) REFERENCES products(id)` in the first example says that every review must point to a real product. You can add actions for what happens when the parent row is deleted:"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE"
+        },
+        {
+          "type": "paragraph",
+          "text": "With `CASCADE`, deleting a product also deletes its reviews. With the default, the delete is refused while reviews exist. Choose on purpose, and think about what you would want if a person deleted by mistake."
+        },
+        {
+          "type": "heading",
+          "text": "ALTER TABLE: change a table later"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "ALTER TABLE customers ADD COLUMN phone TEXT;\nALTER TABLE customers RENAME COLUMN phone TO mobile;"
+        },
+        {
+          "type": "paragraph",
+          "text": "Adding a column to a table with data is easy; existing rows get NULL, or the default. Changing or dropping columns is more limited in SQLite than in other engines. In a live company database, ask before altering a table. A change on a big table can lock it for a while, and other programs may depend on the old shape."
+        },
+        {
+          "type": "heading",
+          "text": "DROP TABLE: remove a table completely"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "DROP TABLE IF EXISTS members;"
+        },
+        {
+          "type": "paragraph",
+          "text": "`DROP TABLE` deletes the table and all its rows, and there is no undo outside a transaction or a backup. `IF EXISTS` avoids an error when the table is not there. Make a habit of reading the table name twice."
+        },
+        {
+          "type": "heading",
+          "text": "A simple design checklist"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "One table for each kind of thing. Name it clearly.",
+            "Give it a primary key.",
+            "Mark columns `NOT NULL` when a value is truly always needed.",
+            "Add `UNIQUE` for values that must not repeat, such as email or a product code.",
+            "Add foreign keys for links to other tables.",
+            "Choose data types that fit: numbers as numbers, dates as dates, money as decimals or whole smallest units."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Privacy note: store only what you need. Personal data such as phone numbers, addresses and ID numbers has legal duties attached in many countries, and should be protected and kept only as long as needed."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a table called `suppliers` with an `id` primary key, a required `name`, a unique `email` and a `country` that defaults to `'India'`.",
+            "Add a column `supplier_id` to `products` with `ALTER TABLE` and give it a value for one product.",
+            "Try to break each rule on `suppliers` (a duplicate email, a missing name) and read the messages.",
+            "Drop the `suppliers` table when you finish."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The country column shows `India` when you insert a supplier without one.",
+            "The duplicate email insert fails with a UNIQUE error.",
+            "After the drop, `SELECT * FROM suppliers;` says there is no such table."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Rules stop bad data",
+        "nodes": [
+          {
+            "id": "ins",
+            "label": "INSERT",
+            "sub": "a new row",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "rules",
+            "label": "Constraints",
+            "sub": "NOT NULL, UNIQUE, CHECK",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "tbl",
+            "label": "Table",
+            "sub": "good rows only",
+            "col": 2,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "err",
+            "label": "Error",
+            "sub": "the row is refused",
+            "col": 2,
+            "row": 1,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A program or person tries to insert a row into the table.",
+            "on": [
+              "ins"
+            ]
+          },
+          {
+            "say": "Before storing it, the database checks every rule you declared on the table.",
+            "flow": [
+              "ins>rules:check"
+            ]
+          },
+          {
+            "say": "If all rules pass, the row is saved.",
+            "flow": [
+              "rules>tbl:passes"
+            ]
+          },
+          {
+            "say": "If one rule fails, the statement is refused with a message that names the rule, and nothing is stored.",
+            "flow": [
+              "rules>err:fails"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I store money as DECIMAL or FLOAT?",
+          "a": "Use DECIMAL or NUMERIC, or whole smallest units such as paise or cents. FLOAT is approximate and can give tiny rounding errors."
+        },
+        {
+          "q": "What does UNIQUE do?",
+          "a": "UNIQUE stops two rows having the same value in a column, such as an email address. The database refuses the second insert."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Going Further",
+      "slug": "window-functions-row-number-rank",
+      "title": "Window Functions: ROW_NUMBER, RANK and Running Totals",
+      "metaTitle": "SQL Window Functions for Beginners",
+      "description": "Rank rows, find the latest row per customer and calculate running totals with window functions, without collapsing rows like GROUP BY does.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "`GROUP BY` is powerful, but it has a cost: it collapses many rows into one. Sometimes you want a calculation over a group of rows and still keep every row. For example: show every product with its rank inside its category. Or show every order with a running total. **Window functions** do this, and they are a favourite topic in analyst interviews."
+        },
+        {
+          "type": "note",
+          "text": "Window functions work in PostgreSQL, MySQL 8 and later, SQL Server, Oracle and SQLite 3.25 and later. Very old MySQL (5.x) does not have them."
+        },
+        {
+          "type": "heading",
+          "text": "The shape: OVER"
+        },
+        {
+          "type": "paragraph",
+          "text": "A window function is any function followed by `OVER (...)`. The brackets say which rows to look at (`PARTITION BY`) and in what order (`ORDER BY`). The rows are not collapsed, so each row keeps its own line, and the function adds one extra column."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "function() OVER (PARTITION BY group_column ORDER BY sort_column)"
+        },
+        {
+          "type": "paragraph",
+          "text": "`PARTITION BY` is like `GROUP BY` for the window: the calculation restarts for each group. If you leave it out, the whole result is one group."
+        },
+        {
+          "type": "heading",
+          "text": "ROW_NUMBER: number the rows"
+        },
+        {
+          "type": "paragraph",
+          "text": "Number every customer's orders by date, starting at 1 for each customer."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT id, customer_id, order_date,\n  ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) AS nth\nFROM orders\nORDER BY customer_id, order_date;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "id | customer_id | order_date | nth\n1  | 1           | 2024-06-02 | 1\n2  | 1           | 2024-06-20 | 2\n9  | 1           | 2024-08-02 | 3\n3  | 2           | 2024-06-21 | 1\n7  | 2           | 2024-07-15 | 2\n4  | 3           | 2024-07-01 | 1\n..."
+        },
+        {
+          "type": "paragraph",
+          "text": "Customer 1 has orders numbered 1, 2, 3 and customer 2 starts again at 1. Every order is still there, which is the difference from `GROUP BY`."
+        },
+        {
+          "type": "heading",
+          "text": "The latest row for each customer"
+        },
+        {
+          "type": "paragraph",
+          "text": "A very common request is “the most recent order for each customer”. Number the rows from newest to oldest, then keep number 1. Because you cannot filter on a window function in the same `WHERE`, put the numbering in a subquery or CTE first."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT customer_id, id, order_date\nFROM (\n  SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn\n  FROM orders\n)\nWHERE rn = 1\nORDER BY customer_id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "customer_id | id | order_date\n1           | 9  | 2024-08-02\n2           | 7  | 2024-07-15\n3           | 4  | 2024-07-01\n4           | 5  | 2024-07-04\n5           | 6  | 2024-07-09\n6           | 8  | 2024-07-18\n7           | 10 | 2024-08-05"
+        },
+        {
+          "type": "paragraph",
+          "text": "This “latest per group” pattern, also written “top 1 per group”, is one of the most useful patterns in SQL. Change `rn = 1` to `rn <= 3` to get the top three per group."
+        },
+        {
+          "type": "heading",
+          "text": "RANK and DENSE_RANK"
+        },
+        {
+          "type": "paragraph",
+          "text": "`RANK` gives the same number to ties, then skips. `DENSE_RANK` gives the same number to ties and does not skip. Compare them with an example where two prices tie (the shop data has no ties, so here are the idea and the shape)."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "price | ROW_NUMBER | RANK | DENSE_RANK\n900   | 1          | 1    | 1\n800   | 2          | 2    | 2\n800   | 3          | 2    | 2\n700   | 4          | 4    | 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "`ROW_NUMBER` never repeats. `RANK` repeats for ties, then jumps (1, 2, 2, 4). `DENSE_RANK` repeats for ties and carries on without a gap (1, 2, 2, 3). Pick the one that matches the question you were asked: “top 3 products” with ties is a question you should clarify first."
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is `RANK` in the shop data. It ranks products by price inside each category."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, category, price,\n  RANK() OVER (PARTITION BY category ORDER BY price DESC) AS rnk\nFROM products\nORDER BY category, rnk;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name         | category   | price | rnk\nBackpack     | Bags       | 1400  | 1\nDesk lamp    | Home       | 650   | 1\nWater bottle | Home       | 300   | 2\nLaptop stand | Office     | 1800  | 1\nMouse        | Office     | 700   | 2\nNotebook     | Stationery | 120   | 1\nPen pack     | Stationery | 80    | 2\nSticky notes | Stationery | 60    | 3"
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep only `rnk = 1` and you have the dearest product in each category, using the same subquery pattern as before."
+        },
+        {
+          "type": "heading",
+          "text": "Running totals with SUM OVER"
+        },
+        {
+          "type": "paragraph",
+          "text": "Any aggregate can be a window function. With `ORDER BY` inside `OVER`, `SUM` becomes a running total, adding each row to the ones before it. Here a small example with the order ids, to keep the numbers easy to check by eye."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT order_date, id,\n  SUM(id) OVER (ORDER BY order_date, id) AS running\nFROM orders\nWHERE id <= 4;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "order_date | id | running\n2024-06-02 | 1  | 1\n2024-06-20 | 2  | 3\n2024-06-21 | 3  | 6\n2024-07-01 | 4  | 10"
+        },
+        {
+          "type": "paragraph",
+          "text": "A real report would use order value instead of id, for a running sales total by day. With no `ORDER BY` inside `OVER`, the function covers the whole group, so `COUNT(*) OVER ()` puts the same total on every row. That is useful for percentages: each row's value divided by the total, without a separate query."
+        },
+        {
+          "type": "heading",
+          "text": "LAG and LEAD: look at the previous or next row"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price,\n  LAG(price) OVER (ORDER BY id) AS previous_price\nFROM products\nLIMIT 3;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "name      | price | previous_price\nNotebook  | 120   | NULL\nPen pack  | 80    | 120\nDesk lamp | 650   | 80"
+        },
+        {
+          "type": "paragraph",
+          "text": "`LAG` reads a value from the row before; `LEAD` from the row after. They are used for “change compared with last month”, and the first row has NULL because nothing comes before it."
+        },
+        {
+          "type": "heading",
+          "text": "Window functions versus GROUP BY"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`GROUP BY` returns one row for each group. Detail rows disappear.",
+            "A window function keeps every row and adds a calculated column.",
+            "Use `GROUP BY` for summaries. Use window functions for ranks, running totals, comparisons with the previous row and “top N per group”."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Trying to filter on a window function in `WHERE`. Wrap it in a subquery or CTE and filter outside.",
+            "Forgetting the `ORDER BY` inside `OVER` for `ROW_NUMBER`, `RANK` and running totals, which makes the numbering meaningless.",
+            "Using `ROW_NUMBER` when ties matter. Decide whether ties share a rank."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Show every product with its position by price across all products (1 is the dearest), using `RANK() OVER (ORDER BY price DESC)`.",
+            "For each customer, show only their first order using `ROW_NUMBER` and a subquery. Customer 1's first order is 1.",
+            "Write the query that shows the cheapest product in each category.",
+            "Show each order with the count of all orders on the same row using `COUNT(*) OVER ()`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The dearest product has rank 1 (Laptop stand) and the cheapest has rank 8.",
+            "The first-order query returns 7 rows, one for each customer who has ordered.",
+            "Every row in the last query shows 10."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Window functions keep every row",
+        "nodes": [
+          {
+            "id": "rows",
+            "label": "All rows",
+            "sub": "orders table",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "part",
+            "label": "PARTITION BY",
+            "sub": "a window per customer",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "ord",
+            "label": "ORDER BY",
+            "sub": "sort inside window",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "res",
+            "label": "Rows + new column",
+            "sub": "nth, rank, total",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You start with all the rows, and a window function will not remove any of them.",
+            "on": [
+              "rows"
+            ]
+          },
+          {
+            "say": "PARTITION BY splits the rows into windows, for example one per customer.",
+            "flow": [
+              "rows>part:split"
+            ]
+          },
+          {
+            "say": "ORDER BY puts the rows inside each window in order, such as oldest to newest.",
+            "flow": [
+              "part>ord:sort"
+            ]
+          },
+          {
+            "say": "The function adds a new column to every row, such as number 1, 2, 3 or a running total.",
+            "flow": [
+              "ord>res:new column"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between RANK and DENSE_RANK?",
+          "a": "Both give tied rows the same rank. RANK then skips numbers (1, 2, 2, 4), while DENSE_RANK does not skip (1, 2, 2, 3)."
+        },
+        {
+          "q": "How do I get the latest row per group?",
+          "a": "Use ROW_NUMBER() OVER (PARTITION BY group ORDER BY date DESC) in a subquery or CTE, then keep rows where the number is 1."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Going Further",
+      "slug": "indexes-and-query-performance",
+      "title": "Indexes and Faster Queries: EXPLAIN for Beginners",
+      "metaTitle": "SQL Indexes and Query Performance",
+      "description": "Learn what an index is, how it speeds up WHERE and JOIN, how to read a query plan with EXPLAIN, and habits that keep queries fast.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "On a table with eight rows, every query is instant. On a table with ten million rows, the same query can take minutes if it is written or indexed badly. You do not need to be a database expert to write fast queries, but you should understand one idea: the index. This lesson explains it with a simple picture, and shows how to check whether a query uses one."
+        },
+        {
+          "type": "heading",
+          "text": "What is an index?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think about a textbook. If you want the page about “joins”, you can read every page from the start, or you can look in the index at the back, which lists topics in order with page numbers, and jump straight there. A database index is the same. It is a separate sorted structure that remembers where rows are, so the database can jump to the matching rows instead of reading the whole table."
+        },
+        {
+          "type": "paragraph",
+          "text": "Reading the whole table is called a **full table scan**. Using an index to jump is an **index search** or seek. On big tables, the difference can be a thousand times."
+        },
+        {
+          "type": "heading",
+          "text": "See the plan: EXPLAIN"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can ask the database how it will run a query, without running it. In SQLite the command is `EXPLAIN QUERY PLAN`. PostgreSQL and MySQL use `EXPLAIN`, and SQL Server shows an execution plan in its tools."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "EXPLAIN QUERY PLAN\nSELECT * FROM orders WHERE customer_id = 1;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "SCAN orders"
+        },
+        {
+          "type": "paragraph",
+          "text": "`SCAN orders` means the database will look at every row of `orders` to find the ones for customer 1. With ten rows, who cares. With ten million, this is the problem."
+        },
+        {
+          "type": "heading",
+          "text": "Create an index"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "CREATE INDEX idx_orders_customer_id ON orders (customer_id);\n\nEXPLAIN QUERY PLAN\nSELECT * FROM orders WHERE customer_id = 1;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "SEARCH orders USING INDEX idx_orders_customer_id (customer_id=?)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Now the plan says `SEARCH ... USING INDEX`. The database jumps straight to the right rows. The words you see differ in other engines (PostgreSQL says “Index Scan” or “Seq Scan”, MySQL shows `type: ref` or `ALL`), but the idea is the same: look for the words that mean “whole table” and the words that mean “used an index”."
+        },
+        {
+          "type": "heading",
+          "text": "What to index"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Columns in `WHERE`** that you filter on often, especially on big tables.",
+            "**Foreign key columns** you join on, such as `orders.customer_id` and `order_items.order_id`. Joins on unindexed columns are a classic cause of slow reports. Primary keys are indexed automatically. Some engines, such as PostgreSQL, do not index foreign keys for you.",
+            "**Columns in `ORDER BY`** for big sorted lists.",
+            "A **unique index** (`CREATE UNIQUE INDEX`) also enforces that values do not repeat. A `UNIQUE` constraint creates one."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can index several columns together, for example `(customer_id, order_date)`. Order matters: it helps queries that filter on `customer_id`, or on both, but not on `order_date` alone."
+        },
+        {
+          "type": "heading",
+          "text": "Indexes are not free"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every index takes disk space, and every `INSERT`, `UPDATE` and `DELETE` must also update it. Too many indexes slow writes down. So you do not index every column. You index the ones your real queries use on large tables. On small tables, an index can even be slower than a scan, and the database may ignore it."
+        },
+        {
+          "type": "heading",
+          "text": "Habits that stop an index being used"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**A function on the column**: `WHERE UPPER(name) = 'ASHA'` or `WHERE SUBSTR(order_date, 1, 7) = '2024-06'` cannot use a normal index on that column, because the database would need to compute the function for every row. Rewrite as a range: `order_date >= '2024-06-01' AND order_date < '2024-07-01'`.",
+            "**A leading wildcard**: `LIKE '%son'` cannot use an ordinary index. `LIKE 'Ash%'` can.",
+            "**A type mismatch**: comparing a number column with text can stop the index from working in some engines.",
+            "**`SELECT *` on wide tables** moves more data than you need. Name the columns.",
+            "**No limit** when you only need a few rows. Add `LIMIT`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Other habits for faster queries"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Filter early: put selective `WHERE` conditions in so that fewer rows enter the joins.",
+            "Join on keys, which are usually indexed.",
+            "Avoid running the same query in a loop from a program for each row, which is a very common cause of slow pages. Ask for all the rows in one query with a join or `IN`.",
+            "Do not guess. Test with `EXPLAIN` and measure with real data volumes. A query tested on ten rows tells you nothing about ten million."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When a report is still slow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a real job you will sometimes hit a slow query, even with indexes. Do not panic. Check the plan, check whether the columns used for joins and filters have indexes, check whether you are returning more rows or columns than needed, and ask a more experienced colleague or the database administrator. Do not add indexes to a live production database without agreement, since it can affect everyone using it."
+        },
+        {
+          "type": "note",
+          "text": "A good sentence for an interview: “I would look at the query plan, check for full scans on large tables, and see whether the filter and join columns are indexed, while remembering that indexes slow down writes.”"
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run `EXPLAIN QUERY PLAN` on `SELECT * FROM order_items WHERE order_id = 5;` and note the plan.",
+            "Create an index on `order_items (order_id)` and run it again. What changed in the words?",
+            "Rewrite `WHERE SUBSTR(order_date, 1, 7) = '2024-07'` so it can use an index on `order_date`.",
+            "Drop your index with `DROP INDEX idx_name;` and explain one downside of having too many indexes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Before the index the plan says `SCAN order_items`; after it says `SEARCH ... USING INDEX`.",
+            "The date rewrite uses a range: `order_date >= '2024-07-01' AND order_date < '2024-08-01'`.",
+            "You can explain that indexes use space and slow writes."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Scan every row, or jump with an index",
+        "nodes": [
+          {
+            "id": "q",
+            "label": "Query",
+            "sub": "WHERE customer_id = 1",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "scan",
+            "label": "Full scan",
+            "sub": "read every row",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "idx",
+            "label": "Index",
+            "sub": "sorted lookup",
+            "col": 1,
+            "row": 1,
+            "kind": "tool"
+          },
+          {
+            "id": "tbl",
+            "label": "orders table",
+            "sub": "millions of rows",
+            "col": 2,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "res",
+            "label": "Matching rows",
+            "sub": "",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A query asks for the orders of one customer.",
+            "on": [
+              "q"
+            ]
+          },
+          {
+            "say": "With no index, the database must read every row of the table to find them.",
+            "flow": [
+              "q>scan:no index",
+              "scan>tbl:every row"
+            ]
+          },
+          {
+            "say": "With an index on customer_id, the database looks in a small sorted list first.",
+            "flow": [
+              "q>idx:use index"
+            ]
+          },
+          {
+            "say": "The index points straight to the matching rows, so most of the table is never read.",
+            "flow": [
+              "idx>tbl:jump to rows"
+            ]
+          },
+          {
+            "say": "Both ways give the same rows, but the index is much faster on big tables.",
+            "flow": [
+              "tbl>res:rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I add an index to every column?",
+          "a": "No. Indexes take space and slow down inserts, updates and deletes. Index the columns your real queries filter, join and sort on, mainly on large tables."
+        },
+        {
+          "q": "Why is my WHERE not using the index?",
+          "a": "A function on the column, a leading wildcard in LIKE, or a type mismatch can stop an index being used. Rewrite the condition and check the plan with EXPLAIN."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Going Further",
+      "slug": "sql-interview-questions-and-next-steps",
+      "title": "SQL Interview Questions and What to Learn Next",
+      "metaTitle": "SQL Interview Questions for Freshers",
+      "description": "Practise the SQL questions that interviewers ask most often, with answers and short explanations, and plan what to learn next after this course.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You have now covered the core of SQL: reading data, summarising it, joining tables, changing data, designing tables and speeding up queries. This last lesson turns that knowledge into interview practice. The questions below are the types that commonly appear in fresher and junior analyst, developer and tester interviews. Interviewers differ, so use these as practice and do not expect an exact match. Answer the SQL ones on the shop database."
+        },
+        {
+          "type": "heading",
+          "text": "Concept questions, with short answers"
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is the difference between WHERE and HAVING?** `WHERE` filters rows before grouping and cannot use aggregates. `HAVING` filters groups after grouping and is used with aggregates like `COUNT(*)`."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is the difference between INNER JOIN and LEFT JOIN?** An inner join returns only rows that match in both tables. A left join returns all rows from the left table, with NULLs on the right when nothing matches."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is a primary key? A foreign key?** A primary key uniquely identifies a row and cannot be NULL. A foreign key is a column that references the primary key of another table and keeps the data linked and consistent."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is the difference between DELETE, TRUNCATE and DROP?** `DELETE` removes chosen rows (with `WHERE`) and can be rolled back in a transaction. `TRUNCATE` removes all rows quickly, and `DROP` removes the whole table, including its structure."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is NULL, and how do you test for it?** NULL means a missing or unknown value. It is not zero and not empty text. Use `IS NULL` and `IS NOT NULL`, because `= NULL` never matches."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is the difference between UNION and UNION ALL?** Both stack the results of two queries with the same columns. `UNION` removes duplicate rows, which costs time. `UNION ALL` keeps everything and is faster."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is an index and what is the downside?** A sorted structure that speeds up lookups. It uses space and slows down writes."
+        },
+        {
+          "type": "paragraph",
+          "text": "**What is normalisation?** Organising data so each fact is stored once, by splitting it into related tables, to avoid repeated data and inconsistencies."
+        },
+        {
+          "type": "heading",
+          "text": "Query questions on the shop database"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before reading the answer. Write it, run it and check the output."
+        },
+        {
+          "type": "paragraph",
+          "text": "**1. Find the second most expensive product.**"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price\nFROM products\nORDER BY price DESC\nLIMIT 1 OFFSET 1;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Backpack | 1400"
+        },
+        {
+          "type": "paragraph",
+          "text": "`OFFSET 1` skips the dearest product. A good follow-up answer: with ties you may prefer `DENSE_RANK`, so mention it."
+        },
+        {
+          "type": "paragraph",
+          "text": "**2. Find customers who have never placed an order.**"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT c.name\nFROM customers AS c\nLEFT JOIN orders AS o ON o.customer_id = c.id\nWHERE o.id IS NULL;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hari Singh"
+        },
+        {
+          "type": "paragraph",
+          "text": "**3. Find the most expensive product in each category.**"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT p.category, p.name, p.price\nFROM products AS p\nWHERE p.price = (\n  SELECT MAX(p2.price) FROM products AS p2 WHERE p2.category = p.category\n)\nORDER BY p.category;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Bags       | Backpack     | 1400\nHome       | Desk lamp    | 650\nOffice     | Laptop stand | 1800\nStationery | Notebook     | 120"
+        },
+        {
+          "type": "paragraph",
+          "text": "The same answer can be given with `RANK()` or `ROW_NUMBER()`. Interviewers like to hear that you know two ways."
+        },
+        {
+          "type": "paragraph",
+          "text": "**4. Find customers with more than one order.**"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT customer_id, COUNT(*) AS orders\nFROM orders\nGROUP BY customer_id\nHAVING COUNT(*) > 1\nORDER BY customer_id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1 | 3\n2 | 2"
+        },
+        {
+          "type": "paragraph",
+          "text": "**5. What percentage of the total price does each of the top 3 products represent?**"
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT name, price,\n  ROUND(price * 100.0 / (SELECT SUM(price) FROM products), 1) AS pct\nFROM products\nORDER BY price DESC\nLIMIT 3;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Laptop stand | 1800 | 35.2\nBackpack     | 1400 | 27.4\nMouse        | 700  | 13.7"
+        },
+        {
+          "type": "paragraph",
+          "text": "Note the `100.0`. Using `100` with whole numbers could give a rounded-down whole number result in some engines."
+        },
+        {
+          "type": "paragraph",
+          "text": "**6. Show the value of each order.** This needs three tables."
+        },
+        {
+          "type": "code",
+          "lang": "sql",
+          "text": "SELECT o.id, SUM(p.price * oi.quantity) AS total\nFROM orders AS o\nJOIN order_items AS oi ON oi.order_id = o.id\nJOIN products AS p ON p.id = oi.product_id\nGROUP BY o.id\nORDER BY o.id;"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1 | 520    6 | 700\n2 | 1400   7 | 840\n3 | 2500   8 | 650\n4 | 1300   9 | 2100\n5 | 1200  10 | 320"
+        },
+        {
+          "type": "paragraph",
+          "text": "**7. Find the latest order for each customer.** Use `ROW_NUMBER()` with `PARTITION BY customer_id ORDER BY order_date DESC` and keep `rn = 1`, as in lesson 13."
+        },
+        {
+          "type": "heading",
+          "text": "How to answer in an interview"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Repeat the question** in your own words and ask about unclear parts: What counts as an active customer? What should happen with ties? Are NULLs possible?",
+            "**Say your plan** before typing: “I will join orders to customers, group by customer and count.”",
+            "**Start simple**, run it, then add conditions. Build the query in small steps and check each step.",
+            "**Check your result** against what you expect. Count a few rows by hand.",
+            "**Mention the edge cases** you thought about, such as NULLs, ties and customers with no orders.",
+            "**If you do not know, say so** and explain how you would find out. Honesty and clear thinking are valued more than memorised phrases."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to learn next"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Practise every week.** Rewrite the lesson tasks from memory, then invent your own questions about the shop.",
+            "**Learn one real engine.** Install PostgreSQL or MySQL and run the setup script there. You will see the small differences, such as `LIMIT`, date functions and text joining.",
+            "**Date and time functions** for reports: month, year, difference between dates.",
+            "**Views and stored procedures** for saving queries and repeated logic.",
+            "**Connect SQL to a language.** Python with pandas for analysis, or Node.js and Express for apps. This site's Node.js and Python courses are good next steps.",
+            "**A BI tool** such as a free dashboard tool, if you are moving toward analyst work.",
+            "**Build a small project**: a library, a gym or a clinic database with five tables, a setup script and ten reports. Put it on GitHub. It shows real skill better than a certificate."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "SQL rewards practice more than reading. A reasonable plan is half an hour a day for a month. By then the structure of `SELECT`, `JOIN` and `GROUP BY` will feel natural. If you are preparing for interviews more broadly, our interview questions pages and resume tools can help you present this skill honestly: list what you have really built, with small examples, rather than a long list of keywords."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Answer all seven query questions above without looking, then compare with the answers.",
+            "Write three new questions of your own about the shop data and answer them.",
+            "Explain WHERE versus HAVING and INNER versus LEFT JOIN out loud, as if to an interviewer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your answers match the outputs shown.",
+            "You can explain each answer in one or two sentences.",
+            "You have a plan for what to practise next week."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From practice to confidence",
+        "nodes": [
+          {
+            "id": "learn",
+            "label": "Learn the parts",
+            "sub": "SELECT, JOIN, GROUP BY",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "prac",
+            "label": "Practise often",
+            "sub": "small daily tasks",
+            "col": 1,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "proj",
+            "label": "Small project",
+            "sub": "your own database",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "int",
+            "label": "Interview ready",
+            "sub": "explain your thinking",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have learned the core parts of SQL: reading, joining, grouping and changing data.",
+            "on": [
+              "learn"
+            ]
+          },
+          {
+            "say": "Daily practice on a small database turns each part into a habit.",
+            "flow": [
+              "learn>prac:practise"
+            ]
+          },
+          {
+            "say": "A small project of your own, such as a library database, proves the skill.",
+            "flow": [
+              "prac>proj:build"
+            ]
+          },
+          {
+            "say": "In an interview, you repeat the question, plan, build in small steps and check your answer.",
+            "flow": [
+              "proj>int:explain"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long does it take to learn SQL?",
+          "a": "Many beginners can write useful queries in a few weeks of regular practice. Becoming comfortable with joins, grouping and window functions takes longer and comes from practice on real questions."
+        },
+        {
+          "q": "Which SQL database should I learn first?",
+          "a": "Start with the SQL itself on SQLite, as in this course. Then try PostgreSQL or MySQL, because most jobs use one of them, and learn their small differences."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}
