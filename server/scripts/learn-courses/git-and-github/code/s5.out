@@ -1,0 +1,46 @@
+$ git remote add origin ../remote.git
+$ git remote -v
+origin	../remote.git (fetch)
+origin	../remote.git (push)
+$ git push -u origin main
+To ../remote.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+$ git clone remote.git friend
+Cloning into 'friend'...
+done.
+$ git push
+To ../remote.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '../remote.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+$ git pull --no-rebase --no-edit
+From ../remote
+   fc367a6..069b3ff  main       -> origin/main
+Auto-merging app.txt
+Merge made by the 'ort' strategy.
+ app.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ cat app.txt
+Better title
+body
+footer
+$ git push
+To ../remote.git
+   069b3ff..1446436  main -> main
+$ git log --oneline --graph
+*   1446436 Merge branch 'main' of ../remote
+|\  
+| * 069b3ff Friend improves the title
+* | 221c047 I add a footer
+|/  
+* fc367a6 First version

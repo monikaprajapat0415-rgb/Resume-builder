@@ -1,0 +1,23 @@
+$ git merge update-tea
+Auto-merging price.txt
+CONFLICT (content): Merge conflict in price.txt
+Automatic merge failed; fix conflicts and then commit the result.
+$ git status -s
+UU price.txt
+$ cat price.txt
+<<<<<<< HEAD
+Tea: 22
+=======
+Tea: 25
+>>>>>>> update-tea
+Coffee: 30
+$ git add price.txt
+$ git commit --no-edit
+[main 1012b0b] Merge branch 'update-tea'
+$ git log --oneline --graph
+*   1012b0b Merge branch 'update-tea'
+|\  
+| * 586290f Tea costs 25
+* | 0c40438 Tea costs 22
+|/  
+* c156a1b Add prices

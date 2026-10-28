@@ -1,0 +1,47 @@
+$ git init
+Initialized empty Git repository in /home/asha/recipes/.git/
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+$ git add README.md
+$ git status -s
+A  README.md
+$ git commit -m "Add README"
+[main (root-commit) 8205bb9] Add README
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README.md
+$ git log --oneline
+8205bb9 Add README
+$ git diff
+diff --git a/README.md b/README.md
+index 7004fd6..6e63d1b 100644
+--- a/README.md
++++ b/README.md
+@@ -1,2 +1,4 @@
+ # Recipes
+ My favourite recipes.
++
++- Masala chai
+$ git status -s
+ M README.md
+$ git add -A
+$ git commit -m "Add masala chai to the list"
+[main d50d959] Add masala chai to the list
+ 1 file changed, 2 insertions(+)
+$ git status -s
+?? .gitignore
+$ git add .gitignore && git commit -m "Ignore log files and private notes"
+[main e50e5b8] Ignore log files and private notes
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
+$ git log --oneline
+e50e5b8 Ignore log files and private notes
+d50d959 Add masala chai to the list
+8205bb9 Add README

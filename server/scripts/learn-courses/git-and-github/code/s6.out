@@ -1,0 +1,36 @@
+$ git stash
+Saved working directory and index state WIP on main: 210368e Add line two
+$ git status -s
+$ git stash list
+stash@{0}: WIP on main: 210368e Add line two
+$ git stash pop
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   notes.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (f3e0c547c2b5f9d7b8ee38c028ceeb1c3957d9a2)
+$ git restore notes.txt
+$ git tag -a v1.0 -m "First release"
+$ git tag
+v1.0
+$ git log --oneline --decorate
+210368e (HEAD -> main, tag: v1.0) Add line two
+3aaeccc Start notes
+$ git show --stat HEAD
+commit 210368e1de2cb7bf263b971168aa3b67aa55cd5c
+Author: Asha Verma <asha@example.com>
+Date:   Fri Nov 17 17:13:20 2023 +0000
+
+    Add line two
+
+ notes.txt | 1 +
+ 1 file changed, 1 insertion(+)
+$ git blame notes.txt
+^3aaeccc (Asha Verma 2023-11-17 16:13:20 +0000 1) line one
+210368e1 (Asha Verma 2023-11-17 17:13:20 +0000 2) line two
+$ git log --oneline -- notes.txt
+210368e Add line two
+3aaeccc Start notes

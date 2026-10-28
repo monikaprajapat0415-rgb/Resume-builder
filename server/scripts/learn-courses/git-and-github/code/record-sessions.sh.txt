@@ -1,0 +1,138 @@
+#!/bin/bash
+# Records real git sessions into .out files. Fixed dates keep hashes stable between runs.
+export HOME=/tmp/githome; rm -rf $HOME /tmp/gw; mkdir -p $HOME /tmp/gw
+export GIT_CONFIG_NOSYSTEM=1 LC_ALL=C
+git config --global init.defaultBranch main
+git config --global user.name "Asha Verma"
+git config --global user.email "asha@example.com"
+git config --global advice.detachedHead false
+D=$(pwd)
+t=1700000000
+tick() { t=$((t+3600)); export GIT_AUTHOR_DATE="$t +0000" GIT_COMMITTER_DATE="$t +0000"; }
+# r NAME 'command' : append "$ command" and its output to NAME.out
+r() { local f=$D/$1.out; shift; echo "\$ $*" >> $f; tick; ( eval "$*" ) >> $f 2>&1; }
+w() { local f=$1; shift; printf "%b" "$*" > "$f"; }
+rm -f $D/*.out
+
+# ---------- session 1: first repository
+cd /tmp/gw && mkdir -p recipes && cd recipes
+r s1 'git init'
+w README.md '# Recipes\nMy favourite recipes.\n'
+r s1 'git status'
+r s1 'git add README.md'
+r s1 'git status -s'
+r s1 'git commit -m "Add README"'
+r s1 'git log --oneline'
+w README.md '# Recipes\nMy favourite recipes.\n\n- Masala chai\n'
+r s1 'git diff'
+r s1 'git status -s'
+r s1 'git add -A'
+r s1 'git commit -m "Add masala chai to the list"'
+w .gitignore '*.log\nnotes_private/\n'
+w debug.log 'temporary\n'
+r s1 'git status -s'
+r s1 'git add .gitignore && git commit -m "Ignore log files and private notes"'
+r s1 'git log --oneline'
+
+# ---------- session 2: undoing
+cd /tmp/gw && rm -rf undo && mkdir undo && cd undo && git init -q
+w menu.txt 'tea\ncoffee\n'
+git add . && tick && git commit -qm "Add menu"
+w menu.txt 'tea\ncoffee\nsoup\n'
+r s2 'git status -s'
+r s2 'git restore menu.txt'
+r s2 'cat menu.txt'
+w menu.txt 'tea\ncoffee\nsoup\n'
+r s2 'git add menu.txt'
+r s2 'git restore --staged menu.txt'
+r s2 'git status -s'
+r s2 'git add menu.txt && git commit -m "Add soup"'
+w menu.txt 'tea\ncoffee\nsoup\njuice\n'
+r s2 'git add menu.txt && git commit -m "Add jus"'
+r s2 'git commit --amend -m "Add juice"'
+r s2 'git log --oneline'
+r s2 'git revert --no-edit HEAD'
+r s2 'cat menu.txt'
+r s2 'git log --oneline'
+
+# ---------- session 3: branches
+cd /tmp/gw && rm -rf br && mkdir br && cd br && git init -q
+w index.txt 'Home page\n'
+git add . && tick && git commit -qm "Add home page"
+r s3 'git branch'
+r s3 'git switch -c contact-page'
+w contact.txt 'Call us\n'
+r s3 'git add contact.txt && git commit -m "Add contact page"'
+r s3 'git switch main'
+r s3 'ls'
+r s3 'git merge contact-page'
+r s3 'ls'
+r s3 'git branch -d contact-page'
+r s3 'git switch -c about-page'
+w about.txt 'About us\n'
+r s3 'git add about.txt && git commit -m "Add about page"'
+r s3 'git switch main'
+w index.txt 'Home page\nWelcome!\n'
+r s3 'git add index.txt && git commit -m "Add welcome line"'
+r s3 'git merge --no-edit about-page'
+r s3 'git log --oneline --graph --all'
+r s3 'git branch -d about-page'
+
+# ---------- session 4: conflict
+cd /tmp/gw && rm -rf cf && mkdir cf && cd cf && git init -q
+w price.txt 'Tea: 20\nCoffee: 30\n'
+git add . && tick && git commit -qm "Add prices"
+git switch -qc update-tea
+w price.txt 'Tea: 25\nCoffee: 30\n'
+tick; git commit -qam "Tea costs 25"
+git switch -q main
+w price.txt 'Tea: 22\nCoffee: 30\n'
+tick; git commit -qam "Tea costs 22"
+r s4 'git merge update-tea'
+r s4 'git status -s'
+r s4 'cat price.txt'
+w price.txt 'Tea: 24\nCoffee: 30\n'
+r s4 'git add price.txt'
+r s4 'git commit --no-edit'
+r s4 'git log --oneline --graph'
+
+# ---------- session 5: remotes (a local bare repository plays the part of GitHub)
+cd /tmp/gw && rm -rf remote.git me friend && git init -q --bare remote.git
+mkdir me && cd me && git init -q
+w app.txt 'title\nbody\n'
+git add . && tick && git commit -qm "First version"
+r s5 'git remote add origin ../remote.git'
+r s5 'git remote -v'
+r s5 'git push -u origin main'
+r s5 'git status'
+cd /tmp/gw && r s5 'git clone remote.git friend'
+cd friend && git config user.name "Ravi Kumar" && git config user.email "ravi@example.com"
+w app.txt 'Better title\nbody\n'
+tick; git commit -qam "Friend improves the title"; git push -q origin main
+cd ../me
+w app.txt 'title\nbody\nfooter\n'
+tick; git commit -qam "I add a footer"
+r s5 'git push'
+r s5 'git pull --no-rebase --no-edit'
+r s5 'cat app.txt'
+r s5 'git push'
+r s5 'git log --oneline --graph'
+
+# ---------- session 6: stash, tags, history
+cd /tmp/gw && rm -rf tools && mkdir tools && cd tools && git init -q
+w notes.txt 'line one\n'
+git add . && tick && git commit -qm "Start notes"
+w notes.txt 'line one\nline two\n'
+tick; git commit -qam "Add line two"
+w notes.txt 'line one\nline two\nhalf-done idea\n'
+r s6 'git stash'
+r s6 'git status -s'
+r s6 'git stash list'
+r s6 'git stash pop'
+r s6 'git restore notes.txt'
+r s6 'git tag -a v1.0 -m "First release"'
+r s6 'git tag'
+r s6 'git log --oneline --decorate'
+r s6 'git show --stat HEAD'
+r s6 'git blame notes.txt'
+r s6 'git log --oneline -- notes.txt'
