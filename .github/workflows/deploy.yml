@@ -30,6 +30,8 @@ jobs:
           npm run build
       - name: Install server deps and syntax-check entry
         working-directory: server
+        env:
+          ONNXRUNTIME_NODE_INSTALL: skip   # do not download the optional GPU files (CPU engine is bundled)
         run: |
           npm ci --omit=dev
           node --check server.js
@@ -57,6 +59,7 @@ jobs:
           export PATH="${NVM_BINS}/root/.npm-global/bin:/usr/local/bin:$PATH"
           echo "node: $(command -v node) $(node -v) | npm: $(npm -v) | pm2: $(command -v pm2)"
           command -v pm2 >/dev/null || { echo "pm2 not found on PATH: $PATH"; exit 1; }
+          export ONNXRUNTIME_NODE_INSTALL=skip   # skip optional GPU download; the CPU engine is bundled
           cd /var/www/Resume-builder
 
           PREV=$(git rev-parse HEAD)
