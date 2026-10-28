@@ -25,7 +25,17 @@ for (const k of keys) {
     if (!l.metaTitle || l.metaTitle.length > 43) err(`${l.slug}: metaTitle ${l.metaTitle?.length}`);
     if (!l.description || l.description.length > 160 || l.description.length < 60) err(`${l.slug}: description ${l.description?.length}`);
     if (cleanBlogBlocks(l.content).length !== l.content.length) err(`${l.slug}: blocks changed by cleaner`);
-    try { if (!cleanAnimation(l.animation)) err(`${l.slug}: no animation`); } catch (e) { err(`${l.slug}: ${e.message}`); }
+    try {
+      const an = cleanAnimation(l.animation);
+      if (!an) err(`${l.slug}: no animation`);
+      else {
+        const pos = Object.fromEntries(an.nodes.map((x) => [x.id, x]));
+        for (const st of an.steps) for (const f of st.flow || []) {
+          const a = f.from, b = f.to; const A = pos[a], B = pos[b];
+          if (A && B && (Math.abs(A.col - B.col) > 1 || Math.abs(A.row - B.row) > 1)) err(`${l.slug}: flow ${a}>${b} is not between neighbouring cells`);
+        }
+      }
+    } catch (e) { err(`${l.slug}: ${e.message}`); }
     if (!l.content.some((b) => b.type === 'heading' && b.text === 'Your task')) err(`${l.slug}: no task`);
     for (const b of l.content) if (b.type === 'paragraph' && /\b(guarantee[sd]?|100% (job|placement))\b/i.test(b.text.replace(/not a guarantee/gi, ''))) err(`${l.slug}: guarantee wording`);
   }

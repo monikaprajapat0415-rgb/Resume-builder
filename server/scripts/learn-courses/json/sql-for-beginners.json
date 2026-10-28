@@ -2332,15 +2332,15 @@
             "id": "right",
             "label": "orders",
             "sub": "10 rows",
-            "col": 2,
-            "row": 0,
+            "col": 0,
+            "row": 1,
             "kind": "store"
           },
           {
             "id": "inner",
             "label": "INNER JOIN",
             "sub": "matches only",
-            "col": 3,
+            "col": 2,
             "row": 0,
             "kind": "out"
           },
@@ -2348,7 +2348,7 @@
             "id": "lj",
             "label": "LEFT JOIN",
             "sub": "all customers",
-            "col": 3,
+            "col": 2,
             "row": 1,
             "kind": "out"
           }

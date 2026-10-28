@@ -340,7 +340,7 @@ Grace Mwangi | 320`),
     ...check("The Nairobi query returns orders 8 and 10.", "Order values are 520, 1400, 2500, 1300, 1200, 700, 840, 650, 2100 and 320 for orders 1 to 10.", "The shipped query returns Emma Wilson and Asha Rao."),
   ], A('Matching rows with a JOIN', [
     n('left', 'customers', '8 rows', 0, 0, 'store'), n('on', 'ON c.id = customer_id', 'matching rule', 1, 0, 'check'),
-    n('right', 'orders', '10 rows', 2, 0, 'store'), n('inner', 'INNER JOIN', 'matches only', 3, 0, 'out'), n('lj', 'LEFT JOIN', 'all customers', 3, 1, 'out'),
+    n('right', 'orders', '10 rows', 0, 1, 'store'), n('inner', 'INNER JOIN', 'matches only', 2, 0, 'out'), n('lj', 'LEFT JOIN', 'all customers', 2, 1, 'out'),
   ], [
     { say: 'You have two tables: customers on the left and orders on the right.', on: ['left', 'right'] },
     { say: 'The ON rule says a customer and an order match when the customer id equals the order customer_id.', flow: ['left>on:id', 'right>on:customer_id'] },
