@@ -1,0 +1,3721 @@
+{
+  "course": {
+    "title": "Excel for Jobs: Formulas, Pivot Tables and Office Skills",
+    "slug": "excel-for-jobs-course",
+    "summary": "Learn the Excel skills that office, admin, accounts and data entry jobs ask for, in 15 lessons with one small shop sheet: formulas, lookups, pivot tables, charts and test practice.",
+    "description": "Free Excel course for jobs. 15 lessons: formulas, IF, SUMIF, VLOOKUP, pivot tables, charts, data cleaning, validation, printing and test practice.",
+    "level": "Beginner",
+    "topic": "Office skills",
+    "badge": "XLS",
+    "tags": [
+      "excel",
+      "spreadsheets",
+      "office skills",
+      "vlookup",
+      "pivot tables"
+    ],
+    "order": 34,
+    "published": true,
+    "minWords": 650,
+    "metaTitle": "Excel for Jobs: Free Course",
+    "keywords": "excel course for jobs, learn excel free, excel for beginners, vlookup tutorial, pivot table tutorial, excel formulas, excel test practice"
+  },
+  "lessons": [
+    {
+      "section": "Start Here",
+      "slug": "excel-screen-cells-first-sheet",
+      "title": "Excel for Beginners: The Screen, Cells and Your First Sheet",
+      "metaTitle": "Excel for Beginners: Screen and Cells",
+      "description": "Learn the Excel screen, cells, rows, columns and ranges, enter data, save your file and meet the shortcuts you will use every day. No experience needed.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Excel is a program for working with tables of numbers and text. If you have ever kept a list of expenses in a notebook, written marks in rows and columns, or made a price list, you already understand what Excel is for. The difference is that Excel can add, count, sort, search and draw charts for you, instantly and without mistakes in the arithmetic. In nearly every office, shop, school, hospital and factory that uses computers, someone uses Excel. That is why job adverts for office, admin, accounts, sales support and data entry roles so often mention it."
+        },
+        {
+          "type": "paragraph",
+          "text": "This course uses one small shop's sales sheet from start to finish, so every lesson builds on the last. You can follow with any recent version of Microsoft Excel. The free Excel for the web, Google Sheets and LibreOffice Calc work almost the same for the basics, and small differences are mentioned where they matter. If your computer is a Mac, use the Cmd key wherever the lesson says Ctrl."
+        },
+        {
+          "type": "heading",
+          "text": "The parts of the screen"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Workbook and worksheet.** The whole file is a **workbook**. Inside it are **worksheets**, also called sheets, shown as tabs at the bottom. A new workbook starts with one or more sheets, and you can add more with the plus button.",
+            "**Cells.** The boxes in the grid. Each cell has an address made from its column letter and row number. The cell in column B and row 3 is **B3**.",
+            "**Rows and columns.** Rows run across and are numbered 1, 2, 3. Columns run down and are lettered A, B, C. A sheet has over a million rows and more than sixteen thousand columns, far more than you will need.",
+            "**Range.** A group of cells, written with a colon: **A1:C5** means the block from A1 to C5.",
+            "**The formula bar.** Above the grid. It shows what is really inside the selected cell. A cell may show 20150 while the formula bar shows `=SUM(G2:G11)`.",
+            "**The ribbon.** The tabs at the top (Home, Insert, Formulas, Data, View) with buttons grouped by task.",
+            "**The Name Box.** To the left of the formula bar. It shows the selected cell's address, and you can type an address to jump there."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your first sheet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Open a new blank workbook. Click cell A1 and type `Date`, then press **Tab** to move right and type `Item`, and so on. Press **Enter** to go down. In this way you can type a row of headings and then rows of data without touching the mouse. Type the following table, starting at A1. Leave the Amount column empty for now, because you will fill it with a formula in lesson 3."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "   A          B          C       D     E       F       G\n1  Date       Item       Region  Qty   Price   Staff   Amount\n2  01-Jun     Notebook   North   10    120     Asha\n3  01-Jun     Pen pack   South   25    80      Ben\n4  02-Jun     Backpack   North   2     1400    Asha\n5  03-Jun     Notebook   East    15    120     Chidi\n6  03-Jun     Desk lamp  South   3     650     Ben\n7  04-Jun     Mouse      East    4     700     Chidi\n8  05-Jun     Pen pack   North   30    80      Asha\n9  06-Jun     Backpack   South   1     1400    Ben\n10 07-Jun     Notebook   South   20    120     Ben\n11 08-Jun     Mouse      North   2     700     Asha"
+        },
+        {
+          "type": "paragraph",
+          "text": "These ten rows are the sales of a small shop in the first week of June. Qty is how many were sold and Price is the price of one. We will use this table in all the lessons. Save the file now as `shop-sales.xlsx` using **File, Save As**, or press **Ctrl+S**. Choose a folder you can find again. Save often. Excel can lose work if your computer switches off, and while newer versions have AutoSave for files kept online, you should not rely on it."
+        },
+        {
+          "type": "heading",
+          "text": "Selecting and moving"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Click** a cell to select it, or click and drag to select a range.",
+            "**Click a column letter or row number** to select the entire column or row.",
+            "**Arrow keys** move one cell. **Ctrl+Arrow** jumps to the end of a block of data, which is a huge time saver on long lists.",
+            "**Ctrl+Shift+Arrow** selects from the current cell to the end of the block.",
+            "**Ctrl+A** selects everything. **Ctrl+Home** goes to A1.",
+            "**Tab** moves right, **Shift+Tab** moves left, and **Enter** moves down after typing."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Entering, changing and deleting"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Type into a cell and press Enter to store it.",
+            "To change a cell, select it and press **F2**, or double-click it. Press **Esc** to cancel an edit.",
+            "Press **Delete** to clear the contents of selected cells.",
+            "To delete a whole row, right-click its number and choose Delete. To insert one, right-click and choose Insert.",
+            "**Ctrl+Z** undoes the last action and **Ctrl+Y** redoes it. Do not be afraid to try things. Undo is your friend."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Copy, cut and paste"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Ctrl+C** copies, **Ctrl+X** cuts and **Ctrl+V** pastes. Copying a cell with a formula adjusts it for the new position, which you will study in lesson 3. A small clipboard icon appears after pasting, and its options let you paste only values, only formats or only formulas. A very useful trick is **Ctrl+D**, which fills down. Select a cell with data and the cells below it, press Ctrl+D, and the top cell is copied into all of them."
+        },
+        {
+          "type": "heading",
+          "text": "Rename and add sheets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Double-click a sheet tab to rename it, for example to `Sales`. Right-click a tab to move, copy, delete or colour it. Give sheets clear names. Months or purposes such as `Jan`, `Feb` and `Summary` are much easier to understand than `Sheet1` and `Sheet2`."
+        },
+        {
+          "type": "heading",
+          "text": "Two habits that make you look professional"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**One table, one purpose.** Put headings in the first row, data underneath, no empty rows or columns inside the table, and no merged cells in the data area. Tools like sorting, filtering and pivot tables need this tidy shape.",
+            "**Never type a number as text with letters mixed in.** Write `120`, not `Rs. 120` or `120 rupees` in the same cell. You can show currency symbols with formatting (lesson 2). Text in a number column breaks the arithmetic."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Excel works with many languages and regions. In some countries the list separator in formulas is a semicolon instead of a comma, and decimals use a comma. If a formula in this course does not work, try replacing commas with semicolons."
+        },
+        {
+          "type": "heading",
+          "text": "What you can do with Excel at work"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Lists:** attendance, stock, customers, tasks, contacts.",
+            "**Calculations:** totals, averages, percentages, GST or VAT, commission and discounts.",
+            "**Reports:** monthly sales, expenses, marks, production counts.",
+            "**Checking:** finding duplicates, missing values and mistakes in data.",
+            "**Charts:** turning numbers into a picture for a manager."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create the workbook and type the sales table into A1:F11. Save it as `shop-sales.xlsx`.",
+            "Rename the sheet to `Sales`.",
+            "Practise: jump to the end of the table with Ctrl+Down, return with Ctrl+Home, and select the whole Qty column data with Ctrl+Shift+Down.",
+            "Change the Mouse price in F7 to `750`, check it in the formula bar, then undo it with Ctrl+Z."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The table fills A1:F11, with headings in row 1 and ten rows of data.",
+            "You can say the address of the cell holding `Backpack` in the first Backpack row: B4.",
+            "The file is saved, and you know where."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Parts of a worksheet",
+        "nodes": [
+          {
+            "id": "wb",
+            "label": "Workbook",
+            "sub": "the whole file",
+            "col": 0,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "sheet",
+            "label": "Worksheet",
+            "sub": "a tab such as Sales",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "cell",
+            "label": "Cell",
+            "sub": "B3 = column B, row 3",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "rng",
+            "label": "Range",
+            "sub": "A1:C5, a block",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A workbook is the Excel file. It holds one or more worksheets.",
+            "on": [
+              "wb"
+            ]
+          },
+          {
+            "say": "A worksheet is a grid of rows and columns, shown as a tab at the bottom.",
+            "flow": [
+              "wb>sheet:contains"
+            ]
+          },
+          {
+            "say": "Each box in the grid is a cell. Its address is the column letter and the row number, such as B3.",
+            "flow": [
+              "sheet>cell:made of"
+            ]
+          },
+          {
+            "say": "A group of cells is a range, written with a colon, such as A1:C5.",
+            "flow": [
+              "cell>rng:grouped"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do I need to buy Microsoft Excel to follow this course?",
+          "a": "No. The basics work in Excel for the web, Google Sheets and LibreOffice Calc, which are free. A few features, such as XLOOKUP, differ between programs."
+        },
+        {
+          "q": "Why does Excel say a formula is wrong when it looks right?",
+          "a": "Some countries use a semicolon instead of a comma in formulas. Try replacing the commas with semicolons."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Start Here",
+      "slug": "enter-and-format-data",
+      "title": "Enter and Format Data: Numbers, Dates, Text and Tidy Tables",
+      "metaTitle": "Excel: Format Numbers, Dates and Tables",
+      "description": "Understand how Excel treats numbers, text and dates, fix the common problems (numbers stored as text, broken dates), and format a table so it is easy to read.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many Excel problems that look mysterious are really data problems. A total that does not add up, a date that will not sort, a column that refuses to calculate: very often the cause is that Excel is reading a value as the wrong type. This lesson teaches you how Excel sees data, so you can enter it correctly and fix it when it goes wrong. Then you will format your sales table so a manager can read it at a glance."
+        },
+        {
+          "type": "heading",
+          "text": "Three kinds of values"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Numbers.** Can be added, averaged and compared. By default they are aligned to the right of the cell.",
+            "**Text.** Words and anything that is not a number, such as names and codes. Aligned to the left by default.",
+            "**Dates and times.** Excel stores a date as a number: the count of days since the start of 1900. So 1 June 2024 is a number that Excel shows as a date. This is why you can subtract two dates to get the days between them. A time is a fraction of a day."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "This left and right alignment is a quick test. If a number sits on the left of its cell, Excel is probably treating it as text, and it will not add up."
+        },
+        {
+          "type": "heading",
+          "text": "Numbers stored as text: the classic problem"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes numbers arrive as text. For example, a column copied from a website or an accounting program, or a number typed with an apostrophe in front. Signs: the number is left-aligned, there is a small green triangle in the corner of the cell, and `SUM` ignores it. How to fix it:"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Select the cells with the problem.",
+            "Click the yellow warning icon that appears and choose **Convert to Number**.",
+            "If there is no icon, try multiplying: type `1` in an empty cell, copy it, select the problem cells, choose **Paste Special, Multiply**, then delete the helper cell.",
+            "Another approach is **Data, Text to Columns, Finish** on the selected column, which re-reads each cell."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The opposite issue also happens. Codes like `007` or phone numbers with a leading zero lose the zero because Excel treats them as numbers. Format those cells as **Text** before typing, or type an apostrophe first: `'007`."
+        },
+        {
+          "type": "heading",
+          "text": "Dates"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dates are tricky because countries write them differently. `03/04/2024` is 3 April in India, the UK and most of Africa, but 4 March in the United States. Excel follows the regional setting of your computer. To avoid confusion in shared files, enter dates in a clear form such as `03-Apr-2024`, or use the unambiguous `2024-04-03`."
+        },
+        {
+          "type": "list",
+          "items": [
+            "If a date is left-aligned, Excel did not recognise it, and it is text. Retype it in a form your computer accepts, or use **Text to Columns, Date** to convert a whole column.",
+            "To show the same date in a different style, change the format (below), not the value.",
+            "Press **Ctrl+;** (Ctrl and semicolon) to enter today's date as a fixed value."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Number formats"
+        },
+        {
+          "type": "paragraph",
+          "text": "A format changes how a value looks, not what it is. A cell holding 0.18 can show as `0.18`, `18%` or `18.00%` without changing the number. Select cells, press **Ctrl+1** to open Format Cells, and choose a category."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Number** with a set number of decimals and an optional thousands separator.",
+            "**Currency or Accounting** with a symbol such as ₹, £, $ or any other. It only changes the look. Excel does not convert between currencies.",
+            "**Percentage.** Typing `18%` stores 0.18. Applying the percent format to 0.18 shows 18%.",
+            "**Date** in many styles, and **Time**.",
+            "**Text** to keep exactly what you type."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A useful rule: store the number, format the look. Do not type `Rs. 1,200` into a cell. Type `1200` and apply a format. Then the cell can still be added."
+        },
+        {
+          "type": "heading",
+          "text": "Make a table easy to read"
+        },
+        {
+          "type": "paragraph",
+          "text": "Good formatting is not decoration. It makes a table quick to read and shows that you care about details. Apply these to your sales table."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Select the headings in row 1 and make them **bold** with Ctrl+B. Give them a fill colour from the Home tab, and centre them.",
+            "Select the Price and Amount columns, press Ctrl+1 and choose Number with 0 decimals and a thousands separator. Use the style your region uses.",
+            "Select the Date column and choose a date format like `01-Jun`.",
+            "Double-click the line between two column letters to **auto-fit** the width to the longest entry. Do this for every column.",
+            "Add thin borders around the table: Home, Borders, All Borders.",
+            "**Freeze the heading row** so it stays visible when you scroll: View, Freeze Panes, Freeze Top Row."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Things to avoid"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Merged cells in your data.** Merging cells for a title is fine above the table, but not inside it, because sorting and filtering break. Use **Center Across Selection** (in Format Cells, Alignment) instead.",
+            "**Blank rows and columns inside a table.** They split it into pieces.",
+            "**Several tables stacked on one sheet** with no space between. Keep one table per sheet or leave an empty row and column between them.",
+            "**Too many colours and fonts.** Two or three colours is enough.",
+            "**Hidden rows or columns you forgot.** They can hide errors."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The AutoFill handle"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the bottom right corner of a selected cell is a small square called the fill handle. Drag it to copy a value or continue a pattern. If you type `Monday` and drag, you get Tuesday, Wednesday and so on. If you type `1` and `2` in two cells, select both and drag, you get 3, 4, 5. Double-click the handle to fill down as far as the data in the next column goes. This is very handy for formulas."
+        },
+        {
+          "type": "note",
+          "text": "Data entry jobs often require speed and accuracy. Learn to type numbers with the number pad, use Tab and Enter to move without the mouse, and check your work by reading it once aloud or comparing the total to the source."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Format your sales table as described: bold coloured headings, auto-fit columns, number format on Price and Qty, borders and a frozen top row.",
+            "Type the text `007` in a new cell and see what happens. Then format a cell as Text and type it again.",
+            "Type `3/4/2024` in a cell. Check if it reads as 3 April or 4 March. Change the format to show the month name.",
+            "Use the fill handle to produce the days Monday to Sunday."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Headings are bold and the top row stays visible when you scroll.",
+            "You can tell which cells hold numbers and which hold text by looking at their alignment.",
+            "You can explain why a date should be entered in an unambiguous form."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Value or look?",
+        "nodes": [
+          {
+            "id": "val",
+            "label": "What is stored",
+            "sub": "0.18 is a number",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "fmt",
+            "label": "Format",
+            "sub": "percentage, currency, date",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "show",
+            "label": "What you see",
+            "sub": "18%",
+            "col": 2,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "text",
+            "label": "Stored as text?",
+            "sub": "green triangle, left side",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Excel stores a number, a date as a number of days, or text.",
+            "on": [
+              "val"
+            ]
+          },
+          {
+            "say": "A number format changes how the value looks. It does not change the value.",
+            "flow": [
+              "val>fmt:apply format"
+            ]
+          },
+          {
+            "say": "So 0.18 can appear as 18%. The calculations still use 0.18.",
+            "flow": [
+              "fmt>show:display"
+            ]
+          },
+          {
+            "say": "If a number is left-aligned with a green triangle, it is stored as text. Convert it to a number so that it can be added.",
+            "flow": [
+              "val>text:problem"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does SUM ignore some of my numbers?",
+          "a": "Those numbers are probably stored as text. Look for left alignment and a green triangle, and use Convert to Number or Text to Columns."
+        },
+        {
+          "q": "How do I keep a leading zero?",
+          "a": "Format the cells as Text before typing, or type an apostrophe first, such as 007."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Formulas",
+      "slug": "first-formulas-and-cell-references",
+      "title": "Your First Formulas: Cell References and the $ Sign",
+      "metaTitle": "Excel Formulas and Cell References",
+      "description": "Write formulas with +, -, *, /, copy them correctly, and understand relative and absolute references ($). Fill the Amount column of the sales table.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A formula is what makes Excel more than a table. Instead of typing a total, you tell Excel how to work it out, and it recalculates when the data changes. If you change a price, every amount that depends on it updates at once. This lesson teaches the rules of formulas and the single most important idea in Excel: cell references, including the dollar sign that confuses so many beginners."
+        },
+        {
+          "type": "heading",
+          "text": "The basics"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A formula always starts with an equals sign `=`.",
+            "Use the operators `+` add, `-` subtract, `*` multiply, `/` divide and `^` power.",
+            "Excel does multiplication and division before addition and subtraction. Use brackets to control the order, like in school maths: `=(A1+A2)*3`.",
+            "Refer to other cells by their address instead of typing the numbers: `=D2*E2`."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Click cell G2 in the sales sheet, type the following and press Enter."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=D2*E2"
+        },
+        {
+          "type": "paragraph",
+          "text": "It multiplies the Qty (10) by the Price (120), and G2 shows 1200. Now click G2 again and look at the formula bar. The cell shows the result, and the formula bar shows the formula. If you change D2 to 12, G2 becomes 1440 immediately."
+        },
+        {
+          "type": "heading",
+          "text": "Typing with the mouse"
+        },
+        {
+          "type": "paragraph",
+          "text": "You do not have to type the addresses. Type `=`, click D2, type `*`, click E2, and press Enter. Excel writes `=D2*E2` for you. This is faster and avoids typing mistakes. You can also use the arrow keys."
+        },
+        {
+          "type": "heading",
+          "text": "Copy the formula down"
+        },
+        {
+          "type": "paragraph",
+          "text": "You need an amount for all ten rows. Do not retype. Select G2 and double-click the fill handle (the small square in the bottom right corner), or drag it down to G11. Excel copies the formula, and adjusts it for each row."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "G2:  =D2*E2   -> 1200\nG3:  =D3*E3   -> 2000\nG4:  =D4*E4   -> 2800\n...\nG11: =D11*E11 -> 1400"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is called a **relative reference**. When you copy a formula down by one row, every row number in it goes up by one. When you copy it right by one column, every column letter shifts by one. The formula remembers the relationship, “the two cells to my left”, rather than the exact addresses. This is what makes copying formulas so powerful."
+        },
+        {
+          "type": "heading",
+          "text": "Absolute references: the dollar sign"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes you want a reference to stay fixed when you copy. Suppose a tax rate of 5% sits in cell J1 and you want a Tax column with `=G2*J1`. Copy that down and in row 3 it becomes `=G3*J2`, which points to an empty cell. The rate must not move."
+        },
+        {
+          "type": "paragraph",
+          "text": "Put dollar signs in front of the column letter and row number: `$J$1`. The formula `=G2*$J$1` is copied down as `=G3*$J$1`, `=G4*$J$1` and so on. This is an **absolute reference**."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Relative:   J1     moves when copied\nAbsolute:   $J$1   never moves\nMixed:      $J1    column fixed, row moves\n            J$1    row fixed, column moves"
+        },
+        {
+          "type": "paragraph",
+          "text": "There is a shortcut. Click inside the reference in the formula bar and press **F4** (Cmd+T on a Mac). Each press cycles through `J1`, `$J$1`, `J$1` and `$J1`. Use the one you need."
+        },
+        {
+          "type": "note",
+          "text": "Mini rule: if a formula refers to a single input cell, such as a tax rate, a discount or an exchange rate, make that reference absolute. Type such values in a labelled cell, not inside the formula. That way you can change the rate in one place, and nobody has to hunt for a hidden number."
+        },
+        {
+          "type": "heading",
+          "text": "Practice: a tax column"
+        },
+        {
+          "type": "paragraph",
+          "text": "Add a label `Tax rate` in I1 and the value `5%` in J1. Add a heading `Tax` in H1. In H2 type `=G2*$J$1` and copy it down. For the first row, 1200 times 5% gives 60. Use the tax rate of your own country and product when you build a real sheet. The 5% here is only an example."
+        },
+        {
+          "type": "heading",
+          "text": "Formulas that point to other sheets"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can refer to a cell on another sheet by putting the sheet name and an exclamation mark in front: `=Sales!G2`. If the sheet name has spaces, put it in quotes: `='Jan sales'!G2`. Click the other sheet while typing the formula and Excel writes it for you."
+        },
+        {
+          "type": "heading",
+          "text": "Seeing and checking formulas"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Press **Ctrl+`** (the key above Tab, called the grave accent or backtick) to show all formulas on the sheet instead of results. Press it again to go back.",
+            "Select a cell and use **Formulas, Trace Precedents** to see arrows to the cells it uses.",
+            "Click a cell with a formula and press **F2**. Excel colour-codes the referenced cells so you can see which ones are used."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Forgetting the equals sign.** Typing `D2*E2` shows the text, not the answer.",
+            "**Typing numbers inside formulas.** `=D2*120` works until the price changes. Refer to the cell.",
+            "**Forgetting the dollar sign** and getting wrong results lower down a copied formula.",
+            "**Mixing text and numbers**, for example a number with “pcs” attached. The formula returns a `#VALUE!` error.",
+            "**Deleting a cell that formulas use**, which gives `#REF!`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Fill G2:G11 with `=D2*E2` and copy it down.",
+            "Add the tax-rate cell and a Tax column with an absolute reference, as described.",
+            "Change the Notebook price in E2 to 150 and see G2 and H2 change.",
+            "Show all formulas with Ctrl+` and then switch back."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "G2 = 1200, G3 = 2000, G4 = 2800, G5 = 1800, G6 = 1950, G7 = 2800, G8 = 2400, G9 = 1400, G10 = 2400 and G11 = 1400 (with the original prices).",
+            "Every row of the Tax column points to $J$1.",
+            "You can say in one sentence the difference between J1 and $J$1."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Relative and absolute references",
+        "nodes": [
+          {
+            "id": "f",
+            "label": "Formula in G2",
+            "sub": "=D2*E2",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "copy",
+            "label": "Copy down",
+            "sub": "drag the fill handle",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "rel",
+            "label": "Relative",
+            "sub": "D3*E3, D4*E4 ...",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "abs",
+            "label": "Absolute",
+            "sub": "$J$1 never moves",
+            "col": 2,
+            "row": 1,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You type a formula in G2. It multiplies the cells two and three places to its left.",
+            "on": [
+              "f"
+            ]
+          },
+          {
+            "say": "Copy it down with the fill handle.",
+            "flow": [
+              "f>copy:copy"
+            ]
+          },
+          {
+            "say": "A relative reference changes with the row: row 3 uses D3 and E3, row 4 uses D4 and E4.",
+            "flow": [
+              "copy>rel:adjusts"
+            ]
+          },
+          {
+            "say": "A reference with dollar signs, such as $J$1, stays on the same cell, which is right for a tax rate.",
+            "flow": [
+              "copy>abs:stays fixed"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What does the dollar sign mean in Excel?",
+          "a": "It locks part of a cell reference so it does not change when you copy the formula. $J$1 always points to J1. Press F4 to add or remove the dollar signs."
+        },
+        {
+          "q": "Why does my formula show as text instead of a result?",
+          "a": "The cell may be formatted as Text, or the formula may be missing the equals sign. Change the format to General, and retype with = at the start."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Formulas",
+      "slug": "sum-average-count-min-max",
+      "title": "SUM, AVERAGE, COUNT, MIN and MAX: The Everyday Functions",
+      "metaTitle": "Excel SUM, AVERAGE, COUNT, MIN, MAX",
+      "description": "Use the functions that every office job needs: SUM, AVERAGE, COUNT, COUNTA, MIN, MAX, ROUND and AutoSum, with ranges and the status bar shortcut.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A **function** is a ready-made formula with a name. Instead of writing `=G2+G3+G4+...` for a hundred cells, you write `=SUM(G2:G101)`. Excel has hundreds of functions, but a small handful does most of the work in real jobs. This lesson covers the ones you will use every single day."
+        },
+        {
+          "type": "heading",
+          "text": "The shape of a function"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=FUNCTIONNAME(argument1, argument2, ...)"
+        },
+        {
+          "type": "paragraph",
+          "text": "A function starts with `=`, then its name, then brackets holding the **arguments**, the values or ranges it works on, separated by commas. When you type a function name, Excel shows a tooltip with its arguments. Use the **Tab** key to accept the suggested function, and always close the bracket."
+        },
+        {
+          "type": "heading",
+          "text": "SUM"
+        },
+        {
+          "type": "paragraph",
+          "text": "`SUM` adds numbers. Click an empty cell below the table, say G13, and type:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUM(G2:G11)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With the original data the answer is **20150**, the total sales for the week. You can give `SUM` several ranges or numbers: `=SUM(G2:G5, G9)`. Cells containing text are ignored."
+        },
+        {
+          "type": "paragraph",
+          "text": "**AutoSum** is a shortcut. Select the cell under a column of numbers and press **Alt+=**. Excel guesses the range and enters `SUM` for you. Check that the range is right before pressing Enter."
+        },
+        {
+          "type": "heading",
+          "text": "AVERAGE"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=AVERAGE(G2:G11)      -> 2015"
+        },
+        {
+          "type": "paragraph",
+          "text": "It adds the numbers and divides by how many there are. Twenty thousand one hundred fifty divided by ten is 2015. Empty cells and text are skipped. A zero is counted, though, which can lower the average. Be careful with blanks that are really zeros."
+        },
+        {
+          "type": "heading",
+          "text": "COUNT and COUNTA"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`COUNT(range)` counts cells that contain **numbers**. `=COUNT(D2:D11)` returns 10.",
+            "`COUNTA(range)` counts cells that are **not empty**, including text. `=COUNTA(B2:B11)` returns 10 because there are ten items.",
+            "`COUNTBLANK(range)` counts empty cells, which is useful for finding missing data."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Use `COUNTA` to count how many entries are in a list of names. Use `COUNT` to count numeric entries."
+        },
+        {
+          "type": "heading",
+          "text": "MIN and MAX"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=MIN(G2:G11)   -> 1200   (smallest sale)\n=MAX(G2:G11)   -> 2800   (largest sale)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Smallest and largest values. They also work with dates: the earliest and latest date in a column."
+        },
+        {
+          "type": "heading",
+          "text": "The status bar"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you select a range of numbers, the bar at the bottom of the window shows the average, count and sum immediately, with no formula needed. Select G2:G11 and look. It is perfect for a quick check. Right-click the status bar to add more such as Min and Max."
+        },
+        {
+          "type": "heading",
+          "text": "ROUND, ROUNDUP and ROUNDDOWN"
+        },
+        {
+          "type": "paragraph",
+          "text": "Money often needs rounding. Use `ROUND(number, digits)`."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=ROUND(2015.678, 2)    -> 2015.68\n=ROUND(2015.678, 0)    -> 2016\n=ROUND(2015.678, -1)   -> 2020   (to the nearest ten)\n=ROUNDUP(2015.1, 0)    -> 2016\n=ROUNDDOWN(2015.9, 0)  -> 2015"
+        },
+        {
+          "type": "paragraph",
+          "text": "Formatting to two decimals only changes how a number looks, and the real value underneath remains long. When a result must be exactly rounded, for example prices that are paid in cash, use `ROUND` in the formula."
+        },
+        {
+          "type": "heading",
+          "text": "Percentages of a total"
+        },
+        {
+          "type": "paragraph",
+          "text": "A common task is what share each item makes of the total. In H2 write `=G2/$G$13` where G13 holds the total, and copy down. Format the column as a percentage. For the first row, 1200 out of 20150 is about 6%. The dollar signs keep the total fixed, as you learned in the last lesson."
+        },
+        {
+          "type": "heading",
+          "text": "Using whole columns"
+        },
+        {
+          "type": "paragraph",
+          "text": "`=SUM(G:G)` adds the entire column G, so new rows are included automatically. This is convenient for sheets that keep growing, but be careful not to include your own total cell in the range, or Excel complains about a circular reference. Keep totals above the data, on a separate sheet, or use a range that stops before them."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`#DIV/0!` means you divided by zero or by an empty cell. Check the denominator, or wrap with `IFERROR` (next lesson).",
+            "`#NAME?` means Excel does not recognise a name. You mistyped a function name.",
+            "`#VALUE!` means a value is the wrong type, such as text where a number is needed.",
+            "`#REF!` means a cell the formula used was deleted.",
+            "`####` in a cell is not an error in the formula. The column is too narrow to show the number. Widen it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Check your answer"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always sanity-check results. Do the totals look sensible? Is the average between the minimum and the maximum? Does the count equal the number of rows you can see? If a total looks odd, click the cell, press F2 and see which cells the formula includes. Most mistakes come from a range that is one row too short or too long."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add these cells below your table, with labels in column F: total with `SUM`, average with `AVERAGE`, count with `COUNT`, smallest and largest sale.",
+            "Use AutoSum (Alt+=) to total the Qty column. The answer is 112.",
+            "Add a column showing each row's share of the total, formatted as a percentage.",
+            "Use `ROUND` to show the average to 1 decimal place."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Total = 20150, average = 2015, count = 10, min = 1200, max = 2800 and total Qty = 112.",
+            "The percentage column adds up to 100%.",
+            "You can explain what `#DIV/0!` and `####` mean."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Functions do the heavy work",
+        "nodes": [
+          {
+            "id": "rng",
+            "label": "A range",
+            "sub": "G2:G11",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "fn",
+            "label": "A function",
+            "sub": "SUM, AVERAGE, MIN, MAX",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "res",
+            "label": "One result",
+            "sub": "20150",
+            "col": 2,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "bar",
+            "label": "Status bar",
+            "sub": "quick check, no formula",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You select a range of cells, such as the ten amounts in G2:G11.",
+            "on": [
+              "rng"
+            ]
+          },
+          {
+            "say": "A function such as SUM, AVERAGE, MIN or MAX works on every number in the range.",
+            "flow": [
+              "rng>fn:range"
+            ]
+          },
+          {
+            "say": "It returns a single result. The total of the ten sales is 20150.",
+            "flow": [
+              "fn>res:result"
+            ]
+          },
+          {
+            "say": "For a quick check, the status bar shows the sum, average and count of selected cells with no formula.",
+            "flow": [
+              "rng>bar:select cells"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between COUNT and COUNTA?",
+          "a": "COUNT counts cells with numbers. COUNTA counts all cells that are not empty, including text."
+        },
+        {
+          "q": "Why does the cell show #### instead of a number?",
+          "a": "The column is too narrow. Double-click the line between column letters to auto-fit the width."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Formulas",
+      "slug": "if-and-or-iferror-logic",
+      "title": "IF, AND, OR and IFERROR: Making Excel Decide",
+      "metaTitle": "Excel IF, AND, OR and IFERROR Functions",
+      "description": "Make formulas that make decisions with IF, combine tests with AND and OR, nest IFs sensibly and hide errors with IFERROR. Examples for commission and results.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "So far Excel has only calculated. Now it will decide. The `IF` function lets a formula choose between two results depending on a test, for example “if the sale is big, show Large, otherwise show Small”. Office jobs use `IF` all the time: pass or fail, late or on time, bonus or no bonus, stock low or okay. This lesson teaches it clearly, with the other logic functions that go with it."
+        },
+        {
+          "type": "heading",
+          "text": "The IF function"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(test, value_if_true, value_if_false)"
+        },
+        {
+          "type": "paragraph",
+          "text": "The **test** is a comparison that is either true or false. You build it with the signs `=`, `<>` (not equal), `>`, `<`, `>=` and `<=`. In the sales table, add a heading `Size` in column L (leave I to K for the tax rate from lesson 3) and type in L2:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(G2>=2000, \"Large\", \"Small\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "Row 2 has an amount of 1200, which is less than 2000, so it shows `Small`. Copy it down. Rows with amounts 2000, 2800, 2800, 2400 and 2400 show `Large`, and the rest show `Small`. Text inside a formula goes in double quotes. Numbers do not."
+        },
+        {
+          "type": "heading",
+          "text": "Using cell references in the test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Never hide the threshold inside a formula where nobody can see it. Put 2000 in a labelled cell, say O1 with the label `Large from` in N1, and write `=IF(G2>=$O$1, \"Large\", \"Small\")`. Now a manager can change the limit and the whole column updates."
+        },
+        {
+          "type": "heading",
+          "text": "Calculating inside IF"
+        },
+        {
+          "type": "paragraph",
+          "text": "The results can be calculations, not just words. A shop gives a 10% discount on amounts of 2000 or more:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(G2>=2000, G2*0.9, G2)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With G2 = 2000 the result is 1800. With 1200 it stays 1200. Again, a real sheet should keep the 0.9 or the 10% in a labelled cell."
+        },
+        {
+          "type": "heading",
+          "text": "Testing text"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(C2=\"North\", \"Head office\", \"Branch\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "Text comparisons in Excel ignore upper and lower case, so `\"north\"` also matches. Spelling and extra spaces matter, so “North ” with a trailing space will not equal “North”. Lesson 8 shows how to remove stray spaces."
+        },
+        {
+          "type": "heading",
+          "text": "AND and OR: more than one condition"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`AND(test1, test2)` is true only if **all** the tests are true.",
+            "`OR(test1, test2)` is true if **any** of the tests is true.",
+            "`NOT(test)` reverses a test."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "They are used inside `IF`. For example, a bonus is paid if the sale is at least 2000 and the region is North:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(AND(G2>=2000, C2=\"North\"), \"Bonus\", \"No bonus\")\n=IF(OR(C2=\"North\", C2=\"East\"), \"Priority\", \"Normal\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "In our data the only North row with an amount of 2000 or more is row 4 (the Backpack, 2800) and row 8 (the pens, 2400), so those two show `Bonus`."
+        },
+        {
+          "type": "heading",
+          "text": "Nested IF: more than two outcomes"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you have three or more outcomes, put one `IF` inside another. Grade a sale as High, Medium or Low."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(G2>=2500, \"High\", IF(G2>=1500, \"Medium\", \"Low\"))"
+        },
+        {
+          "type": "paragraph",
+          "text": "Excel checks the first test. If it is true you get “High”. If not, it goes to the second `IF` inside. Rows are checked from the top, so put the strictest condition first. Rows 4 and 7 (2800) show High. Rows 3, 5, 6, 8 and 10 (2000, 1800, 1950, 2400 and 2400) show Medium, and the other three show Low."
+        },
+        {
+          "type": "paragraph",
+          "text": "Nested IFs get hard to read after three levels. Newer Excel versions (2019 and 365) have `IFS`, which lists conditions in turn, and `SWITCH` for exact matches. A lookup table (lesson 7) is the cleanest choice when there are many bands."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IFS(G2>=2500, \"High\", G2>=1500, \"Medium\", TRUE, \"Low\")"
+        },
+        {
+          "type": "heading",
+          "text": "IFERROR: tidy up errors"
+        },
+        {
+          "type": "paragraph",
+          "text": "A formula that hits an error shows ugly codes like `#DIV/0!`. `IFERROR(value, value_if_error)` replaces the error with something friendly."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IFERROR(G2/D2, 0)\n=IFERROR(VLOOKUP(B2, Prices, 2, FALSE), \"Not found\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use it with care. It can hide real mistakes. Prefer to handle expected cases (an empty denominator, a missing code) and let unexpected errors show, so that you notice them."
+        },
+        {
+          "type": "heading",
+          "text": "A realistic example: pass or fail"
+        },
+        {
+          "type": "paragraph",
+          "text": "A training centre records marks out of 100. Pass is 40 or more in each of two papers. A formula in the result column:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IF(AND(B2>=40, C2>=40), \"Pass\", \"Fail\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "The same idea works for attendance (`IF(days>=75%...)`), overdue invoices (`IF(TODAY()>due, \"Overdue\", \"OK\")`) and low stock (`IF(stock<=reorder, \"Order\", \"OK\")`)."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Forgetting quotes around text results. `=IF(A1>5, Yes, No)` gives `#NAME?`.",
+            "Using a comma where your region wants a semicolon.",
+            "Putting the conditions in the wrong order in a nested IF, so an earlier test catches everything.",
+            "Comparing text that has extra spaces or different spelling.",
+            "Counting brackets wrongly. Click in the formula and Excel highlights matching brackets."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add a `Size` column with `IF` (Large from 2000), using a labelled threshold cell.",
+            "Add a `Grade` column with a nested `IF` or `IFS` for High, Medium and Low.",
+            "Add a `Bonus` column that uses `AND` for North and 2000 or more.",
+            "Add a column `Qty per rupee` = `IFERROR(D2/E2, 0)` and think about when this might fail."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Size shows Large on five rows (3, 4, 7, 8 and 10, the amounts 2000, 2800, 2800, 2400 and 2400) and Small on the other five.",
+            "Bonus shows on rows 4 and 8 only.",
+            "You can explain why the order of conditions matters in a nested IF."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A formula that decides",
+        "nodes": [
+          {
+            "id": "test",
+            "label": "Test",
+            "sub": "G2 >= 2000 ?",
+            "col": 0,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "yes",
+            "label": "If true",
+            "sub": "\"Large\"",
+            "col": 1,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "no",
+            "label": "If false",
+            "sub": "\"Small\"",
+            "col": 1,
+            "row": 1,
+            "kind": "data"
+          },
+          {
+            "id": "col",
+            "label": "Whole column",
+            "sub": "copy it down",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "IF starts with a test, such as: is the amount 2000 or more?",
+            "on": [
+              "test"
+            ]
+          },
+          {
+            "say": "If the test is true, the formula returns the first result, for example the word Large.",
+            "flow": [
+              "test>yes:true"
+            ]
+          },
+          {
+            "say": "If the test is false, it returns the second result, for example Small.",
+            "flow": [
+              "test>no:false"
+            ]
+          },
+          {
+            "say": "Copy the formula down and every row makes its own decision.",
+            "flow": [
+              "yes>col:all rows",
+              "no>col:all rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How many IFs can I nest in Excel?",
+          "a": "Modern Excel allows many levels, but more than three become hard to read. Use IFS, SWITCH or a lookup table when there are many outcomes."
+        },
+        {
+          "q": "Why does IFERROR sometimes cause problems?",
+          "a": "It hides every error, including real mistakes. Use it for expected cases such as division by zero, and keep unexpected errors visible so you can fix them."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Formulas",
+      "slug": "sumif-countif-averageif-sumifs",
+      "title": "SUMIF, COUNTIF and SUMIFS: Totals for Each Group",
+      "metaTitle": "Excel SUMIF, COUNTIF and SUMIFS",
+      "description": "Total, count and average only the rows that match a condition: sales per region, per person or per item, with one or several conditions.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Totals for the whole sheet are useful, but managers ask more precise questions. How much did the North region sell? How many orders did Ben handle? What was the total for Notebooks in the South? The `IF` family of functions answers these in one cell, without sorting or filtering. They are some of the most used functions in real offices."
+        },
+        {
+          "type": "paragraph",
+          "text": "We use the sales table from earlier, with Amount in column G. If you did not finish the Amount column, fill it with `=D2*E2` first."
+        },
+        {
+          "type": "heading",
+          "text": "SUMIF: add numbers that meet a condition"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIF(range_to_check, condition, range_to_add)"
+        },
+        {
+          "type": "paragraph",
+          "text": "To get the total sales of the North region:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIF(C2:C11, \"North\", G2:G11)     -> 7800"
+        },
+        {
+          "type": "paragraph",
+          "text": "Excel looks down C2:C11 for rows where the region equals North, and adds the matching amounts from G2:G11. The North rows are 1200, 2800, 2400 and 1400, which add up to 7800. The ranges must have the same size. You can put the condition in a cell instead of in quotes. If I1 contains `South`, use `=SUMIF(C2:C11, I1, G2:G11)`, and change I1 to see another answer."
+        },
+        {
+          "type": "paragraph",
+          "text": "Similarly, per staff member and per item:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIF(F2:F11, \"Ben\", G2:G11)         -> 7750\n=SUMIF(B2:B11, \"Notebook\", G2:G11)    -> 5400"
+        },
+        {
+          "type": "heading",
+          "text": "Conditions with signs"
+        },
+        {
+          "type": "paragraph",
+          "text": "A condition can be a comparison, written as text in quotes."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIF(G2:G11, \">=2000\")        -> adds the amounts of 2000 or more\n=SUMIF(D2:D11, \"<5\", G2:G11)    -> amounts where Qty is below 5\n=SUMIF(B2:B11, \"<>Mouse\", G2:G11) -> everything except mouse sales"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you leave out the last argument, `SUMIF` adds the cells it is checking. The first example adds 2000, 2800, 2800, 2400 and 2400 for a total of 12400. The other two are the same shape and are easy to test yourself."
+        },
+        {
+          "type": "heading",
+          "text": "Wildcards"
+        },
+        {
+          "type": "paragraph",
+          "text": "In conditions, `*` stands for any text and `?` for one character. `=SUMIF(B2:B11, \"Note*\", G2:G11)` totals every item starting with “Note”. `\"*pack\"` finds items ending in pack."
+        },
+        {
+          "type": "heading",
+          "text": "COUNTIF: count the matching rows"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=COUNTIF(C2:C11, \"North\")     -> 4\n=COUNTIF(G2:G11, \">=2000\")    -> 5\n=COUNTIF(F2:F11, \"Ben\")       -> 4"
+        },
+        {
+          "type": "paragraph",
+          "text": "Four sales were in the North, five sales were 2000 or more, and Ben handled four sales. `COUNTIF` is also the quick way to find duplicates: `=COUNTIF(A:A, A2)` returns how many times the value in A2 appears. If it is more than 1, it is a duplicate."
+        },
+        {
+          "type": "heading",
+          "text": "AVERAGEIF"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=AVERAGEIF(C2:C11, \"North\", G2:G11)    -> 1950"
+        },
+        {
+          "type": "paragraph",
+          "text": "The average North sale: 7800 divided by 4 equals 1950."
+        },
+        {
+          "type": "heading",
+          "text": "SUMIFS, COUNTIFS and AVERAGEIFS: more than one condition"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you need several conditions together, add an **S** to the name. All conditions must be true. Notice that in `SUMIFS` the range to add comes **first**. This is the opposite of `SUMIF`, and a common source of mistakes."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIFS(G2:G11, C2:C11, \"South\", B2:B11, \"Notebook\")   -> 2400\n=COUNTIFS(C2:C11, \"North\", G2:G11, \">=2000\")           -> 2\n=AVERAGEIFS(G2:G11, F2:F11, \"Ben\", C2:C11, \"South\")    -> 1937.5"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the first example, the only South Notebook row is row 10, which is 2400. The second asks for North sales of 2000 or more, and there are two (2800 and 2400). In the third, Ben's four sales are all in the South: 2000, 1950, 1400 and 2400, with a total of 7750 and an average of 1937.5."
+        },
+        {
+          "type": "heading",
+          "text": "Build a small summary table"
+        },
+        {
+          "type": "paragraph",
+          "text": "These functions make a neat report. On a new sheet called `Summary`, list the regions in A2:A4 (North, South, East) and write in B2:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=SUMIF(Sales!$C$2:$C$11, A2, Sales!$G$2:$G$11)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Copy it down. The dollar signs keep the ranges fixed while `A2` moves to A3 and A4. You get North 7800, South 7750 and East 4600, which together equal the total of 20150. Always check that the parts add up to the total, so you can be sure that no rows are missed because of a spelling difference."
+        },
+        {
+          "type": "heading",
+          "text": "Why a total might be missing rows"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A region is spelled “Noth” or has a trailing space. The `IF` family needs an exact match apart from capitals.",
+            "Numbers stored as text in the range to add (lesson 2).",
+            "The ranges are different sizes or do not line up.",
+            "New rows were added below the range. Use a Table (lesson 10), which grows automatically, or whole-column references."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Build a `Summary` sheet with totals per region, per staff member and per item using `SUMIF`.",
+            "Add counts with `COUNTIF` for each region.",
+            "Use `SUMIFS` to find the total for Pen packs in the North (2400).",
+            "Check that your regional totals add up to 20150."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "North = 7800, South = 7750 and East = 4600.",
+            "By staff: Asha = 7800, Ben = 7750 and Chidi = 4600.",
+            "By item: Notebook = 5400, Pen pack = 4400, Backpack = 4200, Desk lamp = 1950 and Mouse = 4200."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Add only what matches",
+        "nodes": [
+          {
+            "id": "rng",
+            "label": "Region column",
+            "sub": "C2:C11",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "cond",
+            "label": "Condition",
+            "sub": "\"North\"",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "add",
+            "label": "Amount column",
+            "sub": "G2:G11",
+            "col": 1,
+            "row": 1,
+            "kind": "data"
+          },
+          {
+            "id": "res",
+            "label": "SUMIF result",
+            "sub": "7800",
+            "col": 2,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "SUMIF looks down one column, here the Region column, for rows that meet a condition.",
+            "on": [
+              "rng"
+            ]
+          },
+          {
+            "say": "The condition is North. Rows with a different region are skipped.",
+            "flow": [
+              "rng>cond:test each row"
+            ]
+          },
+          {
+            "say": "For each matching row, it takes the number from the amount column in the same row.",
+            "flow": [
+              "cond>add:matching rows"
+            ]
+          },
+          {
+            "say": "It adds them up: 1200 + 2800 + 2400 + 1400 = 7800.",
+            "flow": [
+              "add>res:total"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between SUMIF and SUMIFS?",
+          "a": "SUMIF has one condition and takes the range to add last. SUMIFS allows many conditions and takes the range to add first."
+        },
+        {
+          "q": "Why does SUMIF give 0 when I can see matching rows?",
+          "a": "The text probably differs slightly, for example by a trailing space or a spelling difference, or the numbers are stored as text. Clean the data and try again."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Lookups, Text and Dates",
+      "slug": "vlookup-xlookup-index-match",
+      "title": "VLOOKUP, XLOOKUP and INDEX MATCH: Find Data in Another Table",
+      "metaTitle": "Excel VLOOKUP, XLOOKUP and INDEX MATCH",
+      "description": "Look up a price, name or code from another table. Learn VLOOKUP with exact match, XLOOKUP in newer Excel and INDEX MATCH, plus the #N/A error.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Imagine a price list with a hundred products, and a sales sheet where you type the product name and want the price to appear by itself. Or an employee list, and an attendance sheet where you type an ID and the name appears. This job, finding a value in a table by looking for a key, is called a **lookup**. It is among the most valuable Excel skills for office, accounts and data entry jobs, and it often appears in Excel tests."
+        },
+        {
+          "type": "heading",
+          "text": "Set up a price list"
+        },
+        {
+          "type": "paragraph",
+          "text": "Add a new sheet called `Prices` with this table in A1:C6."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "   A          B           C\n1  Item       Category    Price\n2  Notebook   Stationery  120\n3  Pen pack   Stationery  80\n4  Backpack   Bags        1400\n5  Desk lamp  Home        650\n6  Mouse      Office      700"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the `Sales` sheet we want the Price column (E) to be found from the item name in column B, so that the price is typed once, in one place, and never copied by hand. If a price changes, you change it in the price list only."
+        },
+        {
+          "type": "heading",
+          "text": "VLOOKUP"
+        },
+        {
+          "type": "paragraph",
+          "text": "`VLOOKUP` is the classic lookup. The V stands for vertical, because it looks down a column."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=VLOOKUP(lookup_value, table_range, column_number, FALSE)"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**lookup_value**: what to find, such as the item name in B2.",
+            "**table_range**: the table to search. The thing you search for must be in the **first column** of this range.",
+            "**column_number**: which column of the table holds the answer, counting from 1 at the left of the range.",
+            "**FALSE**: means exact match. Always use FALSE (or 0) when looking up names and codes."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In Sales!E2:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=VLOOKUP(B2, Prices!$A$2:$C$6, 3, FALSE)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Excel finds `Notebook` in the first column of the price table, then returns the value from the third column of the same row: 120. Copy it down. The dollar signs keep the table range fixed, as in lesson 3. Every row finds its own price, so the Amount column still works."
+        },
+        {
+          "type": "paragraph",
+          "text": "To find the category instead, change the column number to 2: `=VLOOKUP(B2, Prices!$A$2:$C$6, 2, FALSE)` gives Stationery for Notebook."
+        },
+        {
+          "type": "note",
+          "text": "Always use `FALSE` at the end. Leaving it out, or using `TRUE`, switches to approximate matching, which assumes a sorted list and can quietly return a wrong answer. Approximate match is meant for bands such as tax slabs or grade boundaries (see below)."
+        },
+        {
+          "type": "heading",
+          "text": "The #N/A error"
+        },
+        {
+          "type": "paragraph",
+          "text": "`#N/A` means “not available”: the lookup value was not found. The cause is often a small difference, such as a trailing space, a spelling mistake, or a number stored as text in one table and as a number in the other. Check by comparing the two cells with `=B2=Prices!A2`. Use `TRIM` (next lesson) to remove spaces. If missing values are normal, wrap the lookup:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=IFERROR(VLOOKUP(B2, Prices!$A$2:$C$6, 3, FALSE), \"Not in price list\")"
+        },
+        {
+          "type": "heading",
+          "text": "VLOOKUP's limits"
+        },
+        {
+          "type": "list",
+          "items": [
+            "It can only look to the **right**. The search column must be the leftmost column of the table.",
+            "The column number is typed by hand. If someone inserts a column in the table, your answer may change without warning.",
+            "It returns only the first match."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "These limits are why many people moved to XLOOKUP or INDEX MATCH."
+        },
+        {
+          "type": "heading",
+          "text": "XLOOKUP (Excel 2021 and Microsoft 365)"
+        },
+        {
+          "type": "paragraph",
+          "text": "`XLOOKUP` fixes those problems and reads more naturally."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=XLOOKUP(lookup_value, lookup_range, return_range, \"Not found\")"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=XLOOKUP(B2, Prices!$A$2:$A$6, Prices!$C$2:$C$6, \"Not found\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "It means: find B2 in the item column, and return the matching cell from the price column. It does exact matching by default, looks in any direction, and you can give a result for “not found” right inside it. XLOOKUP is not in Excel 2019 or older, and not in some other programs, so if your workplace uses an older Excel, use VLOOKUP or INDEX MATCH. Google Sheets also has XLOOKUP now, and LibreOffice has recently added it too, but check your version."
+        },
+        {
+          "type": "heading",
+          "text": "INDEX and MATCH: the all-version alternative"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two functions that work together in every version of Excel."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`MATCH(value, range, 0)` finds the **position** of the value in a range. `MATCH(\"Backpack\", Prices!A2:A6, 0)` returns 3.",
+            "`INDEX(range, position)` returns the item at that position. `INDEX(Prices!C2:C6, 3)` returns 1400."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Put them together:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=INDEX(Prices!$C$2:$C$6, MATCH(B2, Prices!$A$2:$A$6, 0))"
+        },
+        {
+          "type": "paragraph",
+          "text": "It reads: from the Price column, give me the item at the position where B2 is found in the Item column. It can look left or right, and it does not break when columns are inserted. Many experienced users prefer it."
+        },
+        {
+          "type": "heading",
+          "text": "Approximate match for bands"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you want to put a number into a band, such as a commission rate by sales amount or a grade by marks, approximate match is the right tool. Build a table sorted from smallest to largest, with the start of each band:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "   A           B\n1  Sales from  Commission\n2  0           0%\n3  1500        2%\n4  2500        4%"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=VLOOKUP(G2, $A$2:$B$4, 2, TRUE)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With `TRUE`, Excel finds the largest value that is less than or equal to G2. An amount of 2000 falls in the band that starts at 1500, so it returns 2%. An amount of 2800 returns 4%. The table must be sorted from small to large. This replaces long nested IF formulas with a table that anyone can read and change."
+        },
+        {
+          "type": "heading",
+          "text": "Lookups across sheets and files"
+        },
+        {
+          "type": "paragraph",
+          "text": "A lookup table can sit on another sheet, as here, or in another file. When the table is in another workbook, Excel writes the file name into the formula, and the other workbook needs to be available when you open the file. For files you share, it is safer to keep the lookup table in the same workbook."
+        },
+        {
+          "type": "heading",
+          "text": "A checklist when a lookup fails"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Is the lookup value in the first column of the range (VLOOKUP)?",
+            "Is the table range fixed with dollar signs and big enough to include every row?",
+            "Are there extra spaces, or different spelling or capitals? (Capitals do not matter, spaces do.)",
+            "Are the numbers stored as text in one of the tables?",
+            "Did you use FALSE for exact match?"
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create the Prices sheet and replace the typed prices in Sales column E with a lookup formula. Choose VLOOKUP, XLOOKUP or INDEX MATCH.",
+            "Add a Category column to Sales using the same price table.",
+            "Type a misspelled item such as `Notebok` in B2 and see the error. Then wrap the lookup with `IFERROR`. Fix the spelling afterwards.",
+            "Create a commission band table and use an approximate match to find the commission rate for each amount."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Amount in G2 is still 1200 after you replaced the prices with the lookup.",
+            "Backpack rows show a price of 1400 and category Bags.",
+            "You can explain why FALSE is used for exact match."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Look up a value",
+        "nodes": [
+          {
+            "id": "key",
+            "label": "Lookup value",
+            "sub": "Notebook in B2",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "tab",
+            "label": "Price list",
+            "sub": "first column holds the item",
+            "col": 1,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "row",
+            "label": "Matching row",
+            "sub": "Notebook, Stationery, 120",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "ans",
+            "label": "Answer",
+            "sub": "120",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You give the lookup function a value to find, such as Notebook.",
+            "on": [
+              "key"
+            ]
+          },
+          {
+            "say": "It searches the first column of the price list for that value.",
+            "flow": [
+              "key>tab:search"
+            ]
+          },
+          {
+            "say": "It finds the matching row and goes to the column you asked for.",
+            "flow": [
+              "tab>row:found"
+            ]
+          },
+          {
+            "say": "It returns the price from that row, 120, and updates if the price list changes.",
+            "flow": [
+              "row>ans:return"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Should I use VLOOKUP or XLOOKUP?",
+          "a": "Use XLOOKUP if everyone who will open the file has Excel 2021 or Microsoft 365. Otherwise use VLOOKUP with FALSE, or INDEX and MATCH, which work in every version."
+        },
+        {
+          "q": "Why do I get #N/A in a lookup?",
+          "a": "The value was not found. Check spelling, extra spaces, numbers stored as text, and that the search value is in the first column of the table for VLOOKUP."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Lookups, Text and Dates",
+      "slug": "text-functions-and-cleaning-data",
+      "title": "Clean Messy Data: TRIM, LEFT, MID, CONCAT, Text to Columns",
+      "metaTitle": "Excel Text Functions and Data Cleaning",
+      "description": "Fix messy data: extra spaces, wrong capitals, joined or split names, duplicates and blanks, using text functions, Flash Fill and Remove Duplicates.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In real work, data rarely arrives clean. A list of customers copied from an email has extra spaces. Names are all capitals. A full name sits in one cell and you need first and last separately. The same customer appears three times. Cleaning data takes up a large part of an office worker's day, and people who can do it fast are valued. This lesson gives you the tools."
+        },
+        {
+          "type": "paragraph",
+          "text": "We will practise on a small messy list. Type it into a new sheet called `Clean`, starting at A1."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "   A\n1  Name\n2    asha RAO\n3  BEN carter\n4  chidi  okafor\n5  Divya Nair\n6  Asha Rao"
+        },
+        {
+          "type": "paragraph",
+          "text": "Row 2 has spaces at the start, row 4 has two spaces between the words, and the capitals are mixed. Row 2 and row 6 are the same person."
+        },
+        {
+          "type": "heading",
+          "text": "TRIM: remove extra spaces"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=TRIM(A2)"
+        },
+        {
+          "type": "paragraph",
+          "text": "`TRIM` removes spaces at the start and end, and reduces repeated spaces between words to one. Put it in B2 and copy down. Extra spaces are the number one hidden reason why lookups and `SUMIF` formulas fail, so make `TRIM` a habit when data comes from outside. Spaces that come from web pages can be a special kind that `TRIM` misses, which you can remove with `SUBSTITUTE(A2, CHAR(160), \" \")`."
+        },
+        {
+          "type": "heading",
+          "text": "PROPER, UPPER and LOWER: fix capitals"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=PROPER(TRIM(A2))    -> Asha Rao\n=UPPER(A2)           -> ASHA RAO\n=LOWER(A2)           -> asha rao"
+        },
+        {
+          "type": "paragraph",
+          "text": "`PROPER` puts a capital letter at the start of each word. You can put one function inside another, as above. Excel works from the inside out. First TRIM, then PROPER. Be careful with names like “McDonald” or “van der Berg”, which `PROPER` will change. Check the result."
+        },
+        {
+          "type": "heading",
+          "text": "LEFT, RIGHT and MID: take part of a text"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`LEFT(text, n)` takes the first n characters.",
+            "`RIGHT(text, n)` takes the last n characters.",
+            "`MID(text, start, n)` takes n characters from a starting position."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=LEFT(\"INV-2024-0042\", 3)      -> INV\n=MID(\"INV-2024-0042\", 5, 4)    -> 2024\n=RIGHT(\"INV-2024-0042\", 4)     -> 0042"
+        },
+        {
+          "type": "paragraph",
+          "text": "Useful for invoice numbers, codes, phone numbers and similar fixed patterns. The result is text, even if it looks like a number. To use it in a calculation, convert it with `VALUE(...)` or multiply by 1."
+        },
+        {
+          "type": "heading",
+          "text": "FIND, SEARCH and LEN"
+        },
+        {
+          "type": "paragraph",
+          "text": "`LEN(text)` counts the characters. `FIND(\"-\", text)` returns the position of a character, and `SEARCH` does the same without caring about capitals. Combined with `LEFT`, they let you split text at a separator. To get the first name from `Asha Rao`:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=LEFT(B2, FIND(\" \", B2) - 1)         -> Asha\n=MID(B2, FIND(\" \", B2) + 1, 50)         -> Rao"
+        },
+        {
+          "type": "paragraph",
+          "text": "`FIND` returns the position of the space, 5. `LEFT` takes four characters, one less than that. The `MID` formula starts one place after the space and takes up to 50 characters, which is more than enough for any surname."
+        },
+        {
+          "type": "heading",
+          "text": "Join text: &, CONCAT and TEXTJOIN"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The `&` sign joins text: `=B2&\" \"&C2` joins first name, a space and last name.",
+            "`CONCAT(a, b, c)` joins many cells (Excel 2019 and later; older versions use `CONCATENATE`).",
+            "`TEXTJOIN(\", \", TRUE, A2:A6)` joins a range with a separator and can skip blanks."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can join text and numbers: `=\"Total: \"&G13` shows `Total: 20150`. To format a number inside text, use `TEXT`: `=\"Total: \"&TEXT(G13, \"#,##0\")`."
+        },
+        {
+          "type": "heading",
+          "text": "Text to Columns: split without formulas"
+        },
+        {
+          "type": "paragraph",
+          "text": "Select the column, then **Data, Text to Columns**. Choose **Delimited**, press Next, tick the separator that your data uses (space, comma, tab or something else), and Finish. Excel splits each cell into several columns. This is the fastest way to split full names, or the lines of a CSV that were pasted into one column. Make sure there are empty columns to the right, because Excel overwrites what is there."
+        },
+        {
+          "type": "heading",
+          "text": "Flash Fill: let Excel see the pattern"
+        },
+        {
+          "type": "paragraph",
+          "text": "Type the result you want for the first row next to your data, begin typing the second, and Excel often shows a grey preview of the rest. Press **Enter** to accept. Or use **Ctrl+E** (Flash Fill). It works with first names, initials, joining and many other simple patterns. It does not update later if the data changes, so use formulas for things that will change."
+        },
+        {
+          "type": "heading",
+          "text": "Find and Replace"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Ctrl+H** opens Replace. Enter what to find and what to replace it with, then Replace All. You can find a special character, for example to remove all hyphens from phone numbers, by leaving the replace box empty. Use the **Options** button to match whole cells only and avoid changing too much. Always look at a few results before pressing Replace All, and remember Ctrl+Z."
+        },
+        {
+          "type": "heading",
+          "text": "Remove duplicates"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a copy of your sheet first.",
+            "Click inside the data and choose **Data, Remove Duplicates**.",
+            "Choose the columns that define a duplicate. If every column ticked is the same, the row is a duplicate.",
+            "Press OK. Excel tells you how many duplicates it removed."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In the Clean list, after TRIM and PROPER, `Asha Rao` appears twice, in row 2 and row 6. Remove Duplicates would remove one of them, but only if you run it on the cleaned column, not the original with different spaces and capitals. Another way is to flag duplicates and check them by eye. Use `=COUNTIF(B$2:B$6, B2)>1` to mark them, or **Home, Conditional Formatting, Highlight Cells Rules, Duplicate Values**."
+        },
+        {
+          "type": "heading",
+          "text": "Handling blanks"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Filter a column and tick `(Blanks)` to find empty cells.",
+            "**Ctrl+G, Special, Blanks** selects all empty cells in a range, so you can fill them or delete the rows.",
+            "`=IF(A2=\"\", \"Missing\", A2)` marks missing values in a formula.",
+            "`COUNTBLANK` counts them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Convert formulas to values"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you have cleaned data using formulas in column B, you often want to keep only the results. Copy column B, then right-click and choose **Paste Special, Values**. Now the cells hold fixed values, and you can delete the original column A. Do this carefully, and keep a copy of the original sheet so you can go back."
+        },
+        {
+          "type": "note",
+          "text": "Golden rule of data cleaning: never clean your only copy. Keep the original data on one sheet and clean a copy. If something goes wrong, you can start again."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Type the Clean list. In column B, use `PROPER(TRIM(A2))` to fix it.",
+            "Split the cleaned names into first and last name in two ways: with formulas, and with Text to Columns.",
+            "Use `COUNTIF` to flag the duplicate, then remove it.",
+            "Join first and last names back together with `&` and `TEXTJOIN`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Row 2 and row 6 both show `Asha Rao` after cleaning, and the duplicate is detected.",
+            "Row 4 shows `Chidi Okafor` with a single space.",
+            "You can explain why you keep a copy of the original data."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Clean data in steps",
+        "nodes": [
+          {
+            "id": "raw",
+            "label": "Messy data",
+            "sub": "spaces, capitals",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "trim",
+            "label": "TRIM and PROPER",
+            "sub": "fix spaces and case",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "split",
+            "label": "Split or join",
+            "sub": "LEFT, MID, Text to Columns",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "dup",
+            "label": "Remove duplicates",
+            "sub": "check first",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Data from emails and websites often has extra spaces and mixed capitals.",
+            "on": [
+              "raw"
+            ]
+          },
+          {
+            "say": "TRIM removes extra spaces and PROPER fixes the capital letters.",
+            "flow": [
+              "raw>trim:clean"
+            ]
+          },
+          {
+            "say": "Split full names with LEFT, MID or Text to Columns, or join pieces with the & sign.",
+            "flow": [
+              "trim>split:reshape"
+            ]
+          },
+          {
+            "say": "Then find and remove duplicates, on the cleaned data, and keep a copy of the original.",
+            "flow": [
+              "split>dup:finish"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does my lookup fail even though the names look the same?",
+          "a": "There may be extra spaces at the start or end, or a non-breaking space. Use TRIM, and SUBSTITUTE with CHAR(160) for spaces copied from web pages."
+        },
+        {
+          "q": "Does Flash Fill update when the data changes?",
+          "a": "No. Flash Fill gives fixed results. Use formulas if the source data will change."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Lookups, Text and Dates",
+      "slug": "excel-dates-and-times",
+      "title": "Dates in Excel: TODAY, EDATE, NETWORKDAYS and Ageing",
+      "metaTitle": "Excel Date Functions for Work",
+      "description": "Calculate due dates, days between dates, working days, ages and month ends with Excel date functions, and avoid the common date pitfalls.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Dates are everywhere in office work: invoice due dates, attendance, leave, joining dates, contract ends, delivery times. Excel is very good at date maths, as long as you remember one thing from lesson 2: a date is a number. Once that clicks, date calculations are just ordinary arithmetic."
+        },
+        {
+          "type": "heading",
+          "text": "Dates are numbers"
+        },
+        {
+          "type": "paragraph",
+          "text": "Excel counts days. 1 January 1900 is day 1, and each following day is the next whole number. Excel shows the number as a date through the format. So if A2 holds 1-Jun-2024 and B2 holds 15-Jun-2024, then `=B2-A2` gives 14, the number of days between them. Format the answer cell as **General** or **Number**. Excel sometimes formats it as a date, and then you see a strange date instead of 14."
+        },
+        {
+          "type": "paragraph",
+          "text": "Add days the same way: `=A2+30` is thirty days after A2. This is the simplest way to calculate a payment due date for “30 days credit”."
+        },
+        {
+          "type": "heading",
+          "text": "TODAY and NOW"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`=TODAY()` returns today's date. It changes every day when the file opens or recalculates.",
+            "`=NOW()` returns the date and the time.",
+            "For a date that must not change, such as the date an invoice was written, type it with **Ctrl+;** instead of a formula."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A due-date warning: if the due date is in column C, `=IF(C2<TODAY(), \"Overdue\", \"OK\")` marks late invoices. Days overdue: `=MAX(0, TODAY()-C2)`."
+        },
+        {
+          "type": "heading",
+          "text": "Build a date from parts, and take parts out"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=DATE(2024, 6, 15)     -> 15-Jun-2024\n=YEAR(A2)             -> 2024\n=MONTH(A2)            -> 6\n=DAY(A2)              -> 1"
+        },
+        {
+          "type": "paragraph",
+          "text": "`DATE(year, month, day)` is the safe way to create a date from separate pieces, for example when a sheet holds the year, month and day in three columns. It even handles overflow: month 13 becomes January of the next year."
+        },
+        {
+          "type": "heading",
+          "text": "EDATE and EOMONTH: months"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=EDATE(A2, 3)      -> the same day, 3 months later\n=EDATE(A2, -1)     -> one month earlier\n=EOMONTH(A2, 0)    -> the last day of the month of A2\n=EOMONTH(A2, 1)    -> the last day of the next month"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use `EDATE` for subscriptions, loan instalments and contract renewals. Use `EOMONTH` for month-end reports and for payment terms such as “end of the month”. If you see a number such as 45473 instead of a date, you only need to format the cell as a date."
+        },
+        {
+          "type": "heading",
+          "text": "Working days: NETWORKDAYS and WORKDAY"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`NETWORKDAYS(start, end)` counts the working days between two dates, Monday to Friday, both included.",
+            "`NETWORKDAYS(start, end, holidays)` also skips a list of holiday dates.",
+            "`WORKDAY(start, days, holidays)` gives the date after that many working days."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For example, an order is received on Monday 3 June 2024 and takes 5 working days. `=WORKDAY(DATE(2024,6,3), 5)` gives Monday 10 June, assuming no holidays. Some countries have a Sunday-only weekend or different weekend days. Use `NETWORKDAYS.INTL` and `WORKDAY.INTL`, where you choose which days are the weekend. Keep your public holidays on a separate list and name that range."
+        },
+        {
+          "type": "heading",
+          "text": "Age and length of service: DATEDIF"
+        },
+        {
+          "type": "paragraph",
+          "text": "`DATEDIF(start, end, unit)` returns whole years, months or days between two dates. It is an older function that Excel does not list in its help, but it works."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=DATEDIF(B2, TODAY(), \"Y\")     -> complete years (age or service)\n=DATEDIF(B2, TODAY(), \"M\")     -> complete months\n=DATEDIF(B2, TODAY(), \"YM\")    -> months left over after full years"
+        },
+        {
+          "type": "paragraph",
+          "text": "A staff list with joining dates can show “3 years, 4 months” by joining the pieces: `=DATEDIF(B2,TODAY(),\"Y\")&\" years, \"&DATEDIF(B2,TODAY(),\"YM\")&\" months\"`. The simple `(TODAY()-B2)/365` is not exact, because of leap years. Use `YEARFRAC` or `DATEDIF` when exactness matters."
+        },
+        {
+          "type": "heading",
+          "text": "Weekday and week number"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=WEEKDAY(A2, 2)       -> 1 for Monday to 7 for Sunday\n=TEXT(A2, \"dddd\")      -> the day name, such as Saturday\n=TEXT(A2, \"mmmm yyyy\") -> June 2024\n=WEEKNUM(A2)           -> the week of the year"
+        },
+        {
+          "type": "paragraph",
+          "text": "`TEXT` turns a date into text in the style you choose, which is handy for headings and for grouping by month. The format codes follow your language settings in some countries, so test them."
+        },
+        {
+          "type": "heading",
+          "text": "Time"
+        },
+        {
+          "type": "paragraph",
+          "text": "Times are fractions of a day: 12:00 is 0.5. To find hours worked, subtract the start time from the end time, and format the result as `[h]:mm`. Square brackets let the total go above 24 hours when you add up a week. To get hours as a plain number, multiply by 24: `=(C2-B2)*24`. For shifts that end after midnight, add one day if the end is smaller: `=IF(C2<B2, C2+1, C2)-B2`."
+        },
+        {
+          "type": "heading",
+          "text": "Typical date problems"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Text dates** that will not calculate. Check alignment, and convert them (lesson 2).",
+            "**Day and month swapped** after importing data from a system with a different regional setting.",
+            "**Two-digit years** such as 24, which Excel may read as a different century in some old files.",
+            "**A date shows as a number.** Format as a date.",
+            "**A result shows as a date** when you wanted days. Format as General."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a small invoice list with invoice dates and 30-day terms. Calculate the due date, and mark invoices that are overdue today.",
+            "Add a staff list with joining dates and calculate complete years of service with `DATEDIF`.",
+            "Find the number of working days between 3 June 2024 and 28 June 2024 with `NETWORKDAYS`. You should get 20.",
+            "Use `EOMONTH` to show the month end of each invoice date."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Due date = invoice date + 30, formatted as a date.",
+            "`NETWORKDAYS` for 3 to 28 June 2024 returns 20.",
+            "You can explain why `TODAY()` changes every day and when you should avoid it."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Dates are just numbers",
+        "nodes": [
+          {
+            "id": "d1",
+            "label": "Start date",
+            "sub": "1 Jun 2024",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "calc",
+            "label": "Date maths",
+            "sub": "+30, EDATE, DATEDIF",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "wd",
+            "label": "Working days",
+            "sub": "NETWORKDAYS",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "res",
+            "label": "Result",
+            "sub": "due date, age, days",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Excel stores a date as a number of days, so you can calculate with it.",
+            "on": [
+              "d1"
+            ]
+          },
+          {
+            "say": "Add days, add months with EDATE, or subtract two dates to get the days between them.",
+            "flow": [
+              "d1>calc:date maths"
+            ]
+          },
+          {
+            "say": "NETWORKDAYS and WORKDAY skip weekends and holidays when you need working days.",
+            "flow": [
+              "calc>wd:working days"
+            ]
+          },
+          {
+            "say": "You get due dates, ages and overdue days, which you format as dates or numbers.",
+            "flow": [
+              "wd>res:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does my date subtraction show a date instead of days?",
+          "a": "Excel formatted the result as a date. Change the cell format to General or Number."
+        },
+        {
+          "q": "How do I count working days excluding holidays?",
+          "a": "Use NETWORKDAYS(start, end, holidays) with a list of holiday dates. For different weekend days use NETWORKDAYS.INTL."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": true
+    },
+    {
+      "section": "Organising and Reporting",
+      "slug": "sort-filter-and-excel-tables",
+      "title": "Sort, Filter and Excel Tables",
+      "metaTitle": "Excel Sort, Filter and Tables",
+      "description": "Sort and filter data safely, turn a range into an Excel Table, use structured references and slicers, and keep formulas growing with your data.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once you have a list of data, you want to look at it in different ways: largest first, only one region, only this month. Sorting and filtering do this without changing the data itself. A useful partner is the **Excel Table**, a feature that turns a plain range into a smart list with automatic filters, formatting and formulas that grow as you add rows. Most professional workbooks use tables."
+        },
+        {
+          "type": "heading",
+          "text": "Sorting"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Click any cell inside your data, for example in the Amount column.",
+            "Go to **Data, Sort A to Z** or **Sort Z to A**, or open **Data, Sort** for more options.",
+            "For a custom sort, such as Region and then Amount, open the **Sort** window, add a level for each column and choose the order."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Excel sorts the whole table together, so rows stay intact, as long as there are no empty columns or rows splitting the data, and the headings are recognised (tick “My data has headers”). The classic disaster is sorting one column alone. If you select a single column and sort only that, the other columns stay behind and the rows no longer match. If Excel asks, “Expand the selection”, choose that. The safest approach is to click inside the data and let Excel find the whole range, or use a Table."
+        },
+        {
+          "type": "paragraph",
+          "text": "To keep an original order, add a helper column with numbers 1, 2, 3 before you sort. You can always sort by it to return to the original order."
+        },
+        {
+          "type": "heading",
+          "text": "Filtering"
+        },
+        {
+          "type": "paragraph",
+          "text": "Click inside the data and press **Ctrl+Shift+L**, or choose Data, Filter. Little arrows appear on each heading. Click one to see these options."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tick or untick values to show only those rows.",
+            "**Text Filters** such as Begins with, Contains, Does not contain.",
+            "**Number Filters** such as Greater Than, Between, Top 10.",
+            "**Date Filters** such as This Month, Last Week or a range.",
+            "**Filter by Colour**, if cells are coloured."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Row numbers turn blue, and the status bar says how many rows are found. Use more than one filter to narrow down: Region equals North, and Amount greater than 2000. To remove filters, press Ctrl+Shift+L again, or choose Clear. Filtering only hides rows. It does not delete them. Be careful with a total over a filtered range: `SUM` still adds the hidden rows. Use `SUBTOTAL(109, G2:G11)`, which adds only visible rows."
+        },
+        {
+          "type": "heading",
+          "text": "Excel Tables"
+        },
+        {
+          "type": "paragraph",
+          "text": "Click inside the sales data and press **Ctrl+T**. Confirm the range and tick “My table has headers”. The range turns into a Table with banded rows, filter arrows and a **Table Design** tab. Give it a name on that tab, for example `Sales`."
+        },
+        {
+          "type": "paragraph",
+          "text": "Why use a table?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**It grows.** Type under the last row, and the table extends and copies the formulas. Charts, pivot tables and formulas that use the table update by themselves.",
+            "**Formulas fill down automatically.** Type a formula once in a column, and it fills the whole column.",
+            "**Readable formulas.** You can use column names instead of cell addresses.",
+            "**Filter and sort built in**, with the headings visible while you scroll.",
+            "**Totals row.** Table Design, Total Row adds a row with a function of your choice for each column."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Structured references"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a table named `Sales`, you can write:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=[@Qty]*[@Price]                       the Amount in each row\n=SUM(Sales[Amount])                    the total of the Amount column\n=SUMIF(Sales[Region], \"North\", Sales[Amount])"
+        },
+        {
+          "type": "paragraph",
+          "text": "`[@Qty]` means the Qty in this row. `Sales[Amount]` means the whole Amount column of the table. The formulas read like English and do not need to change when you add rows. If your formula looks strange when you click cells, it is because Excel turns clicks into these names. This is normal."
+        },
+        {
+          "type": "heading",
+          "text": "Slicers: filter with buttons"
+        },
+        {
+          "type": "paragraph",
+          "text": "With a cell in the table selected, choose **Table Design, Insert Slicer** and tick Region. A box with a button for each region appears. Click North, and the table shows only North. Hold Ctrl and click to select several. Slicers are easy for managers to use, and they also work with pivot tables (next lesson)."
+        },
+        {
+          "type": "heading",
+          "text": "Advanced filter and dynamic arrays"
+        },
+        {
+          "type": "paragraph",
+          "text": "Microsoft 365 and Excel 2021 have newer functions that do the work with a formula: `=FILTER(Sales, Sales[Region]=\"North\")` returns only North rows, `=SORT(...)` sorts and `=UNIQUE(...)` lists the different values. They update automatically. Older versions do not have them, so in shared files check what your colleagues use."
+        },
+        {
+          "type": "heading",
+          "text": "Good habits for lists of data"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One heading row, no merged cells, no blank rows, and one kind of data in each column.",
+            "Do not put totals in the middle of the data. Put them above, or on another sheet.",
+            "Name your tables and sheets clearly.",
+            "Use a Table for data that keeps growing."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "When you share a sorted or filtered sheet, say so. A colleague who sees only some rows may think the others are missing. Clear filters before you save the final file, unless the filter is the point."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Turn your sales data into a Table named `Sales` using Ctrl+T.",
+            "Sort by Region and then by Amount, largest first.",
+            "Filter to show only North rows with an amount of 2000 or more. Check the count in the status bar. It should show 2 of 10 records.",
+            "Add a total row, and a slicer for Region. Add a new row at the bottom, and watch the table grow and fill its formulas."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The table shows banded rows and a name `Sales` in Table Design.",
+            "The North, 2000 or more filter shows two rows (Backpack 2800 and Pen pack 2400).",
+            "A new row is added to the table and the Amount formula appears by itself."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From a plain range to a smart table",
+        "nodes": [
+          {
+            "id": "range",
+            "label": "Plain range",
+            "sub": "A1:G11",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "tbl",
+            "label": "Table (Ctrl+T)",
+            "sub": "named Sales",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "view",
+            "label": "Sort and filter",
+            "sub": "slicers, filter arrows",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "grow",
+            "label": "It grows",
+            "sub": "new rows join the table",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have a plain range of data with a heading row.",
+            "on": [
+              "range"
+            ]
+          },
+          {
+            "say": "Press Ctrl+T to turn it into a Table and give it a name.",
+            "flow": [
+              "range>tbl:Ctrl+T"
+            ]
+          },
+          {
+            "say": "Filter arrows, sorting and slicers let you look at the data in different ways, without changing it.",
+            "flow": [
+              "tbl>view:sort and filter"
+            ]
+          },
+          {
+            "say": "When you add a row below, the table grows and formulas, charts and pivots follow.",
+            "flow": [
+              "view>grow:add rows"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why did sorting mess up my data?",
+          "a": "Probably only one column was sorted, so the other columns did not move with it. Click inside the table, or use an Excel Table, so that Excel sorts all columns together."
+        },
+        {
+          "q": "Does filtering delete data?",
+          "a": "No. Filtering only hides rows that do not match. Clear the filter to see everything. SUM still counts hidden rows, so use SUBTOTAL for visible rows only."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Organising and Reporting",
+      "slug": "pivot-tables-for-beginners",
+      "title": "Pivot Tables for Beginners: Summaries in Seconds",
+      "metaTitle": "Excel Pivot Tables for Beginners",
+      "description": "Build your first pivot table: totals by region, item and staff, with filters, grouping and refreshing. Summarise thousands of rows with a few clicks.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In lesson 6 you built a summary with SUMIF formulas, one cell at a time. A **pivot table** does the same with a few clicks and goes much further. You can summarise thousands of rows by any column, rearrange the report by dragging fields, and add a filter or a chart. Pivot tables are a headline skill in Excel job adverts, and interviewers love to ask about them. They look hard, but the idea is simple, and you can learn to build one in ten minutes."
+        },
+        {
+          "type": "heading",
+          "text": "What a pivot table does"
+        },
+        {
+          "type": "paragraph",
+          "text": "It takes a table of detailed rows and creates a summary table that groups the rows by the values in one or more columns, and calculates something such as the total, count or average for each group. The original data is never changed."
+        },
+        {
+          "type": "heading",
+          "text": "Your first pivot table"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Click inside your Sales table (it should have headings and no blank rows).",
+            "Choose **Insert, PivotTable**. Accept the range or the table name, and choose **New Worksheet**. Press OK.",
+            "A new sheet appears with an empty report on the left and a **PivotTable Fields** panel on the right, listing your column headings.",
+            "Drag **Region** into the **Rows** box.",
+            "Drag **Amount** into the **Values** box."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The pivot table shows each region with its total sales."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Row Labels   Sum of Amount\nEast               4600\nNorth              7800\nSouth              7750\nGrand Total       20150"
+        },
+        {
+          "type": "paragraph",
+          "text": "Compare with lesson 6: the numbers match the `SUMIF` results, and the Grand Total is 20150. If you tick the field boxes instead of dragging, Excel makes a guess where to put them. Text fields go to Rows and number fields to Values."
+        },
+        {
+          "type": "heading",
+          "text": "The four areas"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Rows**: the groups listed down the side.",
+            "**Columns**: the groups listed across the top. Use it to compare two things.",
+            "**Values**: what to calculate. Total, count, average, minimum or maximum.",
+            "**Filters**: a drop-down at the top to look at part of the data, such as one staff member."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Drag **Staff** into Columns and you get a table of regions by staff member. Each cell shows the total amount for a region and person pair. Drag **Item** into Rows below Region and each region splits by item. Change the layout until it answers your question."
+        },
+        {
+          "type": "heading",
+          "text": "Change what is calculated"
+        },
+        {
+          "type": "paragraph",
+          "text": "Click the small arrow next to “Sum of Amount” in the Values box, choose **Value Field Settings**, and select Count, Average, Max or Min. To show a percentage, open the **Show Values As** tab and choose “% of Grand Total”. With the Region rows, North becomes about 38.7%, South 38.5% and East 22.8%. Check the percentages add up to 100."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can drag the same field into Values twice and show a total and a count side by side. Rename a heading by clicking it and typing, for example `Total sales`."
+        },
+        {
+          "type": "heading",
+          "text": "Number formats and tidy layout"
+        },
+        {
+          "type": "paragraph",
+          "text": "Right-click a number in the pivot table, choose **Number Format**, and set a thousands separator. Formats set this way stay when you refresh. Formatting cells the normal way may be lost. Use **PivotTable Design** to choose a style and a report layout, such as Tabular, which looks more like a normal table."
+        },
+        {
+          "type": "heading",
+          "text": "Filters and slicers"
+        },
+        {
+          "type": "paragraph",
+          "text": "Drag **Staff** into the Filters box. A drop-down appears above the pivot table to choose one person. For a friendlier option, use **PivotTable Analyze, Insert Slicer** and tick a field. Buttons appear. Click one to filter the whole pivot table."
+        },
+        {
+          "type": "heading",
+          "text": "Group dates"
+        },
+        {
+          "type": "paragraph",
+          "text": "If your data has real dates, put the date field in Rows. Right-click a date in the pivot, choose **Group**, and select Months, Quarters or Years. A year of daily sales becomes twelve monthly lines. This works only if every date is a true date. A single text value in the column stops the grouping."
+        },
+        {
+          "type": "heading",
+          "text": "Refresh when the data changes"
+        },
+        {
+          "type": "paragraph",
+          "text": "A pivot table does not update by itself. After you change the source data or add rows, right-click the pivot table and choose **Refresh**, or use **Data, Refresh All**. If you add rows to a normal range outside a Table, the pivot may not include them. A source that is an Excel Table (lesson 10) grows automatically, so refreshing picks up the new rows. This is a good reason to build pivot tables from Tables."
+        },
+        {
+          "type": "heading",
+          "text": "Pivot charts"
+        },
+        {
+          "type": "paragraph",
+          "text": "With a cell in the pivot table selected, choose **Insert, PivotChart**. The chart follows the pivot table, and changes if you change the fields or use a slicer. The next lesson covers charts in more detail."
+        },
+        {
+          "type": "heading",
+          "text": "Rules for a pivot-friendly source table"
+        },
+        {
+          "type": "list",
+          "items": [
+            "One heading row, with a name in every column heading. A blank heading causes an error.",
+            "No blank rows or merged cells in the data.",
+            "One kind of value in each column. Numbers should be real numbers, not text.",
+            "No subtotals or grand totals mixed in with the data.",
+            "Consistent spelling. “North” and “north ” will be counted as different groups if there are spaces."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Typical questions a pivot table answers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Which product sells the most? (Item in Rows, Sum of Qty in Values, sort largest to smallest.)",
+            "Which salesperson produces the most revenue? (Staff in Rows.)",
+            "How do sales change month by month? (Date grouped by month.)",
+            "How many orders did each region have? (Region in Rows, Count of Item.)"
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If a number in a pivot table looks wrong, double-click it. Excel creates a new sheet with the rows behind that number, so you can see exactly what was added."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Build a pivot table with Region in Rows and the Sum of Amount in Values. Check it against the totals from lesson 6.",
+            "Add Staff in Columns and see the totals for each pair.",
+            "Create a second pivot with Item in Rows and the Sum of Qty. Sort so the largest is at the top. Pen pack should be first with 55.",
+            "Change a price in the data, then refresh the pivot table and see the totals change."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The grand total is 20150.",
+            "The Qty by item totals are Pen pack 55, Notebook 45, Mouse 6, Backpack 3 and Desk lamp 3.",
+            "You know how to refresh a pivot table and why it does not update by itself."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From many rows to a summary",
+        "nodes": [
+          {
+            "id": "data",
+            "label": "Your table",
+            "sub": "detailed rows",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "fields",
+            "label": "Drag fields",
+            "sub": "Rows, Columns, Values",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pivot",
+            "label": "Pivot table",
+            "sub": "totals by group",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "ref",
+            "label": "Refresh",
+            "sub": "after data changes",
+            "col": 3,
+            "row": 0,
+            "kind": "check"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with a tidy table of detailed rows, such as every sale.",
+            "on": [
+              "data"
+            ]
+          },
+          {
+            "say": "In the PivotTable Fields panel, drag Region to Rows and Amount to Values.",
+            "flow": [
+              "data>fields:choose fields"
+            ]
+          },
+          {
+            "say": "Excel groups the rows and shows one line per region with its total, plus a grand total.",
+            "flow": [
+              "fields>pivot:summarise"
+            ]
+          },
+          {
+            "say": "If the data changes, press Refresh. Pivot tables do not update on their own.",
+            "flow": [
+              "pivot>ref:refresh"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does my pivot table not show new data?",
+          "a": "Pivot tables do not refresh automatically. Right-click the pivot and choose Refresh. If the source is a normal range, extend it, or better, use an Excel Table as the source."
+        },
+        {
+          "q": "Why will my dates not group by month?",
+          "a": "At least one cell in the date column is text or blank. Convert them all to real dates first."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Organising and Reporting",
+      "slug": "excel-charts-and-simple-dashboard",
+      "title": "Excel Charts: Show Your Numbers in a Picture",
+      "metaTitle": "Excel Charts for Reports and Dashboards",
+      "description": "Choose the right chart, build column, line and pie charts, make them readable, and combine a pivot table, charts and slicers into a dashboard.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Numbers in a table are exact, but a chart shows a pattern at a glance. Which region is strongest? Did sales rise during the week? A good chart answers a question in a few seconds, and a bad one confuses people. This lesson shows how to build the common charts in a few clicks, and how to make them clear. We use the regional totals from the earlier lessons: North 7800, South 7750 and East 4600."
+        },
+        {
+          "type": "heading",
+          "text": "Choose the chart for the question"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Column or bar chart.** Compares amounts between groups, such as sales by region or by item. Use bars (horizontal) when category names are long. This is the most useful chart.",
+            "**Line chart.** Shows change over time, such as daily or monthly sales. Dates go along the bottom.",
+            "**Pie or doughnut chart.** Shows parts of a whole, only when there are a few slices (up to five) and the parts add up to 100%. Pies are hard to read when slices are similar, so a bar chart is often better.",
+            "**Scatter chart.** Shows the relationship between two numbers, such as advertising spend and sales.",
+            "**Combination chart.** Columns plus a line, for example sales and target."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Ask first: what do I want the reader to notice? Then pick the simplest chart that shows it."
+        },
+        {
+          "type": "heading",
+          "text": "Build your first chart"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a small summary table on a sheet: regions in one column and totals next to them (use `SUMIF` from lesson 6, or copy the pivot table values).",
+            "Select the table including the headings.",
+            "Go to **Insert, Recommended Charts** and look at the suggestions, or choose **Insert, Column Chart, Clustered Column**.",
+            "The chart appears on the sheet. Drag it to move, and drag a corner to resize."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You get three bars, one for each region, with the North and South bars almost equal and the East bar clearly lower. That is the story of the data, visible in a second."
+        },
+        {
+          "type": "heading",
+          "text": "Make it clear"
+        },
+        {
+          "type": "paragraph",
+          "text": "Click the chart, and use the **plus** button beside it (Chart Elements) and the **brush** button (Styles). A clear chart has these parts."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**A title that says something.** Instead of Chart Title, write Sales by region, first week of June. Even better, state the message: North and South lead, East is behind.",
+            "**Axis labels with units** if they are not obvious, such as Amount (rupees), using your own currency.",
+            "**Data labels** showing the values on the bars, so nobody has to guess. Delete the gridlines if you add labels.",
+            "**No legend** if there is only one series. Keep it when there are several.",
+            "**Sorted bars.** Sort the table from largest to smallest before charting, unless the order has a meaning, such as time.",
+            "**A starting point of zero** on the vertical axis for bar charts. A bar chart that starts at a high number exaggerates differences.",
+            "**Few colours.** One colour for ordinary bars and one highlight colour for the point you want people to notice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A line chart for time"
+        },
+        {
+          "type": "paragraph",
+          "text": "To show sales per day, make a small table with the dates down one column and the daily totals next to it. Select it and choose **Insert, Line Chart**. The dates run along the bottom. A line suits data that is in sequence. If the dates have gaps, such as weekends with no data, Excel may treat the axis as a timeline with empty days. In **Format Axis**, choose Text axis if you prefer to show only the dates you have."
+        },
+        {
+          "type": "heading",
+          "text": "Pie chart, when it is right"
+        },
+        {
+          "type": "paragraph",
+          "text": "For the three regions, a pie shows North 38.7%, South 38.5% and East 22.8%. Add data labels with percentages. A pie works here because there are only three slices, and the question is about shares of the total. Do not use a pie for values that do not add up to a whole, or for more than five or six groups."
+        },
+        {
+          "type": "heading",
+          "text": "Charts from a pivot table"
+        },
+        {
+          "type": "paragraph",
+          "text": "Click in the pivot table and choose **PivotChart** (Insert, PivotChart). The chart is linked to the pivot table. Add a slicer, and when you click a staff member, the table and the chart change together. Refresh after the data changes (lesson 11)."
+        },
+        {
+          "type": "heading",
+          "text": "Chart mistakes to avoid"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Too many categories or series, so the chart looks crowded.",
+            "3D effects, shadows and bright backgrounds that distract from the data.",
+            "A truncated axis that makes a small difference look big.",
+            "Colours that are hard to tell apart, or that rely on red and green alone. Some readers cannot tell them apart.",
+            "A title like Sheet1 Chart.",
+            "Copying a chart as a picture and forgetting to update it later."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A simple dashboard"
+        },
+        {
+          "type": "paragraph",
+          "text": "A dashboard puts the most important numbers and charts on one page. Keep it simple."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a sheet named `Dashboard`.",
+            "Add three or four headline numbers at the top, such as Total sales (`SUM`), Number of orders (`COUNT`) and Best region. Make them large and bold, in cells with a light background.",
+            "Place two or three charts underneath: sales by region, sales by item and sales by day.",
+            "Add slicers for Region and Staff, and connect them to the pivot tables behind the charts (right-click the slicer, Report Connections).",
+            "Turn off gridlines on that sheet (View, untick Gridlines), align the charts neatly, and set the page to print on one page."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not put every possible number on it. Choose what the manager needs for decisions. A page that is tidy and quick to read is more useful than a busy one."
+        },
+        {
+          "type": "heading",
+          "text": "Copy a chart to a report"
+        },
+        {
+          "type": "paragraph",
+          "text": "Select the chart and press Ctrl+C. In Word or PowerPoint, use Paste Special and choose Picture, if you do not want it to change, or paste with the destination theme if you want it to match. You can also right-click the chart and choose **Save as Picture** to get an image file."
+        },
+        {
+          "type": "note",
+          "text": "Check your chart against the numbers before you share it. A wrong range can silently leave out the last row. Click the chart, and Excel highlights the source range on the sheet."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a summary table of sales by region and build a clustered column chart. Add a clear title and data labels.",
+            "Make a line chart of daily total sales for 1 to 8 June.",
+            "Create a pie chart for the three regions with percentage labels, and decide whether the column chart or the pie tells the story better.",
+            "Build a one-page dashboard with three headline numbers, two charts and a slicer."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The column chart shows North 7800, South 7750 and East 4600, with the title and the labels.",
+            "The vertical axis of the bar chart starts at zero.",
+            "The dashboard fits on one printed page."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From numbers to a clear chart",
+        "nodes": [
+          {
+            "id": "q",
+            "label": "Your question",
+            "sub": "which region leads?",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "type",
+            "label": "Choose chart",
+            "sub": "bars, lines, pie",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "tidy",
+            "label": "Tidy it",
+            "sub": "title, labels, zero axis",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "dash",
+            "label": "Dashboard",
+            "sub": "a few numbers and charts",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Start with the question you want the chart to answer.",
+            "on": [
+              "q"
+            ]
+          },
+          {
+            "say": "Pick the simplest chart for it: bars to compare, lines for time, a pie only for a few parts of a whole.",
+            "flow": [
+              "q>type:pick"
+            ]
+          },
+          {
+            "say": "Make it readable: a clear title, data labels, a zero start on bar charts and few colours.",
+            "flow": [
+              "type>tidy:improve"
+            ]
+          },
+          {
+            "say": "Combine a few headline numbers and two or three charts on one tidy dashboard page.",
+            "flow": [
+              "tidy>dash:combine"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "When should I use a pie chart?",
+          "a": "Only when you show parts of a whole with up to five or so slices. For comparing similar values, a bar chart is easier to read."
+        },
+        {
+          "q": "Why should a bar chart start at zero?",
+          "a": "A bar represents its length. If the axis starts at a high number, small differences look large and the chart misleads the reader."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Work Skills",
+      "slug": "data-validation-conditional-formatting-protection",
+      "title": "Data Validation, Conditional Formatting and Protecting Your Sheet",
+      "metaTitle": "Excel Validation and Conditional Formatting",
+      "description": "Stop wrong entries with drop-down lists and rules, highlight what matters with conditional formatting, and protect formulas from accidental changes.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A sheet that only you use can be rough. A sheet that other people fill in needs rules. Otherwise someone types Nortth for North, enters a negative quantity, or overwrites a formula, and the totals quietly go wrong. Three features help: **data validation** to control what can be typed, **conditional formatting** to make important values stand out, and **protection** to guard the cells that must not change. These are the features that make a workbook look professional and trustworthy."
+        },
+        {
+          "type": "heading",
+          "text": "Data validation: only allow good entries"
+        },
+        {
+          "type": "paragraph",
+          "text": "Select the cells, then choose **Data, Data Validation**. In the Settings tab you pick what is allowed."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Whole number or Decimal** between limits. For Qty, whole numbers from 1 to 1000.",
+            "**List.** The user picks from a drop-down. Type the items separated by commas (North,South,East) or point to a range on another sheet.",
+            "**Date** within a range, such as not before the start of the year.",
+            "**Text length**, for example a code that must be 6 characters.",
+            "**Custom** with a formula. For example `=COUNTIF($A$2:$A$100, A2)=1` allows each value only once."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A drop-down list is the best fix for the problem of spelling differences. Select C2:C11, choose Data Validation, List, and type `North,South,East`. Each cell now shows an arrow and offers only those three values. Anything else is rejected."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the other two tabs well. **Input Message** shows a short help note when the cell is selected, such as Pick a region. **Error Alert** gives the message and the style when someone breaks the rule. Style Stop blocks the entry. Warning and Information allow the person to continue. Write messages in plain words: Please choose North, South or East from the list."
+        },
+        {
+          "type": "note",
+          "text": "Validation is not perfect. Pasted data can bypass the rules, and people can still write over a cell. Use **Data, Data Validation, Circle Invalid Data** to find entries that already break the rule."
+        },
+        {
+          "type": "heading",
+          "text": "A list that grows"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the list of allowed values changes over time, put them in a Table (lesson 10) on a `Lists` sheet. Select the list cells, give them a name in the Name Box (for example `RegionList`), and type `=RegionList` as the validation source. A simpler way is to store the list in a column and refer to it with an absolute range that has some empty space at the end."
+        },
+        {
+          "type": "heading",
+          "text": "Conditional formatting: colour by rule"
+        },
+        {
+          "type": "paragraph",
+          "text": "Select the cells and choose **Home, Conditional Formatting**. Excel changes the look of a cell depending on its value, and the formatting follows when the values change."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Highlight Cells Rules.** Greater Than, Less Than, Between, Equal To, Text that Contains, Duplicate Values. Select Amount, choose Greater Than 2500, and pick a fill colour. The 2800 amounts are highlighted.",
+            "**Top/Bottom Rules.** Top 3 items, above average, bottom 10%.",
+            "**Data Bars.** A small bar inside each cell shows the size of the value.",
+            "**Colour Scales.** A gradient from low to high.",
+            "**Icon Sets.** Arrows or traffic lights."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Use these sparingly. Too many colours hide the message. A good rule: highlight the exceptions, such as overdue items, low stock and errors, and keep the rest plain."
+        },
+        {
+          "type": "heading",
+          "text": "Formula-based rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Choose **New Rule, Use a formula to determine which cells to format**. Write a formula that is true for the first cell in the selected range. Excel applies it to the rest in the same pattern. To shade the whole row when the region is North:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Applies to:  =$A$2:$G$11\nFormula:     =$C2=\"North\""
+        },
+        {
+          "type": "paragraph",
+          "text": "The dollar sign in front of C fixes the column, and the missing dollar sign before 2 lets the row change. This is the mixed reference from lesson 3, and it is the key to row highlighting. More examples:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "=$G2>=2500                      big sales\n=AND($D2<5, $C2=\"East\")         small East orders\n=$A2<TODAY()-30                 more than 30 days old\n=COUNTIF($B$2:$B$11,$B2)>1      duplicates\n=MOD(ROW(),2)=0                 shade every second row"
+        },
+        {
+          "type": "paragraph",
+          "text": "To remove or edit rules, use **Conditional Formatting, Manage Rules** and choose to show rules for This Worksheet."
+        },
+        {
+          "type": "heading",
+          "text": "Protect cells and sheets"
+        },
+        {
+          "type": "paragraph",
+          "text": "By default every cell is **locked**, but locking does nothing until you protect the sheet. The recipe: first unlock the cells that people should be able to change, then protect the sheet."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Select the input cells, such as Qty, Price and Staff. Press Ctrl+1, open the **Protection** tab and untick **Locked**.",
+            "Choose **Review, Protect Sheet**. You can set a password, or leave it blank for protection against accidents only.",
+            "Tick the actions you still want to allow, such as selecting cells, sorting or using filters.",
+            "Press OK. Now only the unlocked cells can be edited, and the formulas are safe."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Be honest about what protection is. Sheet protection and workbook passwords are meant to prevent mistakes. They are not strong security, and passwords on sheets can be removed with widely known methods. Never rely on them for confidential data. For that, use proper file permissions, encryption and access controls. If you set a password, keep it in a safe place. If you lose it, you may not be able to edit your own sheet."
+        },
+        {
+          "type": "heading",
+          "text": "Hide and show"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Hide a column or row with right-click, Hide. Unhide by selecting around it, right-click, Unhide.",
+            "Hide a sheet from the tab right-click menu. Hidden items are not secure. Anyone can unhide them.",
+            "Never hide something just to look tidy if someone else needs to check it. Say it is there."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Check your workbook before sharing"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Review, Check Accessibility** and fix the main problems, such as missing headings.",
+            "**File, Info, Check for Issues, Inspect Document** to find hidden data, comments and personal information that you may not want to share.",
+            "Look for errors with **Formulas, Error Checking**.",
+            "Have someone else try the workbook with fresh eyes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add a drop-down list for Region (North, South, East) with an input message and a stop alert. Try to type another value.",
+            "Add a rule so Qty must be a whole number between 1 and 1000.",
+            "Highlight Amount values of 2500 or more, and shade whole rows where Region is North with a formula rule.",
+            "Unlock only Qty, Price and Staff, then protect the sheet and check you cannot overwrite a formula."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A mistyped region is rejected, and the drop-down offers the three valid values.",
+            "Two amounts (2800) are highlighted by the Greater Than 2500 rule.",
+            "Clicking a formula cell on the protected sheet gives a warning that it is protected."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Rules, signals and guards",
+        "nodes": [
+          {
+            "id": "dv",
+            "label": "Data validation",
+            "sub": "drop-down, limits",
+            "col": 0,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "data",
+            "label": "Good data",
+            "sub": "no typos, valid numbers",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "cf",
+            "label": "Conditional format",
+            "sub": "colour the exceptions",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "prot",
+            "label": "Protect sheet",
+            "sub": "formulas stay safe",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Data validation limits what can be typed: a drop-down list, a number range or a date range.",
+            "on": [
+              "dv"
+            ]
+          },
+          {
+            "say": "The result is cleaner data, with no spelling variations or impossible numbers.",
+            "flow": [
+              "dv>data:rules"
+            ]
+          },
+          {
+            "say": "Conditional formatting colours the cells that matter, such as big sales or overdue items.",
+            "flow": [
+              "data>cf:highlight"
+            ]
+          },
+          {
+            "say": "Protecting the sheet locks the formulas, and leaves only the input cells open for editing.",
+            "flow": [
+              "cf>prot:protect"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Excel sheet protection secure?",
+          "a": "No. It prevents accidental changes, but sheet passwords can be removed with common tools. Do not rely on it for confidential data. Use file permissions or encryption instead."
+        },
+        {
+          "q": "How do I highlight a whole row based on one cell?",
+          "a": "Use a formula rule with a mixed reference, such as =$C2=\"North\", applied to the whole table range. The dollar sign fixes the column and lets the row change."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Work Skills",
+      "slug": "print-share-and-keyboard-shortcuts",
+      "title": "Print, Share and Work Faster: Page Setup and Shortcuts",
+      "metaTitle": "Excel Printing, Sharing and Shortcuts",
+      "description": "Print a sheet properly on one page, save as PDF, share safely, add comments, and learn the keyboard shortcuts that make you visibly faster at work.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A workbook is only useful if people can read and use it. Often that means printing it, sending a PDF, or sharing a file with colleagues. Many Excel files look fine on screen and print badly: columns cut off, a second page with only one column on it, no headings on page two. This lesson fixes those problems, covers sharing safely, and then gives you the keyboard shortcuts that make people think you are very good at Excel."
+        },
+        {
+          "type": "heading",
+          "text": "Print properly"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Open **File, Print**, or press **Ctrl+P**, and look at the preview first.",
+            "Set the **orientation**. Choose Landscape for wide tables.",
+            "Choose **Fit All Columns on One Page** in the scaling options. This is the most useful print setting. If the text becomes tiny, reduce the columns, or allow two pages across.",
+            "Select the paper size, such as A4 or Letter, to match your printer and country.",
+            "Check the page margins, and use **Custom Margins** if needed."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "For more control, go to **Page Layout** and open the Page Setup window with the small arrow in the corner."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Print Area.** Select a range, then Page Layout, Print Area, Set Print Area, so that only that part is printed.",
+            "**Print Titles.** Under Sheet, set Rows to repeat at top to `$1:$1` so the heading row appears on every page of a long list.",
+            "**Header and Footer.** Add page numbers (Page 1 of 3), the file name, the date, or a company name.",
+            "**Gridlines and headings.** Tick Print Gridlines if the data has no borders.",
+            "**Page Break Preview** (View tab) shows the page boundaries as blue lines, which you can drag."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Before printing a long report, always look at the preview and check the last page. Printing 40 pages by mistake wastes paper and time."
+        },
+        {
+          "type": "heading",
+          "text": "Save as PDF"
+        },
+        {
+          "type": "paragraph",
+          "text": "A PDF looks the same on every device and cannot be changed by accident. Choose **File, Save As** or **Export** and pick PDF. Options let you publish only the selected range, the active sheet or the whole workbook. Check the preview first, as for printing. Sending a PDF is better than an Excel file when the person only needs to read the result."
+        },
+        {
+          "type": "heading",
+          "text": "Share the file"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Email attachments.** Make sure the file name is meaningful and includes a date or version, such as `shop-sales-2024-06.xlsx`. Avoid names like `final-final2`.",
+            "**Cloud sharing.** In Microsoft 365, OneDrive or SharePoint, use Share to give a link, and choose who can view and who can edit. Several people can edit at once, and the file keeps a version history. Google Sheets works the same way.",
+            "**Check before you send.** Use Inspect Document (lesson 13) to remove hidden data and personal information. Look for hidden sheets. Make sure no confidential data is in a sheet that you did not intend to share.",
+            "**Send the right version.** If your workbook has formulas that link to other files, the receiver may see errors. Convert to values, or send a PDF."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Treat spreadsheets with personal data, such as salaries, phone numbers or ID numbers, carefully. Share only with people who need to see them, protect the file, and delete copies you no longer need. Follow your employer's rules and the data protection laws of your country."
+        },
+        {
+          "type": "heading",
+          "text": "Comments and notes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Right-click a cell and choose **New Comment** or **New Note** to leave a message for a colleague. Comments (threaded) let people reply, and notes are simple yellow sticky notes. Use them to explain unusual values or to ask a question, instead of putting text into the cell itself."
+        },
+        {
+          "type": "heading",
+          "text": "Version habits"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Save a new copy before a big change: `file-v2.xlsx`.",
+            "Do not overwrite the only copy of raw data.",
+            "Keep formulas visible and add a short Notes sheet saying where the data came from, what each sheet does and any assumptions. Your future self will thank you."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Keyboard shortcuts that save time"
+        },
+        {
+          "type": "paragraph",
+          "text": "These work on Windows. On a Mac, use Cmd in place of Ctrl in most cases. Learn two or three each week, until your hands remember them."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Basics\nCtrl+C / Ctrl+X / Ctrl+V     copy / cut / paste\nCtrl+Z / Ctrl+Y              undo / redo\nCtrl+S                       save\nCtrl+F / Ctrl+H              find / replace\nCtrl+P                       print\n\nMoving and selecting\nCtrl+Arrow                   jump to the edge of the data\nCtrl+Shift+Arrow             select to the edge of the data\nCtrl+Home                    go to A1\nCtrl+A                       select all (press twice inside a table)\nShift+Space / Ctrl+Space     select the row / the column\n\nEditing\nF2                           edit the cell\nCtrl+Enter                   fill the selected cells with what you typed\nCtrl+D / Ctrl+R              fill down / fill right\nAlt+Enter                    new line inside a cell\nCtrl+; / Ctrl+Shift+;        today's date / current time\nCtrl+- / Ctrl+Shift++        delete / insert cells, rows or columns\n\nFormulas\nAlt+=                        AutoSum\nF4                           toggle $ in a reference\nCtrl+`                       show formulas\n\nFormat and data\nCtrl+1                       Format Cells\nCtrl+B / Ctrl+I / Ctrl+U     bold / italic / underline\nCtrl+T                       make a Table\nCtrl+Shift+L                 turn filters on and off\nAlt, N, V                    insert a pivot table\nCtrl+PageUp / PageDown       previous / next sheet"
+        },
+        {
+          "type": "paragraph",
+          "text": "Practising them for five minutes a day works better than trying to memorise the list at once. When a skills test measures speed, shortcuts really help."
+        },
+        {
+          "type": "heading",
+          "text": "Other time savers"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Paste Special** (Ctrl+Alt+V): paste only values, formats, formulas, or transpose rows into columns.",
+            "**Format Painter** (the paintbrush on the Home tab): copy a format to other cells. Double-click it to apply it several times.",
+            "**Quick Access Toolbar:** add the buttons you use most.",
+            "**Name Box:** type a range such as `A1:G500` to select it quickly.",
+            "**Templates:** save a workbook as a template (File, Save As, Excel Template) for invoices, attendance and the like."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Set up the Sales sheet to print on one landscape page with the heading row repeated on each page, page numbers in the footer and a header that says Shop sales, first week of June.",
+            "Export it as a PDF, and look at the result.",
+            "Use Inspect Document, and add a Notes sheet that says where the data came from.",
+            "Choose five shortcuts from the list that you do not already use, and use only those for a day."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The print preview shows a single page with all columns, a heading and a page number.",
+            "The PDF opens and looks the same as the preview.",
+            "You used at least five new shortcuts without the mouse."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Get a sheet ready for others",
+        "nodes": [
+          {
+            "id": "prev",
+            "label": "Print preview",
+            "sub": "landscape, fit columns",
+            "col": 0,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "pdf",
+            "label": "Save as PDF",
+            "sub": "same on every device",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "insp",
+            "label": "Inspect",
+            "sub": "hidden data, errors",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "send",
+            "label": "Share",
+            "sub": "right people, right file",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Set the page up first: landscape, fit all columns, repeat the heading row, add page numbers.",
+            "on": [
+              "prev"
+            ]
+          },
+          {
+            "say": "Save as PDF when people only need to read the result.",
+            "flow": [
+              "prev>pdf:export"
+            ]
+          },
+          {
+            "say": "Before you send an Excel file, inspect it for hidden sheets, comments and personal data.",
+            "flow": [
+              "pdf>insp:check"
+            ]
+          },
+          {
+            "say": "Share only with the people who need it, and use a clear file name or a protected link.",
+            "flow": [
+              "insp>send:share"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How do I print a heading row on every page?",
+          "a": "Open Page Layout, Print Titles, and set Rows to repeat at top to the heading row, such as $1:$1."
+        },
+        {
+          "q": "Should I send an Excel file or a PDF?",
+          "a": "Send a PDF if people only need to read the results, because it looks the same everywhere and cannot be changed by accident. Send Excel if they need to work with the data."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Work Skills",
+      "slug": "excel-for-office-jobs-tests-and-next-steps",
+      "title": "Excel for Office Jobs: Tests, Real Tasks and Next Steps",
+      "metaTitle": "Excel Skills Tests and Office Job Tasks",
+      "description": "Practise the tasks that appear in Excel skills tests and real office jobs, describe your skills honestly on a resume, and plan what to learn next.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "You now have the main Excel skills that office, admin, accounts, sales support and data entry jobs need. This last lesson puts them to work. It shows the tasks that employers commonly give in Excel tests, practical mini-projects you can build for your portfolio, how to describe your Excel skills honestly on a resume, and where to go next."
+        },
+        {
+          "type": "heading",
+          "text": "What employers usually test"
+        },
+        {
+          "type": "paragraph",
+          "text": "An Excel test for a junior role is often a short practical task, 20 to 40 minutes, on a sample workbook. Typical items:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Clean a list: trim spaces, fix capitals, remove duplicates (lesson 8).",
+            "Calculate columns with correct formulas and absolute references (lessons 3 and 4).",
+            "Use `IF`, `SUMIF` or `COUNTIF` for a result (lessons 5 and 6).",
+            "Look up values from another table with `VLOOKUP`, `XLOOKUP` or `INDEX MATCH` (lesson 7).",
+            "Sort, filter and format a table neatly (lessons 2 and 10).",
+            "Build a pivot table and a chart (lessons 11 and 12).",
+            "Print or set up a sheet for one page (lesson 14).",
+            "Sometimes: data validation, conditional formatting or date calculations (lessons 9 and 13)."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The employer looks at three things: whether the answers are correct, whether you used sensible methods (formulas, not typed numbers), and whether the sheet looks tidy. Accuracy comes first."
+        },
+        {
+          "type": "heading",
+          "text": "A practice test you can do now"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is a mini-test using the shop data. Do it with a timer of 30 minutes, without looking at the lessons."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Put the Sales data into a Table named `Sales`.",
+            "Add `Amount = Qty * Price` for each row, using a Table formula.",
+            "Add a `Category` column from a price list with a lookup.",
+            "Show total sales, number of orders, and the average order value in three cells.",
+            "Make a summary of sales by region with `SUMIF`, and check that it adds up to the total.",
+            "Add an `Overdue` or `Size` column with `IF`.",
+            "Create a pivot table of sales by staff and a column chart from it.",
+            "Highlight all amounts above 2500 and set the sheet to print on one page, landscape."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Then check yourself. Total sales 20150, 10 orders, average 2015, North 7800, South 7750, East 4600. If your numbers match, the key skills work."
+        },
+        {
+          "type": "heading",
+          "text": "Real office tasks you can model"
+        },
+        {
+          "type": "paragraph",
+          "text": "Build small, real workbooks. They prove your skills better than a certificate on its own, and they are good practice. Ideas:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**An invoice template.** Customer details, line items with quantity and price, tax at a rate in one cell, a total, and the invoice number and due date. Use your own country's tax rules, which you should check from an official source.",
+            "**An attendance sheet.** Names down, days across, P and A entries with a drop-down, a count of days present, and a percentage with conditional formatting under a limit.",
+            "**A monthly expense tracker.** Date, category, amount, with a pivot table and a chart by category.",
+            "**A stock register.** Items, opening stock, received, issued, closing stock by formula, and a flag when stock is under the reorder level.",
+            "**A marks or results sheet.** Subject marks, total, percentage, a result with `IF`, and a rank with `RANK`.",
+            "**A simple payroll calculation.** Hours, rate, overtime, deductions. Use plain test numbers, not real people's data, and check statutory rules with official guidance."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Keep the files neat, with a Notes sheet and sample data that is invented. Never use real names, salaries or phone numbers in a public portfolio."
+        },
+        {
+          "type": "heading",
+          "text": "Describe your Excel skills honestly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most resumes say “Proficient in MS Excel”. It means little. Be specific and truthful, and match it to the job advert. For example:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Weak:    MS Excel - advanced\n\nBetter:  Excel: formulas (IF, SUMIF, VLOOKUP), pivot tables, charts,\n         data cleaning and validation. Built a stock register and\n         monthly expense tracker (practice projects)."
+        },
+        {
+          "type": "list",
+          "items": [
+            "Name the functions and features you can actually use.",
+            "Mention a real task or project, without exaggeration.",
+            "Say basic, intermediate or advanced honestly. An interviewer may test you.",
+            "If a job asks for macros or Power Query and you have not used them, say you are learning them, and that you know the basics."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Our resume builder lets you list skills and projects clearly, and the ATS checker shows how a reading program sees your file. Both are free to try. Use the job advert's exact wording where it is true, for example `pivot tables` or `VLOOKUP`."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes in Excel tests"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Typing a number that should be calculated by a formula.",
+            "Forgetting absolute references and getting wrong results when copying.",
+            "Not checking totals against a simple second method.",
+            "Leaving the sheet untidy: no headings, mixed formats, columns too narrow.",
+            "Running out of time on one hard question. Do the easy items first.",
+            "Saving in the wrong format or place. Read the instructions on how to submit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What to learn next"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**More lookups and dynamic arrays:** `XLOOKUP`, `FILTER`, `SORT`, `UNIQUE` (Microsoft 365).",
+            "**Power Query** (Get and Transform data) for cleaning and combining data from files without formulas. It is very valuable.",
+            "**Power Pivot and the data model** for larger analysis.",
+            "**Macros and VBA** to automate repeated tasks, or Office Scripts.",
+            "**Google Sheets and LibreOffice**, since many workplaces use them.",
+            "**SQL** for databases, in our SQL for Beginners course, when your data outgrows spreadsheets.",
+            "**Python with pandas** for larger or repeated analysis, in our Python course."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The best way to improve is to use Excel for real things: your budget, a family business list, a club's accounts, a study timetable. Each small project teaches you something new. Keep a list of the questions you could not answer, and look them up."
+        },
+        {
+          "type": "note",
+          "text": "Spreadsheet mistakes are common and can be expensive in real organisations. Whenever the numbers matter, check them a second way and ask a colleague to review them. Care and a habit of checking are as valuable as any function."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Do the practice test in 30 minutes and compare your results with the numbers given.",
+            "Build one of the practice projects, such as the invoice template or the attendance sheet, with invented sample data.",
+            "Write the Excel line of your resume in the Better style, using only skills you really have.",
+            "Choose one item from the learn-next list and plan two hours for it this week."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your results match: total 20150, 10 orders, average 2015, North 7800, South 7750, East 4600.",
+            "Your project uses formulas, not typed totals, and has a Notes sheet.",
+            "Your resume line names specific features and has no exaggerated claims."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From practice to a job-ready skill",
+        "nodes": [
+          {
+            "id": "learn",
+            "label": "Learn the tools",
+            "sub": "formulas, lookups, pivots",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "build",
+            "label": "Build real files",
+            "sub": "invoice, attendance, stock",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "test",
+            "label": "Practise tests",
+            "sub": "timed tasks",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "job",
+            "label": "Show it honestly",
+            "sub": "resume and interview",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You have learned the core Excel tools: formulas, lookups, tables, pivots and charts.",
+            "on": [
+              "learn"
+            ]
+          },
+          {
+            "say": "Build small real files, such as an invoice, an attendance sheet or a stock register, with invented data.",
+            "flow": [
+              "learn>build:apply"
+            ]
+          },
+          {
+            "say": "Practise a timed test on a sample workbook, and check your numbers a second way.",
+            "flow": [
+              "build>test:practise"
+            ]
+          },
+          {
+            "say": "Describe your skills honestly, naming the functions and projects, and be ready to show them.",
+            "flow": [
+              "test>job:present"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What Excel skills do office jobs usually ask for?",
+          "a": "Common asks are formulas such as SUM, IF, SUMIF and VLOOKUP, sorting and filtering, pivot tables, charts, formatting and printing. Check the job advert for the exact list."
+        },
+        {
+          "q": "How should I write Excel on my resume?",
+          "a": "Name the specific functions and features you can use, and mention a real task or project. Avoid vague labels like advanced unless you can demonstrate them."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}
