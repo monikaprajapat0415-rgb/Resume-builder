@@ -1,0 +1,11 @@
+Notebook no colour
+{'name': 'Notebook', 'price': 120, 'stock': 12, 'category': 'Stationery'}
+name: Notebook
+price: 120
+stock: 12
+category: Stationery
+{'the': 3, 'cat': 1, 'and': 2, 'dog': 1, 'bird': 1}
+Pune total: 600
+3 4
+2 True
+[1, 2, 3]

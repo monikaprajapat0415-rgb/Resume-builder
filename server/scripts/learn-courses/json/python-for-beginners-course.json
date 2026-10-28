@@ -1,0 +1,3123 @@
+{
+  "course": {
+    "title": "Python for Beginners: Learn to Code with Real Projects",
+    "slug": "python-for-beginners-course",
+    "summary": "Learn Python from zero in 15 lessons: variables, decisions, loops, functions, files, errors, modules, classes, a CSV report, file automation and a command line expense tracker.",
+    "description": "Free Python course for beginners. 15 lessons with tested code: variables, loops, functions, files, errors, classes, CSV reports, automation and a final project.",
+    "level": "Beginner",
+    "topic": "Programming",
+    "badge": "PY",
+    "tags": [
+      "python",
+      "programming for beginners",
+      "automation",
+      "csv",
+      "learn to code"
+    ],
+    "order": 37,
+    "published": true,
+    "minWords": 600,
+    "metaTitle": "Python for Beginners: Free Course",
+    "keywords": "python for beginners, learn python free, python course, python tutorial, python projects for beginners, python automation, python csv"
+  },
+  "lessons": [
+    {
+      "section": "Python Basics",
+      "slug": "what-is-python-install-and-first-program",
+      "title": "What Is Python? Install It and Write Your First Program",
+      "metaTitle": "What Is Python? Install and First Program",
+      "description": "Learn what Python is used for, install it on Windows, macOS or Linux, run code in the terminal and in a file, and write your first program.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Python is a programming language known for being easy to read. Its code looks a little like plain English, which is why it is one of the most popular first languages. It is also used by professionals every day. People use Python to analyse data, automate boring computer tasks, build websites and back ends, work with spreadsheets, write scripts for testing, and train machine learning models. You can learn the basics in a few weeks of regular practice, and the same basics carry over to all of those jobs."
+        },
+        {
+          "type": "paragraph",
+          "text": "This course has 15 lessons. You need a computer, a free code editor and some patience. You do not need to know any programming. Every lesson ends with a task and a way to check that your answer works. The code samples in the course were all run before they were written down, and the outputs shown are what Python printed."
+        },
+        {
+          "type": "heading",
+          "text": "Install Python"
+        },
+        {
+          "type": "paragraph",
+          "text": "Go to the official website, python.org, open the Downloads page and install the latest stable version of Python 3. This course works with Python 3.9 and newer. Python 2 is very old and no longer supported, so make sure your version starts with 3."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Windows:** run the installer and tick **Add python.exe to PATH** at the bottom of the first screen before you click Install. This one tick prevents the most common beginner problem.",
+            "**macOS:** use the installer from python.org. Your Mac may already have a `python3` command, and that is fine for learning, but a newer version from python.org is better.",
+            "**Linux:** Python 3 is usually installed. If not, use your package manager, for example `sudo apt install python3 python3-venv python3-pip` on Ubuntu and Debian."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Now open a terminal. On Windows, use PowerShell or the Terminal app. Check the version."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "python --version"
+        },
+        {
+          "type": "paragraph",
+          "text": "It prints something like `Python 3.13.1`. On macOS and Linux the command is usually `python3`, and on Windows you can also use `py`. In this course we write `python`. If that command is not found on your computer, use `python3` or `py` instead, everywhere."
+        },
+        {
+          "type": "note",
+          "text": "If the terminal says Python was not found, or opens the Microsoft Store on Windows, the PATH tick was missed. Run the installer again, choose Modify or Repair, and make sure the PATH option is on. Then open a new terminal window."
+        },
+        {
+          "type": "heading",
+          "text": "Your editor"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can write Python in any text editor. A friendly free choice is Visual Studio Code with its Python extension. Another is Thonny, which was made for beginners and comes with Python built in. Pick one and stay with it. The editor is not the important part. Writing and running code is."
+        },
+        {
+          "type": "heading",
+          "text": "The interactive prompt"
+        },
+        {
+          "type": "paragraph",
+          "text": "Type `python` on its own and press Enter. You see a prompt that looks like `>>>`. Here you can type one line of Python and see the result at once. It is perfect for trying small ideas. Type `exit()` to leave."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": ">>> 2 + 3\n5\n>>> \"ha\" * 3\n'hahaha'\n>>> exit()"
+        },
+        {
+          "type": "heading",
+          "text": "Your first program"
+        },
+        {
+          "type": "paragraph",
+          "text": "Real programs live in files that end in `.py`. Make a folder for the course, for example `python-course`, and open it in your editor. Create a file called `hello.py` with the code below. Words after a `#` are comments, notes for people that Python ignores."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "name = \"Asha\"\nhours = 3\nprint(\"Hello,\", name)\nprint(f\"You have studied for {hours} hours.\")\n\nimport sys\nprint(\"Python 3 is running:\", sys.version_info.major == 3)\nprint(sys.argv[1:])"
+        },
+        {
+          "type": "paragraph",
+          "text": "Run it from the terminal, in the same folder. We add two extra words after the file name to see how they arrive."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "python hello.py one two"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Hello, Asha\nYou have studied for 3 hours.\nPython 3 is running: True\n['one', 'two']"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look closely at what each line did. `name = \"Asha\"` creates a **variable**, a name that holds a value. `print(...)` shows something on the screen. Putting an `f` before a quote makes an **f-string**, where anything in curly braces is replaced by its value. `import sys` brings in a built-in tool box. `sys.argv` is the list of words typed on the command line, where the first item is the file name, so `[1:]` skips it. The last print shows `True` because the comparison `== 3` is true."
+        },
+        {
+          "type": "heading",
+          "text": "How Python reads your file"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Python runs the file from the top to the bottom, one line at a time.",
+            "Indentation matters. In Python, spaces at the start of a line show which lines belong together. You will see this in the next lessons. Use four spaces and be consistent.",
+            "Capital letters matter: `Name` and `name` are different variables.",
+            "Text goes inside quotes, either single or double. Numbers do not."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Reading error messages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every programmer makes errors all day. Python tells you what went wrong, and where. Look at the **last line** of the message first. It names the type of problem, such as `SyntaxError` (the code is written wrongly), `NameError` (a name that does not exist, often a typing mistake) or `TypeError` (the wrong kind of value). Above it, Python shows the file name and line number. Fix the first error, then run again. Do not be afraid of red text. It is help."
+        },
+        {
+          "type": "note",
+          "text": "If you copy code from a web page and it fails with strange characters, retype it. Some pages replace straight quotes with curly quotes, and Python only accepts straight ones."
+        },
+        {
+          "type": "heading",
+          "text": "A few habits to start with"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Run your code often, after every few lines, so you find mistakes while they are small.",
+            "Use clear names such as `total_price` and not `x`.",
+            "Type the examples yourself instead of copy and paste. Typing teaches your hands and your eyes.",
+            "When you are stuck, read the error, change one thing and run again."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install Python 3 and run `python --version`.",
+            "Create `hello.py`. Change the name and the number of hours to your own.",
+            "Run it with three words after the file name and check that all three are printed.",
+            "Open the interactive prompt, calculate `15 * 4 + 2`, and leave with `exit()`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`python --version` shows a version that starts with 3.",
+            "Running `python hello.py one two` prints the greeting, then `Python 3 is running: True`, then `['one', 'two']`.",
+            "You can say what the last line of an error message tells you."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From file to result",
+        "nodes": [
+          {
+            "id": "file",
+            "label": "hello.py",
+            "sub": "your code",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "py",
+            "label": "Python",
+            "sub": "reads line by line",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "pc",
+            "label": "Your computer",
+            "sub": "does the work",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Output",
+            "sub": "print() shows it",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You write Python code in a file that ends with .py.",
+            "on": [
+              "file"
+            ]
+          },
+          {
+            "say": "You run it with the python command. Python reads the file from top to bottom.",
+            "flow": [
+              "file>py:python hello.py"
+            ]
+          },
+          {
+            "say": "Python asks your computer to do what each line says.",
+            "flow": [
+              "py>pc:runs"
+            ]
+          },
+          {
+            "say": "Results show in the terminal when your code uses print.",
+            "flow": [
+              "pc>res:prints"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Which version of Python should a beginner install?",
+          "a": "The latest stable Python 3 from python.org. This course works with Python 3.9 and newer. Do not use Python 2, which is no longer supported."
+        },
+        {
+          "q": "Is Python good for getting a job?",
+          "a": "Python is widely used in data, automation, testing, back-end and machine learning work, so it is a useful skill. Jobs also ask for other skills, and no single language guarantees one."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Python Basics",
+      "slug": "variables-numbers-strings-and-input",
+      "title": "Variables, Numbers, Text and input() in Python",
+      "metaTitle": "Python Variables, Numbers and Strings",
+      "description": "Learn how to store values in variables, do maths, work with text, use f-strings for neat output, convert between text and numbers, and ask the user for input.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Almost every program does the same three things: it takes in data, works on it, and shows a result. In this lesson you learn the building blocks for the first two: variables to hold data, the main kinds of data (numbers and text), and `input()` to ask a person for data. We will use a small shopping example."
+        },
+        {
+          "type": "heading",
+          "text": "Variables"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **variable** is a name that points to a value. You create it with a single equals sign, which in Python means *store this value under this name*, and does not mean *is equal to*. Choose names that say what the value is. Python style uses lowercase words joined by underscores, such as `unit_price`. A name cannot start with a digit or contain spaces, and it cannot be a word Python already uses, such as `if` or `for`."
+        },
+        {
+          "type": "heading",
+          "text": "Numbers, text and types"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every value has a **type**. The ones you will meet first are `int` (whole numbers like 120), `float` (decimal numbers like 0.1) and `str` (text, short for string). The function `type(value)` tells you which one. Run this program and read the output line by line."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "price = 120          # a whole number (int)\nquantity = 3\ndiscount = 0.1       # a decimal number (float)\n\nsubtotal = price * quantity\ntotal = subtotal * (1 - discount)\n\nprint(\"Subtotal:\", subtotal)\nprint(f\"Total after discount: {total:.2f}\")\nprint(f\"Big number with commas: {1234567:,}\")\n\nname = \"  asha verma \"\nprint(name.strip().title())\nprint(len(name.strip()))\nprint(type(price), type(discount), type(name))\n\n# Text and numbers do not mix by themselves\nage_text = \"25\"\nage = int(age_text)\nprint(age + 1)\nprint(age_text + \"1\")"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Subtotal: 360\nTotal after discount: 324.00\nBig number with commas: 1,234,567\nAsha Verma\n10\n<class 'int'> <class 'float'> <class 'str'>\n26\n251"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The operators are `+` `-` `*` `/` for the usual four. `/` always gives a float. `//` divides and drops the decimals, `%` gives the remainder and `**` is power. For example `7 // 2` is 3, `7 % 2` is 1, and `2 ** 3` is 8.",
+            "In an **f-string**, `{total:.2f}` means: show `total` with two decimals. `{1234567:,}` adds commas. Formatting like this is what makes output look professional.",
+            "Text has useful **methods**, which are functions that belong to the value, written with a dot: `.strip()` removes spaces at both ends, `.title()` capitalises each word, `.upper()` and `.lower()` change the case. `len(text)` counts the characters.",
+            "Notice the last two lines of the output: `25` plus 1 gives `26`, but the text `\"25\"` plus `\"1\"` gives `251`. With text, `+` joins pieces together. This is why the types matter."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Converting between types"
+        },
+        {
+          "type": "paragraph",
+          "text": "Python will not guess. If you try `\"25\" + 1`, it stops with a `TypeError`. You convert on purpose with `int()`, `float()` and `str()`. `int(\"25\")` gives the number 25. `str(25)` gives the text `\"25\"`. If the text is not a number, such as `int(\"abc\")`, Python raises a `ValueError`. Lesson 9 shows how to handle that safely."
+        },
+        {
+          "type": "heading",
+          "text": "Asking the user: input()"
+        },
+        {
+          "type": "paragraph",
+          "text": "`input(\"question\")` shows the question, waits for the user to type and press Enter, and gives you what they typed. The result is **always text**, even if the user typed a number, so convert it when you need a number."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "name = input(\"Your name: \")\nhours = int(input(\"Hours studied today: \"))\nprint(f\"Hi {name}, that is {hours * 60} minutes.\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "Run it. The lines below are a real session. Your answers are what you type."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Your name: Asha\nHours studied today: 3\nHi Asha, that is 180 minutes."
+        },
+        {
+          "type": "paragraph",
+          "text": "The program turns the second answer into a whole number with `int(...)`, and then multiplies it. If you forget the `int`, then `hours * 60` would repeat the text 60 times, and you would see a very long line. This is one of the most common beginner surprises."
+        },
+        {
+          "type": "heading",
+          "text": "Rounding and money"
+        },
+        {
+          "type": "paragraph",
+          "text": "Computers store decimal numbers in a way that cannot represent some values exactly. For example, `0.1 + 0.2` shows `0.30000000000000004`. For display, round with an f-string such as `{value:.2f}` or with `round(value, 2)`. For serious money calculations in a business program, many developers store whole amounts in the smallest unit, such as paise or cents, or use Python's `decimal` module. For learning, rounding for display is enough."
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Using `=` when you mean `==`. Use `==` to compare in lesson 3.",
+            "Forgetting quotes around text: `print(Hello)` looks for a variable named Hello and fails with a `NameError`.",
+            "Mixing tabs and spaces at the start of a line.",
+            "Forgetting that `input()` gives text.",
+            "Using a name before you create it. Python runs from top to bottom."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "When you are not sure what a value is, print it with its type: `print(value, type(value))`. It solves many puzzles in seconds."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `shop.py`. Ask for a product name, a price and a quantity. Print the name in title case and the total price with two decimals.",
+            "Add a 5 percent discount if you like, and show both the price before and after.",
+            "Try typing text instead of a number when the program asks for the price. Read the error and write down what it says.",
+            "Print `7 // 2`, `7 % 2` and `2 ** 3` and check them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "For name `pen`, price `12.5` and quantity `4`, the total shows `50.00`.",
+            "The product name is printed as `Pen`.",
+            "You can explain why `\"25\" + \"1\"` gives `251`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Input, convert, calculate, show",
+        "nodes": [
+          {
+            "id": "in",
+            "label": "input()",
+            "sub": "always text",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "conv",
+            "label": "int() / float()",
+            "sub": "turn text into numbers",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "calc",
+            "label": "Calculate",
+            "sub": "price * quantity",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "show",
+            "label": "f-string",
+            "sub": "neat output",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "input() asks the user a question and returns what they typed, always as text.",
+            "on": [
+              "in"
+            ]
+          },
+          {
+            "say": "You convert the text to a number with int() or float() before doing maths.",
+            "flow": [
+              "in>conv:text"
+            ]
+          },
+          {
+            "say": "Now you can calculate, for example price times quantity.",
+            "flow": [
+              "conv>calc:numbers"
+            ]
+          },
+          {
+            "say": "An f-string shows the result neatly, for example with two decimal places.",
+            "flow": [
+              "calc>show:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does input() give text even if I type a number?",
+          "a": "input() always returns a string. Convert it with int() or float() when you need to calculate with it."
+        },
+        {
+          "q": "What is an f-string?",
+          "a": "A string that starts with f, like f\"Total: {total:.2f}\". Python puts the value of what is inside the curly braces into the text, with optional formatting."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Python Basics",
+      "slug": "making-decisions-with-if-elif-else",
+      "title": "Making Decisions in Python: if, elif, else and Booleans",
+      "metaTitle": "Python if, elif, else and Booleans",
+      "description": "Make your programs choose between options with if, elif and else. Learn comparisons, and, or, not, truthy and falsy values, and how indentation groups code.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "So far your programs ran every line in order. Real programs have to choose: if the marks are high enough, give a pass; if the customer is a member, give a discount; if the file is missing, show a message. In Python, choices are written with `if`, `elif` and `else`, using conditions that are either true or false."
+        },
+        {
+          "type": "heading",
+          "text": "Booleans and comparisons"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **boolean** has only two values: `True` and `False`. You usually get one by comparing things. The comparison operators are `==` (equal), `!=` (not equal), `<`, `>`, `<=` and `>=`. Remember: one equals sign stores, two equals signs compare. You can join conditions with `and`, `or` and `not`. `and` needs both sides true. `or` needs at least one. `not` flips the result."
+        },
+        {
+          "type": "heading",
+          "text": "if, elif and else"
+        },
+        {
+          "type": "paragraph",
+          "text": "Read the program below. The block under each `if` is indented by four spaces. That indentation is how Python knows which lines belong to that choice. The colon at the end of the `if` line is required."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "def grade(marks):\n    if marks >= 90:\n        return \"A\"\n    elif marks >= 75:\n        return \"B\"\n    elif marks >= 50:\n        return \"C\"\n    else:\n        return \"Fail\"\n\nfor m in [95, 80, 50, 49]:\n    print(m, grade(m))\n\nage = 17\nhas_id = True\nif age >= 18 and has_id:\n    print(\"Can enter\")\nelse:\n    print(\"Cannot enter\")\n\n# Empty things count as False\nname = \"\"\nif not name:\n    print(\"Please enter a name\")\n\n# Comparison pitfalls\nprint(5 == 5.0)\nprint(\"5\" == 5)\nprint(1 < 5 < 10)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "95 A\n80 B\n50 C\n49 Fail\nCannot enter\nPlease enter a name\nTrue\nFalse\nTrue"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Python checks the conditions **from the top**. The first one that is true runs, and the rest are skipped. That is why the `grade` function can check `>= 90` first and then `>= 75`: a mark of 80 fails the first and passes the second.",
+            "`elif` is short for *else if*. You can have as many as you like, or none.",
+            "`else` has no condition. It runs when nothing above was true.",
+            "A function that returns a value stops at the first `return`. The `grade` function uses that, so it does not need extra `else` blocks."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Truthy and falsy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Python lets you use almost any value as a condition. These count as **false**: `False`, `None` (nothing), `0`, `0.0`, the empty text `\"\"`, the empty list `[]`, the empty dictionary `{}` and the empty set. Everything else counts as **true**. That is why `if not name:` is a neat way to say: if the name is empty. It makes checks shorter, but it can hide mistakes when `0` is a valid value, so use `if x is None` when you mean specifically nothing."
+        },
+        {
+          "type": "heading",
+          "text": "Comparison traps"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`5 == 5.0` is `True`, because numbers are compared by value.",
+            "`\"5\" == 5` is `False`. Text and number are different kinds of value, and Python does not convert for you. This is why you convert `input()` first.",
+            "`1 < 5 < 10` is `True`. Python allows chained comparisons, which read like maths.",
+            "Compare text with care: `\"apple\" == \"Apple\"` is `False`. Use `.lower()` on both sides when case should not matter.",
+            "Never compare with `== True`. Write `if is_member:` instead."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A real example: a discount rule"
+        },
+        {
+          "type": "paragraph",
+          "text": "Suppose a shop gives 10 percent off if the total is at least 1000, and an extra 5 percent for members. Think about the order and write the rule with plain words first. Then turn it into code."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "total = 1500\nis_member = True\n\ndiscount = 0\nif total >= 1000:\n    discount = 0.10\n    if is_member:\n        discount += 0.05\n\nfinal = total * (1 - discount)\nprint(f\"Discount {discount:.0%}, pay {final:.2f}\")"
+        },
+        {
+          "type": "paragraph",
+          "text": "This prints `Discount 15%, pay 1275.00`. Notice the **nested** `if`: the member check is inside the first block, so it only runs for orders of 1000 or more. If you wrote the member discount for everyone, the result would be different. Always test the edges: exactly 1000, just below it, a member and a non-member."
+        },
+        {
+          "type": "heading",
+          "text": "Testing your decisions"
+        },
+        {
+          "type": "paragraph",
+          "text": "A good habit is to test each branch of your `if` with values on both sides of the limit. For the `grade` function the edges are 90, 89, 75, 74, 50 and 49. The sample program tested 95, 80, 50 and 49. If a decision matters, for example about money, write down the cases and check each one."
+        },
+        {
+          "type": "note",
+          "text": "A very common beginner error is a missing colon after `if`, `elif` or `else`, or an indentation that is not consistent. Python reports `SyntaxError` or `IndentationError` and shows an arrow where it noticed the problem. Look at that line and the one above it."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write `age_check.py`. Ask for an age, convert it to a number and print `child` for under 13, `teenager` for 13 to 17, `adult` for 18 to 64 and `senior` for 65 and above.",
+            "Add a rule: if the age is below 0 or above 120, print `Please check the age` and do nothing else.",
+            "Test the edge ages 12, 13, 17, 18, 64 and 65.",
+            "Rewrite your checks with a chained comparison, such as `13 <= age <= 17`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ages 12, 13, 17, 18, 64 and 65 give child, teenager, teenager, adult, adult and senior.",
+            "An age of 150 prints the warning only.",
+            "You can explain why the order of `elif` lines matters."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A decision",
+        "nodes": [
+          {
+            "id": "data",
+            "label": "A value",
+            "sub": "marks = 80",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "if",
+            "label": "if marks >= 90",
+            "sub": "false: skip",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "elif",
+            "label": "elif marks >= 75",
+            "sub": "true: run this",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "out",
+            "label": "Result",
+            "sub": "grade B",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Python starts with a value, for example marks equal to 80.",
+            "on": [
+              "data"
+            ]
+          },
+          {
+            "say": "It checks the first condition. 80 is not at least 90, so the block is skipped.",
+            "flow": [
+              "data>if:test"
+            ]
+          },
+          {
+            "say": "It checks the next condition from the top. 80 is at least 75, so this block runs.",
+            "flow": [
+              "if>elif:next"
+            ]
+          },
+          {
+            "say": "The matching block gives the result, and the remaining conditions are never checked.",
+            "flow": [
+              "elif>out:grade B"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between = and ==?",
+          "a": "A single = stores a value in a variable. A double == compares two values and gives True or False."
+        },
+        {
+          "q": "Why does Python care about indentation?",
+          "a": "Indentation shows which lines belong to an if, a loop or a function. Use four spaces and keep it consistent."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Python Basics",
+      "slug": "lists-and-loops-for-while",
+      "title": "Lists and Loops in Python: for, while and range",
+      "metaTitle": "Python Lists and Loops: for, while, range",
+      "description": "Store many values in a list, repeat work with for and while loops, use range and enumerate, filter with list comprehensions and slice parts of a list.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Real data comes in groups: a list of prices, a list of names, the rows of a file. Python holds a group of values in a **list**, and it repeats work for each value with a **loop**. These two ideas let a short program deal with ten values or ten million in the same way."
+        },
+        {
+          "type": "heading",
+          "text": "Lists"
+        },
+        {
+          "type": "paragraph",
+          "text": "A list is written with square brackets and commas: `prices = [120, 80, 650, 45]`. Each value has a position called an **index**, which starts at **0**, not 1. So `prices[0]` is the first value and `prices[-1]` is the last. A list can hold any values, and the list can grow and shrink."
+        },
+        {
+          "type": "list",
+          "items": [
+            "`len(prices)` counts the items. `sum`, `max` and `min` work on lists of numbers.",
+            "`prices.append(300)` adds to the end. `prices.insert(0, 10)` adds at a position. `prices.remove(80)` removes the first value that equals 80. `prices.pop()` removes and returns the last one.",
+            "`sorted(prices)` returns a new sorted list. `prices.sort()` sorts the list itself.",
+            "`prices[1:3]` is a **slice**: the items from index 1 up to, but not including, index 3. `prices[:2]` is the first two, and `prices[2:]` is everything from index 2 on.",
+            "`x in prices` tells you whether a value is in the list."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The for loop"
+        },
+        {
+          "type": "paragraph",
+          "text": "A `for` loop runs the indented block once for each item. Read this program and its output. It also shows `enumerate`, which gives you a counter together with each item, `range`, which makes a series of numbers, a `while` loop, and a list comprehension."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "prices = [120, 80, 650, 45]\n\nprint(len(prices), prices[0], prices[-1])\nprices.append(300)\nprint(sum(prices), max(prices), min(prices))\n\nfor price in prices:\n    if price > 500:\n        print(\"Expensive:\", price)\n\nfor i, price in enumerate(prices, start=1):\n    print(i, price)\n\nfor n in range(3):\n    print(\"Round\", n)\n\ntotal = 0\ncount = 0\nwhile total < 500:\n    total += prices[count]\n    count += 1\nprint(\"Reached\", total, \"after\", count, \"items\")\n\ncheap = [p for p in prices if p < 100]\ndoubled = [p * 2 for p in prices]\nprint(cheap)\nprint(doubled)\n\nprint(sorted(prices))\nprint(prices[1:3])"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "4 120 45\n1195 650 45\nExpensive: 650\n1 120\n2 80\n3 650\n4 45\n5 300\nRound 0\nRound 1\nRound 2\nReached 850 after 3 items\n[80, 45]\n[240, 160, 1300, 90, 600]\n[45, 80, 120, 300, 650]\n[80, 650]"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`for price in prices:` takes each value in turn and calls it `price`. The name is yours to choose. Make it singular, to read like English.",
+            "`enumerate(prices, start=1)` gives pairs like `(1, 120)`, so you can number the lines starting from 1.",
+            "`range(3)` gives 0, 1, 2. It stops **before** the number you give. `range(1, 6)` gives 1 to 5.",
+            "A `while` loop repeats as long as its condition is true. In the example, it adds prices until the total reaches 500. If the condition never becomes false, you get an **endless loop**. Press Ctrl+C to stop it.",
+            "A **list comprehension** builds a new list in one line: `[p for p in prices if p < 100]` reads as *p for each p in prices, if p is below 100*. It is a short form of a loop that makes a list."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "break and continue"
+        },
+        {
+          "type": "paragraph",
+          "text": "Two small commands change how a loop runs. `break` ends the loop at once. `continue` skips the rest of this round and goes to the next. For example, a search loop can `break` as soon as it finds what it wants, so it does not do needless work."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "names = [\"Asha\", \"Ravi\", \"Meena\", \"Dev\"]\nfor name in names:\n    if name == \"Meena\":\n        print(\"Found Meena\")\n        break\n    print(\"Checked\", name)"
+        },
+        {
+          "type": "paragraph",
+          "text": "This prints `Checked Asha`, `Checked Ravi` and `Found Meena`. It never looks at Dev."
+        },
+        {
+          "type": "heading",
+          "text": "Changing a list while you loop over it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not add or remove items from a list while you loop over the same list. The loop can skip items or behave oddly. Build a new list instead, as the list comprehension does, or loop over a copy such as `for p in prices[:]:`."
+        },
+        {
+          "type": "heading",
+          "text": "Copying lists"
+        },
+        {
+          "type": "paragraph",
+          "text": "`b = a` does not make a copy of a list. Both names point to the **same** list, so a change through one shows in the other. Make a real copy with `b = a.copy()` or `b = a[:]`. This surprises many beginners, and it is worth remembering."
+        },
+        {
+          "type": "heading",
+          "text": "Choosing between for and while"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use `for` when you know what to loop over: a list, a range, the lines of a file.",
+            "Use `while` when you repeat until something happens, such as the user typing the right answer.",
+            "If you can write it with `for`, it is usually the clearer choice."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Index errors are common. `prices[10]` on a list with four items raises `IndexError: list index out of range`. The last valid index is `len(prices) - 1`."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a list of five test scores. Print the total, the average, the highest, and how many scores are above the average.",
+            "Use a `for` loop with `enumerate` to print `1. Asha 90` style lines for a list of names and a list of scores (use two lists and the index).",
+            "Write a `while` loop that keeps asking for a number until the user types `0`, and then prints the sum of what they typed.",
+            "Use a list comprehension to build a list of the squares of the numbers 1 to 10."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The average for scores `[72, 85, 90, 66, 85]` is `79.6`, and `3` scores are above it.",
+            "Your `while` loop stops when you type 0 and shows the right sum.",
+            "You can explain why `range(3)` stops at 2."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "A loop over a list",
+        "nodes": [
+          {
+            "id": "list",
+            "label": "prices list",
+            "sub": "[120, 80, 650, 45]",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "loop",
+            "label": "for price in prices",
+            "sub": "one by one",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "body",
+            "label": "Loop body",
+            "sub": "if price > 500 ...",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "res",
+            "label": "Result",
+            "sub": "Expensive: 650",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A list holds several values in order. The first one has index 0.",
+            "on": [
+              "list"
+            ]
+          },
+          {
+            "say": "A for loop takes the items one by one and runs the indented block for each of them.",
+            "flow": [
+              "list>loop:each item"
+            ]
+          },
+          {
+            "say": "Inside the block you can check or calculate with the current item.",
+            "flow": [
+              "loop>body:price"
+            ]
+          },
+          {
+            "say": "When the list has no more items, the loop ends and the program moves on.",
+            "flow": [
+              "body>res:output"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why do lists start at index 0?",
+          "a": "In Python, as in most programming languages, the index counts how far the item is from the start of the list, so the first item is at distance 0."
+        },
+        {
+          "q": "What is a list comprehension?",
+          "a": "A short way to build a new list from another one in one line, for example [p * 2 for p in prices if p < 100]."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Python Basics",
+      "slug": "dictionaries-tuples-and-sets",
+      "title": "Dictionaries, Tuples and Sets in Python",
+      "metaTitle": "Python Dictionaries, Tuples and Sets",
+      "description": "Use dictionaries to store data by name, count things, build tables from lists of dictionaries, and learn when to use tuples and sets for fixed or unique values.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A list keeps things in order and finds them by position. But often you want to find a value by a **name**: the price of a product, the city of a customer, the number of times a word appears. A **dictionary** (dict) is made for that. It is one of the most useful tools in Python, and you will use it in almost every real program."
+        },
+        {
+          "type": "heading",
+          "text": "Dictionaries"
+        },
+        {
+          "type": "paragraph",
+          "text": "A dictionary stores **key and value** pairs inside curly braces: `{\"name\": \"Notebook\", \"price\": 120}`. You look up a value by its key, like `product[\"price\"]`. Keys are usually text or numbers and must be unique. Values can be anything, including lists and other dictionaries. Study this program and its output."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "product = {\"name\": \"Notebook\", \"price\": 120, \"stock\": 15}\nprint(product[\"name\"], product.get(\"colour\", \"no colour\"))\nproduct[\"stock\"] -= 3\nproduct[\"category\"] = \"Stationery\"\nprint(product)\n\nfor key, value in product.items():\n    print(f\"{key}: {value}\")\n\n# Counting words\ntext = \"the cat and the dog and the bird\"\ncounts = {}\nfor word in text.split():\n    counts[word] = counts.get(word, 0) + 1\nprint(counts)\n\n# A list of dictionaries, like rows of a table\norders = [\n    {\"id\": 1, \"city\": \"Pune\", \"amount\": 450},\n    {\"id\": 2, \"city\": \"Delhi\", \"amount\": 300},\n    {\"id\": 3, \"city\": \"Pune\", \"amount\": 150},\n]\npune_total = sum(o[\"amount\"] for o in orders if o[\"city\"] == \"Pune\")\nprint(\"Pune total:\", pune_total)\n\n# Tuples and sets\npoint = (3, 4)\nx, y = point\nprint(x, y)\ncities = {\"Pune\", \"Delhi\", \"Pune\"}\nprint(len(cities), \"Delhi\" in cities)\nunique = sorted(set([3, 1, 3, 2, 1]))\nprint(unique)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Notebook no colour\n{'name': 'Notebook', 'price': 120, 'stock': 12, 'category': 'Stationery'}\nname: Notebook\nprice: 120\nstock: 12\ncategory: Stationery\n{'the': 3, 'cat': 1, 'and': 2, 'dog': 1, 'bird': 1}\nPune total: 600\n3 4\n2 True\n[1, 2, 3]"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`product[\"stock\"]` reads a value. It raises a `KeyError` if the key does not exist. `product.get(\"colour\", \"no colour\")` returns a default value instead of an error, and `get` without a default returns `None`.",
+            "`product[\"stock\"] -= 3` changes a value. Assigning to a new key, like `product[\"category\"]`, adds it.",
+            "`.items()` gives key and value pairs for a loop. `.keys()` and `.values()` give only keys or values. `del product[\"stock\"]` removes a key.",
+            "`\"price\" in product` checks whether a key exists.",
+            "Since Python 3.7, a dictionary remembers the order in which keys were added."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A very common pattern: counting"
+        },
+        {
+          "type": "paragraph",
+          "text": "The loop that counts words is a pattern you will use again and again. For each word, `counts.get(word, 0) + 1` means: take the current count, or 0 if the word is new, and add one. The output shows `the` three times, and `and` twice. Later you will meet `collections.Counter`, which does this in one line, but writing it once by hand is the best way to understand it."
+        },
+        {
+          "type": "heading",
+          "text": "Lists of dictionaries: data like a table"
+        },
+        {
+          "type": "paragraph",
+          "text": "Rows of a spreadsheet or a database are often a list of dictionaries, where each dictionary is one row and each key is a column name. That is also very close to JSON, the format used by web services. You can filter and add up the rows with loops and comprehensions. The line `sum(o[\"amount\"] for o in orders if o[\"city\"] == \"Pune\")` adds the amounts of the orders from Pune only, and the program printed 600 (450 plus 150)."
+        },
+        {
+          "type": "heading",
+          "text": "Tuples"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **tuple** is like a list that cannot be changed after it is made. It is written with round brackets: `point = (3, 4)`. Use tuples for small fixed groups of values, such as a point on a map or a name and a score. You can **unpack** a tuple into variables in one line: `x, y = point`. Functions often return several values as a tuple. You will see that in the next lesson."
+        },
+        {
+          "type": "heading",
+          "text": "Sets"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **set** holds unique values, with no order and no duplicates. `{\"Pune\", \"Delhi\", \"Pune\"}` has only two items. Sets are fast at checking whether something is in them, and they are good for removing duplicates: `sorted(set([3, 1, 3, 2, 1]))` gives `[1, 2, 3]`. An empty set is written `set()`, because `{}` makes an empty dictionary."
+        },
+        {
+          "type": "heading",
+          "text": "Which one should I use?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**List:** an ordered group that may change, such as the lines of a file.",
+            "**Dictionary:** look up by name or id, such as a product by its code.",
+            "**Tuple:** a small fixed group, such as coordinates.",
+            "**Set:** unique values and quick membership checks."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Using a key that does not exist and getting a `KeyError`. Use `get` or check with `in`.",
+            "Using a list as a key. Keys must be fixed values such as text, numbers or tuples.",
+            "Writing `{}` and expecting a set.",
+            "Changing a dictionary while you loop over it. Loop over `list(my_dict)` if you need to remove keys."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Dictionaries are the bridge between Python and web data. A JSON file that you load with Python's `json` module becomes dictionaries and lists, and Python data you save as JSON goes the other way. You will do exactly that in lesson 8."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a dictionary for yourself with keys name, city and skills (a list). Print each key and value on its own line.",
+            "Write a program that counts how many times each letter appears in a word you choose, and prints the counts.",
+            "Make a list of four order dictionaries with `id`, `city` and `amount`. Print the total for one city and the largest order.",
+            "Remove the duplicates from `[5, 3, 5, 1, 3, 9]` and print the numbers in order."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "For `\"banana\"` your letter count shows `a` three times, `n` twice and `b` once.",
+            "The unique sorted list is `[1, 3, 5, 9]`.",
+            "You can explain the difference between `product[\"x\"]` and `product.get(\"x\")`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Look up by name",
+        "nodes": [
+          {
+            "id": "key",
+            "label": "Key",
+            "sub": "\"price\"",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "dict",
+            "label": "Dictionary",
+            "sub": "name, price, stock",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "val",
+            "label": "Value",
+            "sub": "120",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "use",
+            "label": "Your code",
+            "sub": "uses the value",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A dictionary stores pairs: a key such as price and a value such as 120.",
+            "on": [
+              "dict"
+            ]
+          },
+          {
+            "say": "You ask for a key.",
+            "flow": [
+              "key>dict:product[price]"
+            ]
+          },
+          {
+            "say": "Python finds that key and gives back its value, with no need to search by position.",
+            "flow": [
+              "dict>val:found"
+            ]
+          },
+          {
+            "say": "Your code uses the value. If the key is missing, get() lets you give a default instead of an error.",
+            "flow": [
+              "val>use:use it"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between a list and a dictionary?",
+          "a": "A list stores values in order and finds them by position. A dictionary stores key and value pairs and finds values by key."
+        },
+        {
+          "q": "How do I create an empty set?",
+          "a": "Use set(). Writing {} creates an empty dictionary, not an empty set."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Functions, Text and Files",
+      "slug": "functions-in-python",
+      "title": "Functions in Python: def, Arguments and return",
+      "metaTitle": "Python Functions: def, Arguments, return",
+      "description": "Write your own functions with def: parameters, default values, keyword arguments, return values, scope and the mutable default argument trap.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A **function** is a named block of code that you can run whenever you need it. You have already used functions that other people wrote: `print`, `len`, `input` and `int`. Writing your own lets you give a name to a piece of work, use it many times without copying the code, and change it in one place. Programs made of small, clear functions are much easier to read, test and fix."
+        },
+        {
+          "type": "heading",
+          "text": "Defining and calling a function"
+        },
+        {
+          "type": "paragraph",
+          "text": "You make a function with the word `def`, a name, brackets with **parameters**, a colon, and an indented body. `return` sends a value back to the code that called the function. The values you pass when you call it are called **arguments**. Run this program and compare each line with its output."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "def add_tax(amount, rate=0.18):\n    \"\"\"Return the amount with tax added.\"\"\"\n    return round(amount * (1 + rate), 2)\n\ndef min_max(numbers):\n    return min(numbers), max(numbers)\n\ndef describe(name, *, city=\"unknown\", age=None):\n    parts = [name, f\"from {city}\"]\n    if age is not None:\n        parts.append(f\"age {age}\")\n    return \", \".join(parts)\n\nprint(add_tax(100))\nprint(add_tax(100, rate=0.05))\nlow, high = min_max([4, 9, 2, 7])\nprint(low, high)\nprint(describe(\"Asha\", city=\"Pune\", age=29))\nprint(describe(\"Ravi\"))\n\n# A function without return gives None\ndef say_hi():\n    print(\"hi\")\nprint(say_hi())\n\n# Variables inside a function stay inside\ndef counter():\n    count = 0\n    count += 1\n    return count\nprint(counter(), counter())\n\n# A common trap: a list as a default value\ndef bad_add(item, items=[]):\n    items.append(item)\n    return items\nprint(bad_add(\"a\"))\nprint(bad_add(\"b\"))\n\ndef good_add(item, items=None):\n    if items is None:\n        items = []\n    items.append(item)\n    return items\nprint(good_add(\"a\"))\nprint(good_add(\"b\"))"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "118.0\n105.0\n2 9\nAsha, from Pune, age 29\nRavi, from unknown\nhi\nNone\n1 1\n['a']\n['a', 'b']\n['a']\n['b']"
+        },
+        {
+          "type": "heading",
+          "text": "Understanding the example"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`add_tax(amount, rate=0.18)` has a **default value** for `rate`. If you do not give it, 0.18 is used. `add_tax(100, rate=0.05)` passes it by name, which is called a **keyword argument** and makes calls easy to read. The result prints as `118.0` and not `118`, because `round` of a float returns a float.",
+            "The text in triple quotes right after the first line is a **docstring**. It documents what the function does, and tools and editors show it to you.",
+            "`min_max` returns two values. Python packs them into a tuple, and `low, high = min_max(...)` unpacks them. This is how a function can give several results.",
+            "In `describe`, the `*` in the parameter list means that everything after it must be passed by name. That avoids mixing up arguments. `age=None` means optional, and the code checks `is not None`.",
+            "`say_hi()` has no `return`, so the call gives `None`, Python's value for nothing. Printing it shows `None`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Scope: where a variable lives"
+        },
+        {
+          "type": "paragraph",
+          "text": "A variable created inside a function exists only inside that function. It is **local**. In the example, `counter()` creates `count` each time it is called, so it returns `1` every time. Variables outside any function are **global**. A function can read a global variable, but if it assigns to a name, Python creates a new local variable. Beginners are tempted to use global variables to share data. A better habit is to pass values in as arguments and get results out with `return`."
+        },
+        {
+          "type": "heading",
+          "text": "The mutable default trap"
+        },
+        {
+          "type": "paragraph",
+          "text": "Look at the last part of the output. `bad_add(\"a\")` gives `['a']`, but the second call gives `['a', 'b']`, although we never passed the first list. Python makes the default value **once**, when the function is defined, and a list is changed in place, so every call shares the same list. The fix, shown in `good_add`, is to use `None` as the default and create a fresh list inside the function. Remember this rule: never use a list or dictionary as a default value."
+        },
+        {
+          "type": "heading",
+          "text": "Writing good functions"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**One job each.** If you need the word *and* to describe it, think about splitting it.",
+            "**Clear names** with a verb: `calculate_total`, `load_orders`.",
+            "**Return values instead of printing** inside the function when you can. A function that returns a result can be tested and reused. A function that only prints is hard to reuse.",
+            "**Keep them short.** If a function does not fit on one screen, it is probably doing too much.",
+            "Check the input at the start when wrong values would cause a confusing failure later."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Functions that call functions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Small functions can use each other. For example, a `final_price(amount)` function can call `add_tax`, and a `print_receipt(items)` function can call `final_price` for each item. This is how larger programs are built: small steps joined together. Read the program from the bottom, where the main code is, to the top, where the helpers are."
+        },
+        {
+          "type": "heading",
+          "text": "Lambda and other short forms"
+        },
+        {
+          "type": "paragraph",
+          "text": "Python has a short way to write a tiny unnamed function, called a `lambda`: `lambda x: x * 2`. You will see it as a sorting key, for example `sorted(items, key=lambda item: item[1])`. For anything longer than one expression, use a normal `def`. It is easier to read."
+        },
+        {
+          "type": "note",
+          "text": "A function does not run when you define it. It runs when you call it. If you wrote a `def` and see no output, check that you also wrote the call, such as `print(add_tax(100))`."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write `total_with_tax(prices, rate=0.18)` that takes a list of prices and returns the total with tax, rounded to two decimals.",
+            "Write `stats(numbers)` that returns the smallest, the largest and the average. Call it and unpack the three results.",
+            "Write `is_valid_age(age)` that returns `True` for ages from 0 to 120 and `False` otherwise. Test the edges 0, 120 and 121.",
+            "Copy the `bad_add` example, run it twice and then fix it as shown."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`total_with_tax([100, 200])` returns `354.0`.",
+            "`is_valid_age(121)` returns `False` and `is_valid_age(0)` returns `True`.",
+            "You can explain why the mutable default argument gives surprising results."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Calling a function",
+        "nodes": [
+          {
+            "id": "call",
+            "label": "Call",
+            "sub": "add_tax(100, 0.05)",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "args",
+            "label": "Parameters",
+            "sub": "amount=100, rate=0.05",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "body",
+            "label": "Function body",
+            "sub": "does the work",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "ret",
+            "label": "return",
+            "sub": "105.0",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Your code calls the function and passes arguments.",
+            "on": [
+              "call"
+            ]
+          },
+          {
+            "say": "The values arrive in the parameters, which are local names inside the function.",
+            "flow": [
+              "call>args:pass in"
+            ]
+          },
+          {
+            "say": "The body runs with those values and does the calculation.",
+            "flow": [
+              "args>body:run"
+            ]
+          },
+          {
+            "say": "return sends the result back to the place where the function was called.",
+            "flow": [
+              "body>ret:send back"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between a parameter and an argument?",
+          "a": "A parameter is the name in the function definition. An argument is the actual value you pass when you call the function."
+        },
+        {
+          "q": "Should a function print or return?",
+          "a": "Prefer return. A function that returns a value can be reused and tested. Print the result in the code that calls it."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Functions, Text and Files",
+      "slug": "working-with-text-strings-in-python",
+      "title": "Working with Text in Python: Cleaning, Splitting and Formatting",
+      "metaTitle": "Python Strings: Clean, Split, Format",
+      "description": "Clean and change text with Python string methods: strip, split, join, replace, slicing and f-string alignment, with phone number and email examples.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Much real-world data is text: names, addresses, emails, product codes, lines of a file. It is also messy: extra spaces, mixed capital letters, odd separators. Cleaning and shaping text is one of the most common jobs in practical Python. In this lesson you will learn the tools for it and use them on small, realistic examples."
+        },
+        {
+          "type": "heading",
+          "text": "Text is a sequence"
+        },
+        {
+          "type": "paragraph",
+          "text": "A string is a sequence of characters, and like a list you can use an index and a slice. `title[0]` is the first character. `title[-1]` is the last. `title[1:4]` takes characters from index 1 up to but not including index 4. `title[::-1]` reverses the text. Strings cannot be changed in place. Methods such as `.upper()` return a **new** string, so you must store the result."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "raw = \"  +91 98765-43210  \"\ndigits = \"\".join(ch for ch in raw if ch.isdigit())\nprint(digits)\n\nline = \"Asha, Pune, 29\"\nname, city, age = [part.strip() for part in line.split(\",\")]\nprint(name, city, int(age))\n\nwords = \"python is fun\".split()\nprint(words, \" \".join(w.capitalize() for w in words))\n\ns = \"Resume_Final_v2.PDF\"\nprint(s.lower(), s.replace(\"_\", \" \"), s.endswith(\".pdf\"))\nprint(s.lower().endswith(\".pdf\"))\nprint(\"final\" in s.lower())\n\ntitle = \"Python\"\nprint(title[0], title[-1], title[1:4], title[::-1])\n\nprint(f\"{'Item':<10}{'Price':>8}\")\nprint(f\"{'Pen':<10}{12.5:>8.2f}\")\nprint(f\"{'Notebook':<10}{120:>8.2f}\")\n\nemail = \"Asha@Example.COM \"\nprint(email.strip().lower())\nprint(\"@\" in email, email.split(\"@\")[1].strip().lower())"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "919876543210\nAsha Pune 29\n['python', 'is', 'fun'] Python Is Fun\nresume_final_v2.pdf Resume Final v2.PDF False\nTrue\nTrue\nP n yth nohtyP\nItem         Price\nPen          12.50\nNotebook    120.00\nasha@example.com\nTrue example.com"
+        },
+        {
+          "type": "heading",
+          "text": "What each part does"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Cleaning a phone number:** the program keeps only the digits with `ch.isdigit()` and joins them with `\"\".join(...)`. A generator inside `join` is a compact loop. The result `919876543210` includes the country code, which is correct for the input.",
+            "**Splitting:** `line.split(\",\")` cuts text at each comma and gives a list. We then `strip()` each part. `.split()` without an argument splits on any spaces.",
+            "**Joining:** `\" \".join(words)` is the opposite. It glues a list of texts together with the separator in front of `.join`.",
+            "**Changing:** `.lower()`, `.replace(\"_\", \" \")`, `.capitalize()`. Remember that each returns a new text.",
+            "**Checking:** `.endswith(\".pdf\")` is `False` for `Resume_Final_v2.PDF` because of the capital letters. Lower the text first, and then it is `True`. The `in` operator checks for a piece of text inside text.",
+            "**Aligning:** in `f\"{'Item':<10}{'Price':>8}\"` the `<10` means left-align in 10 characters and `>8.2f` means right-align a decimal with two places in 8 characters. This makes neat tables."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "More methods worth knowing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`.startswith(...)`, `.endswith(...)`, `.find(...)` and `.count(...)`.",
+            "`.isdigit()`, `.isalpha()`, `.isspace()` to check what a text contains.",
+            "`.title()` capitalises each word, but it makes mistakes with names like `McDonald`, and with apostrophes such as `o'neil`. For real names, be careful.",
+            "`.splitlines()` splits text at line ends, useful with files.",
+            "`.zfill(5)` pads a number text with zeros: `\"42\".zfill(5)` is `00042`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Cleaning an email address"
+        },
+        {
+          "type": "paragraph",
+          "text": "The last lines of the program clean an email: `strip()` removes the spaces, `lower()` makes it consistent, and `.split(\"@\")[1]` takes the part after the at sign, the domain. Notice that `\"@\" in email` is a basic check only. Checking whether an email is truly valid is harder than it looks. For real forms, check for a simple pattern, and confirm by sending a message with a link."
+        },
+        {
+          "type": "heading",
+          "text": "Escape characters and multi-line text"
+        },
+        {
+          "type": "paragraph",
+          "text": "A backslash in text starts a special character. `\\n` is a new line, `\\t` is a tab, and `\\\\` is one backslash. This matters for Windows file paths: write them with a leading `r`, as in `r\"C:\\Users\\Asha\"`, so Python does not treat the backslashes as escapes. Triple quotes make text that spans several lines."
+        },
+        {
+          "type": "heading",
+          "text": "Unicode and languages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Python 3 handles text in all languages. You can store names in Hindi, Arabic, French or Chinese in a string with no special steps. When you read or write files, always give `encoding=\"utf-8\"`, as you will do in the next lesson. Without it, Windows may use a different encoding and break non-English letters."
+        },
+        {
+          "type": "note",
+          "text": "Text methods are easy to forget. Do not memorise them all. Learn that they exist, and look up the exact name in the official documentation or with `help(str)` in the interactive prompt when you need one."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write `clean_phone(text)` that returns only the digits of a phone number. Test it with `\"(022) 2345-6789\"` and `\"+44 20 7946 0958\"`.",
+            "Take the text `\"  Asha Verma ,  Pune , 29 \"`, split it and print name, city and age without extra spaces.",
+            "Print a small price list as an aligned table with a header, using `<` and `>` in f-strings.",
+            "Write `file_kind(name)` that returns `\"pdf\"` for names ending in `.pdf` in any letter case, and `\"other\"` otherwise."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`clean_phone(\"(022) 2345-6789\")` returns `02223456789`.",
+            "Your aligned table has the columns lined up.",
+            "`file_kind(\"CV.PDF\")` returns `pdf`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Clean text step by step",
+        "nodes": [
+          {
+            "id": "raw",
+            "label": "Messy text",
+            "sub": "  +91 98765-43210  ",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "clean",
+            "label": "Clean",
+            "sub": "strip(), lower()",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "split",
+            "label": "Split or filter",
+            "sub": "split(), isdigit()",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "use",
+            "label": "Usable data",
+            "sub": "digits, name, city",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Real text is often messy, with extra spaces, capital letters and odd separators.",
+            "on": [
+              "raw"
+            ]
+          },
+          {
+            "say": "Cleaning methods such as strip and lower give you a tidy, consistent text.",
+            "flow": [
+              "raw>clean:tidy"
+            ]
+          },
+          {
+            "say": "Split cuts text into pieces, and a filter such as isdigit keeps only the characters you need.",
+            "flow": [
+              "clean>split:cut"
+            ]
+          },
+          {
+            "say": "Now the data is ready to use, store or compare.",
+            "flow": [
+              "split>use:ready"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why does .upper() not change my variable?",
+          "a": "Strings cannot be changed in place. Methods return a new string, so store it: name = name.upper()."
+        },
+        {
+          "q": "How do I split text on commas?",
+          "a": "Use text.split(\",\"), which gives a list of parts. Then clean each part with strip()."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Functions, Text and Files",
+      "slug": "read-and-write-files-csv-and-json",
+      "title": "Read and Write Files in Python: Text, CSV and JSON",
+      "metaTitle": "Python Files: Read and Write CSV, JSON",
+      "description": "Read and write text files, CSV spreadsheets and JSON data with Python. Learn with open, pathlib, csv.DictReader, json and why UTF-8 matters.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Data lives in files: notes, spreadsheets exported as CSV, settings in JSON. Programs that read and write files can clean data, make reports and keep information between runs. In this lesson you learn the three formats you will meet most: plain text, CSV and JSON. The program below creates its own files in a temporary folder and removes them at the end, so you can run it safely."
+        },
+        {
+          "type": "heading",
+          "text": "The with statement"
+        },
+        {
+          "type": "paragraph",
+          "text": "`open(path)` gives you a file object. When you finish, the file must be closed, or data can be lost. The safest way is `with open(...) as f:`. When the indented block ends, even if an error happens, Python closes the file for you. Always give `encoding=\"utf-8\"` for text, so names and symbols in any language work the same on every computer. The modes are `\"r\"` to read (the default), `\"w\"` to write and **replace** everything, and `\"a\"` to add at the end."
+        },
+        {
+          "type": "heading",
+          "text": "pathlib: paths that work everywhere"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `Path` class from `pathlib` builds file paths in a way that works on Windows, macOS and Linux. `folder / \"notes.txt\"` joins parts of a path with the right separator. It also has handy methods: `.exists()`, `.mkdir()`, `.read_text()`, `.write_text()`, `.iterdir()` and `.name`. Prefer `Path` to typing slashes and backslashes by hand."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "import csv\nimport json\nfrom pathlib import Path\n\nfolder = Path(\"data_demo\")\nfolder.mkdir(exist_ok=True)\n\n# Text file\nnotes = folder / \"notes.txt\"\nnotes.write_text(\"first line\\nsecond line\\n\", encoding=\"utf-8\")\nwith open(notes, encoding=\"utf-8\") as f:\n    for number, line in enumerate(f, start=1):\n        print(number, line.strip())\n\n# Append\nwith open(notes, \"a\", encoding=\"utf-8\") as f:\n    f.write(\"third line\\n\")\nprint(len(notes.read_text(encoding=\"utf-8\").splitlines()), \"lines now\")\n\n# CSV\nrows = [\n    {\"date\": \"2026-01-05\", \"category\": \"Food\", \"amount\": 250},\n    {\"date\": \"2026-01-06\", \"category\": \"Travel\", \"amount\": 120},\n]\ncsv_file = folder / \"expenses.csv\"\nwith open(csv_file, \"w\", newline=\"\", encoding=\"utf-8\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"date\", \"category\", \"amount\"])\n    writer.writeheader()\n    writer.writerows(rows)\n\nwith open(csv_file, newline=\"\", encoding=\"utf-8\") as f:\n    for row in csv.DictReader(f):\n        print(row[\"category\"], int(row[\"amount\"]))\n\n# JSON\nsettings = {\"currency\": \"INR\", \"budget\": 5000, \"tags\": [\"home\", \"work\"]}\njson_file = folder / \"settings.json\"\njson_file.write_text(json.dumps(settings, indent=2), encoding=\"utf-8\")\nloaded = json.loads(json_file.read_text(encoding=\"utf-8\"))\nprint(loaded[\"budget\"], loaded[\"tags\"])\n\nprint(sorted(p.name for p in folder.iterdir()))\nprint(Path(\"missing.txt\").exists())\n\nimport shutil\nshutil.rmtree(folder)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1 first line\n2 second line\n3 lines now\nFood 250\nTravel 120\n5000 ['home', 'work']\n['expenses.csv', 'notes.txt', 'settings.json']\nFalse"
+        },
+        {
+          "type": "heading",
+          "text": "Understanding the example"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Text:** `write_text` creates the file. Looping over a file object with `for line in f` gives one line at a time, which is good for big files, and `line.strip()` removes the line break at the end.",
+            "**Append:** mode `\"a\"` added the third line. The program then counted 3 lines.",
+            "**CSV:** CSV means comma-separated values, the plain-text form of a spreadsheet. `csv.DictWriter` writes rows from dictionaries, and `csv.DictReader` reads each row as a dictionary with the column names as keys. Open CSV files with `newline=\"\"`, as the documentation says. Everything read from a CSV is **text**, so convert numbers yourself, as in `int(row[\"amount\"])`.",
+            "**JSON:** `json.dumps` turns Python data into JSON text, `indent=2` makes it readable, and `json.loads` turns it back into dictionaries and lists. JSON handles numbers, text, lists, dictionaries, `true`, `false` and `null` (Python's `None`). It cannot store everything, for example dates, which you must convert to text.",
+            "**Cleaning up:** `shutil.rmtree(folder)` deletes a folder and everything inside it. Be careful with it: there is no recycle bin."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Read a whole file or line by line?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`f.read()` returns everything as one text. Fine for small files.",
+            "`for line in f:` handles one line at a time and uses little memory. Use it for large files.",
+            "`f.readlines()` gives a list of all lines."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Where does Python look for a file?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A relative path such as `\"notes.txt\"` is relative to the **current folder of the terminal**, not to the folder where your script is stored. If you run the script from another folder, the file may not be found. When your script needs to find a file that sits next to it, build the path from the script's location: `Path(__file__).parent / \"notes.txt\"`. You will do this in lesson 13."
+        },
+        {
+          "type": "heading",
+          "text": "Safety with files"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Opening a file with `\"w\"` **erases** the old content at once. Use `\"a\"` to add, or check with `exists()` first.",
+            "Do not delete or overwrite files from a program until you have tested it on copies.",
+            "Never build file paths from text typed by an untrusted user without checking, because input like `..` can climb out of your folder.",
+            "Keep secrets such as passwords out of files that you share or upload."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "If you get `FileNotFoundError`, print the full path with `print(Path(\"notes.txt\").resolve())` and see whether it is where you think it is. The current folder is the cause in most cases."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a program that saves three lines of your own into `notes.txt`, then reads and prints them with line numbers.",
+            "Create a CSV file `students.csv` with columns `name` and `marks` and four rows. Read it, convert marks to numbers and print the average.",
+            "Save a dictionary of your settings as `settings.json` and load it again. Print one value.",
+            "Print the names of the files in the current folder using `Path(\".\").iterdir()`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The notes are printed in order with numbers 1 to 3.",
+            "The average of your marks matches a calculation by hand.",
+            "The loaded JSON value is the same as the one you saved."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Files in and out of Python",
+        "nodes": [
+          {
+            "id": "file",
+            "label": "File on disk",
+            "sub": "txt, csv or json",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "open",
+            "label": "with open(...)",
+            "sub": "closes by itself",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "data",
+            "label": "Python data",
+            "sub": "text, rows, dicts",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "save",
+            "label": "Saved file",
+            "sub": "write results",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Data is stored in files on disk: plain text, CSV spreadsheets or JSON.",
+            "on": [
+              "file"
+            ]
+          },
+          {
+            "say": "The with open statement opens the file and closes it again, even if an error happens.",
+            "flow": [
+              "file>open:read"
+            ]
+          },
+          {
+            "say": "Python turns the content into text, rows or dictionaries that you can work with.",
+            "flow": [
+              "open>data:parse"
+            ]
+          },
+          {
+            "say": "Your results can be written to a new file, using write mode, or csv and json tools.",
+            "flow": [
+              "data>save:write"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why use with open instead of just open?",
+          "a": "with closes the file automatically, even when an error happens. Without it, you must remember to call close(), and data may be lost if you forget."
+        },
+        {
+          "q": "Why is everything I read from a CSV text?",
+          "a": "CSV is plain text, so Python cannot know which columns are numbers. Convert them yourself with int() or float()."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Functions, Text and Files",
+      "slug": "handling-errors-with-try-except",
+      "title": "Handling Errors in Python: try, except, finally and raise",
+      "metaTitle": "Python Errors: try, except and raise",
+      "description": "Stop programs from crashing on bad input: learn exceptions, try and except, finally, raise, custom exception classes and how to read tracebacks.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Things go wrong in real programs. A user types `abc` where you wanted a number. A file has been moved. A network is down. If you do nothing, Python stops with an error message called a **traceback**. A good program expects some of these problems and deals with them politely. Python uses **exceptions** for this, and the tools are `try`, `except`, `finally` and `raise`."
+        },
+        {
+          "type": "heading",
+          "text": "What is an exception?"
+        },
+        {
+          "type": "paragraph",
+          "text": "When something goes wrong, Python creates an **exception**: an object that describes the problem, such as `ValueError`, `ZeroDivisionError`, `FileNotFoundError`, `KeyError` or `IndexError`. If nothing handles it, the program stops. With `try` and `except`, you say: try this, and if this kind of problem happens, do that instead."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "def parse_amount(text):\n    \"\"\"Turn text like '1,250.50' into a number, or raise a clear error.\"\"\"\n    cleaned = text.strip().replace(\",\", \"\")\n    try:\n        value = float(cleaned)\n    except ValueError:\n        raise ValueError(f\"'{text}' is not a number\") from None\n    if value < 0:\n        raise ValueError(\"Amount cannot be negative\")\n    return value\n\nfor sample in [\"1,250.50\", \"abc\", \"-5\", \" 40 \"]:\n    try:\n        print(parse_amount(sample))\n    except ValueError as error:\n        print(\"Error:\", error)\n\ntry:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")\n\ntry:\n    with open(\"no_such_file.txt\", encoding=\"utf-8\") as f:\n        f.read()\nexcept FileNotFoundError as error:\n    print(\"File problem:\", error.filename)\nfinally:\n    print(\"This always runs\")\n\nnumbers = [1, 2]\ntry:\n    print(numbers[5])\nexcept IndexError as error:\n    print(type(error).__name__, \"-\", error)\n\nclass BudgetError(Exception):\n    pass\n\ntry:\n    raise BudgetError(\"Over budget by 300\")\nexcept BudgetError as error:\n    print(\"Caught:\", error)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "1250.5\nError: 'abc' is not a number\nError: Amount cannot be negative\n40.0\nCannot divide by zero\nFile problem: no_such_file.txt\nThis always runs\nIndexError - list index out of range\nCaught: Over budget by 300"
+        },
+        {
+          "type": "heading",
+          "text": "Reading the example"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`parse_amount` cleans the text, tries `float(...)` and **raises** its own `ValueError` with a message that a user can understand. `from None` hides the confusing first error. It also rejects negative numbers by raising an error. The program prints the error with `print(\"Error:\", error)`.",
+            "In `try`, put only the line or lines that might fail. In `except ValueError as error:`, name the **specific** error you expect, and use `as error` to get the details.",
+            "`ZeroDivisionError` is caught so the program goes on.",
+            "For the missing file, `error.filename` tells us which file. The `finally` block always runs, whether there was an error or not. Use it for clean-up, such as closing a connection.",
+            "The `IndexError` handler prints the name of the error type with `type(error).__name__`.",
+            "`BudgetError(Exception)` is a **custom exception**: a class you make for a problem in your own program. It gives a clear name to your own errors, and lets other code catch exactly that error."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Rules for good error handling"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Catch specific errors.** Avoid a bare `except:` or `except Exception:` that hides every problem, including your own typing mistakes. A program that silently ignores errors is very hard to fix.",
+            "**Keep `try` blocks small.** If the block is long, you cannot tell which line failed.",
+            "**Tell the user something useful:** what went wrong and what to do.",
+            "**Do not use exceptions for normal decisions** when a simple `if` is clearer.",
+            "**Let unexpected errors stop the program,** or log them with details. Do not hide them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "else and finally"
+        },
+        {
+          "type": "paragraph",
+          "text": "A `try` can also have an `else` block, which runs only if no error happened, and a `finally` block, which always runs. A common pattern is `try` to read, `except` for the expected problem, `else` to continue with the data. You will not need `else` often in your first programs, but it is good to recognise it."
+        },
+        {
+          "type": "heading",
+          "text": "Reading a traceback"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an error is not caught, Python prints a **traceback**: the chain of calls that led to the error, with file names and line numbers, from the oldest to the newest. Start with the **last line**, which names the error and gives the message. Then look at the line just above it, which is the place where it happened in your code. The lines above that show how the program got there. Copy the last line into a search engine when you are stuck, because many people have met the same error."
+        },
+        {
+          "type": "heading",
+          "text": "Validating input in a loop"
+        },
+        {
+          "type": "paragraph",
+          "text": "A common beginner pattern is asking again until the input is good. Combine a `while True` loop, `try` and `except`, and `break` when the value is good."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "while True:\n    text = input(\"Enter your age: \")\n    try:\n        age = int(text)\n    except ValueError:\n        print(\"Please type a whole number, such as 25.\")\n        continue\n    if 0 <= age <= 120:\n        break\n    print(\"Please enter an age from 0 to 120.\")\nprint(\"Thanks, age saved:\", age)"
+        },
+        {
+          "type": "note",
+          "text": "The tracebacks you see may look different on your computer, because they contain your own file names and paths, and the wording of some messages has changed between Python versions. The error types and the idea stay the same."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write `safe_divide(a, b)` that returns the result, or prints `Cannot divide by zero` and returns `None` when `b` is zero.",
+            "Write the age loop above, and test it with `abc`, `-5`, `200` and `30`.",
+            "Write `read_first_line(path)` that returns the first line of a file, or the text `File not found` when it does not exist.",
+            "Make a custom exception `InvalidMarks` and raise it when marks are below 0 or above 100."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`safe_divide(10, 0)` prints the message and gives `None`.",
+            "The age loop asks again for the three wrong inputs and accepts 30.",
+            "You can explain why a bare `except:` is a bad idea."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "try and except",
+        "nodes": [
+          {
+            "id": "try",
+            "label": "try block",
+            "sub": "risky code",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "ok",
+            "label": "No error",
+            "sub": "else / continue",
+            "col": 1,
+            "row": 0,
+            "kind": "out"
+          },
+          {
+            "id": "exc",
+            "label": "Exception",
+            "sub": "ValueError, ...",
+            "col": 1,
+            "row": 1,
+            "kind": "check"
+          },
+          {
+            "id": "fix",
+            "label": "except block",
+            "sub": "friendly message",
+            "col": 2,
+            "row": 1,
+            "kind": "tool"
+          },
+          {
+            "id": "fin",
+            "label": "finally",
+            "sub": "always runs",
+            "col": 3,
+            "row": 0,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You put code that might fail inside a try block.",
+            "on": [
+              "try"
+            ]
+          },
+          {
+            "say": "If nothing goes wrong, the program continues normally.",
+            "flow": [
+              "try>ok:fine"
+            ]
+          },
+          {
+            "say": "If something goes wrong, Python creates an exception and jumps to the matching except block.",
+            "flow": [
+              "try>exc:error"
+            ]
+          },
+          {
+            "say": "The except block handles the problem, for example with a clear message, and the program carries on. A finally block runs in both cases.",
+            "flow": [
+              "exc>fix:handle"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between an error and an exception?",
+          "a": "In everyday Python they mean almost the same. An exception is the object Python raises when something goes wrong, and you can catch it with try and except."
+        },
+        {
+          "q": "Should I catch every exception?",
+          "a": "No. Catch the specific errors you expect and can handle. Hiding all errors makes bugs invisible and very hard to find."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Functions, Text and Files",
+      "slug": "modules-pip-and-virtual-environments",
+      "title": "Modules, pip and Virtual Environments in Python",
+      "metaTitle": "Python Modules, pip and Virtual Envs",
+      "description": "Split your code into modules, use the standard library, install packages with pip, create a virtual environment and keep a requirements.txt for your project.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A program grows beyond one file quickly. A **module** is just a Python file whose code you can use from another file. Python also comes with a large library of ready-made modules, and a huge community shares many more that you can install. In this lesson you learn to import modules, write your own, install packages with `pip` and keep each project's packages separate with a **virtual environment**."
+        },
+        {
+          "type": "heading",
+          "text": "Importing"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use `import` to load a module. Python's own **standard library** has modules for maths, dates, files, JSON, CSV, statistics, random numbers, regular expressions, command-line tools and much more, and none of them needs installing. There are three common forms: `import math` (then write `math.sqrt(9)`), `from math import sqrt` (then write `sqrt(9)`) and `import numpy as np`, which gives a short alias."
+        },
+        {
+          "type": "heading",
+          "text": "Your own module"
+        },
+        {
+          "type": "paragraph",
+          "text": "Any `.py` file is a module. Make a file `shop_utils.py` with small helper functions, and import them from another file in the same folder."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "\"\"\"Small helper functions we can import from other files.\"\"\"\n\nTAX_RATE = 0.18\n\ndef with_tax(amount):\n    return round(amount * (1 + TAX_RATE), 2)\n\ndef money(amount):\n    return f\"Rs {amount:,.2f}\"\n\nif __name__ == \"__main__\":\n    # Runs only when you start this file directly, not when it is imported\n    print(\"Testing:\", money(with_tax(1000)))"
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "import math\nimport statistics\nfrom shop_utils import with_tax, money\n\nprint(math.sqrt(144), math.ceil(2.1), round(math.pi, 4))\nprint(statistics.mean([10, 20, 60]), statistics.median([10, 20, 60]))\nprint(money(with_tax(1000)))\nprint(__name__)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "12.0 3 3.1416\n30 20\nRs 1,180.00\n__main__"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The import of `with_tax` and `money` works because both files are in the same folder. The name of the module is the file name without `.py`.",
+            "`math.ceil(2.1)` rounds **up** to 3, and `round(math.pi, 4)` gives 3.1416.",
+            "`statistics.mean` and `statistics.median` are in the standard library. The mean of 10, 20 and 60 is 30, and the median is 20.",
+            "The last line prints `__main__`. Every module has a `__name__`. When you run a file directly, its name is `__main__`. When another file imports it, the name is the module name instead."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The if __name__ block"
+        },
+        {
+          "type": "paragraph",
+          "text": "The bottom of `shop_utils.py` has `if __name__ == \"__main__\":`. The code in it runs only when you start that file directly with `python shop_utils.py`, and not when another file imports it. That lets one file serve as both a module and a small program, and it is very handy for quick tests of your functions. When you run it directly, it prints `Testing: Rs 1,180.00`."
+        },
+        {
+          "type": "heading",
+          "text": "Packages from the internet with pip"
+        },
+        {
+          "type": "paragraph",
+          "text": "`pip` is Python's installer. It downloads packages from PyPI, the Python Package Index. For example, `requests` is a popular package for talking to web services, `pandas` is for tables of data, and `openpyxl` reads and writes Excel files. You install one with `pip install name`. Packages are written by other people. Choose well-known ones, check the name carefully for typos, and do not install packages you do not need."
+        },
+        {
+          "type": "heading",
+          "text": "Virtual environments"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you install every package into one global place, different projects start to fight over versions. One project needs version 1 of a package and another needs version 2. A **virtual environment** is a private folder with its own copy of Python's packages for one project. You create one for each project. These are the commands. The activate line is different on each system."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "python -m venv .venv\n\n# activate it\n#   Windows PowerShell:  .venv\\Scripts\\Activate.ps1\n#   Windows cmd:         .venv\\Scripts\\activate.bat\n#   macOS / Linux:       source .venv/bin/activate\n\npip install requests\npip freeze > requirements.txt"
+        },
+        {
+          "type": "list",
+          "items": [
+            "After you activate it, your terminal usually shows `(.venv)` at the start of the line. Now `pip` and `python` use the private copy.",
+            "`pip freeze > requirements.txt` saves the list of installed packages and their versions. Anyone can rebuild the same set with `pip install -r requirements.txt`.",
+            "Do not commit the `.venv` folder to git. Add `.venv` to `.gitignore` and commit `requirements.txt` instead.",
+            "To leave the environment, type `deactivate`.",
+            "On Windows PowerShell, you may see an error about running scripts. It is a security setting. Search for the exact message, or use `activate.bat` in the normal command prompt."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "We ran `python -m venv`, installed `requests` with pip and used `pip freeze` to check the commands above. The package versions in the list will differ on your computer because newer versions appear all the time, and that is exactly why a `requirements.txt` file is useful."
+        },
+        {
+          "type": "heading",
+          "text": "Naming trouble"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Never name your own file the same as a module you import, such as `random.py` or `math.py`. Python would import your file instead of the real module, and you get strange errors.",
+            "Use lowercase names with underscores for module names.",
+            "If `import something` says `ModuleNotFoundError`, the package is not installed in the environment you are using. Check that the environment is active, and run `pip install something`."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "When you work in an editor such as VS Code, choose the interpreter that belongs to your `.venv` (the editor shows an option to select an interpreter). If you do not, the editor may use another Python and report that your packages are missing, although the terminal runs the code well."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create `shop_utils.py` and `main.py`. Import two functions from the first and use them in the second.",
+            "Add the `if __name__ == \"__main__\":` test block and run the helper file directly.",
+            "Create a virtual environment named `.venv`, activate it and run `pip --version` to see that it points inside `.venv`.",
+            "Install `requests` with pip, run `pip freeze > requirements.txt` and open the file."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Running `main.py` prints your helper functions' results.",
+            "Running the helper file directly shows the test line, but importing it does not.",
+            "Your terminal shows `(.venv)` and `requirements.txt` exists."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Packages and environments",
+        "nodes": [
+          {
+            "id": "pypi",
+            "label": "PyPI",
+            "sub": "shared packages",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "pip",
+            "label": "pip install",
+            "sub": "downloads",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "venv",
+            "label": ".venv",
+            "sub": "private for one project",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "code",
+            "label": "Your code",
+            "sub": "import requests",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "PyPI is the shared library of Python packages written by other people.",
+            "on": [
+              "pypi"
+            ]
+          },
+          {
+            "say": "The pip command downloads a package and its helpers.",
+            "flow": [
+              "pypi>pip:pip install"
+            ]
+          },
+          {
+            "say": "With a virtual environment, the packages are installed in a private folder for this project only.",
+            "flow": [
+              "pip>venv:into .venv"
+            ]
+          },
+          {
+            "say": "Your code can now import the package. A requirements file records the versions for others.",
+            "flow": [
+              "venv>code:import"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why use a virtual environment?",
+          "a": "It keeps each project packages separate, so different projects can use different versions without clashing, and your system Python stays clean."
+        },
+        {
+          "q": "What does if __name__ == \"__main__\" do?",
+          "a": "It runs the code below it only when the file is started directly, and not when another file imports it."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Objects, Libraries and Projects",
+      "slug": "classes-and-objects-in-python",
+      "title": "Classes and Objects in Python: A Gentle Introduction",
+      "metaTitle": "Python Classes and Objects for Beginners",
+      "description": "Learn what classes and objects are, write a class with __init__ and methods, use dataclasses for simple records, and see inheritance with a wallet example.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "So far you have used values that Python provides: numbers, text, lists and dictionaries. A **class** lets you create your own kind of value that bundles data and the actions that go with it. A bank account has a balance and can deposit and withdraw. A student has marks and can work out a grade. When data and actions belong together, a class keeps them together and makes your code easier to understand. This is called object-oriented programming, and in this lesson you meet it gently."
+        },
+        {
+          "type": "heading",
+          "text": "Class and object"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **class** is a blueprint. An **object** (or instance) is something made from that blueprint. If `Wallet` is the class, then one person's wallet is an object, and another person's wallet is another object. Each object has its own data, called **attributes**, and its own actions, called **methods**. Read this program and its output."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "from dataclasses import dataclass\n\nclass Wallet:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n        self.history = []\n\n    def add(self, amount, note=\"\"):\n        if amount <= 0:\n            raise ValueError(\"Amount must be positive\")\n        self.balance += amount\n        self.history.append((\"add\", amount, note))\n\n    def spend(self, amount, note=\"\"):\n        if amount > self.balance:\n            raise ValueError(\"Not enough money\")\n        self.balance -= amount\n        self.history.append((\"spend\", amount, note))\n\n    def __str__(self):\n        return f\"{self.owner}: balance {self.balance}\"\n\nw = Wallet(\"Asha\", 500)\nw.add(200, \"salary bonus\")\nw.spend(150, \"groceries\")\nprint(w)\nprint(len(w.history), w.history[-1])\n\ntry:\n    w.spend(10_000)\nexcept ValueError as error:\n    print(\"Blocked:\", error)\n\n@dataclass\nclass Expense:\n    category: str\n    amount: float\n    paid: bool = False\n\ne = Expense(\"Food\", 250.0)\nprint(e)\nprint(e.amount, e == Expense(\"Food\", 250.0))\n\nclass Savings(Wallet):\n    def add_interest(self, rate):\n        self.add(round(self.balance * rate, 2), \"interest\")\n\ns = Savings(\"Ravi\", 1000)\ns.add_interest(0.05)\nprint(s)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Asha: balance 550\n2 ('spend', 150, 'groceries')\nBlocked: Not enough money\nExpense(category='Food', amount=250.0, paid=False)\n250.0 True\nRavi: balance 1050.0"
+        },
+        {
+          "type": "heading",
+          "text": "Understanding the class"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`__init__` is the **constructor**. Python runs it when you write `Wallet(\"Asha\", 500)`. Its first parameter, `self`, is the object that is being made. `self.owner = owner` stores the value on that object.",
+            "Methods are functions inside the class, and they also take `self` as the first parameter. `w.add(200, \"salary bonus\")` is the same as saying: use the `add` method of the object `w`. The `self` is filled in for you.",
+            "The methods check their input. `spend` raises a `ValueError` when you try to spend more than the balance, and the code outside catches it. The class protects its own data from invalid changes.",
+            "`__str__` tells Python how to turn the object into text for `print`. Without it, you would see an unhelpful text with a memory address.",
+            "Every object has its own data. Changing one wallet does not change another."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Dataclasses: classes for simple records"
+        },
+        {
+          "type": "paragraph",
+          "text": "Often a class only holds data, like a row of a table. Writing `__init__` by hand for that is boring. The `@dataclass` decorator from the standard library writes it for you from a list of fields with types. It also gives you a readable text form and a `==` comparison for free, as the output shows: `Expense(category='Food', amount=250.0, paid=False)`, and two expenses with the same values are equal. The `= False` gives a default value. Dataclasses are a great way to make your data clear."
+        },
+        {
+          "type": "heading",
+          "text": "Inheritance"
+        },
+        {
+          "type": "paragraph",
+          "text": "A class can **inherit** from another. `class Savings(Wallet)` means: a Savings wallet is a Wallet with everything Wallet has, plus whatever it adds, here `add_interest`. We created `Savings(\"Ravi\", 1000)` and added 5 percent interest, so the balance became `1050.0`. Use inheritance when one thing is truly a special kind of another thing. Do not use it only to share a few lines of code. Many experienced programmers prefer to keep the structure simple and use inheritance rarely."
+        },
+        {
+          "type": "heading",
+          "text": "When should I use a class?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "When you have data and several functions that always work on that same data.",
+            "When you have many similar things, such as many students or many orders, each with its own state.",
+            "When a simple dictionary has grown complicated, and you want clear names and checks.",
+            "You do not need a class for everything. A few plain functions are often the best solution."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Naming and style"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Class names use `CapitalWords`: `Wallet`, `Expense`. Function and variable names use `lowercase_with_underscores`.",
+            "Attributes that are for internal use only start with an underscore, like `self._cache`. It is a hint to other programmers, and not a lock.",
+            "Write a short docstring for the class and for each method that is not obvious."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Common mistakes"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Forgetting `self` as the first parameter of a method gives a `TypeError` about the number of arguments.",
+            "Forgetting `self.` when you set or read an attribute: `balance = 5` inside a method makes only a local variable.",
+            "Using a mutable default value such as `history=[]` in `__init__`. Create the list inside, as the example does with `self.history = []`."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Python does not force you to use classes. Many useful programs, including the final project in this course, use mostly functions and dictionaries. Classes become more important as programs grow, and when you use libraries that are built from them."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a `Student` class with `name` and a list of `marks`. Add a method `average()` and a method `grade()` that uses the average, with the same rules as lesson 3.",
+            "Add `__str__` so that `print(student)` shows the name and the average.",
+            "Make a `Product` dataclass with `name`, `price` and `stock`, and a function that returns the products that are low on stock.",
+            "Make `Wallet` raise an error if someone creates it with a negative starting balance."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A student with marks `[80, 90, 70]` has average `80.0`, and grade `B`.",
+            "`print(student)` shows readable text, not a memory address.",
+            "Your `Wallet(\"Asha\", -5)` raises a `ValueError`."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Blueprint and objects",
+        "nodes": [
+          {
+            "id": "cls",
+            "label": "Class Wallet",
+            "sub": "the blueprint",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "o1",
+            "label": "Asha wallet",
+            "sub": "balance 550",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "o2",
+            "label": "Ravi savings",
+            "sub": "balance 1050",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "m",
+            "label": "Methods",
+            "sub": "add, spend, __str__",
+            "col": 3,
+            "row": 0,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A class is a blueprint that describes what data an object has and what it can do.",
+            "on": [
+              "cls"
+            ]
+          },
+          {
+            "say": "Calling the class, for example Wallet(\"Asha\", 500), makes an object with its own data.",
+            "flow": [
+              "cls>o1:create"
+            ]
+          },
+          {
+            "say": "Another object, even from a related class such as Savings, keeps its own balance.",
+            "flow": [
+              "o1>o2:another object"
+            ]
+          },
+          {
+            "say": "Methods are the actions an object can do. They can read and change the object data and check it.",
+            "flow": [
+              "o2>m:use methods"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is self in Python?",
+          "a": "self is the first parameter of a method and refers to the object the method is working on. Python fills it in automatically when you call the method."
+        },
+        {
+          "q": "When should I use a dataclass?",
+          "a": "When a class mostly holds data, like a record or a table row. A dataclass writes the constructor, a readable text form and equality for you."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Objects, Libraries and Projects",
+      "slug": "useful-python-standard-library",
+      "title": "The Python Standard Library: Dates, Counter, Statistics and More",
+      "metaTitle": "Python Standard Library: Dates, Counter",
+      "description": "Meet the standard library tools you will use all the time: datetime, timedelta, Counter, defaultdict, statistics, random, zip, sorted with key, any and all.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Python is often described as coming with *batteries included*. The standard library has tools for many everyday jobs, and learning them saves you hours. Instead of writing your own date maths, counting loops and averages, you use code that thousands of people have tested. This lesson is a tour of the tools that beginners need most. Each one appears in the program below with its real output."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "from collections import Counter, defaultdict\nfrom datetime import date, timedelta\nimport random\nimport statistics\n\nstart = date(2026, 1, 31)\nprint(start.strftime(\"%d %B %Y\"), start.weekday())   # 0 is Monday\nprint(start + timedelta(days=30))\nprint((date(2026, 3, 1) - start).days, \"days between\")\nprint(date.fromisoformat(\"2026-02-14\").isoformat())\n\nvotes = [\"tea\", \"coffee\", \"tea\", \"juice\", \"tea\", \"coffee\"]\nprint(Counter(votes).most_common(2))\n\ngroups = defaultdict(list)\nfor name, city in [(\"Asha\", \"Pune\"), (\"Ravi\", \"Delhi\"), (\"Meena\", \"Pune\")]:\n    groups[city].append(name)\nprint(dict(groups))\n\nmarks = [72, 85, 90, 66, 85]\nprint(statistics.mean(marks), statistics.median(marks), statistics.mode(marks))\n\nrandom.seed(7)\npicked = random.choice([\"a\", \"b\", \"c\"])\nprint(picked in [\"a\", \"b\", \"c\"], len(random.sample(range(100), 5)))\n\nnames = [\"Asha\", \"Ravi\", \"Meena\"]\nscores = [90, 72, 85]\nfor n, s in zip(names, scores):\n    print(n, s)\nranked = sorted(zip(names, scores), key=lambda pair: pair[1], reverse=True)\nprint(ranked)\nprint(any(s < 75 for s in scores), all(s > 50 for s in scores))"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "31 January 2026 5\n2026-03-02\n29 days between\n2026-02-14\n[('tea', 3), ('coffee', 2)]\n{'Pune': ['Asha', 'Meena'], 'Delhi': ['Ravi']}\n79.6 85 85\nTrue 5\nAsha 90\nRavi 72\nMeena 85\n[('Asha', 90), ('Meena', 85), ('Ravi', 72)]\nTrue True"
+        },
+        {
+          "type": "heading",
+          "text": "Dates and times"
+        },
+        {
+          "type": "paragraph",
+          "text": "`date(2026, 1, 31)` makes a date. `strftime` turns it into text in the format you choose: `%d` is the day, `%B` the month name and `%Y` the year. `weekday()` gives 0 for Monday up to 6 for Sunday, so 31 January 2026 is a 5, a Saturday. You can add time with `timedelta(days=30)`, and subtracting two dates gives a `timedelta` whose `.days` is the number of days. `date.fromisoformat(\"2026-02-14\")` reads a date written as year, month and day. Use `datetime` instead of `date` when you also need the time, and `date.today()` or `datetime.now()` for the current moment."
+        },
+        {
+          "type": "note",
+          "text": "Date and time work is full of surprises: time zones, daylight saving and different formats. Store dates in the ISO format (`2026-02-14`), and use the `zoneinfo` module when time zones matter."
+        },
+        {
+          "type": "heading",
+          "text": "Counting: Counter"
+        },
+        {
+          "type": "paragraph",
+          "text": "`Counter(votes)` counts how often each value appears, and `.most_common(2)` gives the top two as pairs. It does in one line what you wrote with a loop in lesson 5."
+        },
+        {
+          "type": "heading",
+          "text": "Grouping: defaultdict"
+        },
+        {
+          "type": "paragraph",
+          "text": "A `defaultdict(list)` is a dictionary that creates an empty list the first time you use a new key. That makes grouping easy: `groups[city].append(name)`. The result is a dictionary from each city to the list of names. Wrap it in `dict(...)` when you print it, so it looks normal."
+        },
+        {
+          "type": "heading",
+          "text": "Statistics"
+        },
+        {
+          "type": "paragraph",
+          "text": "`statistics.mean`, `median` and `mode` give the average, the middle value and the most common value. For the marks 72, 85, 90, 66 and 85, the mean is 79.6, the median is 85 and the mode is 85. The median is often a better picture of a typical value than the mean when a few values are very large or very small."
+        },
+        {
+          "type": "heading",
+          "text": "Random"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `random` module makes pseudo-random numbers. `random.choice(list)` picks one item, `random.sample(range(100), 5)` picks five different numbers and `random.randint(1, 6)` rolls a die. `random.seed(7)` makes the sequence repeatable, which is useful for tests. The numbers are **not** safe for passwords or security tokens. For those, use the `secrets` module."
+        },
+        {
+          "type": "heading",
+          "text": "zip, sorted and key functions"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`zip(names, scores)` pairs up items from two lists, which is perfect for looping over both at once.",
+            "`sorted(items, key=..., reverse=True)` sorts by any rule you give. In the example, `key=lambda pair: pair[1]` sorts the pairs by the score, highest first.",
+            "`any(...)` is true if at least one item meets the condition. `all(...)` is true if every item does. In the output, `any(s < 75 ...)` is `True` because Ravi has 72, and `all(s > 50 ...)` is `True`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Other modules worth knowing"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`json` and `csv` for data files (lesson 8), `pathlib` and `shutil` for files and folders (lessons 8 and 14).",
+            "`re` for patterns in text, called regular expressions. They are powerful, but start with plain string methods.",
+            "`argparse` for command-line options (lesson 15) and `logging` for proper messages from bigger programs.",
+            "`urllib.request` for simple web requests. Many people install `requests` for a friendlier tool.",
+            "`sqlite3` for a small database inside a file, with no server to install.",
+            "`unittest` for tests (lesson 15), and `decimal` for exact decimal maths, which matters for money."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to find the right tool"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Describe the job in plain words, for example: group items by a key, or add days to a date.",
+            "Search the official Python documentation, or search the web for Python plus your description.",
+            "Read the short example in the documentation, and try it in the interactive prompt.",
+            "Prefer the standard library, because it is installed everywhere and well maintained, before you add a package."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The standard library is large, and nobody remembers it all. A good habit is to type `import module` followed by `help(module)` in the interactive prompt, or to open the official documentation at docs.python.org. Knowing that a tool exists is more important than remembering its exact name."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Print how many days remain from today until a date you choose, such as your next birthday. Use `date.today()`.",
+            "Use `Counter` to find the three most common letters in a sentence you write.",
+            "Use `defaultdict(list)` to group a list of words by their first letter.",
+            "Make a list of names and a list of marks. Use `zip` and `sorted` to print them from the highest mark to the lowest."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your day count is correct when you check it on a calendar.",
+            "The most common letters match a count by hand.",
+            "The names print in the order of their marks, highest first."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Ready-made tools",
+        "nodes": [
+          {
+            "id": "need",
+            "label": "A common job",
+            "sub": "count, group, dates",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "lib",
+            "label": "Standard library",
+            "sub": "collections, datetime",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "use",
+            "label": "Your code",
+            "sub": "a few lines",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "res",
+            "label": "Tested result",
+            "sub": "no wheel reinvented",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Many everyday jobs, like counting, grouping or date maths, have been solved before.",
+            "on": [
+              "need"
+            ]
+          },
+          {
+            "say": "Python includes tested tools for them in the standard library.",
+            "flow": [
+              "need>lib:look up"
+            ]
+          },
+          {
+            "say": "You import the tool and use it in a few lines instead of writing your own version.",
+            "flow": [
+              "lib>use:import"
+            ]
+          },
+          {
+            "say": "You get a reliable result, and your code stays short and easy to read.",
+            "flow": [
+              "use>res:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is random safe for passwords?",
+          "a": "No. The random module is not designed for security. Use the secrets module for passwords and tokens."
+        },
+        {
+          "q": "What is the difference between mean and median?",
+          "a": "The mean is the sum divided by the count. The median is the middle value after sorting. The median is less affected by a few very large or small values."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Objects, Libraries and Projects",
+      "slug": "analyse-a-csv-file-with-python",
+      "title": "Mini Project: Analyse a CSV File and Make a Report",
+      "metaTitle": "Python Project: Analyse a CSV and Report",
+      "description": "Build a small data project: read an expenses CSV file, group amounts by category, sort, work out shares and print a neat report you can reuse at work.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Time to use what you have learned. This project is typical of real office, finance and analyst work: take a CSV export, find out where the money goes and print a short report. It combines files, dictionaries, loops, sorting and formatted output. You do not need any extra packages. Later, if you move on to data work, tools such as `pandas` do the same job with less code, but doing it by hand first helps you understand what they do."
+        },
+        {
+          "type": "heading",
+          "text": "The data"
+        },
+        {
+          "type": "paragraph",
+          "text": "Save this as `expenses.csv` in your project folder. It is a made-up set of expenses for one month. Each row has a date, a category, a description and an amount."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "date,category,description,amount\n2026-01-03,Food,Groceries,1250.50\n2026-01-04,Travel,Metro card,500\n2026-01-09,Food,Lunch with team,320\n2026-01-12,Bills,Electricity,1800\n2026-01-15,Food,Dinner out,780\n2026-01-20,Travel,Taxi,260.75\n2026-01-25,Bills,Internet,999\n2026-01-28,Fun,Movie,450"
+        },
+        {
+          "type": "heading",
+          "text": "The goal"
+        },
+        {
+          "type": "paragraph",
+          "text": "We want a table that shows, for each category, the total amount and its share of all spending, the biggest categories first. We also want the biggest single expense. Plan the steps before you write code."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Open the CSV and read each row as a dictionary.",
+            "Convert the amount from text to a number.",
+            "Add the amount to the total of its category, and remember the biggest expense so far.",
+            "Work out the grand total.",
+            "Sort the categories by total, from the biggest.",
+            "Print a neat table."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The program"
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "import csv\nfrom collections import defaultdict\nfrom pathlib import Path\n\nhere = Path(__file__).parent\ntotals = defaultdict(float)\nbiggest = None\n\nwith open(here / \"expenses.csv\", newline=\"\", encoding=\"utf-8\") as f:\n    for row in csv.DictReader(f):\n        amount = float(row[\"amount\"])\n        totals[row[\"category\"]] += amount\n        if biggest is None or amount > biggest[\"amount\"]:\n            biggest = {\"description\": row[\"description\"], \"amount\": amount}\n\ngrand_total = sum(totals.values())\nprint(f\"{'Category':<10}{'Total':>10}{'Share':>8}\")\nfor category, total in sorted(totals.items(), key=lambda item: item[1], reverse=True):\n    print(f\"{category:<10}{total:>10.2f}{total / grand_total:>8.0%}\")\nprint(f\"{'All':<10}{grand_total:>10.2f}\")\nprint(\"Biggest:\", biggest[\"description\"], biggest[\"amount\"])"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Category       Total   Share\nBills        2799.00     44%\nFood         2350.50     37%\nTravel        760.75     12%\nFun           450.00      7%\nAll          6360.25\nBiggest: Electricity 1800.0"
+        },
+        {
+          "type": "heading",
+          "text": "How it works"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`Path(__file__).parent` is the folder where this script lives. Building the path from it means that the program finds `expenses.csv` wherever you start it from.",
+            "`defaultdict(float)` starts every new category at `0.0`, so `totals[row[\"category\"]] += amount` works even the first time a category appears.",
+            "The `biggest` variable starts as `None`. The first row replaces it, and later rows replace it only if their amount is larger.",
+            "`sorted(totals.items(), key=lambda item: item[1], reverse=True)` sorts the pairs by total, with the largest first.",
+            "In the f-string, `{total / grand_total:>8.0%}` formats a fraction as a percentage with no decimals. 2799 divided by 6360.25 is 44 percent.",
+            "The `All` row repeats the total, and you can check it by adding the categories by hand: 2799 plus 2350.50 plus 760.75 plus 450 is 6360.25."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Checking your work"
+        },
+        {
+          "type": "paragraph",
+          "text": "A report that looks neat can still be wrong. Check it in a second way. Add up the amounts in the file by hand, or with a calculator, or in a spreadsheet, and compare it with the program total. Check one category by hand too. For Food, the rows are 1250.50, 320 and 780, and their sum is 2350.50, exactly as printed. When your program and a hand check agree, you can trust it."
+        },
+        {
+          "type": "heading",
+          "text": "Make it your own"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Add a command-line option for the month or the file name (lesson 15 shows `argparse`).",
+            "Write the report into a file, with `Path.write_text`, so you can send it to someone.",
+            "Find expenses above a limit, such as 1000, and list them.",
+            "Group by month. Use the date column: `row[\"date\"][:7]` gives `2026-01`.",
+            "Handle bad rows. If an amount is not a number, `float()` raises a `ValueError`. Decide whether to skip the row and print a warning, or stop. Lesson 9 shows how."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "From here to data jobs"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reading a file, cleaning it, grouping, summing and reporting is the heart of many data and office automation tasks. If you want to go further, look at `pandas` for tables and `matplotlib` for charts. Those are separate packages that you install with pip in a virtual environment (lesson 10). Learn the basics in this course first. They make every later tool easier to understand."
+        },
+        {
+          "type": "note",
+          "text": "The data here is invented for the course and says nothing about real spending. When you use real personal or company data, protect it: do not upload it to places you do not trust, and do not share files with names, phone numbers or account numbers."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Save `expenses.csv` and the program. Run it and compare each total with a hand calculation.",
+            "Add a line that prints the average expense and the number of expenses.",
+            "Add a second report that lists every expense over 700, one per line.",
+            "Add three more rows to the CSV, including a new category, and check that the report updates."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The report shows Bills 2799.00, Food 2350.50, Travel 760.75, Fun 450.00 and All 6360.25.",
+            "The biggest expense is `Electricity 1800.0`.",
+            "The program still works after you add rows with a new category."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From CSV to report",
+        "nodes": [
+          {
+            "id": "csv",
+            "label": "expenses.csv",
+            "sub": "date, category, amount",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "read",
+            "label": "DictReader",
+            "sub": "one dict per row",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sum",
+            "label": "Group and sum",
+            "sub": "totals by category",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "rep",
+            "label": "Report",
+            "sub": "sorted, with shares",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The data starts in a CSV file with one expense on each row.",
+            "on": [
+              "csv"
+            ]
+          },
+          {
+            "say": "csv.DictReader reads each row as a dictionary, with the column names as keys.",
+            "flow": [
+              "csv>read:read rows"
+            ]
+          },
+          {
+            "say": "The loop converts amounts to numbers and adds them to the total of each category.",
+            "flow": [
+              "read>sum:loop"
+            ]
+          },
+          {
+            "say": "The totals are sorted from biggest to smallest and printed with each category share.",
+            "flow": [
+              "sum>rep:print"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why not just use a spreadsheet?",
+          "a": "A spreadsheet is fine for one-off work. A Python script is better when you repeat the same job every week, when the file is very large, or when you want the steps written down and checked."
+        },
+        {
+          "q": "When should I use pandas?",
+          "a": "When you work with large tables, many columns or need joins and charts. It saves code, but learn plain Python first so you understand what it does."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true
+    },
+    {
+      "section": "Objects, Libraries and Projects",
+      "slug": "automate-files-and-folders-with-python",
+      "title": "Automate Boring Tasks: Organise Files and Folders with Python",
+      "metaTitle": "Python Automation: Tidy Files and Folders",
+      "description": "Use pathlib and shutil to sort a messy folder by file type, rename and move files safely, test on practice data first and avoid deleting anything by mistake.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Many people first feel the power of programming when Python does a dull job for them: sorting a downloads folder, renaming hundreds of photos, collecting files from many folders into one place. The tools are `pathlib` for paths and `shutil` for moving and copying. Because these programs change things on your computer, we will go carefully, test on practice files first and build in safety checks."
+        },
+        {
+          "type": "heading",
+          "text": "Safety first"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Practise on a copy or on practice files,** never on your only copy of something important.",
+            "**Print what you would do before you do it.** A *dry run* shows the plan and changes nothing. When it looks right, switch to the real run.",
+            "**Never overwrite silently.** Check whether the destination exists, and skip or rename.",
+            "**Avoid deleting.** Moving files into a folder is safer than removing them. If you do use `rmtree` or `unlink`, be very sure of the path.",
+            "**Keep a record** of what you changed, even a simple printed list."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The program"
+        },
+        {
+          "type": "paragraph",
+          "text": "The program below creates its own practice folder with seven small files, sorts them by type into sub-folders, shows the final layout and removes the practice folder at the end. Read it before you run it."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "import shutil\nfrom pathlib import Path\n\n# Make a practice folder with some untidy files\nfolder = Path(\"downloads_demo\")\nfolder.mkdir(exist_ok=True)\nfor name in [\"cv.pdf\", \"photo1.jpg\", \"photo2.JPG\", \"notes.txt\", \"budget.xlsx\", \"report.pdf\", \"README\"]:\n    (folder / name).write_text(\"demo\", encoding=\"utf-8\")\n\ngroups = {\n    \".pdf\": \"documents\", \".txt\": \"documents\",\n    \".jpg\": \"images\", \".png\": \"images\",\n    \".xlsx\": \"spreadsheets\",\n}\n\nfor item in sorted(folder.iterdir()):\n    if not item.is_file():\n        continue\n    target_name = groups.get(item.suffix.lower())\n    if target_name is None:\n        print(\"Left alone:\", item.name)\n        continue\n    target = folder / target_name\n    target.mkdir(exist_ok=True)\n    destination = target / item.name.lower()\n    if destination.exists():\n        print(\"Skipped (exists):\", item.name)\n        continue\n    shutil.move(str(item), destination)\n    print(f\"Moved {item.name} -> {target_name}/\")\n\nfor path in sorted(folder.rglob(\"*\")):\n    print(path.relative_to(folder))\n\nshutil.rmtree(folder)"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Left alone: README\nMoved budget.xlsx -> spreadsheets/\nMoved cv.pdf -> documents/\nMoved notes.txt -> documents/\nMoved photo1.jpg -> images/\nMoved photo2.JPG -> images/\nMoved report.pdf -> documents/\nREADME\ndocuments\ndocuments/cv.pdf\ndocuments/notes.txt\ndocuments/report.pdf\nimages\nimages/photo1.jpg\nimages/photo2.jpg\nspreadsheets\nspreadsheets/budget.xlsx"
+        },
+        {
+          "type": "heading",
+          "text": "What happens"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`folder.iterdir()` lists everything in the folder. We loop over `sorted(...)` so the order is the same on every computer. `item.is_file()` skips folders.",
+            "`item.suffix` is the file ending, such as `.pdf`. `.lower()` makes `.JPG` and `.jpg` the same. A dictionary maps each ending to a group name. `groups.get(...)` returns `None` for unknown endings, like the file `README`, which is left alone.",
+            "`target.mkdir(exist_ok=True)` creates the group folder if it does not exist, and does nothing if it does.",
+            "Before moving, we check `destination.exists()`. If a file with that name is already there, the program skips it and says so, so nothing is overwritten.",
+            "`shutil.move` moves the file. The name is made lower case in the new place, which is why `photo2.JPG` became `photo2.jpg`.",
+            "`folder.rglob(\"*\")` walks through all files and folders below, and `relative_to` shortens the printed paths."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Turning it into a real tool"
+        },
+        {
+          "type": "paragraph",
+          "text": "To use the idea on a real folder, change the `folder` line to the path you want, for example `Path.home() / \"Downloads\"`, remove the lines that create the practice files and the final `rmtree`, and add the dry-run switch below. Run it in dry-run mode first and read the plan."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "DRY_RUN = True   # change to False only after you have read the plan\n\nif DRY_RUN:\n    print(f\"Would move {item.name} -> {target_name}/\")\nelse:\n    target.mkdir(exist_ok=True)\n    shutil.move(str(item), destination)\n    print(f\"Moved {item.name} -> {target_name}/\")"
+        },
+        {
+          "type": "heading",
+          "text": "More ideas for automation"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Rename in bulk:** add a date to file names, replace spaces with underscores, or number photos in order. Use `item.rename(new_path)` or `item.with_name(new_name)`.",
+            "**Find files:** `folder.rglob(\"*.pdf\")` finds every PDF in all sub-folders.",
+            "**Merge CSV files:** loop over files with `rglob`, read each with `csv`, and write one combined file.",
+            "**Clean old files:** list files older than 90 days using `item.stat().st_mtime`. Print them first, and move them to an archive folder before deciding to delete.",
+            "**Make backups:** `shutil.copytree` copies a whole folder, and `shutil.make_archive` makes a zip."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Running a script on a schedule"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once a script works, you can have the computer run it automatically. On Windows, Task Scheduler does this. On macOS and Linux, `cron` does it. First make sure that the script works when it is started from any folder, which means using full paths, and that it writes a log file, so you can see what happened while you were away."
+        },
+        {
+          "type": "heading",
+          "text": "Working with spreadsheets and documents"
+        },
+        {
+          "type": "paragraph",
+          "text": "Python can also read and write Excel files with the `openpyxl` package, and Word files with `python-docx`. They need installing with pip inside a virtual environment, as shown in lesson 10. The idea is the same as with CSV: read the data, process it with loops and dictionaries, and write a result. Check each package's own documentation, because details change between versions."
+        },
+        {
+          "type": "note",
+          "text": "Even a small mistake in a file script can move many files to the wrong place. That is the reason for dry runs and for practising on copies. If you ever move files by mistake, do not run the script again. Stop and look at what changed first."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run the practice program and compare the printed layout with the output above.",
+            "Add the endings `.docx` and `.pptx` to a group called `documents`, and `.zip` to a group called `archives`.",
+            "Add the `DRY_RUN` switch. Run once with `True` and once with `False`.",
+            "Write a second script that lists all `.txt` files below a folder and prints their size in kilobytes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your layout shows documents, images and spreadsheets folders with the files inside.",
+            "In dry-run mode, no file moves and the messages start with `Would move`.",
+            "A file whose name already exists in the target is skipped with a message."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Tidy a folder safely",
+        "nodes": [
+          {
+            "id": "mess",
+            "label": "Messy folder",
+            "sub": "cv.pdf, photo.jpg...",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "rule",
+            "label": "Sort by ending",
+            "sub": ".pdf = documents",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "safe",
+            "label": "Check first",
+            "sub": "dry run, no overwrite",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "tidy",
+            "label": "Tidy folders",
+            "sub": "documents, images",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A folder fills up with mixed files, such as documents, photos and spreadsheets.",
+            "on": [
+              "mess"
+            ]
+          },
+          {
+            "say": "The program looks at the ending of each file name and chooses a group for it.",
+            "flow": [
+              "mess>rule:look at suffix"
+            ]
+          },
+          {
+            "say": "Before moving, it checks the destination and can run in dry-run mode, so nothing is overwritten by mistake.",
+            "flow": [
+              "rule>safe:check"
+            ]
+          },
+          {
+            "say": "Files are moved into tidy sub-folders, and unknown files are left alone.",
+            "flow": [
+              "safe>tidy:move"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is it safe to let Python move and delete files?",
+          "a": "It is safe if you test on copies, run a dry run first, avoid overwriting, and move files to an archive instead of deleting them. A mistake in a script can change many files at once."
+        },
+        {
+          "q": "What is the difference between pathlib and os.path?",
+          "a": "pathlib is the newer, object-based way to work with paths, and it is easier to read. os.path is the older function-based way. Both work, and new code usually prefers pathlib."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true
+    },
+    {
+      "section": "Objects, Libraries and Projects",
+      "slug": "final-project-expense-tracker-and-next-steps",
+      "title": "Final Project: A Command Line Expense Tracker, Tests and Next Steps",
+      "metaTitle": "Python Final Project: Expense Tracker",
+      "description": "Build a complete command line expense tracker with argparse, JSON storage, error handling and unit tests, then plan your next steps in Python.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this last lesson, you join everything into one useful program: an expense tracker that you run from the terminal. It adds expenses, lists them and shows totals by category. It saves data in a JSON file, checks the input, reports errors in a friendly way and has unit tests. The program uses functions, dictionaries, files, exceptions and the standard library, which are the skills you practised in the earlier lessons."
+        },
+        {
+          "type": "heading",
+          "text": "Plan before you code"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Data:** a list of expenses, each a dictionary with an id, an amount, a category and a note. Stored in a JSON file.",
+            "**Commands:** `add`, `list`, `total`.",
+            "**Functions:** `load` and `save` for the file, `add_expense` to check and add, `totals_by_category` to calculate, and `main` to connect the command line to these.",
+            "**Rules:** an amount must be above zero. Category names are stored in title case, so `food` and `Food` are the same.",
+            "**Safety:** a missing file means an empty list, and bad input gives a clear message, not a traceback."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "The program"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice that most of the logic is in small functions that do not print anything. That makes them easy to test. The `main` function is the only one that talks to the user."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "\"\"\"A small expense tracker for the command line.\n\nExamples:\n  python l15_tracker.py add 250 Food \"Lunch\"\n  python l15_tracker.py list\n  python l15_tracker.py total\n\"\"\"\nimport argparse\nimport json\nfrom pathlib import Path\n\nDEFAULT_FILE = Path(\"expenses.json\")\n\n\ndef load(file):\n    try:\n        return json.loads(Path(file).read_text(encoding=\"utf-8\"))\n    except FileNotFoundError:\n        return []\n\n\ndef save(file, items):\n    Path(file).write_text(json.dumps(items, indent=2), encoding=\"utf-8\")\n\n\ndef add_expense(items, amount, category, note=\"\"):\n    if amount <= 0:\n        raise ValueError(\"Amount must be more than zero\")\n    item = {\"id\": len(items) + 1, \"amount\": round(amount, 2), \"category\": category.title(), \"note\": note}\n    items.append(item)\n    return item\n\n\ndef totals_by_category(items):\n    totals = {}\n    for item in items:\n        totals[item[\"category\"]] = totals.get(item[\"category\"], 0) + item[\"amount\"]\n    return dict(sorted(totals.items(), key=lambda pair: pair[1], reverse=True))\n\n\ndef build_parser():\n    parser = argparse.ArgumentParser(description=\"Track your spending\")\n    parser.add_argument(\"--file\", default=str(DEFAULT_FILE), help=\"where to keep the data\")\n    sub = parser.add_subparsers(dest=\"command\", required=True)\n\n    add = sub.add_parser(\"add\", help=\"add an expense\")\n    add.add_argument(\"amount\", type=float)\n    add.add_argument(\"category\")\n    add.add_argument(\"note\", nargs=\"?\", default=\"\")\n\n    sub.add_parser(\"list\", help=\"show all expenses\")\n    sub.add_parser(\"total\", help=\"show totals by category\")\n    return parser\n\n\ndef main(argv=None):\n    args = build_parser().parse_args(argv)\n    items = load(args.file)\n\n    if args.command == \"add\":\n        try:\n            item = add_expense(items, args.amount, args.category, args.note)\n        except ValueError as error:\n            print(\"Error:\", error)\n            return 1\n        save(args.file, items)\n        print(f\"Saved #{item['id']}: {item['amount']:.2f} on {item['category']}\")\n    elif args.command == \"list\":\n        if not items:\n            print(\"No expenses yet\")\n        for item in items:\n            print(f\"{item['id']:>3}  {item['category']:<8}{item['amount']:>9.2f}  {item['note']}\")\n    elif args.command == \"total\":\n        for category, total in totals_by_category(items).items():\n            print(f\"{category:<8}{total:>9.2f}\")\n        print(f\"{'All':<8}{sum(i['amount'] for i in items):>9.2f}\")\n    return 0\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())"
+        },
+        {
+          "type": "heading",
+          "text": "Understanding argparse"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`argparse` reads the command line and builds the help text for you. Run `python l15_tracker.py --help` to see it.",
+            "`add_subparsers` creates commands. Each command, `add`, `list` and `total`, has its own arguments.",
+            "`type=float` makes argparse convert the amount and show an error if it is not a number. That is input validation that you did not have to write.",
+            "`nargs=\"?\"` makes the note optional, with an empty text as the default.",
+            "`--file` lets you choose where the data is kept. We use it in the test run below, so it does not touch your real data."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Run it"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "$ python l15_tracker.py --file demo.json list\nNo expenses yet\n$ python l15_tracker.py --file demo.json add 250 food \"Lunch\"\nSaved #1: 250.00 on Food\n$ python l15_tracker.py --file demo.json add 120.5 travel Metro\nSaved #2: 120.50 on Travel\n$ python l15_tracker.py --file demo.json add 99 food \"Snacks\"\nSaved #3: 99.00 on Food\n$ python l15_tracker.py --file demo.json list\n  1  Food       250.00  Lunch\n  2  Travel     120.50  Metro\n  3  Food        99.00  Snacks\n$ python l15_tracker.py --file demo.json total\nFood       349.00\nTravel     120.50\nAll        469.50\n$ python l15_tracker.py --file demo.json add -5 food\nError: Amount must be more than zero\n(exit code 1)\n$ python l15_tracker.py --file demo.json add abc food\nusage: l15_tracker.py add [-h] amount category [note]\nl15_tracker.py add: error: argument amount: invalid float value: 'abc'\n(exit code 2)"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The first call shows `No expenses yet`, because the file does not exist yet, and `load` returned an empty list.",
+            "Each `add` prints the id and the saved values. The category `food` was saved as `Food`.",
+            "The `list` output is aligned with f-string formatting. The `total` output is sorted from the biggest to the smallest, with an `All` line that you can check by hand: 349.00 plus 120.50 is 469.50.",
+            "A negative amount is rejected by our own check, and the exit code is 1. A non-number is rejected by `argparse` with exit code 2. Exit codes let other programs tell whether yours worked."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Test it with unittest"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tests are small programs that check your code. When you change the code later, you run the tests, and they tell you quickly if you broke something. `unittest` is part of the standard library. Each method that starts with `test` is one check. `assertEqual` compares an actual value with the one you expect. `assertRaises` checks that an error happens when it should."
+        },
+        {
+          "type": "code",
+          "lang": "python",
+          "text": "import unittest\nfrom l15_tracker import add_expense, totals_by_category\n\n\nclass TrackerTests(unittest.TestCase):\n    def test_add_expense_sets_id_and_title_case(self):\n        items = []\n        item = add_expense(items, 250, \"food\", \"Lunch\")\n        self.assertEqual(item[\"id\"], 1)\n        self.assertEqual(item[\"category\"], \"Food\")\n\n    def test_zero_amount_is_rejected(self):\n        with self.assertRaises(ValueError):\n            add_expense([], 0, \"Food\")\n\n    def test_totals_are_grouped_and_sorted(self):\n        items = []\n        add_expense(items, 100, \"Travel\")\n        add_expense(items, 300, \"Food\")\n        add_expense(items, 50, \"Travel\")\n        self.assertEqual(totals_by_category(items), {\"Food\": 300, \"Travel\": 150})\n\n\nif __name__ == \"__main__\":\n    unittest.main()"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "python -m unittest -v test_l15_tracker"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "test_add_expense_sets_id_and_title_case ... ok\ntest_totals_are_grouped_and_sorted ... ok\ntest_zero_amount_is_rejected ... ok\n\nRan 3 tests\n\nOK"
+        },
+        {
+          "type": "paragraph",
+          "text": "The real output also shows the timing and slightly longer test names, and the order is alphabetical. The tests work because the logic is in functions that do not print. This is the main lesson of the project: separate the thinking from the talking."
+        },
+        {
+          "type": "heading",
+          "text": "Ideas to extend the project"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Add a `delete` command, and a `--month` option for `list`.",
+            "Add the date to each expense with `datetime.date.today().isoformat()`.",
+            "Export a CSV report with the `csv` module.",
+            "Store the data in SQLite with the `sqlite3` module instead of a JSON file.",
+            "Make a small web version with Flask or FastAPI. Both are installed with pip."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Where to go next"
+        },
+        {
+          "type": "paragraph",
+          "text": "Choose a direction and build one real project in it. For **data and analysis**, learn `pandas`, `matplotlib` and basic statistics, and our [SQL course](/learn/sql-for-beginners) is a good companion because most data is in databases. For **web back ends**, learn Flask or FastAPI, and our [Node.js and Express course](/learn/nodejs-express-course) shows the same ideas in another language. For **automation and testing**, learn more about files, scheduling, and a test tool such as `pytest`. Our [career roadmaps](/roadmaps) show how these skills fit into jobs. Whatever you choose, build small projects regularly, read other people's code, and read the official Python documentation, which is clear and free."
+        },
+        {
+          "type": "note",
+          "text": "Learning a language takes time, and the pace differs for everyone. Regular practice for a short time every day beats a long session once a week. No course, including this one, can promise a job. What it can do is give you real skills and projects that you can show."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Type in `l15_tracker.py` and the test file. Run the commands from the output above with a `--file` of your own.",
+            "Add the `delete` command: it takes an id and removes that expense, with an error message if the id does not exist. Write a test for it.",
+            "Write a test that checks `totals_by_category` for an empty list.",
+            "Write down what you want to build next, and what you need to learn to build it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The commands produce the same output as shown, apart from your own data.",
+            "All your unit tests pass, including the new ones.",
+            "A wrong command, such as a negative amount, gives a clear message and no traceback."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Expense tracker flow",
+        "nodes": [
+          {
+            "id": "cli",
+            "label": "Command line",
+            "sub": "add 250 food",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "arg",
+            "label": "argparse",
+            "sub": "checks the command",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "fn",
+            "label": "Functions",
+            "sub": "add_expense, totals",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "json",
+            "label": "expenses.json",
+            "sub": "saved data",
+            "col": 3,
+            "row": 0,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You type a command, such as add 250 food, in the terminal.",
+            "on": [
+              "cli"
+            ]
+          },
+          {
+            "say": "argparse reads it, converts the amount to a number and shows help or an error for wrong input.",
+            "flow": [
+              "cli>arg:read"
+            ]
+          },
+          {
+            "say": "Small functions check the rules, add the expense or work out the totals. They are easy to test.",
+            "flow": [
+              "arg>fn:call"
+            ]
+          },
+          {
+            "say": "The data is saved to a JSON file, so it is still there the next time you run the program.",
+            "flow": [
+              "fn>json:save"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why keep the logic in functions that do not print?",
+          "a": "Functions that only take values and return results are easy to test and reuse. Put printing and user interaction in a thin outer layer such as main."
+        },
+        {
+          "q": "What should I learn after these basics?",
+          "a": "Pick a direction: data (pandas), web (Flask or FastAPI), or automation and testing (pytest). Build one real project in it and read the official documentation."
+        }
+      ],
+      "readTime": "10 min read",
+      "published": true
+    }
+  ],
+  "replace": true
+}

@@ -1,0 +1,9 @@
+1250.5
+Error: 'abc' is not a number
+Error: Amount cannot be negative
+40.0
+Cannot divide by zero
+File problem: no_such_file.txt
+This always runs
+IndexError - list index out of range
+Caught: Over budget by 300
