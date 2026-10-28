@@ -79,7 +79,8 @@ const ProductsIndex = () => {
         {loading ? (
           <p className='text-center text-slate-400'>Loading products…</p>
         ) : products.length === 0 ? (
-          <p className='text-center text-slate-400'>No products here yet. Check back soon.</p>
+          // The built-in Image Enhancer card above counts as a product, so the empty message shows only when nothing is listed at all.
+          !(!active && tools.imageEnhancer) && <p className='text-center text-slate-400'>No products here yet. Check back soon.</p>
         ) : (
           <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {products.map((p) => (
