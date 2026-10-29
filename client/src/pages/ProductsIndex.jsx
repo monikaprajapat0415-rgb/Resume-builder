@@ -76,11 +76,23 @@ const ProductsIndex = () => {
           </Link>
         )}
 
+        {!active && (
+          <Link to='/products/image-converter' className='group mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white p-5 sm:p-6 hover:shadow-md transition'>
+            <span className='shrink-0 size-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-sm font-semibold' aria-hidden>PDF</span>
+            <span className='min-w-0'>
+              <span className='block text-xs font-medium text-brand-700'>Free tool</span>
+              <span className='block text-lg font-semibold text-slate-800 group-hover:text-brand-700 transition'>Image to PDF, Word and Text Converter</span>
+              <span className='block text-sm text-slate-600'>Pictures to PDF, Word or text, with OCR for English and Hindi. No sign-in, and your pictures stay on your device.</span>
+            </span>
+            <span className='sm:ml-auto text-sm font-medium text-brand-700 whitespace-nowrap'>Open the tool →</span>
+          </Link>
+        )}
+
         {loading ? (
           <p className='text-center text-slate-400'>Loading products…</p>
         ) : products.length === 0 ? (
-          // The built-in Image Enhancer card above counts as a product, so the empty message shows only when nothing is listed at all.
-          !(!active && tools.imageEnhancer) && <p className='text-center text-slate-400'>No products here yet. Check back soon.</p>
+          // The built-in tool cards above count as products, so the empty message shows only inside a category.
+          active && <p className='text-center text-slate-400'>No products here yet. Check back soon.</p>
         ) : (
           <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
             {products.map((p) => (

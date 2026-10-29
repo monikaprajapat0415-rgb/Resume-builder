@@ -4,7 +4,7 @@ import { renderQuestionsIndex, renderQuestion, renderSalariesIndex, renderSalary
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
 import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
-import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderContact, renderPrivacy, renderTerms, renderImageEnhancer } from '../controllers/staticSeoController.js';
+import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderContact, renderPrivacy, renderTerms, renderImageEnhancer, renderImageConverter } from '../controllers/staticSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
@@ -60,5 +60,6 @@ seoRouter.get('/contact-us', renderContact);
 seoRouter.get('/privacy-policy', renderPrivacy);
 seoRouter.get('/terms-and-conditions', renderTerms);
 seoRouter.get('/products/image-enhancer', renderImageEnhancer);
+seoRouter.get('/products/image-converter', renderImageConverter);
 
 export default seoRouter;

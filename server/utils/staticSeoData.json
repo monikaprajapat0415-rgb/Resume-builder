@@ -665,5 +665,69 @@
     "a": "Yes, a daily limit per account, shown on the tool after you sign in. Depending on how the site owner has set it up, 8K output may be part of a paid plan while 4K stays free."
    }
   ]
+ },
+ "imageConverter": {
+  "path": "/products/image-converter",
+  "name": "Image to PDF and Word Converter",
+  "title": "Image to PDF, Word and Text Converter",
+  "description": "Turn JPG, PNG or WebP pictures into PDF, Word or text. Rotate, clean scans, read text (English, Hindi), add a PDF password. Free and private.",
+  "keywords": "image to pdf, jpg to pdf, image to word, image to text, ocr online free, scan to searchable pdf, hindi ocr, combine images into one pdf, password protect pdf",
+  "h1": "Convert Images to PDF, Word or Text, Free",
+  "intro": "Add one or many pictures, rotate and order them, clean up scans, then download one PDF, a Word file or plain text. Turn on text reading (OCR, English or Hindi) to get editable Word text or a searchable PDF. It all runs in your browser.",
+  "how": [
+   "Choose or drop your JPG, PNG or WebP pictures. Rotate, reorder or remove any of them.",
+   "Pick PDF, Word with the pictures, Word with editable text, or plain text.",
+   "Set the page size, margin, file size and picture look. For a document scan, try Clean grey scan or Black and white.",
+   "Optional: make the PDF searchable, add page numbers or a password, or choose the language to read.",
+   "Press Convert and download your file. Your pictures are not uploaded."
+  ],
+  "honest": "How it works, honestly: the conversion happens inside your browser, so your pictures are never sent to our servers. Each picture becomes one page, scaled to fit without cutting anything off. Word with pictures keeps your scan as an image. Word with editable text and the searchable PDF use text recognition (OCR) that runs on your device; it is accurate on clear, upright, printed pages and weaker on handwriting, blurry photos, tables and columns, so always check names, numbers and dates. The reading files, about 3 MB for English, are downloaded once from a public content network and then kept by your browser. Very large photos are shrunk a little to keep the file size reasonable.",
+  "good": [
+   "Scans and photos of certificates, ID copies, mark sheets, receipts and printed letters",
+   "Combining several pictures into one PDF to upload to a job or visa form",
+   "Getting editable text out of a clear printed page, in English or Hindi",
+   "Making a PDF you can search and copy from, or protect with a password"
+  ],
+  "limits": [
+   "Handwriting, very blurry photos, or text on busy backgrounds",
+   "Keeping the exact layout of tables and columns in the editable Word file",
+   "Searchable PDF for Hindi (Hindi text can be read into Word or a text file instead)",
+   "HEIC photos straight from some iPhones (save or share them as JPG first)"
+  ],
+  "privacy": "Your pictures stay on your device. They are converted in your browser and are not uploaded, saved or shared.",
+  "faqs": [
+   {
+    "q": "Is it really free, and do I need an account?",
+    "a": "Yes. There is no sign-in and no daily limit, because the work happens on your own device."
+   },
+   {
+    "q": "Are my pictures uploaded anywhere?",
+    "a": "No. The PDF, Word or text file is built in your browser. For text reading, the browser downloads the reading files once; your pictures are not sent anywhere."
+   },
+   {
+    "q": "Can I combine many pictures into one PDF?",
+    "a": "Yes. Add up to 40 pictures, set the order, rotate any that are sideways, and each one becomes its own page in a single file."
+   },
+   {
+    "q": "Can I get editable text in Word?",
+    "a": "Yes. Choose Word (editable text). The tool reads the text with OCR, in English, Hindi or both, and puts it into a Word file. It works best on clear, upright, printed pages, and you should check names, numbers and dates because OCR can make mistakes."
+   },
+   {
+    "q": "What does a searchable PDF mean?",
+    "a": "The PDF keeps your picture exactly as it looks and adds invisible text behind it, so you can search for words and copy text. It works for English. For Hindi, use Word or a text file."
+   },
+   {
+    "q": "Can I put a password on the PDF?",
+    "a": "Yes. Type a password before you convert and the PDF asks for it when opened. Keep the password safe, because we cannot recover it for you."
+   },
+   {
+    "q": "Which formats can I add?",
+    "a": "JPG, PNG and WebP. For HEIC photos from an iPhone, share or save them as JPG first."
+   },
+   {
+    "q": "Why did my file get smaller than the original pictures?",
+    "a": "Very large photos are scaled down to the File size level you choose and saved as JPG inside the file, which keeps it easy to email. Choose High quality to keep more detail. Pictures with transparency are placed on a white background."
+   }
+  ]
  }
 }

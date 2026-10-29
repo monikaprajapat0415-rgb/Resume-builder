@@ -248,6 +248,31 @@ export const termsPage = () => page({
     jsonLd: [crumbs([['Home', '/'], ['Terms & Conditions', '/terms-and-conditions']])],
 });
 
+// ---- Image converter (free tool that runs in the browser). Copy comes from client/src/content/imageConverter.json.
+export const imageConverterPage = () => {
+    const c = data().imageConverter;
+    return page({
+        path: c.path, title: c.title, description: c.description, keywords: c.keywords,
+        body: `<h1>${esc(c.h1)}</h1>
+<p>${esc(c.intro)}</p>
+<h2>How it works</h2>
+<ol>${c.how.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+<h2>What to expect</h2>
+<p>${esc(c.honest)}</p>
+<h3>Works well for</h3>${ul(c.good.map(esc))}
+<h3>Not a fit for</h3>${ul(c.limits.map(esc))}
+<h2>Privacy</h2>
+<p>${esc(c.privacy)}</p>
+${faqHtml(c.faqs)}
+<p>${a('/products', 'More products')} · ${a('/app', 'Free resume builder')} · ${a('/features/ats-checker', 'ATS resume checker')}</p>`,
+        jsonLd: [
+            crumbs([['Home', '/'], ['Products', '/products'], [c.name, c.path]]),
+            { '@context': 'https://schema.org', '@type': 'WebApplication', name: `Prime Resume AI ${c.name}`, url: `${siteUrl()}${c.path}`, applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', description: c.description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+            faqLd(c.faqs),
+        ],
+    });
+};
+
 // ---- Image enhancer (a product: tool page). Copy comes from client/src/content/imageEnhancer.json.
 export const imageEnhancerPage = () => {
     if (!flags.imageEnhancer) return null;   // hidden by the admin: the caller answers 404
