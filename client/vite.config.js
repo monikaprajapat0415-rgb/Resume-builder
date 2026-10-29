@@ -34,6 +34,7 @@ const staticRoutes = [
   '/templates',
   '/products',
   '/products/image-enhancer',
+  '/products/image-converter',
   ...templateSlugs.map((slug) => `/templates/${slug}`),
   '/examples',
   ...exampleSlugs.map((slug) => `/examples/${slug}`),
