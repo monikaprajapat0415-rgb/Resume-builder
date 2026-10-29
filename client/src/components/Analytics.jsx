@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import api from '../configs/api'
 
 // Google Analytics 4. Turned on only when VITE_GA_ID (e.g. G-ABC123XYZ) is set at build time.
 const GA_ID = String(import.meta.env.VITE_GA_ID || '').replace(/^["']|["']$/g, '').trim()
@@ -25,8 +26,21 @@ export const trackEvent = (name, params = {}) => {
   if (ready && typeof window.gtag === 'function') window.gtag('event', name, params)
 }
 
+// Our own visit counter: sends the page path only. No cookie, no IP stored, skipped when Do Not Track is on.
+let lastHit = ''
+const countVisit = (pathname) => {
+  try {
+    if (pathname === lastHit || navigator.doNotTrack === '1') return
+    lastHit = pathname
+    api.post('/api/stats/hit', { path: pathname }).catch(() => {})
+  } catch { /* counting must never break a page */ }
+}
+
 const Analytics = () => {
   const { pathname, search } = useLocation()
+  useEffect(() => {
+    if (!PRIVATE.test(pathname)) countVisit(pathname)
+  }, [pathname])
   useEffect(() => {
     if (PRIVATE.test(pathname)) return
     boot()

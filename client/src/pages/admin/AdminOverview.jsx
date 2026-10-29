@@ -22,11 +22,15 @@ const Action = ({ to, icon: Icon, children }) => (
 const AdminOverview = () => {
   const { token, user } = useSelector(state => state.auth)
   const [stats, setStats] = useState(null)
+  const [visits, setVisits] = useState(null)
 
   useEffect(() => {
     api.get('/api/admin/stats', { headers: { Authorization: token } })
       .then(({ data }) => setStats(data))
       .catch((e) => toast.error(e.response?.data?.message || 'Could not load stats.'))
+    api.get('/api/admin/visits', { headers: { Authorization: token } })
+      .then(({ data }) => setVisits(data))
+      .catch(() => {})
   }, [])
 
   if (!stats) return <p className='text-slate-400'>Loading…</p>
@@ -63,6 +67,40 @@ const AdminOverview = () => {
           <Action to='/admin/seo' icon={LuSearch}>SEO audit</Action>
         </div>
       </div>
+
+      {visits && (
+        <div className='grid lg:grid-cols-3 gap-4 mb-4'>
+          <div className='lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5'>
+            <p className='text-sm font-semibold text-slate-800 mb-3'>Visitors</p>
+            <div className='grid grid-cols-3 gap-4'>
+              <Stat label='Today' value={visits.today.visitors} sub={`${visits.today.views} page views`} />
+              <Stat label='Last 7 days' value={visits.last7.visitors} sub={`${visits.last7.views} page views`} />
+              <Stat label='Last 30 days' value={visits.last30.visitors} sub={`${visits.last30.views} page views`} />
+            </div>
+            <div className='flex items-end gap-1.5 h-20 mt-4' role='img' aria-label='Daily visitors for the last 14 days'>
+              {visits.series.map((d) => (
+                <div key={d.date} className='flex-1 flex flex-col justify-end h-full' title={`${d.date}: ${d.visitors} visitors, ${d.views} views`}>
+                  <div className='w-full bg-brand-500/80 rounded-t' style={{ height: `${Math.max(3, (d.visitors / Math.max(1, ...visits.series.map((x) => x.visitors))) * 100)}%` }} />
+                </div>
+              ))}
+            </div>
+            <p className='text-[11px] text-slate-400 mt-3'>Counted on our own server, without cookies. Each day counts a visitor once; 7 and 30 day totals add the daily counts. Bots, admin pages and Do Not Track visits are skipped.</p>
+          </div>
+          <div className='bg-white rounded-xl border border-slate-200 p-5 min-w-0'>
+            <p className='text-sm font-semibold text-slate-800 mb-3'>Top pages, 7 days</p>
+            {visits.topPages.length === 0 ? <p className='text-sm text-slate-400'>No visits counted yet.</p> : (
+              <ul className='space-y-2'>
+                {visits.topPages.map((p) => (
+                  <li key={p.path} className='flex justify-between gap-3 text-sm'>
+                    <a href={p.path} target='_blank' rel='noreferrer' className='text-slate-700 hover:text-brand-600 truncate min-w-0'>{p.path}</a>
+                    <span className='text-slate-400 shrink-0'>{p.views}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className='grid md:grid-cols-3 gap-4 mb-4'>
         <div className='md:col-span-2 bg-white rounded-xl border border-slate-200 p-5'>

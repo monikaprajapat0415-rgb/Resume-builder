@@ -72,3 +72,12 @@ export const imageLimiter = rateLimit({
     keyGenerator: (req) => req.userId || req.ip,
     message: { message: "You are sending images very quickly. Please wait a few minutes and try again." },
 });
+
+// Visit counter: a real person loads a few dozen pages an hour at most; this stops anyone inflating the numbers.
+export const hitLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 120,
+    standardHeaders: true,
+    legacyHeaders: false,
+    handler: (req, res) => res.status(204).end(),
+});
