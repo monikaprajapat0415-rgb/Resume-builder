@@ -221,6 +221,33 @@ ${faqHtml(data().faqs.hire)}
     jsonLd: [crumbs([['Home', '/'], ['Hire', '/hire']]), faqLd(data().faqs.hire)],
 });
 
+// ---- Contact, Privacy Policy, Terms. Short server copy so the page has its own canonical in the HTML; React shows the full text.
+export const contactPage = () => page({
+    path: '/contact-us', title: 'Contact Us',
+    description: 'Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume.',
+    keywords: 'contact prime resume ai, resume builder support',
+    body: `<h1>Contact Prime Resume AI</h1>
+<p>Questions about the resume builder, your account or a job listing? Send us a message with the form on this page and we will reply by email.</p>
+<p>${a('/', 'Home')} · ${a('/privacy-policy', 'Privacy Policy')} · ${a('/terms-and-conditions', 'Terms and Conditions')}</p>`,
+    jsonLd: [crumbs([['Home', '/'], ['Contact Us', '/contact-us']])],
+});
+export const privacyPage = () => page({
+    path: '/privacy-policy', title: 'Privacy Policy',
+    description: "Read Prime Resume AI's Privacy Policy to learn how we collect, use, and protect your information when you use our resume builder.",
+    body: `<h1>Privacy Policy</h1>
+<p>This policy explains what information Prime Resume AI collects, how we use it, how we protect it and the choices you have.</p>
+<p>${a('/contact-us', 'Contact us')} · ${a('/terms-and-conditions', 'Terms and Conditions')}</p>`,
+    jsonLd: [crumbs([['Home', '/'], ['Privacy Policy', '/privacy-policy']])],
+});
+export const termsPage = () => page({
+    path: '/terms-and-conditions', title: 'Terms & Conditions',
+    description: "Read the Terms & Conditions for using Prime Resume AI's resume builder platform.",
+    body: `<h1>Terms and Conditions</h1>
+<p>These terms describe the rules for using Prime Resume AI and its resume builder.</p>
+<p>${a('/contact-us', 'Contact us')} · ${a('/privacy-policy', 'Privacy Policy')}</p>`,
+    jsonLd: [crumbs([['Home', '/'], ['Terms & Conditions', '/terms-and-conditions']])],
+});
+
 // ---- Image enhancer (a product: tool page). Copy comes from client/src/content/imageEnhancer.json.
 export const imageEnhancerPage = () => {
     if (!flags.imageEnhancer) return null;   // hidden by the admin: the caller answers 404
