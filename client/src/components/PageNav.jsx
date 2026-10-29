@@ -92,7 +92,8 @@ export function StandalonePageNav() {
 export default function PageNav({ className = '' }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  if (pathname === '/' || HIDDEN.test(pathname)) return null;
+  // Hooks must run on every render, so the "nothing to show" return comes after the useEffect below.
+  const hidden = pathname === '/' || HIDDEN.test(pathname);
 
   const trail = trailFor(pathname);
   const own = OWN_TRAIL.test(pathname);
@@ -105,7 +106,7 @@ export default function PageNav({ className = '' }) {
     else navigate(parent);
   };
 
-  const jsonLd = !OWN_LD.test(pathname) && !PRIVATE.test(pathname) && trail.length > 1 ? {
+  const jsonLd = !hidden && !OWN_LD.test(pathname) && !PRIVATE.test(pathname) && trail.length > 1 ? {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: trail.map((c, i) => ({
@@ -121,6 +122,8 @@ export default function PageNav({ className = '' }) {
     if (!jsonLd) return;
     document.head.querySelectorAll('script[data-seo-ssr]').forEach((el) => { if (/"@type":"BreadcrumbList"/.test(el.textContent.replace(/\s/g, ''))) el.remove(); });
   }, [jsonLd?.itemListElement?.length, pathname]);
+
+  if (hidden) return null;
 
   return (
     <div className={`max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>
