@@ -71,7 +71,11 @@ function StaticPrivacyPolicy() {
           <h2 className="text-xl font-semibold mb-2">6. Cookies</h2>
           <p className="text-gray-600">
             We may use cookies to enhance your experience, analyze usage, and
-            improve performance.
+            improve performance. We also count page visits on our own server
+            without cookies: we keep the page address and a daily total, plus a
+            one-way hash that is deleted after two days and is only used to avoid
+            counting the same visitor twice. We do not store your IP address in
+            these counts, and we skip counting if your browser sends Do Not Track.
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+import { getVisits } from '../controllers/visitController.js';
 import express from 'express';
 import multer from 'multer';
 import protect, { isAdmin } from '../middlewares/authMiddleware.js';
@@ -45,7 +46,8 @@ adminRouter.use(protect, isAdmin);
 adminRouter.get('/ai-status', (req, res) => res.json({ providers: defaultRouter().status() }));
 adminRouter.post('/ai-status/test', async (req, res) => res.json({ results: await defaultRouter().probe() }));
 
-adminRouter.get('/stats', getStats);
+adminRouter.get('/stats', getStats)
+adminRouter.get('/visits', getVisits);
 adminRouter.get('/seo-audit', getSeoAudit);
 adminRouter.get('/seo-pages', getSeoPagesAudit);
 
