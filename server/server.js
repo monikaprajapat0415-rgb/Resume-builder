@@ -69,6 +69,9 @@ app.get('/api/health', (req, res) => {
     res.status(mongoose.connection.readyState === 1 ? 200 : 503).json({ status: 'ok', db: states[mongoose.connection.readyState] });
 });
 
+// Nothing under /api is a page for search results (JSON and lesson file downloads), so tell crawlers not to index it.
+app.use('/api', (req, res, next) => { res.set('X-Robots-Tag', 'noindex, nofollow'); next(); });
+
 // While the database is unreachable, fail fast with a readable message instead of
 // letting every request hang until Mongoose's 10-second buffering timeout.
 app.use('/api', (req, res, next) => {
