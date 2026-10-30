@@ -126,7 +126,7 @@ export default function PageNav({ className = '' }) {
   if (hidden) return null;
 
   return (
-    <div className={`max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>
+    <div className={`${/^\/learn\/[^/]+\/[^/]+$/.test(pathname.replace(/\/+$/, '')) ? 'max-w-[1680px] xl:px-10' : 'max-w-6xl md:px-10'} mx-auto px-4 sm:px-6 pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>
       {jsonLd && <Helmet><script type="application/ld+json">{JSON.stringify(jsonLd)}</script></Helmet>}
       <button
         type="button"
