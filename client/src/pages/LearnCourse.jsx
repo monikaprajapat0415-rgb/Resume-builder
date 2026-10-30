@@ -60,7 +60,7 @@ const LearnCourse = () => {
     <div>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/learn/${course.slug}`} canonical={seo.canonical} robots={seo.robots} image={seo.image} imageAlt={seo.imageAlt} structuredData={data.jsonLd} />
       <NavBar />
-      <section className='max-w-3xl mx-auto px-4 py-14'>
+      <section className='max-w-5xl mx-auto px-4 py-14'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/learn' className='hover:text-slate-600'>Learn</Link> › <span>{course.title}</span>
         </nav>

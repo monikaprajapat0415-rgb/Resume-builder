@@ -70,7 +70,7 @@ const RoadmapIndex = () => {
     <div>
       <SEO title='Developer and Career Roadmaps' description={DESC} keywords='developer roadmap, full stack developer roadmap, sql developer roadmap, frontend roadmap, career path' path='/roadmaps' canonical={`${SITE}/roadmaps`} robots={filtered ? 'noindex, follow' : undefined} structuredData={structuredData} />
       <NavBar />
-      <section className='max-w-5xl mx-auto px-4 py-12'>
+      <section className='max-w-page xl:px-10 mx-auto px-4 py-12'>
         <div className='text-center max-w-2xl mx-auto mb-12'>
           <h1 className='text-4xl font-semibold text-slate-800'>Roadmaps for jobs and technologies</h1>
           <p className='text-slate-500 mt-3'>Search a job title or a technology. Each roadmap shows the whole stack end to end, the steps in order, and the best places to learn each one. Tick off steps as you go.</p>
@@ -126,7 +126,7 @@ const RoadmapIndex = () => {
           : groups.map((g) => (
             <div key={g} className='mb-12'>
               <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-4'>{g === 'Results' ? `${roadmaps.length} result${roadmaps.length > 1 ? 's' : ''} for “${q}”` : KIND_HEAD[g]}</h2>
-              <div className='grid sm:grid-cols-2 gap-5'>
+              <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {inGroup(g).map((r) => (
                   <Link key={r.slug} to={`/roadmaps/${r.slug}`} className='group flex gap-4 rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-brand-200 transition'>
                     <span aria-hidden='true' className='size-14 rounded-xl bg-brand-100 text-brand-700 font-bold flex items-center justify-center shrink-0 text-lg'>{r.badge || r.title.slice(0, 2).toUpperCase()}</span>

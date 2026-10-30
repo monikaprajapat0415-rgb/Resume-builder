@@ -25,13 +25,13 @@ const TemplatesIndex = () => {
         structuredData={structuredData}
       />
       <NavBar />
-      <section className='max-w-5xl mx-auto px-4 py-16'>
+      <section className='max-w-page xl:px-10 mx-auto px-4 py-16'>
         <div className='text-center max-w-2xl mx-auto mb-14'>
           <h1 className='text-4xl font-semibold text-slate-800'>Free Resume Templates</h1>
           <p className='text-slate-500 mt-3'>Every template is built as plain, readable text so applicant tracking systems can parse it, and each one shows its ATS rating. Pick a style and fill it in online — no design software needed.</p>
         </div>
 
-        <div className='grid sm:grid-cols-2 gap-8'>
+        <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-8'>
           {resumeTemplates.map((t) => (
             <Link
               key={t.slug}
