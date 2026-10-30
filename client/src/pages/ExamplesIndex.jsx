@@ -39,7 +39,7 @@ const ExamplesIndex = () => {
     <div>
       <SEO title={TITLE} description={DESC} keywords='resume examples, cv examples, ats friendly resume example, 100 ats score resume' path='/examples' structuredData={structuredData} />
       <NavBar />
-      <section className='max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14'>
+      <section className='max-w-page xl:px-10 mx-auto px-4 sm:px-6 py-10 sm:py-14'>
         <div className='flex items-center gap-2 text-brand-600 text-sm font-medium'><LuAward className='size-4' /> Samples that pass every automatic check</div>
         <h1 className='text-3xl sm:text-4xl font-bold text-slate-800 leading-tight mt-2'>Resume and CV examples that score 100/100 on every ATS check</h1>
         <p className='text-slate-600 mt-4 max-w-3xl leading-relaxed'>{HOW}</p>
@@ -56,7 +56,7 @@ const ExamplesIndex = () => {
           return items.length ? (
             <div key={kind} className='mt-12'>
               <h2 className='text-xl font-semibold text-slate-800'>{heading}</h2>
-              <div className='grid sm:grid-cols-2 gap-4 mt-4'>
+              <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-4 mt-4'>
                 {items.map((e) => (
                   <Link key={e.slug} to={`/examples/${e.slug}`} className='group block rounded-xl border border-slate-200 bg-white p-5 hover:border-brand-300 hover:shadow-sm transition'>
                     <div className='flex items-center justify-between gap-3'>

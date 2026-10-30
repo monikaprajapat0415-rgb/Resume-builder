@@ -44,7 +44,7 @@ const ProductsIndex = () => {
         path="/products"
       />
       <NavBar />
-      <section className='max-w-6xl mx-auto px-4 py-16'>
+      <section className='max-w-page xl:px-10 mx-auto px-4 py-16'>
         <div className='text-center max-w-2xl mx-auto mb-12'>
           <h1 className='text-4xl font-semibold text-slate-800'>Products</h1>
           <p className='text-slate-500 mt-3'>Tools and resources to help you land the job.</p>
@@ -94,7 +94,7 @@ const ProductsIndex = () => {
           // The built-in tool cards above count as products, so the empty message shows only inside a category.
           active && <p className='text-center text-slate-400'>No products here yet. Check back soon.</p>
         ) : (
-          <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+          <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
             {products.map((p) => (
               <Link key={p.slug} to={`/products/${p.slug}`} className='group rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-brand-200 transition'>
                 <div className='relative aspect-[4/3] bg-slate-50'>

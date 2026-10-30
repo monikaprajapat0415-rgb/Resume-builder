@@ -6,6 +6,8 @@
 /* The app's main colour. Defaults to the same values as Tailwind green; an admin can change it
    from Admin > Appearance, which overrides these variables at runtime (see utils/theme.js). */
 @theme {
+  /* page-level width for list pages (Learn, Blog, Roadmaps...): wide screens use their space; text pages stay narrower */
+  --container-page: 96rem;
   --color-brand-50: oklch(98.2% 0.018 155.826);
   --color-brand-100: oklch(96.2% 0.044 156.743);
   --color-brand-200: oklch(92.5% 0.084 155.995);

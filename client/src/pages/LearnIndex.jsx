@@ -49,7 +49,7 @@ const LearnIndex = () => {
     <div>
       <SEO title='Free Step-by-Step Tech Tutorials' description={DESC} keywords='tutorials, learn programming, free courses, web development tutorials' path='/learn' structuredData={structuredData} />
       <NavBar />
-      <section className='max-w-5xl mx-auto px-4 py-16'>
+      <section className='max-w-page xl:px-10 mx-auto px-4 py-16'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <span>Learn</span>
         </nav>
@@ -64,7 +64,7 @@ const LearnIndex = () => {
           : topics.map((topic) => (
             <div key={topic} className='mb-12'>
               {topics.length > 1 && <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-4'>{topic}</h2>}
-              <div className='grid sm:grid-cols-2 gap-5'>
+              <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {courses.filter((c) => (c.topic || 'Tutorials') === topic).map((c) => (
                   <Link key={c.slug} to={`/learn/${c.slug}`} className='group flex gap-4 rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-brand-200 transition'>
                     <CourseBadge course={c} />
