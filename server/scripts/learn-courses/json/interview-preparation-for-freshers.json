@@ -250,7 +250,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Do all jobs use the same interview stages?",
+          "options": [
+            "Yes, always the same five rounds",
+            "Only big companies interview",
+            "No, the process differs by company, industry and country"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is the screening call mainly testing?",
+          "options": [
+            "Your salary",
+            "Your technical depth",
+            "Whether you are reachable, clear and basically suitable"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "A written or online test usually checks…",
+          "options": [
+            "Your hobbies",
+            "Your family background",
+            "A basic skill level at scale, often accuracy under time pressure"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Before the Interview",
@@ -497,7 +529,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the best clue to what an employer wants?",
+          "options": [
+            "The reception area",
+            "The company logo",
+            "The job advert"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do if you lack a skill the advert lists?",
+          "options": [
+            "Avoid the interview",
+            "Be honest and mention something similar you have used and that you learn quickly",
+            "Claim you have it"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why copy the advert into a document?",
+          "options": [
+            "To post it online",
+            "To change the requirements",
+            "So you do not lose it if the link disappears"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Before the Interview",
@@ -718,7 +782,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the rule for what to write on your resume?",
+          "options": [
+            "Write everything you have heard of",
+            "Copy skills from the advert",
+            "Only write what you can explain"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What are the three parts of the project story?",
+          "options": [
+            "Title, date and place",
+            "The problem, your part, and the result and lesson",
+            "Tools, cost and team size"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "You did not measure results in your project. What should you do?",
+          "options": [
+            "Say what you observed instead of inventing a figure",
+            "Invent a percentage",
+            "Skip the project"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Common Questions",
@@ -945,7 +1041,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What structure does the lesson suggest for \"Tell me about yourself\"?",
+          "options": [
+            "Childhood, school, hobbies",
+            "Strengths, weaknesses, salary",
+            "Present, Past, Future"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "About how long should the answer be?",
+          "options": [
+            "60 to 90 seconds",
+            "10 minutes",
+            "10 seconds"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What should you leave out?",
+          "options": [
+            "Your relevant skills",
+            "Your studies",
+            "Your life story and details not connected to the job"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Common Questions",
@@ -1164,7 +1292,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What makes a strength believable?",
+          "options": [
+            "A short real example",
+            "Saying it twice",
+            "Using big words"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which weakness answer does the lesson warn against?",
+          "options": [
+            "An honest skill gap you are working on",
+            "A real small weakness with progress",
+            "Clichés like \"I am a perfectionist\""
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What are the three parts of a good weakness answer?",
+          "options": [
+            "Blame, excuse and apology",
+            "A joke, a story and a question",
+            "A real small weakness, what you do about it, and the progress you made"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Common Questions",
@@ -1371,7 +1531,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why is \"I need a job\" alone a weak answer to \"Why do you want to work here?\"",
+          "options": [
+            "It gives the employer no reason to choose you",
+            "It is too short",
+            "It is a lie"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Is it fine to also need the income?",
+          "options": [
+            "No, never mention it",
+            "Yes, just do not make it the only reason",
+            "Only if asked twice"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is the formula for \"Why should we hire you?\"",
+          "options": [
+            "Salary, location and age",
+            "Need, match and proof",
+            "Skills, hobbies and dreams"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Common Questions",
@@ -1597,7 +1789,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does STAR stand for?",
+          "options": [
+            "Story, Team, Aim, Reply",
+            "Skill, Time, Answer, Review",
+            "Situation, Task, Action, Result"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which part of a STAR answer should be the longest?",
+          "options": [
+            "Action",
+            "Task",
+            "Situation"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "A fresher says \"I have no work experience, so I have no stories\". What does the lesson say?",
+          "options": [
+            "That is true, skip behavioural questions",
+            "Stories can come from college, projects, sports, volunteering, family work and part-time jobs",
+            "Invent a job"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Common Questions",
@@ -1839,7 +2063,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How should you answer a hard question like an employment gap?",
+          "options": [
+            "Acknowledge it, give a short honest reason, show what you did, return to the job",
+            "Argue and defend",
+            "Change the dates"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Should you lie about dates to hide a gap?",
+          "options": [
+            "Yes, always",
+            "Yes, if it is small",
+            "No, dates are easy to check"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "For \"you have no experience\", what should you do?",
+          "options": [
+            "Say you are the best",
+            "Apologise at length",
+            "Do not apologise; say what you do have, such as learning, projects and practice"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Tests and Technical Rounds",
@@ -2077,7 +2333,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Someone sells leaked test papers or promises a pass for money. What should you do?",
+          "options": [
+            "Share it with friends",
+            "Buy one to be safe",
+            "Do not pay; it is a scam or cheating"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does negative marking mean?",
+          "options": [
+            "Points are lost for wrong answers",
+            "You must finish early",
+            "The test is negative"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which tells you the real topics of the test?",
+          "options": [
+            "Your friends' guesses",
+            "The job advert or invitation, or the recruiter",
+            "A random website"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Tests and Technical Rounds",
@@ -2301,7 +2589,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is better, according to the lesson?",
+          "options": [
+            "Knowing thirty topics by name only",
+            "Knowing none well",
+            "Knowing eight topics deeply"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do when you do not know the answer?",
+          "options": [
+            "Say so honestly and think aloud about how you would approach it",
+            "Stay silent",
+            "Guess confidently"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is a good test of whether you understand a topic?",
+          "options": [
+            "Explaining it simply to a friend or a younger student",
+            "Reading it three times",
+            "Memorising the page"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Tests and Technical Rounds",
@@ -2527,7 +2847,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Who usually scores higher in a group discussion?",
+          "options": [
+            "The one who talks the most",
+            "Candidates who make fewer, better points, listen and summarise",
+            "The one who interrupts"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you do in the first minute after the topic is given?",
+          "options": [
+            "Wait for others",
+            "Start talking immediately",
+            "Write two or three ideas"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How does an example help?",
+          "options": [
+            "It makes your point stronger than a general statement",
+            "It is not needed",
+            "It makes you talk longer"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "The Day and After",
@@ -2751,7 +3103,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What should you do a day before a video interview?",
+          "options": [
+            "Reinstall your device",
+            "Test your internet, the app and your device",
+            "Nothing"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Where should the light fall?",
+          "options": [
+            "On your face, not behind you",
+            "Behind your head",
+            "In the corner"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What background does the lesson suggest?",
+          "options": [
+            "A silly virtual background",
+            "A plain wall or tidy corner",
+            "A messy room"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "The Day and After",
@@ -2974,7 +3358,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Before naming a salary, what should you do?",
+          "options": [
+            "Pick a random number",
+            "Say any amount",
+            "Research pay for similar roles in the same city"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "If asked for salary expectations, what is a good answer?",
+          "options": [
+            "A single very high number",
+            "A range based on your research",
+            "Refusing to talk"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Should you lie about past pay?",
+          "options": [
+            "Yes, to get more",
+            "Only in writing",
+            "No"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "The Day and After",
@@ -3213,7 +3629,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the most common avoidable mistake on interview day?",
+          "options": [
+            "Eating breakfast",
+            "Wearing too much black",
+            "Being late"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which of these does a real employer NOT do?",
+          "options": [
+            "Ask you to pay a fee to get the job",
+            "Tell you the interview time",
+            "Ask for your CV"
+          ],
+          "answer": 0,
+          "explain": "Fees to get a job are a scam sign. Report it to your local cybercrime service."
+        },
+        {
+          "q": "What should you do with your phone before you walk in?",
+          "options": [
+            "Silence it",
+            "Check messages in the waiting room",
+            "Record the interview"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "The Day and After",
@@ -3450,7 +3898,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "When should you send a thank-you message?",
+          "options": [
+            "After one month",
+            "Never",
+            "Within 24 hours"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do while waiting?",
+          "options": [
+            "Call every hour",
+            "Stop everything",
+            "Keep applying and keep preparing"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "When you get an offer, what should you ask for?",
+          "options": [
+            "Nothing",
+            "The offer in writing with title, pay, hours, location and start date",
+            "A verbal promise only"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

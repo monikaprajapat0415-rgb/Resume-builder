@@ -42,6 +42,10 @@ const AdminLessonEditor = () => {
   const [faqs, setFaqs] = useState([])
   const [download, setDownload] = useState(null)
   const [animText, setAnimText] = useState('')
+  const [quizText, setQuizText] = useState('')
+  const QUIZ_EXAMPLE = [{ q: 'Which command saves a snapshot of your staged changes?', options: ['git add', 'git commit', 'git push'], answer: 1, explain: 'commit records what you staged.' }]
+  let quizError = ''
+  if (quizText.trim()) { try { const v = JSON.parse(quizText); if (!Array.isArray(v)) quizError = 'The quiz must be a list [ ... ] of questions.' } catch { quizError = 'This is not valid JSON yet.' } }
   const [anim, setAnim] = useState({ ok: null, message: '', data: null })
   const [uploading, setUploading] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -61,6 +65,7 @@ const AdminLessonEditor = () => {
           setBlocks(l.content?.length ? l.content : [{ type: 'paragraph', text: '' }])
           setFaqs(l.faqs || [])
           setAnimText(l.animation ? JSON.stringify(l.animation, null, 2) : '')
+          setQuizText(l.quiz ? JSON.stringify(l.quiz, null, 2) : '')
           setDownload(l.download?.file ? l.download : null)
         }
         const { data } = await api.get(`/api/admin/learn/courses/${cid}/lessons`, auth)
@@ -95,6 +100,7 @@ const AdminLessonEditor = () => {
   const submit = async (e) => {
     e.preventDefault()
     if (animText.trim() && anim.ok === false) { toast.error(anim.message || 'Fix the animation first.'); return }
+    if (quizError) { toast.error(quizError); return }
     setSaving(true)
     try {
       const content = blocks.map((b) => {
@@ -103,7 +109,7 @@ const AdminLessonEditor = () => {
         if (b.type === 'code') return { type: 'code', lang: (b.lang || '').trim(), text: b.text || '' }
         return { type: b.type, text: (b.text || '').trim() }
       }).filter((b) => (b.items ? b.items.length > 0 : b.type === 'image' ? b.url : (b.text || '').trim().length > 0))
-      const payload = { ...f, content, animation: animText.trim() ? JSON.parse(animText) : null, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
+      const payload = { ...f, content, animation: animText.trim() ? JSON.parse(animText) : null, quiz: quizText.trim() ? JSON.parse(quizText) : null, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
       if (isEdit) await api.put(`/api/admin/learn/lessons/${lessonId}`, payload, auth)
       else await api.post(`/api/admin/learn/courses/${courseId}/lessons`, payload, auth)
       toast.success(isEdit ? 'Lesson updated.' : 'Lesson created.')
@@ -219,6 +225,18 @@ const AdminLessonEditor = () => {
             {anim.ok === false && <span className='text-xs text-red-600'>{anim.message}</span>}
           </div>
           {anim.ok && anim.data && <LessonAnimation key={animText} animation={anim.data} />}
+        </div>
+
+        <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>
+          <h2 className='text-sm font-semibold text-slate-800'>Quiz <span className='text-slate-400 font-normal'>(optional practice questions shown at the end of the lesson; 60% or more marks the lesson done for the reader)</span></h2>
+          <p className='text-xs text-slate-500'>Write it as JSON, a list of questions. Each has <code>q</code>, <code>options</code> (2 to 5), <code>answer</code> (the position of the right option, starting at 0) and an optional <code>explain</code>. Up to 8 questions. Leave it empty for no quiz. The server checks it when you save.</p>
+          <textarea value={quizText} onChange={(e) => setQuizText(e.target.value)} rows={8} spellCheck={false} className={`${input} font-mono text-xs`} placeholder='Paste the quiz JSON here' />
+          <div className='flex flex-wrap items-center gap-3'>
+            <button type='button' onClick={() => setQuizText(JSON.stringify(QUIZ_EXAMPLE, null, 2))} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>Insert an example</button>
+            {quizText.trim() && <button type='button' onClick={() => setQuizText('')} className='text-xs text-red-500'>Remove the quiz</button>}
+            {quizText.trim() && !quizError && <span className='text-xs text-green-700'>Looks like valid JSON.</span>}
+            {quizError && <span className='text-xs text-red-600'>{quizError}</span>}
+          </div>
         </div>
 
         <details className='bg-white rounded-xl border border-slate-200 p-5'>

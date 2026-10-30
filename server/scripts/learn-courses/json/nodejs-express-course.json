@@ -253,7 +253,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is Node.js?",
+          "options": [
+            "A web browser",
+            "A new programming language",
+            "A runtime that runs JavaScript outside the browser"
+          ],
+          "answer": 2,
+          "explain": "It is not a new language and not a framework."
+        },
+        {
+          "q": "Which version should you download for learning and real projects?",
+          "options": [
+            "LTS (long-term support)",
+            "The newest experimental build",
+            "Any very old version"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What kind of work suits Node.js well?",
+          "options": [
+            "Heavy video editing on a single thread",
+            "Drawing graphics",
+            "Programs that spend most of their time waiting for the network or a database"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Node.js Basics",
@@ -495,7 +527,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does \"type\": \"module\" in package.json do?",
+          "options": [
+            "Makes .js files ES modules so import and export work",
+            "Turns off errors",
+            "Installs Express"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Should you commit node_modules to git?",
+          "options": [
+            "Only on Fridays",
+            "Yes, always",
+            "No, add it to .gitignore"
+          ],
+          "answer": 2,
+          "explain": "Commit package.json and package-lock.json instead."
+        },
+        {
+          "q": "How many default exports can a file have?",
+          "options": [
+            "As many as you like",
+            "None",
+            "One"
+          ],
+          "answer": 2,
+          "explain": "A file can have many named exports but only one default export."
+        }
+      ]
     },
     {
       "section": "Node.js Basics",
@@ -695,7 +759,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why use path.join instead of joining paths with \"/\" by hand?",
+          "options": [
+            "It is shorter",
+            "It encrypts the path",
+            "Windows and Linux use different separators"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does the error code ENOENT mean?",
+          "options": [
+            "The file or folder does not exist",
+            "No permission",
+            "It already exists"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does readFile return without an encoding?",
+          "options": [
+            "A number",
+            "Raw bytes",
+            "Text"
+          ],
+          "answer": 1,
+          "explain": "Use the encoding 'utf8' to get text."
+        }
+      ]
     },
     {
       "section": "Node.js Basics",
@@ -900,7 +996,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a promise?",
+          "options": [
+            "An object standing for a value that is not ready yet",
+            "A type of file",
+            "A kind of loop"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why should you avoid long synchronous work in request code?",
+          "options": [
+            "It uses more disk",
+            "It is not allowed by Node",
+            "It blocks the thread and no other request is answered meanwhile"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What happens if you forget await before a promise?",
+          "options": [
+            "The program stops",
+            "You get the promise object, not its value",
+            "Nothing, it works the same"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Node.js Basics",
@@ -1111,7 +1239,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does a 404 status code mean?",
+          "options": [
+            "The server crashed",
+            "It worked",
+            "The thing was not found"
+          ],
+          "answer": 2,
+          "explain": "The 4xx codes mean the client made a mistake; 5xx means a server problem."
+        },
+        {
+          "q": "Which HTTP method is for reading data and should not change anything?",
+          "options": [
+            "GET",
+            "DELETE",
+            "POST"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "The error EADDRINUSE usually means…",
+          "options": [
+            "Your file is missing",
+            "The password is wrong",
+            "Another program or an old copy of your server is using the port"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Express",
@@ -1343,7 +1503,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does app.get(path, handler) say?",
+          "options": [
+            "Start the database",
+            "Download a file",
+            "When a GET request arrives for this path, run this function"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is req.query?",
+          "options": [
+            "Values from the path",
+            "The response body",
+            "Values after the question mark in the URL, such as ?done=true"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does res.json(object) do?",
+          "options": [
+            "Reads a JSON file",
+            "Sends the object as JSON and sets the content type",
+            "Closes the server"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Express",
@@ -1555,7 +1747,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "In the route /api/tasks/:id, what is req.params.id for /api/tasks/2?",
+          "options": [
+            "The text '2'",
+            "The number 2",
+            "undefined"
+          ],
+          "answer": 0,
+          "explain": "Parameters are always strings."
+        },
+        {
+          "q": "Which status code should follow a successful create?",
+          "options": [
+            "204",
+            "201",
+            "404"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why does route order matter?",
+          "options": [
+            "Express runs them all",
+            "It does not",
+            "Express uses the first route that sends a response"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Express",
@@ -1760,7 +1984,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "A middleware must either send a response or…",
+          "options": [
+            "restart the server",
+            "throw an error",
+            "call next()"
+          ],
+          "answer": 2,
+          "explain": "Otherwise the request hangs until the client gives up."
+        },
+        {
+          "q": "Where must express.json() be placed?",
+          "options": [
+            "It does not matter",
+            "Before any route that reads req.body",
+            "After all routes"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "In Express 5, what is req.body if the request had no JSON content type?",
+          "options": [
+            "null",
+            "An empty object",
+            "undefined"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Express",
@@ -1983,7 +2239,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which method and path create a new task?",
+          "options": [
+            "GET /api/tasks",
+            "POST /api/tasks",
+            "DELETE /api/tasks/:id"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What status does the lesson use after a successful delete with nothing to return?",
+          "options": [
+            "204",
+            "500",
+            "200 with the whole list"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why is data kept in a plain array at first?",
+          "options": [
+            "To keep the code simple; the data disappears when the server stops",
+            "To avoid using routes",
+            "Arrays are the best database"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Express",
@@ -2197,7 +2485,39 @@
         }
       ],
       "readTime": "7 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which status code should an API send for invalid input?",
+          "options": [
+            "200",
+            "500",
+            "400"
+          ],
+          "answer": 2,
+          "explain": "Never use 500 for bad input."
+        },
+        {
+          "q": "Why build a new object with only the allowed fields?",
+          "options": [
+            "Extra fields like id or ownerId sent by the client are dropped",
+            "JSON requires it",
+            "It runs faster"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Where is the central error handler registered?",
+          "options": [
+            "Inside each route",
+            "First",
+            "Last, after all routes"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Data, Login and Going Live",
@@ -2427,7 +2747,39 @@
         }
       ],
       "readTime": "8 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why do settings and secrets not belong in the code?",
+          "options": [
+            "JavaScript cannot store text",
+            "They are faster in the environment",
+            "Each place needs different values and secrets must not be committed"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What type are all values in process.env?",
+          "options": [
+            "Booleans",
+            "Numbers",
+            "Strings (or undefined when missing)"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you commit instead of your real .env?",
+          "options": [
+            "Nothing at all",
+            "A .env.example with names and harmless sample values",
+            "The real .env"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Data, Login and Going Live",
@@ -2649,7 +3001,39 @@
         }
       ],
       "readTime": "7 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "In MongoDB, data is stored as…",
+          "options": [
+            "Plain text files",
+            "Rows and columns only",
+            "Documents grouped in collections"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does a Mongoose schema describe?",
+          "options": [
+            "The HTTP routes",
+            "The server address",
+            "The shape of a document: fields, types and rules"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why await mongoose.connect before starting the server?",
+          "options": [
+            "So no request arrives before the database is ready",
+            "It is required by JavaScript",
+            "It makes the server slower"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Data, Login and Going Live",
@@ -2898,7 +3282,39 @@
         }
       ],
       "readTime": "12 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What should you store instead of a password?",
+          "options": [
+            "A hash made with bcrypt",
+            "The password in plain text",
+            "The password in a cookie"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "A JWT is…",
+          "options": [
+            "Signed, but not encrypted, so never put secrets inside it",
+            "Encrypted and unreadable",
+            "A password"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Where should the JWT secret be stored?",
+          "options": [
+            "Only in the environment, long and random",
+            "In the front-end code",
+            "In the README"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Data, Login and Going Live",
@@ -3114,7 +3530,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Does CORS protect your API from curl or scripts?",
+          "options": [
+            "No, it is enforced by browsers only",
+            "Yes, completely",
+            "Only on Windows"
+          ],
+          "answer": 0,
+          "explain": "You still need authentication and validation."
+        },
+        {
+          "q": "What does express-rate-limit answer after the limit is passed?",
+          "options": [
+            "301 Moved",
+            "200 OK",
+            "429 Too Many Requests"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does the helmet middleware do?",
+          "options": [
+            "Sets HTTP headers that tell browsers to be careful",
+            "Connects to the database",
+            "Hashes passwords"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Data, Login and Going Live",
@@ -3375,7 +3823,39 @@
         }
       ],
       "readTime": "9 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why is it useful to have tests for your API?",
+          "options": [
+            "They make the server faster",
+            "They catch problems when you change the code",
+            "They replace validation"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which Node feature runs tests without extra packages, as in the course?",
+          "options": [
+            "node --test",
+            "node --check-all",
+            "node --server"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Where should live-server settings and secrets come from?",
+          "options": [
+            "A public file",
+            "Environment variables on the server",
+            "The code in the repository"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

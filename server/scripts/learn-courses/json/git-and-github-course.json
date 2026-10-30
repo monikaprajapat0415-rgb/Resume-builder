@@ -220,7 +220,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the difference between Git and GitHub?",
+          "options": [
+            "GitHub is a tool on your computer; Git is a website",
+            "Git is a tool on your computer; GitHub is a website that stores Git projects online",
+            "They are the same thing"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why does Git ask for your name and email?",
+          "options": [
+            "To log in to GitHub",
+            "Every recorded change has an author",
+            "To install updates"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which command checks that Git is installed?",
+          "options": [
+            "git --version",
+            "git install",
+            "git start"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Git Basics",
@@ -422,7 +454,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does git add do?",
+          "options": [
+            "Saves the snapshot to history",
+            "Uploads to GitHub",
+            "Moves changes into the staging area for the next commit"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does git commit do?",
+          "options": [
+            "Shows the status",
+            "Saves what is in the staging area as a snapshot in history",
+            "Deletes the working folder"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which command tells you what is happening and often what to do next?",
+          "options": [
+            "git status",
+            "git init",
+            "git log"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Git Basics",
@@ -615,7 +679,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "git restore menu.txt (with a file you have not staged) will…",
+          "options": [
+            "Throw away your unsaved edit for good",
+            "Make a backup",
+            "Stage the file"
+          ],
+          "answer": 0,
+          "explain": "Git never saved the edit, so it cannot bring it back."
+        },
+        {
+          "q": "Which command undoes a commit that is already shared, without changing history?",
+          "options": [
+            "git revert",
+            "git reset --hard",
+            "git push --force"
+          ],
+          "answer": 0,
+          "explain": "revert adds a new commit that does the opposite."
+        },
+        {
+          "q": "When should you only use git commit --amend?",
+          "options": [
+            "Only on pushed commits",
+            "Never",
+            "On a commit you have not pushed to a shared place"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Git Basics",
@@ -815,7 +911,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a branch?",
+          "options": [
+            "A movable label that points to a commit",
+            "A GitHub account",
+            "A copy of the whole computer"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which command creates a branch and moves to it?",
+          "options": [
+            "git switch -c contact-page",
+            "git merge contact-page",
+            "git branch -d contact-page"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does a Fast-forward merge mean?",
+          "options": [
+            "main had not changed, so Git just moved the label forward with no merge commit",
+            "The merge failed",
+            "Git found a conflict"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Git Basics",
@@ -1003,7 +1131,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a merge conflict?",
+          "options": [
+            "Two branches changed the same lines differently and Git cannot choose",
+            "A missing branch",
+            "A broken computer"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Before committing a resolved file, what must you remove?",
+          "options": [
+            "The marker lines <<<<<<<, ======= and >>>>>>>",
+            "The file name",
+            "All the text"
+          ],
+          "answer": 0,
+          "explain": "Never commit a file that still contains conflict markers."
+        },
+        {
+          "q": "You feel lost in the middle of a merge. What is the safe way out?",
+          "options": [
+            "Delete the repository",
+            "git merge --abort",
+            "git push --force"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "GitHub and Teamwork",
@@ -1220,7 +1380,39 @@
         }
       ],
       "readTime": "7 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a remote?",
+          "options": [
+            "A kind of branch",
+            "Another copy of your repository somewhere else, usually on GitHub",
+            "A type of commit"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does git clone do?",
+          "options": [
+            "Deletes the repository",
+            "Makes a full copy of a repository, with its history, in a new folder",
+            "Only downloads one file"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does the -u in git push -u origin main do?",
+          "options": [
+            "Undoes the push",
+            "Uploads faster",
+            "Links your local main to origin/main so later push and pull know where to go"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "GitHub and Teamwork",
@@ -1433,7 +1625,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a pull request?",
+          "options": [
+            "A command to download files",
+            "A request for others to review your branch and, if good, merge it",
+            "A kind of backup"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What makes a pull request easier to review?",
+          "options": [
+            "Small size and a clear description",
+            "Changing many unrelated things at once",
+            "No description"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "How should you take review comments?",
+          "options": [
+            "As help with the code, not criticism of you",
+            "As attacks",
+            "You should ignore them"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "GitHub and Teamwork",
@@ -1651,7 +1875,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which commit message is most helpful?",
+          "options": [
+            "fix",
+            "Add search box to the header",
+            "stuff"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does one commit = one idea mean?",
+          "options": [
+            "Use only one commit per project",
+            "A typo fix and a new feature belong in two commits",
+            "Commit once a month"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What goes in a .gitignore file?",
+          "options": [
+            "Files and folders Git should not track, such as secrets and build output",
+            "Your password list",
+            "Your commit messages"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Tools and Next Steps",
@@ -1850,7 +2106,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does git stash do?",
+          "options": [
+            "Uploads your changes to GitHub",
+            "Deletes the repository",
+            "Puts uncommitted changes aside so you can get a clean folder"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Is a stash pushed to GitHub?",
+          "options": [
+            "Yes, always",
+            "Only on Mondays",
+            "No, it lives on your computer only"
+          ],
+          "answer": 2,
+          "explain": "So do not use it as a backup."
+        },
+        {
+          "q": "What is a tag used for?",
+          "options": [
+            "A permanent label on a commit, such as a release v1.0",
+            "A type of merge",
+            "A temporary branch"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Tools and Next Steps",
@@ -2060,7 +2348,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is better on your GitHub profile?",
+          "options": [
+            "Three or four finished projects with a clear README",
+            "Only forks of other people's work",
+            "Thirty empty repositories"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What must never go in a public repository?",
+          "options": [
+            "A screenshot of your own project",
+            "A README",
+            "Secrets, personal data or an employer's confidential code"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which kind of site can GitHub Pages host for free, according to the lesson?",
+          "options": [
+            "A mobile app store listing",
+            "A database server",
+            "A static site made of HTML, CSS and JavaScript files"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

@@ -250,7 +250,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is better in workplace writing?",
+          "options": [
+            "Long, rare words",
+            "Very long sentences",
+            "Short words and short sentences"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "You are unsure how formal to be. What does the lesson suggest?",
+          "options": [
+            "Choose neutral and watch how others write to you",
+            "Always be very formal",
+            "Always be very casual"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "About how long should a sentence be?",
+          "options": [
+            "About 15 to 20 words",
+            "About 60 words",
+            "About 3 words"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Foundations",
@@ -490,7 +522,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How do you normally answer \"How are you?\"",
+          "options": [
+            "Briefly, such as \"Good, thanks. How about you?\"",
+            "Not at all",
+            "With a long description of your health"
+          ],
+          "answer": 0,
+          "explain": "It is more a greeting than a real question."
+        },
+        {
+          "q": "What should you include when you introduce yourself?",
+          "options": [
+            "Your full life story",
+            "Your salary",
+            "Your name, your role and one friendly detail"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which is a safe small-talk topic?",
+          "options": [
+            "Religion and politics",
+            "The weather or the journey",
+            "Your colleague's salary"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Foundations",
@@ -757,7 +821,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which sentence is correct?",
+          "options": [
+            "She works in finance.",
+            "She work in finance.",
+            "She working in finance."
+          ],
+          "answer": 0,
+          "explain": "Add s to the verb after he, she and it."
+        },
+        {
+          "q": "When do you use the present perfect (have / has + past form)?",
+          "options": [
+            "For something finished at a definite past time",
+            "For experience or a past action with a result now, without a specific time",
+            "For future plans"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which verbs are normally NOT used with -ing?",
+          "options": [
+            "Verbs of state, such as know, need and want",
+            "Verbs of movement",
+            "All verbs"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Emails and Messages",
@@ -1014,7 +1110,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What makes a good subject line?",
+          "options": [
+            "All capital letters with exclamation marks",
+            "Empty",
+            "Specific, short and tells the reader what it is about"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should the opening line do?",
+          "options": [
+            "Apologise",
+            "Tell your life story",
+            "Say in one sentence why you are writing"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "If you ask several things in one email, what helps?",
+          "options": [
+            "Separate emails every minute",
+            "One long paragraph",
+            "A numbered list so the reader can answer each one"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Emails and Messages",
@@ -1254,7 +1382,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why give a reason and a deadline in a request?",
+          "options": [
+            "It makes the email longer",
+            "A request with a reason is more likely to be accepted, and a deadline helps planning",
+            "It is a legal rule"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A message arrives and you cannot answer yet. What should you do?",
+          "options": [
+            "Delete it",
+            "Acknowledge it quickly and say when you will reply",
+            "Say nothing"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "When should you attach the file?",
+          "options": [
+            "After sending",
+            "Never",
+            "Before writing the final line, so you do not forget"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Emails and Messages",
@@ -1475,7 +1635,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is a part of a good apology?",
+          "options": [
+            "Making long excuses",
+            "Saying what happened and how you will fix it",
+            "Blaming others"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A polite complaint should be…",
+          "options": [
+            "Full of threats",
+            "Angry and in capitals",
+            "Calm, factual and clear about what you want"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What pattern does the lesson give for saying no?",
+          "options": [
+            "Thank, say no clearly, give a short reason, offer an alternative",
+            "Say yes and not do it",
+            "Say nothing and ignore it"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Emails and Messages",
@@ -1701,7 +1893,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "You want to ask a colleague a question on chat. What is better than sending just \"Hi\"?",
+          "options": [
+            "Send \"Hi\" and wait",
+            "Put the question in the first message",
+            "Send ten messages"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A thumbs-up or short \"Thanks\" in chat is useful because…",
+          "options": [
+            "It lets the sender know you saw the message",
+            "It ends the project",
+            "It is required by law"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "When is email better than chat?",
+          "options": [
+            "For a quick question",
+            "For jokes",
+            "For formal messages and anything that needs a record"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Emails and Messages",
@@ -1961,7 +2185,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is the plain English choice?",
+          "options": [
+            "utilise",
+            "use",
+            "facilitate usage of"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "An incident report should be…",
+          "options": [
+            "Only the names",
+            "Full of opinions",
+            "Factual, not emotional or full of opinions"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does a shift handover note tell the next shift?",
+          "options": [
+            "What happened, what is still open, and who must act",
+            "Only the weather",
+            "Nothing"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Speaking and Listening",
@@ -2215,7 +2471,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why do people spell names with a spelling alphabet on the phone?",
+          "options": [
+            "Many letters sound alike, such as B, D, P, T and V",
+            "It is a legal rule",
+            "It is faster"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "How should you say a phone number?",
+          "options": [
+            "Digit by digit, in small groups, with a pause",
+            "As one long number quickly",
+            "Only the last three digits"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is better when you did not catch something?",
+          "options": [
+            "Guess",
+            "Hang up",
+            "Ask the person to repeat or slow down"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Speaking and Listening",
@@ -2457,7 +2745,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How can you prepare before a meeting?",
+          "options": [
+            "Read the agenda and prepare one or two points and a question",
+            "Learn a speech by heart",
+            "Skip the agenda"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which is a polite way to disagree?",
+          "options": [
+            "\"You are wrong.\"",
+            "\"I see it differently, and here is why.\"",
+            "Staying silent and complaining later"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why is a short summary at the end of a meeting useful?",
+          "options": [
+            "It shows leadership and helps everyone confirm what was agreed",
+            "It makes the meeting longer",
+            "It is never useful"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Speaking and Listening",
@@ -2683,7 +3003,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why is speech harder to understand than writing?",
+          "options": [
+            "Speech has no words",
+            "Words run together and people speak fast with different accents",
+            "Reading is always harder"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What helps you follow a fast speaker?",
+          "options": [
+            "Understand every single word",
+            "Stop at the first unknown word",
+            "Listen for key words like numbers, names and verbs and use the context"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why repeat back what you understood?",
+          "options": [
+            "It checks understanding and lets the speaker correct you",
+            "It annoys people",
+            "It saves time always"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Speaking and Listening",
@@ -2929,7 +3281,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What should you decide first when preparing a presentation?",
+          "options": [
+            "Which colours to use",
+            "How many slides",
+            "Who is listening and the one message you want them to remember"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How many ideas should one slide have?",
+          "options": [
+            "Ten",
+            "As many as fit",
+            "One"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What do signposting phrases do?",
+          "options": [
+            "Hide your notes",
+            "End the talk",
+            "Tell the audience where you are in the talk"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "People and Career",
@@ -3196,7 +3580,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does the first L in LEAP stand for?",
+          "options": [
+            "Laugh",
+            "Leave",
+            "Listen"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do when you apologise to a customer?",
+          "options": [
+            "Apologise once clearly, then move to the solution",
+            "Apologise many times with no action",
+            "Blame a colleague"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What should you promise to a customer?",
+          "options": [
+            "Only what you can really do, on time",
+            "Nothing ever",
+            "Anything to end the call"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "People and Career",
@@ -3441,7 +3857,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Someone gives you feedback. What should you do first?",
+          "options": [
+            "Ignore it",
+            "Listen to the end before defending yourself",
+            "Argue at once"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "When should you tell your manager about a problem or delay?",
+          "options": [
+            "As late as possible",
+            "Never",
+            "Early"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which feedback is better?",
+          "options": [
+            "\"The report had mistakes.\"",
+            "\"You are careless.\"",
+            "\"You are bad.\""
+          ],
+          "answer": 0,
+          "explain": "Talk about actions, not about the person's character."
+        }
+      ]
     },
     {
       "section": "People and Career",
@@ -3724,7 +4172,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What kind of practice does the lesson favour?",
+          "options": [
+            "Small steady practice every day",
+            "One long session a year",
+            "Only memorising grammar rules"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which is a good way to build a habit?",
+          "options": [
+            "Fix a small daily time and keep a record",
+            "Study only before exams",
+            "Wait until you feel ready"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "When reading, how should you deal with new words?",
+          "options": [
+            "Skip reading",
+            "Look up every single word",
+            "Guess from context and look up only words that appear again and again"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

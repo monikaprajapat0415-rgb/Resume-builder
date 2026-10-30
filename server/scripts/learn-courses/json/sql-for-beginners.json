@@ -257,7 +257,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "In a relational database, what is a row?",
+          "options": [
+            "One thing described by the facts, such as one customer",
+            "A link to another database",
+            "One kind of fact, such as price"
+          ],
+          "answer": 0,
+          "explain": "A column is one kind of fact. A row is one thing described by those facts."
+        },
+        {
+          "q": "What does a foreign key do?",
+          "options": [
+            "It says which table a row belongs to by pointing at another table's key",
+            "It makes a column impossible to change",
+            "It sorts the table"
+          ],
+          "answer": 0,
+          "explain": "The primary key says \"who am I?\". The foreign key says \"who do I belong to?\"."
+        },
+        {
+          "q": "Which SQL command reads rows that match a question?",
+          "options": [
+            "DELETE",
+            "INSERT",
+            "SELECT"
+          ],
+          "answer": 2,
+          "explain": "SELECT reads data. INSERT adds, UPDATE changes and DELETE removes."
+        }
+      ]
     },
     {
       "section": "Start Here",
@@ -491,7 +523,39 @@
         }
       ],
       "readTime": "8 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why does the course use SQLite for practice?",
+          "options": [
+            "It needs no server and no password, and stores everything in one file",
+            "It is the only database that supports SQL",
+            "It is faster than every other database"
+          ],
+          "answer": 0,
+          "explain": "SQLite is a tiny engine that keeps the whole database in a single file."
+        },
+        {
+          "q": "What happens when you type sqlite3 shop.db on the command line?",
+          "options": [
+            "It creates or opens a file called shop.db and shows a prompt",
+            "It installs a server",
+            "It deletes shop.db"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why run the setup script on your own practice file only?",
+          "options": [
+            "So a mistake can be fixed by deleting the file and starting again",
+            "Because SQL cannot run anywhere else",
+            "Because the script is secret"
+          ],
+          "answer": 0,
+          "explain": "Practise on your own shop.db, never on a company database."
+        }
+      ]
     },
     {
       "section": "Reading Data",
@@ -756,7 +820,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which order is always correct?",
+          "options": [
+            "SELECT, FROM, WHERE",
+            "FROM, SELECT, WHERE",
+            "SELECT, WHERE, FROM"
+          ],
+          "answer": 0,
+          "explain": "You write SELECT, then FROM, then WHERE."
+        },
+        {
+          "q": "How do you test for a missing value?",
+          "options": [
+            "WHERE city = NULL",
+            "WHERE city = ''",
+            "WHERE city IS NULL"
+          ],
+          "answer": 2,
+          "explain": "Use IS NULL and IS NOT NULL. Never = NULL."
+        },
+        {
+          "q": "In SQL, text values are written with…",
+          "options": [
+            "single quotes, like 'Nairobi'",
+            "square brackets",
+            "no quotes at all"
+          ],
+          "answer": 0,
+          "explain": "Without quotes the database looks for a column with that name."
+        }
+      ]
     },
     {
       "section": "Reading Data",
@@ -1023,7 +1119,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which statement is true?",
+          "options": [
+            "They always give the same rows",
+            "AND narrows the result, OR widens it",
+            "AND widens the result, OR narrows it"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does BETWEEN 100 AND 700 include?",
+          "options": [
+            "Both 100 and 700",
+            "Only the values strictly between them",
+            "Only 100"
+          ],
+          "answer": 0,
+          "explain": "BETWEEN includes both ends. The smaller number must come first."
+        },
+        {
+          "q": "Which query finds names that contain the word note?",
+          "options": [
+            "WHERE name IN 'note'",
+            "WHERE name = '%note%'",
+            "WHERE name LIKE '%note%'"
+          ],
+          "answer": 2,
+          "explain": "Use LIKE with % for patterns. = looks for the exact text."
+        }
+      ]
     },
     {
       "section": "Reading Data",
@@ -1306,7 +1434,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "If you do not write ORDER BY, what order do you get?",
+          "options": [
+            "Always oldest first",
+            "Always alphabetical",
+            "No promised order"
+          ],
+          "answer": 2,
+          "explain": "You must never depend on the default order."
+        },
+        {
+          "q": "How do you sort largest first?",
+          "options": [
+            "SORT price DESC",
+            "ORDER BY price DESC",
+            "ORDER BY price DOWN"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does DISTINCT do?",
+          "options": [
+            "Counts the rows",
+            "Removes repeated values from the result",
+            "Sorts the rows"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Summaries and Groups",
@@ -1578,7 +1738,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the difference between COUNT(*) and COUNT(column)?",
+          "options": [
+            "None",
+            "COUNT(*) skips NULL values",
+            "COUNT(column) skips NULL values; COUNT(*) counts every row"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why does SELECT name, MAX(price) FROM products not work as a beginner might expect?",
+          "options": [
+            "The database does not know which name goes with the one maximum without more instructions",
+            "MAX cannot be used on numbers",
+            "Because price is text"
+          ],
+          "answer": 0,
+          "explain": "Mixing an aggregate and a plain column needs GROUP BY."
+        },
+        {
+          "q": "Can you write WHERE COUNT(*) > 2?",
+          "options": [
+            "Only in SQLite",
+            "Yes, always",
+            "No, WHERE filters rows before counting; use HAVING"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Summaries and Groups",
@@ -1865,7 +2057,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which clause filters groups after they are made?",
+          "options": [
+            "LIMIT",
+            "HAVING",
+            "WHERE"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A selected column that is not inside an aggregate must…",
+          "options": [
+            "also appear in GROUP BY",
+            "be left out",
+            "be written in capitals"
+          ],
+          "answer": 0,
+          "explain": "That is the main rule of GROUP BY."
+        },
+        {
+          "q": "When should you use WHERE together with GROUP BY?",
+          "options": [
+            "To throw away rows you do not need before grouping",
+            "Only to sort the groups",
+            "Never; it is not allowed"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Several Tables",
@@ -2117,7 +2341,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why is data split into several tables?",
+          "options": [
+            "Because databases cannot hold a big table",
+            "So each fact is stored once and does not have to be fixed in many places",
+            "To make queries slower"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A column ending in _id (such as customer_id) is probably…",
+          "options": [
+            "a primary key of the same table",
+            "a foreign key pointing to another table",
+            "a text column"
+          ],
+          "answer": 1,
+          "explain": "Look for _id columns when you read an unfamiliar database."
+        },
+        {
+          "q": "What is a good simple rule for designing a small database?",
+          "options": [
+            "One table for each kind of thing",
+            "One table per day",
+            "One table for everything"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Several Tables",
@@ -2393,7 +2649,39 @@
         }
       ],
       "readTime": "7 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does INNER JOIN return?",
+          "options": [
+            "All rows from the left table",
+            "Only rows that have a match on both sides",
+            "All rows from both tables"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "You run customers LEFT JOIN orders and one customer has no orders. What happens to that customer?",
+          "options": [
+            "They stay, and the order columns are NULL",
+            "The query fails",
+            "They are dropped"
+          ],
+          "answer": 0,
+          "explain": "LEFT JOIN keeps every row from the left table and fills missing matches with NULL."
+        },
+        {
+          "q": "How do you find rows with no match in the other table?",
+          "options": [
+            "LEFT JOIN, then WHERE the right-side key IS NULL",
+            "INNER JOIN with WHERE = 0",
+            "CROSS JOIN"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Several Tables",
@@ -2645,7 +2933,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which part of a query with a subquery runs first?",
+          "options": [
+            "They run at the same time",
+            "The outer query",
+            "The inner query"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is the NOT IN trap?",
+          "options": [
+            "It is slower",
+            "It only works on text",
+            "If the list contains NULL, no rows may match"
+          ],
+          "answer": 2,
+          "explain": "NOT IN with a NULL in the list can return nothing. NOT EXISTS is safer."
+        },
+        {
+          "q": "What does a CTE (WITH) give you?",
+          "options": [
+            "A new table saved on disk",
+            "A name for each step so a long query is easier to read",
+            "A faster computer"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Changing Data",
@@ -2923,7 +3243,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the most dangerous mistake with UPDATE or DELETE?",
+          "options": [
+            "Using single quotes",
+            "Leaving out the WHERE",
+            "Using capital letters"
+          ],
+          "answer": 1,
+          "explain": "Without WHERE, every row is changed or removed."
+        },
+        {
+          "q": "What should you do before running an UPDATE or DELETE?",
+          "options": [
+            "Restart the computer",
+            "Nothing",
+            "Run a SELECT with the same WHERE and look at the rows"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why write the column list in INSERT INTO table (columns) VALUES (...)?",
+          "options": [
+            "It does not break when someone adds a column to the table",
+            "It is required by every engine",
+            "It makes the insert faster"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Changing Data",
@@ -3178,7 +3530,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a constraint?",
+          "options": [
+            "A comment in the code",
+            "A rule the database checks every time you insert or update a row",
+            "A kind of index"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which constraint stops two rows having the same email?",
+          "options": [
+            "DEFAULT",
+            "NOT NULL",
+            "UNIQUE"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which type does the lesson suggest for money in most engines?",
+          "options": [
+            "TEXT",
+            "DECIMAL(10,2) (or whole numbers of the smallest unit)",
+            "BOOLEAN"
+          ],
+          "answer": 1,
+          "explain": "Decimals avoid odd rounding that floating point numbers can cause."
+        }
+      ]
     },
     {
       "section": "Going Further",
@@ -3455,7 +3839,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How is a window function different from GROUP BY?",
+          "options": [
+            "It only works on text",
+            "It keeps every row and adds a calculated column",
+            "It collapses rows into one"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does PARTITION BY do inside OVER?",
+          "options": [
+            "Deletes duplicate rows",
+            "Sorts the final result",
+            "Restarts the calculation for each group"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Can you filter on a window function directly in WHERE?",
+          "options": [
+            "Only with HAVING",
+            "Yes",
+            "No, wrap the query in a subquery or CTE and filter outside"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Going Further",
@@ -3699,7 +4115,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is an index like?",
+          "options": [
+            "The index at the back of a textbook that lets you jump to the right page",
+            "A backup copy of the table",
+            "A password"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which habit can stop an ordinary index being used?",
+          "options": [
+            "Putting a function on the column, like WHERE UPPER(name) = 'ASHA'",
+            "Using AND",
+            "Naming the columns in SELECT"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Are indexes free?",
+          "options": [
+            "Yes, they speed up everything",
+            "No, they take space and make inserts and updates slower",
+            "Yes, add one to every column"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Going Further",
@@ -3990,7 +4438,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the difference between WHERE and HAVING?",
+          "options": [
+            "HAVING is only for text",
+            "They are the same",
+            "WHERE filters rows before grouping; HAVING filters groups after grouping"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is the difference between DELETE and DROP?",
+          "options": [
+            "They do the same thing",
+            "DROP only removes one row",
+            "DELETE removes chosen rows; DROP removes the whole table including its structure"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "A good way to answer a query question in an interview is to…",
+          "options": [
+            "guess without checking",
+            "type the full query silently",
+            "say your plan, start simple, run it and mention edge cases like NULLs"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

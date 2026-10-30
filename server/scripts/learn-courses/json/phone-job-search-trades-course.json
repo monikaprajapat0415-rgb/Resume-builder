@@ -228,7 +228,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which of these should you never give to anyone?",
+          "options": [
+            "Your name",
+            "Your town",
+            "Your email password, bank PIN or OTP"
+          ],
+          "answer": 2,
+          "explain": "An honest employer or job site never asks for them."
+        },
+        {
+          "q": "Why keep your phone charged and with some balance?",
+          "options": [
+            "A job call you miss may not come again",
+            "It is a rule",
+            "To play games"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which email name is better for job hunting?",
+          "options": [
+            "cooldude99",
+            "lovely_gir123",
+            "sunil.kumar.electrician"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Get Ready",
@@ -424,7 +456,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which sounds clearer to an employer?",
+          "options": [
+            "I can do plumbing.",
+            "I do everything.",
+            "I fix leaks, fit bathrooms and install water tanks. 6 years on houses and shops."
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What kind of facts should you write?",
+          "options": [
+            "Only real facts",
+            "Facts that sound big, even if not true",
+            "Nothing"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why list your tools, machines and licences?",
+          "options": [
+            "Employers want to know what you can use",
+            "It is not needed",
+            "It makes the list longer"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Get Ready",
@@ -629,7 +693,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How long should the resume be?",
+          "options": [
+            "One page",
+            "Ten lines of poetry",
+            "Five pages"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which layout is better?",
+          "options": [
+            "Many colours and pictures",
+            "Plain, one column, simple letters",
+            "Tiny text in boxes"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you check twice?",
+          "options": [
+            "Your phone number and email",
+            "The paper colour",
+            "The font name"
+          ],
+          "answer": 0,
+          "explain": "A wrong number means the employer cannot reach you."
+        }
+      ]
     },
     {
       "section": "Get Ready",
@@ -822,7 +918,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How should you take a photo of a paper?",
+          "options": [
+            "Cut off the edges",
+            "From the side in the dark",
+            "Flat, in good light, from straight above, with all four corners in the picture"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Someone asks for your ID and bank details before giving you a clear job or written offer. What should you do?",
+          "options": [
+            "Stop. This is a common trick of thieves",
+            "Send half of them",
+            "Send them quickly"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why put the pages of one paper into one PDF?",
+          "options": [
+            "It is a rule of phones",
+            "It makes the file bigger",
+            "It is tidy and easy to send"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Find and Apply",
@@ -1020,7 +1148,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the best plan to find work?",
+          "options": [
+            "Wait at home",
+            "Use only one website",
+            "Use several ways at the same time"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "A job advert has no company name, no place and no clear work. What is it?",
+          "options": [
+            "A government job",
+            "A warning sign",
+            "A great job"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Someone promises you a government job if you pay them. What should you do?",
+          "options": [
+            "Do not pay; use official offices or websites",
+            "Pay half",
+            "Pay quickly"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Find and Apply",
@@ -1240,7 +1400,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What should a short application message include?",
+          "options": [
+            "A joke",
+            "Who you are, the job you want, one or two real reasons, and how to reach you",
+            "Your whole life story"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should an email subject line say?",
+          "options": [
+            "Urgent!!!",
+            "The job and your name, like \"Application: Electrician - Sunil Kumar\"",
+            "Hi"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "How long should a voice note be, if you use one?",
+          "options": [
+            "As long as you like",
+            "Ten minutes",
+            "Under 30 seconds"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Stay Safe and Succeed",
@@ -1453,7 +1645,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which is a warning sign of a scam?",
+          "options": [
+            "They give you the company address",
+            "They offer a written offer",
+            "They ask you to pay money before you start"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How can you check a company?",
+          "options": [
+            "Ask the person who messaged you",
+            "Trust the message",
+            "Search its name and call the number from its official website"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "You shared your bank details with a scammer. What should you do?",
+          "options": [
+            "Delete the messages",
+            "Wait a week",
+            "Call your bank at once, using the number on your bank card"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Stay Safe and Succeed",
@@ -1682,7 +1906,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "When should you arrive?",
+          "options": [
+            "One hour late",
+            "Exactly on time with no plan",
+            "Ten or fifteen minutes early"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do with your phone in the interview?",
+          "options": [
+            "Play music",
+            "Make calls",
+            "Keep it on silent"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "If you will be late, what should you do?",
+          "options": [
+            "Call or message and say so",
+            "Say nothing",
+            "Do not come"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Stay Safe and Succeed",
@@ -1890,7 +2146,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why ask for the offer in writing?",
+          "options": [
+            "It makes you look rich",
+            "Many problems start because nothing was clear at the beginning",
+            "It is a fun thing to do"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you do if you cannot read the agreement well?",
+          "options": [
+            "Sign a blank page",
+            "Ask a trusted person to read it with you before you sign",
+            "Sign it quickly"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "If you work extra hours, what is a good habit?",
+          "options": [
+            "Write down the date, start time, end time and breaks",
+            "Do not note anything",
+            "Tell no one"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Stay Safe and Succeed",
@@ -2088,7 +2376,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does the lesson say about looking for work?",
+          "options": [
+            "Do it once a month",
+            "Wait for a call",
+            "Do a little every day; it is a job in itself"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "If a week goes badly, what is normal?",
+          "options": [
+            "Hide it",
+            "A bad week happens. Rest and talk to someone you trust",
+            "Quit forever"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which new skill idea fits many trades?",
+          "options": [
+            "Poetry",
+            "Making slides",
+            "Basic maths for measuring and cost"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true
