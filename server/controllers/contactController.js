@@ -23,8 +23,8 @@ export const submitMessage = async (req, res) => {
         await Message.create({ name: n, email: e, message: m });
 
         // Best-effort heads-up to the admin. The message is already saved, so an email
-        // failure (bad SendGrid key, etc.) must never turn this into an error for the visitor.
-        if (process.env.ADMIN_EMAIL && process.env.SENDGRID_API_KEY) {
+        // failure (bad email API key, etc.) must never turn this into an error for the visitor.
+        if (process.env.ADMIN_EMAIL && process.env.BREVO_API_KEY) {
             sendEmail(
                 process.env.ADMIN_EMAIL, '',
                 `New contact message from ${n}`,
