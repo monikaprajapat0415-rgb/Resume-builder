@@ -1,0 +1,3538 @@
+{
+ "workplace-english-course": {
+  "workplace-english-tone-and-politeness": [
+   {
+    "q": "Which is better in workplace writing?",
+    "options": [
+     "Long, rare words",
+     "Very long sentences",
+     "Short words and short sentences"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "You are unsure how formal to be. What does the lesson suggest?",
+    "options": [
+     "Choose neutral and watch how others write to you",
+     "Always be very formal",
+     "Always be very casual"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "About how long should a sentence be?",
+    "options": [
+     "About 15 to 20 words",
+     "About 60 words",
+     "About 3 words"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "introduce-yourself-and-small-talk": [
+   {
+    "q": "How do you normally answer \"How are you?\"",
+    "options": [
+     "Briefly, such as \"Good, thanks. How about you?\"",
+     "Not at all",
+     "With a long description of your health"
+    ],
+    "answer": 0,
+    "explain": "It is more a greeting than a real question."
+   },
+   {
+    "q": "What should you include when you introduce yourself?",
+    "options": [
+     "Your full life story",
+     "Your salary",
+     "Your name, your role and one friendly detail"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which is a safe small-talk topic?",
+    "options": [
+     "Religion and politics",
+     "The weather or the journey",
+     "Your colleague's salary"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "clear-sentences-and-common-english-mistakes": [
+   {
+    "q": "Which sentence is correct?",
+    "options": [
+     "She works in finance.",
+     "She work in finance.",
+     "She working in finance."
+    ],
+    "answer": 0,
+    "explain": "Add s to the verb after he, she and it."
+   },
+   {
+    "q": "When do you use the present perfect (have / has + past form)?",
+    "options": [
+     "For something finished at a definite past time",
+     "For experience or a past action with a result now, without a specific time",
+     "For future plans"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which verbs are normally NOT used with -ing?",
+    "options": [
+     "Verbs of state, such as know, need and want",
+     "Verbs of movement",
+     "All verbs"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "email-structure-subject-greeting-closing": [
+   {
+    "q": "What makes a good subject line?",
+    "options": [
+     "All capital letters with exclamation marks",
+     "Empty",
+     "Specific, short and tells the reader what it is about"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should the opening line do?",
+    "options": [
+     "Apologise",
+     "Tell your life story",
+     "Say in one sentence why you are writing"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "If you ask several things in one email, what helps?",
+    "options": [
+     "Separate emails every minute",
+     "One long paragraph",
+     "A numbered list so the reader can answer each one"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "requests-replies-and-follow-up-emails": [
+   {
+    "q": "Why give a reason and a deadline in a request?",
+    "options": [
+     "It makes the email longer",
+     "A request with a reason is more likely to be accepted, and a deadline helps planning",
+     "It is a legal rule"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A message arrives and you cannot answer yet. What should you do?",
+    "options": [
+     "Delete it",
+     "Acknowledge it quickly and say when you will reply",
+     "Say nothing"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "When should you attach the file?",
+    "options": [
+     "After sending",
+     "Never",
+     "Before writing the final line, so you do not forget"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "apologies-complaints-and-saying-no-politely": [
+   {
+    "q": "Which is a part of a good apology?",
+    "options": [
+     "Making long excuses",
+     "Saying what happened and how you will fix it",
+     "Blaming others"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A polite complaint should be…",
+    "options": [
+     "Full of threats",
+     "Angry and in capitals",
+     "Calm, factual and clear about what you want"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What pattern does the lesson give for saying no?",
+    "options": [
+     "Thank, say no clearly, give a short reason, offer an alternative",
+     "Say yes and not do it",
+     "Say nothing and ignore it"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "chat-messages-teams-whatsapp-etiquette": [
+   {
+    "q": "You want to ask a colleague a question on chat. What is better than sending just \"Hi\"?",
+    "options": [
+     "Send \"Hi\" and wait",
+     "Put the question in the first message",
+     "Send ten messages"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A thumbs-up or short \"Thanks\" in chat is useful because…",
+    "options": [
+     "It lets the sender know you saw the message",
+     "It ends the project",
+     "It is required by law"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "When is email better than chat?",
+    "options": [
+     "For a quick question",
+     "For jokes",
+     "For formal messages and anything that needs a record"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "reports-notes-and-meeting-minutes": [
+   {
+    "q": "Which is the plain English choice?",
+    "options": [
+     "utilise",
+     "use",
+     "facilitate usage of"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "An incident report should be…",
+    "options": [
+     "Only the names",
+     "Full of opinions",
+     "Factual, not emotional or full of opinions"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does a shift handover note tell the next shift?",
+    "options": [
+     "What happened, what is still open, and who must act",
+     "Only the weather",
+     "Nothing"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "phone-calls-and-voicemail-english": [
+   {
+    "q": "Why do people spell names with a spelling alphabet on the phone?",
+    "options": [
+     "Many letters sound alike, such as B, D, P, T and V",
+     "It is a legal rule",
+     "It is faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How should you say a phone number?",
+    "options": [
+     "Digit by digit, in small groups, with a pause",
+     "As one long number quickly",
+     "Only the last three digits"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is better when you did not catch something?",
+    "options": [
+     "Guess",
+     "Hang up",
+     "Ask the person to repeat or slow down"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "speak-up-in-meetings": [
+   {
+    "q": "How can you prepare before a meeting?",
+    "options": [
+     "Read the agenda and prepare one or two points and a question",
+     "Learn a speech by heart",
+     "Skip the agenda"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which is a polite way to disagree?",
+    "options": [
+     "\"You are wrong.\"",
+     "\"I see it differently, and here is why.\"",
+     "Staying silent and complaining later"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why is a short summary at the end of a meeting useful?",
+    "options": [
+     "It shows leadership and helps everyone confirm what was agreed",
+     "It makes the meeting longer",
+     "It is never useful"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "understand-accents-and-listen-better": [
+   {
+    "q": "Why is speech harder to understand than writing?",
+    "options": [
+     "Speech has no words",
+     "Words run together and people speak fast with different accents",
+     "Reading is always harder"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What helps you follow a fast speaker?",
+    "options": [
+     "Understand every single word",
+     "Stop at the first unknown word",
+     "Listen for key words like numbers, names and verbs and use the context"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why repeat back what you understood?",
+    "options": [
+     "It checks understanding and lets the speaker correct you",
+     "It annoys people",
+     "It saves time always"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "presentations-and-explaining-your-work": [
+   {
+    "q": "What should you decide first when preparing a presentation?",
+    "options": [
+     "Which colours to use",
+     "How many slides",
+     "Who is listening and the one message you want them to remember"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How many ideas should one slide have?",
+    "options": [
+     "Ten",
+     "As many as fit",
+     "One"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What do signposting phrases do?",
+    "options": [
+     "Hide your notes",
+     "End the talk",
+     "Tell the audience where you are in the talk"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "customer-service-english": [
+   {
+    "q": "What does the first L in LEAP stand for?",
+    "options": [
+     "Laugh",
+     "Leave",
+     "Listen"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do when you apologise to a customer?",
+    "options": [
+     "Apologise once clearly, then move to the solution",
+     "Apologise many times with no action",
+     "Blame a colleague"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should you promise to a customer?",
+    "options": [
+     "Only what you can really do, on time",
+     "Nothing ever",
+     "Anything to end the call"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "feedback-teamwork-and-your-manager": [
+   {
+    "q": "Someone gives you feedback. What should you do first?",
+    "options": [
+     "Ignore it",
+     "Listen to the end before defending yourself",
+     "Argue at once"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "When should you tell your manager about a problem or delay?",
+    "options": [
+     "As late as possible",
+     "Never",
+     "Early"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which feedback is better?",
+    "options": [
+     "\"The report had mistakes.\"",
+     "\"You are careless.\"",
+     "\"You are bad.\""
+    ],
+    "answer": 0,
+    "explain": "Talk about actions, not about the person's character."
+   }
+  ],
+  "improve-your-english-every-day-plan": [
+   {
+    "q": "What kind of practice does the lesson favour?",
+    "options": [
+     "Small steady practice every day",
+     "One long session a year",
+     "Only memorising grammar rules"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which is a good way to build a habit?",
+    "options": [
+     "Fix a small daily time and keep a record",
+     "Study only before exams",
+     "Wait until you feel ready"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "When reading, how should you deal with new words?",
+    "options": [
+     "Skip reading",
+     "Look up every single word",
+     "Guess from context and look up only words that appear again and again"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
+ "excel-for-jobs-course": {
+  "excel-screen-cells-first-sheet": [
+   {
+    "q": "What is the address of the cell in column C, row 4?",
+    "options": [
+     "C-4",
+     "C4",
+     "4C"
+    ],
+    "answer": 1,
+    "explain": "The column letter comes first, then the row number."
+   },
+   {
+    "q": "What is a whole Excel file called?",
+    "options": [
+     "A workbook",
+     "A worksheet",
+     "A cell"
+    ],
+    "answer": 0,
+    "explain": "A workbook holds one or more worksheets, shown as tabs."
+   },
+   {
+    "q": "Which keys move you right and then down while typing a table without the mouse?",
+    "options": [
+     "Tab to move right, Enter to go down",
+     "Ctrl+C and Ctrl+V",
+     "Esc and Delete"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "enter-and-format-data": [
+   {
+    "q": "A number sits on the left side of its cell and SUM ignores it. What is the most likely cause?",
+    "options": [
+     "The file is too large",
+     "Excel is treating it as text",
+     "The column is too narrow"
+    ],
+    "answer": 1,
+    "explain": "Numbers align right by default. Left-aligned numbers are often text."
+   },
+   {
+    "q": "How can you keep the leading zero in a code like 007?",
+    "options": [
+     "It cannot be done",
+     "Type it twice",
+     "Format the cells as Text before typing, or start with an apostrophe"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why can the date 03/04/2024 be read two ways?",
+    "options": [
+     "Dates must always have a slash",
+     "Countries write day and month in a different order",
+     "Excel stores dates as text"
+    ],
+    "answer": 1,
+    "explain": "It is 3 April in India, the UK and most of Africa, but 4 March in the US."
+   }
+  ],
+  "first-formulas-and-cell-references": [
+   {
+    "q": "Every formula starts with…",
+    "options": [
+     "a plus sign +",
+     "a quote mark",
+     "an equals sign ="
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When should you make a reference absolute, like $B$1?",
+    "options": [
+     "Never",
+     "When the formula must keep pointing at one input cell, such as a tax rate, after being copied",
+     "When the cell contains text"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the fill handle (small square in the corner of a cell) do?",
+    "options": [
+     "Changes the font",
+     "Deletes the cell",
+     "Copies the formula down and adjusts it for each row"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "sum-average-count-min-max": [
+   {
+    "q": "What is the difference between COUNT and COUNTA?",
+    "options": [
+     "They are the same",
+     "COUNT counts text only",
+     "COUNT counts cells with numbers; COUNTA counts cells that are not empty, including text"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does #DIV/0! mean?",
+    "options": [
+     "You divided by zero or an empty cell",
+     "The function name is misspelled",
+     "A cell was deleted"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which shortcut enters AutoSum?",
+    "options": [
+     "Alt+=",
+     "Ctrl+S",
+     "Shift+F4"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "if-and-or-iferror-logic": [
+   {
+    "q": "Why does =IF(A1>5, Yes, No) give #NAME?",
+    "options": [
+     "Text results need double quotes",
+     "IF cannot compare numbers",
+     "A1 is empty"
+    ],
+    "answer": 0,
+    "explain": "Write =IF(A1>5, \"Yes\", \"No\")."
+   },
+   {
+    "q": "When is AND(test1, test2) true?",
+    "options": [
+     "When either test is true",
+     "Only when both tests are true",
+     "Never"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why put a threshold like 2000 in a labelled cell instead of inside the formula?",
+    "options": [
+     "It makes the file smaller",
+     "Excel requires it",
+     "So anyone can see and change it, and the whole column updates"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "sumif-countif-averageif-sumifs": [
+   {
+    "q": "What does SUMIF do?",
+    "options": [
+     "Counts the rows",
+     "Sorts the data",
+     "Adds only the numbers whose row meets a condition"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which function adds with more than one condition?",
+    "options": [
+     "SUM",
+     "COUNT",
+     "SUMIFS"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "A SUMIF total is missing a row. A likely cause is…",
+    "options": [
+     "The region is spelled with a typo or has a trailing space",
+     "The sheet is protected",
+     "The font is too small"
+    ],
+    "answer": 0,
+    "explain": "The IF family needs an exact match apart from capitals."
+   }
+  ],
+  "vlookup-xlookup-index-match": [
+   {
+    "q": "What should you put at the end of VLOOKUP to find an exact match?",
+    "options": [
+     "TRUE",
+     "FALSE (or 0)",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": "Leaving it out switches to approximate matching, which can quietly give a wrong answer."
+   },
+   {
+    "q": "Which is a limit of VLOOKUP?",
+    "options": [
+     "It only works on one sheet",
+     "It cannot return text",
+     "It can only look to the right of the search column"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which Excel versions have XLOOKUP, according to the lesson?",
+    "options": [
+     "Excel 2021 and Microsoft 365",
+     "Every version",
+     "Only Excel 2003"
+    ],
+    "answer": 0,
+    "explain": "INDEX and MATCH works in all versions."
+   }
+  ],
+  "text-functions-and-cleaning-data": [
+   {
+    "q": "What does TRIM do?",
+    "options": [
+     "Deletes the cell",
+     "Removes extra spaces at the start and end and between words",
+     "Changes numbers to text"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why is TRIM a good habit when data comes from outside?",
+    "options": [
+     "Extra spaces are a hidden reason lookups and SUMIF fail",
+     "It makes the file faster",
+     "It changes the font"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does LEFT(text, 3) return?",
+    "options": [
+     "The middle 3 characters",
+     "The last 3 characters",
+     "The first 3 characters"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "excel-dates-and-times": [
+   {
+    "q": "How does Excel store a date?",
+    "options": [
+     "As a number of days",
+     "Only as text",
+     "As a picture"
+    ],
+    "answer": 0,
+    "explain": "That is why B2-A2 gives the number of days between two dates."
+   },
+   {
+    "q": "What does =TODAY() return?",
+    "options": [
+     "Today's date, updating when the file recalculates",
+     "The current time only",
+     "A fixed date"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which function counts working days between two dates?",
+    "options": [
+     "EDATE",
+     "TODAY",
+     "NETWORKDAYS"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "sort-filter-and-excel-tables": [
+   {
+    "q": "What is the classic sorting disaster?",
+    "options": [
+     "Sorting by date",
+     "Sorting twice",
+     "Sorting one column alone so rows no longer match"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Does filtering delete the rows that are not shown?",
+    "options": [
+     "Yes, until you save",
+     "Yes, they are removed",
+     "No, it only hides them"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is one benefit of an Excel Table?",
+    "options": [
+     "It removes duplicates by itself",
+     "It prints faster",
+     "It grows when you type under the last row and copies the formulas"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "pivot-tables-for-beginners": [
+   {
+    "q": "Does a pivot table change the original data?",
+    "options": [
+     "Yes, it sorts it",
+     "Yes, it deletes duplicates",
+     "No, the original data is never changed"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which pivot area holds what you calculate, such as the total?",
+    "options": [
+     "Values",
+     "Filters",
+     "Rows"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which areas list the groups down the side and across the top?",
+    "options": [
+     "Rows and Columns",
+     "Values and Filters",
+     "Columns and Values"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "excel-charts-and-simple-dashboard": [
+   {
+    "q": "Which chart is best for change over time, like daily sales?",
+    "options": [
+     "Line chart",
+     "Scatter chart",
+     "Pie chart"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "When is a pie chart a good choice?",
+    "options": [
+     "Twenty categories",
+     "A few slices that make up a whole",
+     "Change over time"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What makes a chart title more useful?",
+    "options": [
+     "It states what the reader should notice",
+     "It is left empty",
+     "It says Chart Title"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "data-validation-conditional-formatting-protection": [
+   {
+    "q": "Which validation type gives a drop-down so people cannot misspell North?",
+    "options": [
+     "List",
+     "Date",
+     "Text length"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Is validation perfect?",
+    "options": [
+     "Yes, nothing can get past it",
+     "Only for numbers",
+     "No, pasted data can bypass the rules"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does conditional formatting do?",
+    "options": [
+     "Colours cells according to rules about their values",
+     "Adds a drop-down",
+     "Locks the sheet"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "print-share-and-keyboard-shortcuts": [
+   {
+    "q": "Which print setting does the lesson call the most useful for wide tables?",
+    "options": [
+     "Print in colour",
+     "Fit All Columns on One Page",
+     "Print the formulas"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does setting Print Titles to repeat $1:$1 do?",
+    "options": [
+     "Hides row 1",
+     "Prints only row 1",
+     "Repeats the heading row on every page"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why save a PDF to send?",
+    "options": [
+     "It is smaller than any other file",
+     "It keeps formulas working",
+     "It looks the same on every device and cannot be changed by accident"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "excel-for-office-jobs-tests-and-next-steps": [
+   {
+    "q": "What do employers look at first in an Excel test?",
+    "options": [
+     "How colourful the sheet is",
+     "How long it took to type",
+     "Whether the answers are correct"
+    ],
+    "answer": 2,
+    "explain": "Then they look at sensible methods and tidiness."
+   },
+   {
+    "q": "Why use formulas and not typed numbers in a test?",
+    "options": [
+     "Typed numbers are not allowed in Excel",
+     "Formulas print better",
+     "Employers check that you used sensible methods"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a good way to use the practice test?",
+    "options": [
+     "Skip the checking step",
+     "Copy the answers",
+     "Time yourself for 30 minutes without looking at the lessons"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
+ "git-and-github-course": {
+  "what-is-git-and-github-install-and-setup": [
+   {
+    "q": "What is the difference between Git and GitHub?",
+    "options": [
+     "GitHub is a tool on your computer; Git is a website",
+     "Git is a tool on your computer; GitHub is a website that stores Git projects online",
+     "They are the same thing"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why does Git ask for your name and email?",
+    "options": [
+     "To log in to GitHub",
+     "Every recorded change has an author",
+     "To install updates"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which command checks that Git is installed?",
+    "options": [
+     "git --version",
+     "git install",
+     "git start"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "your-first-git-repository-init-add-commit": [
+   {
+    "q": "What does git add do?",
+    "options": [
+     "Saves the snapshot to history",
+     "Uploads to GitHub",
+     "Moves changes into the staging area for the next commit"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does git commit do?",
+    "options": [
+     "Shows the status",
+     "Saves what is in the staging area as a snapshot in history",
+     "Deletes the working folder"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which command tells you what is happening and often what to do next?",
+    "options": [
+     "git status",
+     "git init",
+     "git log"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "undo-mistakes-restore-amend-revert": [
+   {
+    "q": "git restore menu.txt (with a file you have not staged) will…",
+    "options": [
+     "Throw away your unsaved edit for good",
+     "Make a backup",
+     "Stage the file"
+    ],
+    "answer": 0,
+    "explain": "Git never saved the edit, so it cannot bring it back."
+   },
+   {
+    "q": "Which command undoes a commit that is already shared, without changing history?",
+    "options": [
+     "git revert",
+     "git reset --hard",
+     "git push --force"
+    ],
+    "answer": 0,
+    "explain": "revert adds a new commit that does the opposite."
+   },
+   {
+    "q": "When should you only use git commit --amend?",
+    "options": [
+     "Only on pushed commits",
+     "Never",
+     "On a commit you have not pushed to a shared place"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "git-branches-and-merging": [
+   {
+    "q": "What is a branch?",
+    "options": [
+     "A movable label that points to a commit",
+     "A GitHub account",
+     "A copy of the whole computer"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which command creates a branch and moves to it?",
+    "options": [
+     "git switch -c contact-page",
+     "git merge contact-page",
+     "git branch -d contact-page"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a Fast-forward merge mean?",
+    "options": [
+     "main had not changed, so Git just moved the label forward with no merge commit",
+     "The merge failed",
+     "Git found a conflict"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "resolve-git-merge-conflicts": [
+   {
+    "q": "What is a merge conflict?",
+    "options": [
+     "Two branches changed the same lines differently and Git cannot choose",
+     "A missing branch",
+     "A broken computer"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Before committing a resolved file, what must you remove?",
+    "options": [
+     "The marker lines <<<<<<<, ======= and >>>>>>>",
+     "The file name",
+     "All the text"
+    ],
+    "answer": 0,
+    "explain": "Never commit a file that still contains conflict markers."
+   },
+   {
+    "q": "You feel lost in the middle of a merge. What is the safe way out?",
+    "options": [
+     "Delete the repository",
+     "git merge --abort",
+     "git push --force"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "github-remotes-push-pull-and-clone": [
+   {
+    "q": "What is a remote?",
+    "options": [
+     "A kind of branch",
+     "Another copy of your repository somewhere else, usually on GitHub",
+     "A type of commit"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does git clone do?",
+    "options": [
+     "Deletes the repository",
+     "Makes a full copy of a repository, with its history, in a new folder",
+     "Only downloads one file"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the -u in git push -u origin main do?",
+    "options": [
+     "Undoes the push",
+     "Uploads faster",
+     "Links your local main to origin/main so later push and pull know where to go"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "pull-requests-forks-and-code-review": [
+   {
+    "q": "What is a pull request?",
+    "options": [
+     "A command to download files",
+     "A request for others to review your branch and, if good, merge it",
+     "A kind of backup"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What makes a pull request easier to review?",
+    "options": [
+     "Small size and a clear description",
+     "Changing many unrelated things at once",
+     "No description"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How should you take review comments?",
+    "options": [
+     "As help with the code, not criticism of you",
+     "As attacks",
+     "You should ignore them"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "good-commits-gitignore-and-keeping-secrets-safe": [
+   {
+    "q": "Which commit message is most helpful?",
+    "options": [
+     "fix",
+     "Add search box to the header",
+     "stuff"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does one commit = one idea mean?",
+    "options": [
+     "Use only one commit per project",
+     "A typo fix and a new feature belong in two commits",
+     "Commit once a month"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What goes in a .gitignore file?",
+    "options": [
+     "Files and folders Git should not track, such as secrets and build output",
+     "Your password list",
+     "Your commit messages"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "stash-tags-and-exploring-history": [
+   {
+    "q": "What does git stash do?",
+    "options": [
+     "Uploads your changes to GitHub",
+     "Deletes the repository",
+     "Puts uncommitted changes aside so you can get a clean folder"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Is a stash pushed to GitHub?",
+    "options": [
+     "Yes, always",
+     "Only on Mondays",
+     "No, it lives on your computer only"
+    ],
+    "answer": 2,
+    "explain": "So do not use it as a backup."
+   },
+   {
+    "q": "What is a tag used for?",
+    "options": [
+     "A permanent label on a commit, such as a release v1.0",
+     "A type of merge",
+     "A temporary branch"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "git-and-github-for-your-job-search-and-cheat-sheet": [
+   {
+    "q": "Which is better on your GitHub profile?",
+    "options": [
+     "Three or four finished projects with a clear README",
+     "Only forks of other people's work",
+     "Thirty empty repositories"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What must never go in a public repository?",
+    "options": [
+     "A screenshot of your own project",
+     "A README",
+     "Secrets, personal data or an employer's confidential code"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which kind of site can GitHub Pages host for free, according to the lesson?",
+    "options": [
+     "A mobile app store listing",
+     "A database server",
+     "A static site made of HTML, CSS and JavaScript files"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
+ "interview-preparation-for-freshers": {
+  "how-fresher-interviews-work": [
+   {
+    "q": "Do all jobs use the same interview stages?",
+    "options": [
+     "Yes, always the same five rounds",
+     "Only big companies interview",
+     "No, the process differs by company, industry and country"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the screening call mainly testing?",
+    "options": [
+     "Your salary",
+     "Your technical depth",
+     "Whether you are reachable, clear and basically suitable"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "A written or online test usually checks…",
+    "options": [
+     "Your hobbies",
+     "Your family background",
+     "A basic skill level at scale, often accuracy under time pressure"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "research-the-company-and-role": [
+   {
+    "q": "What is the best clue to what an employer wants?",
+    "options": [
+     "The reception area",
+     "The company logo",
+     "The job advert"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do if you lack a skill the advert lists?",
+    "options": [
+     "Avoid the interview",
+     "Be honest and mention something similar you have used and that you learn quickly",
+     "Claim you have it"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why copy the advert into a document?",
+    "options": [
+     "To post it online",
+     "To change the requirements",
+     "So you do not lose it if the link disappears"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "know-your-resume-and-projects": [
+   {
+    "q": "What is the rule for what to write on your resume?",
+    "options": [
+     "Write everything you have heard of",
+     "Copy skills from the advert",
+     "Only write what you can explain"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What are the three parts of the project story?",
+    "options": [
+     "Title, date and place",
+     "The problem, your part, and the result and lesson",
+     "Tools, cost and team size"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "You did not measure results in your project. What should you do?",
+    "options": [
+     "Say what you observed instead of inventing a figure",
+     "Invent a percentage",
+     "Skip the project"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "tell-me-about-yourself-answer": [
+   {
+    "q": "What structure does the lesson suggest for \"Tell me about yourself\"?",
+    "options": [
+     "Childhood, school, hobbies",
+     "Strengths, weaknesses, salary",
+     "Present, Past, Future"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "About how long should the answer be?",
+    "options": [
+     "60 to 90 seconds",
+     "10 minutes",
+     "10 seconds"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should you leave out?",
+    "options": [
+     "Your relevant skills",
+     "Your studies",
+     "Your life story and details not connected to the job"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "strengths-and-weaknesses-answers": [
+   {
+    "q": "What makes a strength believable?",
+    "options": [
+     "A short real example",
+     "Saying it twice",
+     "Using big words"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which weakness answer does the lesson warn against?",
+    "options": [
+     "An honest skill gap you are working on",
+     "A real small weakness with progress",
+     "Clichés like \"I am a perfectionist\""
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What are the three parts of a good weakness answer?",
+    "options": [
+     "Blame, excuse and apology",
+     "A joke, a story and a question",
+     "A real small weakness, what you do about it, and the progress you made"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "why-this-company-why-hire-you": [
+   {
+    "q": "Why is \"I need a job\" alone a weak answer to \"Why do you want to work here?\"",
+    "options": [
+     "It gives the employer no reason to choose you",
+     "It is too short",
+     "It is a lie"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Is it fine to also need the income?",
+    "options": [
+     "No, never mention it",
+     "Yes, just do not make it the only reason",
+     "Only if asked twice"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the formula for \"Why should we hire you?\"",
+    "options": [
+     "Salary, location and age",
+     "Need, match and proof",
+     "Skills, hobbies and dreams"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "behavioural-questions-star-method": [
+   {
+    "q": "What does STAR stand for?",
+    "options": [
+     "Story, Team, Aim, Reply",
+     "Skill, Time, Answer, Review",
+     "Situation, Task, Action, Result"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which part of a STAR answer should be the longest?",
+    "options": [
+     "Action",
+     "Task",
+     "Situation"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "A fresher says \"I have no work experience, so I have no stories\". What does the lesson say?",
+    "options": [
+     "That is true, skip behavioural questions",
+     "Stories can come from college, projects, sports, volunteering, family work and part-time jobs",
+     "Invent a job"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "no-experience-gaps-career-change-questions": [
+   {
+    "q": "How should you answer a hard question like an employment gap?",
+    "options": [
+     "Acknowledge it, give a short honest reason, show what you did, return to the job",
+     "Argue and defend",
+     "Change the dates"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Should you lie about dates to hide a gap?",
+    "options": [
+     "Yes, always",
+     "Yes, if it is small",
+     "No, dates are easy to check"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "For \"you have no experience\", what should you do?",
+    "options": [
+     "Say you are the best",
+     "Apologise at length",
+     "Do not apologise; say what you do have, such as learning, projects and practice"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "aptitude-and-written-tests": [
+   {
+    "q": "Someone sells leaked test papers or promises a pass for money. What should you do?",
+    "options": [
+     "Share it with friends",
+     "Buy one to be safe",
+     "Do not pay; it is a scam or cheating"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does negative marking mean?",
+    "options": [
+     "Points are lost for wrong answers",
+     "You must finish early",
+     "The test is negative"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which tells you the real topics of the test?",
+    "options": [
+     "Your friends' guesses",
+     "The job advert or invitation, or the recruiter",
+     "A random website"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "technical-round-preparation": [
+   {
+    "q": "Which is better, according to the lesson?",
+    "options": [
+     "Knowing thirty topics by name only",
+     "Knowing none well",
+     "Knowing eight topics deeply"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do when you do not know the answer?",
+    "options": [
+     "Say so honestly and think aloud about how you would approach it",
+     "Stay silent",
+     "Guess confidently"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is a good test of whether you understand a topic?",
+    "options": [
+     "Explaining it simply to a friend or a younger student",
+     "Reading it three times",
+     "Memorising the page"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "group-discussion-and-case-questions": [
+   {
+    "q": "Who usually scores higher in a group discussion?",
+    "options": [
+     "The one who talks the most",
+     "Candidates who make fewer, better points, listen and summarise",
+     "The one who interrupts"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you do in the first minute after the topic is given?",
+    "options": [
+     "Wait for others",
+     "Start talking immediately",
+     "Write two or three ideas"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How does an example help?",
+    "options": [
+     "It makes your point stronger than a general statement",
+     "It is not needed",
+     "It makes you talk longer"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "phone-and-video-interviews": [
+   {
+    "q": "What should you do a day before a video interview?",
+    "options": [
+     "Reinstall your device",
+     "Test your internet, the app and your device",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where should the light fall?",
+    "options": [
+     "On your face, not behind you",
+     "Behind your head",
+     "In the corner"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What background does the lesson suggest?",
+    "options": [
+     "A silly virtual background",
+     "A plain wall or tidy corner",
+     "A messy room"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "salary-notice-period-and-your-questions": [
+   {
+    "q": "Before naming a salary, what should you do?",
+    "options": [
+     "Pick a random number",
+     "Say any amount",
+     "Research pay for similar roles in the same city"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "If asked for salary expectations, what is a good answer?",
+    "options": [
+     "A single very high number",
+     "A range based on your research",
+     "Refusing to talk"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Should you lie about past pay?",
+    "options": [
+     "Yes, to get more",
+     "Only in writing",
+     "No"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "interview-day-checklist-and-job-scams": [
+   {
+    "q": "What is the most common avoidable mistake on interview day?",
+    "options": [
+     "Eating breakfast",
+     "Wearing too much black",
+     "Being late"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which of these does a real employer NOT do?",
+    "options": [
+     "Ask you to pay a fee to get the job",
+     "Tell you the interview time",
+     "Ask for your CV"
+    ],
+    "answer": 0,
+    "explain": "Fees to get a job are a scam sign. Report it to your local cybercrime service."
+   },
+   {
+    "q": "What should you do with your phone before you walk in?",
+    "options": [
+     "Silence it",
+     "Check messages in the waiting room",
+     "Record the interview"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "after-the-interview-follow-up-and-rejection": [
+   {
+    "q": "When should you send a thank-you message?",
+    "options": [
+     "After one month",
+     "Never",
+     "Within 24 hours"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do while waiting?",
+    "options": [
+     "Call every hour",
+     "Stop everything",
+     "Keep applying and keep preparing"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When you get an offer, what should you ask for?",
+    "options": [
+     "Nothing",
+     "The offer in writing with title, pay, hours, location and start date",
+     "A verbal promise only"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ]
+ },
+ "nodejs-express-course": {
+  "what-is-nodejs-and-your-first-script": [
+   {
+    "q": "What is Node.js?",
+    "options": [
+     "A web browser",
+     "A new programming language",
+     "A runtime that runs JavaScript outside the browser"
+    ],
+    "answer": 2,
+    "explain": "It is not a new language and not a framework."
+   },
+   {
+    "q": "Which version should you download for learning and real projects?",
+    "options": [
+     "LTS (long-term support)",
+     "The newest experimental build",
+     "Any very old version"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What kind of work suits Node.js well?",
+    "options": [
+     "Heavy video editing on a single thread",
+     "Drawing graphics",
+     "Programs that spend most of their time waiting for the network or a database"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "modules-npm-and-package-json": [
+   {
+    "q": "What does \"type\": \"module\" in package.json do?",
+    "options": [
+     "Makes .js files ES modules so import and export work",
+     "Turns off errors",
+     "Installs Express"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Should you commit node_modules to git?",
+    "options": [
+     "Only on Fridays",
+     "Yes, always",
+     "No, add it to .gitignore"
+    ],
+    "answer": 2,
+    "explain": "Commit package.json and package-lock.json instead."
+   },
+   {
+    "q": "How many default exports can a file have?",
+    "options": [
+     "As many as you like",
+     "None",
+     "One"
+    ],
+    "answer": 2,
+    "explain": "A file can have many named exports but only one default export."
+   }
+  ],
+  "files-paths-and-built-in-modules": [
+   {
+    "q": "Why use path.join instead of joining paths with \"/\" by hand?",
+    "options": [
+     "It is shorter",
+     "It encrypts the path",
+     "Windows and Linux use different separators"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the error code ENOENT mean?",
+    "options": [
+     "The file or folder does not exist",
+     "No permission",
+     "It already exists"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does readFile return without an encoding?",
+    "options": [
+     "A number",
+     "Raw bytes",
+     "Text"
+    ],
+    "answer": 1,
+    "explain": "Use the encoding 'utf8' to get text."
+   }
+  ],
+  "async-javascript-promises-and-event-loop": [
+   {
+    "q": "What is a promise?",
+    "options": [
+     "An object standing for a value that is not ready yet",
+     "A type of file",
+     "A kind of loop"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why should you avoid long synchronous work in request code?",
+    "options": [
+     "It uses more disk",
+     "It is not allowed by Node",
+     "It blocks the thread and no other request is answered meanwhile"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What happens if you forget await before a promise?",
+    "options": [
+     "The program stops",
+     "You get the promise object, not its value",
+     "Nothing, it works the same"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "your-first-http-server-with-node": [
+   {
+    "q": "What does a 404 status code mean?",
+    "options": [
+     "The server crashed",
+     "It worked",
+     "The thing was not found"
+    ],
+    "answer": 2,
+    "explain": "The 4xx codes mean the client made a mistake; 5xx means a server problem."
+   },
+   {
+    "q": "Which HTTP method is for reading data and should not change anything?",
+    "options": [
+     "GET",
+     "DELETE",
+     "POST"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "The error EADDRINUSE usually means…",
+    "options": [
+     "Your file is missing",
+     "The password is wrong",
+     "Another program or an old copy of your server is using the port"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "your-first-express-server": [
+   {
+    "q": "What does app.get(path, handler) say?",
+    "options": [
+     "Start the database",
+     "Download a file",
+     "When a GET request arrives for this path, run this function"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is req.query?",
+    "options": [
+     "Values from the path",
+     "The response body",
+     "Values after the question mark in the URL, such as ?done=true"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does res.json(object) do?",
+    "options": [
+     "Reads a JSON file",
+     "Sends the object as JSON and sets the content type",
+     "Closes the server"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "express-routing-params-query-and-routers": [
+   {
+    "q": "In the route /api/tasks/:id, what is req.params.id for /api/tasks/2?",
+    "options": [
+     "The text '2'",
+     "The number 2",
+     "undefined"
+    ],
+    "answer": 0,
+    "explain": "Parameters are always strings."
+   },
+   {
+    "q": "Which status code should follow a successful create?",
+    "options": [
+     "204",
+     "201",
+     "404"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why does route order matter?",
+    "options": [
+     "Express runs them all",
+     "It does not",
+     "Express uses the first route that sends a response"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "express-middleware-explained": [
+   {
+    "q": "A middleware must either send a response or…",
+    "options": [
+     "restart the server",
+     "throw an error",
+     "call next()"
+    ],
+    "answer": 2,
+    "explain": "Otherwise the request hangs until the client gives up."
+   },
+   {
+    "q": "Where must express.json() be placed?",
+    "options": [
+     "It does not matter",
+     "Before any route that reads req.body",
+     "After all routes"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "In Express 5, what is req.body if the request had no JSON content type?",
+    "options": [
+     "null",
+     "An empty object",
+     "undefined"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "build-a-rest-api-crud-routes": [
+   {
+    "q": "Which method and path create a new task?",
+    "options": [
+     "GET /api/tasks",
+     "POST /api/tasks",
+     "DELETE /api/tasks/:id"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What status does the lesson use after a successful delete with nothing to return?",
+    "options": [
+     "204",
+     "500",
+     "200 with the whole list"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is data kept in a plain array at first?",
+    "options": [
+     "To keep the code simple; the data disappears when the server stops",
+     "To avoid using routes",
+     "Arrays are the best database"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "validation-and-error-handling-in-express": [
+   {
+    "q": "Which status code should an API send for invalid input?",
+    "options": [
+     "200",
+     "500",
+     "400"
+    ],
+    "answer": 2,
+    "explain": "Never use 500 for bad input."
+   },
+   {
+    "q": "Why build a new object with only the allowed fields?",
+    "options": [
+     "Extra fields like id or ownerId sent by the client are dropped",
+     "JSON requires it",
+     "It runs faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where is the central error handler registered?",
+    "options": [
+     "Inside each route",
+     "First",
+     "Last, after all routes"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "environment-variables-and-saving-data-to-a-file": [
+   {
+    "q": "Why do settings and secrets not belong in the code?",
+    "options": [
+     "JavaScript cannot store text",
+     "They are faster in the environment",
+     "Each place needs different values and secrets must not be committed"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What type are all values in process.env?",
+    "options": [
+     "Booleans",
+     "Numbers",
+     "Strings (or undefined when missing)"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you commit instead of your real .env?",
+    "options": [
+     "Nothing at all",
+     "A .env.example with names and harmless sample values",
+     "The real .env"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "mongodb-and-mongoose-for-your-api": [
+   {
+    "q": "In MongoDB, data is stored as…",
+    "options": [
+     "Plain text files",
+     "Rows and columns only",
+     "Documents grouped in collections"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does a Mongoose schema describe?",
+    "options": [
+     "The HTTP routes",
+     "The server address",
+     "The shape of a document: fields, types and rules"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why await mongoose.connect before starting the server?",
+    "options": [
+     "So no request arrives before the database is ready",
+     "It is required by JavaScript",
+     "It makes the server slower"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "user-login-with-password-hashing-and-jwt": [
+   {
+    "q": "What should you store instead of a password?",
+    "options": [
+     "A hash made with bcrypt",
+     "The password in plain text",
+     "The password in a cookie"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "A JWT is…",
+    "options": [
+     "Signed, but not encrypted, so never put secrets inside it",
+     "Encrypted and unreadable",
+     "A password"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should the JWT secret be stored?",
+    "options": [
+     "Only in the environment, long and random",
+     "In the front-end code",
+     "In the README"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "secure-your-express-api-cors-helmet-rate-limit": [
+   {
+    "q": "Does CORS protect your API from curl or scripts?",
+    "options": [
+     "No, it is enforced by browsers only",
+     "Yes, completely",
+     "Only on Windows"
+    ],
+    "answer": 0,
+    "explain": "You still need authentication and validation."
+   },
+   {
+    "q": "What does express-rate-limit answer after the limit is passed?",
+    "options": [
+     "301 Moved",
+     "200 OK",
+     "429 Too Many Requests"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the helmet middleware do?",
+    "options": [
+     "Sets HTTP headers that tell browsers to be careful",
+     "Connects to the database",
+     "Hashes passwords"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "test-and-deploy-your-node-api": [
+   {
+    "q": "Why is it useful to have tests for your API?",
+    "options": [
+     "They make the server faster",
+     "They catch problems when you change the code",
+     "They replace validation"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which Node feature runs tests without extra packages, as in the course?",
+    "options": [
+     "node --test",
+     "node --check-all",
+     "node --server"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should live-server settings and secrets come from?",
+    "options": [
+     "A public file",
+     "Environment variables on the server",
+     "The code in the repository"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ]
+ },
+ "phone-job-search-trades-course": {
+  "your-phone-is-your-job-tool": [
+   {
+    "q": "Which of these should you never give to anyone?",
+    "options": [
+     "Your name",
+     "Your town",
+     "Your email password, bank PIN or OTP"
+    ],
+    "answer": 2,
+    "explain": "An honest employer or job site never asks for them."
+   },
+   {
+    "q": "Why keep your phone charged and with some balance?",
+    "options": [
+     "A job call you miss may not come again",
+     "It is a rule",
+     "To play games"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which email name is better for job hunting?",
+    "options": [
+     "cooldude99",
+     "lovely_gir123",
+     "sunil.kumar.electrician"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "know-your-skills-and-write-them-down": [
+   {
+    "q": "Which sounds clearer to an employer?",
+    "options": [
+     "I can do plumbing.",
+     "I do everything.",
+     "I fix leaks, fit bathrooms and install water tanks. 6 years on houses and shops."
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What kind of facts should you write?",
+    "options": [
+     "Only real facts",
+     "Facts that sound big, even if not true",
+     "Nothing"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why list your tools, machines and licences?",
+    "options": [
+     "Employers want to know what you can use",
+     "It is not needed",
+     "It makes the list longer"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "make-a-one-page-resume-on-your-phone": [
+   {
+    "q": "How long should the resume be?",
+    "options": [
+     "One page",
+     "Ten lines of poetry",
+     "Five pages"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which layout is better?",
+    "options": [
+     "Many colours and pictures",
+     "Plain, one column, simple letters",
+     "Tiny text in boxes"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you check twice?",
+    "options": [
+     "Your phone number and email",
+     "The paper colour",
+     "The font name"
+    ],
+    "answer": 0,
+    "explain": "A wrong number means the employer cannot reach you."
+   }
+  ],
+  "photos-of-your-papers-and-privacy": [
+   {
+    "q": "How should you take a photo of a paper?",
+    "options": [
+     "Cut off the edges",
+     "From the side in the dark",
+     "Flat, in good light, from straight above, with all four corners in the picture"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Someone asks for your ID and bank details before giving you a clear job or written offer. What should you do?",
+    "options": [
+     "Stop. This is a common trick of thieves",
+     "Send half of them",
+     "Send them quickly"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why put the pages of one paper into one PDF?",
+    "options": [
+     "It is a rule of phones",
+     "It makes the file bigger",
+     "It is tidy and easy to send"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "where-to-look-for-work": [
+   {
+    "q": "What is the best plan to find work?",
+    "options": [
+     "Wait at home",
+     "Use only one website",
+     "Use several ways at the same time"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "A job advert has no company name, no place and no clear work. What is it?",
+    "options": [
+     "A government job",
+     "A warning sign",
+     "A great job"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Someone promises you a government job if you pay them. What should you do?",
+    "options": [
+     "Do not pay; use official offices or websites",
+     "Pay half",
+     "Pay quickly"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "apply-by-phone-messages-and-follow-up": [
+   {
+    "q": "What should a short application message include?",
+    "options": [
+     "A joke",
+     "Who you are, the job you want, one or two real reasons, and how to reach you",
+     "Your whole life story"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should an email subject line say?",
+    "options": [
+     "Urgent!!!",
+     "The job and your name, like \"Application: Electrician - Sunil Kumar\"",
+     "Hi"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How long should a voice note be, if you use one?",
+    "options": [
+     "As long as you like",
+     "Ten minutes",
+     "Under 30 seconds"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "spot-job-scams-and-stay-safe": [
+   {
+    "q": "Which is a warning sign of a scam?",
+    "options": [
+     "They give you the company address",
+     "They offer a written offer",
+     "They ask you to pay money before you start"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How can you check a company?",
+    "options": [
+     "Ask the person who messaged you",
+     "Trust the message",
+     "Search its name and call the number from its official website"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "You shared your bank details with a scammer. What should you do?",
+    "options": [
+     "Delete the messages",
+     "Wait a week",
+     "Call your bank at once, using the number on your bank card"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "prepare-for-the-interview-and-trade-test": [
+   {
+    "q": "When should you arrive?",
+    "options": [
+     "One hour late",
+     "Exactly on time with no plan",
+     "Ten or fifteen minutes early"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do with your phone in the interview?",
+    "options": [
+     "Play music",
+     "Make calls",
+     "Keep it on silent"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "If you will be late, what should you do?",
+    "options": [
+     "Call or message and say so",
+     "Say nothing",
+     "Do not come"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "know-your-rights-pay-and-written-agreements": [
+   {
+    "q": "Why ask for the offer in writing?",
+    "options": [
+     "It makes you look rich",
+     "Many problems start because nothing was clear at the beginning",
+     "It is a fun thing to do"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you do if you cannot read the agreement well?",
+    "options": [
+     "Sign a blank page",
+     "Ask a trusted person to read it with you before you sign",
+     "Sign it quickly"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "If you work extra hours, what is a good habit?",
+    "options": [
+     "Write down the date, start time, end time and breaks",
+     "Do not note anything",
+     "Tell no one"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "keep-learning-and-your-seven-day-plan": [
+   {
+    "q": "What does the lesson say about looking for work?",
+    "options": [
+     "Do it once a month",
+     "Wait for a call",
+     "Do a little every day; it is a job in itself"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "If a week goes badly, what is normal?",
+    "options": [
+     "Hide it",
+     "A bad week happens. Rest and talk to someone you trust",
+     "Quit forever"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which new skill idea fits many trades?",
+    "options": [
+     "Poetry",
+     "Making slides",
+     "Basic maths for measuring and cost"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
+ "python-for-beginners-course": {
+  "what-is-python-install-and-first-program": [
+   {
+    "q": "Which major version of Python does the course use?",
+    "options": [
+     "Either one",
+     "Python 3",
+     "Python 2"
+    ],
+    "answer": 1,
+    "explain": "Python 2 is very old and no longer supported."
+   },
+   {
+    "q": "On Windows the terminal says Python was not found. What was probably missed?",
+    "options": [
+     "Add python.exe to PATH in the installer",
+     "Installing a browser",
+     "Restarting the keyboard"
+    ],
+    "answer": 0,
+    "explain": "Run the installer again and choose Modify or Repair."
+   },
+   {
+    "q": "How does Python run your file?",
+    "options": [
+     "From the bottom to the top",
+     "All lines at the same moment",
+     "From the top to the bottom, one line at a time"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "variables-numbers-strings-and-input": [
+   {
+    "q": "What does input() always return?",
+    "options": [
+     "Text, even if the user typed a number",
+     "A number",
+     "A boolean"
+    ],
+    "answer": 0,
+    "explain": "Convert it with int() or float() when you need a number."
+   },
+   {
+    "q": "What happens with \"25\" + 1?",
+    "options": [
+     "It stops with a TypeError",
+     "It gives 26",
+     "It gives \"251\""
+    ],
+    "answer": 0,
+    "explain": "Python will not guess. Convert on purpose."
+   },
+   {
+    "q": "What does the single equals sign mean in Python?",
+    "options": [
+     "Store this value under this name",
+     "Is equal to",
+     "Not equal to"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "making-decisions-with-if-elif-else": [
+   {
+    "q": "Which operator compares two values for equality?",
+    "options": [
+     "=>",
+     "=",
+     "=="
+    ],
+    "answer": 2,
+    "explain": "One equals sign stores, two compare."
+   },
+   {
+    "q": "Which of these counts as false in a condition?",
+    "options": [
+     "The number 5",
+     "The text \"False\"",
+     "The empty list []"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "If several conditions in an if/elif chain are true, what runs?",
+    "options": [
+     "Only the first one that is true",
+     "The last one",
+     "All of them"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "lists-and-loops-for-while": [
+   {
+    "q": "What is the index of the first item in a list?",
+    "options": [
+     "0",
+     "1",
+     "-1"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does range(3) give?",
+    "options": [
+     "1, 2, 3",
+     "0, 1, 2",
+     "0, 1, 2, 3"
+    ],
+    "answer": 1,
+    "explain": "It stops before the number you give."
+   },
+   {
+    "q": "What does break do in a loop?",
+    "options": [
+     "Skips to the next item",
+     "Restarts the program",
+     "Stops the loop completely"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "dictionaries-tuples-and-sets": [
+   {
+    "q": "What does product[\"colour\"] do if the key does not exist?",
+    "options": [
+     "Adds the key",
+     "Raises a KeyError",
+     "Returns None"
+    ],
+    "answer": 1,
+    "explain": "Use product.get(\"colour\", \"default\") to avoid the error."
+   },
+   {
+    "q": "What is a tuple?",
+    "options": [
+     "A loop",
+     "A kind of dictionary",
+     "Like a list that cannot be changed after it is made"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does counts.get(word, 0) + 1 do when word is new?",
+    "options": [
+     "Raises an error",
+     "Gives 0",
+     "Starts the count at 1"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "functions-in-python": [
+   {
+    "q": "What does return do?",
+    "options": [
+     "Ends the whole program",
+     "Prints the value",
+     "Sends a value back to the code that called the function"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is wrong with def add(item, items=[])?",
+    "options": [
+     "Nothing",
+     "The default list is made once and shared between calls",
+     "Lists cannot be defaults"
+    ],
+    "answer": 1,
+    "explain": "This is the mutable default trap."
+   },
+   {
+    "q": "A variable created inside a function is…",
+    "options": [
+     "local to that function",
+     "always None",
+     "global to the whole program"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "working-with-text-strings-in-python": [
+   {
+    "q": "What does title[::-1] do?",
+    "options": [
+     "Deletes the last letter",
+     "Reverses the text",
+     "Capitalises the text"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does line.split(\",\") return?",
+    "options": [
+     "A list of the parts between commas",
+     "The text without commas as one string",
+     "A number"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why does .title() make mistakes with names like McDonald?",
+    "options": [
+     "It cannot handle capitals",
+     "It capitalises each word in a simple way",
+     "It only works on numbers"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "read-and-write-files-csv-and-json": [
+   {
+    "q": "Why use with open(...) as f:?",
+    "options": [
+     "It is the only way to read text",
+     "Python closes the file for you, even if an error happens",
+     "It makes the file bigger"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A relative path such as \"notes.txt\" is relative to…",
+    "options": [
+     "the folder of the script",
+     "the current folder of the terminal",
+     "the desktop"
+    ],
+    "answer": 1,
+    "explain": "This surprises many beginners."
+   },
+   {
+    "q": "Which is better for reading a very large file?",
+    "options": [
+     "for line in f (one line at a time)",
+     "Both use the same memory",
+     "f.read() for the whole file"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "handling-errors-with-try-except": [
+   {
+    "q": "Why avoid a bare except:?",
+    "options": [
+     "It hides every problem, including your own mistakes",
+     "It is a syntax error",
+     "It is slower"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a finally block do?",
+    "options": [
+     "Always runs, whether or not an error happened",
+     "Runs only without errors",
+     "Runs only on errors"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should go inside a try block?",
+    "options": [
+     "Only the lines that might fail",
+     "The whole program",
+     "Only comments"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "modules-pip-and-virtual-environments": [
+   {
+    "q": "What is a module?",
+    "options": [
+     "A Python file whose code you can use from another file",
+     "A virus scanner",
+     "A kind of variable"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does if __name__ == \"__main__\": do?",
+    "options": [
+     "Stops the program",
+     "Runs it every time it is imported",
+     "Runs that code only when the file is started directly"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a virtual environment for?",
+    "options": [
+     "Running Python on the web",
+     "Making Python faster",
+     "Keeping the packages of one project separate from others"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "classes-and-objects-in-python": [
+   {
+    "q": "What is the relationship between a class and an object?",
+    "options": [
+     "A class is the blueprint; an object is made from it",
+     "They are the same",
+     "An object is a blueprint for classes"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does __init__ do?",
+    "options": [
+     "It deletes the object",
+     "It prints the object",
+     "It runs when a new object is created"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the @dataclass decorator write for you?",
+    "options": [
+     "The boring __init__ and other methods for a simple record",
+     "A database",
+     "A web page"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "useful-python-standard-library": [
+   {
+    "q": "What does Counter(votes).most_common(2) give?",
+    "options": [
+     "A sorted list of all votes",
+     "The two most frequent values with their counts",
+     "The two smallest votes"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why is the median sometimes better than the mean?",
+    "options": [
+     "It is easier to type",
+     "It is always bigger",
+     "It gives a better picture of a typical value when some values are extreme"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does defaultdict(list) do the first time you use a new key?",
+    "options": [
+     "Creates an empty list for it",
+     "Raises a KeyError",
+     "Creates 0"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "analyse-a-csv-file-with-python": [
+   {
+    "q": "Why does the program convert the amount from text?",
+    "options": [
+     "Values read from a CSV are text until you convert them",
+     "To make it shorter",
+     "CSV files hold only numbers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How can you check a report that looks neat but may be wrong?",
+    "options": [
+     "Trust it",
+     "Add up the amounts a second way, such as by hand or in a spreadsheet",
+     "Run it twice"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does defaultdict(float) do for the totals?",
+    "options": [
+     "Rounds the totals",
+     "Sorts the categories",
+     "Starts each new category at 0.0"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "automate-files-and-folders-with-python": [
+   {
+    "q": "What is a dry run?",
+    "options": [
+     "Running without Python",
+     "Showing what would be done without changing anything",
+     "Deleting files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the safest place to practise file automation?",
+    "options": [
+     "On a copy or on practice files",
+     "On your only copy of important files",
+     "On the system folder"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which part of a path gives the file ending, such as .pdf?",
+    "options": [
+     ".iterdir",
+     ".suffix",
+     ".mkdir"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "final-project-expense-tracker-and-next-steps": [
+   {
+    "q": "Why is most of the logic in small functions that do not print anything?",
+    "options": [
+     "Python forbids printing in functions",
+     "They are easy to test",
+     "It uses less memory"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does argparse do?",
+    "options": [
+     "Reads a database",
+     "Reads the command line and builds the help text",
+     "Draws charts"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where does the tracker store its data?",
+    "options": [
+     "In a JSON file",
+     "In an Excel workbook",
+     "Only in memory"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ]
+ },
+ "sql-for-beginners": {
+  "what-is-sql-and-a-database": [
+   {
+    "q": "In a relational database, what is a row?",
+    "options": [
+     "One thing described by the facts, such as one customer",
+     "A link to another database",
+     "One kind of fact, such as price"
+    ],
+    "answer": 0,
+    "explain": "A column is one kind of fact. A row is one thing described by those facts."
+   },
+   {
+    "q": "What does a foreign key do?",
+    "options": [
+     "It says which table a row belongs to by pointing at another table's key",
+     "It makes a column impossible to change",
+     "It sorts the table"
+    ],
+    "answer": 0,
+    "explain": "The primary key says \"who am I?\". The foreign key says \"who do I belong to?\"."
+   },
+   {
+    "q": "Which SQL command reads rows that match a question?",
+    "options": [
+     "DELETE",
+     "INSERT",
+     "SELECT"
+    ],
+    "answer": 2,
+    "explain": "SELECT reads data. INSERT adds, UPDATE changes and DELETE removes."
+   }
+  ],
+  "set-up-sqlite-practice-database": [
+   {
+    "q": "Why does the course use SQLite for practice?",
+    "options": [
+     "It needs no server and no password, and stores everything in one file",
+     "It is the only database that supports SQL",
+     "It is faster than every other database"
+    ],
+    "answer": 0,
+    "explain": "SQLite is a tiny engine that keeps the whole database in a single file."
+   },
+   {
+    "q": "What happens when you type sqlite3 shop.db on the command line?",
+    "options": [
+     "It creates or opens a file called shop.db and shows a prompt",
+     "It installs a server",
+     "It deletes shop.db"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why run the setup script on your own practice file only?",
+    "options": [
+     "So a mistake can be fixed by deleting the file and starting again",
+     "Because SQL cannot run anywhere else",
+     "Because the script is secret"
+    ],
+    "answer": 0,
+    "explain": "Practise on your own shop.db, never on a company database."
+   }
+  ],
+  "select-from-where-basics": [
+   {
+    "q": "Which order is always correct?",
+    "options": [
+     "SELECT, FROM, WHERE",
+     "FROM, SELECT, WHERE",
+     "SELECT, WHERE, FROM"
+    ],
+    "answer": 0,
+    "explain": "You write SELECT, then FROM, then WHERE."
+   },
+   {
+    "q": "How do you test for a missing value?",
+    "options": [
+     "WHERE city = NULL",
+     "WHERE city = ''",
+     "WHERE city IS NULL"
+    ],
+    "answer": 2,
+    "explain": "Use IS NULL and IS NOT NULL. Never = NULL."
+   },
+   {
+    "q": "In SQL, text values are written with…",
+    "options": [
+     "single quotes, like 'Nairobi'",
+     "square brackets",
+     "no quotes at all"
+    ],
+    "answer": 0,
+    "explain": "Without quotes the database looks for a column with that name."
+   }
+  ],
+  "filter-with-and-or-in-between-like": [
+   {
+    "q": "Which statement is true?",
+    "options": [
+     "They always give the same rows",
+     "AND narrows the result, OR widens it",
+     "AND widens the result, OR narrows it"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does BETWEEN 100 AND 700 include?",
+    "options": [
+     "Both 100 and 700",
+     "Only the values strictly between them",
+     "Only 100"
+    ],
+    "answer": 0,
+    "explain": "BETWEEN includes both ends. The smaller number must come first."
+   },
+   {
+    "q": "Which query finds names that contain the word note?",
+    "options": [
+     "WHERE name IN 'note'",
+     "WHERE name = '%note%'",
+     "WHERE name LIKE '%note%'"
+    ],
+    "answer": 2,
+    "explain": "Use LIKE with % for patterns. = looks for the exact text."
+   }
+  ],
+  "order-by-limit-distinct": [
+   {
+    "q": "If you do not write ORDER BY, what order do you get?",
+    "options": [
+     "Always oldest first",
+     "Always alphabetical",
+     "No promised order"
+    ],
+    "answer": 2,
+    "explain": "You must never depend on the default order."
+   },
+   {
+    "q": "How do you sort largest first?",
+    "options": [
+     "SORT price DESC",
+     "ORDER BY price DESC",
+     "ORDER BY price DOWN"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does DISTINCT do?",
+    "options": [
+     "Counts the rows",
+     "Removes repeated values from the result",
+     "Sorts the rows"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "aggregate-functions-count-sum-avg": [
+   {
+    "q": "What is the difference between COUNT(*) and COUNT(column)?",
+    "options": [
+     "None",
+     "COUNT(*) skips NULL values",
+     "COUNT(column) skips NULL values; COUNT(*) counts every row"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why does SELECT name, MAX(price) FROM products not work as a beginner might expect?",
+    "options": [
+     "The database does not know which name goes with the one maximum without more instructions",
+     "MAX cannot be used on numbers",
+     "Because price is text"
+    ],
+    "answer": 0,
+    "explain": "Mixing an aggregate and a plain column needs GROUP BY."
+   },
+   {
+    "q": "Can you write WHERE COUNT(*) > 2?",
+    "options": [
+     "Only in SQLite",
+     "Yes, always",
+     "No, WHERE filters rows before counting; use HAVING"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "group-by-and-having": [
+   {
+    "q": "Which clause filters groups after they are made?",
+    "options": [
+     "LIMIT",
+     "HAVING",
+     "WHERE"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A selected column that is not inside an aggregate must…",
+    "options": [
+     "also appear in GROUP BY",
+     "be left out",
+     "be written in capitals"
+    ],
+    "answer": 0,
+    "explain": "That is the main rule of GROUP BY."
+   },
+   {
+    "q": "When should you use WHERE together with GROUP BY?",
+    "options": [
+     "To throw away rows you do not need before grouping",
+     "Only to sort the groups",
+     "Never; it is not allowed"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "primary-foreign-keys-table-design": [
+   {
+    "q": "Why is data split into several tables?",
+    "options": [
+     "Because databases cannot hold a big table",
+     "So each fact is stored once and does not have to be fixed in many places",
+     "To make queries slower"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A column ending in _id (such as customer_id) is probably…",
+    "options": [
+     "a primary key of the same table",
+     "a foreign key pointing to another table",
+     "a text column"
+    ],
+    "answer": 1,
+    "explain": "Look for _id columns when you read an unfamiliar database."
+   },
+   {
+    "q": "What is a good simple rule for designing a small database?",
+    "options": [
+     "One table for each kind of thing",
+     "One table per day",
+     "One table for everything"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "sql-joins-inner-left": [
+   {
+    "q": "What does INNER JOIN return?",
+    "options": [
+     "All rows from the left table",
+     "Only rows that have a match on both sides",
+     "All rows from both tables"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "You run customers LEFT JOIN orders and one customer has no orders. What happens to that customer?",
+    "options": [
+     "They stay, and the order columns are NULL",
+     "The query fails",
+     "They are dropped"
+    ],
+    "answer": 0,
+    "explain": "LEFT JOIN keeps every row from the left table and fills missing matches with NULL."
+   },
+   {
+    "q": "How do you find rows with no match in the other table?",
+    "options": [
+     "LEFT JOIN, then WHERE the right-side key IS NULL",
+     "INNER JOIN with WHERE = 0",
+     "CROSS JOIN"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "subqueries-exists-and-ctes": [
+   {
+    "q": "Which part of a query with a subquery runs first?",
+    "options": [
+     "They run at the same time",
+     "The outer query",
+     "The inner query"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the NOT IN trap?",
+    "options": [
+     "It is slower",
+     "It only works on text",
+     "If the list contains NULL, no rows may match"
+    ],
+    "answer": 2,
+    "explain": "NOT IN with a NULL in the list can return nothing. NOT EXISTS is safer."
+   },
+   {
+    "q": "What does a CTE (WITH) give you?",
+    "options": [
+     "A new table saved on disk",
+     "A name for each step so a long query is easier to read",
+     "A faster computer"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "insert-update-delete-safely": [
+   {
+    "q": "What is the most dangerous mistake with UPDATE or DELETE?",
+    "options": [
+     "Using single quotes",
+     "Leaving out the WHERE",
+     "Using capital letters"
+    ],
+    "answer": 1,
+    "explain": "Without WHERE, every row is changed or removed."
+   },
+   {
+    "q": "What should you do before running an UPDATE or DELETE?",
+    "options": [
+     "Restart the computer",
+     "Nothing",
+     "Run a SELECT with the same WHERE and look at the rows"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why write the column list in INSERT INTO table (columns) VALUES (...)?",
+    "options": [
+     "It does not break when someone adds a column to the table",
+     "It is required by every engine",
+     "It makes the insert faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "create-table-data-types-constraints": [
+   {
+    "q": "What is a constraint?",
+    "options": [
+     "A comment in the code",
+     "A rule the database checks every time you insert or update a row",
+     "A kind of index"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which constraint stops two rows having the same email?",
+    "options": [
+     "DEFAULT",
+     "NOT NULL",
+     "UNIQUE"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which type does the lesson suggest for money in most engines?",
+    "options": [
+     "TEXT",
+     "DECIMAL(10,2) (or whole numbers of the smallest unit)",
+     "BOOLEAN"
+    ],
+    "answer": 1,
+    "explain": "Decimals avoid odd rounding that floating point numbers can cause."
+   }
+  ],
+  "window-functions-row-number-rank": [
+   {
+    "q": "How is a window function different from GROUP BY?",
+    "options": [
+     "It only works on text",
+     "It keeps every row and adds a calculated column",
+     "It collapses rows into one"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does PARTITION BY do inside OVER?",
+    "options": [
+     "Deletes duplicate rows",
+     "Sorts the final result",
+     "Restarts the calculation for each group"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Can you filter on a window function directly in WHERE?",
+    "options": [
+     "Only with HAVING",
+     "Yes",
+     "No, wrap the query in a subquery or CTE and filter outside"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "indexes-and-query-performance": [
+   {
+    "q": "What is an index like?",
+    "options": [
+     "The index at the back of a textbook that lets you jump to the right page",
+     "A backup copy of the table",
+     "A password"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which habit can stop an ordinary index being used?",
+    "options": [
+     "Putting a function on the column, like WHERE UPPER(name) = 'ASHA'",
+     "Using AND",
+     "Naming the columns in SELECT"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Are indexes free?",
+    "options": [
+     "Yes, they speed up everything",
+     "No, they take space and make inserts and updates slower",
+     "Yes, add one to every column"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "sql-interview-questions-and-next-steps": [
+   {
+    "q": "What is the difference between WHERE and HAVING?",
+    "options": [
+     "HAVING is only for text",
+     "They are the same",
+     "WHERE filters rows before grouping; HAVING filters groups after grouping"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the difference between DELETE and DROP?",
+    "options": [
+     "They do the same thing",
+     "DROP only removes one row",
+     "DELETE removes chosen rows; DROP removes the whole table including its structure"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "A good way to answer a query question in an interview is to…",
+    "options": [
+     "guess without checking",
+     "type the full query silently",
+     "say your plan, start simple, run it and mention edge cases like NULLs"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ }
+}

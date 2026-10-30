@@ -22,9 +22,13 @@ for (const k of keys) {
   const m = await import(pathToFileURL(path.join(root, k, 'index.js')).href);
   sets.push([m.course, m.lessons]);
 }
+// End-of-lesson quizzes live in learn-courses/json/quizzes.json (built by learn-courses/quizzes/build.mjs) and are
+// attached by course slug + lesson slug, so re-seeding keeps them.
+const quizFile = path.join(root, 'json', 'quizzes.json');
+const quizzes = fs.existsSync(quizFile) ? JSON.parse(fs.readFileSync(quizFile, 'utf8')) : {};
 const build = ([course, lessons]) => ({
   course: { ...course, published: !draft },
-  lessons: lessons.map((l) => ({ ...l, ...(l.animation ? { animation: l.animation } : {}), published: !draft })),
+  lessons: lessons.map((l) => ({ ...l, ...(l.animation ? { animation: l.animation } : {}), ...(quizzes[course.slug]?.[l.slug] ? { quiz: quizzes[course.slug][l.slug] } : {}), published: !draft })),
 });
 
 if (jsonOnly) {

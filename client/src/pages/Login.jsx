@@ -8,7 +8,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { login } from '../app/features/authSlice';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
@@ -61,11 +61,6 @@ const Login = () => {
         }
 
     }
-
-    const handleForgetPasswordSubmit = async () => {
-        navigate("/forgot-password");
-
-    };
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
@@ -134,9 +129,11 @@ const Login = () => {
                     </span>
                 </div>
 
-                {/* <div className="mt-4 text-left text-brand-500">
-                    <button onClick={handleForgetPasswordSubmit} className="text-sm" type="reset">Forget password?</button>
-                </div> */}
+                {state === "login" && (
+                    <div className="mt-3 text-right">
+                        <Link to="/forgot-password" state={{ email: formData.email }} className="text-sm text-brand-500 hover:underline">Forgot password?</Link>
+                    </div>
+                )}
                 <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-brand-500 hover:opacity-90 transition-opacity">
                     {state === "login" ? "Login" : "Sign up"}
                 </button>

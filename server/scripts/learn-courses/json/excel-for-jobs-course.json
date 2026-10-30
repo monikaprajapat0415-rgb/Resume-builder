@@ -243,7 +243,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the address of the cell in column C, row 4?",
+          "options": [
+            "C-4",
+            "C4",
+            "4C"
+          ],
+          "answer": 1,
+          "explain": "The column letter comes first, then the row number."
+        },
+        {
+          "q": "What is a whole Excel file called?",
+          "options": [
+            "A workbook",
+            "A worksheet",
+            "A cell"
+          ],
+          "answer": 0,
+          "explain": "A workbook holds one or more worksheets, shown as tabs."
+        },
+        {
+          "q": "Which keys move you right and then down while typing a table without the mouse?",
+          "options": [
+            "Tab to move right, Enter to go down",
+            "Ctrl+C and Ctrl+V",
+            "Esc and Delete"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Start Here",
@@ -476,7 +508,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "A number sits on the left side of its cell and SUM ignores it. What is the most likely cause?",
+          "options": [
+            "The file is too large",
+            "Excel is treating it as text",
+            "The column is too narrow"
+          ],
+          "answer": 1,
+          "explain": "Numbers align right by default. Left-aligned numbers are often text."
+        },
+        {
+          "q": "How can you keep the leading zero in a code like 007?",
+          "options": [
+            "It cannot be done",
+            "Type it twice",
+            "Format the cells as Text before typing, or start with an apostrophe"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why can the date 03/04/2024 be read two ways?",
+          "options": [
+            "Dates must always have a slash",
+            "Countries write day and month in a different order",
+            "Excel stores dates as text"
+          ],
+          "answer": 1,
+          "explain": "It is 3 April in India, the UK and most of Africa, but 4 March in the US."
+        }
+      ]
     },
     {
       "section": "Formulas",
@@ -707,7 +771,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Every formula starts with…",
+          "options": [
+            "a plus sign +",
+            "a quote mark",
+            "an equals sign ="
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "When should you make a reference absolute, like $B$1?",
+          "options": [
+            "Never",
+            "When the formula must keep pointing at one input cell, such as a tax rate, after being copied",
+            "When the cell contains text"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does the fill handle (small square in the corner of a cell) do?",
+          "options": [
+            "Changes the font",
+            "Deletes the cell",
+            "Copies the formula down and adjusts it for each row"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Formulas",
@@ -959,7 +1055,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the difference between COUNT and COUNTA?",
+          "options": [
+            "They are the same",
+            "COUNT counts text only",
+            "COUNT counts cells with numbers; COUNTA counts cells that are not empty, including text"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does #DIV/0! mean?",
+          "options": [
+            "You divided by zero or an empty cell",
+            "The function name is misspelled",
+            "A cell was deleted"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which shortcut enters AutoSum?",
+          "options": [
+            "Alt+=",
+            "Ctrl+S",
+            "Shift+F4"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Formulas",
@@ -1232,7 +1360,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why does =IF(A1>5, Yes, No) give #NAME?",
+          "options": [
+            "Text results need double quotes",
+            "IF cannot compare numbers",
+            "A1 is empty"
+          ],
+          "answer": 0,
+          "explain": "Write =IF(A1>5, \"Yes\", \"No\")."
+        },
+        {
+          "q": "When is AND(test1, test2) true?",
+          "options": [
+            "When either test is true",
+            "Only when both tests are true",
+            "Never"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why put a threshold like 2000 in a labelled cell instead of inside the formula?",
+          "options": [
+            "It makes the file smaller",
+            "Excel requires it",
+            "So anyone can see and change it, and the whole column updates"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Formulas",
@@ -1478,7 +1638,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does SUMIF do?",
+          "options": [
+            "Counts the rows",
+            "Sorts the data",
+            "Adds only the numbers whose row meets a condition"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which function adds with more than one condition?",
+          "options": [
+            "SUM",
+            "COUNT",
+            "SUMIFS"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "A SUMIF total is missing a row. A likely cause is…",
+          "options": [
+            "The region is spelled with a typo or has a trailing space",
+            "The sheet is protected",
+            "The font is too small"
+          ],
+          "answer": 0,
+          "explain": "The IF family needs an exact match apart from capitals."
+        }
+      ]
     },
     {
       "section": "Lookups, Text and Dates",
@@ -1774,7 +1966,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What should you put at the end of VLOOKUP to find an exact match?",
+          "options": [
+            "TRUE",
+            "FALSE (or 0)",
+            "Nothing"
+          ],
+          "answer": 1,
+          "explain": "Leaving it out switches to approximate matching, which can quietly give a wrong answer."
+        },
+        {
+          "q": "Which is a limit of VLOOKUP?",
+          "options": [
+            "It only works on one sheet",
+            "It cannot return text",
+            "It can only look to the right of the search column"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which Excel versions have XLOOKUP, according to the lesson?",
+          "options": [
+            "Excel 2021 and Microsoft 365",
+            "Every version",
+            "Only Excel 2003"
+          ],
+          "answer": 0,
+          "explain": "INDEX and MATCH works in all versions."
+        }
+      ]
     },
     {
       "section": "Lookups, Text and Dates",
@@ -2046,7 +2270,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does TRIM do?",
+          "options": [
+            "Deletes the cell",
+            "Removes extra spaces at the start and end and between words",
+            "Changes numbers to text"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why is TRIM a good habit when data comes from outside?",
+          "options": [
+            "Extra spaces are a hidden reason lookups and SUMIF fail",
+            "It makes the file faster",
+            "It changes the font"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does LEFT(text, 3) return?",
+          "options": [
+            "The middle 3 characters",
+            "The last 3 characters",
+            "The first 3 characters"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Lookups, Text and Dates",
@@ -2281,7 +2537,39 @@
         }
       ],
       "readTime": "4 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "How does Excel store a date?",
+          "options": [
+            "As a number of days",
+            "Only as text",
+            "As a picture"
+          ],
+          "answer": 0,
+          "explain": "That is why B2-A2 gives the number of days between two dates."
+        },
+        {
+          "q": "What does =TODAY() return?",
+          "options": [
+            "Today's date, updating when the file recalculates",
+            "The current time only",
+            "A fixed date"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which function counts working days between two dates?",
+          "options": [
+            "EDATE",
+            "TODAY",
+            "NETWORKDAYS"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Organising and Reporting",
@@ -2508,7 +2796,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the classic sorting disaster?",
+          "options": [
+            "Sorting by date",
+            "Sorting twice",
+            "Sorting one column alone so rows no longer match"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Does filtering delete the rows that are not shown?",
+          "options": [
+            "Yes, until you save",
+            "Yes, they are removed",
+            "No, it only hides them"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is one benefit of an Excel Table?",
+          "options": [
+            "It removes duplicates by itself",
+            "It prints faster",
+            "It grows when you type under the last row and copies the formulas"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Organising and Reporting",
@@ -2756,7 +3076,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Does a pivot table change the original data?",
+          "options": [
+            "Yes, it sorts it",
+            "Yes, it deletes duplicates",
+            "No, the original data is never changed"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which pivot area holds what you calculate, such as the total?",
+          "options": [
+            "Values",
+            "Filters",
+            "Rows"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which areas list the groups down the side and across the top?",
+          "options": [
+            "Rows and Columns",
+            "Values and Filters",
+            "Columns and Values"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Organising and Reporting",
@@ -2997,7 +3349,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which chart is best for change over time, like daily sales?",
+          "options": [
+            "Line chart",
+            "Scatter chart",
+            "Pie chart"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "When is a pie chart a good choice?",
+          "options": [
+            "Twenty categories",
+            "A few slices that make up a whole",
+            "Change over time"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What makes a chart title more useful?",
+          "options": [
+            "It states what the reader should notice",
+            "It is left empty",
+            "It says Chart Title"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Work Skills",
@@ -3242,7 +3626,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which validation type gives a drop-down so people cannot misspell North?",
+          "options": [
+            "List",
+            "Date",
+            "Text length"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Is validation perfect?",
+          "options": [
+            "Yes, nothing can get past it",
+            "Only for numbers",
+            "No, pasted data can bypass the rules"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does conditional formatting do?",
+          "options": [
+            "Colours cells according to rules about their values",
+            "Adds a drop-down",
+            "Locks the sheet"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Work Skills",
@@ -3463,7 +3879,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which print setting does the lesson call the most useful for wide tables?",
+          "options": [
+            "Print in colour",
+            "Fit All Columns on One Page",
+            "Print the formulas"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does setting Print Titles to repeat $1:$1 do?",
+          "options": [
+            "Hides row 1",
+            "Prints only row 1",
+            "Repeats the heading row on every page"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why save a PDF to send?",
+          "options": [
+            "It is smaller than any other file",
+            "It keeps formulas working",
+            "It looks the same on every device and cannot be changed by accident"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Work Skills",
@@ -3714,7 +4162,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What do employers look at first in an Excel test?",
+          "options": [
+            "How colourful the sheet is",
+            "How long it took to type",
+            "Whether the answers are correct"
+          ],
+          "answer": 2,
+          "explain": "Then they look at sensible methods and tidiness."
+        },
+        {
+          "q": "Why use formulas and not typed numbers in a test?",
+          "options": [
+            "Typed numbers are not allowed in Excel",
+            "Formulas print better",
+            "Employers check that you used sensible methods"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is a good way to use the practice test?",
+          "options": [
+            "Skip the checking step",
+            "Copy the answers",
+            "Time yourself for 30 minutes without looking at the lessons"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

@@ -259,7 +259,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which major version of Python does the course use?",
+          "options": [
+            "Either one",
+            "Python 3",
+            "Python 2"
+          ],
+          "answer": 1,
+          "explain": "Python 2 is very old and no longer supported."
+        },
+        {
+          "q": "On Windows the terminal says Python was not found. What was probably missed?",
+          "options": [
+            "Add python.exe to PATH in the installer",
+            "Installing a browser",
+            "Restarting the keyboard"
+          ],
+          "answer": 0,
+          "explain": "Run the installer again and choose Modify or Repair."
+        },
+        {
+          "q": "How does Python run your file?",
+          "options": [
+            "From the bottom to the top",
+            "All lines at the same moment",
+            "From the top to the bottom, one line at a time"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Python Basics",
@@ -467,7 +499,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does input() always return?",
+          "options": [
+            "Text, even if the user typed a number",
+            "A number",
+            "A boolean"
+          ],
+          "answer": 0,
+          "explain": "Convert it with int() or float() when you need a number."
+        },
+        {
+          "q": "What happens with \"25\" + 1?",
+          "options": [
+            "It stops with a TypeError",
+            "It gives 26",
+            "It gives \"251\""
+          ],
+          "answer": 0,
+          "explain": "Python will not guess. Convert on purpose."
+        },
+        {
+          "q": "What does the single equals sign mean in Python?",
+          "options": [
+            "Store this value under this name",
+            "Is equal to",
+            "Not equal to"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Python Basics",
@@ -666,7 +730,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Which operator compares two values for equality?",
+          "options": [
+            "=>",
+            "=",
+            "=="
+          ],
+          "answer": 2,
+          "explain": "One equals sign stores, two compare."
+        },
+        {
+          "q": "Which of these counts as false in a condition?",
+          "options": [
+            "The number 5",
+            "The text \"False\"",
+            "The empty list []"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "If several conditions in an if/elif chain are true, what runs?",
+          "options": [
+            "Only the first one that is true",
+            "The last one",
+            "All of them"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Python Basics",
@@ -874,7 +970,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the index of the first item in a list?",
+          "options": [
+            "0",
+            "1",
+            "-1"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does range(3) give?",
+          "options": [
+            "1, 2, 3",
+            "0, 1, 2",
+            "0, 1, 2, 3"
+          ],
+          "answer": 1,
+          "explain": "It stops before the number you give."
+        },
+        {
+          "q": "What does break do in a loop?",
+          "options": [
+            "Skips to the next item",
+            "Restarts the program",
+            "Stops the loop completely"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Python Basics",
@@ -1077,7 +1205,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does product[\"colour\"] do if the key does not exist?",
+          "options": [
+            "Adds the key",
+            "Raises a KeyError",
+            "Returns None"
+          ],
+          "answer": 1,
+          "explain": "Use product.get(\"colour\", \"default\") to avoid the error."
+        },
+        {
+          "q": "What is a tuple?",
+          "options": [
+            "A loop",
+            "A kind of dictionary",
+            "Like a list that cannot be changed after it is made"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does counts.get(word, 0) + 1 do when word is new?",
+          "options": [
+            "Raises an error",
+            "Gives 0",
+            "Starts the count at 1"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Functions, Text and Files",
@@ -1272,7 +1432,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does return do?",
+          "options": [
+            "Ends the whole program",
+            "Prints the value",
+            "Sends a value back to the code that called the function"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is wrong with def add(item, items=[])?",
+          "options": [
+            "Nothing",
+            "The default list is made once and shared between calls",
+            "Lists cannot be defaults"
+          ],
+          "answer": 1,
+          "explain": "This is the mutable default trap."
+        },
+        {
+          "q": "A variable created inside a function is…",
+          "options": [
+            "local to that function",
+            "always None",
+            "global to the whole program"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Functions, Text and Files",
@@ -1460,7 +1652,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does title[::-1] do?",
+          "options": [
+            "Deletes the last letter",
+            "Reverses the text",
+            "Capitalises the text"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does line.split(\",\") return?",
+          "options": [
+            "A list of the parts between commas",
+            "The text without commas as one string",
+            "A number"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why does .title() make mistakes with names like McDonald?",
+          "options": [
+            "It cannot handle capitals",
+            "It capitalises each word in a simple way",
+            "It only works on numbers"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Functions, Text and Files",
@@ -1650,7 +1874,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why use with open(...) as f:?",
+          "options": [
+            "It is the only way to read text",
+            "Python closes the file for you, even if an error happens",
+            "It makes the file bigger"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "A relative path such as \"notes.txt\" is relative to…",
+          "options": [
+            "the folder of the script",
+            "the current folder of the terminal",
+            "the desktop"
+          ],
+          "answer": 1,
+          "explain": "This surprises many beginners."
+        },
+        {
+          "q": "Which is better for reading a very large file?",
+          "options": [
+            "for line in f (one line at a time)",
+            "Both use the same memory",
+            "f.read() for the whole file"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Functions, Text and Files",
@@ -1851,7 +2107,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why avoid a bare except:?",
+          "options": [
+            "It hides every problem, including your own mistakes",
+            "It is a syntax error",
+            "It is slower"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does a finally block do?",
+          "options": [
+            "Always runs, whether or not an error happened",
+            "Runs only without errors",
+            "Runs only on errors"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What should go inside a try block?",
+          "options": [
+            "Only the lines that might fail",
+            "The whole program",
+            "Only comments"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Functions, Text and Files",
@@ -2063,7 +2351,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a module?",
+          "options": [
+            "A Python file whose code you can use from another file",
+            "A virus scanner",
+            "A kind of variable"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does if __name__ == \"__main__\": do?",
+          "options": [
+            "Stops the program",
+            "Runs it every time it is imported",
+            "Runs that code only when the file is started directly"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is a virtual environment for?",
+          "options": [
+            "Running Python on the web",
+            "Making Python faster",
+            "Keeping the packages of one project separate from others"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Objects, Libraries and Projects",
@@ -2265,7 +2585,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is the relationship between a class and an object?",
+          "options": [
+            "A class is the blueprint; an object is made from it",
+            "They are the same",
+            "An object is a blueprint for classes"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does __init__ do?",
+          "options": [
+            "It deletes the object",
+            "It prints the object",
+            "It runs when a new object is created"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does the @dataclass decorator write for you?",
+          "options": [
+            "The boring __init__ and other methods for a simple record",
+            "A database",
+            "A web page"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Objects, Libraries and Projects",
@@ -2476,7 +2828,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does Counter(votes).most_common(2) give?",
+          "options": [
+            "A sorted list of all votes",
+            "The two most frequent values with their counts",
+            "The two smallest votes"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why is the median sometimes better than the mean?",
+          "options": [
+            "It is easier to type",
+            "It is always bigger",
+            "It gives a better picture of a typical value when some values are extreme"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does defaultdict(list) do the first time you use a new key?",
+          "options": [
+            "Creates an empty list for it",
+            "Raises a KeyError",
+            "Creates 0"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Objects, Libraries and Projects",
@@ -2684,7 +3068,39 @@
         }
       ],
       "readTime": "5 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why does the program convert the amount from text?",
+          "options": [
+            "Values read from a CSV are text until you convert them",
+            "To make it shorter",
+            "CSV files hold only numbers"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "How can you check a report that looks neat but may be wrong?",
+          "options": [
+            "Trust it",
+            "Add up the amounts a second way, such as by hand or in a spreadsheet",
+            "Run it twice"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does defaultdict(float) do for the totals?",
+          "options": [
+            "Rounds the totals",
+            "Sorts the categories",
+            "Starts each new category at 0.0"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Objects, Libraries and Projects",
@@ -2891,7 +3307,39 @@
         }
       ],
       "readTime": "6 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "What is a dry run?",
+          "options": [
+            "Running without Python",
+            "Showing what would be done without changing anything",
+            "Deleting files"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is the safest place to practise file automation?",
+          "options": [
+            "On a copy or on practice files",
+            "On your only copy of important files",
+            "On the system folder"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which part of a path gives the file ending, such as .pdf?",
+          "options": [
+            ".iterdir",
+            ".suffix",
+            ".mkdir"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
     },
     {
       "section": "Objects, Libraries and Projects",
@@ -3116,7 +3564,39 @@
         }
       ],
       "readTime": "10 min read",
-      "published": true
+      "published": true,
+      "quiz": [
+        {
+          "q": "Why is most of the logic in small functions that do not print anything?",
+          "options": [
+            "Python forbids printing in functions",
+            "They are easy to test",
+            "It uses less memory"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does argparse do?",
+          "options": [
+            "Reads a database",
+            "Reads the command line and builds the help text",
+            "Draws charts"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Where does the tracker store its data?",
+          "options": [
+            "In a JSON file",
+            "In an Excel workbook",
+            "Only in memory"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
     }
   ],
   "replace": true

@@ -8,6 +8,7 @@ import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
 import LessonFeedback from '../components/LessonFeedback'
 import LessonAnimation from '../components/LessonAnimation'
+import LessonQuiz from '../components/LessonQuiz'
 import ReadingOptions, { useReadingPrefs } from '../components/ReadingOptions'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
@@ -214,6 +215,8 @@ const LearnLesson = () => {
               </div>
             </section>
           )}
+
+          {lesson.quiz && <LessonQuiz key={`quiz:${course.slug}/${lesson.slug}`} quiz={lesson.quiz} alreadyDone={isDone} onPass={() => progress.toggleDone(lesson.slug)} />}
 
           <LessonFeedback key={`${course.slug}/${lesson.slug}`} courseSlug={course.slug} lessonSlug={lesson.slug} />
 

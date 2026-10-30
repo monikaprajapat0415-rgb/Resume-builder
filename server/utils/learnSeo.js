@@ -1,5 +1,6 @@
 import { slugify } from './slugify.js';
 import { cleanAnimation } from './lessonAnimation.js';
+import { cleanQuiz } from './lessonQuiz.js';
 import {
     SITE_NAME, siteUrl, absUrl, escapeHtml, stripInline, inlineHtml, blocksToHtml, headingIds, wordCount, readTimeFor, seoTitle, DEFAULT_AUTHOR,
 } from './blogSeo.js';
@@ -43,6 +44,8 @@ export const cleanLessonFields = (b) => {
     if (has('faqs')) out.faqs = (Array.isArray(b.faqs) ? b.faqs : []).map((f) => ({ q: str(f?.q, 200), a: str(f?.a, 1500) })).filter((f) => f.q && f.a).slice(0, 15);
     // an empty value removes the animation; an invalid one throws a readable error (the controllers answer 400)
     if (has('animation')) out.animation = cleanAnimation(b.animation) ?? null;
+    // same for the quiz: empty removes it, invalid throws a readable error
+    if (has('quiz')) out.quiz = cleanQuiz(b.quiz) ?? null;
     return out;
 };
 
@@ -140,7 +143,7 @@ export const lessonView = (course, lesson, lessons) => {
         jsonLd.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: l.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: stripInline(f.a) } })) });
     }
     return {
-        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], animation: l.animation || null, download: l.download?.file ? { name: l.download.name, size: l.download.size || 0, url: `/api/learn/${c.slug}/${l.slug}/download` } : null, datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
+        lesson: { title: l.title, slug: l.slug, section: l.section || '', description, readTime: l.readTime || readTimeFor(words), content, faqs: l.faqs || [], animation: l.animation || null, quiz: l.quiz || null, download: l.download?.file ? { name: l.download.name, size: l.download.size || 0, url: `/api/learn/${c.slug}/${l.slug}/download` } : null, datePublished: published, modifiedAt: modified, noindex: Boolean(l.noindex) },
         toc: content.filter((b) => b.type === 'heading').map((b) => ({ id: b.id, text: stripInline(b.text) })),
         course: { title: c.title, slug: c.slug, level: c.level, author: c.author || DEFAULT_AUTHOR },
         sections: groupSections(lessons), prev, next, position: idx + 1, total: lessons.length, seo, jsonLd, breadcrumbs: crumbs,

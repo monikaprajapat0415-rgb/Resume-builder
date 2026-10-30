@@ -208,52 +208,76 @@ export const getUserCount = async (req, res) => {
     }
 }
 
+// Only a SHA-256 hash of the reset token is stored, so a database leak cannot be used to reset passwords.
+const hashToken = (t) => crypto.createHash("sha256").update(String(t)).digest("hex");
+
 // Controller for forgot password
 // POST: /api/users/forgot-password
+// Always answers the same way, whether or not the email has an account, so the form
+// cannot be used to find out who is registered.
 export const forgotPassword = async (req, res) => {
-  const { email } = req.body;
+  const generic = { message: "If an account exists for that email, a reset link has been sent. It is valid for 15 minutes." };
+  try {
+    const email = typeof req.body?.email === "string" ? req.body.email.trim().toLowerCase() : "";
+    if (!email || email.length > 254) return res.status(400).json({ message: "Please enter a valid email address." });
 
-  const user = await User.findOne({ email });
-  if (!user) return res.status(404).json({ msg: "User not found" });
+    const user = await User.findOne({ email });
+    if (!user) return res.json(generic);
 
-  const token = crypto.randomBytes(32).toString("hex");
+    const token = crypto.randomBytes(32).toString("hex");
+    user.resetToken = hashToken(token);
+    user.resetTokenExpire = Date.now() + 15 * 60 * 1000; // 15 min
+    await user.save();
 
-  user.resetToken = token;
-  user.resetTokenExpire = Date.now() + 15 * 60 * 1000; // 15 min
-  await user.save();
-
-  const resetLink = `${CLIENT_URL}/reset-password/${token}`;
-
-  // Send email (example below)
-  await sendEmail(user.email, resetLink, "Reset your password - Prime Resume AI");
-
-  res.json({ msg: "Reset link sent to email" });
+    const resetLink = `${CLIENT_URL.replace(/\/$/, "")}/reset-password/${token}`;
+    try {
+      await sendEmail(user.email, resetLink, "Reset your password - Prime Resume AI", `
+        <p>Hi ${String(user.name || "there").replace(/[<>&"']/g, "")},</p>
+        <p>We received a request to reset your Prime Resume AI password. This link works for 15 minutes:</p>
+        <p><a href="${resetLink}">Reset my password</a></p>
+        <p>If the button does not work, copy this address into your browser:<br>${resetLink}</p>
+        <p>If you did not ask for this, you can ignore this email. Your password stays the same.</p>
+      `);
+    } catch (err) {
+      console.error("Failed to send reset email:", err.message);
+    }
+    return res.json(generic);
+  } catch (err) {
+    console.error("forgotPassword error:", err.message);
+    return res.status(500).json({ message: "Something went wrong. Please try again." });
+  }
 };
 
 
 // Controller for reset password
- // POST: /api/users/reset-password/:token
-
+// POST: /api/users/reset-password/:token
 export const resetPassword = async (req, res) => {
-  const { token } = req.params;
-  const { password } = req.body;
+  try {
+    const { token } = req.params;
+    const { password } = req.body || {};
 
-  const user = await User.findOne({
-    resetToken: token,
-    resetTokenExpire: { $gt: Date.now() },
-  });
+    if (typeof password !== "string" || password.length < 8 || password.length > 128) {
+      return res.status(400).json({ message: "Password must be 8 to 128 characters." });
+    }
 
-  if (!user) return res.status(400).json({ msg: "Invalid or expired token" });
+    const user = await User.findOne({
+      resetToken: hashToken(token),
+      resetTokenExpire: { $gt: Date.now() },
+    });
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+    if (!user) return res.status(400).json({ message: "This reset link is invalid or has expired. Please request a new one." });
 
-  user.password = hashedPassword;
-  user.resetToken = undefined;
-  user.resetTokenExpire = undefined;
+    user.password = await bcrypt.hash(password, 10);
+    user.resetToken = undefined;
+    user.resetTokenExpire = undefined;
+    user.isVerified = true; // they received the email, so the address is theirs
+    await user.save();
 
-  await user.save();
-
-  res.json({ msg: "Password reset successful" });
+    return res.json({ message: "Password updated. You can log in now." });
+  } catch (err) {
+    console.error("resetPassword error:", err.message);
+    return res.status(500).json({ message: "Something went wrong. Please try again." });
+  }
 };
 
 // Controller for verifying a user's email via the link sent on signup
