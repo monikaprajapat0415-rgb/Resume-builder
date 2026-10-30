@@ -1,77 +1,54 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import toast from 'react-hot-toast';
-// import { Lock, Mailbox } from 'lucide-react';
-import { FaLock, FaEnvelope } from 'react-icons/fa';
+import { FaEnvelope } from 'react-icons/fa';
 import api from '../configs/api'
 import SEO from '../components/SEO'
 
 const ForgotPassword = () => {
-  const [userEmail, setEmail] = useState({
-    email: ''
-  });
-//  const [formData, setFormData] = React.useState({
-//         name: '',
-//         email: '',
-//         password: ''
-//     })
+  const location = useLocation();
+  const [email, setEmail] = useState(location.state?.email || '');
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
-    // const navigate = useNavigate();
-   const handleForgetPasswordSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await api.post("/api/users/forgot-password", userEmail);
-        } catch (error) {
-            toast.error(error.response?.data?.message || error.message || "An error occurred. Please try again.");
-        }
-        toast.success("Password reset link sent to your email!");
-    };
-
-    //  const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         const {data} = await api.post(`/api/users/${state}`, formData)
-    //         dispatch(login(data))
-    //         localStorage.setItem('token', data.token);
-    //         toast.success(data.message)
-
-            
-    //     } catch (error) {
-    //         toast.error(error.response?.data?.message || error.message || "An error occurred. Please try again.")
-    //       //  console.log("Error logging in:", error.message);
-    //     }
-
-    // }
-     const handleChange = (e) => {
-        const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await api.post("/api/users/forgot-password", { email: email.trim() });
+      setSent(true);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Could not send the link. Please try again.");
+    } finally {
+      setLoading(false);
     }
+  };
 
   return (
-    // <div>
-    //   <h2>Forgot Password</h2>
-    //   <input
-    //     type="email"
-    //     placeholder="Enter email"
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-    //   <button onClick={handleForgetPasswordSubmit}>Send Link</button>
-    // </div>
-
-    <div className='flex items-center justify-center min-h-screen bg-gray-50'>
-       <SEO title="Forgot Password" noindex />
-       <form className="sm:w-[450px] w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
-                <h1 className="text-gray-900 text-3xl mt-10 font-medium">Forgot Password</h1>
-                <p className="text-gray-500 text-sm mt-2">Please enter your email to continue</p>
-                <div className="flex items-center w-full mt-4 mb-2 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
-                <FaEnvelope size={13} color='6B7280'/>
-                    <input type="email" name="email" placeholder="Email id" className="border-none outline-none ring-0" value={userEmail.email}  onChange={(e) => setEmail({ ...userEmail, email: e.target.value })}required />
-                </div>
-
-                <button type="submit" onClick={handleForgetPasswordSubmit} className="mt-2 mb-11 w-full h-11 rounded-full text-white bg-brand-500 hover:opacity-90 transition-opacity">
-                    Send Link
-                </button>
-                {/* <p onClick={() => setState(prev => prev === "login" ? "register" : "login")} className="text-gray-500 text-sm mt-3 mb-11">{state === "login" ? "Don't have an account?" : "Already have an account?"} <a href="#" className="text-brand-500 hover:underline">click here</a></p> */}
-            </form>
+    <div className='flex items-center justify-center min-h-screen bg-gray-50 px-4'>
+      <SEO title="Forgot Password" noindex />
+      <form onSubmit={handleSubmit} className="sm:w-[450px] w-full text-center border border-gray-300/60 rounded-2xl px-8 bg-white">
+        <h1 className="text-gray-900 text-3xl mt-10 font-medium">Forgot Password</h1>
+        {sent ? (
+          <div className="mt-6 mb-10">
+            <p className="text-gray-700 text-sm">If an account exists for <strong>{email}</strong>, we have sent a reset link. It works for 15 minutes.</p>
+            <p className="text-gray-500 text-xs mt-3">Not there? Check your spam folder, or try again in a few minutes.</p>
+            <button type="button" onClick={() => setSent(false)} className="mt-4 text-sm text-brand-500 hover:underline">Use a different email</button>
+          </div>
+        ) : (
+          <>
+            <p className="text-gray-500 text-sm mt-2">Enter your email and we will send you a link to set a new password.</p>
+            <div className="flex items-center w-full mt-4 mb-2 bg-white border border-gray-300/80 h-12 rounded-full overflow-hidden pl-6 gap-2">
+              <FaEnvelope size={13} color='6B7280' />
+              <input type="email" name="email" placeholder="Email id" autoComplete="email" className="flex-1 min-w-0 h-full pr-6 bg-transparent border-none outline-none ring-0" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <button type="submit" disabled={loading} className="mt-2 w-full h-11 rounded-full text-white bg-brand-500 hover:opacity-90 transition-opacity disabled:opacity-60">
+              {loading ? "Sending..." : "Send reset link"}
+            </button>
+          </>
+        )}
+        <p className="text-gray-500 text-sm mt-4 mb-10"><Link to="/app" className="text-brand-500 hover:underline">Back to login</Link></p>
+      </form>
     </div>
   );
 }
