@@ -80,5 +80,827 @@
    "Use the GitHub no-reply email if you do not want your real email in commits.",
    "Be honest: show what you really built, and say what you learned or what is next."
   ]
+ },
+ "python-for-beginners-course": {
+  "what-is-python-install-and-first-program": [
+   "Windows: tick **Add python.exe to PATH** on the first installer screen. Missing it is the most common setup problem.",
+   "Check the install: `python --version` should start with 3.",
+   "The interactive prompt is for trying one line. A file (`hello.py`) is for a real program.",
+   "First program: `print(\"Hello\")`, then run `python hello.py`.",
+   "Read error messages from the bottom up: the last line says what went wrong, and the line number says where.",
+   "Curly quotes copied from a web page break code. Retype them as straight quotes."
+  ],
+  "variables-numbers-strings-and-input": [
+   "A variable is a name that points to a value: `price = 120`.",
+   "Main types: `int`, `float`, `str`, `bool`. Check one with `type(value)`.",
+   "`input()` always gives text. Convert it: `int(...)` or `float(...)`.",
+   "Not sure what a value is? `print(value, type(value))`.",
+   "For money, round on purpose with `round(x, 2)` and remember that floats are not always exact.",
+   "Common mistakes: adding text to a number, and using a name before you create it."
+  ],
+  "making-decisions-with-if-elif-else": [
+   "Comparisons give `True` or `False`: `==`, `!=`, `<`, `>`, `<=`, `>=`.",
+   "`if` / `elif` / `else`: the first true branch runs and the rest are skipped. `else` has no condition.",
+   "Every `if`, `elif` and `else` line ends with a colon, and the code under it is indented.",
+   "`\"5\" == 5` is `False`. Convert `input()` first.",
+   "Chained comparison works like maths: `1 < 5 < 10`.",
+   "Test each branch with values on both sides of the boundary."
+  ],
+  "lists-and-loops-for-while": [
+   "A list is ordered and can change: `prices = [120, 80]`. Counting starts at 0.",
+   "`append` adds at the end, `remove` takes out a value, `sorted(list)` gives a new sorted list.",
+   "A slice `prices[1:3]` stops before the second number.",
+   "`for item in items:` runs once for each item. `range(3)` is 0, 1, 2: it stops before the number.",
+   "`break` leaves the loop. `continue` skips to the next round.",
+   "Do not change a list while you loop over it. Copy it first with `list(x)` or `x[:]`.",
+   "`prices[10]` on a short list raises `IndexError`."
+  ],
+  "dictionaries-tuples-and-sets": [
+   "Dictionary = look up by key: `product[\"stock\"]`. A missing key raises `KeyError`.",
+   "`product.get(\"colour\", \"none\")` gives a default instead of an error.",
+   "`.items()` loops over key and value together. `\"price\" in product` checks a key.",
+   "Counting pattern: `counts[word] = counts.get(word, 0) + 1`.",
+   "Tuple = small fixed group (coordinates). Set = unique values and fast `in` checks.",
+   "List for order, dictionary for lookup, tuple for fixed, set for unique."
+  ],
+  "functions-in-python": [
+   "`def name(parameters):` defines a function. It only runs when you call it.",
+   "`return` sends a value back. No `return` means the call gives `None`.",
+   "A default value makes a parameter optional: `rate=0.18`. You can pass it by name.",
+   "A function can return two values. Python packs them into a tuple: `low, high = min_max(x)`.",
+   "Variables made inside a function live only there (scope).",
+   "One job per function, a verb in the name, return values instead of only printing.",
+   "Never use an empty list as a default value. It is shared between calls."
+  ],
+  "working-with-text-strings-in-python": [
+   "Text is a sequence: `text[0]` is the first character, `text[-1]` the last.",
+   "`strip()` trims spaces. `lower()`, `upper()` and `replace()` give a new text. The old one does not change.",
+   "`split(\",\")` makes a list. `\" \".join(words)` glues a list back together.",
+   "Lower the text first before you compare: `name.lower().endswith(\".pdf\")`.",
+   "f-strings format output: `f\"{price:.2f}\"`, `<10` left-aligns and `>8` right-aligns.",
+   "Do not memorise every method. Know they exist and look them up."
+  ],
+  "read-and-write-files-csv-and-json": [
+   "Use `with open(...) as f:` so the file is closed for you.",
+   "Modes: `\"r\"` read, `\"w\"` write (replaces), `\"a\"` append.",
+   "`for line in f:` reads one line at a time, good for big files.",
+   "CSV: `csv.DictReader` and `csv.DictWriter` work with rows as dictionaries.",
+   "JSON: `json.dumps` turns data into text, `json.loads` turns it back. Use `indent=2` to read it.",
+   "`pathlib.Path` builds paths that work on every system.",
+   "`FileNotFoundError`? Print `Path(\"file\").resolve()` and see where Python is looking."
+  ],
+  "handling-errors-with-try-except": [
+   "An exception is Python's way to stop and say what went wrong. `try` / `except` lets you handle it.",
+   "Catch specific errors (`ValueError`), not a bare `except:` that hides every problem.",
+   "Keep the `try` block small so you know which line failed.",
+   "`else` runs if nothing failed. `finally` always runs.",
+   "Tell the user what went wrong and what to do next.",
+   "Use `raise` for your own errors. A custom exception gives a problem a clear name.",
+   "Read a traceback from the bottom up."
+  ],
+  "modules-pip-and-virtual-environments": [
+   "`import math` or `from math import ceil`. The standard library is already installed.",
+   "Your own file `tools.py` can be imported as a module.",
+   "`if __name__ == \"__main__\":` runs code only when the file is run directly, not imported.",
+   "`pip install package` adds a package from the internet.",
+   "Make a virtual environment per project: `python -m venv .venv`, then activate it.",
+   "`pip freeze > requirements.txt` saves the list. `pip install -r requirements.txt` rebuilds it.",
+   "Do not name your file like a module (`random.py`). It hides the real one."
+  ],
+  "classes-and-objects-in-python": [
+   "A class is a blueprint. An object is one thing made from it: `Wallet(\"Asha\", 500)`.",
+   "`__init__` runs when the object is made. `self` is the object itself.",
+   "`__str__` decides what `print(obj)` shows.",
+   "A dataclass is a short way to write a class that only holds data.",
+   "Inheritance: `class Savings(Wallet)` reuses and extends another class.",
+   "Classes are optional. Use one when data and its actions belong together."
+  ],
+  "useful-python-standard-library": [
+   "Dates: `datetime` and `timedelta`. Store dates in ISO format (`2026-10-31`).",
+   "`Counter` counts items. `defaultdict` starts new keys with a default value.",
+   "`statistics.mean` and `median` are built in.",
+   "`zip(a, b)` pairs two lists. `sorted(items, key=..., reverse=True)` sorts by your rule.",
+   "`any(...)` is true if one item matches. `all(...)` is true if every item matches.",
+   "Use `help(module)` to learn a module fast."
+  ],
+  "analyse-a-csv-file-with-python": [
+   "Plan first: what is in the file and what question do you want answered?",
+   "`Path(__file__).parent` finds files next to the script, wherever you run it from.",
+   "Read rows with `csv.DictReader`, convert amounts to numbers, and total them by category.",
+   "`defaultdict(float)` makes the first total start at `0.0`.",
+   "`sorted(totals.items(), key=lambda item: item[1], reverse=True)` puts the biggest first.",
+   "Check your result by adding up a few rows by hand."
+  ],
+  "automate-files-and-folders-with-python": [
+   "Practise on copies, never on your only copy of a file.",
+   "Dry run first: print what you would do, change nothing, then run it for real.",
+   "Never overwrite silently. Check if the target exists. Moving is safer than deleting.",
+   "`iterdir()` lists a folder, `rglob(\"*.pdf\")` searches all sub-folders.",
+   "`item.suffix.lower()` gives the file ending. `mkdir(exist_ok=True)` makes a folder safely.",
+   "`shutil.move` moves a file. `shutil.copytree` copies a folder."
+  ],
+  "final-project-expense-tracker-and-next-steps": [
+   "Plan before you code: data, commands, functions, rules, safety.",
+   "Store expenses as a list of dictionaries in a JSON file. A missing file means an empty list.",
+   "`argparse` builds the commands (`add`, `list`, `total`) and the `--help` text for you.",
+   "`type=float` makes argparse check the amount for you.",
+   "Test with `unittest` and a separate `--file`, so your real data is safe.",
+   "Next: practise a little every day, then build projects you care about."
+  ]
+ },
+ "sql-for-beginners": {
+  "what-is-sql-and-a-database": [
+   "A database stores data in tables. A table has columns (the kind of fact) and rows (one record each).",
+   "Primary key = \"who am I?\" Foreign key = \"who do I belong to?\"",
+   "SQL does four jobs: `INSERT` (create), `SELECT` (read), `UPDATE` (change), `DELETE` (remove).",
+   "One language, many engines: SQLite, MySQL, PostgreSQL, SQL Server, Oracle. The basics are the same.",
+   "Used by analysts, developers, testers, support and finance teams.",
+   "Practise in this course on a small shop database."
+  ],
+  "set-up-sqlite-practice-database": [
+   "Easiest start: DB Browser for SQLite, the `sqlite3` command line, or an online SQLite playground.",
+   "The shop database has 4 tables: `customers` (8 rows), `products` (8), `orders` (10), `order_items` (15).",
+   "Check it worked: `SELECT * FROM customers;` returns 8 rows, and Hari Singh has no city.",
+   "Every statement ends with a semicolon. Keywords are not case sensitive, but write them in capitals to read easily.",
+   "Type the queries yourself. Typing makes the shape stick.",
+   "Something broke? Delete the file and run the setup script again."
+  ],
+  "select-from-where-basics": [
+   "`SELECT columns FROM table;` chooses what to show. `SELECT *` means every column.",
+   "`AS` gives a column a nicer name: `price AS cost`.",
+   "`WHERE` keeps only the rows that match: `WHERE city = 'Pune'`. Text goes in single quotes.",
+   "Missing values: use `IS NULL` and `IS NOT NULL`. Never `= NULL`.",
+   "The database thinks in this order: `FROM`, then `WHERE`, then `SELECT`.",
+   "Common mistakes: missing quotes around text, and double quotes instead of single."
+  ],
+  "filter-with-and-or-in-between-like": [
+   "`AND`: both conditions must be true. `OR`: at least one must be true.",
+   "Mixing `AND` and `OR`? Use brackets so the meaning is clear.",
+   "`IN ('A', 'B')` is a short way to write many `OR`s.",
+   "`BETWEEN 100 AND 500` includes both ends.",
+   "`LIKE` matches patterns: `%` is any text, `_` is one character. `LIKE 'A%'` starts with A.",
+   "Build the filter in small steps and run it each time."
+  ],
+  "order-by-limit-distinct": [
+   "`ORDER BY price DESC` sorts the biggest first. The default is `ASC`. Add a second column to break ties.",
+   "`LIMIT 3` gives the first three rows. SQL Server uses `TOP 3`.",
+   "`DISTINCT` removes repeated values.",
+   "Handy functions: `UPPER`, `LOWER`, `LENGTH`, `ROUND(x, 2)`, `SUBSTR`.",
+   "`COALESCE(city, 'Unknown')` gives `NULL` a fallback value.",
+   "`CASE WHEN ... THEN ... ELSE ... END` is if / then inside a query."
+  ],
+  "aggregate-functions-count-sum-avg": [
+   "`COUNT(*)` counts rows. `COUNT(column)` skips `NULL`s.",
+   "`SUM`, `AVG`, `MIN`, `MAX` summarise many rows into one value. `ROUND(AVG(x), 2)` makes it tidy.",
+   "If no rows match: `COUNT` gives 0, but `SUM`, `AVG`, `MIN`, `MAX` give `NULL`.",
+   "You can calculate inside an aggregate: `SUM(price * quantity)`.",
+   "`MIN` and `MAX` also work on text and dates.",
+   "Common mistake: mixing a normal column with an aggregate and no `GROUP BY`."
+  ],
+  "group-by-and-having": [
+   "`GROUP BY city` makes one result row for each city.",
+   "Use several aggregates at once: `COUNT(*)`, `SUM(...)`, `AVG(...)`.",
+   "Every plain column in `SELECT` must be in `GROUP BY`.",
+   "`NULL`s are grouped together as one group.",
+   "`WHERE` filters rows before grouping. `HAVING` filters groups after. Aggregates go in `HAVING`.",
+   "Order of a query: `FROM`, `WHERE`, `GROUP BY`, `HAVING`, `SELECT`, `ORDER BY`, `LIMIT`."
+  ],
+  "primary-foreign-keys-table-design": [
+   "One big table causes copies, mistakes and lost facts. Split by kind of thing.",
+   "Primary key: every row has its own unique id that never repeats.",
+   "Foreign key: a column that points to the primary key of another table (`orders.customer_id`).",
+   "One-to-many: one customer, many orders. Many-to-many needs a link table (`order_items`).",
+   "To read a new database: find the tables, the keys, and how they link.",
+   "Good names help: singular or plural, but be consistent, and `customer_id` for links."
+  ],
+  "sql-joins-inner-left": [
+   "A join puts related rows from two tables side by side with `ON a.id = b.customer_id`.",
+   "`INNER JOIN` keeps only rows that match on both sides.",
+   "`LEFT JOIN` keeps every row from the left table, with `NULL` where there is no match.",
+   "Rows with no match: `LEFT JOIN ... WHERE b.id IS NULL`.",
+   "Give tables short aliases (`orders AS o`) and join three tables one at a time.",
+   "Results grow when one row matches many. Check the row count after a join.",
+   "`FULL OUTER JOIN` is missing in MySQL. `CROSS JOIN` pairs every row, usually a bug."
+  ],
+  "subqueries-exists-and-ctes": [
+   "A subquery is a query inside brackets. It can return one value, or a list for `IN`.",
+   "`NOT IN` with a `NULL` in the list returns nothing. Use `NOT EXISTS` instead.",
+   "`EXISTS` asks: is there at least one matching row?",
+   "A subquery in `FROM` works like a temporary table.",
+   "`WITH name AS (...)` is a CTE: it names a step so the query reads top to bottom.",
+   "Pick the one you can explain in one sentence. Readability matters."
+  ],
+  "insert-update-delete-safely": [
+   "`INSERT INTO table (columns) VALUES (...)` adds a row.",
+   "`UPDATE table SET column = value WHERE ...` changes rows.",
+   "`DELETE FROM table WHERE ...` removes rows.",
+   "`UPDATE` or `DELETE` without `WHERE` changes every row. Type the `WHERE` first.",
+   "Safety: `SELECT` first with the same `WHERE`, check the row count, use a transaction.",
+   "`BEGIN`, then `COMMIT` to keep or `ROLLBACK` to undo."
+  ],
+  "create-table-data-types-constraints": [
+   "`CREATE TABLE name (column type constraints, ...)` makes a table.",
+   "Types: `INTEGER` for ids and counts, `DECIMAL(10,2)` for money, `TEXT` or `VARCHAR`, `DATE`.",
+   "Constraints are rules: `PRIMARY KEY`, `NOT NULL`, `UNIQUE`, `DEFAULT`, `CHECK`.",
+   "`FOREIGN KEY ... REFERENCES` stops links to rows that do not exist.",
+   "`ALTER TABLE` changes a table later. `DROP TABLE` removes it completely. Be careful.",
+   "Store only the personal data you really need."
+  ],
+  "window-functions-row-number-rank": [
+   "A window function calculates across related rows but keeps every detail row: `function() OVER (...)`.",
+   "`ROW_NUMBER()` numbers rows. Add `PARTITION BY` to restart for each group.",
+   "Latest row per customer: number rows by date descending, keep number 1.",
+   "`RANK` leaves gaps after ties. `DENSE_RANK` does not.",
+   "`SUM(x) OVER (ORDER BY date)` gives a running total.",
+   "`LAG` and `LEAD` look at the previous or next row.",
+   "`GROUP BY` gives one row per group. A window keeps all rows."
+  ],
+  "indexes-and-query-performance": [
+   "An index is like a book's index. The database finds rows without reading the whole table.",
+   "`EXPLAIN` shows the plan. Look for a full table scan on a big table.",
+   "`CREATE INDEX name ON table (column);`",
+   "Index columns used in `WHERE`, in joins (foreign keys) and in `ORDER BY` on big tables.",
+   "Indexes cost space and slow down writes, so do not index everything.",
+   "An index is not used with a function on the column, `LIKE '%text'`, or a type mismatch.",
+   "Name the columns instead of `SELECT *`, and add `LIMIT` when you need only a few rows."
+  ],
+  "sql-interview-questions-and-next-steps": [
+   "Repeat the question in your own words and ask about unclear parts: ties, `NULL`s, what counts as active.",
+   "Say your plan before typing. Start simple, run it, then add conditions.",
+   "Check your result by counting a few rows by hand.",
+   "Mention edge cases: `NULL`s, ties, customers with no orders.",
+   "If you do not know, say so and explain how you would find out.",
+   "Next: practise weekly, try PostgreSQL or MySQL, learn dates and views, connect SQL to Python or Node.js, and build a small project on GitHub."
+  ]
+ },
+ "nodejs-express-course": {
+  "what-is-nodejs-and-your-first-script": [
+   "Node.js runs JavaScript outside the browser: servers and APIs, command line tools, build tools, scheduled jobs.",
+   "Check the install: `node -v` should show `v20` or higher. After installing, open a new terminal.",
+   "The REPL (`node`) is for trying one line. A file (`node app.js`) is for a real script.",
+   "Different from the browser: no `document` and no `window`, but you get files and the system.",
+   "This course builds a tasks API with Express."
+  ],
+  "modules-npm-and-package-json": [
+   "Turn on ES modules with `\"type\": \"module\"` in `package.json`. Then use `import` and `export`.",
+   "Built-in modules are imported with the `node:` prefix: `import os from 'node:os'`.",
+   "`npm install express` adds a package. It goes in `dependencies` in `package.json`.",
+   "Commit `package.json` and `package-lock.json`. Never commit `node_modules`.",
+   "`^5.1.0` in `package.json`: the caret allows newer minor and patch versions, not a new major one. `npm run name` runs a script.",
+   "Check a package before you install it: name, downloads, last update."
+  ],
+  "files-paths-and-built-in-modules": [
+   "Use `fs/promises` with `await`: `readFile`, `writeFile`, `appendFile`, `readdir`, `mkdir`.",
+   "Build paths with `path.join(import.meta.dirname, 'tasks.json')`. It works on every system.",
+   "`ENOENT` means the file does not exist. Catch it and return a safe default, such as `[]`.",
+   "`mkdir(folder, { recursive: true })` is safe to run twice.",
+   "`rm` has no recycle bin. A file store is fine for learning, not for many users.",
+   "Never save secrets as plain text in a committed file."
+  ],
+  "async-javascript-promises-and-event-loop": [
+   "Node has one thread and an event loop. Slow work (files, network) runs in the background.",
+   "A Promise is a value that arrives later. `await` waits for it inside an `async` function.",
+   "Handle errors with `try` / `catch` around `await`.",
+   "Independent jobs: `await Promise.all([a(), b()])` is faster than one after the other.",
+   "Forgot `await`? You get a Promise, not the value.",
+   "Do not block the event loop with long loops or `*Sync` functions inside a server."
+  ],
+  "your-first-http-server-with-node": [
+   "Request in, response out. Methods: GET reads, POST creates, PUT replaces, PATCH changes part, DELETE removes.",
+   "Status codes: 200 OK, 201 Created, 204 No Content, 400 bad request, 401 log in, 403 not allowed, 404 not found, 429 slow down, 500 server broke.",
+   "A plain Node server works but gets long. Express makes routing short.",
+   "`EADDRINUSE` means another program, or an old copy of your server, is using the port.",
+   "Do not leave a test server open to the world."
+  ],
+  "your-first-express-server": [
+   "`app.get(path, handler)` runs the handler for a GET on that path. `app.listen(port)` starts the server.",
+   "`req.params` (from the path), `req.query` (after `?`), `req.body` (needs a body parser).",
+   "`res.json(object)` is the main way to answer an API call. `res.status(404).json({ error: '...' })` chains.",
+   "`res.status(204).end()` is an empty answer, used after a delete.",
+   "Send one response per request. A second `res.send` causes an error.",
+   "`node --watch` restarts on every save. Use `process.env.PORT` for the port.",
+   "`Cannot GET /x` = no route for that path and method."
+  ],
+  "express-routing-params-query-and-routers": [
+   "Route parameter: `/api/tasks/:id` gives `req.params.id` as text.",
+   "Query string: `/api/tasks?done=true` gives `req.query.done`. Quote the URL in curl.",
+   "Status codes: 200 read or update, 201 created, 204 deleted, 400 bad data, 404 missing.",
+   "Route order matters: put `/api/tasks/stats` before `/api/tasks/:id`.",
+   "Use `express.Router()` to split routes into files and mount them with `app.use('/api/tasks', router)`.",
+   "Keep URLs predictable: plural nouns, no verbs."
+  ],
+  "express-middleware-explained": [
+   "Middleware is a function `(req, res, next)`. It either answers, or calls `next()`.",
+   "Order is everything: middleware runs in the order you write `app.use`.",
+   "`express.json()` reads a JSON body into `req.body`. Bad JSON gives a 400 error.",
+   "Use middleware for some routes only: `app.get('/x', check, handler)`.",
+   "Pass data along with `req.user = ...` or `res.locals`.",
+   "Request hangs? A middleware forgot to answer or to call `next()`."
+  ],
+  "build-a-rest-api-crud-routes": [
+   "Five routes: `GET /api/tasks`, `GET /:id`, `POST` (201), `PATCH /:id`, `DELETE /:id` (204).",
+   "Test every route with curl, including the failing cases.",
+   "PUT replaces the whole thing. PATCH changes some fields.",
+   "Return the new or updated object so the front end does not need a second call.",
+   "Early version problems: no validation, data lost on restart, ids not safe."
+  ],
+  "validation-and-error-handling-in-express": [
+   "Never trust the request. Check every field on the server.",
+   "Write a validation function and return `400` with a clear message when the data is wrong.",
+   "Add a `404` handler after all routes for unknown URLs.",
+   "One central error handler `(err, req, res, next)` gives every error the same JSON shape.",
+   "Front-end validation is for convenience. Server validation is for security.",
+   "Do not leak details such as stack traces to the client."
+  ],
+  "environment-variables-and-saving-data-to-a-file": [
+   "Settings and secrets do not belong in code. Read them from `process.env`.",
+   "Put them in a `.env` file and list `.env` in `.gitignore`.",
+   "Commit a `.env.example` with names but no real values.",
+   "Fail early at startup if a required variable is missing.",
+   "A leaked secret stays in git history. Change the secret, do not only delete the line.",
+   "A file store is fine to learn. For real apps use a database."
+  ],
+  "mongodb-and-mongoose-for-your-api": [
+   "MongoDB stores documents. Mongoose adds schemas and models.",
+   "Connect once at startup with `mongoose.connect(process.env.MONGODB_URI)`.",
+   "A schema sets the rules: `required`, `trim`, `maxlength`, `default`, `timestamps: true`.",
+   "Routes use `find`, `findById`, `create`, `findByIdAndUpdate`, `findByIdAndDelete`.",
+   "A bad id like `/api/tasks/abc` should give a 404 or 400, not a 500.",
+   "Never put the database address in code. Do not open the database to the whole internet."
+  ],
+  "user-login-with-password-hashing-and-jwt": [
+   "Never store a password. Store a hash made with `bcrypt`. `bcrypt.compare` is slow on purpose.",
+   "After login, the server gives a signed token (JWT). The client sends it on each request.",
+   "A middleware checks the token and sets `req.user` before protected routes.",
+   "Each user sees only their own tasks: filter by the user id.",
+   "Give the same error for a wrong email and a wrong password.",
+   "Not covered: logout, refresh tokens, password reset, roles. Use tested libraries for these."
+  ],
+  "secure-your-express-api-cors-helmet-rate-limit": [
+   "CORS: allow only your own front end origin.",
+   "`helmet()` sets safer HTTP headers.",
+   "Rate limiting stops too many requests, especially on login routes.",
+   "Limit the body size: `express.json({ limit: '10kb' })`.",
+   "Keep secrets out of git and logs. Run `npm audit` and keep packages updated.",
+   "Use HTTPS in production, check ownership of every record, and take backups.",
+   "These steps reduce risk. They do not make an app unhackable."
+  ],
+  "test-and-deploy-your-node-api": [
+   "Make the app testable: export `app` and call `listen` in a separate file.",
+   "Tests with the built-in `node:test`. `npm test` should pass before every deploy.",
+   "For production set `NODE_ENV=production`, use real secrets and a real database.",
+   "Keep it running with `pm2`. Put nginx in front with HTTPS.",
+   "Add a `/api/health` route and check the logs.",
+   "Deploy routine: pull, install, test, restart. Test your backup, and have a way to go back."
+  ]
+ },
+ "excel-for-jobs-course": {
+  "excel-screen-cells-first-sheet": [
+   "A file is a workbook. Inside are worksheets. Each cell has an address: column letter plus row number (`C4`).",
+   "A range uses a colon: `A1:C5` is the block from A1 to C5.",
+   "The formula bar shows what is really in the cell. The Name Box shows the address.",
+   "`Ctrl+Arrow` jumps to the end of the data. `Ctrl+Z` undoes. Do not be afraid to try.",
+   "One table, one purpose: headings in row 1, no empty rows or columns inside.",
+   "Type `120`, not `Rs. 120` or `120 rupees`. Keep numbers as pure numbers."
+  ],
+  "enter-and-format-data": [
+   "Numbers align right, text aligns left. A date is a number that is shown as a date.",
+   "A number that looks right but will not add up may be stored as text. Check the alignment.",
+   "Formats change only the look: Currency, Percentage (`18%` is stored as 0.18), Date, Text.",
+   "Freeze the heading row: View, Freeze Panes, Freeze Top Row.",
+   "Avoid merged cells inside data, blank rows or columns in a table, and too many colours.",
+   "The AutoFill handle (small square on the corner) copies and continues patterns."
+  ],
+  "first-formulas-and-cell-references": [
+   "Every formula starts with `=`. Without it, Excel shows the text.",
+   "Click cells while you type instead of typing addresses.",
+   "Copy a formula down and the references move with it (relative).",
+   "`$` locks a reference: `$J$1` stays fixed when you copy the formula down. Use it for a single input, such as a tax rate.",
+   "Do not type numbers inside formulas. Refer to the cell, so a changed price changes the answer.",
+   "Errors: `#VALUE!` is text mixed with numbers, `#REF!` is a deleted cell."
+  ],
+  "sum-average-count-min-max": [
+   "Functions look like `=SUM(D2:D11)`: name, brackets, range.",
+   "`SUM`, `AVERAGE`, `MIN`, `MAX`. `COUNT` counts numbers, `COUNTA` counts non-empty cells, `COUNTBLANK` counts empty ones.",
+   "Select cells and look at the status bar for a quick sum and average.",
+   "`ROUND(x, 2)` rounds the value. Formatting only changes how it looks.",
+   "Percent of total: `=D2/SUM($D$2:$D$11)` with the total locked.",
+   "`#DIV/0!` divide by zero, `#NAME?` mistyped name, `####` the column is too narrow."
+  ],
+  "if-and-or-iferror-logic": [
+   "`=IF(test, if_true, if_false)` gives one of two results.",
+   "Text in a test goes in quotes: `=IF(B2=\"Paid\", 0, D2)`.",
+   "`AND` is true only if all tests are true. `OR` is true if any is true. `NOT` reverses.",
+   "Nested `IF` handles more than two outcomes. Keep it to a few levels.",
+   "`=IFERROR(formula, \"\")` shows a tidy value instead of an error. Do not use it to hide real mistakes.",
+   "Common mistake: forgetting quotes around text, or a missing bracket."
+  ],
+  "sumif-countif-averageif-sumifs": [
+   "`SUMIF(range, condition, sum_range)` adds only the rows that match.",
+   "Conditions with signs go in quotes: `\">500\"`, `\"<>Paid\"`.",
+   "Wildcards: `*` is any text, `?` is one character: `\"A*\"`.",
+   "`COUNTIF` counts matches. `AVERAGEIF` averages them.",
+   "`SUMIFS`, `COUNTIFS`, `AVERAGEIFS` use more than one condition. In `SUMIFS` the sum range comes first.",
+   "A total missing rows? Check for extra spaces or numbers stored as text."
+  ],
+  "vlookup-xlookup-index-match": [
+   "`VLOOKUP(lookup_value, table, column_number, FALSE)` finds a value in the first column and returns another.",
+   "Always end with `FALSE` for an exact match.",
+   "`#N/A` means nothing was found. Check spaces, spelling and text versus number.",
+   "`VLOOKUP` cannot look left. `XLOOKUP` (365 and 2021) can, and it is simpler.",
+   "`INDEX` and `MATCH` work in every version: `MATCH` finds the position, `INDEX` returns the item.",
+   "Approximate match (`TRUE`) is for bands such as grades, and the table must be sorted."
+  ],
+  "text-functions-and-cleaning-data": [
+   "`TRIM` removes extra spaces. `PROPER`, `UPPER`, `LOWER` fix capitals.",
+   "`LEFT`, `RIGHT`, `MID` take part of a text. `LEN` counts characters. `FIND` finds a position.",
+   "Join text with `&`, `CONCAT` or `TEXTJOIN`.",
+   "Text to Columns splits without formulas. Flash Fill copies a pattern you show it.",
+   "Remove Duplicates and Find and Replace clean quickly. `Ctrl+G`, Special, Blanks selects empty cells.",
+   "Golden rule: never clean your only copy. Keep the original on one sheet."
+  ],
+  "excel-dates-and-times": [
+   "A date is a number: days counted from the start of 1900. Format it as a date.",
+   "`=TODAY()` is today's date. `=NOW()` includes the time. Both change when the file recalculates.",
+   "`EDATE` adds months. `EOMONTH` gives the end of the month.",
+   "`NETWORKDAYS` counts working days. Add a holiday list to skip them. `WORKDAY` finds a date.",
+   "`DATEDIF` gives age or length of service.",
+   "Problems: text dates, day and month swapped, a date that shows as a number."
+  ],
+  "sort-filter-and-excel-tables": [
+   "Sort by one or more columns. Select the whole table so rows stay together.",
+   "Filter by text, number, date or colour. A filtered sheet hides rows, so say it when you share.",
+   "Excel Table (`Ctrl+T`): grows by itself, fills formulas, keeps headings visible, has a Total Row.",
+   "Structured references use column names: `=[@Qty]*[@Price]`.",
+   "Slicers filter with buttons.",
+   "Good habits: one table per sheet, a heading in every column, no blank rows."
+  ],
+  "pivot-tables-for-beginners": [
+   "A pivot table summarises a long table: totals by group, without formulas.",
+   "Four areas: Rows, Columns, Values, Filters.",
+   "Change Values from Sum to Count, Average, Min or Max.",
+   "Group dates by month or year. Add slicers to filter.",
+   "A pivot does not update by itself: right-click, Refresh.",
+   "A number looks wrong? Double-click it to see the rows behind it.",
+   "Source table: headings on row 1, no blanks, no merged cells."
+  ],
+  "excel-charts-and-simple-dashboard": [
+   "Choose by question: columns or bars to compare, a line for change over time, a pie only for a few parts of a whole.",
+   "Write a clear title that says something, and label the axes with units.",
+   "Sort bars largest to smallest, and start bar charts at zero.",
+   "Use few colours: one for normal, one to highlight.",
+   "A simple dashboard: a few charts and key numbers on one sheet, from pivot tables.",
+   "Check the chart against the numbers. A wrong range can leave out the last row."
+  ],
+  "data-validation-conditional-formatting-protection": [
+   "Data validation lets only good entries in: whole number, list (drop-down), date, text length, custom.",
+   "A list that grows: base the drop-down on an Excel Table.",
+   "Conditional formatting colours cells by rule: highlight, top and bottom, data bars, colour scales, icons.",
+   "Formula rules colour the whole row: `=$D2>1000`.",
+   "Protect Sheet locks cells. It stops accidents, not determined people.",
+   "Before sharing: Check Accessibility and Inspect Document for hidden data."
+  ],
+  "print-share-and-keyboard-shortcuts": [
+   "Print Area, Print Titles (repeat row 1 on every page), headers and footers with page numbers.",
+   "Page Break Preview shows where pages split. Save as PDF for a fixed layout.",
+   "Name files with a date or version. Check for hidden data before you send.",
+   "Treat salaries, phone numbers and ID numbers carefully. Share only with the right people.",
+   "Shortcuts: `Ctrl+C`, `Ctrl+V`, `Ctrl+Z`, `Ctrl+Arrow`, `Ctrl+Shift+Arrow`, `Ctrl+Alt+V` Paste Special.",
+   "Format Painter and templates save time."
+  ],
+  "excel-for-office-jobs-tests-and-next-steps": [
+   "Employers usually test: formulas, `IF`, `VLOOKUP` or `XLOOKUP`, sorting and filtering, pivot tables, charts, formatting.",
+   "Practise real tasks: invoice, attendance sheet, expense tracker, stock register, marks sheet.",
+   "Describe your skills honestly. Say what you can do and what you are still learning.",
+   "In a test, read the question twice, check your totals, and keep the layout neat.",
+   "Next: `XLOOKUP`, `FILTER`, Power Query, Power Pivot, Google Sheets, then SQL or Python.",
+   "Spreadsheet mistakes are common. When numbers matter, check them twice."
+  ]
+ },
+ "workplace-english-course": {
+  "workplace-english-tone-and-politeness": [
+   "Clear beats fancy. Simple words and short sentences are professional.",
+   "Formal for people you do not know, customers and first emails. Neutral for most work messages. Informal for close colleagues.",
+   "Polite requests: `Could you...`, `Would you...`, `I would like...` (not `I want`).",
+   "Say the main thing first, then the details.",
+   "Soften a message: `Could you please...`, `I think...`, `It seems that...`.",
+   "Many kinds of English are correct: Indian, British, American and more. Be clear and respectful."
+  ],
+  "introduce-yourself-and-small-talk": [
+   "Introduce yourself: `My name is...`, `I work in...`, `I am responsible for...`, `I joined last month.`",
+   "Introduce another person: say their name and role, and why they should meet.",
+   "Safe small talk: the day, the journey, the weather, food and breaks, the weekend.",
+   "Be careful with money, age, religion, politics and personal life.",
+   "Keep it going: ask an open question and listen. End politely: `It was nice talking to you.`",
+   "Did not understand? `Sorry, could you say that again?`"
+  ],
+  "clear-sentences-and-common-english-mistakes": [
+   "Present simple for habits, present continuous for now: `I work here`, `I am working on a report`.",
+   "Subject and verb must agree: `He works`, `They work`.",
+   "Articles: `a` and `an` for one of many, `the` for a specific one.",
+   "Some nouns have no plural: `information`, `advice`. Say `a piece of advice`.",
+   "Since a point in time, for a length of time. Fewer for things you count, less for things you cannot.",
+   "Fix the two or three mistakes you make most. Check for them before you send."
+  ],
+  "email-structure-subject-greeting-closing": [
+   "Five parts: subject line, greeting, opening line, body, closing and signature.",
+   "The subject says what the email is about. Be specific: `Invoice 1042: payment date`.",
+   "Opening line: why you are writing, in one sentence.",
+   "Body: short paragraphs or a list. State what you need and by when.",
+   "Reply answers the sender. Reply All answers everyone, so use it only when needed. CC is for information.",
+   "Check before you send: right person, attachment, spelling, tone. Write nothing you would not want others to read."
+  ],
+  "requests-replies-and-follow-up-emails": [
+   "Ask: `Could you please send...`, `I would be grateful if...`. Say what and by when.",
+   "Reply: answer the question first, then add details.",
+   "Confirm arrangements: date, time, place.",
+   "Sending an attachment: `Please find attached...`. Check that it is attached.",
+   "Follow up politely after a few days: `I am following up on my email of...`.",
+   "Connecting words: first, then, because, so, however, also, for example."
+  ],
+  "apologies-complaints-and-saying-no-politely": [
+   "Apologise: say sorry, say what went wrong, say what you will do to fix it.",
+   "Complaint: stay calm, give facts, say what you need.",
+   "Say no politely: thank, give a short reason, offer an alternative.",
+   "Bad news: say it early and clearly, then say what happens next.",
+   "Disagree politely: `I see your point, but...`.",
+   "Angry message? Wait before you answer. Nobody has to accept harassment or threats at work."
+  ],
+  "chat-messages-teams-whatsapp-etiquette": [
+   "Chat for quick questions. Email for formal or longer messages. Call when it is complicated or urgent.",
+   "A clear chat message: greeting, the question, and what you need.",
+   "One message with the full point is better than many small ones.",
+   "Tone is easy to misread in chat. Be polite and short.",
+   "Group chats: check who is in the group. No private or critical messages about a person.",
+   "Respect time, do not message late at night, and never share passwords or customer data."
+  ],
+  "reports-notes-and-meeting-minutes": [
+   "Plain English: short sentences (15 to 20 words), simple words, active voice, be specific.",
+   "Put the conclusion first and the details after. Use headings and lists.",
+   "Incident report: when and where, who, what happened (facts only), action taken, what happens next.",
+   "Short report: title and date, summary, background, findings, recommendation.",
+   "Minutes: date, who was there, decisions, actions with names and dates.",
+   "Write only what you know. Do not guess or blame."
+  ],
+  "phone-calls-and-voicemail-english": [
+   "Answer: `Good morning, [company], [name] speaking. How can I help you?`",
+   "Make a call: say who you are, why you call, and who you want.",
+   "Ask to repeat or slow down: `Could you say that again, please?`",
+   "Spell names and emails slowly, with clear examples for letters.",
+   "Take a message: name, number, reason. Read it back to check.",
+   "Voicemail: name, number, short reason, when you can be reached. Never say yes when you did not understand."
+  ],
+  "speak-up-in-meetings": [
+   "Prepare: read the agenda, one or two points, one question, your numbers.",
+   "Opinion: `I think...`, `In my view...`. Agree: `I agree with...`.",
+   "Disagree politely: `I see it differently because...`.",
+   "Interrupt politely: `Sorry to interrupt, may I add something?`",
+   "Did not catch it: `Could you repeat that, please?`",
+   "Make your first contribution early, even a small question. Summarise and confirm actions at the end."
+  ],
+  "understand-accents-and-listen-better": [
+   "Speech is hard because words run together, stress and rhythm change, accents differ, and speakers are fast.",
+   "Listen for key words: numbers, names, dates, verbs, nouns. You do not need every word.",
+   "Use the context and do not stop at one unknown word.",
+   "Check what you heard: say it back in your own words.",
+   "Daily routine: listen once for the idea, listen again in short pieces, read the transcript, repeat aloud.",
+   "Keep a small list of new words and phrases."
+  ],
+  "presentations-and-explaining-your-work": [
+   "Start with the audience and one message. What should they remember? What should they do?",
+   "Simple structure: opening, main points, summary.",
+   "Slides: one idea each, few words, pictures and charts, do not read the slide.",
+   "Explain a chart: what it shows, the main point, what it means.",
+   "Nerves: practise aloud, learn the first 30 seconds, breathe, speak slowly.",
+   "For questions: listen, repeat the question, answer, or say you will find out."
+  ],
+  "customer-service-english": [
+   "LEAP: Listen, Empathise, Act, follow up (Perform).",
+   "Greet warmly and find out what the customer needs. Ask open questions.",
+   "Empathy: `I understand`, `I am sorry about that`.",
+   "Cannot say yes? Explain why and offer what you can do.",
+   "Angry customer: stay calm, let them speak, apologise, ask for facts, say what you will do and when.",
+   "Do not promise what you cannot do. If someone is abusive or threatens you, follow your company rules."
+  ],
+  "feedback-teamwork-and-your-manager": [
+   "Receiving feedback: listen, say thank you, ask questions, do not argue.",
+   "Giving feedback: be specific, talk about the work and not the person, suggest a next step.",
+   "Ask for help early and say what you already tried.",
+   "Report a problem or delay early. Hiding it makes it worse.",
+   "Say no or set limits politely: `I cannot take this on today, but I can do it on Thursday.`",
+   "Multicultural team: speak simply, check understanding, be patient, be careful with jokes."
+  ],
+  "improve-your-english-every-day-plan": [
+   "Start with your goal and a small 30-day target.",
+   "Daily routine: listening, reading, writing, speaking. A little every day beats a lot once a week.",
+   "Keep a personal phrase book of useful phrases you hear and use.",
+   "Use English at work: one real email or comment a week.",
+   "Measure progress: record yourself and compare after a month.",
+   "30 days: Week 1 goal and routine, Week 2 real use, Week 3 speaking partner, Week 4 review."
+  ]
+ },
+ "interview-preparation-for-freshers": {
+  "how-fresher-interviews-work": [
+   "Usual stages: application, screening call, written or online test, interview rounds, offer and checks.",
+   "Screening checks you are reachable and clear. The test checks accuracy under time. The technical round checks basics. The managerial and HR rounds check fit and expectations.",
+   "Practice differs by country and company. Campus drives, group discussions and competency questions are common in different places.",
+   "Formats: one to one, panel, group discussion, phone or video, walk-in.",
+   "An interview is two-way. You are allowed to ask questions too.",
+   "Make a first checklist: documents, route, time, prep sheet."
+  ],
+  "research-the-company-and-role": [
+   "Start with the job advert: list the skills and tasks they ask for.",
+   "Do not claim skills you do not have. `I have not used that tool yet, but I have used...` is fine.",
+   "Learn about the company: website, About page, social page, recent news, careful use of reviews.",
+   "Understand the role in daily terms: what will you do on a normal day?",
+   "Prepare your own questions to ask them.",
+   "Write a one-page prep sheet with five lines about the company."
+  ],
+  "know-your-resume-and-projects": [
+   "Only write what you can explain. Exaggerated claims are easy to test.",
+   "Each project in three parts: the problem, your part (say `I`), the result and what you learned.",
+   "Be ready to talk about internships, part-time jobs and volunteering.",
+   "Prove each skill with a small example.",
+   "Check the facts on the page: dates, marks, names.",
+   "Practise your answers out loud."
+  ],
+  "tell-me-about-yourself-answer": [
+   "Structure: Present, Past, Future.",
+   "Present: who you are and what you do now. Past: two or three relevant things. Future: why this job.",
+   "Include facts that match the job. Leave out your life story, age, family and negative comments.",
+   "About 60 to 90 seconds.",
+   "Career gap or change: say it briefly, say what you did or learned, then move on.",
+   "Nervous? Breathe and start slowly. In an online interview, look at the camera."
+  ],
+  "strengths-and-weaknesses-answers": [
+   "Strength: say it, then prove it with a short real example.",
+   "Fresher strengths: learning fast, reliability, teamwork, communication, attention to detail, problem solving, responsibility.",
+   "Weakness: be honest, pick a safe one, and say what you are doing about it.",
+   "Avoid `I am a perfectionist`, a weakness that hurts the role, blaming others, or `I have none`.",
+   "Related: biggest achievement, how friends describe you, what you do when you do not know something.",
+   "Not sure what to say? Ask a friend or teacher when they saw you do well."
+  ],
+  "why-this-company-why-hire-you": [
+   "Why here? Use honest reasons: the work, what you can learn, the product or mission, practical fit, growth.",
+   "Why hire you? Formula: Need, Match, Proof, Close.",
+   "Name what the job needs, two things you have, one real example, and how it helps the team.",
+   "`What do you know about our company?` Use your research lines.",
+   "Five years: show ambition that fits the role.",
+   "If you know little about the company, say so honestly and show interest."
+  ],
+  "behavioural-questions-star-method": [
+   "STAR: Situation, Task, Action, Result.",
+   "Action is the longest part. Say `I` and what you personally did.",
+   "End with the result and what you learned.",
+   "Common questions: teamwork, a difficult customer, a deadline, a mistake.",
+   "Build a story bank of 5 to 6 real stories you can adapt.",
+   "Mistake stories are fine: show what you learned and changed."
+  ],
+  "no-experience-gaps-career-change-questions": [
+   "Calm formula: acknowledge, give a short honest reason, show what you did meanwhile, return to the present and the job.",
+   "No experience: talk about projects, practice, learning and the skills you bring.",
+   "Employment gap: say it briefly and say what you did or learned.",
+   "Career change: connect your earlier skills to the new role.",
+   "Low marks: be honest, show how you improved.",
+   "Do not know the answer? Say so, then explain how you would find out."
+  ],
+  "aptitude-and-written-tests": [
+   "Tests may cover numbers, verbal ability, logical reasoning, subject questions, situational judgement, typing and practical skills.",
+   "Know the format first: time, number of questions, negative marking.",
+   "Four weeks: basics, topic practice, speed, full mock tests.",
+   "Keep an error log. Read the question twice. Skip and come back.",
+   "Practise mental maths and read English daily.",
+   "Not passed? You will know the format next time."
+  ],
+  "technical-round-preparation": [
+   "Interviewers look for strong basics, your own work, clear thinking, honesty and willingness to learn.",
+   "Depth beats breadth: know eight topics well.",
+   "Explain your projects: the problem, your part, what you would improve.",
+   "Think aloud: repeat the problem, give an example, start simple, work step by step, check edge cases.",
+   "Do not know? Say so, then reason it out. Do not guess wildly.",
+   "Ask a good question at the end."
+  ],
+  "group-discussion-and-case-questions": [
+   "Observers watch content, communication, listening, teamwork and behaviour.",
+   "Think for a moment before you speak. A short, clear first point is good.",
+   "Add one new point each time, use real examples, include quiet people, summarise near the end.",
+   "Disagree politely: `I see your point, but I see it differently because...`.",
+   "Case questions: clarify, structure, explore, conclude.",
+   "Quality beats quantity. Two or three strong points are enough."
+  ],
+  "phone-and-video-interviews": [
+   "Test technology a day before: internet, software, charger, audio, camera.",
+   "Quiet room, plain background, light on your face, notifications off.",
+   "Phone: sit or stand upright, smile, speak a little slower, take notes.",
+   "Video: join 5 to 10 minutes early, look at the camera, no script, no other screens.",
+   "Something goes wrong? Rejoin quickly or call the recruiter. Say sorry briefly and carry on.",
+   "Practise once with a friend on the same platform."
+  ],
+  "salary-notice-period-and-your-questions": [
+   "Research the salary range for similar roles before the interview.",
+   "You can ask for their range first. If asked, give a range, not one number.",
+   "Notice period and joining date: be honest and clear.",
+   "Ask about hours, shifts, probation, bonds and documents.",
+   "A real employer does not charge you money for a job.",
+   "`Do you have any questions for us?` Always ask one or two. Avoid asking only about pay and leave."
+  ],
+  "interview-day-checklist-and-job-scams": [
+   "Day before: confirm details, plan the journey, prepare clothes and bag, sleep.",
+   "Carry documents, copies of your resume, a pen, a notebook and water.",
+   "Arrive early, be polite to everyone, and switch the phone to silent.",
+   "Scam signs: they ask for money, offer a job with no real interview, pay is too good, personal email addresses, early requests for bank or OTP details, pressure.",
+   "Check the company: website, address, phone, reviews. Do not pay fees.",
+   "Paid or shared something? Contact your bank at once and change passwords."
+  ],
+  "after-the-interview-follow-up-and-rejection": [
+   "Write notes the same day: questions, what went well, what to improve.",
+   "Send a short thank-you message within 24 hours.",
+   "Wait for the time they told you. Then follow up politely once.",
+   "Offer: thank them and take time to check the details.",
+   "Rejection: reply politely, ask for feedback once, choose one or two things to improve.",
+   "Keep a simple job search tracker. Look after yourself, then restart."
+  ]
+ },
+ "phone-job-search-trades-course": {
+  "your-phone-is-your-job-tool": [
+   "A phone number that works, and a voicemail or message that sounds professional.",
+   "A simple email address with your name.",
+   "Never give your email password, bank PIN or OTP to anyone.",
+   "Make space on your phone and keep a folder for your job papers.",
+   "Save data and battery. Keep the phone safe with a screen lock.",
+   "Check that calls from employers reach you."
+  ],
+  "know-your-skills-and-write-them-down": [
+   "Write what you do in small tasks, not only the job title.",
+   "Write your tools and machines, your years and places, training and papers.",
+   "Write your good habits: on time, careful, safe.",
+   "Make a simple skills sheet. You will use it for your resume and interviews.",
+   "Do not write a skill you do not have. You can lose the job.",
+   "Little formal work? Count training, family business, practice and volunteering."
+  ],
+  "make-a-one-page-resume-on-your-phone": [
+   "One page, plain layout, true facts, newest work first, clear contact details.",
+   "Order: name and contact, short summary, skills, work history, training and licences, languages.",
+   "Summary: two lines. Who you are, what work you do, how long.",
+   "Make it on your phone and save it as a PDF.",
+   "Ask a friend to read it for mistakes.",
+   "No resume yet? Start with the skills sheet and a short message."
+  ],
+  "photos-of-your-papers-and-privacy": [
+   "Take a clear photo in good light, flat, with all four corners visible.",
+   "Make the file small and name it clearly.",
+   "Safe to send early: resume, trade certificate, safety training, reference letter.",
+   "Send later, after a real offer and checks: copy of ID, bank details.",
+   "Never send your ATM card, PIN, OTP or online banking password.",
+   "Cover what is not needed. Keep the originals safe."
+  ],
+  "where-to-look-for-work": [
+   "Job sites and apps, people you know, local contractors, shops and factories.",
+   "Training centres, government help, agencies, and groups on WhatsApp, Facebook or Telegram.",
+   "Companies that hire directly.",
+   "Use many ways at once. Many people need weeks or months, so be patient.",
+   "Keep a simple list: where you applied, date, answer.",
+   "Tell people what work you want."
+  ],
+  "apply-by-phone-messages-and-follow-up": [
+   "A short message: your name, the job, two facts about you, and your phone number.",
+   "An email needs a clear subject line: `Application for electrician job - Sunil Kumar`.",
+   "Phone call: prepare, call mid-morning, say who you are, ask a clear question, write down details, say thank you.",
+   "Do not understand? `Sorry, can you say that again, please?`",
+   "Follow up politely after a few days.",
+   "Keep a record and answer employer calls clearly."
+  ],
+  "spot-job-scams-and-stay-safe": [
+   "Warning signs: they ask for money, the pay is too good, they want ID or bank details early, they hurry you.",
+   "No real address or company name, offers from strangers, chat only, bad writing and strange links are also signs.",
+   "Check before you trust: search the company, call the official number, ask for the offer in writing, visit by day, ask someone you trust.",
+   "Slow down. A real job will still be there tomorrow.",
+   "Tricked? Do not feel ashamed. Tell your bank, change passwords and report it.",
+   "Work in another country needs extra care. Check the agent and the papers."
+  ],
+  "prepare-for-the-interview-and-trade-test": [
+   "Before the day: confirm, plan the way, prepare clothes and papers, rest, practise answers.",
+   "Bring copies of your resume, certificates, licences and ID.",
+   "On the day: arrive early, greet everyone politely, switch the phone to silent.",
+   "Answer simply and honestly. Know your safety rules.",
+   "Practical test: work carefully and safely, and say what you are doing.",
+   "Ask about the work, hours, safety and pay. Say thank you after."
+  ],
+  "know-your-rights-pay-and-written-agreements": [
+   "Ask for the offer in writing: company, job, pay, hours, start date.",
+   "If you cannot read it well, ask a trusted person before you sign.",
+   "Know the pay, how and when it is paid, and about overtime.",
+   "Know the hours and rest times, and the safety rules.",
+   "Keep proof: messages, agreements, pay slips, photos of notices.",
+   "Something wrong? Ask politely first, then use the local help office. Rules differ by country."
+  ],
+  "keep-learning-and-your-seven-day-plan": [
+   "Day 1 phone, Day 2 skills sheet, Day 3 resume, Day 4 paper photos.",
+   "Day 5 look for jobs and tell five people, Day 6 apply three times, Day 7 follow up and check for scams.",
+   "Keep your energy up: rest, eat, talk to people.",
+   "Learn one new thing at a time. Use free phone videos.",
+   "See where your skills can go: a higher trade, a supervisor, your own work.",
+   "This course cannot promise a job. It gives practical steps."
+  ]
  }
 }
