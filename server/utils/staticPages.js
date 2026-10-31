@@ -31,7 +31,7 @@ const page = ({ path: p, title, description, keywords, body, jsonLd = [], robots
     robots: robots || 'index, follow, max-image-preview:large', type: 'website', body: wrap(body), jsonLd,
 });
 
-export const flags = { imageEnhancer: true };   // set from Admin > Free tools by staticSeoController before a page is built
+export const flags = { imageEnhancer: true, tools: {} };   // set from Admin > Free tools by staticSeoController before a page is built
 const MAIN_LINKS_ALL = [
     ['Free resume builder', '/app', 'build and download an ATS-friendly resume'],
     ['Resume templates', '/templates', 'free ATS-friendly layouts, each with an honest ATS rating'],
@@ -40,6 +40,7 @@ const MAIN_LINKS_ALL = [
     ['Resume job description matcher', '/resume-job-description-matcher', 'see which job keywords your resume has and lacks'],
     ['Resume and CV examples', '/examples', 'ten sample resumes and CVs'],
     ['Image enhancer', '/products/image-enhancer', 'sharpen photos and upscale them to 2K, 4K or 8K'],
+    ['Free career tools', '/tools', 'cover letter, resume bullets, mock interview, offer comparison and LinkedIn text'],
     ['Jobs', '/jobs', 'open jobs for office, factory and skilled work'],
     ['Career roadmaps', '/roadmaps', 'step-by-step paths for careers and technologies'],
     ['Free tutorials', '/learn', 'courses with lessons, tasks and downloads'],
@@ -294,6 +295,44 @@ ${faqHtml(c.faqs)}
         jsonLd: [
             crumbs([['Home', '/'], ['Products', '/products'], [c.name, c.path]]),
             { '@context': 'https://schema.org', '@type': 'WebApplication', name: `Prime Resume AI ${c.name}`, url: `${siteUrl()}${c.path}`, applicationCategory: 'MultimediaApplication', operatingSystem: 'Web', description: c.description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
+            faqLd(c.faqs),
+        ],
+    });
+};
+
+// ---- Free career tools (/tools and /tools/:slug). Copy comes from client/src/content/careerTools.json (copied to
+// utils/careerToolsData.json: keep both the same). A tool the admin switched off answers 404 and leaves the lists.
+let CAREER = null;
+export const careerData = () => (CAREER ||= JSON.parse(fs.readFileSync(path.join(here, 'careerToolsData.json'), 'utf8')));
+export const careerToolPaths = () => careerData().tools.map((t) => t.path);
+export const hiddenCareerPaths = (settings) => careerData().tools.filter((t) => settings?.[t.flag] === false).map((t) => t.path);
+const toolOn = (t) => flags.tools?.[t.flag] !== false;
+
+export const careerIndexPage = () => {
+    const d = careerData();
+    const on = d.tools.filter(toolOn);
+    if (!on.length) return null;
+    return page({
+        path: '/tools', title: d.indexTitle, description: d.indexDescription,
+        body: `<h1>${esc(d.indexTitle)}</h1><p>${esc(d.indexIntro)}</p>${links(on.map((t) => [t.name, t.path, t.intro.split('. ')[0].replace(/\.$/, '')]))}
+<p>${a('/app', 'Free resume builder')} · ${a('/features/ats-checker', 'ATS resume checker')} · ${a('/jobs/interview-questions', 'Interview questions')}</p>`,
+        jsonLd: [crumbs([['Home', '/'], ['Free tools', '/tools']]), { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: on.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, url: `${siteUrl()}${t.path}` })) }],
+    });
+};
+
+export const careerToolPage = (slug) => {
+    const c = careerData().tools.find((t) => t.slug === slug);
+    if (!c || !toolOn(c)) return null;
+    return page({
+        path: c.path, title: c.title, description: c.description,
+        body: `<h1>${esc(c.h1)}</h1><p>${esc(c.intro)}</p>
+<h2>How it works</h2><ol>${c.steps.map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
+<h2>Good to know</h2><p>${esc(c.note)}</p>
+${faqHtml(c.faqs)}
+<p>${a('/tools', 'More free tools')} · ${a('/app', 'Free resume builder')} · ${a('/jobs/interview-questions', 'Interview questions')}</p>`,
+        jsonLd: [
+            crumbs([['Home', '/'], ['Free tools', '/tools'], [c.name, c.path]]),
+            { '@context': 'https://schema.org', '@type': 'WebApplication', name: `Prime Resume AI ${c.name}`, url: `${siteUrl()}${c.path}`, applicationCategory: 'BusinessApplication', operatingSystem: 'Web', description: c.description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } },
             faqLd(c.faqs),
         ],
     });

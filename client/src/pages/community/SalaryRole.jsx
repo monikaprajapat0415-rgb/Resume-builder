@@ -20,7 +20,7 @@ const SalaryRole = () => {
       <h1 className='text-3xl font-semibold text-slate-800'>{title} salary</h1>
       <p className='text-slate-500 mt-3 max-w-2xl'>Reported by people who do this job. A range needs at least 3 reports in the same country, currency and pay period.</p>
 
-      <div className='mt-6 grid sm:grid-cols-2 gap-4'>
+      <div className='mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4'>
         {groups.map((g) => (
           <div key={g.country} className='rounded-xl border border-slate-200 bg-white p-5'>
             <h2 className='font-semibold text-slate-800'>{g.country}</h2>
@@ -45,7 +45,7 @@ const SalaryRole = () => {
       </ul>
       <p className='text-xs text-slate-400 mt-3'>Self-reported and reviewed before publishing. Actual pay depends on employer, city, shifts and experience.</p>
 
-      <section className='mt-10 rounded-xl border border-slate-200 bg-white p-5'>
+      <section className='mt-10 max-w-3xl rounded-xl border border-slate-200 bg-white p-5'>
         <h2 className='text-lg font-semibold text-slate-800 mb-3'>Share your {title} salary</h2>
         <SalaryForm role={title} onDone={reload} />
       </section>

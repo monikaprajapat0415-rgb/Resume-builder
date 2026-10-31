@@ -2,6 +2,7 @@ import { communitySitemapEntries } from './communityController.js';
 import { isPlanEnabled } from './planController.js';
 import { getToolSettings } from './toolSettingsController.js';
 import { STATIC_ROUTES, STATIC_LASTMOD } from '../utils/staticSitemapRoutes.js';
+import { hiddenCareerPaths, careerToolPaths } from '../utils/staticPages.js';
 import Blog from "../models/Blog.js";
 import Category from "../models/Category.js";
 import Product from "../models/Product.js";
@@ -132,7 +133,7 @@ export const getBlogSitemapXml = async (req, res) => {
         const toolsOn = await getToolSettings();
         const urls = [
             ...((await isPlanEnabled()) ? [entry('/pricing', STATIC_LASTMOD, 'monthly')] : []),
-            ...STATIC_ROUTES.filter((p) => toolsOn.imageEnhancer || p !== '/products/image-enhancer').map((p) => entry(p, STATIC_LASTMOD, p === '/' ? 'daily' : 'weekly')),
+            ...STATIC_ROUTES.filter((p) => (toolsOn.imageEnhancer || p !== '/products/image-enhancer') && !hiddenCareerPaths(toolsOn).includes(p) && (p !== '/tools' || careerToolPaths().some((x) => !hiddenCareerPaths(toolsOn).includes(x)))).map((p) => entry(p, STATIC_LASTMOD, p === '/' ? 'daily' : 'weekly')),
             ...posts.map((post) => {
                 const img = absUrl(post.coverImage);
                 return entry(`/blog/${post.slug}`, post.modifiedAt || post.date, 'monthly',

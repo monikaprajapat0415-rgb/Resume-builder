@@ -5,7 +5,7 @@ import Course from '../models/Course.js';
 import Lesson from '../models/Lesson.js';
 import Roadmap from '../models/Roadmap.js';
 import { EXAMPLES } from '../utils/exampleResumes.js';
-import { templateMeta } from '../utils/staticPages.js';
+import { templateMeta, careerData } from '../utils/staticPages.js';
 import { getPlanSettings } from './planController.js';
 import { getToolSettings } from './toolSettingsController.js';
 import { loadTemplate, renderShell } from '../utils/seoShell.js';
@@ -194,6 +194,7 @@ export const llmsTxt = async (req, res) => {
             `- [Resume builder](${u}/): create and download an ATS-friendly resume`,
             `- [Resume templates](${u}/templates): ${tpl.length} free templates, each with an honest ATS rating`,
             `- [Features](${u}/features): everything the builder offers`,
+            ...(careerData().tools.filter((t) => tools[t.flag] !== false).length ? [`- [Free career tools](${u}/tools): ${careerData().tools.filter((t) => tools[t.flag] !== false).map((t) => `${t.name.toLowerCase()}`).join(', ')}`] : []),
             ...(tools.imageEnhancer ? [`- [Image enhancer](${u}/products/image-enhancer): sharpen photos and upscale them to 2K, 4K or 8K (classic sharpening, not AI)`] : []),
             `- [Image to PDF, Word and text converter](${u}/products/image-converter): combine pictures into one PDF, Word or text file, with OCR for English and Hindi, runs in the browser`,
             `- [Free ATS resume checker](${u}/features/ats-checker): upload a resume (PDF or Word) and get an ATS score with fixes`,

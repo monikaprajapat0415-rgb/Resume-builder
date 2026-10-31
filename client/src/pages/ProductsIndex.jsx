@@ -77,6 +77,18 @@ const ProductsIndex = () => {
         )}
 
         {!active && (
+          <Link to='/tools' className='group mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white p-5 sm:p-6 hover:shadow-md transition'>
+            <span className='shrink-0 size-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-sm font-semibold' aria-hidden>CV+</span>
+            <span className='min-w-0'>
+              <span className='block text-xs font-medium text-brand-700'>Free tools</span>
+              <span className='block text-lg font-semibold text-slate-800 group-hover:text-brand-700 transition'>Career tools</span>
+              <span className='block text-sm text-slate-600'>Cover letter writer, resume bullet improver, mock interview practice, offer comparison and LinkedIn text.</span>
+            </span>
+            <span className='sm:ml-auto text-sm font-medium text-brand-700 whitespace-nowrap'>See the tools →</span>
+          </Link>
+        )}
+
+        {!active && (
           <Link to='/products/image-converter' className='group mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50 to-white p-5 sm:p-6 hover:shadow-md transition'>
             <span className='shrink-0 size-12 rounded-xl bg-brand-600 text-white flex items-center justify-center text-sm font-semibold' aria-hidden>PDF</span>
             <span className='min-w-0'>

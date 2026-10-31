@@ -21,9 +21,9 @@ const Salaries = () => {
       {state === 'ok' && (roles.length === 0
         ? <p className='text-slate-500 mt-8 text-sm'>{data.roles.length ? 'No role matches that search.' : 'No salaries have been published yet. Be the first to share yours below.'}</p>
         : (
-          <ul className='mt-6 divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
+          <ul className='mt-6 grid lg:grid-cols-2 gap-3'>
             {roles.map((r) => (
-              <li key={r.slug}>
+              <li key={r.slug} className='rounded-xl border border-slate-200 bg-white overflow-hidden'>
                 <Link to={`/jobs/salaries/${r.slug}`} className='flex items-center justify-between gap-3 px-4 py-3 hover:bg-slate-50'>
                   <span className='text-slate-800'>{r.title}</span>
                   <span className='text-xs text-slate-400'>{r.count} report{r.count > 1 ? 's' : ''}{r.ready ? '' : ' · collecting'}</span>

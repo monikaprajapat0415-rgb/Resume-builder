@@ -40,6 +40,7 @@ const InterviewQuestions = ({ level = '' }) => {
               </select>
             </div>
             {shown.length === 0 && <p className='text-slate-400 mt-8'>No question matches that search.</p>}
+            <div className='grid lg:grid-cols-2 gap-x-8 items-start'>
             {cats.map((c) => (
               <div key={c} className='mt-8'>
                 <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-3'>{c}</h2>
@@ -55,6 +56,7 @@ const InterviewQuestions = ({ level = '' }) => {
                 </ul>
               </div>
             ))}
+            </div>
           </>
         )
       )}

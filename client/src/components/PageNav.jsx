@@ -19,6 +19,8 @@ const LABELS = {
   'cv-builder': 'CV Builder',
   'resume-job-description-matcher': 'Job Match Tool',
   products: 'Products',
+  tools: 'Free Tools',
+  'linkedin-headline-about-generator': 'LinkedIn Headline Writer',
   templates: 'Templates',
   examples: 'Examples',
   'nurse-cv-example': 'Nurse CV Example',
@@ -47,7 +49,7 @@ const LABELS = {
 // Real pages, so a crumb only becomes a link when it goes somewhere that exists.
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
-  /^\/features$/, /^\/products$/, /^\/templates$/, /^\/examples$/, /^\/app$/, /^\/admin$/,
+  /^\/features$/, /^\/products$/, /^\/tools$/, /^\/templates$/, /^\/examples$/, /^\/app$/, /^\/admin$/,
   /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|trust|plan|tools|appearance|users|seo|blogs|learn)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
@@ -74,7 +76,8 @@ const WIDE = 'max-w-page xl:px-10'
 export function navWidth(pathname) {
   const p = pathname.replace(/\/+$/, '') || '/'
   if (/^\/learn\/[^/]+\/(?!certificate$)[^/]+$/.test(p)) return 'max-w-[1680px] xl:px-10'
-  if (/^\/learn\/[^/]+$/.test(p)) return 'max-w-5xl md:px-10'
+  if (/^\/learn\/[^/]+$/.test(p)) return WIDE
+  if (/^\/jobs\/(interview-questions|salaries|company-reviews)/.test(p)) return WIDE
   if (/^\/(learn|blog|roadmaps|products|templates|examples)$/.test(p)) return WIDE
   if (p === '/jobs') return 'max-w-7xl md:px-10'
   return 'max-w-7xl md:px-10'
