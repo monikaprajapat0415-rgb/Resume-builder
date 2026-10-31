@@ -69,7 +69,7 @@ const CvLanding = () => {
           </div>
         </section>
 
-        <section className='max-w-5xl mx-auto px-4 py-10'>
+        <section className='max-w-7xl mx-auto px-4 py-10'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>How it works</h2>
           <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8'>
             {STEPS.map(([Icon, t, d], i) => (

@@ -71,7 +71,7 @@ const ExampleDetail = () => {
       {e ? <SEO title={e.title} description={e.metaDescription} keywords={`${e.role.toLowerCase()} ${typeName} example, ${e.role.toLowerCase()} ${typeName} sample, ats friendly ${typeName}`} path={`/examples/${e.slug}`} type='article' structuredData={structuredData} />
         : <SEO title='Resume and CV examples' description='Resume and CV examples that pass every automatic ATS check.' path={`/examples/${slug}`} />}
       <NavBar />
-      <section className='max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12'>
+      <section className='max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12'>
         {state.status === 'loading' && <p className='text-slate-400'>Loading…</p>}
         {state.status === 'error' && <p className='text-slate-500'>This example could not be loaded. Please refresh the page.</p>}
         {e && (

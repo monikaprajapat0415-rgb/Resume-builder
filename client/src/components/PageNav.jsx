@@ -77,7 +77,7 @@ export function navWidth(pathname) {
   if (/^\/learn\/[^/]+$/.test(p)) return 'max-w-5xl md:px-10'
   if (/^\/(learn|blog|roadmaps|products|templates|examples)$/.test(p)) return WIDE
   if (p === '/jobs') return 'max-w-7xl md:px-10'
-  return 'max-w-6xl md:px-10'
+  return 'max-w-7xl md:px-10'
 }
 
 export function trailFor(pathname) {
