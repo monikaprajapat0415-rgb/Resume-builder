@@ -40,6 +40,7 @@ const staticRoutes = [
   '/products/mock-interview-practice',
   '/products/job-offer-comparison',
   '/products/linkedin-headline-about-generator',
+  '/products/code-playground',
   ...templateSlugs.map((slug) => `/templates/${slug}`),
   '/examples',
   ...exampleSlugs.map((slug) => `/examples/${slug}`),

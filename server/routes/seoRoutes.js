@@ -61,7 +61,7 @@ seoRouter.get('/privacy-policy', renderPrivacy);
 seoRouter.get('/terms-and-conditions', renderTerms);
 seoRouter.get('/products/image-enhancer', renderImageEnhancer);
 seoRouter.get('/products/image-converter', renderImageConverter);
-seoRouter.get(['/products/cover-letter-generator', '/products/resume-bullet-improver', '/products/mock-interview-practice', '/products/job-offer-comparison', '/products/linkedin-headline-about-generator'], renderCareerTool);
+seoRouter.get(['/products/cover-letter-generator', '/products/resume-bullet-improver', '/products/mock-interview-practice', '/products/job-offer-comparison', '/products/linkedin-headline-about-generator', '/products/code-playground'], renderCareerTool);
 seoRouter.get(['/tools', '/tools/:slug'], redirectOldTools);
 
 export default seoRouter;

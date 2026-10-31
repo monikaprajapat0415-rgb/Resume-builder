@@ -1,4 +1,4 @@
-import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage } from 'react-icons/lu'
+import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage, LuCode } from 'react-icons/lu'
 
 // The free tools shown on /products. One list so the hub, the tool pages ("More tools") and the menus agree.
 // `flag` is the Admin > Free tools switch (tools without one are core and always shown). Taglines are plain and honest.
@@ -6,6 +6,7 @@ export const GROUPS = [
   { id: 'resume', title: 'Resume and CV', blurb: 'Build it, check it, tighten it.', tile: 'bg-brand-100 text-brand-700', ring: 'hover:border-brand-300' },
   { id: 'jobs', title: 'Job applications', blurb: 'Write, match and compare.', tile: 'bg-sky-100 text-sky-700', ring: 'hover:border-sky-300' },
   { id: 'interview', title: 'Interview practice', blurb: 'Practise before it counts.', tile: 'bg-violet-100 text-violet-700', ring: 'hover:border-violet-300' },
+  { id: 'dev', title: 'Code practice', blurb: 'Write code and see it run.', tile: 'bg-emerald-100 text-emerald-700', ring: 'hover:border-emerald-300' },
   { id: 'files', title: 'Photos and documents', blurb: 'Fix and convert pictures.', tile: 'bg-amber-100 text-amber-700', ring: 'hover:border-amber-300' },
 ]
 
@@ -19,6 +20,7 @@ export const TOOLS = [
   { id: 'linkedin', name: 'LinkedIn headline and About writer', tagline: 'Three headline options and an About section from your real facts.', path: '/products/linkedin-headline-about-generator', group: 'jobs', icon: LuLinkedin, access: 'Free account', ai: true, flag: 'linkedinTool' },
   { id: 'offer', name: 'Job offer comparison', tagline: 'Put two offers side by side: yearly total, benefits, costs and notice.', path: '/products/job-offer-comparison', group: 'jobs', icon: LuScale, access: 'Free account', flag: 'offerTool' },
   { id: 'mock', name: 'Mock interview practice', tagline: 'Answer a real question and get feedback against a model answer.', path: '/products/mock-interview-practice', group: 'interview', icon: LuMessageSquare, access: 'Free account', ai: true, flag: 'interviewTool' },
+  { id: 'playground', name: 'React and Angular code playground', tagline: 'Write code on the left and see it run on the right. Starter interview exercises included.', path: '/products/code-playground', group: 'dev', icon: LuCode, access: 'Free account', flag: 'playgroundTool' },
   { id: 'questions', name: 'Interview questions bank', tagline: 'Questions with model answers for freshers and experienced people.', path: '/jobs/interview-questions', group: 'interview', icon: LuBookOpen, access: 'No sign-in' },
   { id: 'enhancer', name: 'Image enhancer', tagline: 'Sharpen soft photos and enlarge them to 2K, 4K or 8K.', path: '/products/image-enhancer', group: 'files', icon: LuZoomIn, access: 'Free account', flag: 'imageEnhancer' },
   { id: 'converter', name: 'Image to PDF, Word and text', tagline: 'Combine pictures into one file, with OCR. Runs on your device.', path: '/products/image-converter', group: 'files', icon: LuFileImage, access: 'Free account' },

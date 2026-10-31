@@ -20,6 +20,7 @@ const LABELS = {
   'resume-job-description-matcher': 'Job Match Tool',
   products: 'Products',
   'linkedin-headline-about-generator': 'LinkedIn Headline Writer',
+  'code-playground': 'Code Playground',
   templates: 'Templates',
   examples: 'Examples',
   'nurse-cv-example': 'Nurse CV Example',

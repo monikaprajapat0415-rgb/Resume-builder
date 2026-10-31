@@ -157,6 +157,42 @@
           "a": "No. You copy the text and paste it into LinkedIn yourself."
         }
       ]
+    },
+    {
+      "slug": "code-playground",
+      "path": "/products/code-playground",
+      "flag": "playgroundTool",
+      "name": "React and Angular Code Playground",
+      "title": "Free React and Angular Code Playground",
+      "description": "Write React or Angular code in the editor and watch it run in a live preview. Practise interview exercises in your browser. Free account, nothing to install.",
+      "h1": "Free React and Angular code playground",
+      "intro": "Write React or Angular code in the editor and the live preview updates as you type, with the editor on the left and the preview on the right on wide screens. Start from an interview exercise such as a todo list, a cart or a login form, change it and see what happens. It runs in your browser, so nothing is installed and your code is not sent to our server.",
+      "needsLogin": true,
+      "ai": false,
+      "steps": [
+        "Choose React or Angular, then pick a starter exercise or clear the editor and write your own.",
+        "Edit the code. The preview updates a moment after you stop typing.",
+        "Read the console and any error message under the preview, fix the code, and copy it when you are happy."
+      ],
+      "note": "Your code runs in a sandboxed frame in your own browser and is not saved or sent to our server. It is for practice: it is not a full project setup, so there is no routing between files, no npm packages beyond the ones listed, and no network access guarantees.",
+      "faqs": [
+        {
+          "q": "Is my code saved or uploaded?",
+          "a": "No. It is compiled and run in your browser inside a sandboxed frame. The editor keeps a copy in your own browser so a refresh does not lose it, and you can reset it any time."
+        },
+        {
+          "q": "Which versions and libraries are available?",
+          "a": "React 19 with its hooks. For Angular, version 20 with core, common, forms, platform-browser and RxJS. Other npm packages are not available here."
+        },
+        {
+          "q": "Why does my Angular code with input() or constructor injection not work?",
+          "a": "This playground runs Angular in the browser's JIT mode. It does not support the signal-based input(), output() and model() functions, or constructor injection by type. Use the @Input() and @Output() decorators and the inject() function instead. Signals, computed, effect, @if and @for work normally."
+        },
+        {
+          "q": "Can I use this for interview preparation?",
+          "a": "Yes. It includes starter versions of common coding exercises. Always try writing the solution yourself first, then compare it with the model answers in the interview questions bank."
+        }
+      ]
     }
   ]
 }

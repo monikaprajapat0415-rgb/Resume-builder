@@ -22,6 +22,7 @@ export const DEFAULT_MENU = {
       { _id: 'h-products-bullets', label: 'Resume bullet improver', url: '/products/resume-bullet-improver', icon: 'list-checks', description: 'Make weak resume lines clear and strong' },
       { _id: 'h-products-jd', label: 'Job description matcher', url: '/resume-job-description-matcher', icon: 'target', description: 'See which job keywords your resume lacks' },
       { _id: 'h-products-cover', label: 'Cover letter generator', url: '/products/cover-letter-generator', icon: 'mail', description: 'A short, honest draft for any job advert' },
+      { _id: 'h-products-playground', label: 'React and Angular playground', url: '/products/code-playground', icon: 'code', description: 'Write code on the left, see it run on the right' },
       { _id: 'h-products-linkedin', label: 'LinkedIn headline and About', url: '/products/linkedin-headline-about-generator', icon: 'linkedin', description: 'Headline options and an About section' },
       { _id: 'h-products-offer', label: 'Job offer comparison', url: '/products/job-offer-comparison', icon: 'scale', description: 'Compare two job offers side by side' },
       { _id: 'h-products-mock', label: 'Mock interview practice', url: '/products/mock-interview-practice', icon: 'message-square', description: 'Answer real questions and get feedback' },
