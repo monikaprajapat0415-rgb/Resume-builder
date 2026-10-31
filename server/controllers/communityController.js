@@ -8,7 +8,7 @@ import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
 import { slugify } from "../utils/slugify.js";
 import {
-    str, para, hasLink, companySlug, displayNameFor, aggregateSalaries, COUNTRIES, CURRENCIES, PERIODS, SALARY_LEVELS,
+    str, para, richText, hasLink, companySlug, displayNameFor, aggregateSalaries, COUNTRIES, CURRENCIES, PERIODS, SALARY_LEVELS,
     RESERVED_QUESTION_SLUGS, REVIEW_MIN,
 } from "../utils/communityCore.js";
 import {
@@ -263,7 +263,7 @@ const cleanQuestion = (b, existing) => {
     if (has('question')) out.question = str(b.question, 240);
     if (has('category')) out.category = str(b.category, 60) || 'General';
     if (has('level')) out.level = ['fresher', 'experienced', 'both'].includes(b.level) ? b.level : 'both';
-    if (has('modelAnswer')) out.modelAnswer = para(b.modelAnswer, 6000);
+    if (has('modelAnswer')) out.modelAnswer = richText(b.modelAnswer, 12000);
     if (has('tips')) out.tips = (Array.isArray(b.tips) ? b.tips : String(b.tips || '').split('\n')).map((t) => str(t, 300)).filter(Boolean).slice(0, 8);
     if (has('tags')) out.tags = [...new Set((Array.isArray(b.tags) ? b.tags : String(b.tags || '').split(',')).map((t) => str(t, 30).toLowerCase()).filter(Boolean))].slice(0, 10);
     const slugOf = (v) => String(v ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '').slice(0, 120);
