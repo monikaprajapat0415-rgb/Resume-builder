@@ -8,6 +8,7 @@ import { cleanNotes } from "../utils/lessonNotes.js";
 
 const file = process.argv[2];
 const dry = process.argv.includes('--dry');
+const force = process.argv.includes('--force'); // without it, lessons that already have notes (maybe edited in Admin) are left alone
 if (!file) { console.error('Usage: node scripts/applyNotes.js notes.json [--dry]'); process.exit(1); }
 const input = JSON.parse(fs.readFileSync(file, 'utf8'));
 
@@ -24,14 +25,15 @@ const { default: connectDB } = await import("../configs/db.js");
 const { default: Course } = await import("../models/Course.js");
 const { default: Lesson } = await import("../models/Lesson.js");
 await connectDB();
-let done = 0, missing = 0;
+let done = 0, missing = 0, skipped = 0;
 for (const [courseSlug, slug, notes] of cleaned) {
-  const course = await Course.findOne({ slug: courseSlug }).select('_id');
-  let lesson = course && await Lesson.findOne({ course: course._id, slug }).select('_id');
-  if (!lesson && course) lesson = await Lesson.findOne({ course: course._id, title: slug }).select('_id');
+  const course = await Course.findOne({ slug: courseSlug }).select('_id notes');
+  let lesson = course && await Lesson.findOne({ course: course._id, slug }).select('_id notes');
+  if (!lesson && course) lesson = await Lesson.findOne({ course: course._id, title: slug }).select('_id notes');
   if (!lesson) { missing++; console.error(`not found: ${courseSlug}/${slug}`); continue; }
+  if (!force && lesson.notes && (Array.isArray(lesson.notes) ? lesson.notes.length : true)) { skipped++; continue; }
   if (!dry) await Lesson.updateOne({ _id: lesson._id }, { $set: { notes: notes ?? null, modifiedAt: new Date() } });
   done++;
 }
-console.log(`${dry ? 'Checked' : 'Updated'} ${done} lesson(s)${missing ? `, ${missing} not found` : ''}.`);
+console.log(`${dry ? 'Checked' : 'Updated'} ${done} lesson(s)${skipped ? `, ${skipped} skipped (already have notes; use --force to overwrite)` : ''}${missing ? `, ${missing} not found` : ''}.`);
 process.exit(0);
