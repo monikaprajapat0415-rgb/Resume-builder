@@ -1,13 +1,13 @@
 import multer from 'multer';
 import User from '../models/User.js';
 import ToolUsage from '../models/ToolUsage.js';
-import { isToolOn } from './toolSettingsController.js';
+import { isToolOn, getToolSettings } from './toolSettingsController.js';
 import { getPlanSettings, isPaidUser } from './planController.js';
-import { enhanceImage, TARGETS, STRENGTHS, FORMATS, MAX_INPUT_PIXELS } from '../utils/imageEnhance.js';
+import { enhanceImage, TARGETS, STRENGTHS, FORMATS, MODES, MAX_INPUT_PIXELS } from '../utils/imageEnhance.js';
 
 // ---- Limits (change here) ----
 export const LIMITS = {
-    freePerDay: 10,                 // enhancements per signed-in user per day (admins are not limited)
+    freePerDay: 10,                 // fallback only: the real daily limit is set by an admin at Admin > Free tools
     maxFileBytes: 15 * 1024 * 1024, // upload size
     maxJobsAtOnce: 2,               // how many images the server works on at the same time
     maxEightKAtOnce: 1,             // 8K needs the most memory, so only one at a time
@@ -29,6 +29,7 @@ export const handleUpload = (req, res, next) => upload(req, res, (err) => {
 });
 
 let running = 0, runningBig = 0;
+const dailyLimit = async () => (await getToolSettings()).enhancerDailyLimit || LIMITS.freePerDay;
 const usedToday = async (userId) => (await ToolUsage.findOne({ user: userId, tool: TOOL, day: today() }).select('count').lean())?.count || 0;
 
 // GET /api/tools/image-enhance/status: what this user can do today
@@ -38,8 +39,9 @@ export const getStatus = async (req, res) => {
         const admin = user?.role === 'admin';
         const on = await isToolOn('imageEnhancer');
         const used = admin ? 0 : await usedToday(req.userId);
+        const cap = await dailyLimit();
         const eightK = !(plan.enabled && plan.gates?.image_8k) || isPaidUser(user);
-        return res.status(200).json({ enabled: on, limit: admin ? null : LIMITS.freePerDay, used, remaining: admin ? null : Math.max(0, LIMITS.freePerDay - used), eightK, maxFileMb: LIMITS.maxFileBytes / 1024 / 1024 });
+        return res.status(200).json({ enabled: on, limit: admin ? null : cap, used, remaining: admin ? null : Math.max(0, cap - used), eightK, defaultMode: (await getToolSettings()).enhancerMode, maxFileMb: LIMITS.maxFileBytes / 1024 / 1024 });
     } catch (e) { return res.status(500).json({ message: 'Could not load your limits.' }); }
 };
 
@@ -50,6 +52,7 @@ export const enhance = async (req, res) => {
     const strength = STRENGTHS[req.body.strength] ? req.body.strength : 'medium';
     const format = FORMATS[req.body.format] ? req.body.format : 'jpeg';
     const flag = (v) => v === 'true' || v === '1' || v === 'on';
+    const mode = MODES.includes(req.body.mode) ? req.body.mode : (await getToolSettings()).enhancerMode;
     let counted = false;
     try {
         const [user, plan] = await Promise.all([User.findById(req.userId).select('role planUntil'), getPlanSettings()]);
@@ -60,14 +63,14 @@ export const enhance = async (req, res) => {
         }
         if (target === '8k' && format === 'png') return res.status(400).json({ message: 'PNG files at 8K are very large. Choose JPG or WebP for 8K.' });
         if (!admin) {
-            const used = await usedToday(req.userId);
-            if (used >= LIMITS.freePerDay) return res.status(429).json({ message: `You have used your ${LIMITS.freePerDay} free enhancements for today. Come back tomorrow.` });
+            const used = await usedToday(req.userId), cap = await dailyLimit();
+            if (used >= cap) return res.status(429).json({ message: `You have used your ${cap} free enhancements for today. Come back tomorrow.` });
         }
         if (running >= LIMITS.maxJobsAtOnce || (target === '8k' && runningBig >= LIMITS.maxEightKAtOnce)) {
             return res.status(503).json({ message: 'The enhancer is busy with other images. Please try again in a minute.' });
         }
         running++; if (target === '8k') runningBig++; counted = true;
-        const out = await enhanceImage(req.file.buffer, { target, strength, format, denoise: flag(req.body.denoise), contrast: flag(req.body.contrast) });
+        const out = await enhanceImage(req.file.buffer, { target, strength, format, mode, denoise: req.body.denoise === undefined ? undefined : flag(req.body.denoise), contrast: req.body.contrast === undefined ? undefined : flag(req.body.contrast) });
         if (!admin) await ToolUsage.updateOne({ user: req.userId, tool: TOOL, day: today() }, { $inc: { count: 1 }, $setOnInsert: { createdAt: new Date() } }, { upsert: true }).catch(() => {});
         const base = String(req.file.originalname || 'image').replace(/\.[^.]+$/, '').replace(/[^\w\-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'image';
         res.set({
@@ -76,8 +79,8 @@ export const enhance = async (req, res) => {
             'Cache-Control': 'no-store',
             'X-Image-Width': String(out.width), 'X-Image-Height': String(out.height),
             'X-Image-In-Width': String(out.inWidth), 'X-Image-In-Height': String(out.inHeight),
-            'X-Image-Upscaled': out.upscaled ? '1' : '0', 'X-Image-Engine': out.engine || 'classic',
-            'Access-Control-Expose-Headers': 'Content-Disposition, X-Image-Width, X-Image-Height, X-Image-In-Width, X-Image-In-Height, X-Image-Upscaled, X-Image-Engine',
+            'X-Image-Upscaled': out.upscaled ? '1' : '0', 'X-Image-Engine': out.engine || 'classic', 'X-Image-Mode': out.mode || 'standard', 'X-Image-Steps': (out.steps || []).join(','),
+            'Access-Control-Expose-Headers': 'Content-Disposition, X-Image-Width, X-Image-Height, X-Image-In-Width, X-Image-In-Height, X-Image-Upscaled, X-Image-Engine, X-Image-Mode, X-Image-Steps',
         });
         return res.status(200).send(out.buffer);
     } catch (e) {

@@ -14,6 +14,16 @@ import C from '../content/imageEnhancer.json'
 // server-rendered HTML (utils/staticPages.js), so search and AI crawlers read the same words.
 const SIZES = [['2k', '2K', '2560 px'], ['4k', '4K', '3840 px'], ['8k', '8K', '7680 px']]
 const STRENGTHS = [['low', 'Light'], ['medium', 'Balanced'], ['high', 'Strong']]
+const MODES = [['pro', 'Natural pro', 'Cleans noise and compression blocks, fixes light, keeps faces, colours and text'], ['standard', 'Standard sharpen', 'Stronger sharpening, no clean-up']]
+const STEP_TEXT = {
+  noise: 'Reduced grain and noise',
+  'colour-noise': 'Cleaned colour noise',
+  artifacts: 'Smoothed compression blocks',
+  contrast: 'Improved contrast',
+  brightness: 'Brightened dark areas',
+  'enlarge-ai': 'Enlarged with AI, mixed with a plain enlargement so the picture stays true',
+  enlarge: 'Enlarged',
+}
 const FORMATS = [['jpeg', 'JPG'], ['png', 'PNG'], ['webp', 'WebP']]
 const ACCEPT = 'image/jpeg,image/png,image/webp'
 
@@ -80,8 +90,9 @@ const ImageEnhancer = () => {
   const [target, setTarget] = useState('4k')
   const [strength, setStrength] = useState('medium')
   const [format, setFormat] = useState('jpeg')
-  const [denoise, setDenoise] = useState(false)
-  const [contrast, setContrast] = useState(false)
+  const [mode, setMode] = useState('pro')
+  const [denoise, setDenoise] = useState(true)
+  const [contrast, setContrast] = useState(true)
   const [busy, setBusy] = useState(false)
   const [progress, setProgress] = useState(0)
   const [result, setResult] = useState(null)     // { url, name, w, h, size, upscaled }
@@ -94,10 +105,16 @@ const ImageEnhancer = () => {
     api.get('/api/tools/image-enhance/status', { headers: { Authorization: token } }).then(({ data }) => setStatus(data)).catch(() => {})
   }, [token])
   useEffect(() => { loadStatus() }, [loadStatus])
+  const modeSet = useRef(false)
+  useEffect(() => {   // start on the mode the admin chose, once
+    if (status?.defaultMode && !modeSet.current) { modeSet.current = true; pickMode(status.defaultMode) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status])
   useEffect(() => () => { if (origUrl.current) URL.revokeObjectURL(origUrl.current); if (resUrl.current) URL.revokeObjectURL(resUrl.current) }, [])
   useEffect(() => { if (status && !status.eightK && target === '8k') setTarget('4k') }, [status, target])
   useEffect(() => { if (target === '8k' && format === 'png') setFormat('jpeg') }, [target, format])
 
+  const pickMode = (m) => { setMode(m); setDenoise(m === 'pro'); setContrast(m === 'pro') }
   const clearResult = () => { if (resUrl.current) URL.revokeObjectURL(resUrl.current); resUrl.current = null; setResult(null) }
 
   const choose = (f) => {
@@ -122,13 +139,13 @@ const ImageEnhancer = () => {
     setBusy(true); setProgress(0); clearResult()
     try {
       const fd = new FormData()
-      fd.append('image', file); fd.append('target', target); fd.append('strength', strength); fd.append('format', format)
+      fd.append('image', file); fd.append('target', target); fd.append('strength', strength); fd.append('format', format); fd.append('mode', mode)
       fd.append('denoise', denoise ? 'true' : 'false'); fd.append('contrast', contrast ? 'true' : 'false')
       const res = await api.post('/api/tools/image-enhance', fd, { headers: { Authorization: token }, responseType: 'blob', timeout: 180000, onUploadProgress: (p) => p.total && setProgress(Math.round((p.loaded / p.total) * 100)) })
       const cd = res.headers['content-disposition'] || ''
       const name = (cd.match(/filename="([^"]+)"/) || [])[1] || `enhanced-${target}.${format === 'jpeg' ? 'jpg' : format}`
       const url = URL.createObjectURL(res.data); resUrl.current = url
-      setResult({ url, name, w: Number(res.headers['x-image-width']), h: Number(res.headers['x-image-height']), size: res.data.size, upscaled: res.headers['x-image-upscaled'] === '1' })
+      setResult({ url, name, w: Number(res.headers['x-image-width']), h: Number(res.headers['x-image-height']), size: res.data.size, upscaled: res.headers['x-image-upscaled'] === '1', steps: (res.headers['x-image-steps'] || '').split(',').filter(Boolean) })
       loadStatus()
     } catch (e) {
       const d = await readError(e)
@@ -204,13 +221,14 @@ const ImageEnhancer = () => {
                 {!result && orig && <img src={orig.url} alt='Your picture' className='mt-4 mx-auto max-h-72 w-auto max-w-full rounded-lg border border-slate-200 object-contain' />}
 
                 <div className='mt-5 flex flex-wrap gap-x-6 gap-y-4'>
+                  <Seg label='Mode' value={mode} onChange={pickMode} options={MODES} />
                   <Seg label='Size (long edge)' value={target} onChange={setTarget} options={SIZES} disabled={{ '8k': disabled8k }} />
-                  <Seg label='Sharpening' value={strength} onChange={setStrength} options={STRENGTHS} />
+                  <Seg label={mode === 'pro' ? 'Strength' : 'Sharpening'} value={strength} onChange={setStrength} options={STRENGTHS} />
                   <Seg label='Save as' value={format} onChange={setFormat} options={FORMATS} disabled={{ png: target === '8k' ? 'PNG is too large at 8K' : '' }} />
                 </div>
                 <div className='mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-700'>
-                  <label className='inline-flex items-center gap-2'><input type='checkbox' checked={denoise} onChange={(e) => setDenoise(e.target.checked)} className='accent-brand-600' />Reduce noise (grainy photos)</label>
-                  <label className='inline-flex items-center gap-2'><input type='checkbox' checked={contrast} onChange={(e) => setContrast(e.target.checked)} className='accent-brand-600' />Improve contrast and colour</label>
+                  <label className='inline-flex items-center gap-2'><input type='checkbox' checked={denoise} onChange={(e) => setDenoise(e.target.checked)} className='accent-brand-600' />{mode === 'pro' ? 'Remove noise and compression blocks' : 'Reduce noise (grainy photos)'}</label>
+                  <label className='inline-flex items-center gap-2'><input type='checkbox' checked={contrast} onChange={(e) => setContrast(e.target.checked)} className='accent-brand-600' />{mode === 'pro' ? 'Improve light and contrast' : 'Improve contrast and colour'}</label>
                 </div>
 
                 <div className='mt-6 flex flex-wrap items-center gap-3'>
@@ -225,6 +243,7 @@ const ImageEnhancer = () => {
                     ? <span className='text-sm text-slate-500'>No daily limit for your account</span>
                     : <span className='text-sm text-slate-500'>{left} of {status.limit} free enhancements left today</span>)}
                 </div>
+                {mode === 'pro' && !busy && <p className='text-xs text-slate-500 mt-3'>Natural pro keeps your picture as it is: same faces, objects, background, colours and text, and the same shape. Output is {target === '8k' ? '8K' : target === '2k' ? '2K' : '4K'} on the long edge.</p>}
                 {busy && <p className='text-sm text-slate-500 mt-3' role='status'>{target === '8k' ? '8K pictures can take 30 to 60 seconds. ' : 'AI enhancing takes about 10 to 20 seconds. '}Please keep this page open.</p>}
               </div>
             )}
@@ -233,6 +252,7 @@ const ImageEnhancer = () => {
               <div className='mt-8 border-t border-slate-200 pt-6'>
                 <h2 className='text-lg font-semibold text-slate-800'>Your enhanced picture</h2>
                 <p className='text-sm text-slate-600 mt-1'>{orig.w} × {orig.h} px <span aria-hidden>→</span> <strong>{result.w} × {result.h} px</strong> · {mb(result.size)}</p>
+                {result.steps?.length > 0 && <ul className='mt-2 text-sm text-slate-600 list-disc pl-5'>{result.steps.map((t) => STEP_TEXT[t] && <li key={t}>{STEP_TEXT[t]}</li>)}</ul>}
                 {!result.upscaled && <p className='text-sm text-amber-700 mt-1'>Your picture was already as large as the size you chose, so it keeps its size and was only sharpened.</p>}
                 <div className='mt-4'><Compare before={orig.url} after={result.url} /></div>
                 <div className='mt-5 flex flex-wrap items-center gap-3'>

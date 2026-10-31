@@ -17,9 +17,10 @@ const AdminTools = () => {
   const headers = { headers: { Authorization: token } }
   const [data, setData] = useState(null)
   const [busy, setBusy] = useState(false)
+  const [limit, setLimit] = useState('')
 
   useEffect(() => {
-    api.get('/api/admin/tools', headers).then(({ data }) => setData(data)).catch(() => toast.error('Could not load the tool settings.'))
+    api.get('/api/admin/tools', headers).then(({ data }) => { setData(data); setLimit(String(data.settings.enhancerDailyLimit ?? 10)) }).catch(() => toast.error('Could not load the tool settings.'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if (!data) return <p className='text-slate-400'>Loading…</p>
@@ -63,7 +64,28 @@ const AdminTools = () => {
                 <li>Uploads are refused for everyone except admins, so you can still test it.</li>
               </>}
         </ul>
-        <p className='text-xs text-slate-400 mt-4'>Daily limits and the paid 8K option are set elsewhere: limits in the server code, 8K under Paid plan.</p>
+
+        <div className='mt-5 border-t border-slate-200 pt-4 grid sm:grid-cols-2 gap-5'>
+          <div>
+            <label htmlFor='enh-limit' className='block text-sm font-medium text-slate-800'>Free pictures per user per day</label>
+            <p className='text-xs text-slate-500 mt-0.5'>Whole number from 1 to 500. Admins are never limited.</p>
+            <div className='mt-2 flex items-center gap-2'>
+              <input id='enh-limit' type='number' min='1' max='500' value={limit} onChange={(e) => setLimit(e.target.value)} className='w-24 rounded-lg border border-slate-300 px-3 py-1.5 text-sm' />
+              <button type='button' disabled={busy || String(data.settings.enhancerDailyLimit) === String(limit)} onClick={() => save({ enhancerDailyLimit: Number(limit) })} className='rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white text-sm px-4 py-1.5'>Save</button>
+            </div>
+          </div>
+          <fieldset>
+            <legend className='text-sm font-medium text-slate-800'>Mode the page starts on</legend>
+            <p className='text-xs text-slate-500 mt-0.5'>Visitors can still change it.</p>
+            <div className='mt-2 inline-flex rounded-lg border border-slate-300 bg-white p-0.5'>
+              {[['pro', 'Natural pro'], ['standard', 'Standard sharpen']].map(([v, t]) => (
+                <button key={v} type='button' disabled={busy} aria-pressed={data.settings.enhancerMode === v} onClick={() => save({ enhancerMode: v })}
+                  className={`px-3 py-1.5 text-sm rounded-md ${data.settings.enhancerMode === v ? 'bg-brand-600 text-white' : 'text-slate-700 hover:bg-slate-100'}`}>{t}</button>
+              ))}
+            </div>
+          </fieldset>
+        </div>
+        <p className='text-xs text-slate-400 mt-4'>The paid 8K option is set under Paid plan.</p>
       </section>
     </div>
   )
