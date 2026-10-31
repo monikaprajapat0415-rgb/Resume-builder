@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import connectDB from '../configs/db.js';
 import InterviewQuestion from '../models/InterviewQuestion.js';
 import { slugify } from '../utils/slugify.js';
+import { angularQuestions } from './interview/index.mjs';   // 100 Angular questions, basic to advanced
 
 const Q = (category, level, question, modelAnswer, tips = []) => ({ category, level, question, modelAnswer, tips });
 
@@ -147,6 +148,8 @@ Example: "I once released a change without testing one scenario and it caused er
 Avoid asking only about pay, leave or how quickly you can be promoted in the first interview. Do not say "No questions"; if everything was already covered, say so and ask about the next steps.`,
     ['Write your questions in a notebook and bring it with you.']),
 ];
+
+questions.push(...angularQuestions);
 
 const replace = process.argv.includes('--replace');
 await connectDB();
