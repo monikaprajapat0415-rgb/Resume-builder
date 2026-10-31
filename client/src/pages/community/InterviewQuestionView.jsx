@@ -34,6 +34,11 @@ const InterviewQuestionView = () => {
             <ul className='list-disc pl-5 mt-1 text-sm text-slate-700 space-y-1'>{q.tips.map((t) => <li key={t}>{t}</li>)}</ul>
           </div>
         )}
+        {/practical coding/i.test(q.category) && (
+          <p className='mt-6 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-slate-700'>
+            Practise it yourself: <Link to='/products/code-playground' className='font-medium text-emerald-800 underline'>open the React and Angular code playground</Link> and try this exercise in your browser.
+          </p>
+        )}
         {q.learn && (
           <p className='mt-6 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700'>
             Learn this topic: <Link to={q.learn.url} className='text-brand-700 underline font-medium'>{q.learn.title}</Link>{q.learn.title !== q.learn.courseTitle && <> in the course {q.learn.courseTitle}</>}.

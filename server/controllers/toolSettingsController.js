@@ -3,8 +3,8 @@ import ToolUsage from '../models/ToolUsage.js';
 
 // Admin on/off switches for the free tools. Everything is ON unless an admin turns it off, and if the settings cannot be
 // read the tool stays ON (a database hiccup must not hide a working tool). Cached for 10 seconds, cleared on save.
-export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer' };
-const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
+export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer', playgroundTool: 'React and Angular Code Playground' };
+const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, playgroundTool: true, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
 let cache = null, at = 0;
 export const getToolSettings = async () => {
     if (cache && Date.now() - at < 10000) return cache;
@@ -36,7 +36,7 @@ export const adminGetTools = async (req, res) => {
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
-// PUT /api/admin/tools   { imageEnhancer?, coverLetterTool?, bulletTool?, interviewTool?, offerTool?, linkedinTool?: boolean, careerDailyLimit?: 1-200, enhancerDailyLimit?: 1-500, enhancerMode?: 'pro' | 'standard' }
+// PUT /api/admin/tools   { imageEnhancer?, coverLetterTool?, bulletTool?, interviewTool?, offerTool?, linkedinTool?, playgroundTool?: boolean, careerDailyLimit?: 1-200, enhancerDailyLimit?: 1-500, enhancerMode?: 'pro' | 'standard' }
 export const adminSaveTools = async (req, res) => {
     try {
         const set = {};

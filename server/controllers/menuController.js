@@ -82,7 +82,22 @@ const migrateProductsMenu = async () => {
     productsDone = true;
 };
 
-const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER];
+// One-time add of later Products links to sites that already ran v1 (admin edits stay as they are).
+const PRODUCTS2_MARKER = 'migrated-products-v2';
+const PRODUCTS2_KEYS = ['h-products-playground'];
+let products2Done = false;
+const migrateProducts2 = async () => {
+    if (products2Done) return;
+    if (!(await MenuItem.exists({ key: PRODUCTS2_MARKER }))) {
+        await ensureDefaults(PRODUCTS2_KEYS);
+        const near = await MenuItem.findOne({ key: 'h-products' }).select('order');
+        if (near) await MenuItem.updateOne({ key: PRODUCTS2_KEYS[0] }, { $set: { order: near.order + 0.005 } });
+        await MenuItem.updateOne({ key: PRODUCTS2_MARKER }, { $setOnInsert: { key: PRODUCTS2_MARKER, location: 'footer_legal', label: 'marker', url: '/', visible: false, order: 9999 } }, { upsert: true });
+    }
+    products2Done = true;
+};
+
+const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER, PRODUCTS2_MARKER];
 const group = (items) => {
     items = items.filter((i) => !HIDDEN.includes(i.key));
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
@@ -100,6 +115,7 @@ export const getMenu = async (req, res) => {
         await migrateSubmenus();
         await migrateBuilder();
         await migrateProductsMenu();
+        await migrateProducts2();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab parent icon description');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -118,6 +134,7 @@ export const getMenuAdmin = async (req, res) => {
         await migrateSubmenus();
         await migrateBuilder();
         await migrateProductsMenu();
+        await migrateProducts2();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {

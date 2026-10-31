@@ -3,7 +3,7 @@
 // Keep in sync with client/src/utils/menu.js (the offline fallback).
 export const MENU_LOCATIONS = ['header', 'footer_product', 'footer_resources', 'footer_legal'];
 // Icons the admin can pick for a sub-menu link (client/src/utils/menuIcons.js draws them).
-export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up', 'mail', 'list-checks', 'linkedin', 'scale', 'message-square', 'file-check', 'target', 'zoom-in', 'file-image'];
+export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up', 'mail', 'list-checks', 'linkedin', 'scale', 'message-square', 'file-check', 'target', 'zoom-in', 'file-image', 'code'];
 
 export const DEFAULT_MENU = [
     { key: 'h-home', location: 'header', label: 'Home', url: '/' },
@@ -35,6 +35,7 @@ export const DEFAULT_MENU = [
     { key: 'h-products-bullets', location: 'header', label: 'Resume bullet improver', url: '/products/resume-bullet-improver', icon: 'list-checks', description: 'Make weak resume lines clear and strong', parentKey: 'h-products' },
     { key: 'h-products-jd', location: 'header', label: 'Job description matcher', url: '/resume-job-description-matcher', icon: 'target', description: 'See which job keywords your resume lacks', parentKey: 'h-products' },
     { key: 'h-products-cover', location: 'header', label: 'Cover letter generator', url: '/products/cover-letter-generator', icon: 'mail', description: 'A short, honest draft for any job advert', parentKey: 'h-products' },
+    { key: 'h-products-playground', location: 'header', label: 'React and Angular playground', url: '/products/code-playground', icon: 'code', description: 'Write code on the left, see it run on the right', parentKey: 'h-products' },
     { key: 'h-products-linkedin', location: 'header', label: 'LinkedIn headline and About', url: '/products/linkedin-headline-about-generator', icon: 'linkedin', description: 'Headline options and an About section', parentKey: 'h-products' },
     { key: 'h-products-offer', location: 'header', label: 'Job offer comparison', url: '/products/job-offer-comparison', icon: 'scale', description: 'Compare two job offers side by side', parentKey: 'h-products' },
     { key: 'h-products-mock', location: 'header', label: 'Mock interview practice', url: '/products/mock-interview-practice', icon: 'message-square', description: 'Answer real questions and get feedback', parentKey: 'h-products' },

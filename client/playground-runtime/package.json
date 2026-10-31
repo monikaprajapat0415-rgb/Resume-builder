@@ -1,0 +1,4 @@
+{ "name": "playground-runtime", "private": true, "type": "module",
+  "description": "Builds client/public/playground/*.js (React and Angular runtimes for the code playground). Not installed on the server; run `npm install && npm run build` here only to upgrade versions, then commit the output.",
+  "scripts": { "build": "node build.mjs" },
+  "dependencies": { "@angular/common": "^20", "@angular/compiler": "^20", "@angular/core": "^20", "@angular/forms": "^20", "@angular/platform-browser": "^20", "rxjs": "^7.8.0", "react": "^19.2.0", "react-dom": "^19.2.0", "esbuild": "*" } }

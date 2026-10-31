@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { Suspense, lazy, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -10,6 +10,7 @@ import api from '../../configs/api'
 import { useToolSettings } from '../../utils/toolSettings'
 import C from '../../content/careerTools.json'
 import OfferComparer from './OfferComparer'
+const Playground = lazy(() => import('./Playground'))
 import { TOOLS, visibleTools, toolByPath } from '../../content/toolsHub'
 import { IconTile, Badges, ToolCard } from './parts'
 
@@ -246,7 +247,7 @@ const CareerTool = ({ slug }) => {
               {hub && <div className='mt-3'><Badges tool={hub} /></div>}
             </div>
           </div>
-          <ol className='mt-6 grid sm:grid-cols-3 gap-3' aria-label='How it works'>
+          <ol className={`mt-6 grid sm:grid-cols-3 gap-3 ${slug === 'code-playground' ? 'hidden' : ''}`} aria-label='How it works'>
             {tool.steps.map((x, i) => (
               <li key={x} className='flex items-start gap-3 rounded-xl bg-white/80 border border-slate-200 px-4 py-3'>
                 <span className='size-6 shrink-0 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center'>{i + 1}</span>
@@ -263,7 +264,7 @@ const CareerTool = ({ slug }) => {
             <div className='rounded-2xl border border-brand-200 bg-brand-50/50 p-8 max-w-2xl mx-auto text-center'>
               <span className='mx-auto size-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center'><LuLock className='size-5' aria-hidden /></span>
               <h2 className='font-semibold text-slate-800 text-lg mt-4'>Sign in to use this free tool</h2>
-              <p className='text-sm text-slate-600 mt-1.5'>It is free. An account keeps the daily limit fair for everyone, and nothing you type is added to your resume.</p>
+              <p className='text-sm text-slate-600 mt-1.5'>{tool.ai === false ? 'It is free. Create an account or log in to open the editor.' : 'It is free. An account keeps the daily limit fair for everyone, and nothing you type is added to your resume.'}</p>
               <p className='mt-5 flex flex-wrap justify-center gap-3'>
                 <Link to={`/app?state=register&next=${encodeURIComponent(tool.path)}`} className={btn}>Create a free account</Link>
                 <Link to={`/app?state=login&next=${encodeURIComponent(tool.path)}`} className='rounded-full border border-slate-300 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 px-6 py-3'>Log in</Link>
@@ -274,7 +275,7 @@ const CareerTool = ({ slug }) => {
               {View && status && status.limit != null && (
                 <p className='text-xs text-slate-500 mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1'><span className={`size-2 rounded-full ${status.remaining > 0 ? 'bg-brand-500' : 'bg-amber-500'}`} />{status.remaining} of {status.limit} free uses left today, shared by the AI tools</p>
               )}
-              {View ? <View token={token} /> : <OfferComparer />}
+              {View ? <View token={token} /> : slug === 'code-playground' ? <Suspense fallback={<p className='text-slate-400 py-16 text-center'>Loading the editor…</p>}><Playground /></Suspense> : <OfferComparer />}
             </>
           )}
         </section>
