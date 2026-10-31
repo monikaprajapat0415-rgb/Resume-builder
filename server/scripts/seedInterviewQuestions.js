@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import connectDB from '../configs/db.js';
 import InterviewQuestion from '../models/InterviewQuestion.js';
 import { slugify } from '../utils/slugify.js';
+import { allInterviewQuestions } from './interview/index.mjs';   // 100 questions each for Angular, React, Node/Express/MERN, Python and SQL, basic to advanced
 
 const Q = (category, level, question, modelAnswer, tips = []) => ({ category, level, question, modelAnswer, tips });
 
@@ -148,6 +149,8 @@ Avoid asking only about pay, leave or how quickly you can be promoted in the fir
     ['Write your questions in a notebook and bring it with you.']),
 ];
 
+questions.push(...allInterviewQuestions);
+
 const replace = process.argv.includes('--replace');
 await connectDB();
 let order = 0;
@@ -155,7 +158,11 @@ for (const q of questions) {
   const slug = slugify(q.question).slice(0, 90);
   order += 1;
   const exists = await InterviewQuestion.exists({ slug });
-  if (exists && !replace) { console.log(`skip   ${slug}`); continue; }
+  if (exists && !replace) {
+    // keep the admin's edits; only add the course link to questions that have none yet
+    if (q.learnCourse) await InterviewQuestion.updateOne({ slug, $or: [{ learnCourse: { $exists: false } }, { learnCourse: '' }] }, { $set: { learnCourse: q.learnCourse, learnLesson: q.learnLesson || '' } });
+    console.log(`skip   ${slug}`); continue;
+  }
   await InterviewQuestion.findOneAndUpdate({ slug }, { ...q, slug, order, published: true, modifiedAt: new Date() }, { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true });
   console.log(`${exists ? 'reset ' : 'added '} ${slug}`);
 }

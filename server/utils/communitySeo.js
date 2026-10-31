@@ -82,6 +82,7 @@ export const questionHtml = ({ q, answers, related }) => `<article class="ssr-ar
   <p class="meta">${e(q.category)} · ${q.level === 'both' ? 'Freshers and experienced' : q.level === 'fresher' ? 'Freshers' : 'Experienced'}</p>
   ${q.modelAnswer ? `<h2>Model answer</h2>${paraHtml(q.modelAnswer)}` : ''}
   ${q.tips?.length ? `<h2>Tips</h2><ul>${q.tips.map((t) => `<li>${e(t)}</li>`).join('')}</ul>` : ''}
+  ${q.learn ? `<h2>Learn this topic</h2><p><a href="${e(q.learn.url)}">${e(q.learn.title)}</a> ${q.learn.title !== q.learn.courseTitle ? ` in the course ${e(q.learn.courseTitle)}` : ''}.</p>` : ''}
   ${answers.length ? `<h2>Answers from other job seekers</h2>${answers.map((a) => `<blockquote>${paraHtml(a.body)}<p class="meta">${e(a.displayName)}</p></blockquote>`).join('')}` : ''}
   <p>Sign in to add your own answer.</p>
   ${related?.length ? `<h2>More questions</h2><ul>${related.map((r) => `<li><a href="/jobs/interview-questions/${e(r.slug)}">${e(r.question)}</a></li>`).join('')}</ul>` : ''}

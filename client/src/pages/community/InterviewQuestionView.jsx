@@ -29,6 +29,11 @@ const InterviewQuestionView = () => {
             <ul className='list-disc pl-5 mt-1 text-sm text-slate-700 space-y-1'>{q.tips.map((t) => <li key={t}>{t}</li>)}</ul>
           </div>
         )}
+        {q.learn && (
+          <p className='mt-6 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700'>
+            Learn this topic: <Link to={q.learn.url} className='text-brand-700 underline font-medium'>{q.learn.title}</Link>{q.learn.title !== q.learn.courseTitle && <> in the course {q.learn.courseTitle}</>}.
+          </p>
+        )}
       </article>
 
       <section className='mt-10' aria-labelledby='shared'>
