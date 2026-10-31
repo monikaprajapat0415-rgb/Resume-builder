@@ -102,10 +102,10 @@
       "flag": "offerTool",
       "name": "Job Offer Comparison Calculator",
       "title": "Job Offer Comparison Calculator",
-      "description": "Compare two job offers side by side: monthly take-home, yearly total, bonus, benefits, commute cost and notice period. Free, no sign-in.",
+      "description": "Compare two job offers side by side: monthly take-home, yearly total, bonus, benefits, commute cost and notice period. Free with an account.",
       "h1": "Job offer comparison calculator",
       "intro": "Enter the numbers from two offers and see them side by side: take-home pay, yearly total, benefits and the cost of getting to work. It runs in your browser, uses no AI and sends nothing anywhere.",
-      "needsLogin": false,
+      "needsLogin": true,
       "steps": [
         "Enter the monthly take-home pay from each offer (after tax, from the offer or payslip).",
         "Add bonus, benefits value, commute cost and anything else that changes your real income.",

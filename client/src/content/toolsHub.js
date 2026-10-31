@@ -14,14 +14,14 @@ export const TOOLS = [
   { id: 'cv', name: 'AI CV builder', tagline: 'A tailored CV written from your real details and a job description.', path: '/cv-builder', group: 'resume', icon: LuSparkles, access: 'Free account', ai: true },
   { id: 'ats', name: 'ATS resume checker', tagline: 'Upload a PDF or Word resume and get a score with fixes.', path: '/features/ats-checker', group: 'resume', icon: LuFileCheck, access: 'Free account' },
   { id: 'bullets', name: 'Resume bullet improver', tagline: 'Turn weak lines into clear, action-led bullets without made-up numbers.', path: '/products/resume-bullet-improver', group: 'resume', icon: LuListChecks, access: 'Free account', ai: true, flag: 'bulletTool' },
-  { id: 'jd', name: 'Job description matcher', tagline: 'See which keywords from a job advert your resume has and lacks.', path: '/resume-job-description-matcher', group: 'jobs', icon: LuTarget, access: 'No sign-in' },
+  { id: 'jd', name: 'Job description matcher', tagline: 'See which keywords from a job advert your resume has and lacks.', path: '/resume-job-description-matcher', group: 'jobs', icon: LuTarget, access: 'Free account' },
   { id: 'cover', name: 'Cover letter generator', tagline: 'A short, honest draft from your experience and the job advert.', path: '/products/cover-letter-generator', group: 'jobs', icon: LuMail, access: 'Free account', ai: true, flag: 'coverLetterTool' },
   { id: 'linkedin', name: 'LinkedIn headline and About writer', tagline: 'Three headline options and an About section from your real facts.', path: '/products/linkedin-headline-about-generator', group: 'jobs', icon: LuLinkedin, access: 'Free account', ai: true, flag: 'linkedinTool' },
-  { id: 'offer', name: 'Job offer comparison', tagline: 'Put two offers side by side: yearly total, benefits, costs and notice.', path: '/products/job-offer-comparison', group: 'jobs', icon: LuScale, access: 'No sign-in', flag: 'offerTool' },
+  { id: 'offer', name: 'Job offer comparison', tagline: 'Put two offers side by side: yearly total, benefits, costs and notice.', path: '/products/job-offer-comparison', group: 'jobs', icon: LuScale, access: 'Free account', flag: 'offerTool' },
   { id: 'mock', name: 'Mock interview practice', tagline: 'Answer a real question and get feedback against a model answer.', path: '/products/mock-interview-practice', group: 'interview', icon: LuMessageSquare, access: 'Free account', ai: true, flag: 'interviewTool' },
   { id: 'questions', name: 'Interview questions bank', tagline: 'Questions with model answers for freshers and experienced people.', path: '/jobs/interview-questions', group: 'interview', icon: LuBookOpen, access: 'No sign-in' },
   { id: 'enhancer', name: 'Image enhancer', tagline: 'Sharpen soft photos and enlarge them to 2K, 4K or 8K.', path: '/products/image-enhancer', group: 'files', icon: LuZoomIn, access: 'Free account', flag: 'imageEnhancer' },
-  { id: 'converter', name: 'Image to PDF, Word and text', tagline: 'Combine pictures into one file, with OCR. Runs on your device.', path: '/products/image-converter', group: 'files', icon: LuFileImage, access: 'No sign-in' },
+  { id: 'converter', name: 'Image to PDF, Word and text', tagline: 'Combine pictures into one file, with OCR. Runs on your device.', path: '/products/image-converter', group: 'files', icon: LuFileImage, access: 'Free account' },
 ]
 
 export const toolByPath = (p) => TOOLS.find((t) => t.path === p)
