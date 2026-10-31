@@ -32,7 +32,7 @@ const Features = () => (
         </div>
       </section>
 
-      <section className='max-w-5xl mx-auto px-4 pb-6'>
+      <section className='max-w-7xl mx-auto px-4 pb-6'>
         <Link to='/features/ats-checker' className='group block rounded-2xl bg-gradient-to-br from-brand-600 to-emerald-700 text-white p-7 md:p-9 hover:shadow-lg transition'>
           <div className='flex flex-col md:flex-row md:items-center gap-5'>
             <div className='size-14 shrink-0 rounded-xl bg-white/15 flex items-center justify-center'><LuScanSearch className='size-7' /></div>
@@ -46,7 +46,7 @@ const Features = () => (
         </Link>
       </section>
 
-      <section className='max-w-5xl mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+      <section className='max-w-7xl mx-auto px-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
         {FEATURES.map(({ icon: Icon, title, desc, to, cta }) => (
           <div key={title} className='bg-white rounded-xl border border-slate-200 p-6 flex flex-col'>
             <div className='size-11 rounded-lg bg-brand-50 flex items-center justify-center'><Icon className='size-5 text-brand-600' /></div>

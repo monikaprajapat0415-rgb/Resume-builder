@@ -76,11 +76,11 @@ const OpenToWork = () => {
     try { await api.delete('/api/talent/me', auth); setProfile(null); setForm({ ...BLANK, country: guessCountry() }); setRequests([]); toast.success('Profile removed') } catch (err) { toast.error(errMsg(err, 'Could not remove.')) }
   }
 
-  if (loading) return <div className='max-w-5xl mx-auto px-4 py-16 text-center text-slate-400'>Loading…</div>
+  if (loading) return <div className='max-w-7xl mx-auto px-4 py-16 text-center text-slate-400'>Loading…</div>
   const pending = requests.filter((r) => r.status === 'pending')
 
   return (
-    <div className='max-w-5xl mx-auto px-4 py-8'>
+    <div className='max-w-7xl mx-auto px-4 py-8'>
       <SEO title='Open to work' description='Tell employers you are available to work.' noindex />
       <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
         <div>

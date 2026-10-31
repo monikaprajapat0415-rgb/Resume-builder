@@ -25,7 +25,7 @@ const Pricing = () => {
         description={on ? `See what is free and what the ${plan.planName} plan adds on Prime Resume AI.` : 'Prime Resume AI is free to use right now.'}
         path='/pricing' noindex={!on} />
       <NavBar />
-      <section className='max-w-4xl mx-auto px-4 py-14'>
+      <section className='max-w-6xl mx-auto px-4 py-14'>
         {plan === null && <p className='text-center text-slate-400'>Loading…</p>}
         {plan && !on && (
           <div className='text-center'>
