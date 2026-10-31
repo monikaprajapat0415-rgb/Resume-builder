@@ -7,6 +7,7 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import { matchResumeToJd } from '../utils/jdMatch'
+import { ToolGate } from './tools/parts'
 import { trackEvent } from '../components/Analytics'
 
 const FAQS = [
@@ -68,13 +69,14 @@ const JdMatcher = () => {
       <main>
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
           <div className='max-w-3xl mx-auto px-4 pt-14 pb-8 text-center'>
-            <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuLock className='size-3.5' />Free, no sign-up. Runs in your browser.</span>
+            <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuLock className='size-3.5' />Free account. Runs in your browser.</span>
             <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>Resume Job Description Matcher</h1>
             <p className='text-slate-600 mt-4 max-w-xl mx-auto'>See how well your resume matches a specific job: which keywords you already use, which are weak, and which are missing.</p>
           </div>
         </section>
 
         <section className='max-w-5xl mx-auto px-4 pb-10'>
+          <ToolGate path='/resume-job-description-matcher'>
           <form onSubmit={run} className='grid md:grid-cols-2 gap-5'>
             <div className='bg-white border border-slate-200 rounded-2xl p-4 shadow-sm'>
               <div className='flex items-center justify-between mb-2'>
@@ -127,6 +129,7 @@ const JdMatcher = () => {
               </div>
             </div>
           )}
+          </ToolGate>
         </section>
 
         <section className='max-w-3xl mx-auto px-4 py-8'>

@@ -259,7 +259,7 @@ const CareerTool = ({ slug }) => {
 
       <main className='max-w-page xl:px-10 mx-auto px-4 py-10'>
         <section aria-label={tool.name}>
-          {!tool.needsLogin ? <OfferComparer /> : !signedIn ? (
+          {!signedIn ? (
             <div className='rounded-2xl border border-brand-200 bg-brand-50/50 p-8 max-w-2xl mx-auto text-center'>
               <span className='mx-auto size-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center'><LuLock className='size-5' aria-hidden /></span>
               <h2 className='font-semibold text-slate-800 text-lg mt-4'>Sign in to use this free tool</h2>
@@ -271,10 +271,10 @@ const CareerTool = ({ slug }) => {
             </div>
           ) : (
             <>
-              {status && status.limit != null && (
+              {View && status && status.limit != null && (
                 <p className='text-xs text-slate-500 mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1'><span className={`size-2 rounded-full ${status.remaining > 0 ? 'bg-brand-500' : 'bg-amber-500'}`} />{status.remaining} of {status.limit} free uses left today, shared by the AI tools</p>
               )}
-              <View token={token} />
+              {View ? <View token={token} /> : <OfferComparer />}
             </>
           )}
         </section>

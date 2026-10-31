@@ -5,6 +5,7 @@ import { LuUpload, LuDownload, LuLoader, LuCheck, LuX, LuImage, LuArrowUp, LuArr
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
+import { ToolGate } from './tools/parts'
 import C from '../content/imageConverter.json'
 import { PAGES, QUALITY, LANGS, convert } from '../utils/imageConvert'
 
@@ -114,6 +115,7 @@ const ImageConverter = () => {
         </section>
 
         <section className='max-w-4xl mx-auto px-4 pb-10' aria-label='Image converter tool'>
+          <ToolGate path={C.path}>
           <div className='rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm'>
             <div onDragOver={(e) => { e.preventDefault(); setDrag(true) }} onDragLeave={() => setDrag(false)} onDrop={(e) => { e.preventDefault(); setDrag(false); add(e.dataTransfer.files) }}
               className={`rounded-xl border-2 border-dashed px-4 ${items.length ? 'py-6' : 'py-12'} text-center transition ${drag ? 'border-brand-500 bg-brand-50' : 'border-slate-300 bg-slate-50'}`}>
@@ -196,6 +198,7 @@ const ImageConverter = () => {
             )}
           </div>
           <p className='text-xs text-slate-500 mt-3 text-center'>{C.privacy}</p>
+          </ToolGate>
         </section>
 
         <section className='max-w-4xl mx-auto px-4 py-8'>
