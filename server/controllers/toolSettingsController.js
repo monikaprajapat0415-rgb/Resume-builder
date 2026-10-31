@@ -4,13 +4,13 @@ import ToolUsage from '../models/ToolUsage.js';
 // Admin on/off switches for the free tools. Everything is ON unless an admin turns it off, and if the settings cannot be
 // read the tool stays ON (a database hiccup must not hide a working tool). Cached for 10 seconds, cleared on save.
 export const TOOLS = { imageEnhancer: 'Image Enhancer' };
-const DEFAULTS = { imageEnhancer: true };
+const DEFAULTS = { imageEnhancer: true, enhancerDailyLimit: 10, enhancerMode: 'pro' };
 let cache = null, at = 0;
 export const getToolSettings = async () => {
     if (cache && Date.now() - at < 10000) return cache;
     try {
         const doc = await ToolSettings.findOne({ key: 'main' }).lean();
-        cache = { ...DEFAULTS, ...Object.fromEntries(Object.keys(TOOLS).map((k) => [k, doc?.[k] !== false])) };
+        cache = { ...DEFAULTS, ...Object.fromEntries(Object.keys(TOOLS).map((k) => [k, doc?.[k] !== false])), enhancerDailyLimit: Number.isInteger(doc?.enhancerDailyLimit) ? doc.enhancerDailyLimit : DEFAULTS.enhancerDailyLimit, enhancerMode: doc?.enhancerMode === 'standard' ? 'standard' : 'pro' };
     } catch { cache = { ...DEFAULTS }; }
     at = Date.now();
     return cache;
@@ -21,7 +21,7 @@ export const isToolOn = async (name) => Boolean((await getToolSettings())[name])
 export const publicToolSettings = async (req, res) => {
     const s = await getToolSettings();
     res.set('Cache-Control', 'no-store');
-    return res.status(200).json({ imageEnhancer: s.imageEnhancer });
+    return res.status(200).json({ imageEnhancer: s.imageEnhancer, enhancerMode: s.enhancerMode });
 };
 
 // GET /api/admin/tools
@@ -33,14 +33,24 @@ export const adminGetTools = async (req, res) => {
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
-// PUT /api/admin/tools   { imageEnhancer: true|false }
+// PUT /api/admin/tools   { imageEnhancer?: boolean, enhancerDailyLimit?: 1-500, enhancerMode?: 'pro' | 'standard' }
 export const adminSaveTools = async (req, res) => {
     try {
         const set = {};
         for (const k of Object.keys(TOOLS)) if (typeof req.body?.[k] === 'boolean') set[k] = req.body[k];
-        if (!Object.keys(set).length) return res.status(400).json({ message: 'Nothing to save: send imageEnhancer as true or false.' });
+        if (req.body?.enhancerDailyLimit !== undefined) {
+            const n = Number(req.body.enhancerDailyLimit);
+            if (!Number.isInteger(n) || n < 1 || n > 500) return res.status(400).json({ message: 'The daily limit must be a whole number from 1 to 500.' });
+            set.enhancerDailyLimit = n;
+        }
+        if (req.body?.enhancerMode !== undefined) {
+            if (!['pro', 'standard'].includes(req.body.enhancerMode)) return res.status(400).json({ message: 'The starting mode must be pro or standard.' });
+            set.enhancerMode = req.body.enhancerMode;
+        }
+        if (!Object.keys(set).length) return res.status(400).json({ message: 'Nothing to save.' });
         await ToolSettings.findOneAndUpdate({ key: 'main' }, { $set: set }, { upsert: true, setDefaultsOnInsert: true });
         cache = null;
-        return res.status(200).json({ settings: await getToolSettings(), message: set.imageEnhancer ? 'Saved. The Image Enhancer is visible to visitors.' : 'The Image Enhancer is now hidden from visitors.' });
+        const msg = typeof set.imageEnhancer === 'boolean' ? (set.imageEnhancer ? 'Saved. The Image Enhancer is visible to visitors.' : 'The Image Enhancer is now hidden from visitors.') : 'Saved.';
+        return res.status(200).json({ settings: await getToolSettings(), message: msg });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
