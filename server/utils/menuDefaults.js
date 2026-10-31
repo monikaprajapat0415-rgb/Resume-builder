@@ -3,7 +3,7 @@
 // Keep in sync with client/src/utils/menu.js (the offline fallback).
 export const MENU_LOCATIONS = ['header', 'footer_product', 'footer_resources', 'footer_legal'];
 // Icons the admin can pick for a sub-menu link (client/src/utils/menuIcons.js draws them).
-export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up'];
+export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up', 'mail', 'list-checks', 'linkedin', 'scale', 'message-square', 'file-check', 'target', 'zoom-in', 'file-image'];
 
 export const DEFAULT_MENU = [
     { key: 'h-home', location: 'header', label: 'Home', url: '/' },
@@ -28,6 +28,19 @@ export const DEFAULT_MENU = [
     { key: 'h-jobs-reviews', location: 'header', label: 'Company reviews', url: '/jobs/company-reviews', parentKey: 'h-jobs' },
     { key: 'h-builder-app', location: 'header', label: 'AI Resume builder & CV maker', url: '/app', icon: 'sparkles', description: 'Build, edit and download an ATS-friendly resume or CV', parentKey: 'h-builder' },
     { key: 'h-builder-examples', location: 'header', label: 'Examples of 100/100 CV and resume', url: '/examples', icon: 'award', description: 'Real samples that pass every automatic ATS check', parentKey: 'h-builder' },
+    { key: 'h-products-all', location: 'header', label: 'All free tools', url: '/products', icon: 'layout', description: 'Every tool in one place, with search', parentKey: 'h-products' },
+    { key: 'h-products-builder', location: 'header', label: 'Resume builder', url: '/app', icon: 'file-text', description: 'Build and download an ATS-friendly resume', parentKey: 'h-products' },
+    { key: 'h-products-cv', location: 'header', label: 'AI CV builder', url: '/cv-builder', icon: 'sparkles', description: 'A tailored CV from your real details', parentKey: 'h-products' },
+    { key: 'h-products-ats', location: 'header', label: 'ATS resume checker', url: '/features/ats-checker', icon: 'file-check', description: 'Upload a resume and get a score with fixes', parentKey: 'h-products' },
+    { key: 'h-products-bullets', location: 'header', label: 'Resume bullet improver', url: '/products/resume-bullet-improver', icon: 'list-checks', description: 'Make weak resume lines clear and strong', parentKey: 'h-products' },
+    { key: 'h-products-jd', location: 'header', label: 'Job description matcher', url: '/resume-job-description-matcher', icon: 'target', description: 'See which job keywords your resume lacks', parentKey: 'h-products' },
+    { key: 'h-products-cover', location: 'header', label: 'Cover letter generator', url: '/products/cover-letter-generator', icon: 'mail', description: 'A short, honest draft for any job advert', parentKey: 'h-products' },
+    { key: 'h-products-linkedin', location: 'header', label: 'LinkedIn headline and About', url: '/products/linkedin-headline-about-generator', icon: 'linkedin', description: 'Headline options and an About section', parentKey: 'h-products' },
+    { key: 'h-products-offer', location: 'header', label: 'Job offer comparison', url: '/products/job-offer-comparison', icon: 'scale', description: 'Compare two job offers side by side', parentKey: 'h-products' },
+    { key: 'h-products-mock', location: 'header', label: 'Mock interview practice', url: '/products/mock-interview-practice', icon: 'message-square', description: 'Answer real questions and get feedback', parentKey: 'h-products' },
+    { key: 'h-products-questions', location: 'header', label: 'Interview questions bank', url: '/jobs/interview-questions', icon: 'book-open', description: 'Questions with model answers', parentKey: 'h-products' },
+    { key: 'h-products-enhancer', location: 'header', label: 'Image enhancer', url: '/products/image-enhancer', icon: 'zoom-in', description: 'Sharpen photos and enlarge them to 4K or 8K', parentKey: 'h-products' },
+    { key: 'h-products-converter', location: 'header', label: 'Image to PDF, Word and text', url: '/products/image-converter', icon: 'file-image', description: 'Pictures to one PDF, Word or text file', parentKey: 'h-products' },
     { key: 'h-contact', location: 'header', label: 'Contact Us', url: '/#contact-us' },
 
     { key: 'fp-home', location: 'footer_product', label: 'Home', url: '/' },

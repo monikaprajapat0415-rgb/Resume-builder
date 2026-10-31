@@ -51,7 +51,7 @@ export const getSeoPagesAudit = async (req, res) => {
         const base = `http://127.0.0.1:${process.env.PORT || 3000}`;
         const toolsOn = await getToolSettings();
         const hidden = hiddenCareerPaths(toolsOn);
-        const PATHS_NOW = [...new Set([...PATHS, '/tools', ...careerToolPaths()])].filter((p) => (toolsOn.imageEnhancer || p !== '/products/image-enhancer') && !hidden.includes(p));
+        const PATHS_NOW = [...new Set([...PATHS, ...careerToolPaths()])].filter((p) => (toolsOn.imageEnhancer || p !== '/products/image-enhancer') && !hidden.includes(p));
         let sitemap = '';
         try { sitemap = await (await fetch(`${base}/sitemap.xml`, { headers: { Accept: 'application/xml' } })).text(); } catch { /* reported per page */ }
         const locs = new Set([...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1].replace(/\/$/, '')));
