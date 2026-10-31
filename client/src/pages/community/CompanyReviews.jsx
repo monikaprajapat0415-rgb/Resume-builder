@@ -20,9 +20,9 @@ const CompanyReviews = () => {
       {state === 'ok' && (list.length === 0
         ? <p className='text-slate-500 mt-8 text-sm'>{data.companies.length ? 'No company matches that search.' : 'No reviews have been published yet. Be the first to review an employer below.'}</p>
         : (
-          <ul className='mt-6 divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
+          <ul className='mt-6 grid lg:grid-cols-2 gap-3'>
             {list.map((c) => (
-              <li key={c.slug}>
+              <li key={c.slug} className='rounded-xl border border-slate-200 bg-white overflow-hidden'>
                 <Link to={`/jobs/company-reviews/${c.slug}`} className='flex items-center justify-between gap-3 px-4 py-3 hover:bg-slate-50'>
                   <span className='text-slate-800'>{c.company}</span>
                   <span className='flex items-center gap-2 text-xs text-slate-400'><Stars value={c.avg} />{c.avg.toFixed(1)} · {c.count} review{c.count > 1 ? 's' : ''}</span>

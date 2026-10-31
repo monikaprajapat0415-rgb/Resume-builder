@@ -14,7 +14,7 @@ const TABS = [
 export const Shell = ({ active, crumbs = [], children }) => (
   <div>
     <NavBar />
-    <section className='max-w-4xl mx-auto px-4 py-8'>
+    <section className='max-w-page xl:px-10 mx-auto px-4 py-8'>
       <nav aria-label='Section' className='flex flex-wrap gap-2 mb-6'>
         {TABS.map((t) => (
           <Link key={t.id} to={t.to} aria-current={active === t.id ? 'page' : undefined}
@@ -35,7 +35,7 @@ export const Shell = ({ active, crumbs = [], children }) => (
 )
 
 export const NotFound = ({ what, back, backLabel }) => (
-  <div className='text-center py-16'>
+  <div className='text-center py-16 max-w-xl mx-auto'>
     <h1 className='text-2xl font-semibold text-slate-800'>{what} not found</h1>
     <p className='text-slate-500 mt-2'>It may have been moved, or it is waiting for enough reports to be published.</p>
     <Link to={back} className='inline-block mt-5 text-brand-600 hover:underline'>{backLabel}</Link>

@@ -18,7 +18,7 @@ const CompanyView = () => {
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/company-reviews/${slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
       <h1 className='text-3xl font-semibold text-slate-800'>{company} reviews</h1>
       <p className='mt-3 flex items-center gap-3 text-slate-600'><Stars value={avg} size='text-xl' /> <span><strong>{avg.toFixed(1)}</strong> out of 5 from {count} review{count > 1 ? 's' : ''}</span></p>
-      <div className='mt-6 space-y-4'>
+      <div className='mt-6 grid lg:grid-cols-2 gap-4 items-start'>
         {reviews.map((r) => (
           <article key={r._id} className='rounded-xl border border-slate-200 bg-white p-5'>
             <div className='flex items-center justify-between gap-3'><Stars value={r.rating} /><span className='text-xs text-slate-400'>{timeAgo(r.createdAt)}</span></div>
@@ -31,7 +31,7 @@ const CompanyView = () => {
         ))}
       </div>
       <p className='text-xs text-slate-400 mt-3'>Reviews are personal opinions of the people who wrote them and are read before publishing.</p>
-      <section className='mt-10 rounded-xl border border-slate-200 bg-white p-5'>
+      <section className='mt-10 max-w-3xl rounded-xl border border-slate-200 bg-white p-5'>
         <h2 className='text-lg font-semibold text-slate-800 mb-3'>Review {company}</h2>
         <ReviewForm company={company} onDone={reload} />
       </section>

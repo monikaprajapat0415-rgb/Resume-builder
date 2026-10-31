@@ -74,7 +74,8 @@ const WIDE = 'max-w-page xl:px-10'
 export function navWidth(pathname) {
   const p = pathname.replace(/\/+$/, '') || '/'
   if (/^\/learn\/[^/]+\/(?!certificate$)[^/]+$/.test(p)) return 'max-w-[1680px] xl:px-10'
-  if (/^\/learn\/[^/]+$/.test(p)) return 'max-w-5xl md:px-10'
+  if (/^\/learn\/[^/]+$/.test(p)) return WIDE
+  if (/^\/jobs\/(interview-questions|salaries|company-reviews)/.test(p)) return WIDE
   if (/^\/(learn|blog|roadmaps|products|templates|examples)$/.test(p)) return WIDE
   if (p === '/jobs') return 'max-w-7xl md:px-10'
   return 'max-w-7xl md:px-10'

@@ -19,6 +19,8 @@ const InterviewQuestionView = () => {
   return (
     <Shell active='questions' crumbs={crumbs}>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/interview-questions/${q.slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
+      <div className='grid lg:grid-cols-[minmax(0,1fr)_400px] gap-x-12 items-start'>
+      <div>
       <article>
         <p className='text-sm text-slate-400'>{q.category} · {q.level === 'both' ? 'Freshers and experienced' : q.level === 'fresher' ? 'Freshers' : 'Experienced'}</p>
         <h1 className='text-3xl font-semibold text-slate-800 mt-1'>{q.question}</h1>
@@ -49,6 +51,8 @@ const InterviewQuestionView = () => {
         </div>
       </section>
 
+      </div>
+      <aside className='lg:sticky lg:top-6 lg:[&>section:first-child]:mt-0'>
       <section className='mt-10 rounded-xl border border-slate-200 bg-white p-5'>
         <h2 className='text-lg font-semibold text-slate-800 mb-3'>Add your answer</h2>
         <AnswerForm slug={q.slug} />
@@ -60,6 +64,8 @@ const InterviewQuestionView = () => {
           <ul className='space-y-2'>{related.map((r) => <li key={r.slug}><Link to={`/jobs/interview-questions/${r.slug}`} className='text-brand-600 hover:underline'>{r.question}</Link></li>)}</ul>
         </section>
       )}
+      </aside>
+      </div>
     </Shell>
   )
 }
