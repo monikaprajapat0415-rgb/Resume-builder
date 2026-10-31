@@ -94,7 +94,7 @@ const AdminTools = () => {
 
       <section className='bg-white rounded-xl border border-slate-200 p-5 mt-6'>
         <h2 className='font-semibold text-slate-800'>Career tools</h2>
-        <p className='text-sm text-slate-600 mt-1'>Free tools on <Link to='/tools' className='text-brand-700 underline'>/tools</Link>. A hidden tool leaves the tools list, the sitemap and llms.txt, answers "not found" to search engines, and the AI ones refuse requests (admins can still test). The offer comparison runs in the visitor's browser.</p>
+        <p className='text-sm text-slate-600 mt-1'>Free tools listed on <Link to='/products' className='text-brand-700 underline'>/products</Link>. A hidden tool leaves the Products page, the sitemap and llms.txt, answers "not found" to search engines, and the AI ones refuse requests (admins can still test). The offer comparison runs in the visitor's browser.</p>
         <ul className='mt-4 divide-y divide-slate-100'>
           {CAREER.tools.map((t) => {
             const isOn = data.settings[t.flag] !== false

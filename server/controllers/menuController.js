@@ -66,7 +66,23 @@ const migrateBuilder = async () => {
     builderDone = true;
 };
 
-const HIDDEN = [MARKER, BUILDER_MARKER];
+// The tools sub-menu under Products arrives on existing sites once, automatically (a hidden marker remembers it ran,
+// so links the admin deletes afterwards stay deleted). The links sit right after "Products".
+const PRODUCTS_MARKER = 'migrated-products-v1';
+const PRODUCTS_KEYS = DEFAULT_MENU.filter((d) => d.parentKey === 'h-products').map((d) => d.key);
+let productsDone = false;
+const migrateProductsMenu = async () => {
+    if (productsDone) return;
+    if (!(await MenuItem.exists({ key: PRODUCTS_MARKER }))) {
+        await ensureDefaults(PRODUCTS_KEYS);
+        const near = await MenuItem.findOne({ key: 'h-products' }).select('order');
+        if (near) await Promise.all(PRODUCTS_KEYS.map((key, i) => MenuItem.updateOne({ key }, { $set: { order: near.order + 0.01 * (i + 1) } })));
+        await MenuItem.updateOne({ key: PRODUCTS_MARKER }, { $setOnInsert: { key: PRODUCTS_MARKER, location: 'footer_legal', label: 'marker', url: '/', visible: false, order: 9999 } }, { upsert: true });
+    }
+    productsDone = true;
+};
+
+const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER];
 const group = (items) => {
     items = items.filter((i) => !HIDDEN.includes(i.key));
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
@@ -83,6 +99,7 @@ export const getMenu = async (req, res) => {
         await migrateFeaturesLink();
         await migrateSubmenus();
         await migrateBuilder();
+        await migrateProductsMenu();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab parent icon description');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -100,6 +117,7 @@ export const getMenuAdmin = async (req, res) => {
         await migrateFeaturesLink();
         await migrateSubmenus();
         await migrateBuilder();
+        await migrateProductsMenu();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {

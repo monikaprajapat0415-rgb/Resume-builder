@@ -1,6 +1,6 @@
 import { StandalonePageNav } from './components/PageNav';
 import React, { use, useEffect, lazy, Suspense } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Analytics from "./components/Analytics";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -79,8 +79,10 @@ const JdMatcher = lazy(() => import("./pages/JdMatcher"));
 const CvBuilder = lazy(() => import("./pages/CvBuilder"));
 const ImageEnhancer = lazy(() => import("./pages/ImageEnhancer"));
 const ImageConverter = lazy(() => import("./pages/ImageConverter"));
-const ToolsIndex = lazy(() => import("./pages/tools/ToolsIndex"));
 const CareerTool = lazy(() => import("./pages/tools/CareerTool"));
+import CAREER_TOOLS from "./content/careerTools.json";
+// The career tools used to live at /tools/<name>; old links go to /products/<name>.
+const OldToolRedirect = () => { const { slug } = useParams(); return <Navigate to={CAREER_TOOLS.tools.some((t) => t.slug === slug) ? `/products/${slug}` : '/products'} replace /> };
 const ProductsIndex = lazy(() => import("./pages/ProductsIndex"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 import SEO from "./components/SEO";
@@ -204,8 +206,9 @@ const App = () => {
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/image-enhancer" element={<ImageEnhancer />} />
         <Route path="/products/image-converter" element={<ImageConverter />} />
-        <Route path="/tools" element={<ToolsIndex />} />
-        <Route path="/tools/:slug" element={<CareerTool />} />
+        {CAREER_TOOLS.tools.map((t) => <Route key={t.slug} path={t.path} element={<CareerTool slug={t.slug} />} />)}
+        <Route path="/tools" element={<Navigate to="/products" replace />} />
+        <Route path="/tools/:slug" element={<OldToolRedirect />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/examples" element={<ExamplesIndex />} />
         <Route path="/examples/:slug" element={<ExampleDetail />} />

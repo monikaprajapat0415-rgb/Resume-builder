@@ -5,7 +5,7 @@
   "tools": [
     {
       "slug": "cover-letter-generator",
-      "path": "/tools/cover-letter-generator",
+      "path": "/products/cover-letter-generator",
       "flag": "coverLetterTool",
       "name": "Cover Letter Generator",
       "title": "Free Cover Letter Generator",
@@ -13,17 +13,30 @@
       "h1": "Free cover letter generator",
       "intro": "Paste a few lines about your experience and the job advert. You get a short cover letter draft that you can edit and copy. It only uses what you wrote, so gaps are marked for you to fill in.",
       "needsLogin": true,
-      "steps": ["Paste your resume text or a few lines about your experience and skills.", "Paste the job description and add the job title and company if you know them.", "Choose a tone, create the draft, then edit it so it sounds like you."],
+      "steps": [
+        "Paste your resume text or a few lines about your experience and skills.",
+        "Paste the job description and add the job title and company if you know them.",
+        "Choose a tone, create the draft, then edit it so it sounds like you."
+      ],
       "note": "The draft is written by AI from your text. Read it carefully, fix anything that is not true for you, and add real examples before you send it.",
       "faqs": [
-        { "q": "Does the generator make up experience?", "a": "No. It is told to use only the facts you paste. Where something is missing it leaves a [bracket] for you to fill in. Always read the letter and remove anything that is not true for you." },
-        { "q": "Do I need to upload my resume?", "a": "No. You paste text. Nothing is attached to your account resume and the letter is not stored after you leave the page." },
-        { "q": "How long is the letter?", "a": "About 250 to 300 words in three or four short paragraphs, which is usually enough for an application email or form." }
+        {
+          "q": "Does the generator make up experience?",
+          "a": "No. It is told to use only the facts you paste. Where something is missing it leaves a [bracket] for you to fill in. Always read the letter and remove anything that is not true for you."
+        },
+        {
+          "q": "Do I need to upload my resume?",
+          "a": "No. You paste text. Nothing is attached to your account resume and the letter is not stored after you leave the page."
+        },
+        {
+          "q": "How long is the letter?",
+          "a": "About 250 to 300 words in three or four short paragraphs, which is usually enough for an application email or form."
+        }
       ]
     },
     {
       "slug": "resume-bullet-improver",
-      "path": "/tools/resume-bullet-improver",
+      "path": "/products/resume-bullet-improver",
       "flag": "bulletTool",
       "name": "Resume Bullet Point Improver",
       "title": "Resume Bullet Point Improver",
@@ -31,17 +44,30 @@
       "h1": "Resume bullet point improver",
       "intro": "Paste up to eight lines from your resume. You get two stronger versions of each, starting with an action verb, plus a note on what real detail to add, such as a number you can prove.",
       "needsLogin": true,
-      "steps": ["Paste one resume bullet per line.", "Optionally add the job title you are aiming for.", "Pick the version you like, replace the [brackets] with your real details and copy it."],
+      "steps": [
+        "Paste one resume bullet per line.",
+        "Optionally add the job title you are aiming for.",
+        "Pick the version you like, replace the [brackets] with your real details and copy it."
+      ],
       "note": "The tool never makes up numbers or results. A bracket such as [add the number of customers] means you should add a figure only if you really have it.",
       "faqs": [
-        { "q": "Will it add fake numbers to my bullets?", "a": "No. It is told never to invent figures, tools or results. It marks the place where a real number would help, and you decide whether you have one." },
-        { "q": "What makes a good resume bullet?", "a": "Start with an action verb, say what you did and, if you can prove it, the result: for example the time saved, the amount handled or the people helped." },
-        { "q": "How many bullets can I improve at once?", "a": "Up to eight lines at a time, to keep the answers focused." }
+        {
+          "q": "Will it add fake numbers to my bullets?",
+          "a": "No. It is told never to invent figures, tools or results. It marks the place where a real number would help, and you decide whether you have one."
+        },
+        {
+          "q": "What makes a good resume bullet?",
+          "a": "Start with an action verb, say what you did and, if you can prove it, the result: for example the time saved, the amount handled or the people helped."
+        },
+        {
+          "q": "How many bullets can I improve at once?",
+          "a": "Up to eight lines at a time, to keep the answers focused."
+        }
       ]
     },
     {
       "slug": "mock-interview-practice",
-      "path": "/tools/mock-interview-practice",
+      "path": "/products/mock-interview-practice",
       "flag": "interviewTool",
       "name": "Mock Interview Practice",
       "title": "Mock Interview Practice with Feedback",
@@ -49,17 +75,30 @@
       "h1": "Mock interview practice",
       "intro": "Pick a question from our interview question bank, type your answer, and get feedback: what worked, what is missing and a stronger version built from your own points. Then compare it with the model answer.",
       "needsLogin": true,
-      "steps": ["Choose a level and topic, then pick a question.", "Type your answer as you would say it in the interview.", "Read the feedback, compare it with the model answer and try again."],
+      "steps": [
+        "Choose a level and topic, then pick a question.",
+        "Type your answer as you would say it in the interview.",
+        "Read the feedback, compare it with the model answer and try again."
+      ],
       "note": "Feedback is written by AI and is a guide, not a score or a prediction of the result. Nothing is recorded, and your answer is not shared.",
       "faqs": [
-        { "q": "Is my answer saved or shown to others?", "a": "No. It is sent only to get feedback and is not published. If you want to share an answer with other job seekers, use the answer box on the question page instead." },
-        { "q": "Where do the questions come from?", "a": "From the interview questions on our Jobs pages, each with a model answer written by us." },
-        { "q": "Can this tell me if I will get the job?", "a": "No. It can only show how clear and complete your answer is compared with a model answer." }
+        {
+          "q": "Is my answer saved or shown to others?",
+          "a": "No. It is sent only to get feedback and is not published. If you want to share an answer with other job seekers, use the answer box on the question page instead."
+        },
+        {
+          "q": "Where do the questions come from?",
+          "a": "From the interview questions on our Jobs pages, each with a model answer written by us."
+        },
+        {
+          "q": "Can this tell me if I will get the job?",
+          "a": "No. It can only show how clear and complete your answer is compared with a model answer."
+        }
       ]
     },
     {
       "slug": "job-offer-comparison",
-      "path": "/tools/job-offer-comparison",
+      "path": "/products/job-offer-comparison",
       "flag": "offerTool",
       "name": "Job Offer Comparison Calculator",
       "title": "Job Offer Comparison Calculator",
@@ -67,17 +106,30 @@
       "h1": "Job offer comparison calculator",
       "intro": "Enter the numbers from two offers and see them side by side: take-home pay, yearly total, benefits and the cost of getting to work. It runs in your browser, uses no AI and sends nothing anywhere.",
       "needsLogin": false,
-      "steps": ["Enter the monthly take-home pay from each offer (after tax, from the offer or payslip).", "Add bonus, benefits value, commute cost and anything else that changes your real income.", "Read the yearly total and the other differences, then decide what matters most to you."],
+      "steps": [
+        "Enter the monthly take-home pay from each offer (after tax, from the offer or payslip).",
+        "Add bonus, benefits value, commute cost and anything else that changes your real income.",
+        "Read the yearly total and the other differences, then decide what matters most to you."
+      ],
       "note": "This calculator does not work out tax. Use the take-home figure from the employer or your own estimate. Pay is only one part of a job, so also compare growth, hours and the people you will work with.",
       "faqs": [
-        { "q": "Does it calculate tax for me?", "a": "No. Tax rules differ by country and change often, so you enter your own take-home pay. The calculator then adds your bonus and benefits and subtracts your extra costs." },
-        { "q": "Is my data stored?", "a": "No. The sums run in your browser and nothing is sent to a server." },
-        { "q": "What counts as the value of benefits?", "a": "Only count benefits you would otherwise pay for yourself, such as health cover, meals or transport. Leave out anything you would not use." }
+        {
+          "q": "Does it calculate tax for me?",
+          "a": "No. Tax rules differ by country and change often, so you enter your own take-home pay. The calculator then adds your bonus and benefits and subtracts your extra costs."
+        },
+        {
+          "q": "Is my data stored?",
+          "a": "No. The sums run in your browser and nothing is sent to a server."
+        },
+        {
+          "q": "What counts as the value of benefits?",
+          "a": "Only count benefits you would otherwise pay for yourself, such as health cover, meals or transport. Leave out anything you would not use."
+        }
       ]
     },
     {
       "slug": "linkedin-headline-about-generator",
-      "path": "/tools/linkedin-headline-about-generator",
+      "path": "/products/linkedin-headline-about-generator",
       "flag": "linkedinTool",
       "name": "LinkedIn Headline and About Generator",
       "title": "LinkedIn Headline and About Writer",
@@ -85,12 +137,25 @@
       "h1": "LinkedIn headline and About section writer",
       "intro": "Tell us what you do, your main skills and the kind of role you want. You get three headline options and a short About section in the first person, written only from the facts you give.",
       "needsLogin": true,
-      "steps": ["Paste a few lines about your experience, skills and what you are looking for.", "Add the target role and choose a tone.", "Pick a headline, edit the About section and paste both into your LinkedIn profile."],
+      "steps": [
+        "Paste a few lines about your experience, skills and what you are looking for.",
+        "Add the target role and choose a tone.",
+        "Pick a headline, edit the About section and paste both into your LinkedIn profile."
+      ],
       "note": "The text is written by AI from your facts. Check every claim before you post it, and remove anything that is not true for you.",
       "faqs": [
-        { "q": "How long can a LinkedIn headline be?", "a": "LinkedIn allows up to 220 characters for the headline. The options we write stay within that limit, but check how it looks on your profile." },
-        { "q": "Will it invent achievements?", "a": "No. It is told to use only what you provide and to leave out anything it cannot support." },
-        { "q": "Does it connect to my LinkedIn account?", "a": "No. You copy the text and paste it into LinkedIn yourself." }
+        {
+          "q": "How long can a LinkedIn headline be?",
+          "a": "LinkedIn allows up to 220 characters for the headline. The options we write stay within that limit, but check how it looks on your profile."
+        },
+        {
+          "q": "Will it invent achievements?",
+          "a": "No. It is told to use only what you provide and to leave out anything it cannot support."
+        },
+        {
+          "q": "Does it connect to my LinkedIn account?",
+          "a": "No. You copy the text and paste it into LinkedIn yourself."
+        }
       ]
     }
   ]

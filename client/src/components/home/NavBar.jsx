@@ -11,6 +11,8 @@ import MenuLink from './MenuLink';
 import { useMenu } from '../../utils/menu';
 import PageNav from '../PageNav';
 import { MENU_ICONS } from '../../utils/menuIcons';
+import { useToolSettings } from '../../utils/toolSettings';
+import { hiddenToolPaths } from '../../content/toolsHub';
 import { useI18n } from '../../i18n/I18nProvider';
 
 // Dropdown row: optional icon tile, label and one-line description.
@@ -38,7 +40,11 @@ export default function NavBar() {
 
     // Links come from the admin-managed menu (Admin > Menus). Section links like
     // /#feature are handled inside MenuLink.
-    const { header } = useMenu();
+    const { header: rawHeader } = useMenu();
+    // A tool the admin switched off (Admin > Free tools) also leaves the menu.
+    const toolSettings = useToolSettings();
+    const hiddenPaths = hiddenToolPaths(toolSettings);
+    const header = rawHeader.map((it) => (it.children?.length ? { ...it, children: it.children.filter((c) => !hiddenPaths.includes(c.url)) } : it));
     const { pathname } = useLocation();
     // which dropdown is open (click/tap or keyboard); hover and focus also open it on desktop via CSS
     const [openId, setOpenId] = useState(null);
@@ -63,8 +69,8 @@ export default function NavBar() {
                                 {item.label}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                             </button>
-                            <div className={`absolute start-0 top-full pt-2 z-50 w-72 max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
-                                <ul className="rounded-xl border border-slate-200 bg-white shadow-lg py-2">
+                            <div className={`absolute start-0 top-full pt-2 z-50 ${item.children.length > 6 ? 'w-[44rem]' : 'w-72'} max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
+                                <ul className={`rounded-xl border border-slate-200 bg-white shadow-lg py-2 ${item.children.length > 6 ? 'grid grid-cols-2 gap-x-1 px-2' : ''}`}>
                                     {item.children.map((c) => (
                                         <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-normal break-words"><SubLabel c={c} /></MenuLink></li>
                                     ))}
