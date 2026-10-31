@@ -79,6 +79,8 @@ const JdMatcher = lazy(() => import("./pages/JdMatcher"));
 const CvBuilder = lazy(() => import("./pages/CvBuilder"));
 const ImageEnhancer = lazy(() => import("./pages/ImageEnhancer"));
 const ImageConverter = lazy(() => import("./pages/ImageConverter"));
+const ToolsIndex = lazy(() => import("./pages/tools/ToolsIndex"));
+const CareerTool = lazy(() => import("./pages/tools/CareerTool"));
 const ProductsIndex = lazy(() => import("./pages/ProductsIndex"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 import SEO from "./components/SEO";
@@ -202,6 +204,8 @@ const App = () => {
         <Route path="/products" element={<ProductsIndex />} />
         <Route path="/products/image-enhancer" element={<ImageEnhancer />} />
         <Route path="/products/image-converter" element={<ImageConverter />} />
+        <Route path="/tools" element={<ToolsIndex />} />
+        <Route path="/tools/:slug" element={<CareerTool />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/examples" element={<ExamplesIndex />} />
         <Route path="/examples/:slug" element={<ExampleDetail />} />

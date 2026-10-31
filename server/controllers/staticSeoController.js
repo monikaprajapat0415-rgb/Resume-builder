@@ -3,14 +3,16 @@ import { SITE_NAME, siteUrl } from '../utils/blogSeo.js';
 import { getToolSettings } from './toolSettingsController.js';
 import { merged } from './siteContentController.js';
 import { sendShell } from './blogSeoController.js';
-import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage, contactPage, privacyPage, termsPage, imageEnhancerPage, imageConverterPage, flags } from '../utils/staticPages.js';
+import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage, contactPage, privacyPage, termsPage, imageEnhancerPage, imageConverterPage, careerIndexPage, careerToolPage, flags } from '../utils/staticPages.js';
 
 // Server-rendered HTML for the public pages that live in the client code (see utils/staticPages.js).
 // Each handler falls through (next) when the client has not been built here or anything fails, so the site still works.
 const send = (build) => async (req, res, next) => {
     try {
         if (!loadTemplate()) return next();
-        flags.imageEnhancer = (await getToolSettings()).imageEnhancer;
+        const ts = await getToolSettings();
+        flags.imageEnhancer = ts.imageEnhancer;
+        flags.tools = ts;
         const pg = await build(req);
         if (!pg) {
             return sendShell(res, 404, {
@@ -38,3 +40,5 @@ export const renderTerms = send(() => termsPage());
 export const renderHire = send(() => hirePage());
 export const renderImageConverter = send(() => imageConverterPage());
 export const renderImageEnhancer = send(() => imageEnhancerPage());
+export const renderToolsIndex = send(() => careerIndexPage());
+export const renderCareerTool = send((req) => careerToolPage(req.params.slug));

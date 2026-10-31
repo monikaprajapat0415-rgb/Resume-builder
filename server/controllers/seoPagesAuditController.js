@@ -1,6 +1,7 @@
 import { siteUrl } from '../utils/blogSeo.js';
 import { getToolSettings } from './toolSettingsController.js';
 import { STATIC_ROUTES } from '../utils/staticSitemapRoutes.js';
+import { hiddenCareerPaths, careerToolPaths } from '../utils/staticPages.js';
 
 // Admin > SEO: fetches each public page from this server the way a crawler without JavaScript would, and reports what
 // it finds. Pages the server does not render itself (nginx serves the plain app shell for them) show "not server-rendered".
@@ -49,7 +50,8 @@ export const getSeoPagesAudit = async (req, res) => {
     try {
         const base = `http://127.0.0.1:${process.env.PORT || 3000}`;
         const toolsOn = await getToolSettings();
-        const PATHS_NOW = toolsOn.imageEnhancer ? PATHS : PATHS.filter((p) => p !== '/products/image-enhancer');
+        const hidden = hiddenCareerPaths(toolsOn);
+        const PATHS_NOW = [...new Set([...PATHS, '/tools', ...careerToolPaths()])].filter((p) => (toolsOn.imageEnhancer || p !== '/products/image-enhancer') && !hidden.includes(p));
         let sitemap = '';
         try { sitemap = await (await fetch(`${base}/sitemap.xml`, { headers: { Accept: 'application/xml' } })).text(); } catch { /* reported per page */ }
         const locs = new Set([...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1].replace(/\/$/, '')));
