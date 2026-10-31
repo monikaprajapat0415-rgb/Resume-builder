@@ -1,0 +1,84 @@
+{
+ "git-and-github-course": {
+  "what-is-git-and-github-install-and-setup": [
+   "Git = a program on your computer that keeps the history of a project in a hidden `.git` folder. Works offline.",
+   "GitHub = a website that stores Git projects online: backup, sharing, teamwork, a place to show your work.",
+   "GitLab and Bitbucket do the same job as GitHub. The Git commands stay the same.",
+   "Check the install: `git --version`",
+   "Tell Git who you are once: `git config --global user.name` and `user.email`",
+   "`--global` = use this setting for every project on this computer."
+  ],
+  "your-first-git-repository-init-add-commit": [
+   "Three places: working folder, staging area, repository (history).",
+   "`git init` makes the folder a repository. `git status` shows what is going on and is always safe.",
+   "`git add` moves changes to staging. `git commit -m \"message\"` saves them as a snapshot.",
+   "`git log --oneline` shows the history, newest first. `git diff` shows what you changed.",
+   "`.gitignore` lists files Git should skip (`*.log`, `node_modules/`, `.env`). It only works on files not yet tracked.",
+   "Commit small and often. One commit = one change you can explain in a short sentence."
+  ],
+  "undo-mistakes-restore-amend-revert": [
+   "Unsaved edit you want gone: `git restore file`. Careful, it cannot be brought back.",
+   "Staged by mistake: `git restore --staged file`.",
+   "Fix the last commit: `git commit --amend`. Only if you have not pushed it.",
+   "Undo a shared commit safely: `git revert`. It adds a new commit that does the opposite.",
+   "Dangerous: `git reset --hard`, `git push --force`, `git clean -fd`. Know what they delete before you run them.",
+   "Lost a commit? `git reflog` is the safety net."
+  ],
+  "git-branches-and-merging": [
+   "A branch is a movable label that points to a commit. Try ideas on a branch, keep `main` stable.",
+   "`git switch -c name` creates a branch and moves to it. `git switch main` goes back.",
+   "Switch to the branch that should receive the work, then `git merge other-branch`.",
+   "Fast-forward merge: `main` had not moved, so Git just moves the label. No merge commit.",
+   "`git branch -d name` deletes a merged branch. Git refuses if it is not merged.",
+   "Commit or stash your work before you switch branches."
+  ],
+  "resolve-git-merge-conflicts": [
+   "A conflict = both branches changed the same lines. It is not an error. Git asks you to decide.",
+   "`git status -s` shows `UU` for the file with the conflict.",
+   "Open the file, choose the final text, and delete all three marker lines: `<<<<<<<`, `=======`, `>>>>>>>`.",
+   "Then `git add file` and `git commit --no-edit`.",
+   "Never commit a file that still has markers. Search the project for `<<<<<<<`.",
+   "Lost in the middle of it? `git merge --abort` takes you back."
+  ],
+  "github-remotes-push-pull-and-clone": [
+   "A remote is another copy of your repository, usually on GitHub. The default name is `origin`.",
+   "First push: `git push -u origin main`. `git remote -v` lists your remotes.",
+   "`git clone url` copies a whole repository with its history and sets `origin` for you.",
+   "`git fetch` downloads changes without touching your files. `git pull` fetches and merges.",
+   "Sign in with Git Credential Manager, a personal access token or an SSH key. Never put tokens in a project file or a chat.",
+   "Daily rhythm: pull, work, commit, push."
+  ],
+  "pull-requests-forks-and-code-review": [
+   "Pull request flow: branch, commit, push, open the pull request, review, merge.",
+   "Good PR: short title, a description of what and why, small size, link the issue (`Closes #12`).",
+   "Read your own diff on the PR page before you ask anyone to review it.",
+   "Fork = your own copy of someone else's project. Contribute from a branch on your fork, then open a PR.",
+   "Keep a fork up to date from the original repository before you start new work.",
+   "A red check: read the log, fix, push again. Be patient and thank your reviewers."
+  ],
+  "good-commits-gitignore-and-keeping-secrets-safe": [
+   "A good commit message says what changed and why, in a short line.",
+   "Small, focused commits make history easy to read and easy to undo.",
+   "Never commit: secrets, personal data, `node_modules/`, build folders, large binaries, `.DS_Store`.",
+   "Keep secrets in a `.env` file and list `.env` in `.gitignore`.",
+   "Committed a secret? Treat it as stolen: revoke it and create a new one first. Cleaning the history comes second.",
+   "A README is the front door of the project. Add a licence if others may reuse it."
+  ],
+  "stash-tags-and-exploring-history": [
+   "`git stash` puts unfinished work aside. `git stash pop` brings it back. `git stash drop` deletes it.",
+   "A tag names an important moment, such as a release.",
+   "`git log --oneline --graph --all` shows branches. `git log -5` shows the last five commits.",
+   "`git show HEAD` shows the latest commit. `git diff main feature` compares two branches.",
+   "`git blame file` shows who changed each line and when. Use it to find the commit that explains a line.",
+   "`git cherry-pick` takes one commit. Use `rebase` with care, never on shared history."
+  ],
+  "git-and-github-for-your-job-search-and-cheat-sheet": [
+   "Profile: professional username and photo, a one-line bio, links to LinkedIn or your resume.",
+   "A repository named exactly like your username shows its README on your profile.",
+   "Pin your best projects. A README needs: a one-line description, screenshot, features, tech, install steps that work, what you learned.",
+   "Never publish secrets, personal data or an employer's confidential code.",
+   "Use the GitHub no-reply email if you do not want your real email in commits.",
+   "Be honest: show what you really built, and say what you learned or what is next."
+  ]
+ }
+}
