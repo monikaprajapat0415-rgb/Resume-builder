@@ -8,8 +8,11 @@ const breadcrumbLd = (items) => ({
     itemListElement: items.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: b.url })),
 });
 const crumbHtml = (items) => `<nav aria-label="Breadcrumb">${items.map((b, i) => (b.href ? `<a href="${e(b.href)}">${e(b.name)}</a>` : e(b.name)) + (i < items.length - 1 ? ' › ' : '')).join('')}</nav>`;
-const paragraphs = (t) => String(t || '').split(/\n{2,}/).map((p) => p.trim()).filter(Boolean);
-const paraHtml = (t) => paragraphs(t).map((p) => `<p>${e(p).replace(/\n/g, '<br>')}</p>`).join('');
+// Text with ```code``` blocks: fences become <pre><code>, everything else stays paragraphs.
+const richParts = (t) => String(t || '').split(/(```[\w-]*\n[\s\S]*?\n?```)/g).filter((x) => x.trim());
+const codeOf = (x) => x.replace(/^```[\w-]*\n/, '').replace(/\n?```$/, '');
+const paragraphs = (t) => richParts(t).flatMap((x) => (x.startsWith('```') ? [x] : x.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)));
+const paraHtml = (t) => paragraphs(t).map((p) => (p.startsWith('```') ? `<pre><code>${e(codeOf(p))}</code></pre>` : `<p>${e(p).replace(/\n/g, '<br>')}</p>`)).join('');
 const trim = (t, n) => (t.length > n ? t.slice(0, n - 1).trimEnd() + '…' : t);
 const ROBOTS_ON = 'index, follow, max-image-preview:large';
 

@@ -15,6 +15,13 @@ export const SALARY_LEVELS = ['fresher', 'junior', 'mid', 'senior', 'lead'];
 
 export const str = (v, max) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 // keeps paragraph breaks (used for long answers)
+// Like para, but keeps the spacing inside ```code``` blocks (used for model answers that contain code).
+export const richText = (v, max) => {
+  const t = String(v ?? '').replace(/\r/g, '');
+  const parts = t.split(/(```[\w-]*\n[\s\S]*?\n?```)/g);
+  const out = parts.map((x, i) => (i % 2 ? x.replace(/[ \t]+\n/g, '\n') : x.replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n'))).join('').trim();
+  return out.slice(0, max);
+};
 export const para = (v, max) => String(v ?? '').replace(/\r/g, '').replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
 export const hasLink = (t) => /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|net|org|io|in|co|uk|ng|ke|za)\b)/i.test(String(t || ''));
 export const companySlug = (name) => slugify(name).slice(0, 80);

@@ -6,7 +6,10 @@ import { AnswerForm, ReportButton } from '../../components/community/Forms'
 import { useCommunity, timeAgo } from './useCommunity'
 import { LEVELS } from './levels'
 
-const Paras = ({ text }) => String(text || '').split(/\n{2,}/).filter(Boolean).map((p, i) => <p key={i} className='mt-3 text-slate-700 leading-relaxed whitespace-pre-line'>{p}</p>)
+const Paras = ({ text }) => String(text || '').split(/(```[\w-]*\n[\s\S]*?\n?```)/g).filter((x) => x.trim()).flatMap((x, i) => {
+  if (x.startsWith('```')) return [<pre key={`c${i}`} className='mt-3 overflow-x-auto rounded-lg bg-slate-900 text-slate-100 text-[13px] leading-relaxed p-4'><code>{x.replace(/^```[\w-]*\n/, '').replace(/\n?```$/, '')}</code></pre>]
+  return x.split(/\n{2,}/).filter(Boolean).map((p, j) => <p key={`${i}-${j}`} className='mt-3 text-slate-700 leading-relaxed whitespace-pre-line'>{p}</p>)
+})
 
 const InterviewQuestionView = () => {
   const { slug } = useParams()
