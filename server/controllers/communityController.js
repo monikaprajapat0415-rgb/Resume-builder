@@ -4,6 +4,8 @@ import InterviewAnswer from "../models/InterviewAnswer.js";
 import SalaryReport from "../models/SalaryReport.js";
 import CompanyReview from "../models/CompanyReview.js";
 import User from "../models/User.js";
+import Course from "../models/Course.js";
+import Lesson from "../models/Lesson.js";
 import { slugify } from "../utils/slugify.js";
 import {
     str, para, hasLink, companySlug, displayNameFor, aggregateSalaries, COUNTRIES, CURRENCIES, PERIODS, SALARY_LEVELS,
@@ -29,12 +31,27 @@ export const loadQuestionsIndex = async (level) => {
     return { questions: withCounts, ...questionsIndexView({ questions, level }) };
 };
 
+// The course or lesson that teaches this topic, only if it exists and is published (so a link is never dead).
+const resolveLearn = async (q) => {
+    try {
+        if (!q.learnCourse) return null;
+        const course = await Course.findOne({ slug: q.learnCourse, published: true }).select('_id title slug').lean();
+        if (!course) return null;
+        if (q.learnLesson) {
+            const lesson = await Lesson.findOne({ course: course._id, slug: q.learnLesson, published: true }).select('title slug').lean();
+            if (lesson) return { url: `/learn/${course.slug}/${lesson.slug}`, title: lesson.title, courseTitle: course.title };
+        }
+        return { url: `/learn/${course.slug}`, title: course.title, courseTitle: course.title };
+    } catch { return null; }
+};
+
 export const loadQuestion = async (slug) => {
     const q = await InterviewQuestion.findOne({ slug, published: true }).lean();
     if (!q) return null;
     const answers = await InterviewAnswer.find({ question: q._id, status: 'approved' }).sort({ createdAt: -1 }).limit(50).select('body displayName createdAt').lean();
     const related = await InterviewQuestion.find({ published: true, category: q.category, _id: { $ne: q._id } }).sort({ order: 1 }).limit(6).select('question slug').lean();
-    return { question: { question: q.question, slug: q.slug, category: q.category, level: q.level, modelAnswer: q.modelAnswer, tips: q.tips, tags: q.tags, createdAt: q.createdAt }, answers, ...questionView({ q, answers, related }) };
+    const learn = await resolveLearn(q);
+    return { question: { question: q.question, slug: q.slug, category: q.category, level: q.level, modelAnswer: q.modelAnswer, tips: q.tips, tags: q.tags, learn, createdAt: q.createdAt }, answers, ...questionView({ q, answers, related }) };
 };
 
 const approvedSalaries = (match = {}) => SalaryReport.find({ status: 'approved', ...match }).lean();
@@ -249,6 +266,9 @@ const cleanQuestion = (b, existing) => {
     if (has('modelAnswer')) out.modelAnswer = para(b.modelAnswer, 6000);
     if (has('tips')) out.tips = (Array.isArray(b.tips) ? b.tips : String(b.tips || '').split('\n')).map((t) => str(t, 300)).filter(Boolean).slice(0, 8);
     if (has('tags')) out.tags = [...new Set((Array.isArray(b.tags) ? b.tags : String(b.tags || '').split(',')).map((t) => str(t, 30).toLowerCase()).filter(Boolean))].slice(0, 10);
+    const slugOf = (v) => String(v ?? '').toLowerCase().replace(/[^a-z0-9-]+/g, '').slice(0, 120);
+    if (has('learnCourse')) out.learnCourse = slugOf(b.learnCourse);
+    if (has('learnLesson')) out.learnLesson = (has('learnCourse') && out.learnCourse === '') ? '' : slugOf(b.learnLesson);
     if (has('order')) out.order = Number.isFinite(Number(b.order)) ? Math.trunc(Number(b.order)) : 0;
     if (has('published')) out.published = Boolean(b.published);
     return out;

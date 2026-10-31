@@ -9,6 +9,8 @@ const InterviewQuestionSchema = new mongoose.Schema({
     modelAnswer: { type: String, default: '' },              // plain text, blank lines separate paragraphs
     tips: { type: [String], default: [] },
     tags: { type: [String], default: [] },
+    learnCourse: { type: String, default: '' },              // optional: slug of a course that teaches this topic
+    learnLesson: { type: String, default: '' },              // optional: slug of the lesson in that course (blank = link to the course)
     published: { type: Boolean, default: false },
     order: { type: Number, default: 0 },
     views: { type: Number, default: 0 },
