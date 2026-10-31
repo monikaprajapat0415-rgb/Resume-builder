@@ -43,6 +43,8 @@ const AdminLessonEditor = () => {
   const [download, setDownload] = useState(null)
   const [animText, setAnimText] = useState('')
   const [quizText, setQuizText] = useState('')
+  const [notesText, setNotesText] = useState('')
+  const notesCount = notesText.split('\n').filter((x) => x.trim()).length
   const QUIZ_EXAMPLE = [{ q: 'Which command saves a snapshot of your staged changes?', options: ['git add', 'git commit', 'git push'], answer: 1, explain: 'commit records what you staged.' }]
   let quizError = ''
   if (quizText.trim()) { try { const v = JSON.parse(quizText); if (!Array.isArray(v)) quizError = 'The quiz must be a list [ ... ] of questions.' } catch { quizError = 'This is not valid JSON yet.' } }
@@ -66,6 +68,7 @@ const AdminLessonEditor = () => {
           setFaqs(l.faqs || [])
           setAnimText(l.animation ? JSON.stringify(l.animation, null, 2) : '')
           setQuizText(l.quiz ? JSON.stringify(l.quiz, null, 2) : '')
+          setNotesText(Array.isArray(l.notes) ? l.notes.join('\n') : '')
           setDownload(l.download?.file ? l.download : null)
         }
         const { data } = await api.get(`/api/admin/learn/courses/${cid}/lessons`, auth)
@@ -101,6 +104,7 @@ const AdminLessonEditor = () => {
     e.preventDefault()
     if (animText.trim() && anim.ok === false) { toast.error(anim.message || 'Fix the animation first.'); return }
     if (quizError) { toast.error(quizError); return }
+    if (notesCount > 10) { toast.error('Use 10 note lines or fewer.'); return }
     setSaving(true)
     try {
       const content = blocks.map((b) => {
@@ -109,7 +113,7 @@ const AdminLessonEditor = () => {
         if (b.type === 'code') return { type: 'code', lang: (b.lang || '').trim(), text: b.text || '' }
         return { type: b.type, text: (b.text || '').trim() }
       }).filter((b) => (b.items ? b.items.length > 0 : b.type === 'image' ? b.url : (b.text || '').trim().length > 0))
-      const payload = { ...f, content, animation: animText.trim() ? JSON.parse(animText) : null, quiz: quizText.trim() ? JSON.parse(quizText) : null, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
+      const payload = { ...f, content, animation: animText.trim() ? JSON.parse(animText) : null, quiz: quizText.trim() ? JSON.parse(quizText) : null, notes: notesCount ? notesText.split('\n').map((x) => x.trim()).filter(Boolean) : null, faqs: faqs.map((x) => ({ q: x.q.trim(), a: x.a.trim() })).filter((x) => x.q && x.a) }
       if (isEdit) await api.put(`/api/admin/learn/lessons/${lessonId}`, payload, auth)
       else await api.post(`/api/admin/learn/courses/${courseId}/lessons`, payload, auth)
       toast.success(isEdit ? 'Lesson updated.' : 'Lesson created.')
@@ -225,6 +229,13 @@ const AdminLessonEditor = () => {
             {anim.ok === false && <span className='text-xs text-red-600'>{anim.message}</span>}
           </div>
           {anim.ok && anim.data && <LessonAnimation key={animText} animation={anim.data} />}
+        </div>
+
+        <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>
+          <h2 className='text-sm font-semibold text-slate-800'>Handwritten notes <span className='text-slate-400 font-normal'>(optional)</span></h2>
+          <p className='text-xs text-slate-500'>One key point per line, 3 to 10 lines. Shown at the end of the lesson as a handwritten "My notes" card. Use `backticks` around commands.</p>
+          <textarea value={notesText} onChange={(e) => setNotesText(e.target.value)} rows={7} className={input} placeholder={'Git is a program on your computer.\nRun `git status` any time, it is safe.'} />
+          <p className={`text-xs ${notesCount > 10 ? 'text-red-600' : 'text-slate-400'}`}>{notesCount} line{notesCount === 1 ? '' : 's'}</p>
         </div>
 
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>

@@ -26,9 +26,12 @@ for (const k of keys) {
 // attached by course slug + lesson slug, so re-seeding keeps them.
 const quizFile = path.join(root, 'json', 'quizzes.json');
 const quizzes = fs.existsSync(quizFile) ? JSON.parse(fs.readFileSync(quizFile, 'utf8')) : {};
+// Handwritten-style notes live in learn-courses/json/notes.json: { course-slug: { lesson-slug: [lines] } }.
+const notesFile = path.join(root, 'json', 'notes.json');
+const notes = fs.existsSync(notesFile) ? JSON.parse(fs.readFileSync(notesFile, 'utf8')) : {};
 const build = ([course, lessons]) => ({
   course: { ...course, published: !draft },
-  lessons: lessons.map((l) => ({ ...l, ...(l.animation ? { animation: l.animation } : {}), ...(quizzes[course.slug]?.[l.slug] ? { quiz: quizzes[course.slug][l.slug] } : {}), published: !draft })),
+  lessons: lessons.map((l) => ({ ...l, ...(l.animation ? { animation: l.animation } : {}), ...(quizzes[course.slug]?.[l.slug] ? { quiz: quizzes[course.slug][l.slug] } : {}), ...(notes[course.slug]?.[l.slug] ? { notes: notes[course.slug][l.slug] } : {}), published: !draft })),
 });
 
 if (jsonOnly) {

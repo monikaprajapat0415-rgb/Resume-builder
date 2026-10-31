@@ -41,6 +41,7 @@ const LessonSchema = new mongoose.Schema({
     animation: { type: mongoose.Schema.Types.Mixed, default: undefined },
     // Optional end-of-lesson practice questions: [{ q, options[], answer (index), explain }] (see utils/lessonQuiz.js).
     quiz: { type: mongoose.Schema.Types.Mixed, default: undefined },
+    notes: { type: mongoose.Schema.Types.Mixed, default: undefined },
     modifiedAt: { type: Date },
 }, { timestamps: true });
 

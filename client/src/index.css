@@ -88,3 +88,6 @@
   .marquee { overflow-x: auto; }
   .marquee-track { transform: none; }
 }
+
+/* Handwritten notes card (LessonNotes). The global `*` font rule reaches every element, so the font is set on the children too. */
+.hand, .hand * { font-family: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive; }
