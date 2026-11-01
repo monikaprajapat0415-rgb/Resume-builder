@@ -1,0 +1,292 @@
+{
+ "what-is-the-mern-stack": [
+  "MERN = MongoDB (data), Express (API), React (screens), Node.js (runs JavaScript on the server).",
+  "A request: browser loads React, React calls the API with `fetch`, Express handles it, MongoDB returns documents, the data comes back as JSON.",
+  "One language, JavaScript, across the whole stack.",
+  "React shows, Express decides, MongoDB remembers."
+ ],
+ "set-up-your-tools-for-mern": [
+  "Tools: an editor (VS Code), Node.js with npm, Git, and MongoDB (local or Atlas).",
+  "Check each one: `node -v`, `npm -v`, `git --version`.",
+  "Node runs your code outside the browser. npm installs packages.",
+  "Git records every change so you can go back and share.",
+  "Keep projects in simple folders with no spaces in the names."
+ ],
+ "modern-javascript-for-mern": [
+  "`const` by default, `let` when the value changes, never `var`.",
+  "Arrow functions with `map` and `filter` change lists without loops.",
+  "Destructuring: `const { title, status } = job;`. Spread copies without changing the original: `{ ...job }`.",
+  "Optional chaining `job?.company?.name` and defaults `?? 'none'` avoid crashes.",
+  "Modules: `export` shares a value, `import` uses it. Use `\"type\": \"module\"` in Node.",
+  "Template strings: `` `Hello ${name}` ``."
+ ],
+ "asynchronous-javascript-promises-async-await": [
+  "Slow jobs (network, files) must not freeze JavaScript, so they run asynchronously.",
+  "A promise is a placeholder for a value that arrives later.",
+  "`await` pauses only your function. Wrap it in `try/catch` to handle failure.",
+  "`Promise.all` runs tasks at the same time.",
+  "`fetch` returns a promise. Check `response.ok`, then `await response.json()`.",
+  "Callbacks are the older way. Prefer async/await."
+ ],
+ "http-json-and-rest-basics": [
+  "A request = method + path + headers + sometimes a JSON body.",
+  "GET reads, POST creates, PATCH changes, DELETE removes.",
+  "Status codes: 2xx success, 4xx the request was wrong, 5xx the server failed.",
+  "Common ones: 200 OK, 201 Created, 204 No Content, 400, 401, 404, 500.",
+  "REST: nouns in the path (`/api/jobs/12`), verbs in the method.",
+  "Replies are JSON."
+ ],
+ "plan-the-job-tracker-project": [
+  "Plan before coding: what must people be able to do?",
+  "Features become screens, screens become API routes, routes decide the data.",
+  "Two things to store: `User` and `Job`.",
+  "Folders: one for the `server`, one for the `client`.",
+  "A plan costs minutes and saves hours of rewriting."
+ ],
+ "node-js-basics-modules-files-events": [
+  "Node runs JavaScript on your computer, not in a browser.",
+  "Built-in modules: `fs` for files, `path` for file paths, `events` for events.",
+  "Use `path.join` so paths work on every system.",
+  "`process.argv` = arguments, `process.env` = environment variables, `process.exit(code)` = stop.",
+  "An event emitter lets one part announce something and others react."
+ ],
+ "npm-package-json-and-environment-variables": [
+  "`package.json` = name, scripts and the packages the project needs.",
+  "`npm install` reads it and fills `node_modules`. Do not commit `node_modules`.",
+  "Scripts: `npm run dev` and `npm start`. `nodemon` or `--watch` restarts on change.",
+  "Secrets and settings go in `.env`, loaded by `dotenv` into `process.env`. Never commit `.env`.",
+  "Commit `.env.example` with the names only, so others know what to fill in."
+ ],
+ "your-first-express-server-and-routes": [
+  "Express checks routes from the top and runs the first match.",
+  "`app.get('/jobs/:id', ...)`: `:id` is in `req.params`.",
+  "Query strings `?status=applied` are in `req.query`.",
+  "`res.status(200).json(data)` sends the answer and ends the request.",
+  "Order matters: put specific routes before general ones.",
+  "Try it with the browser, `curl` or a REST client."
+ ],
+ "express-middleware-json-cors-and-logging": [
+  "Middleware = a function every request passes through, in order.",
+  "It must call `next()` or send a reply. Otherwise the request hangs.",
+  "`express.json()` turns the JSON body into `req.body`. Without it `req.body` is empty.",
+  "`cors` lets the browser app call this API.",
+  "A logger records method, path and time taken.",
+  "Middleware can be added to one route only."
+ ],
+ "express-routers-and-controllers": [
+  "Split by responsibility so the project stays readable.",
+  "`index.js` only mounts routers: `app.use('/api/jobs', jobsRouter)`.",
+  "A router lists URLs and the functions that answer them.",
+  "A controller holds the logic: read input, do the work, send the reply.",
+  "Moving to MongoDB later only changes the data layer."
+ ],
+ "validation-and-error-handling-in-express": [
+  "Never trust what a client sends.",
+  "Validate: check the types, keep only the allowed fields, clean the text.",
+  "Throw an `HttpError(400, 'message')` with a status.",
+  "One error middleware at the end sends one JSON shape for every error.",
+  "Unexpected errors become a plain 500. Details go in the log, not to the visitor."
+ ],
+ "test-your-api-with-rest-client-and-smoke-script": [
+  "Try the routes after writing them.",
+  "Level 1: a `.http` file, Postman or `curl`, one request at a time.",
+  "Check both the status code and the body.",
+  "Level 2: a smoke script repeats all checks so you can run it after every change.",
+  "Level 3: automated tests, for example `node --test`."
+ ],
+ "what-is-mongodb-documents-collections-atlas": [
+  "A server holds databases, a database holds collections, a collection holds documents.",
+  "A document is a JSON-like object with an `_id`.",
+  "A collection is like a table, but documents need not have the same fields.",
+  "Atlas = MongoDB hosted for you. Or install it locally.",
+  "`mongosh` lets you try `insertOne`, `find` and `updateOne` by hand."
+ ],
+ "connect-express-to-mongodb-with-mongoose": [
+  "The connection string is a secret: keep it in `.env`.",
+  "`mongoose.connect(process.env.MONGODB_URI)`.",
+  "Start listening only after the database connects.",
+  "If it fails, stop with a clear message.",
+  "Common problems: wrong password, IP address not allowed in Atlas, special characters in the password."
+ ],
+ "mongoose-schemas-models-and-validation": [
+  "A schema describes a document: fields, types, `required`, defaults, allowed values.",
+  "`mongoose.model('Job', schema)` gives the tool to read and write jobs.",
+  "Bad data is rejected with a `ValidationError`.",
+  "`timestamps: true` adds `createdAt` and `updatedAt`.",
+  "`Job.create()` or `save()` writes it to the collection."
+ ],
+ "crud-with-mongoose-in-express": [
+  "CRUD = create, read, update, delete.",
+  "Create: `Job.create` with only the allowed fields from the body (not the whole `req.body`).",
+  "Read one: `Job.findById`. A bad id gives 400, a missing job gives 404.",
+  "Update: PATCH with `runValidators: true` so the rules apply to changes too.",
+  "Delete: reply 204 with no body.",
+  "Translate database errors into friendly API errors."
+ ],
+ "search-filter-sort-pagination-and-indexes": [
+  "The client sends search, status, sort and page in the URL.",
+  "Escape search text so it cannot be used as a regex attack.",
+  "`skip` and `limit` return one page. Send the total so the client can show page numbers.",
+  "Cap the limit so nobody asks for a million rows.",
+  "An index lets MongoDB jump to matches instead of reading every document."
+ ],
+ "mongodb-aggregation-pipeline-for-statistics": [
+  "An aggregation is a pipeline: each stage gets the output of the one before.",
+  "`$match` keeps the documents you want, for example the current user's jobs.",
+  "`$group` makes buckets, for example by status, and counts them.",
+  "Shape the result into a simple object for the dashboard.",
+  "Route order matters: `/stats` must come before `/:id`."
+ ],
+ "user-registration-and-password-hashing-with-bcrypt": [
+  "Never store passwords. Store a hash.",
+  "bcrypt = one-way, adds a random salt, slow on purpose.",
+  "Check the email format and a sensible password length first.",
+  "A stolen database does not give the passwords away.",
+  "The reply never includes the hash.",
+  "A duplicate email gives a clear conflict error (409)."
+ ],
+ "login-with-jwt-json-web-tokens": [
+  "Login: find the user, compare the password with the stored hash using bcrypt.",
+  "Unknown email? Compare against a dummy hash anyway, so timing does not reveal which emails exist.",
+  "On success sign a JWT with a secret. It holds the user id and an expiry.",
+  "The client sends the token with later requests in the `Authorization` header.",
+  "Use the same message for every login failure.",
+  "Where the client stores the token (memory, localStorage or a cookie) is a security trade-off."
+ ],
+ "protect-routes-and-ownership-checks": [
+  "The `protect` middleware reads the token from `Authorization`, verifies it and loads the user.",
+  "No token or a bad one: 401. Otherwise set `req.user` and call `next()`.",
+  "Every query includes the owner: find by id AND user.",
+  "Never take the user id from the request body.",
+  "Another person's job gives 404, as if it did not exist, so nothing is leaked.",
+  "Prove it with a test: user B cannot read or change user A's data."
+ ],
+ "express-security-basics-helmet-rate-limit-nosql-injection": [
+  "Security is several small layers, not one switch.",
+  "`helmet` adds safe headers to every reply.",
+  "Rate limit login routes so nobody can try thousands of passwords.",
+  "NoSQL injection sends objects like `{\"$gt\": \"\"}` instead of strings. Reject keys that start with `$`.",
+  "Behind a proxy set `trust proxy` so the limiter sees the real visitor address.",
+  "In production, refuse to start with a missing or weak JWT secret."
+ ],
+ "automated-api-tests-with-node-test-runner": [
+  "Tests are code that checks your code. `node --test` needs no extra package.",
+  "Split `app.js` (the app) from `server.js` (listening), so tests can import the app without a real server.",
+  "Use a separate test database and clear it before each run.",
+  "Each test sends a request and checks the status and the body, including failure cases.",
+  "Run the tests before every deploy."
+ ],
+ "react-and-vite-setup-components-and-jsx": [
+  "A component is a function that returns JSX. Names start with a capital letter.",
+  "JSX needs one parent element.",
+  "Vite compiles JSX and reloads instantly while you work.",
+  "Components can contain other components, like `Header` and `JobCard`.",
+  "A Vite proxy sends `/api` calls to your Express server during development."
+ ],
+ "react-props-state-and-events": [
+  "Props: inputs from the parent. They are read-only.",
+  "State: data that changes. `const [jobs, setJobs] = useState([])`.",
+  "Never change state in place. Make a new array: `[...jobs, newJob]`, `filter`, `map`.",
+  "Events: `onClick`, `onChange`. Pass the function, do not call it.",
+  "A child tells the parent by calling a function it received as a prop.",
+  "Lists need a stable `key`, the id."
+ ],
+ "react-lists-forms-and-controlled-inputs": [
+  "Controlled input: state is the single source of truth. `value` shows it, `onChange` updates it.",
+  "On submit validate the state first and show clear messages next to the fields.",
+  "Every input has a `label` tied to it. It helps screen readers and makes the click area bigger.",
+  "Lists use a stable `key`, the id, not the index.",
+  "Keep state in the nearest component that needs it, or lift it up."
+ ],
+ "react-useeffect-and-fetching-data-from-your-api": [
+  "Render first with no data and show a loading state. Then the effect starts the fetch.",
+  "The dependency list says when to run it again.",
+  "Three states: loading, error (with retry), data.",
+  "The cleanup function cancels the request, so old answers cannot overwrite new ones.",
+  "Keep all API calls in one helper file that adds the token and handles errors."
+ ],
+ "react-router-pages-links-and-params": [
+  "The URL decides which page shows. React Router matches it against your routes.",
+  "A layout route draws the header once and `<Outlet />` shows the page inside it.",
+  "`useParams` reads `:id` from the URL, then load that job.",
+  "`Link` and `NavLink` change the URL without reloading.",
+  "A `*` route shows a not found page."
+ ],
+ "react-context-and-custom-hooks": [
+  "Context shares data (like the signed-in user) without passing props through every level.",
+  "A provider holds the data. `useContext` reads it.",
+  "A custom hook `useAuth` hides the context behind one call.",
+  "`useJobs` keeps loading, error and reload logic in one reusable place.",
+  "Hooks share logic, not data."
+ ],
+ "react-crud-ui-create-edit-delete-with-the-api": [
+  "Forms and buttons call the `api` helper, which adds the token and the JSON.",
+  "The server validates and changes the data, then replies.",
+  "Update the list in state only after the server confirms, using new arrays.",
+  "Show a saving state on the button. Confirm before delete.",
+  "Show a clear message when a request fails."
+ ],
+ "sign-in-and-register-pages-with-protected-routes": [
+  "`ProtectedRoute` checks the auth context. No user: redirect to login and remember the wanted address.",
+  "After login save the token and go back to the page they wanted.",
+  "A 401 from the server signs the person out and shows the login page again.",
+  "Hiding a page in React is only a convenience. The server still checks every request."
+ ],
+ "react-dashboard-stats-filters-and-pagination-in-the-url": [
+  "Put the search, status and page in the URL with `useSearchParams`.",
+  "The data hook watches the URL and fetches again when it changes.",
+  "The back button, reload and shared links then all work.",
+  "Debounce typing so one request is sent, not one per key.",
+  "Small focused components: list, stats, pagination."
+ ],
+ "responsive-styling-and-accessibility-in-react": [
+  "Mobile first: write styles for a small screen, then add `min-width` media queries.",
+  "Grid and flexible sizes let cards fill the space without fixed widths.",
+  "Visible focus rings, labels, enough colour contrast, keyboard use.",
+  "`prefers-color-scheme` gives a dark mode that follows the device.",
+  "Test with the keyboard only."
+ ],
+ "react-performance-memo-debounce-and-code-splitting": [
+  "Slowness comes from doing too much work, not from React itself.",
+  "Debounce: wait until typing stops, then send one request.",
+  "`React.memo` skips redrawing a component whose props did not change.",
+  "`lazy` loads a page only when it is visited, so the first load is smaller.",
+  "Measure first with the browser tools and the build output, then optimise."
+ ],
+ "file-upload-with-multer-and-react": [
+  "React sends the file in `FormData`. It checks the size as a courtesy.",
+  "`multer` reads the upload with a size limit, one file only and an extension filter.",
+  "Read the first bytes: a text file renamed to `.pdf` is rejected and deleted.",
+  "Store the file under a random name. Only the details go in MongoDB.",
+  "Downloads go through a route that checks ownership and send the file as an attachment."
+ ],
+ "production-ready-express-logging-graceful-shutdown-compression-indexes": [
+  "Log JSON lines with path, status and time. Never log passwords or tokens.",
+  "A health check that tests the database. 503 means do not send traffic here.",
+  "On `SIGTERM`: stop new connections, finish current requests, close the database, exit.",
+  "Build indexes on purpose after a deploy. Compress text responses.",
+  "Check the logs when something looks wrong, not only when it breaks."
+ ],
+ "build-and-serve-the-react-app-from-express": [
+  "`npm run build` makes hashed static files in `client/dist`.",
+  "Express serves them. Hashed `/assets` are cached for a year. `index.html` is never cached.",
+  "`/api` goes to the API. An unknown API path is a JSON 404.",
+  "Any other GET returns `index.html`, so React Router works after a reload.",
+  "One process and one origin: no CORS needed, one thing to deploy."
+ ],
+ "deploy-a-mern-app-to-a-vps-with-pm2-nginx-and-https": [
+  "DNS points the name to your server. nginx handles HTTPS (Let's Encrypt) and proxies to Node.",
+  "Pass the visitor address in headers and set `trust proxy`.",
+  "pm2 keeps the app running, restarts it after a crash and after a reboot.",
+  "Settings live in the server's `.env`, never in Git.",
+  "A repeatable deploy script: pull, install, build, restart, then check `/api/health`.",
+  "Open only the ports you need (80 and 443)."
+ ],
+ "mern-capstone-checklist-and-next-steps": [
+  "Checklist: secrets, ownership checks, validation, tests, backups, monitoring.",
+  "A committed secret stays in Git history. Check it and change the secret.",
+  "Deploy, then write a README with screenshots.",
+  "Pick one idea from the next-steps list and build it with a test.",
+  "Small, finished and deployed projects teach more than unfinished big ones."
+ ]
+}

@@ -1,0 +1,523 @@
+{
+ "What is Angular? A Beginner's Introduction": [
+  "Angular = a framework from Google for building web apps in TypeScript.",
+  "You build the screen from components: a class, a template and styles.",
+  "Routing, forms, HTTP and testing tools come in one place.",
+  "When data changes, Angular updates only the parts of the page that need it."
+ ],
+ "TypeScript Basics for Angular": [
+  "TypeScript = JavaScript with types. You say what kind of value a variable or function holds.",
+  "The editor and compiler check types while you type, so mistakes show up early.",
+  "Most used in Angular: interfaces, classes and decorators.",
+  "It is turned into plain JavaScript for the browser."
+ ],
+ "Install Node.js and the Angular CLI": [
+  "Install Node.js first. Angular tools run on it.",
+  "npm comes with Node and installs packages.",
+  "`npm install -g @angular/cli` gives the `ng` command.",
+  "Check with `ng version`."
+ ],
+ "Angular Course Roadmap and Complete Topic Index (Beginner to Advanced)": [
+  "Path: basics, then state and forms, then routing and HTTP, then advanced topics, then projects and deploy.",
+  "Basics = first app, components, templates.",
+  "State = signals and services. Real data = routing and HTTP.",
+  "Advanced = RxJS, change detection, SSR, testing, security."
+ ],
+ "Create Your First Angular App with the CLI": [
+  "`ng new my-app` creates a complete project.",
+  "`cd my-app` then `ng serve` starts the dev server.",
+  "Open `localhost:4200` to see the app.",
+  "Save a file and the browser reloads by itself."
+ ],
+ "Angular Project Structure Explained": [
+  "`main.ts` is the entry point and starts the app.",
+  "`app.config.ts` holds app-wide settings and services (providers).",
+  "The root component holds the page layout.",
+  "`app.routes.ts` says which component shows for each URL.",
+  "Everything is drawn inside `index.html`, the one page the browser loads."
+ ],
+ "Your First Angular Component": [
+  "A component = a class with a `@Component` decorator.",
+  "The template is HTML that shows data from the class. Styles apply only to this component.",
+  "`selector` is the custom tag name, for example `<app-card>`.",
+  "Put the tag in another template and Angular draws the component there.",
+  "Make one with `ng generate component name`."
+ ],
+ "Angular CLI Guide: ng new, ng update, Multiple Apps and Multiple Angular Versions": [
+  "The Angular CLI is one tool for the whole life of a project.",
+  "`ng new` creates, `ng serve` runs, `ng build` makes the files to deploy.",
+  "`ng generate` makes components, services and more with the right files.",
+  "`ng update` upgrades Angular and runs migrations on your code.",
+  "Upgrade one major version at a time."
+ ],
+ "Displaying Data in Angular with Interpolation": [
+  "Interpolation: `{{ title }}` shows a class property in the template.",
+  "When the property changes, the text updates.",
+  "Small expressions work inside the braces, such as `{{ price * 2 }}`.",
+  "Keep logic short in templates. Move bigger logic to the class."
+ ],
+ "Property Binding and Event Binding in Angular": [
+  "Property binding: `[disabled]=\"isBusy\"` sets an element property from the class.",
+  "Event binding: `(click)=\"save()\"` runs a method when the event happens.",
+  "Square brackets = data in. Round brackets = events out.",
+  "The method changes the data and the bindings update the screen."
+ ],
+ "Angular Two-Way Binding: ngModel, ngModelChange and Input Events": [
+  "Two-way binding keeps a property and an input in sync in both directions.",
+  "`[(ngModel)]=\"name\"` is shorthand for `[ngModel]` plus `(ngModelChange)`.",
+  "Import `FormsModule` to use `ngModel`.",
+  "Anything else that shows `name` updates as the user types."
+ ],
+ "Angular Signals: Reactive State for Beginners": [
+  "A signal holds a value and tells Angular when it changes.",
+  "Create: `count = signal(0)`. Read: `count()`.",
+  "Change: `count.set(5)` or `count.update(c => c + 1)`.",
+  "Angular knows which parts of the page read the signal and refreshes only those.",
+  "Update signals with new objects and arrays, not by changing them in place."
+ ],
+ "Angular Styling: Global Styles, Component Styles, View Encapsulation, Bootstrap and Font Awesome": [
+  "`styles.css` = global styles for the whole app.",
+  "Component styles apply only to that component.",
+  "View encapsulation is how Angular stops a component's styles leaking out.",
+  "Libraries such as Bootstrap and Font Awesome are added once and used through classes."
+ ],
+ "Conditional Rendering in Angular with @if, @else and @switch": [
+  "`@if (cond) { ... } @else { ... }` decides which blocks exist on the page.",
+  "Only the matching block is added. The other is not in the page at all.",
+  "`@switch (status) { @case ('paid') { ... } @default { ... } }` picks one of many.",
+  "Control flow is built in. No import is needed."
+ ],
+ "Rendering Lists in Angular with @for and track": [
+  "`@for (item of items; track item.id) { ... }` repeats a block for each item.",
+  "`track` tells Angular which item is which. Use a unique id.",
+  "Angular then adds, moves or removes only what changed.",
+  "`@empty { ... }` shows something when the list is empty."
+ ],
+ "Angular ngIf, ngFor, ngSwitch and trackBy: Legacy Syntax and Migration": [
+  "Older code uses `*ngIf`, `*ngFor`, `*ngSwitch` and `trackBy`. You will still meet them.",
+  "The new `@if`, `@for` and `@switch` do the same job with less code.",
+  "A built-in migration converts templates for you: `ng generate @angular/core:control-flow`.",
+  "Review the changes and run your tests."
+ ],
+ "Angular ngClass, ngStyle, Class Binding and Style Binding Explained": [
+  "A class binding adds or removes one class: `[class.active]=\"isActive\"`.",
+  "`ngClass` handles several classes from an object or a list.",
+  "A style binding sets one property: `[style.width.px]=\"size\"`.",
+  "The element updates whenever the state changes."
+ ],
+ "Computed Signals and Effects in Angular": [
+  "`computed(() => price() * qty())` calculates a value from other signals.",
+  "It recalculates only when those signals change, and is cached until then.",
+  "`effect(() => ...)` runs code when the signals it reads change.",
+  "Use effects for logging or saving to storage, not to calculate values."
+ ],
+ "Signals in Practice: Build a Shopping Cart": [
+  "The cart keeps its lines in one signal.",
+  "Add = `lines.update(l => [...l, newLine])`.",
+  "Item count and total are `computed` signals that read the lines.",
+  "The cart view refreshes with no extra code."
+ ],
+ "Angular Component Inputs: Pass Data to Child Components": [
+  "A parent gives data to a child with an input: `[product]=\"item\"`.",
+  "In the child: `product = input.required<Product>()`. Read it with `product()`.",
+  "Data flows one way, from parent to child.",
+  "When the parent value changes, the child updates."
+ ],
+ "Angular Component Outputs and Two-Way Binding with model()": [
+  "A child tells its parent with an output: `saved = output<string>()`, then `saved.emit(value)`.",
+  "The parent listens: `(saved)=\"onSaved($event)\"`.",
+  "`model()` combines an input and an output, so the child can change a value the parent owns.",
+  "With `model()` the parent can use `[(value)]`."
+ ],
+ "Angular Pipes: Format Dates, Currency and Text": [
+  "A pipe changes how a value is shown, not the value itself.",
+  "`{{ value | pipeName }}`. Add options with a colon: `date:'dd MMM yyyy'`.",
+  "Common: `date`, `currency`, `uppercase`, `lowercase`, `percent`.",
+  "Pipes can be chained."
+ ],
+ "Angular Built-in Pipes: Date, Async, KeyValue and Using Pipes in Code": [
+  "The `async` pipe subscribes to an observable or promise and shows its latest value.",
+  "It unsubscribes when the component is destroyed, so you cannot forget.",
+  "`keyvalue` loops over the keys and values of an object.",
+  "In TypeScript, inject the pipe or create it and call `transform`."
+ ],
+ "Angular Lifecycle Hooks: OnInit, OnDestroy, OnChanges, DoCheck and More": [
+  "A component is created, updates, then is removed. Hooks let you run code at each stage.",
+  "`ngOnInit` runs once after inputs are set: load initial data here.",
+  "`ngOnChanges` runs when an input changes.",
+  "`ngAfterViewInit` runs once the view and children exist.",
+  "`ngOnDestroy` runs just before removal: stop timers and subscriptions."
+ ],
+ "Template Reference Variables, ng-container, ViewChild and ContentChild in Angular": [
+  "`#box` gives a name to an element in the template.",
+  "`viewChild()` gets something inside the component's own template.",
+  "`contentChild()` gets something the parent projected in.",
+  "`ng-container` groups elements or holds an `@if` without adding an extra element."
+ ],
+ "Angular Services and Dependency Injection Explained": [
+  "A service = a class that holds logic or data you want to reuse, such as API calls.",
+  "Mark it `@Injectable({ providedIn: 'root' })`.",
+  "A component asks for it with `inject(MyService)`. It does not use `new`.",
+  "Every component gets the same instance.",
+  "Components stay small and services are easy to replace in tests."
+ ],
+ "Share State Between Components with an Angular Service": [
+  "Two unrelated components that need the same data: put the data in a service.",
+  "The service is one shared instance and keeps the state in a signal.",
+  "Component A calls a service method to change it.",
+  "Component B reads the signal and updates by itself."
+ ],
+ "Angular Hierarchical Dependency Injection: Providers, @Self, @SkipSelf, @Optional, @Host": [
+  "Angular has a tree of injectors that follows the component tree.",
+  "A request looks in the component's own providers, then the parent, then the root.",
+  "A provider on a component gives that branch its own instance.",
+  "`@Self` = only here. `@SkipSelf` = start at the parent. `@Optional` = no error if missing. `@Host` = stop at the host."
+ ],
+ "Angular Reactive Forms for Beginners": [
+  "Reactive form: you build the model in the class. `FormGroup` holds a `FormControl` per field.",
+  "Template: `[formGroup]=\"form\"` and `formControlName=\"email\"`.",
+  "The model always has the current values.",
+  "On submit read `form.value` and send it.",
+  "Import `ReactiveFormsModule`."
+ ],
+ "Angular Form Validation: Built-in and Custom Validators": [
+  "Validators are rules a control must satisfy: `required`, `minLength`, `email`.",
+  "Angular checks them on each change and sets the status.",
+  "Show an error only when the control is invalid and touched.",
+  "A custom validator is a function that returns an error object, or `null` when valid."
+ ],
+ "Angular Template-Driven Forms with ngModel": [
+  "Template-driven form: most of the setup is in the HTML.",
+  "Add `ngModel` and a `name` to each input.",
+  "Use HTML attributes like `required` for validation.",
+  "`(ngSubmit)` gives your code the values.",
+  "Good for small, simple forms."
+ ],
+ "FormControl, FormGroup, FormBuilder, setValue, patchValue, valueChanges and statusChanges": [
+  "`FormControl` = one field. `FormGroup` = a group of fields. `FormBuilder` = shorter way to create them.",
+  "`setValue` needs every field. `patchValue` updates only some.",
+  "`valueChanges` emits on each change. `statusChanges` emits when valid or invalid changes.",
+  "Unsubscribe or use `takeUntilDestroyed` when you listen manually."
+ ],
+ "Angular Forms: Select Dropdowns, Checkboxes, Radio Buttons, Typed Forms and FormRecord": [
+  "Select and radio groups store one chosen value. A checkbox stores `true` or `false`.",
+  "Typed forms know the type of each control, so mistakes show in the editor.",
+  "`FormRecord` is for groups where the keys are not known in advance.",
+  "`nonNullable` stops reset from giving `null`."
+ ],
+ "Angular Advanced Form Validation: Custom, Async, Cross-Field and setValidators": [
+  "Custom validators encode your rules, such as a password policy.",
+  "Async validators wait for a result (is the username taken?). The control is `pending` meanwhile.",
+  "A cross-field validator sits on the group and compares fields, like password and confirm.",
+  "`setValidators` changes rules at runtime. Then call `updateValueAndValidity()`."
+ ],
+ "Angular Routing Basics: Pages, RouterLink and RouterOutlet": [
+  "Routing shows different pages for different URLs without a full reload.",
+  "Routes are listed in `app.routes.ts`: a `path` and a `component`.",
+  "`<router-outlet />` marks where the page is drawn.",
+  "Use `routerLink` instead of plain links."
+ ],
+ "Angular Route Parameters and Query Parameters": [
+  "Route parameter: required part of the path, `/products/:id`.",
+  "Query parameter: optional, after the `?`, like `?sort=price&page=2`.",
+  "The component reads both and loads the right data.",
+  "`withComponentInputBinding()` lets route params arrive as inputs."
+ ],
+ "Angular Router Navigation: ActivatedRoute, Query Params, Route Data and Router Events": [
+  "`routerLink` for links in a template. `router.navigate([...])` when code decides, for example after saving.",
+  "`ActivatedRoute` gives params, query params and route data.",
+  "Router events tell you when navigation starts and ends. Use them for loading bars."
+ ],
+ "Angular Route Guards: Protect Pages with CanActivateFn": [
+  "A guard is a function that decides whether a route may open: `canActivate: [authGuard]`.",
+  "Return `true` to open, or a redirect (`router.parseUrl('/login')`).",
+  "The server must still check permissions. A guard only hides pages."
+ ],
+ "Angular Guards: CanActivateChild, CanDeactivate, Resolve, canMatch and Preloading": [
+  "`canActivateChild` protects all children of a route.",
+  "`canDeactivate` runs before leaving: warn about unsaved changes.",
+  "`resolve` fetches data before the page shows.",
+  "`canMatch` decides whether a route applies at all, for example by role.",
+  "Preloading can fetch lazy routes in the background."
+ ],
+ "Angular Lazy Loading: Load Routes and Components on Demand": [
+  "Without lazy loading the first download holds the whole app.",
+  "A lazy route is split into its own file: `loadComponent: () => import('./page').then(m => m.Page)`.",
+  "The file downloads only when the user opens the route. `loadChildren` does it for a group of routes.",
+  "The first load stays small and fast."
+ ],
+ "Angular HttpClient: Get Data from an API with a Service": [
+  "Keep API calls in a service, not in the component.",
+  "Add `provideHttpClient()` in the app config. Then `inject(HttpClient)`.",
+  "`http.get<T>(url)` returns an observable. Nothing is sent until someone subscribes.",
+  "Subscribe, or use the `async` pipe, and show the data."
+ ],
+ "Angular HTTP: Loading State, Error Handling and POST Requests": [
+  "Set a loading flag before the request so the user sees something is happening.",
+  "`http.post(url, body)` sends data as the request body.",
+  "On success turn off loading and update the screen.",
+  "On failure catch the error and show a clear message, not a blank screen."
+ ],
+ "Angular HTTP: Query Parameters, Headers, PUT, PATCH and DELETE Requests": [
+  "One service can cover every action your API supports.",
+  "`HttpParams` or `{ params: { page: 2 } }` for query parameters. Headers for tokens and content type.",
+  "PUT replaces a whole item. PATCH changes only some fields. DELETE removes an item by id.",
+  "Each call returns an observable of the result."
+ ],
+ "RxJS Basics for Angular: Observables and Operators": [
+  "An observable = a stream of values over time (clicks, HTTP results).",
+  "Operators are small steps added with `pipe()`: `map` changes each value, `filter` keeps some.",
+  "Nothing runs until you `subscribe`.",
+  "Unsubscribe when done, or let the `async` pipe do it."
+ ],
+ "RxJS Observables Explained: Create from Arrays, Strings, Events with of, from and fromEvent": [
+  "`of(1, 2, 3)` emits the values you give, then completes.",
+  "`from([..])` turns an array, string or promise into a stream.",
+  "`fromEvent(el, 'click')` turns browser events into a stream.",
+  "Subscribe to receive the values."
+ ],
+ "RxJS take, takeUntil, takeWhile, first, last, single, skip and tap Operators": [
+  "`skip(n)` ignores the first values. `take(n)` stops after n values.",
+  "`first()` and `last()` pick one value.",
+  "`takeUntil` and `takeWhile` stop on a condition.",
+  "`tap` looks at values, for logging, without changing them.",
+  "`takeUntil(destroy$)` is a common way to clean up."
+ ],
+ "RxJS scan, reduce, debounceTime, debounce, delay and delayWhen Explained": [
+  "`debounceTime(400)` waits until typing stops: one API call instead of one per key.",
+  "`scan` keeps a running result and emits it for every value, like a live total.",
+  "`reduce` emits only the final result, when the stream completes.",
+  "`delay` and `delayWhen` shift values later in time."
+ ],
+ "RxJS Error Handling: throwError, catchError, retry, retryWhen and finalize": [
+  "An error ends an observable unless you handle it.",
+  "`retry(3)` tries again a set number of times.",
+  "`catchError` lets you recover: return a fallback with `of(...)`, or `throwError` to pass on a clearer error.",
+  "`finalize` runs at the end either way: a good place to hide a spinner."
+ ],
+ "RxJS Subjects in Angular: Subject, BehaviorSubject, ReplaySubject and AsyncSubject": [
+  "A subject is an observable you can also push values into with `next()`.",
+  "`BehaviorSubject` keeps the latest value, so new subscribers get it at once.",
+  "`ReplaySubject` replays several past values.",
+  "`AsyncSubject` gives only the last value, on completion.",
+  "Prefer signals for simple shared state in new code."
+ ],
+ "Test Angular Components and Services with Vitest": [
+  "A test: set up, do something, check the result.",
+  "`TestBed` creates the component with the same setup the app uses.",
+  "Change inputs or click a button, then let Angular update with `fixture.detectChanges()`.",
+  "Use `expect` to check text or values. Vitest runs the file.",
+  "For services, mock the HTTP calls."
+ ],
+ "Angular Accessibility: Build Apps Everyone Can Use": [
+  "Accessibility = people with different needs can use your app.",
+  "Use the right HTML: real buttons, links, labels and headings.",
+  "ARIA only where plain HTML cannot say it.",
+  "Everything must work with the keyboard, with a visible focus.",
+  "Manage focus when the page changes so screen reader users know where they are."
+ ],
+ "Angular Performance and Production Build Checklist": [
+  "A production build minifies and removes unused code: `ng build`.",
+  "Lazy loading keeps the first download small.",
+  "Optimise images. Use `track` in lists.",
+  "Check bundle sizes and measure with Lighthouse."
+ ],
+ "Angular Project 1: Build a Task Manager App Step by Step": [
+  "Task manager: add form, list, toggle and delete, filter (all, active, done).",
+  "A service keeps all tasks in one signal.",
+  "The list renders with `@for`.",
+  "A computed signal gives the filtered list."
+ ],
+ "Angular Project 2: Employee Management Dashboard (Guided)": [
+  "Employee dashboard: list, detail page and edit form.",
+  "A service talks to the API for all employee data.",
+  "The table page has search and sorting.",
+  "A reactive form with validators adds or edits an employee.",
+  "Routes connect the pages. A guard can protect the edit screens."
+ ],
+ "Angular Project 3: Online Learning Platform (Capstone)": [
+  "Capstone: login with a guard, token sent with requests.",
+  "Courses load from an API on lazy routes.",
+  "A lesson page reads its id from the route.",
+  "Progress is kept in signals and saved back to the API."
+ ],
+ "Deploy an Angular App: Netlify, Firebase and Nginx": [
+  "`ng build` creates the production files in `dist`.",
+  "Upload `dist` to Netlify, Firebase Hosting or your own Nginx server.",
+  "The host must send `index.html` for unknown paths, or refreshing a deep link gives a 404.",
+  "Nginx: `try_files $uri /index.html;`."
+ ],
+ "Angular effect() and linkedSignal(): Advanced Signals": [
+  "`linkedSignal` = a writable signal derived from another signal.",
+  "When the source changes it resets to a new default. You can still `set` it yourself.",
+  "`effect()` reruns when the signals it reads change.",
+  "Use effect for side effects, such as saving to storage. Not for computing values."
+ ],
+ "Angular resource() and httpResource(): Signal-Based Data Loading": [
+  "`httpResource` loads data from an API and exposes it as signals.",
+  "It watches a request signal, such as an id, and sends a new request when it changes.",
+  "Results: `value()`, `isLoading()`, `error()`.",
+  "`resource()` works the same way for any async source.",
+  "Check the current docs, these APIs are newer and may change."
+ ],
+ "Angular Custom Directives: Attribute Directives and Host Bindings": [
+  "A directive adds behaviour to an existing element. It has no template.",
+  "The selector is an attribute: `appHighlight`.",
+  "The `host` property binds classes and styles and listens to events on that element.",
+  "Reuse it on any element."
+ ],
+ "Angular Content Projection: ng-content, ng-template and Template Outlets": [
+  "Content projection: a parent puts its own HTML inside a component.",
+  "The component marks a spot with `<ng-content />`.",
+  "The parent writes content between the component tags.",
+  "`ng-template` holds markup that is drawn only when `ngTemplateOutlet` renders it."
+ ],
+ "Angular Dynamic Components and Host Directives": [
+  "Dynamic component = chosen at runtime, such as in a dialog.",
+  "`ViewContainerRef.createComponent(MyComponent)` creates and places it.",
+  "Host directives let a component apply a directive's behaviour to itself, with no extra template code."
+ ],
+ "Angular ElementRef, Renderer2, HostBinding, HostListener and Legacy Decorators": [
+  "`ElementRef` gives a handle on the element itself.",
+  "Prefer `Renderer2` to change it: safer and portable.",
+  "`@HostBinding` sets host properties. `@HostListener` listens for host events.",
+  "These decorators are the older style. Newer code uses the `host` metadata."
+ ],
+ "Angular Injection Tokens and Providers: Configuration and Testing": [
+  "An injection token names a value that is not a class, such as a URL: `new InjectionToken<string>('API_URL')`.",
+  "A provider says which value the token gets: `{ provide: API_URL, useValue: '...' }`.",
+  "A service does `inject(API_URL)`.",
+  "In tests, provide a different value or a fake class. The code does not change."
+ ],
+ "Angular HTTP Interceptors: Auth Tokens, Errors and Loading State": [
+  "An interceptor sits between `HttpClient` and the network and sees every request and response.",
+  "Clone the request to add an auth token header.",
+  "Handle errors in one place, such as sending the user to login on a 401.",
+  "A counter in an interceptor can drive one global loading bar.",
+  "Register with `provideHttpClient(withInterceptors([...]))`."
+ ],
+ "Angular Project Architecture: Features, Folders and Clean Boundaries": [
+  "As an app grows, the folder layout matters more than any single file.",
+  "Group code by feature: orders, users, each with its own components and services.",
+  "`core` = app-wide services. `shared` = reusable components and pipes.",
+  "Features should not reach into each other. Share through core or shared."
+ ],
+ "Angular App Configuration, Environment Variables and provideAppInitializer": [
+  "Settings that differ between development and production go in configuration.",
+  "Provide them through `app.config.ts`, for example with an injection token.",
+  "`provideAppInitializer` runs a function before the app starts, such as loading remote settings.",
+  "Anything in a browser app is public. Never put secrets in it."
+ ],
+ "Angular Error Handling: Global ErrorHandler, Custom Handlers and HTTP Errors": [
+  "Provide a custom `ErrorHandler` to catch errors nobody else caught.",
+  "Send details to a logging service so you can fix them.",
+  "Show the user a short, friendly message, not a stack trace.",
+  "Handle expected HTTP errors close to the request. Let the global handler catch the rest."
+ ],
+ "Angular NgModules (Legacy), Module Routing, Lazy Modules and Migration to Standalone": [
+  "Older Angular apps group code into NgModules, with module routing and lazy modules.",
+  "New code uses standalone components that list their own `imports`.",
+  "Migration schematics convert modules to standalone step by step.",
+  "Same job, less boilerplate."
+ ],
+ "Angular Custom Form Controls with ControlValueAccessor": [
+  "`ControlValueAccessor` lets your component act like a form input, for example a star rating.",
+  "`writeValue` receives the value from the form so the control can show it.",
+  "Call `onChange` to send a new value back. Call `onTouched` when touched.",
+  "Register it with the `NG_VALUE_ACCESSOR` provider.",
+  "The form then treats it like any other control, with validation."
+ ],
+ "Angular FormArray and Dynamic Forms: Add and Remove Fields": [
+  "A `FormArray` holds a list of controls, such as several phone numbers. It lives inside a `FormGroup`.",
+  "`push` adds a control. `removeAt(index)` removes one.",
+  "The template loops over the controls with `@for`.",
+  "Rows follow the array."
+ ],
+ "Angular Signal Forms: Build Forms with Signals in Angular 22": [
+  "Signal forms = a newer way to build forms based on signals.",
+  "Start with a signal holding your data as the model. The form is created from the model.",
+  "Each field exposes its state as signals: value, valid, touched.",
+  "This API is still evolving. Check the current docs before relying on it."
+ ],
+ "Angular State Management with a Signal Store Pattern": [
+  "A store = a service that keeps state in a private signal.",
+  "Components never change the state directly. They call methods on the store.",
+  "The store exposes read-only `computed` signals as selectors.",
+  "Views read the selectors and update automatically."
+ ],
+ "Advanced RxJS Patterns for Angular: Combine, Share and Flatten": [
+  "`combineLatest` emits when any stream changes, with the latest value of each.",
+  "`switchMap` starts a request for that value and cancels the previous one if still running.",
+  "`share` or `shareReplay` lets many subscribers use one request.",
+  "`concatMap` keeps order. `mergeMap` runs in parallel."
+ ],
+ "Advanced Angular Routing: Resolvers, Child Routes, Preloading and Transitions": [
+  "Child routes appear inside a layout's `<router-outlet />`.",
+  "A resolver fetches data before the page opens, so it never shows empty.",
+  "Preloading downloads lazy routes in the background after the first load.",
+  "View transitions can animate between pages when the browser supports it."
+ ],
+ "Angular Change Detection and Zoneless Apps: How Updates Really Work": [
+  "Change detection = how Angular finds out what to update on screen.",
+  "With zone.js, Angular is told after any async task and then checks components.",
+  "Signals tell Angular exactly which view depends on what, so less work is needed.",
+  "Zoneless apps do not need zone.js: signals and events trigger updates.",
+  "`OnPush` checks a component only when its inputs, events or signals change."
+ ],
+ "Angular Server-Side Rendering (SSR) and Hydration: Fast, SEO-Friendly Pages": [
+  "A normal Angular app sends an almost empty page and builds the content in the browser.",
+  "SSR: the server runs Angular and sends full HTML, so people and search engines see content at once.",
+  "Hydration attaches Angular to the existing HTML so it becomes interactive without redrawing.",
+  "Add SSR with `ng add @angular/ssr`."
+ ],
+ "Angular SEO: Title, Meta Tags, Canonical URLs, Lazy Images and SSR": [
+  "Set a unique title for every route with the `Title` service.",
+  "Use the `Meta` service for the description, and a canonical link.",
+  "SSR puts all of this in the HTML crawlers receive.",
+  "Lazy-load images below the fold and give them sizes."
+ ],
+ "Advanced Angular Testing: Guards, Interceptors, Routing and Component Inputs": [
+  "Test a guard with `runInInjectionContext` and check what it returns.",
+  "Test an interceptor with `HttpTestingController`: see the request, send a fake response.",
+  "The router testing harness navigates and lets you check which component showed.",
+  "`fixture.componentRef.setInput('name', value)` tests component inputs."
+ ],
+ "Angular End-to-End Testing with Playwright: Test Like a User": [
+  "An end-to-end test uses your app the way a user does.",
+  "Playwright opens a real browser, clicks and types, finding things by role and label.",
+  "Then it checks what appears on the screen.",
+  "Keep a few tests for the most important journeys: sign-up, checkout."
+ ],
+ "Angular Security Best Practices: XSS, Tokens, CSRF and Headers": [
+  "Treat all input as untrusted.",
+  "Angular escapes values in templates, which protects against XSS. Avoid `bypassSecurityTrust...` unless you really must.",
+  "HttpOnly cookies are safer than local storage for tokens, but cookies need CSRF protection.",
+  "Set security headers such as `Content-Security-Policy` on your server.",
+  "The server must check every request."
+ ],
+ "Angular CI/CD with GitHub Actions: Test, Build and Deploy Automatically": [
+  "CI/CD runs your checks and deployment for you, every time.",
+  "A push starts the workflow: install, lint, test, build, deploy.",
+  "If a step fails, the later steps do not run.",
+  "Keep secrets in GitHub secrets, never in the repository."
+ ],
+ "Angular Troubleshooting: 404 on Refresh, ExpressionChanged, EventTarget and SSL on Localhost": [
+  "404 on refresh: the server does not know Angular routes. Send `index.html` for unknown paths.",
+  "`ExpressionChangedAfterItHasBeenChecked`: a value changed after Angular checked it. Move the change earlier or use signals.",
+  "`EventTarget` typing errors: cast to the element you expect.",
+  "SSL on localhost: create and trust a local certificate for the dev server.",
+  "Read the error message, find the cause, fix that."
+ ],
+ "Angular Module Loaders: SystemJS, Webpack and Today's esbuild and Vite Build": [
+  "A bundler turns many source files into files a browser can load.",
+  "Early Angular used SystemJS, then Webpack for many years.",
+  "Modern Angular builds with esbuild, and the dev server uses Vite. Both are much faster.",
+  "You still run `ng build` and `ng serve`."
+ ],
+ "Angular Advanced Capstone: Build and Ship a Production-Ready App": [
+  "Plan the architecture first: features, routes, clear boundaries.",
+  "Add state with signals and load data over HTTP, with errors handled.",
+  "Test it. Check accessibility and security.",
+  "Add SSR and performance work. Let CI/CD ship it."
+ ]
+}
