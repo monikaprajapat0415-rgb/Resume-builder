@@ -1,0 +1,248 @@
+{
+ "what-is-react-and-why-use-it": [
+  "React = a JavaScript library for building screens out of small pieces called components.",
+  "You describe what the screen should look like for the current data. React does the updating.",
+  "Data flows down from parent to child. Changing data is called state.",
+  "Virtual DOM = a light copy of the page in memory. React compares old and new, then changes only the differences in the real page.",
+  "React is a library, not a full framework: you add routing, data fetching and so on yourself.",
+  "Learn basic HTML, CSS and JavaScript first. The lessons go in order."
+ ],
+ "set-up-react-with-vite-first-project": [
+  "Vite = a fast development server and build tool. `npm run dev` starts it.",
+  "Create a project with `npm create vite@latest`, then `npm install`.",
+  "Browser loads `index.html`, which runs `main.jsx`, which draws `App` into the root div.",
+  "Edit and save: Vite updates the page at once, with no full reload.",
+  "Scripts in `package.json`: `dev` to work, `build` to make the final files, `preview` to try them.",
+  "If something fails, read the error in the terminal first. It usually names the file and line."
+ ],
+ "jsx-explained-simply": [
+  "JSX looks like HTML but lives inside JavaScript. The browser cannot read it, so the build tool converts it.",
+  "Rule 1: return one parent element (or a fragment `<>...</>`).",
+  "Rule 2: close every tag, even `<img />` and `<input />`.",
+  "Rule 3: curly braces run JavaScript: `{name}`.",
+  "Rule 4: use `className` and `htmlFor`, not `class` and `for`.",
+  "Components start with a capital letter. Styles are objects: `style={{ color: 'red' }}`."
+ ],
+ "react-components-and-props-explained": [
+  "A component = a JavaScript function that returns JSX. Its name starts with a capital letter.",
+  "Props = the inputs of a component, like function arguments. The parent writes them like HTML attributes.",
+  "Destructure to keep it short: `function Greeting({ name, age })`. A default value: `{ label = 'Click me' }`.",
+  "Props are read-only. A child never changes its own props.",
+  "Text goes in quotes `name=\"Asha\"`. Other values go in braces `age={24}`.",
+  "`children` = whatever you put between the opening and closing tags.",
+  "Never define a component inside another component."
+ ],
+ "react-usestate-hook-explained": [
+  "A normal variable does not make the page redraw. State does.",
+  "`const [count, setCount] = useState(0);` gives the current value and a setter.",
+  "Calling the setter makes React call your component again with the new value.",
+  "Never change state directly. Use the setter, and make a new array or object instead of changing the old one.",
+  "State updates are not instant: the variable keeps its old value until the next draw.",
+  "Hooks go at the top level of a component, never inside `if`, loops or nested functions."
+ ],
+ "handling-events-in-react": [
+  "Events use camelCase names: `onClick`, `onChange`, `onSubmit`.",
+  "Pass the function, do not call it: `onClick={handle}` not `onClick={handle()}`.",
+  "Need an argument? Wrap it: `onClick={() => remove(id)}`.",
+  "The event object `e` gives `e.target.value` for inputs. Use `e.preventDefault()` on form submit.",
+  "A child tells its parent by calling a function the parent passed as a prop.",
+  "Events bubble up from the child to its parents."
+ ],
+ "conditional-rendering-in-react": [
+  "Four ways to show or hide: `if` before the return, ternary `a ? b : c`, `a && b`, or JSX saved in a variable.",
+  "A page that loads data has three screens: loading, error, and the data (or an empty message).",
+  "Return early for loading and error. It keeps the code flat.",
+  "With `&&`, make the left side a real true or false. `0 && ...` shows a 0 on the page.",
+  "Return `null` to show nothing.",
+  "Removing an element from the page is different from hiding it with CSS."
+ ],
+ "react-lists-and-keys-explained": [
+  "`map` turns an array into a list of elements.",
+  "Every item needs a `key` that is unique and stable, usually the id from your data.",
+  "Never use a random key. Avoid the index when the list can be reordered.",
+  "Keys let React know which item is which, so it updates the right ones and keeps their state.",
+  "`filter` and `sort` work on a copy: `[...items].sort(...)`.",
+  "To change a list, make a new array with spread, filter or map. Never change the old one.",
+  "Show a friendly message when the list is empty."
+ ],
+ "react-forms-and-controlled-inputs": [
+  "Controlled input = its value comes from state: `value={text} onChange={e => setText(e.target.value)}`.",
+  "State is the single source of truth, so the screen and the data never disagree.",
+  "Many fields: one state object and `setForm({ ...form, [name]: value })`.",
+  "Checkbox uses `checked` and `e.target.checked`. Select and textarea use `value`.",
+  "Validate on submit and show a clear message next to the field.",
+  "Clear the form after a good submit by setting the state back to its start value."
+ ],
+ "styling-react-apps-css-modules-tailwind": [
+  "Plain CSS file: simple, but class names are global and can clash.",
+  "CSS Modules: each class gets a unique name, so styles stay inside one component.",
+  "Inline styles: `style={{ ... }}`. Good for values that change, not for everything.",
+  "Tailwind: small ready-made classes written straight in the JSX.",
+  "Design for phones first, then add rules for bigger screens.",
+  "Dark mode: CSS variables and `prefers-color-scheme`."
+ ],
+ "react-useeffect-hook-explained": [
+  "A side effect = work outside drawing: fetching data, timers, listeners.",
+  "React draws first, then runs the effect.",
+  "The dependency array decides when it runs: `[]` once, `[id]` when `id` changes, none after every draw.",
+  "Cleanup (the function you return) stops what you started: timers, listeners, requests.",
+  "In development, Strict Mode runs effects twice on purpose to find missing cleanup.",
+  "You might not need an effect: values you can work out while drawing do not need one."
+ ],
+ "fetch-data-in-react-loading-error-states": [
+  "Every request has three states: loading, error, success.",
+  "Start the request in an effect, and pass an `AbortController` signal.",
+  "`fetch` does not throw on 404 or 500. Check `response.ok` yourself.",
+  "Cleanup aborts the old request, so old data cannot replace new data (the race condition).",
+  "Send data with POST: `method`, `headers` and `JSON.stringify(body)`.",
+  "Put repeated fetch code in one helper function."
+ ],
+ "react-useref-hook-dom-access": [
+  "`useRef` makes a box with a `current` value that React keeps between draws.",
+  "Put `ref={myRef}` on an element and `myRef.current` is the real DOM element after drawing.",
+  "Common uses: focus an input, scroll to an element, keep a timer id, remember the previous value.",
+  "Changing a ref does not redraw the screen. If the screen must change, use state.",
+  "Use refs for things outside the data flow, not as a replacement for state."
+ ],
+ "lifting-state-up-and-component-composition": [
+  "Two components need the same value? Move the state to their closest shared parent.",
+  "Data goes down as props. Events go up as functions.",
+  "Only one copy of the data, so the parts can never disagree.",
+  "Derive values while drawing (like a total) instead of storing a second copy in state.",
+  "Passing props through many levels is tiring: use composition with `children`, or context.",
+  "Do not lift higher than needed. Keep state close to where it is used."
+ ],
+ "react-usereducer-hook-explained": [
+  "`useReducer` is for state with many related changes.",
+  "The component sends an action: a small object such as `{ type: 'added', text }`.",
+  "`dispatch(action)` hands the current state and the action to the reducer.",
+  "The reducer returns a new state. It never changes the old one.",
+  "All the rules live in one place, so they are easy to read and test.",
+  "Simple value? `useState`. Many connected actions? `useReducer`."
+ ],
+ "react-context-api-usecontext-explained": [
+  "Context shares data with many components without passing props through every level.",
+  "Three steps: `createContext`, a `Provider` near the top with the `value`, and `useContext` where you need it.",
+  "Good for theme, signed-in user, language. Not for data that changes many times a second.",
+  "When the provider value changes, every component that reads it draws again.",
+  "Wrap `useContext` in a custom hook that throws a helpful error if the provider is missing.",
+  "Context is not a database. Keep server data in a data library."
+ ],
+ "react-custom-hooks-reuse-logic": [
+  "A custom hook = a function whose name starts with `use` and that calls other hooks.",
+  "Same state and effect in two places? Move it into a hook, for example `useToggle` or `useLocalStorage`.",
+  "Hooks share logic, not data. Each component that calls the hook gets its own state.",
+  "Same rules as normal hooks: top level only, and only in components or other hooks.",
+  "Good hooks do one job, have a clear name, and return what the caller needs.",
+  "Improve the hook once and every component gets the improvement."
+ ],
+ "react-router-pages-links-navigation": [
+  "`<Routes>` and `<Route path element>` decide which component shows for which address.",
+  "Use `<Link to>` instead of `<a>` so the page does not reload.",
+  "`useParams` reads `/products/:id`. `useSearchParams` reads `?q=`.",
+  "A layout route keeps the menu on screen and shows the page in `<Outlet />`.",
+  "`useNavigate` moves with code, for example after login.",
+  "Protected route = a wrapper that redirects when the user is not signed in. The server must still check.",
+  "A `*` route shows a not found page. Static hosts need a fallback to `index.html`."
+ ],
+ "react-forms-validation-formdata-react-hook-form": [
+  "The browser already keeps form values. Give every input a `name`.",
+  "On submit: `new FormData(e.currentTarget)` reads all fields at once, so no state per field.",
+  "Try browser validation first: `required`, `type=\"email\"`, `minLength`.",
+  "Your own validation function returns an object of errors. Show them next to the fields.",
+  "The server must always validate again. Browser checks can be skipped.",
+  "React Hook Form helps when a form is large or has many rules."
+ ],
+ "how-react-renders-rules-of-react-strictmode": [
+  "Render = React calls your component function to get JSX. It is not the same as changing the page.",
+  "A re-render starts with a state change, a parent render, or a changed context.",
+  "Components must be pure: same props and state give the same JSX. No changing outside values while rendering.",
+  "State is a snapshot. Replace objects and arrays, never change them.",
+  "Batching: many updates in one event give one render.",
+  "React commits only the real differences to the page.",
+  "`StrictMode` renders twice in development to help you find mistakes."
+ ],
+ "react-performance-memo-usememo-usecallback": [
+  "Measure first with the React DevTools Profiler. Fix only what is really slow.",
+  "Simplest fix: move the state down into a small component.",
+  "`React.memo` skips a child when its props are the same.",
+  "`useMemo` keeps an expensive result. `useCallback` keeps a function steady.",
+  "Objects and functions are new on every render, which can break `memo`.",
+  "Long lists: show less, or virtualise. Do not search on every key press.",
+  "Do not add memo everywhere. It costs memory and makes code harder to read."
+ ],
+ "react-lazy-suspense-code-splitting": [
+  "Code splitting = download code only when it is needed, so the first load is smaller.",
+  "`const Admin = lazy(() => import('./Admin'))` makes a separate file.",
+  "Wrap it in `<Suspense fallback={...}>` to show something while it loads.",
+  "Split by route first, then heavy libraries such as editors and charts.",
+  "Preload on hover or focus to hide the wait.",
+  "Check the result in the build output or the browser Network tab."
+ ],
+ "react-error-boundaries-portals-modals": [
+  "An error while rendering can turn the whole page white. An error boundary catches it and shows a fallback.",
+  "Boundaries are class components (or a library). They need `getDerivedStateFromError` or `componentDidCatch`.",
+  "They do not catch errors in event handlers, fetch, timers or on the server.",
+  "Add a retry button and put boundaries around separate parts of the page.",
+  "A portal draws a component somewhere else in the DOM: `createPortal(jsx, document.body)`.",
+  "A good modal: `role=\"dialog\"`, focus moves in, Escape closes, focus returns."
+ ],
+ "react-state-management-redux-toolkit-zustand": [
+  "Do you need a library? Only for client state shared by many far-apart components.",
+  "Redux flow: a component dispatches an action, the reducer returns new state, components read it with selectors.",
+  "Redux Toolkit makes this short with `createSlice`. Zustand does it with one `create` call.",
+  "Select only what you need so only those components redraw.",
+  "Never change state directly. Keep local state local.",
+  "Server data belongs in a data library such as TanStack Query."
+ ],
+ "tanstack-query-react-data-fetching": [
+  "Server state is different from client state: it lives elsewhere, can be stale, and is shared.",
+  "`useQuery({ queryKey, queryFn })` gives `data`, `isPending` and `error`.",
+  "The query key is the cache key. Include every value the request depends on.",
+  "Cached data shows at once. Stale data refreshes in the background.",
+  "`useMutation` changes data. Then `invalidateQueries` reloads the list.",
+  "Retries, cancelling and caching are built in, so you write less state code."
+ ],
+ "testing-react-vitest-testing-library": [
+  "Test what the user sees and does, not the code inside.",
+  "Vitest runs the tests. React Testing Library draws the component in a fake browser.",
+  "Find elements the way people do: `getByRole`, `getByLabelText`, `getByText`.",
+  "`user-event` clicks and types like a real person. Then check with `expect`.",
+  "For async data use `findBy...` or `waitFor`.",
+  "Components that use context or a router need to be wrapped in them in the test.",
+  "Good tests let you tidy code without breaking them."
+ ],
+ "react-accessibility-a11y-guide": [
+  "Use the right HTML element: a real `button` works with keyboard and screen reader for free.",
+  "Label every field. Give meaningful images `alt` text.",
+  "Everything must work with the keyboard only. Keep the focus ring visible.",
+  "Do not use colour alone. Check contrast.",
+  "Use ARIA only when HTML is not enough. Live regions announce changes.",
+  "Test with the keyboard, Lighthouse or axe, and a screen reader. Tools find only part of the problems."
+ ],
+ "react-19-new-features-actions-use-optimistic": [
+  "Actions: pass a function to `<form action={fn}>`. React gives it the `FormData`.",
+  "`useActionState` keeps the result, the error and the pending flag.",
+  "`useFormStatus` lets a button know the form is sending.",
+  "`useOptimistic` shows the expected result at once. If the request fails, it goes back.",
+  "`use` can read a promise or context. `ref` is now a normal prop.",
+  "React Compiler and Server Components are bigger topics. Check what your tools support before you rely on them."
+ ],
+ "react-with-typescript-beginners-guide": [
+  "Describe your data with a `type` or `interface`, such as `User`.",
+  "Type props: `function Card({ title }: { title: string })`.",
+  "State: `useState<User | null>(null)`. Events: `React.ChangeEvent<HTMLInputElement>`.",
+  "Wrong or missing props show as a red line in the editor.",
+  "Types are removed at build time. They cannot check what the server really sends.",
+  "Avoid `any`. Read the first line of an error, it is usually the useful one."
+ ],
+ "react-project-structure-best-practices-deploy-next-steps": [
+  "Organise in clear folders and keep components small, with one job each.",
+  "Environment variables with `VITE_` are public. Never put secrets in React code.",
+  "Before shipping: test the real build, run Lighthouse, try the keyboard for a minute.",
+  "`npm run build` makes the `dist` folder of plain static files. Upload it to a host.",
+  "Turn on HTTPS and a fallback to `index.html` for React Router.",
+  "Client-only React is weak for SEO. Pages that must rank need server rendering or prerendering.",
+  "Next: build projects, then Next.js and a backend."
+ ]
+}

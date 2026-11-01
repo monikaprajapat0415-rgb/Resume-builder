@@ -1,0 +1,1344 @@
+{
+ "angular-tutorial": {
+  "What is Angular? A Beginner's Introduction": [
+   "Angular = a framework from Google for building web apps in TypeScript.",
+   "You build the screen from components: a class, a template and styles.",
+   "Routing, forms, HTTP and testing tools come in one place.",
+   "When data changes, Angular updates only the parts of the page that need it."
+  ],
+  "TypeScript Basics for Angular": [
+   "TypeScript = JavaScript with types. You say what kind of value a variable or function holds.",
+   "The editor and compiler check types while you type, so mistakes show up early.",
+   "Most used in Angular: interfaces, classes and decorators.",
+   "It is turned into plain JavaScript for the browser."
+  ],
+  "Install Node.js and the Angular CLI": [
+   "Install Node.js first. Angular tools run on it.",
+   "npm comes with Node and installs packages.",
+   "`npm install -g @angular/cli` gives the `ng` command.",
+   "Check with `ng version`."
+  ],
+  "Angular Course Roadmap and Complete Topic Index (Beginner to Advanced)": [
+   "Path: basics, then state and forms, then routing and HTTP, then advanced topics, then projects and deploy.",
+   "Basics = first app, components, templates.",
+   "State = signals and services. Real data = routing and HTTP.",
+   "Advanced = RxJS, change detection, SSR, testing, security."
+  ],
+  "Create Your First Angular App with the CLI": [
+   "`ng new my-app` creates a complete project.",
+   "`cd my-app` then `ng serve` starts the dev server.",
+   "Open `localhost:4200` to see the app.",
+   "Save a file and the browser reloads by itself."
+  ],
+  "Angular Project Structure Explained": [
+   "`main.ts` is the entry point and starts the app.",
+   "`app.config.ts` holds app-wide settings and services (providers).",
+   "The root component holds the page layout.",
+   "`app.routes.ts` says which component shows for each URL.",
+   "Everything is drawn inside `index.html`, the one page the browser loads."
+  ],
+  "Your First Angular Component": [
+   "A component = a class with a `@Component` decorator.",
+   "The template is HTML that shows data from the class. Styles apply only to this component.",
+   "`selector` is the custom tag name, for example `<app-card>`.",
+   "Put the tag in another template and Angular draws the component there.",
+   "Make one with `ng generate component name`."
+  ],
+  "Angular CLI Guide: ng new, ng update, Multiple Apps and Multiple Angular Versions": [
+   "The Angular CLI is one tool for the whole life of a project.",
+   "`ng new` creates, `ng serve` runs, `ng build` makes the files to deploy.",
+   "`ng generate` makes components, services and more with the right files.",
+   "`ng update` upgrades Angular and runs migrations on your code.",
+   "Upgrade one major version at a time."
+  ],
+  "Displaying Data in Angular with Interpolation": [
+   "Interpolation: `{{ title }}` shows a class property in the template.",
+   "When the property changes, the text updates.",
+   "Small expressions work inside the braces, such as `{{ price * 2 }}`.",
+   "Keep logic short in templates. Move bigger logic to the class."
+  ],
+  "Property Binding and Event Binding in Angular": [
+   "Property binding: `[disabled]=\"isBusy\"` sets an element property from the class.",
+   "Event binding: `(click)=\"save()\"` runs a method when the event happens.",
+   "Square brackets = data in. Round brackets = events out.",
+   "The method changes the data and the bindings update the screen."
+  ],
+  "Angular Two-Way Binding: ngModel, ngModelChange and Input Events": [
+   "Two-way binding keeps a property and an input in sync in both directions.",
+   "`[(ngModel)]=\"name\"` is shorthand for `[ngModel]` plus `(ngModelChange)`.",
+   "Import `FormsModule` to use `ngModel`.",
+   "Anything else that shows `name` updates as the user types."
+  ],
+  "Angular Signals: Reactive State for Beginners": [
+   "A signal holds a value and tells Angular when it changes.",
+   "Create: `count = signal(0)`. Read: `count()`.",
+   "Change: `count.set(5)` or `count.update(c => c + 1)`.",
+   "Angular knows which parts of the page read the signal and refreshes only those.",
+   "Update signals with new objects and arrays, not by changing them in place."
+  ],
+  "Angular Styling: Global Styles, Component Styles, View Encapsulation, Bootstrap and Font Awesome": [
+   "`styles.css` = global styles for the whole app.",
+   "Component styles apply only to that component.",
+   "View encapsulation is how Angular stops a component's styles leaking out.",
+   "Libraries such as Bootstrap and Font Awesome are added once and used through classes."
+  ],
+  "Conditional Rendering in Angular with @if, @else and @switch": [
+   "`@if (cond) { ... } @else { ... }` decides which blocks exist on the page.",
+   "Only the matching block is added. The other is not in the page at all.",
+   "`@switch (status) { @case ('paid') { ... } @default { ... } }` picks one of many.",
+   "Control flow is built in. No import is needed."
+  ],
+  "Rendering Lists in Angular with @for and track": [
+   "`@for (item of items; track item.id) { ... }` repeats a block for each item.",
+   "`track` tells Angular which item is which. Use a unique id.",
+   "Angular then adds, moves or removes only what changed.",
+   "`@empty { ... }` shows something when the list is empty."
+  ],
+  "Angular ngIf, ngFor, ngSwitch and trackBy: Legacy Syntax and Migration": [
+   "Older code uses `*ngIf`, `*ngFor`, `*ngSwitch` and `trackBy`. You will still meet them.",
+   "The new `@if`, `@for` and `@switch` do the same job with less code.",
+   "A built-in migration converts templates for you: `ng generate @angular/core:control-flow`.",
+   "Review the changes and run your tests."
+  ],
+  "Angular ngClass, ngStyle, Class Binding and Style Binding Explained": [
+   "A class binding adds or removes one class: `[class.active]=\"isActive\"`.",
+   "`ngClass` handles several classes from an object or a list.",
+   "A style binding sets one property: `[style.width.px]=\"size\"`.",
+   "The element updates whenever the state changes."
+  ],
+  "Computed Signals and Effects in Angular": [
+   "`computed(() => price() * qty())` calculates a value from other signals.",
+   "It recalculates only when those signals change, and is cached until then.",
+   "`effect(() => ...)` runs code when the signals it reads change.",
+   "Use effects for logging or saving to storage, not to calculate values."
+  ],
+  "Signals in Practice: Build a Shopping Cart": [
+   "The cart keeps its lines in one signal.",
+   "Add = `lines.update(l => [...l, newLine])`.",
+   "Item count and total are `computed` signals that read the lines.",
+   "The cart view refreshes with no extra code."
+  ],
+  "Angular Component Inputs: Pass Data to Child Components": [
+   "A parent gives data to a child with an input: `[product]=\"item\"`.",
+   "In the child: `product = input.required<Product>()`. Read it with `product()`.",
+   "Data flows one way, from parent to child.",
+   "When the parent value changes, the child updates."
+  ],
+  "Angular Component Outputs and Two-Way Binding with model()": [
+   "A child tells its parent with an output: `saved = output<string>()`, then `saved.emit(value)`.",
+   "The parent listens: `(saved)=\"onSaved($event)\"`.",
+   "`model()` combines an input and an output, so the child can change a value the parent owns.",
+   "With `model()` the parent can use `[(value)]`."
+  ],
+  "Angular Pipes: Format Dates, Currency and Text": [
+   "A pipe changes how a value is shown, not the value itself.",
+   "`{{ value | pipeName }}`. Add options with a colon: `date:'dd MMM yyyy'`.",
+   "Common: `date`, `currency`, `uppercase`, `lowercase`, `percent`.",
+   "Pipes can be chained."
+  ],
+  "Angular Built-in Pipes: Date, Async, KeyValue and Using Pipes in Code": [
+   "The `async` pipe subscribes to an observable or promise and shows its latest value.",
+   "It unsubscribes when the component is destroyed, so you cannot forget.",
+   "`keyvalue` loops over the keys and values of an object.",
+   "In TypeScript, inject the pipe or create it and call `transform`."
+  ],
+  "Angular Lifecycle Hooks: OnInit, OnDestroy, OnChanges, DoCheck and More": [
+   "A component is created, updates, then is removed. Hooks let you run code at each stage.",
+   "`ngOnInit` runs once after inputs are set: load initial data here.",
+   "`ngOnChanges` runs when an input changes.",
+   "`ngAfterViewInit` runs once the view and children exist.",
+   "`ngOnDestroy` runs just before removal: stop timers and subscriptions."
+  ],
+  "Template Reference Variables, ng-container, ViewChild and ContentChild in Angular": [
+   "`#box` gives a name to an element in the template.",
+   "`viewChild()` gets something inside the component's own template.",
+   "`contentChild()` gets something the parent projected in.",
+   "`ng-container` groups elements or holds an `@if` without adding an extra element."
+  ],
+  "Angular Services and Dependency Injection Explained": [
+   "A service = a class that holds logic or data you want to reuse, such as API calls.",
+   "Mark it `@Injectable({ providedIn: 'root' })`.",
+   "A component asks for it with `inject(MyService)`. It does not use `new`.",
+   "Every component gets the same instance.",
+   "Components stay small and services are easy to replace in tests."
+  ],
+  "Share State Between Components with an Angular Service": [
+   "Two unrelated components that need the same data: put the data in a service.",
+   "The service is one shared instance and keeps the state in a signal.",
+   "Component A calls a service method to change it.",
+   "Component B reads the signal and updates by itself."
+  ],
+  "Angular Hierarchical Dependency Injection: Providers, @Self, @SkipSelf, @Optional, @Host": [
+   "Angular has a tree of injectors that follows the component tree.",
+   "A request looks in the component's own providers, then the parent, then the root.",
+   "A provider on a component gives that branch its own instance.",
+   "`@Self` = only here. `@SkipSelf` = start at the parent. `@Optional` = no error if missing. `@Host` = stop at the host."
+  ],
+  "Angular Reactive Forms for Beginners": [
+   "Reactive form: you build the model in the class. `FormGroup` holds a `FormControl` per field.",
+   "Template: `[formGroup]=\"form\"` and `formControlName=\"email\"`.",
+   "The model always has the current values.",
+   "On submit read `form.value` and send it.",
+   "Import `ReactiveFormsModule`."
+  ],
+  "Angular Form Validation: Built-in and Custom Validators": [
+   "Validators are rules a control must satisfy: `required`, `minLength`, `email`.",
+   "Angular checks them on each change and sets the status.",
+   "Show an error only when the control is invalid and touched.",
+   "A custom validator is a function that returns an error object, or `null` when valid."
+  ],
+  "Angular Template-Driven Forms with ngModel": [
+   "Template-driven form: most of the setup is in the HTML.",
+   "Add `ngModel` and a `name` to each input.",
+   "Use HTML attributes like `required` for validation.",
+   "`(ngSubmit)` gives your code the values.",
+   "Good for small, simple forms."
+  ],
+  "FormControl, FormGroup, FormBuilder, setValue, patchValue, valueChanges and statusChanges": [
+   "`FormControl` = one field. `FormGroup` = a group of fields. `FormBuilder` = shorter way to create them.",
+   "`setValue` needs every field. `patchValue` updates only some.",
+   "`valueChanges` emits on each change. `statusChanges` emits when valid or invalid changes.",
+   "Unsubscribe or use `takeUntilDestroyed` when you listen manually."
+  ],
+  "Angular Forms: Select Dropdowns, Checkboxes, Radio Buttons, Typed Forms and FormRecord": [
+   "Select and radio groups store one chosen value. A checkbox stores `true` or `false`.",
+   "Typed forms know the type of each control, so mistakes show in the editor.",
+   "`FormRecord` is for groups where the keys are not known in advance.",
+   "`nonNullable` stops reset from giving `null`."
+  ],
+  "Angular Advanced Form Validation: Custom, Async, Cross-Field and setValidators": [
+   "Custom validators encode your rules, such as a password policy.",
+   "Async validators wait for a result (is the username taken?). The control is `pending` meanwhile.",
+   "A cross-field validator sits on the group and compares fields, like password and confirm.",
+   "`setValidators` changes rules at runtime. Then call `updateValueAndValidity()`."
+  ],
+  "Angular Routing Basics: Pages, RouterLink and RouterOutlet": [
+   "Routing shows different pages for different URLs without a full reload.",
+   "Routes are listed in `app.routes.ts`: a `path` and a `component`.",
+   "`<router-outlet />` marks where the page is drawn.",
+   "Use `routerLink` instead of plain links."
+  ],
+  "Angular Route Parameters and Query Parameters": [
+   "Route parameter: required part of the path, `/products/:id`.",
+   "Query parameter: optional, after the `?`, like `?sort=price&page=2`.",
+   "The component reads both and loads the right data.",
+   "`withComponentInputBinding()` lets route params arrive as inputs."
+  ],
+  "Angular Router Navigation: ActivatedRoute, Query Params, Route Data and Router Events": [
+   "`routerLink` for links in a template. `router.navigate([...])` when code decides, for example after saving.",
+   "`ActivatedRoute` gives params, query params and route data.",
+   "Router events tell you when navigation starts and ends. Use them for loading bars."
+  ],
+  "Angular Route Guards: Protect Pages with CanActivateFn": [
+   "A guard is a function that decides whether a route may open: `canActivate: [authGuard]`.",
+   "Return `true` to open, or a redirect (`router.parseUrl('/login')`).",
+   "The server must still check permissions. A guard only hides pages."
+  ],
+  "Angular Guards: CanActivateChild, CanDeactivate, Resolve, canMatch and Preloading": [
+   "`canActivateChild` protects all children of a route.",
+   "`canDeactivate` runs before leaving: warn about unsaved changes.",
+   "`resolve` fetches data before the page shows.",
+   "`canMatch` decides whether a route applies at all, for example by role.",
+   "Preloading can fetch lazy routes in the background."
+  ],
+  "Angular Lazy Loading: Load Routes and Components on Demand": [
+   "Without lazy loading the first download holds the whole app.",
+   "A lazy route is split into its own file: `loadComponent: () => import('./page').then(m => m.Page)`.",
+   "The file downloads only when the user opens the route. `loadChildren` does it for a group of routes.",
+   "The first load stays small and fast."
+  ],
+  "Angular HttpClient: Get Data from an API with a Service": [
+   "Keep API calls in a service, not in the component.",
+   "Add `provideHttpClient()` in the app config. Then `inject(HttpClient)`.",
+   "`http.get<T>(url)` returns an observable. Nothing is sent until someone subscribes.",
+   "Subscribe, or use the `async` pipe, and show the data."
+  ],
+  "Angular HTTP: Loading State, Error Handling and POST Requests": [
+   "Set a loading flag before the request so the user sees something is happening.",
+   "`http.post(url, body)` sends data as the request body.",
+   "On success turn off loading and update the screen.",
+   "On failure catch the error and show a clear message, not a blank screen."
+  ],
+  "Angular HTTP: Query Parameters, Headers, PUT, PATCH and DELETE Requests": [
+   "One service can cover every action your API supports.",
+   "`HttpParams` or `{ params: { page: 2 } }` for query parameters. Headers for tokens and content type.",
+   "PUT replaces a whole item. PATCH changes only some fields. DELETE removes an item by id.",
+   "Each call returns an observable of the result."
+  ],
+  "RxJS Basics for Angular: Observables and Operators": [
+   "An observable = a stream of values over time (clicks, HTTP results).",
+   "Operators are small steps added with `pipe()`: `map` changes each value, `filter` keeps some.",
+   "Nothing runs until you `subscribe`.",
+   "Unsubscribe when done, or let the `async` pipe do it."
+  ],
+  "RxJS Observables Explained: Create from Arrays, Strings, Events with of, from and fromEvent": [
+   "`of(1, 2, 3)` emits the values you give, then completes.",
+   "`from([..])` turns an array, string or promise into a stream.",
+   "`fromEvent(el, 'click')` turns browser events into a stream.",
+   "Subscribe to receive the values."
+  ],
+  "RxJS take, takeUntil, takeWhile, first, last, single, skip and tap Operators": [
+   "`skip(n)` ignores the first values. `take(n)` stops after n values.",
+   "`first()` and `last()` pick one value.",
+   "`takeUntil` and `takeWhile` stop on a condition.",
+   "`tap` looks at values, for logging, without changing them.",
+   "`takeUntil(destroy$)` is a common way to clean up."
+  ],
+  "RxJS scan, reduce, debounceTime, debounce, delay and delayWhen Explained": [
+   "`debounceTime(400)` waits until typing stops: one API call instead of one per key.",
+   "`scan` keeps a running result and emits it for every value, like a live total.",
+   "`reduce` emits only the final result, when the stream completes.",
+   "`delay` and `delayWhen` shift values later in time."
+  ],
+  "RxJS Error Handling: throwError, catchError, retry, retryWhen and finalize": [
+   "An error ends an observable unless you handle it.",
+   "`retry(3)` tries again a set number of times.",
+   "`catchError` lets you recover: return a fallback with `of(...)`, or `throwError` to pass on a clearer error.",
+   "`finalize` runs at the end either way: a good place to hide a spinner."
+  ],
+  "RxJS Subjects in Angular: Subject, BehaviorSubject, ReplaySubject and AsyncSubject": [
+   "A subject is an observable you can also push values into with `next()`.",
+   "`BehaviorSubject` keeps the latest value, so new subscribers get it at once.",
+   "`ReplaySubject` replays several past values.",
+   "`AsyncSubject` gives only the last value, on completion.",
+   "Prefer signals for simple shared state in new code."
+  ],
+  "Test Angular Components and Services with Vitest": [
+   "A test: set up, do something, check the result.",
+   "`TestBed` creates the component with the same setup the app uses.",
+   "Change inputs or click a button, then let Angular update with `fixture.detectChanges()`.",
+   "Use `expect` to check text or values. Vitest runs the file.",
+   "For services, mock the HTTP calls."
+  ],
+  "Angular Accessibility: Build Apps Everyone Can Use": [
+   "Accessibility = people with different needs can use your app.",
+   "Use the right HTML: real buttons, links, labels and headings.",
+   "ARIA only where plain HTML cannot say it.",
+   "Everything must work with the keyboard, with a visible focus.",
+   "Manage focus when the page changes so screen reader users know where they are."
+  ],
+  "Angular Performance and Production Build Checklist": [
+   "A production build minifies and removes unused code: `ng build`.",
+   "Lazy loading keeps the first download small.",
+   "Optimise images. Use `track` in lists.",
+   "Check bundle sizes and measure with Lighthouse."
+  ],
+  "Angular Project 1: Build a Task Manager App Step by Step": [
+   "Task manager: add form, list, toggle and delete, filter (all, active, done).",
+   "A service keeps all tasks in one signal.",
+   "The list renders with `@for`.",
+   "A computed signal gives the filtered list."
+  ],
+  "Angular Project 2: Employee Management Dashboard (Guided)": [
+   "Employee dashboard: list, detail page and edit form.",
+   "A service talks to the API for all employee data.",
+   "The table page has search and sorting.",
+   "A reactive form with validators adds or edits an employee.",
+   "Routes connect the pages. A guard can protect the edit screens."
+  ],
+  "Angular Project 3: Online Learning Platform (Capstone)": [
+   "Capstone: login with a guard, token sent with requests.",
+   "Courses load from an API on lazy routes.",
+   "A lesson page reads its id from the route.",
+   "Progress is kept in signals and saved back to the API."
+  ],
+  "Deploy an Angular App: Netlify, Firebase and Nginx": [
+   "`ng build` creates the production files in `dist`.",
+   "Upload `dist` to Netlify, Firebase Hosting or your own Nginx server.",
+   "The host must send `index.html` for unknown paths, or refreshing a deep link gives a 404.",
+   "Nginx: `try_files $uri /index.html;`."
+  ],
+  "Angular effect() and linkedSignal(): Advanced Signals": [
+   "`linkedSignal` = a writable signal derived from another signal.",
+   "When the source changes it resets to a new default. You can still `set` it yourself.",
+   "`effect()` reruns when the signals it reads change.",
+   "Use effect for side effects, such as saving to storage. Not for computing values."
+  ],
+  "Angular resource() and httpResource(): Signal-Based Data Loading": [
+   "`httpResource` loads data from an API and exposes it as signals.",
+   "It watches a request signal, such as an id, and sends a new request when it changes.",
+   "Results: `value()`, `isLoading()`, `error()`.",
+   "`resource()` works the same way for any async source.",
+   "Check the current docs, these APIs are newer and may change."
+  ],
+  "Angular Custom Directives: Attribute Directives and Host Bindings": [
+   "A directive adds behaviour to an existing element. It has no template.",
+   "The selector is an attribute: `appHighlight`.",
+   "The `host` property binds classes and styles and listens to events on that element.",
+   "Reuse it on any element."
+  ],
+  "Angular Content Projection: ng-content, ng-template and Template Outlets": [
+   "Content projection: a parent puts its own HTML inside a component.",
+   "The component marks a spot with `<ng-content />`.",
+   "The parent writes content between the component tags.",
+   "`ng-template` holds markup that is drawn only when `ngTemplateOutlet` renders it."
+  ],
+  "Angular Dynamic Components and Host Directives": [
+   "Dynamic component = chosen at runtime, such as in a dialog.",
+   "`ViewContainerRef.createComponent(MyComponent)` creates and places it.",
+   "Host directives let a component apply a directive's behaviour to itself, with no extra template code."
+  ],
+  "Angular ElementRef, Renderer2, HostBinding, HostListener and Legacy Decorators": [
+   "`ElementRef` gives a handle on the element itself.",
+   "Prefer `Renderer2` to change it: safer and portable.",
+   "`@HostBinding` sets host properties. `@HostListener` listens for host events.",
+   "These decorators are the older style. Newer code uses the `host` metadata."
+  ],
+  "Angular Injection Tokens and Providers: Configuration and Testing": [
+   "An injection token names a value that is not a class, such as a URL: `new InjectionToken<string>('API_URL')`.",
+   "A provider says which value the token gets: `{ provide: API_URL, useValue: '...' }`.",
+   "A service does `inject(API_URL)`.",
+   "In tests, provide a different value or a fake class. The code does not change."
+  ],
+  "Angular HTTP Interceptors: Auth Tokens, Errors and Loading State": [
+   "An interceptor sits between `HttpClient` and the network and sees every request and response.",
+   "Clone the request to add an auth token header.",
+   "Handle errors in one place, such as sending the user to login on a 401.",
+   "A counter in an interceptor can drive one global loading bar.",
+   "Register with `provideHttpClient(withInterceptors([...]))`."
+  ],
+  "Angular Project Architecture: Features, Folders and Clean Boundaries": [
+   "As an app grows, the folder layout matters more than any single file.",
+   "Group code by feature: orders, users, each with its own components and services.",
+   "`core` = app-wide services. `shared` = reusable components and pipes.",
+   "Features should not reach into each other. Share through core or shared."
+  ],
+  "Angular App Configuration, Environment Variables and provideAppInitializer": [
+   "Settings that differ between development and production go in configuration.",
+   "Provide them through `app.config.ts`, for example with an injection token.",
+   "`provideAppInitializer` runs a function before the app starts, such as loading remote settings.",
+   "Anything in a browser app is public. Never put secrets in it."
+  ],
+  "Angular Error Handling: Global ErrorHandler, Custom Handlers and HTTP Errors": [
+   "Provide a custom `ErrorHandler` to catch errors nobody else caught.",
+   "Send details to a logging service so you can fix them.",
+   "Show the user a short, friendly message, not a stack trace.",
+   "Handle expected HTTP errors close to the request. Let the global handler catch the rest."
+  ],
+  "Angular NgModules (Legacy), Module Routing, Lazy Modules and Migration to Standalone": [
+   "Older Angular apps group code into NgModules, with module routing and lazy modules.",
+   "New code uses standalone components that list their own `imports`.",
+   "Migration schematics convert modules to standalone step by step.",
+   "Same job, less boilerplate."
+  ],
+  "Angular Custom Form Controls with ControlValueAccessor": [
+   "`ControlValueAccessor` lets your component act like a form input, for example a star rating.",
+   "`writeValue` receives the value from the form so the control can show it.",
+   "Call `onChange` to send a new value back. Call `onTouched` when touched.",
+   "Register it with the `NG_VALUE_ACCESSOR` provider.",
+   "The form then treats it like any other control, with validation."
+  ],
+  "Angular FormArray and Dynamic Forms: Add and Remove Fields": [
+   "A `FormArray` holds a list of controls, such as several phone numbers. It lives inside a `FormGroup`.",
+   "`push` adds a control. `removeAt(index)` removes one.",
+   "The template loops over the controls with `@for`.",
+   "Rows follow the array."
+  ],
+  "Angular Signal Forms: Build Forms with Signals in Angular 22": [
+   "Signal forms = a newer way to build forms based on signals.",
+   "Start with a signal holding your data as the model. The form is created from the model.",
+   "Each field exposes its state as signals: value, valid, touched.",
+   "This API is still evolving. Check the current docs before relying on it."
+  ],
+  "Angular State Management with a Signal Store Pattern": [
+   "A store = a service that keeps state in a private signal.",
+   "Components never change the state directly. They call methods on the store.",
+   "The store exposes read-only `computed` signals as selectors.",
+   "Views read the selectors and update automatically."
+  ],
+  "Advanced RxJS Patterns for Angular: Combine, Share and Flatten": [
+   "`combineLatest` emits when any stream changes, with the latest value of each.",
+   "`switchMap` starts a request for that value and cancels the previous one if still running.",
+   "`share` or `shareReplay` lets many subscribers use one request.",
+   "`concatMap` keeps order. `mergeMap` runs in parallel."
+  ],
+  "Advanced Angular Routing: Resolvers, Child Routes, Preloading and Transitions": [
+   "Child routes appear inside a layout's `<router-outlet />`.",
+   "A resolver fetches data before the page opens, so it never shows empty.",
+   "Preloading downloads lazy routes in the background after the first load.",
+   "View transitions can animate between pages when the browser supports it."
+  ],
+  "Angular Change Detection and Zoneless Apps: How Updates Really Work": [
+   "Change detection = how Angular finds out what to update on screen.",
+   "With zone.js, Angular is told after any async task and then checks components.",
+   "Signals tell Angular exactly which view depends on what, so less work is needed.",
+   "Zoneless apps do not need zone.js: signals and events trigger updates.",
+   "`OnPush` checks a component only when its inputs, events or signals change."
+  ],
+  "Angular Server-Side Rendering (SSR) and Hydration: Fast, SEO-Friendly Pages": [
+   "A normal Angular app sends an almost empty page and builds the content in the browser.",
+   "SSR: the server runs Angular and sends full HTML, so people and search engines see content at once.",
+   "Hydration attaches Angular to the existing HTML so it becomes interactive without redrawing.",
+   "Add SSR with `ng add @angular/ssr`."
+  ],
+  "Angular SEO: Title, Meta Tags, Canonical URLs, Lazy Images and SSR": [
+   "Set a unique title for every route with the `Title` service.",
+   "Use the `Meta` service for the description, and a canonical link.",
+   "SSR puts all of this in the HTML crawlers receive.",
+   "Lazy-load images below the fold and give them sizes."
+  ],
+  "Advanced Angular Testing: Guards, Interceptors, Routing and Component Inputs": [
+   "Test a guard with `runInInjectionContext` and check what it returns.",
+   "Test an interceptor with `HttpTestingController`: see the request, send a fake response.",
+   "The router testing harness navigates and lets you check which component showed.",
+   "`fixture.componentRef.setInput('name', value)` tests component inputs."
+  ],
+  "Angular End-to-End Testing with Playwright: Test Like a User": [
+   "An end-to-end test uses your app the way a user does.",
+   "Playwright opens a real browser, clicks and types, finding things by role and label.",
+   "Then it checks what appears on the screen.",
+   "Keep a few tests for the most important journeys: sign-up, checkout."
+  ],
+  "Angular Security Best Practices: XSS, Tokens, CSRF and Headers": [
+   "Treat all input as untrusted.",
+   "Angular escapes values in templates, which protects against XSS. Avoid `bypassSecurityTrust...` unless you really must.",
+   "HttpOnly cookies are safer than local storage for tokens, but cookies need CSRF protection.",
+   "Set security headers such as `Content-Security-Policy` on your server.",
+   "The server must check every request."
+  ],
+  "Angular CI/CD with GitHub Actions: Test, Build and Deploy Automatically": [
+   "CI/CD runs your checks and deployment for you, every time.",
+   "A push starts the workflow: install, lint, test, build, deploy.",
+   "If a step fails, the later steps do not run.",
+   "Keep secrets in GitHub secrets, never in the repository."
+  ],
+  "Angular Troubleshooting: 404 on Refresh, ExpressionChanged, EventTarget and SSL on Localhost": [
+   "404 on refresh: the server does not know Angular routes. Send `index.html` for unknown paths.",
+   "`ExpressionChangedAfterItHasBeenChecked`: a value changed after Angular checked it. Move the change earlier or use signals.",
+   "`EventTarget` typing errors: cast to the element you expect.",
+   "SSL on localhost: create and trust a local certificate for the dev server.",
+   "Read the error message, find the cause, fix that."
+  ],
+  "Angular Module Loaders: SystemJS, Webpack and Today's esbuild and Vite Build": [
+   "A bundler turns many source files into files a browser can load.",
+   "Early Angular used SystemJS, then Webpack for many years.",
+   "Modern Angular builds with esbuild, and the dev server uses Vite. Both are much faster.",
+   "You still run `ng build` and `ng serve`."
+  ],
+  "Angular Advanced Capstone: Build and Ship a Production-Ready App": [
+   "Plan the architecture first: features, routes, clear boundaries.",
+   "Add state with signals and load data over HTTP, with errors handled.",
+   "Test it. Check accessibility and security.",
+   "Add SSR and performance work. Let CI/CD ship it."
+  ]
+ },
+ "react-js-full-course": {
+  "what-is-react-and-why-use-it": [
+   "React = a JavaScript library for building screens out of small pieces called components.",
+   "You describe what the screen should look like for the current data. React does the updating.",
+   "Data flows down from parent to child. Changing data is called state.",
+   "Virtual DOM = a light copy of the page in memory. React compares old and new, then changes only the differences in the real page.",
+   "React is a library, not a full framework: you add routing, data fetching and so on yourself.",
+   "Learn basic HTML, CSS and JavaScript first. The lessons go in order."
+  ],
+  "set-up-react-with-vite-first-project": [
+   "Vite = a fast development server and build tool. `npm run dev` starts it.",
+   "Create a project with `npm create vite@latest`, then `npm install`.",
+   "Browser loads `index.html`, which runs `main.jsx`, which draws `App` into the root div.",
+   "Edit and save: Vite updates the page at once, with no full reload.",
+   "Scripts in `package.json`: `dev` to work, `build` to make the final files, `preview` to try them.",
+   "If something fails, read the error in the terminal first. It usually names the file and line."
+  ],
+  "jsx-explained-simply": [
+   "JSX looks like HTML but lives inside JavaScript. The browser cannot read it, so the build tool converts it.",
+   "Rule 1: return one parent element (or a fragment `<>...</>`).",
+   "Rule 2: close every tag, even `<img />` and `<input />`.",
+   "Rule 3: curly braces run JavaScript: `{name}`.",
+   "Rule 4: use `className` and `htmlFor`, not `class` and `for`.",
+   "Components start with a capital letter. Styles are objects: `style={{ color: 'red' }}`."
+  ],
+  "react-components-and-props-explained": [
+   "A component = a JavaScript function that returns JSX. Its name starts with a capital letter.",
+   "Props = the inputs of a component, like function arguments. The parent writes them like HTML attributes.",
+   "Destructure to keep it short: `function Greeting({ name, age })`. A default value: `{ label = 'Click me' }`.",
+   "Props are read-only. A child never changes its own props.",
+   "Text goes in quotes `name=\"Asha\"`. Other values go in braces `age={24}`.",
+   "`children` = whatever you put between the opening and closing tags.",
+   "Never define a component inside another component."
+  ],
+  "react-usestate-hook-explained": [
+   "A normal variable does not make the page redraw. State does.",
+   "`const [count, setCount] = useState(0);` gives the current value and a setter.",
+   "Calling the setter makes React call your component again with the new value.",
+   "Never change state directly. Use the setter, and make a new array or object instead of changing the old one.",
+   "State updates are not instant: the variable keeps its old value until the next draw.",
+   "Hooks go at the top level of a component, never inside `if`, loops or nested functions."
+  ],
+  "handling-events-in-react": [
+   "Events use camelCase names: `onClick`, `onChange`, `onSubmit`.",
+   "Pass the function, do not call it: `onClick={handle}` not `onClick={handle()}`.",
+   "Need an argument? Wrap it: `onClick={() => remove(id)}`.",
+   "The event object `e` gives `e.target.value` for inputs. Use `e.preventDefault()` on form submit.",
+   "A child tells its parent by calling a function the parent passed as a prop.",
+   "Events bubble up from the child to its parents."
+  ],
+  "conditional-rendering-in-react": [
+   "Four ways to show or hide: `if` before the return, ternary `a ? b : c`, `a && b`, or JSX saved in a variable.",
+   "A page that loads data has three screens: loading, error, and the data (or an empty message).",
+   "Return early for loading and error. It keeps the code flat.",
+   "With `&&`, make the left side a real true or false. `0 && ...` shows a 0 on the page.",
+   "Return `null` to show nothing.",
+   "Removing an element from the page is different from hiding it with CSS."
+  ],
+  "react-lists-and-keys-explained": [
+   "`map` turns an array into a list of elements.",
+   "Every item needs a `key` that is unique and stable, usually the id from your data.",
+   "Never use a random key. Avoid the index when the list can be reordered.",
+   "Keys let React know which item is which, so it updates the right ones and keeps their state.",
+   "`filter` and `sort` work on a copy: `[...items].sort(...)`.",
+   "To change a list, make a new array with spread, filter or map. Never change the old one.",
+   "Show a friendly message when the list is empty."
+  ],
+  "react-forms-and-controlled-inputs": [
+   "Controlled input = its value comes from state: `value={text} onChange={e => setText(e.target.value)}`.",
+   "State is the single source of truth, so the screen and the data never disagree.",
+   "Many fields: one state object and `setForm({ ...form, [name]: value })`.",
+   "Checkbox uses `checked` and `e.target.checked`. Select and textarea use `value`.",
+   "Validate on submit and show a clear message next to the field.",
+   "Clear the form after a good submit by setting the state back to its start value."
+  ],
+  "styling-react-apps-css-modules-tailwind": [
+   "Plain CSS file: simple, but class names are global and can clash.",
+   "CSS Modules: each class gets a unique name, so styles stay inside one component.",
+   "Inline styles: `style={{ ... }}`. Good for values that change, not for everything.",
+   "Tailwind: small ready-made classes written straight in the JSX.",
+   "Design for phones first, then add rules for bigger screens.",
+   "Dark mode: CSS variables and `prefers-color-scheme`."
+  ],
+  "react-useeffect-hook-explained": [
+   "A side effect = work outside drawing: fetching data, timers, listeners.",
+   "React draws first, then runs the effect.",
+   "The dependency array decides when it runs: `[]` once, `[id]` when `id` changes, none after every draw.",
+   "Cleanup (the function you return) stops what you started: timers, listeners, requests.",
+   "In development, Strict Mode runs effects twice on purpose to find missing cleanup.",
+   "You might not need an effect: values you can work out while drawing do not need one."
+  ],
+  "fetch-data-in-react-loading-error-states": [
+   "Every request has three states: loading, error, success.",
+   "Start the request in an effect, and pass an `AbortController` signal.",
+   "`fetch` does not throw on 404 or 500. Check `response.ok` yourself.",
+   "Cleanup aborts the old request, so old data cannot replace new data (the race condition).",
+   "Send data with POST: `method`, `headers` and `JSON.stringify(body)`.",
+   "Put repeated fetch code in one helper function."
+  ],
+  "react-useref-hook-dom-access": [
+   "`useRef` makes a box with a `current` value that React keeps between draws.",
+   "Put `ref={myRef}` on an element and `myRef.current` is the real DOM element after drawing.",
+   "Common uses: focus an input, scroll to an element, keep a timer id, remember the previous value.",
+   "Changing a ref does not redraw the screen. If the screen must change, use state.",
+   "Use refs for things outside the data flow, not as a replacement for state."
+  ],
+  "lifting-state-up-and-component-composition": [
+   "Two components need the same value? Move the state to their closest shared parent.",
+   "Data goes down as props. Events go up as functions.",
+   "Only one copy of the data, so the parts can never disagree.",
+   "Derive values while drawing (like a total) instead of storing a second copy in state.",
+   "Passing props through many levels is tiring: use composition with `children`, or context.",
+   "Do not lift higher than needed. Keep state close to where it is used."
+  ],
+  "react-usereducer-hook-explained": [
+   "`useReducer` is for state with many related changes.",
+   "The component sends an action: a small object such as `{ type: 'added', text }`.",
+   "`dispatch(action)` hands the current state and the action to the reducer.",
+   "The reducer returns a new state. It never changes the old one.",
+   "All the rules live in one place, so they are easy to read and test.",
+   "Simple value? `useState`. Many connected actions? `useReducer`."
+  ],
+  "react-context-api-usecontext-explained": [
+   "Context shares data with many components without passing props through every level.",
+   "Three steps: `createContext`, a `Provider` near the top with the `value`, and `useContext` where you need it.",
+   "Good for theme, signed-in user, language. Not for data that changes many times a second.",
+   "When the provider value changes, every component that reads it draws again.",
+   "Wrap `useContext` in a custom hook that throws a helpful error if the provider is missing.",
+   "Context is not a database. Keep server data in a data library."
+  ],
+  "react-custom-hooks-reuse-logic": [
+   "A custom hook = a function whose name starts with `use` and that calls other hooks.",
+   "Same state and effect in two places? Move it into a hook, for example `useToggle` or `useLocalStorage`.",
+   "Hooks share logic, not data. Each component that calls the hook gets its own state.",
+   "Same rules as normal hooks: top level only, and only in components or other hooks.",
+   "Good hooks do one job, have a clear name, and return what the caller needs.",
+   "Improve the hook once and every component gets the improvement."
+  ],
+  "react-router-pages-links-navigation": [
+   "`<Routes>` and `<Route path element>` decide which component shows for which address.",
+   "Use `<Link to>` instead of `<a>` so the page does not reload.",
+   "`useParams` reads `/products/:id`. `useSearchParams` reads `?q=`.",
+   "A layout route keeps the menu on screen and shows the page in `<Outlet />`.",
+   "`useNavigate` moves with code, for example after login.",
+   "Protected route = a wrapper that redirects when the user is not signed in. The server must still check.",
+   "A `*` route shows a not found page. Static hosts need a fallback to `index.html`."
+  ],
+  "react-forms-validation-formdata-react-hook-form": [
+   "The browser already keeps form values. Give every input a `name`.",
+   "On submit: `new FormData(e.currentTarget)` reads all fields at once, so no state per field.",
+   "Try browser validation first: `required`, `type=\"email\"`, `minLength`.",
+   "Your own validation function returns an object of errors. Show them next to the fields.",
+   "The server must always validate again. Browser checks can be skipped.",
+   "React Hook Form helps when a form is large or has many rules."
+  ],
+  "how-react-renders-rules-of-react-strictmode": [
+   "Render = React calls your component function to get JSX. It is not the same as changing the page.",
+   "A re-render starts with a state change, a parent render, or a changed context.",
+   "Components must be pure: same props and state give the same JSX. No changing outside values while rendering.",
+   "State is a snapshot. Replace objects and arrays, never change them.",
+   "Batching: many updates in one event give one render.",
+   "React commits only the real differences to the page.",
+   "`StrictMode` renders twice in development to help you find mistakes."
+  ],
+  "react-performance-memo-usememo-usecallback": [
+   "Measure first with the React DevTools Profiler. Fix only what is really slow.",
+   "Simplest fix: move the state down into a small component.",
+   "`React.memo` skips a child when its props are the same.",
+   "`useMemo` keeps an expensive result. `useCallback` keeps a function steady.",
+   "Objects and functions are new on every render, which can break `memo`.",
+   "Long lists: show less, or virtualise. Do not search on every key press.",
+   "Do not add memo everywhere. It costs memory and makes code harder to read."
+  ],
+  "react-lazy-suspense-code-splitting": [
+   "Code splitting = download code only when it is needed, so the first load is smaller.",
+   "`const Admin = lazy(() => import('./Admin'))` makes a separate file.",
+   "Wrap it in `<Suspense fallback={...}>` to show something while it loads.",
+   "Split by route first, then heavy libraries such as editors and charts.",
+   "Preload on hover or focus to hide the wait.",
+   "Check the result in the build output or the browser Network tab."
+  ],
+  "react-error-boundaries-portals-modals": [
+   "An error while rendering can turn the whole page white. An error boundary catches it and shows a fallback.",
+   "Boundaries are class components (or a library). They need `getDerivedStateFromError` or `componentDidCatch`.",
+   "They do not catch errors in event handlers, fetch, timers or on the server.",
+   "Add a retry button and put boundaries around separate parts of the page.",
+   "A portal draws a component somewhere else in the DOM: `createPortal(jsx, document.body)`.",
+   "A good modal: `role=\"dialog\"`, focus moves in, Escape closes, focus returns."
+  ],
+  "react-state-management-redux-toolkit-zustand": [
+   "Do you need a library? Only for client state shared by many far-apart components.",
+   "Redux flow: a component dispatches an action, the reducer returns new state, components read it with selectors.",
+   "Redux Toolkit makes this short with `createSlice`. Zustand does it with one `create` call.",
+   "Select only what you need so only those components redraw.",
+   "Never change state directly. Keep local state local.",
+   "Server data belongs in a data library such as TanStack Query."
+  ],
+  "tanstack-query-react-data-fetching": [
+   "Server state is different from client state: it lives elsewhere, can be stale, and is shared.",
+   "`useQuery({ queryKey, queryFn })` gives `data`, `isPending` and `error`.",
+   "The query key is the cache key. Include every value the request depends on.",
+   "Cached data shows at once. Stale data refreshes in the background.",
+   "`useMutation` changes data. Then `invalidateQueries` reloads the list.",
+   "Retries, cancelling and caching are built in, so you write less state code."
+  ],
+  "testing-react-vitest-testing-library": [
+   "Test what the user sees and does, not the code inside.",
+   "Vitest runs the tests. React Testing Library draws the component in a fake browser.",
+   "Find elements the way people do: `getByRole`, `getByLabelText`, `getByText`.",
+   "`user-event` clicks and types like a real person. Then check with `expect`.",
+   "For async data use `findBy...` or `waitFor`.",
+   "Components that use context or a router need to be wrapped in them in the test.",
+   "Good tests let you tidy code without breaking them."
+  ],
+  "react-accessibility-a11y-guide": [
+   "Use the right HTML element: a real `button` works with keyboard and screen reader for free.",
+   "Label every field. Give meaningful images `alt` text.",
+   "Everything must work with the keyboard only. Keep the focus ring visible.",
+   "Do not use colour alone. Check contrast.",
+   "Use ARIA only when HTML is not enough. Live regions announce changes.",
+   "Test with the keyboard, Lighthouse or axe, and a screen reader. Tools find only part of the problems."
+  ],
+  "react-19-new-features-actions-use-optimistic": [
+   "Actions: pass a function to `<form action={fn}>`. React gives it the `FormData`.",
+   "`useActionState` keeps the result, the error and the pending flag.",
+   "`useFormStatus` lets a button know the form is sending.",
+   "`useOptimistic` shows the expected result at once. If the request fails, it goes back.",
+   "`use` can read a promise or context. `ref` is now a normal prop.",
+   "React Compiler and Server Components are bigger topics. Check what your tools support before you rely on them."
+  ],
+  "react-with-typescript-beginners-guide": [
+   "Describe your data with a `type` or `interface`, such as `User`.",
+   "Type props: `function Card({ title }: { title: string })`.",
+   "State: `useState<User | null>(null)`. Events: `React.ChangeEvent<HTMLInputElement>`.",
+   "Wrong or missing props show as a red line in the editor.",
+   "Types are removed at build time. They cannot check what the server really sends.",
+   "Avoid `any`. Read the first line of an error, it is usually the useful one."
+  ],
+  "react-project-structure-best-practices-deploy-next-steps": [
+   "Organise in clear folders and keep components small, with one job each.",
+   "Environment variables with `VITE_` are public. Never put secrets in React code.",
+   "Before shipping: test the real build, run Lighthouse, try the keyboard for a minute.",
+   "`npm run build` makes the `dist` folder of plain static files. Upload it to a host.",
+   "Turn on HTTPS and a fallback to `index.html` for React Router.",
+   "Client-only React is weak for SEO. Pages that must rank need server rendering or prerendering.",
+   "Next: build projects, then Next.js and a backend."
+  ]
+ },
+ "mern-stack-full-course": {
+  "what-is-the-mern-stack": [
+   "MERN = MongoDB (data), Express (API), React (screens), Node.js (runs JavaScript on the server).",
+   "A request: browser loads React, React calls the API with `fetch`, Express handles it, MongoDB returns documents, the data comes back as JSON.",
+   "One language, JavaScript, across the whole stack.",
+   "React shows, Express decides, MongoDB remembers."
+  ],
+  "set-up-your-tools-for-mern": [
+   "Tools: an editor (VS Code), Node.js with npm, Git, and MongoDB (local or Atlas).",
+   "Check each one: `node -v`, `npm -v`, `git --version`.",
+   "Node runs your code outside the browser. npm installs packages.",
+   "Git records every change so you can go back and share.",
+   "Keep projects in simple folders with no spaces in the names."
+  ],
+  "modern-javascript-for-mern": [
+   "`const` by default, `let` when the value changes, never `var`.",
+   "Arrow functions with `map` and `filter` change lists without loops.",
+   "Destructuring: `const { title, status } = job;`. Spread copies without changing the original: `{ ...job }`.",
+   "Optional chaining `job?.company?.name` and defaults `?? 'none'` avoid crashes.",
+   "Modules: `export` shares a value, `import` uses it. Use `\"type\": \"module\"` in Node.",
+   "Template strings: `` `Hello ${name}` ``."
+  ],
+  "asynchronous-javascript-promises-async-await": [
+   "Slow jobs (network, files) must not freeze JavaScript, so they run asynchronously.",
+   "A promise is a placeholder for a value that arrives later.",
+   "`await` pauses only your function. Wrap it in `try/catch` to handle failure.",
+   "`Promise.all` runs tasks at the same time.",
+   "`fetch` returns a promise. Check `response.ok`, then `await response.json()`.",
+   "Callbacks are the older way. Prefer async/await."
+  ],
+  "http-json-and-rest-basics": [
+   "A request = method + path + headers + sometimes a JSON body.",
+   "GET reads, POST creates, PATCH changes, DELETE removes.",
+   "Status codes: 2xx success, 4xx the request was wrong, 5xx the server failed.",
+   "Common ones: 200 OK, 201 Created, 204 No Content, 400, 401, 404, 500.",
+   "REST: nouns in the path (`/api/jobs/12`), verbs in the method.",
+   "Replies are JSON."
+  ],
+  "plan-the-job-tracker-project": [
+   "Plan before coding: what must people be able to do?",
+   "Features become screens, screens become API routes, routes decide the data.",
+   "Two things to store: `User` and `Job`.",
+   "Folders: one for the `server`, one for the `client`.",
+   "A plan costs minutes and saves hours of rewriting."
+  ],
+  "node-js-basics-modules-files-events": [
+   "Node runs JavaScript on your computer, not in a browser.",
+   "Built-in modules: `fs` for files, `path` for file paths, `events` for events.",
+   "Use `path.join` so paths work on every system.",
+   "`process.argv` = arguments, `process.env` = environment variables, `process.exit(code)` = stop.",
+   "An event emitter lets one part announce something and others react."
+  ],
+  "npm-package-json-and-environment-variables": [
+   "`package.json` = name, scripts and the packages the project needs.",
+   "`npm install` reads it and fills `node_modules`. Do not commit `node_modules`.",
+   "Scripts: `npm run dev` and `npm start`. `nodemon` or `--watch` restarts on change.",
+   "Secrets and settings go in `.env`, loaded by `dotenv` into `process.env`. Never commit `.env`.",
+   "Commit `.env.example` with the names only, so others know what to fill in."
+  ],
+  "your-first-express-server-and-routes": [
+   "Express checks routes from the top and runs the first match.",
+   "`app.get('/jobs/:id', ...)`: `:id` is in `req.params`.",
+   "Query strings `?status=applied` are in `req.query`.",
+   "`res.status(200).json(data)` sends the answer and ends the request.",
+   "Order matters: put specific routes before general ones.",
+   "Try it with the browser, `curl` or a REST client."
+  ],
+  "express-middleware-json-cors-and-logging": [
+   "Middleware = a function every request passes through, in order.",
+   "It must call `next()` or send a reply. Otherwise the request hangs.",
+   "`express.json()` turns the JSON body into `req.body`. Without it `req.body` is empty.",
+   "`cors` lets the browser app call this API.",
+   "A logger records method, path and time taken.",
+   "Middleware can be added to one route only."
+  ],
+  "express-routers-and-controllers": [
+   "Split by responsibility so the project stays readable.",
+   "`index.js` only mounts routers: `app.use('/api/jobs', jobsRouter)`.",
+   "A router lists URLs and the functions that answer them.",
+   "A controller holds the logic: read input, do the work, send the reply.",
+   "Moving to MongoDB later only changes the data layer."
+  ],
+  "validation-and-error-handling-in-express": [
+   "Never trust what a client sends.",
+   "Validate: check the types, keep only the allowed fields, clean the text.",
+   "Throw an `HttpError(400, 'message')` with a status.",
+   "One error middleware at the end sends one JSON shape for every error.",
+   "Unexpected errors become a plain 500. Details go in the log, not to the visitor."
+  ],
+  "test-your-api-with-rest-client-and-smoke-script": [
+   "Try the routes after writing them.",
+   "Level 1: a `.http` file, Postman or `curl`, one request at a time.",
+   "Check both the status code and the body.",
+   "Level 2: a smoke script repeats all checks so you can run it after every change.",
+   "Level 3: automated tests, for example `node --test`."
+  ],
+  "what-is-mongodb-documents-collections-atlas": [
+   "A server holds databases, a database holds collections, a collection holds documents.",
+   "A document is a JSON-like object with an `_id`.",
+   "A collection is like a table, but documents need not have the same fields.",
+   "Atlas = MongoDB hosted for you. Or install it locally.",
+   "`mongosh` lets you try `insertOne`, `find` and `updateOne` by hand."
+  ],
+  "connect-express-to-mongodb-with-mongoose": [
+   "The connection string is a secret: keep it in `.env`.",
+   "`mongoose.connect(process.env.MONGODB_URI)`.",
+   "Start listening only after the database connects.",
+   "If it fails, stop with a clear message.",
+   "Common problems: wrong password, IP address not allowed in Atlas, special characters in the password."
+  ],
+  "mongoose-schemas-models-and-validation": [
+   "A schema describes a document: fields, types, `required`, defaults, allowed values.",
+   "`mongoose.model('Job', schema)` gives the tool to read and write jobs.",
+   "Bad data is rejected with a `ValidationError`.",
+   "`timestamps: true` adds `createdAt` and `updatedAt`.",
+   "`Job.create()` or `save()` writes it to the collection."
+  ],
+  "crud-with-mongoose-in-express": [
+   "CRUD = create, read, update, delete.",
+   "Create: `Job.create` with only the allowed fields from the body (not the whole `req.body`).",
+   "Read one: `Job.findById`. A bad id gives 400, a missing job gives 404.",
+   "Update: PATCH with `runValidators: true` so the rules apply to changes too.",
+   "Delete: reply 204 with no body.",
+   "Translate database errors into friendly API errors."
+  ],
+  "search-filter-sort-pagination-and-indexes": [
+   "The client sends search, status, sort and page in the URL.",
+   "Escape search text so it cannot be used as a regex attack.",
+   "`skip` and `limit` return one page. Send the total so the client can show page numbers.",
+   "Cap the limit so nobody asks for a million rows.",
+   "An index lets MongoDB jump to matches instead of reading every document."
+  ],
+  "mongodb-aggregation-pipeline-for-statistics": [
+   "An aggregation is a pipeline: each stage gets the output of the one before.",
+   "`$match` keeps the documents you want, for example the current user's jobs.",
+   "`$group` makes buckets, for example by status, and counts them.",
+   "Shape the result into a simple object for the dashboard.",
+   "Route order matters: `/stats` must come before `/:id`."
+  ],
+  "user-registration-and-password-hashing-with-bcrypt": [
+   "Never store passwords. Store a hash.",
+   "bcrypt = one-way, adds a random salt, slow on purpose.",
+   "Check the email format and a sensible password length first.",
+   "A stolen database does not give the passwords away.",
+   "The reply never includes the hash.",
+   "A duplicate email gives a clear conflict error (409)."
+  ],
+  "login-with-jwt-json-web-tokens": [
+   "Login: find the user, compare the password with the stored hash using bcrypt.",
+   "Unknown email? Compare against a dummy hash anyway, so timing does not reveal which emails exist.",
+   "On success sign a JWT with a secret. It holds the user id and an expiry.",
+   "The client sends the token with later requests in the `Authorization` header.",
+   "Use the same message for every login failure.",
+   "Where the client stores the token (memory, localStorage or a cookie) is a security trade-off."
+  ],
+  "protect-routes-and-ownership-checks": [
+   "The `protect` middleware reads the token from `Authorization`, verifies it and loads the user.",
+   "No token or a bad one: 401. Otherwise set `req.user` and call `next()`.",
+   "Every query includes the owner: find by id AND user.",
+   "Never take the user id from the request body.",
+   "Another person's job gives 404, as if it did not exist, so nothing is leaked.",
+   "Prove it with a test: user B cannot read or change user A's data."
+  ],
+  "express-security-basics-helmet-rate-limit-nosql-injection": [
+   "Security is several small layers, not one switch.",
+   "`helmet` adds safe headers to every reply.",
+   "Rate limit login routes so nobody can try thousands of passwords.",
+   "NoSQL injection sends objects like `{\"$gt\": \"\"}` instead of strings. Reject keys that start with `$`.",
+   "Behind a proxy set `trust proxy` so the limiter sees the real visitor address.",
+   "In production, refuse to start with a missing or weak JWT secret."
+  ],
+  "automated-api-tests-with-node-test-runner": [
+   "Tests are code that checks your code. `node --test` needs no extra package.",
+   "Split `app.js` (the app) from `server.js` (listening), so tests can import the app without a real server.",
+   "Use a separate test database and clear it before each run.",
+   "Each test sends a request and checks the status and the body, including failure cases.",
+   "Run the tests before every deploy."
+  ],
+  "react-and-vite-setup-components-and-jsx": [
+   "A component is a function that returns JSX. Names start with a capital letter.",
+   "JSX needs one parent element.",
+   "Vite compiles JSX and reloads instantly while you work.",
+   "Components can contain other components, like `Header` and `JobCard`.",
+   "A Vite proxy sends `/api` calls to your Express server during development."
+  ],
+  "react-props-state-and-events": [
+   "Props: inputs from the parent. They are read-only.",
+   "State: data that changes. `const [jobs, setJobs] = useState([])`.",
+   "Never change state in place. Make a new array: `[...jobs, newJob]`, `filter`, `map`.",
+   "Events: `onClick`, `onChange`. Pass the function, do not call it.",
+   "A child tells the parent by calling a function it received as a prop.",
+   "Lists need a stable `key`, the id."
+  ],
+  "react-lists-forms-and-controlled-inputs": [
+   "Controlled input: state is the single source of truth. `value` shows it, `onChange` updates it.",
+   "On submit validate the state first and show clear messages next to the fields.",
+   "Every input has a `label` tied to it. It helps screen readers and makes the click area bigger.",
+   "Lists use a stable `key`, the id, not the index.",
+   "Keep state in the nearest component that needs it, or lift it up."
+  ],
+  "react-useeffect-and-fetching-data-from-your-api": [
+   "Render first with no data and show a loading state. Then the effect starts the fetch.",
+   "The dependency list says when to run it again.",
+   "Three states: loading, error (with retry), data.",
+   "The cleanup function cancels the request, so old answers cannot overwrite new ones.",
+   "Keep all API calls in one helper file that adds the token and handles errors."
+  ],
+  "react-router-pages-links-and-params": [
+   "The URL decides which page shows. React Router matches it against your routes.",
+   "A layout route draws the header once and `<Outlet />` shows the page inside it.",
+   "`useParams` reads `:id` from the URL, then load that job.",
+   "`Link` and `NavLink` change the URL without reloading.",
+   "A `*` route shows a not found page."
+  ],
+  "react-context-and-custom-hooks": [
+   "Context shares data (like the signed-in user) without passing props through every level.",
+   "A provider holds the data. `useContext` reads it.",
+   "A custom hook `useAuth` hides the context behind one call.",
+   "`useJobs` keeps loading, error and reload logic in one reusable place.",
+   "Hooks share logic, not data."
+  ],
+  "react-crud-ui-create-edit-delete-with-the-api": [
+   "Forms and buttons call the `api` helper, which adds the token and the JSON.",
+   "The server validates and changes the data, then replies.",
+   "Update the list in state only after the server confirms, using new arrays.",
+   "Show a saving state on the button. Confirm before delete.",
+   "Show a clear message when a request fails."
+  ],
+  "sign-in-and-register-pages-with-protected-routes": [
+   "`ProtectedRoute` checks the auth context. No user: redirect to login and remember the wanted address.",
+   "After login save the token and go back to the page they wanted.",
+   "A 401 from the server signs the person out and shows the login page again.",
+   "Hiding a page in React is only a convenience. The server still checks every request."
+  ],
+  "react-dashboard-stats-filters-and-pagination-in-the-url": [
+   "Put the search, status and page in the URL with `useSearchParams`.",
+   "The data hook watches the URL and fetches again when it changes.",
+   "The back button, reload and shared links then all work.",
+   "Debounce typing so one request is sent, not one per key.",
+   "Small focused components: list, stats, pagination."
+  ],
+  "responsive-styling-and-accessibility-in-react": [
+   "Mobile first: write styles for a small screen, then add `min-width` media queries.",
+   "Grid and flexible sizes let cards fill the space without fixed widths.",
+   "Visible focus rings, labels, enough colour contrast, keyboard use.",
+   "`prefers-color-scheme` gives a dark mode that follows the device.",
+   "Test with the keyboard only."
+  ],
+  "react-performance-memo-debounce-and-code-splitting": [
+   "Slowness comes from doing too much work, not from React itself.",
+   "Debounce: wait until typing stops, then send one request.",
+   "`React.memo` skips redrawing a component whose props did not change.",
+   "`lazy` loads a page only when it is visited, so the first load is smaller.",
+   "Measure first with the browser tools and the build output, then optimise."
+  ],
+  "file-upload-with-multer-and-react": [
+   "React sends the file in `FormData`. It checks the size as a courtesy.",
+   "`multer` reads the upload with a size limit, one file only and an extension filter.",
+   "Read the first bytes: a text file renamed to `.pdf` is rejected and deleted.",
+   "Store the file under a random name. Only the details go in MongoDB.",
+   "Downloads go through a route that checks ownership and send the file as an attachment."
+  ],
+  "production-ready-express-logging-graceful-shutdown-compression-indexes": [
+   "Log JSON lines with path, status and time. Never log passwords or tokens.",
+   "A health check that tests the database. 503 means do not send traffic here.",
+   "On `SIGTERM`: stop new connections, finish current requests, close the database, exit.",
+   "Build indexes on purpose after a deploy. Compress text responses.",
+   "Check the logs when something looks wrong, not only when it breaks."
+  ],
+  "build-and-serve-the-react-app-from-express": [
+   "`npm run build` makes hashed static files in `client/dist`.",
+   "Express serves them. Hashed `/assets` are cached for a year. `index.html` is never cached.",
+   "`/api` goes to the API. An unknown API path is a JSON 404.",
+   "Any other GET returns `index.html`, so React Router works after a reload.",
+   "One process and one origin: no CORS needed, one thing to deploy."
+  ],
+  "deploy-a-mern-app-to-a-vps-with-pm2-nginx-and-https": [
+   "DNS points the name to your server. nginx handles HTTPS (Let's Encrypt) and proxies to Node.",
+   "Pass the visitor address in headers and set `trust proxy`.",
+   "pm2 keeps the app running, restarts it after a crash and after a reboot.",
+   "Settings live in the server's `.env`, never in Git.",
+   "A repeatable deploy script: pull, install, build, restart, then check `/api/health`.",
+   "Open only the ports you need (80 and 443)."
+  ],
+  "mern-capstone-checklist-and-next-steps": [
+   "Checklist: secrets, ownership checks, validation, tests, backups, monitoring.",
+   "A committed secret stays in Git history. Check it and change the secret.",
+   "Deploy, then write a README with screenshots.",
+   "Pick one idea from the next-steps list and build it with a test.",
+   "Small, finished and deployed projects teach more than unfinished big ones."
+  ]
+ },
+ "generative-ai-llm-fundamentals": {
+  "what-is-artificial-intelligence": [
+   "AI = computers doing tasks that normally need human thinking.",
+   "Machine learning = learning patterns from examples instead of writing every rule.",
+   "Deep learning = machine learning with neural networks of many layers.",
+   "Generative AI = creates new text, images or code.",
+   "Every system today is narrow AI: very good at some tasks, not a general thinking mind.",
+   "AI can be wrong. Check anything that matters."
+  ],
+  "math-and-statistics-for-ai": [
+   "A vector = a list of numbers. AI turns words, pictures and data into vectors.",
+   "Similarity: how close two vectors are. Search by meaning is built on it.",
+   "Probability = how likely each outcome is. A language model scores every possible next word.",
+   "Loss = a number for how wrong the model was.",
+   "Gradient descent = change the model a little in the direction that lowers the loss, and repeat."
+  ],
+  "machine-learning-basics": [
+   "Three ways to learn: supervised (with answers), unsupervised (find groups), reinforcement (rewards).",
+   "Split data: training set (learn), validation set (compare settings), test set (final honest check).",
+   "Keep the test set locked away until the end.",
+   "Overfitting: great training score, poor test score. The model memorised.",
+   "Underfitting: the model is too simple to learn the pattern.",
+   "Accuracy is not enough. Look at precision and recall too."
+  ],
+  "deep-learning-and-transformers": [
+   "A neuron is a small calculator. Many layers learn more complex patterns.",
+   "Training: guess, measure the loss, adjust the weights, repeat.",
+   "Your words become tokens, then embeddings (lists of numbers carrying meaning).",
+   "Attention lets each word look at the others and decide which matter.",
+   "Many transformer layers repeat this.",
+   "At the end the model scores every possible next token and picks one."
+  ],
+  "introduction-to-generative-ai": [
+   "Predictive AI picks a label or a number. Generative AI creates new content.",
+   "A foundation model is trained once on a very large amount of data and used for many tasks.",
+   "Core idea: predict the next piece (word, pixel, sound).",
+   "Output can be fluent and still wrong (hallucination).",
+   "A person must check anything that matters. Use it responsibly."
+  ],
+  "how-large-language-models-work": [
+   "The prompt is split into tokens (words or parts of words).",
+   "The context window is how many tokens the model can read at once.",
+   "The model scores every possible next token. Sampling picks one.",
+   "Low temperature = safest choices. High temperature = more varied.",
+   "Each new token is fed back in and the loop repeats.",
+   "The model predicts likely text. It does not look facts up, so it can sound sure and be wrong."
+  ],
+  "llm-architecture-and-optimization": [
+   "Parameters = the numbers a model learned. Large models have billions.",
+   "They take a lot of memory. Memory needed is roughly parameters times bytes per parameter.",
+   "Quantization stores numbers with fewer bits: a smaller model, a small loss in quality.",
+   "Inference = running the model to answer. GPUs do many calculations in parallel.",
+   "Long chats get expensive because the cache and the context grow."
+  ],
+  "prompt-engineering-basics": [
+   "Say clearly what the task is. A vague prompt gets a vague answer.",
+   "Give a role, the reader and the length.",
+   "Add context the model cannot know: your text, data or rules.",
+   "A few examples of the exact output teach the format better than a description.",
+   "Zero-shot = no examples, one-shot = one, few-shot = several.",
+   "Reuse a good prompt as a template with variables."
+  ],
+  "advanced-prompting-techniques": [
+   "One huge prompt often gives a messy answer. Split it into steps.",
+   "Prompt chaining: the output of one prompt becomes the input of the next.",
+   "Ask the model to check its own draft against your rules (reflection).",
+   "Pass data between steps in a clear format, for example JSON.",
+   "Small steps are easier to test and fix than one giant prompt."
+  ],
+  "structured-outputs-json": [
+   "Describe the exact shape you want: field names, types, allowed values.",
+   "Never trust the output blindly. Parse and validate every field.",
+   "Extract the JSON, check it against the schema, then repair or retry with the error message.",
+   "If it still fails, fall back to a safe default.",
+   "Only validated data reaches the rest of your app."
+  ],
+  "prompt-testing-and-security": [
+   "Build a golden test set: real inputs with the answers you expect.",
+   "Save every prompt change as a new version so you can compare and roll back.",
+   "A new prompt must not make old cases fail.",
+   "Prompt injection = text in a document or message that tries to give the model new orders.",
+   "Treat outside text as data, not instructions. Never let the model alone approve risky actions."
+  ]
+ },
+ "claude-api-tool-use": {
+  "what-is-anthropic-and-claude": [
+   "Claude = a family of AI models made by Anthropic. Use it in the apps or through the API.",
+   "In the AI Lab: Angular screen, then your Node.js server, then the Claude API.",
+   "The browser never talks to Claude directly.",
+   "The server holds the secret API key, so nobody can steal it from the browser.",
+   "Choose a model for the task by testing, not by guessing."
+  ],
+  "set-up-claude-api-key-node": [
+   "Get an API key from the Anthropic Console.",
+   "Put it in `.env`. Never commit it to Git.",
+   "The server reads the key from the environment and uses the official SDK.",
+   "Angular only talks to your server and never sees the key.",
+   "If a key leaks, delete it in the Console at once and create a new one.",
+   "Check what comes from the browser and show friendly errors."
+  ],
+  "claude-api-pricing-limits-tokens": [
+   "A token is a small piece of text. Everything sent and received is counted in tokens.",
+   "Input tokens = what you send. Output tokens = what Claude writes. They are priced differently.",
+   "Cost comes from both counts. Check the price list on the Anthropic site, it changes.",
+   "Rate limits cap requests or tokens per period. Handle them politely.",
+   "Spend less: shorter prompts, trim old history, a smaller model, cache repeated text."
+  ],
+  "claude-messages-api-explained": [
+   "Claude has no memory. Every call must carry the whole conversation.",
+   "A request has a model, `max_tokens`, a system prompt and a list of messages.",
+   "Messages alternate: user, assistant, user.",
+   "Build and clean the history on the server so a user cannot slip in fake turns.",
+   "A longer history means more tokens and a higher cost.",
+   "Read the answer from the content blocks, and check `stop_reason`."
+  ],
+  "stream-claude-responses": [
+   "Streaming shows words as they are made, so the reader does not wait for the whole answer.",
+   "The SDK streams pieces to your server. The server passes them on with Server-Sent Events.",
+   "Angular reads the stream and appends each piece to the screen.",
+   "A Stop button cancels the request, so you stop paying for text nobody wants."
+  ],
+  "claude-error-handling-retries": [
+   "Temporary errors (overload, rate limit) may succeed if you retry.",
+   "Errors caused by your own request (wrong key, bad input) will never heal. Fix them.",
+   "Exponential backoff: wait longer each time. Add jitter: a little random delay.",
+   "The SDK already retries some errors.",
+   "Set a timeout and allow cancellation.",
+   "Show a clear message. Never show raw error details or secrets."
+  ],
+  "prompt-caching-and-batch-processing": [
+   "Same long text again and again wastes tokens.",
+   "Put stable text first and mark it for caching. Put the changing question last.",
+   "Later requests with the same prefix read from the cache: cheaper and faster.",
+   "Check the usage numbers to confirm it works.",
+   "A cache expires, and changing even one early word breaks it.",
+   "If the answer can wait, the batch API is cheaper."
+  ],
+  "claude-vision-pdf-documents": [
+   "Claude can read images and PDFs as well as text.",
+   "The server checks file type and size and rejects anything unexpected.",
+   "Send the file with a clear question, often asking for JSON. Validate the answer.",
+   "Privacy first: do not keep documents longer than needed. Delete the file when done.",
+   "Check the size and quality limits in the docs."
+  ],
+  "claude-tool-use-explained": [
+   "You describe tools to Claude: a name, what it does, and its inputs.",
+   "Claude does not run anything. It replies that it wants to use a tool, with inputs.",
+   "Your server runs the tool and sends the result back as a tool result.",
+   "Claude writes the final answer from the result.",
+   "The loop stops when no more tools are needed.",
+   "Tool results are data, not orders."
+  ],
+  "safe-tool-design-and-permissions": [
+   "Claude can ask for any tool call, and it can be tricked. Your code is the last line of defence.",
+   "Rule 1: validate arguments as if a stranger typed them.",
+   "Rule 2: check the signed-in user owns the data.",
+   "Rule 3: least privilege, only the access the tool needs.",
+   "Rule 4: ask a human before risky actions such as delete or pay.",
+   "Rule 5: make actions safe to repeat.",
+   "Text returned by a tool is data. It must not change your rules."
+  ],
+  "build-resume-job-match-with-claude": [
+   "Plan the exact result first: score, matching skills, missing skills.",
+   "The server limits the size and protects the endpoint from abuse.",
+   "A forced tool makes Claude return structured JSON.",
+   "Still validate the JSON before using it.",
+   "A careful system prompt: use only facts given, do not invent.",
+   "Show the result as an estimate, not a promise."
+  ],
+  "prompt-design-for-claude": [
+   "Write the prompt like a brief for a smart new colleague: task, reason, format.",
+   "Use XML tags to separate instructions, documents and the question.",
+   "One or two examples of the output teach better than a description.",
+   "Long documents go first, the question goes last.",
+   "Run the same test cases on every new prompt version.",
+   "Do not trust one lucky answer."
+  ]
+ },
+ "rag-ai-agents-mcp": {
+  "what-is-rag": [
+   "A model only knows what it was trained on. RAG gives it your documents at question time.",
+   "Steps: question, search your documents, add the best passages to the prompt, the model answers from them, with sources.",
+   "Tell the model to answer only from the passages and to say so when they do not contain the answer.",
+   "RAG is not magic: if the search finds the wrong passages, the answer will be wrong too."
+  ],
+  "chunking-embeddings-vector-search": [
+   "Parse and clean documents first so only useful text remains.",
+   "Chunking: small enough to be focused, big enough to make sense alone.",
+   "Overlap between chunks protects the borders.",
+   "An embedding = a list of numbers that captures meaning.",
+   "Store embeddings in a vector index with the text and its source.",
+   "Embed the question the same way and find the closest chunks (cosine similarity)."
+  ],
+  "vector-databases-explained": [
+   "A vector database stores embeddings and finds the nearest ones fast.",
+   "Exact search is slower. Approximate search is faster with a small loss.",
+   "Metadata filters, for example by permission, stop one user seeing another user's documents.",
+   "Options: pgvector, Qdrant, Pinecone, Chroma. Start simple.",
+   "Put the database behind an interface so you can change it later."
+  ],
+  "advanced-rag-and-evaluation": [
+   "One search method is not enough. Hybrid search = keywords (BM25) plus meaning (vectors).",
+   "Reciprocal Rank Fusion merges two rankings into one list.",
+   "A similarity threshold lets the system say nothing relevant was found.",
+   "A reranker reads each candidate with the question and puts the best first.",
+   "Citations let the reader check the source. The server should check them.",
+   "Measure retrieval with real questions: did the right passage appear in the top results?"
+  ],
+  "ai-agents-explained": [
+   "An agent is given a goal, not a single question.",
+   "Loop: think, act (call a tool), observe, check if the goal is reached, repeat.",
+   "Put limits on the loop: a step limit and a budget.",
+   "Keep tools small and clear. Ask a person before risky actions.",
+   "Memory: short-term (this task) and long-term (saved).",
+   "Agents can fail in ways a single answer cannot."
+  ],
+  "multi-agent-systems-and-frameworks": [
+   "Multi-agent = several agents, each with a focused job and its own instructions.",
+   "A lead agent splits the task. A checker agent reviews the result.",
+   "More agents mean more cost, more delay and more that can go wrong.",
+   "Add them only when one agent is not enough.",
+   "Frameworks and the Claude Agent SDK help, but check the current docs."
+  ],
+  "what-is-mcp-model-context-protocol": [
+   "MCP = a standard way to connect an AI app to tools and data.",
+   "Three roles: host (the app with the model), client (inside the host), server (offers the tools).",
+   "A server can offer tools, resources and prompts.",
+   "The client asks what is available, then calls one.",
+   "One standard replaces a custom connection for every app and tool.",
+   "The MCP Inspector helps you debug a server."
+  ],
+  "build-an-mcp-server-node": [
+   "Install the MCP SDK and register a tool with a name, a description and an input schema.",
+   "Test it with the MCP Inspector before connecting any AI app.",
+   "The host starts your server and talks to it over a local connection.",
+   "Good tools: clear descriptions, validated inputs, small and one job each.",
+   "Two kinds of failure: a protocol error and a tool that ran but failed. Report both clearly."
+  ],
+  "mcp-security-and-integration": [
+   "An MCP server can touch real systems. Every connection is a security decision.",
+   "Least privilege: for example read-only access.",
+   "Ask the user to approve actions that change things or send data out.",
+   "Check who is asking and what they are allowed to do.",
+   "Tool results are untrusted text. They may hide instructions meant to trick the model.",
+   "Install only servers you trust."
+  ],
+  "evaluating-llm-applications": [
+   "\"It seems to work\" is not enough.",
+   "Write a golden set: real questions and what a good answer looks like.",
+   "Measure retrieval and answers separately.",
+   "Score with code rules, an AI judge or people. An AI judge has limits.",
+   "Also measure cost, speed and safety.",
+   "Run the same tests on every change."
+  ],
+  "ai-safety-privacy-and-responsible-ai": [
+   "Risk: wrong answers that sound right. Ground answers in sources and check them.",
+   "Risk: personal data leaving your system. Send only what the task needs.",
+   "Check your provider's terms and keep your promises to users.",
+   "Risk: unfairness. A person must make the final call on hiring, health and money decisions.",
+   "Risk: misuse and unsafe content.",
+   "Go through a checklist before you launch an AI feature."
+  ],
+  "running-ai-in-production": [
+   "Plan cost, reliability and monitoring from day one.",
+   "Before the model call: rate limit, budget and cache.",
+   "Use timeouts, retries and a fallback if the model is unavailable.",
+   "Monitor cost, errors, slow answers and quality. Alert when they change.",
+   "Release slowly and keep a way to roll back.",
+   "When something breaks: follow an incident plan, fix the cause, add a test."
+  ],
+  "ai-learning-roadmap-and-projects": [
+   "Basics first: what AI, machine learning and language models are.",
+   "Then prompts and testing them.",
+   "Then build with the API: messages, streaming, errors, tools.",
+   "Then your own data and actions: RAG, agents, MCP.",
+   "Practise with small projects and keep improving them.",
+   "Building is how the ideas stick."
+  ]
+ }
+}
