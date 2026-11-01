@@ -1767,6 +1767,488 @@
    }
   ]
  },
+ "ios-development-swift-swiftui-course": {
+  "what-is-ios-development-xcode-and-your-first-app": [
+   {
+    "q": "What do you need to build native iPhone apps?",
+    "options": [
+     "A Mac with Xcode",
+     "Only a web browser",
+     "Any Windows laptop"
+    ],
+    "answer": 0,
+    "explain": "Xcode only runs on macOS."
+   },
+   {
+    "q": "What is SwiftUI?",
+    "options": [
+     "A type of iPhone",
+     "A database",
+     "Apple's modern way to describe screens in code"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does a modifier such as .padding() do?",
+    "options": [
+     "Deletes the view",
+     "Starts the Simulator",
+     "Returns a changed copy of a view"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "swift-constants-variables-types-and-control-flow": [
+   {
+    "q": "Which keyword makes a value that cannot change after it is set?",
+    "options": [
+     "func",
+     "let",
+     "var"
+    ],
+    "answer": 1,
+    "explain": "Prefer let, and use var only when the value must change."
+   },
+   {
+    "q": "What does string interpolation look like in Swift?",
+    "options": [
+     "\"Hello %name\"",
+     "\"Hello \\(name)\"",
+     "\"Hello ${name}\""
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why does Swift refuse to add an Int and a Double directly?",
+    "options": [
+     "Doubles are not numbers",
+     "It cannot do maths",
+     "It is strict about types so mistakes are caught early"
+    ],
+    "answer": 2,
+    "explain": "Convert on purpose, for example Double(count)."
+   }
+  ],
+  "swift-functions-and-closures": [
+   {
+    "q": "What is a trailing closure?",
+    "options": [
+     "A closure with no code",
+     "A function that never ends",
+     "A closure written in braces after the brackets when it is the last input"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does $0 mean inside a closure?",
+    "options": [
+     "The first input of the closure",
+     "The number zero",
+     "An error"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which array helper changes every item into a new value?",
+    "options": [
+     "map",
+     "sorted",
+     "filter"
+    ],
+    "answer": 0,
+    "explain": "filter keeps items, sorted orders them, reduce folds them into one value."
+   }
+  ],
+  "swift-structs-classes-enums-and-protocols": [
+   {
+    "q": "You assign a struct to a new variable and change the copy. What happens to the original?",
+    "options": [
+     "The app crashes",
+     "It changes too",
+     "It stays the same"
+    ],
+    "answer": 2,
+    "explain": "Structs are value types, so each name has its own copy."
+   },
+   {
+    "q": "Which type is best for a value that can be only one of a few options?",
+    "options": [
+     "class",
+     "enum",
+     "closure"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a protocol?",
+    "options": [
+     "A list of properties and methods a type promises to have",
+     "A network address",
+     "A kind of loop"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "swift-optionals-and-error-handling": [
+   {
+    "q": "What does Int? mean?",
+    "options": [
+     "A very large Int",
+     "An Int that is always positive",
+     "An Int or nothing (nil)"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which is the safest way to use an optional you are not sure about?",
+    "options": [
+     "Ignore the warning",
+     "Force unwrap with !",
+     "if let or guard let"
+    ],
+    "answer": 2,
+    "explain": "Force unwrapping crashes the app if the value is nil."
+   },
+   {
+    "q": "A function marked throws is called with…",
+    "options": [
+     "await only",
+     "try inside do and catch",
+     "print"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "swiftui-views-modifiers-and-stacks": [
+   {
+    "q": "Which stack puts views side by side?",
+    "options": [
+     "ZStack",
+     "HStack",
+     "VStack"
+    ],
+    "answer": 1,
+    "explain": "VStack is vertical and ZStack layers views on top of each other."
+   },
+   {
+    "q": "Why does the order of modifiers matter?",
+    "options": [
+     "Each modifier wraps the result of the one before it",
+     "It does not matter",
+     "Swift runs them backwards by random"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does Spacer() do inside a stack?",
+    "options": [
+     "Hides the stack",
+     "Adds a divider line",
+     "Takes up the free space and pushes views apart"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "swiftui-state-binding-buttons-and-textfields": [
+   {
+    "q": "What does @State do?",
+    "options": [
+     "Saves a value on the server",
+     "Makes a value constant",
+     "Keeps a value for the view and redraws the view when it changes"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the dollar sign in $title give you?",
+    "options": [
+     "A copy of the text",
+     "A binding, a two-way link to the value",
+     "The length of the text"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A child view must change a value owned by its parent. What does it declare?",
+    "options": [
+     "@Model",
+     "@Binding",
+     "let"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "swiftui-lists-navigationstack-and-sheets": [
+   {
+    "q": "Which container gives you the title bar and back button for a stack of screens?",
+    "options": [
+     "NavigationStack",
+     "Form",
+     "ZStack"
+    ],
+    "answer": 0,
+    "explain": "NavigationView is deprecated for new code."
+   },
+   {
+    "q": "Why must list items be Identifiable?",
+    "options": [
+     "So they can be sorted",
+     "To make them faster to type",
+     "SwiftUI needs a stable id to tell rows apart"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which modifier adds swipe to delete to a ForEach?",
+    "options": [
+     ".sheet",
+     ".onDelete",
+     ".onTap"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "swiftui-forms-pickers-validation-and-animation": [
+   {
+    "q": "What does withAnimation do?",
+    "options": [
+     "Plays a video",
+     "Animates the views that change because of the state change inside it",
+     "Slows down the app"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where should the rules for a valid form be checked?",
+    "options": [
+     "Only in the keyboard type",
+     "Nowhere",
+     "On the screen and again where the data is saved"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use CaseIterable on an enum with a Picker?",
+    "options": [
+     "allCases lets ForEach build every choice",
+     "It makes the enum a class",
+     "It saves the enum to disk"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "swift-concurrency-async-await-task-and-actors": [
+   {
+    "q": "What happens at an await?",
+    "options": [
+     "The code is skipped",
+     "The whole app freezes",
+     "The code may pause while the thread stays free for other work"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which modifier starts async work when a view appears and cancels it when the view goes away?",
+    "options": [
+     ".sheet",
+     ".task",
+     ".onTapGesture"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does an actor protect?",
+    "options": [
+     "The screen from rotating",
+     "Its data from being changed by two tasks at once",
+     "The app from updates"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "urlsession-codable-and-calling-rest-apis": [
+   {
+    "q": "Does URLSession throw an error for a 404 response?",
+    "options": [
+     "No, you must check the status code yourself",
+     "Yes, always",
+     "Only on Wi-Fi"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is Codable used for?",
+    "options": [
+     "Testing the app",
+     "Drawing a button",
+     "Turning a struct into JSON and back"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where should a private API key be kept?",
+    "options": [
+     "In the app icon",
+     "On your own server, not inside the app",
+     "In the app code"
+    ],
+    "answer": 1,
+    "explain": "Anything inside an app can be extracted."
+   }
+  ],
+  "swiftdata-save-data-on-iphone": [
+   {
+    "q": "Which macro makes a class storable with SwiftData?",
+    "options": [
+     "@State",
+     "@Binding",
+     "@Model"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you read stored objects into a SwiftUI view?",
+    "options": [
+     "@AppStorage",
+     "URLSession",
+     "@Query"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the best tool for one small setting such as a currency code?",
+    "options": [
+     "A full database",
+     "A new class",
+     "@AppStorage"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "mvvm-observable-and-dependency-injection-in-swiftui": [
+   {
+    "q": "In MVVM, what does the view model hold?",
+    "options": [
+     "The app icon",
+     "The colours of the buttons",
+     "The state and logic the view needs"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is dependency injection?",
+    "options": [
+     "A way to delete code",
+     "A type receives what it needs from outside instead of creating it",
+     "A kind of error"
+    ],
+    "answer": 1,
+    "explain": "With a protocol you can inject a fake in tests and previews."
+   },
+   {
+    "q": "Which macro, for iOS 17 and up, makes a class observable by SwiftUI views?",
+    "options": [
+     "@Observable",
+     "@Published",
+     "@main"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "testing-ios-apps-swift-testing-xctest-and-xcuitest": [
+   {
+    "q": "Which Swift Testing macro marks a test function?",
+    "options": [
+     "@Query",
+     "@Test",
+     "@Model"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why give a view model a fake service in a unit test?",
+    "options": [
+     "To use the real internet",
+     "To avoid writing assertions",
+     "The test is fast and gives the same result every time"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What helps a UI test find a button reliably?",
+    "options": [
+     "A different colour",
+     "An accessibility identifier",
+     "A longer title"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "testflight-app-store-uikit-and-ios-interview-preparation": [
+   {
+    "q": "What is TestFlight used for?",
+    "options": [
+     "Sending beta builds to testers before release",
+     "Designing icons",
+     "Writing Swift code"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which Xcode step creates the build you upload to App Store Connect?",
+    "options": [
+     "File > New",
+     "Product > Clean",
+     "Product > Archive"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How can a SwiftUI view be shown inside a UIKit screen?",
+    "options": [
+     "NavigationStack",
+     "ModelContainer",
+     "UIHostingController"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
  "nodejs-express-course": {
   "what-is-nodejs-and-your-first-script": [
    {
