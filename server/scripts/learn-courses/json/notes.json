@@ -902,5 +902,127 @@
    "See where your skills can go: a higher trade, a supervisor, your own work.",
    "This course cannot promise a job. It gives practical steps."
   ]
+ },
+ "ios-development-swift-swiftui-course": {
+  "what-is-ios-development-xcode-and-your-first-app": [
+   "iOS developer = builds iPhone apps. Main tools: Swift (language), SwiftUI (screens), Xcode (the program).",
+   "UIKit = older screen toolkit, still in many company apps. Objective-C = old language, skip at the start.",
+   "You need a Mac. Xcode runs only on macOS. Free Apple ID is enough for the Simulator.",
+   "App Store publishing needs the paid Apple Developer Program. Check Apple's site for the current price.",
+   "New project: File > New > Project > iOS > App, Interface SwiftUI, Language Swift.",
+   "A modifier (.padding(), .font()) returns a changed copy of a view. Run with Cmd+R."
+  ],
+  "swift-constants-variables-types-and-control-flow": [
+   "`let` = constant, cannot change. `var` = variable, can change. Prefer `let`.",
+   "Swift works out types itself (type inference). Int + Double needs a conversion: `Double(x)`.",
+   "Interpolation: `\"Hello \\(name)\"` drops a value into text.",
+   "Array: ordered list, first item is `[0]`. Dictionary: key and value pairs, lookup gives an optional.",
+   "`if`, `else if`, `switch` (must cover every case). Ranges: `1...3` includes 3, `0..<3` stops before 3.",
+   "`for item in list` walks a list. `while` repeats while a condition is true."
+  ],
+  "swift-functions-and-closures": [
+   "Function: `func name(label input: Type) -> Result`. The label is used when you call it.",
+   "Use `_` to remove a label. A default value (`currency: String = \"$\"`) lets callers skip it.",
+   "Closure = code in braces, inputs then `in`. Trailing closure: write it after the brackets.",
+   "`map` changes each item. `filter` keeps some. `sorted` orders. `reduce` folds to one value.",
+   "`$0` and `$1` are short names for closure inputs. Use real names when the closure is long.",
+   "A function inside a struct or class is called a method."
+  ],
+  "swift-structs-classes-enums-and-protocols": [
+   "Struct = value type: assigning makes a copy. Class = reference type: assigning shares one object.",
+   "Use a struct by default. Use a class for one shared object, inheritance, or when a framework needs it.",
+   "Enum = fixed set of cases, can carry values. `CaseIterable` gives `allCases`.",
+   "Protocol = list of requirements a type promises. Identifiable (has id) and Codable (JSON) are common.",
+   "Extension = add methods or computed properties to an existing type.",
+   "A struct method that changes the struct is marked `mutating`."
+  ],
+  "swift-optionals-and-error-handling": [
+   "Optional: `Int?` is an Int or nothing (`nil`). `Int(\"abc\")` gives nil.",
+   "Safe unwrap: `if let`, `guard let` (leave early), `??` default, `?.` chaining.",
+   "`!` force unwrap crashes the app on nil. Avoid it.",
+   "Errors: a type that conforms to `Error`, usually an enum. A function that can fail is `throws`.",
+   "Call with `try` inside `do { } catch { }`. `try?` gives nil on failure. `try!` crashes.",
+   "Nothing there = optional. Something went wrong = throw an error."
+  ],
+  "swiftui-views-modifiers-and-stacks": [
+   "SwiftUI: describe the screen for the current data. It redraws when data changes.",
+   "View = struct with a `body`. Make many small views.",
+   "VStack = top to bottom. HStack = side by side. ZStack = layers. `Spacer()` takes free space.",
+   "Modifier order matters: each one wraps the one before. `.padding().background()` is not the same as the reverse.",
+   "SF Symbols: free icons, `Image(systemName: \"cart.fill\")`.",
+   "Use semantic styles (`.headline`, `.secondary`) so Dark Mode and larger text work."
+  ],
+  "swiftui-state-binding-buttons-and-textfields": [
+   "`@State private var x` = SwiftUI keeps the value and redraws the view when it changes.",
+   "You change data, never the label. State changes then the screen follows.",
+   "`$x` = binding, a two-way link. TextField and Toggle need one.",
+   "`@Binding` in a child view = reads and writes the parent's value. Only one real copy of the data.",
+   "Do not store a total as state. Compute it from other state.",
+   "`Double(\"4,5\")` is nil in some regions. `TextField(value:format:)` follows the user's region."
+  ],
+  "swiftui-lists-navigationstack-and-sheets": [
+   "Model: `Identifiable` (stable id) and `Hashable` for value-based navigation.",
+   "`List` + `ForEach(items)` makes one row per item. `.onDelete` adds swipe to delete.",
+   "`NavigationStack` = title bar and back button. `NavigationLink(value:)` + `.navigationDestination(for:)` pick the screen.",
+   "`.sheet(isPresented: $show)` slides a screen up. Close it with `@Environment(\\.dismiss)`.",
+   "Pass a closure (`onSave`) to hand the new item back to the list.",
+   "NavigationView is deprecated for new code. Use NavigationStack."
+  ],
+  "swiftui-forms-pickers-validation-and-animation": [
+   "`Form` and `Section` give the grouped settings look. `Picker`, `DatePicker`, `TextField(value:format:)`.",
+   "Picker: bind the selection, give each choice a `.tag`. Enum + CaseIterable builds the list.",
+   "Validation in small computed properties. Show errors next to the field, after the first Save tap.",
+   "Check the rules again where data is saved, not only on screen.",
+   "`withAnimation { state.toggle() }` animates the change. `.animation(_, value:)` animates one value.",
+   "Keep motion short. Respect Reduce Motion. Give custom controls an accessibility label."
+  ],
+  "swift-concurrency-async-await-task-and-actors": [
+   "Main thread draws the screen. Slow work on it freezes the app.",
+   "`async` function may wait. Call it with `await` (a possible pause). `async throws` needs `try await`.",
+   "`.task { }` on a view starts when it appears and cancels when it leaves. `Task { }` starts work from a button.",
+   "`async let a = ...` runs independent calls at the same time. Task groups: for a variable number of calls.",
+   "Actor = class that handles one request at a time, so data cannot be corrupted. Call it with `await`.",
+   "`@MainActor` = runs on the main thread. Mark classes that drive the screen."
+  ],
+  "urlsession-codable-and-calling-rest-apis": [
+   "Codable = struct to JSON and back. `CodingKeys` map different key names.",
+   "Decoding can fail. Use `try` inside `do` and `catch`.",
+   "`try await URLSession.shared.data(from: url)`. A 404 or 500 does NOT throw. Check the status (200 to 299 is success).",
+   "`URLComponents` builds a safe address. Use HTTPS only.",
+   "Show three states: loading, loaded, failed (with a retry). An enum plus `switch` models this.",
+   "Never put a private API key in the app. Call your own server. Read the real JSON before writing the model."
+  ],
+  "swiftdata-save-data-on-iphone": [
+   "SwiftData needs iOS 17+. `@Model final class Expense` makes it storable.",
+   "`.modelContainer(for: Expense.self)` on the app's scene = the database.",
+   "`@Query(sort:order:)` loads objects and the view updates by itself.",
+   "`@Environment(\\.modelContext)`: `insert(obj)`, `delete(obj)`, `save()`. Editing a property is enough to update.",
+   "`#Predicate` filters. Previews: `inMemory: true`.",
+   "`@AppStorage(\"key\")` for small settings. Changing the model later may need a migration. Money: use `Decimal` in real apps."
+  ],
+  "mvvm-observable-and-dependency-injection-in-swiftui": [
+   "MVVM: Model = data, View = screen, ViewModel = state and logic between them.",
+   "`@Observable` class (iOS 17+) replaces ObservableObject/@Published. Views redraw only for properties they read.",
+   "Mark view models `@MainActor`. `private(set)` lets only the view model change state.",
+   "Dependency injection: pass in what a type needs (a protocol), do not create it inside.",
+   "Real service in the app, fake in previews and tests.",
+   "MVC, VIPER, Clean Architecture, Coordinator, Repository, SOLID: know the names. Do not over-build small apps."
+  ],
+  "testing-ios-apps-swift-testing-xctest-and-xcuitest": [
+   "Unit test = small check of logic. UI test = drives the real app. Run all with Cmd+U.",
+   "Swift Testing (Xcode 16+): `@Test`, `#expect`, `#expect(throws:)`, `@Test(arguments:)`.",
+   "XCTest (older, still everywhere): `XCTestCase`, `testSomething()`, `XCTAssertEqual`.",
+   "Fake service in a unit test = fast, no network, same result every time.",
+   "XCUITest: `XCUIApplication()`, `.launch()`, `app.buttons[\"id\"].tap()`. Give views `.accessibilityIdentifier`.",
+   "Test logic that can go wrong. Do not test that SwiftUI draws a Text."
+  ],
+  "testflight-app-store-uikit-and-ios-interview-preparation": [
+   "Before shipping: icon, bundle id, version and build number, privacy policy, no test keys.",
+   "Publishing needs the paid Apple Developer Program. Check Apple's site for price and rules.",
+   "Product > Archive > Organizer > Distribute > App Store Connect > TestFlight testers.",
+   "Then fill the app record, screenshots, privacy answers and submit for review. Read the App Review Guidelines.",
+   "CI/CD names: Xcode Cloud, GitHub Actions, Bitrise, Fastlane. Instruments finds slow code and leaks.",
+   "UIKit still common: `UIHostingController` shows a SwiftUI view inside it. Build 3 to 4 published projects."
+  ]
  }
 }
