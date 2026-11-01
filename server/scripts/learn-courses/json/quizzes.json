@@ -1767,6 +1767,456 @@
    }
   ]
  },
+ "advanced-ios-development-course": {
+  "swift-generics-protocol-oriented-programming-and-property-wrappers": [
+   {
+    "q": "What does the constraint in func largest<T: Comparable> do?",
+    "options": [
+     "It makes the function async",
+     "It says T can be any type that can be compared",
+     "It makes T a class"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does some Repository mean?",
+    "options": [
+     "A class that inherits Repository",
+     "One specific type the compiler knows but you do not name",
+     "A box that holds any type at run time"
+    ],
+    "answer": 1,
+    "explain": "any is the box that holds different types."
+   },
+   {
+    "q": "Which of these is a property wrapper?",
+    "options": [
+     "func",
+     "@State",
+     "struct"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "advanced-swift-concurrency-taskgroup-asyncstream-sendable": [
+   {
+    "q": "In what order do TaskGroup results arrive?",
+    "options": [
+     "Alphabetical order",
+     "The order you added them",
+     "The order the tasks finish"
+    ],
+    "answer": 2,
+    "explain": "Key results by an id."
+   },
+   {
+    "q": "What does cancelling a task do?",
+    "options": [
+     "Deletes its results",
+     "Stops the task at once by force",
+     "Sets a flag the task must check"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When is a class Sendable?",
+    "options": [
+     "Always",
+     "When it is final and its stored properties are immutable",
+     "When it has a var property"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "swift-memory-management-arc-retain-cycles-and-instruments": [
+   {
+    "q": "What is a retain cycle?",
+    "options": [
+     "Objects holding strong references to each other so they are never freed",
+     "A loop that runs forever",
+     "A copy of a struct"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What happens if you use an unowned reference after its object is freed?",
+    "options": [
+     "The app crashes",
+     "It becomes nil",
+     "Nothing"
+    ],
+    "answer": 0,
+    "explain": "weak becomes nil, unowned does not."
+   },
+   {
+    "q": "Which tool in Xcode helps find leaked objects?",
+    "options": [
+     "Debug Memory Graph and Instruments Leaks",
+     "The Simulator language menu",
+     "The asset catalog"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "combine-publishers-and-async-sequences-in-ios": [
+   {
+    "q": "Why must you store the AnyCancellable from sink?",
+    "options": [
+     "If it is released the subscription ends",
+     "To make it faster",
+     "To change its type"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does debounce do?",
+    "options": [
+     "Sorts values",
+     "Waits until values stop arriving for a moment",
+     "Repeats every value twice"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which fits best for one answer later, such as a network call?",
+    "options": [
+     "A PassthroughSubject",
+     "async/await",
+     "A global variable"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "advanced-swiftui-custom-modifiers-layout-matchedgeometry-charts": [
+   {
+    "q": "When should you write a ViewModifier?",
+    "options": [
+     "Only for animations",
+     "Never",
+     "When you repeat the same chain of modifiers in several places"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does matchedGeometryEffect do?",
+    "options": [
+     "Matches colours",
+     "Animates one view into another that is the same element in a new state",
+     "Loads data"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which protocol lets you control exactly how children are measured and placed?",
+    "options": [
+     "Codable",
+     "Sendable",
+     "Layout"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "swiftui-navigationpath-router-tabview-and-deep-links": [
+   {
+    "q": "What does changing a NavigationPath from code do?",
+    "options": [
+     "Changes the app icon",
+     "Pushes or pops screens on the stack",
+     "Deletes the app data"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How should an app treat an incoming deep link?",
+    "options": [
+     "As always safe",
+     "As untrusted input to check",
+     "As a command to run at once"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which SwiftUI modifier receives a URL that opened the app?",
+    "options": [
+     ".onAppear",
+     ".onOpenURL",
+     ".task"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "uikit-for-swiftui-developers-interop-auto-layout-and-diffable-data-sources": [
+   {
+    "q": "Where should you set up subviews once in a view controller?",
+    "options": [
+     "viewDidDisappear",
+     "viewDidLoad",
+     "deinit"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does UIHostingController do?",
+    "options": [
+     "Hosts a web server",
+     "Draws a table view",
+     "Shows a SwiftUI view inside UIKit"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What must you set to false on a view you constrain in code?",
+    "options": [
+     "translatesAutoresizingMaskIntoConstraints",
+     "clipsToBounds",
+     "isHidden"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "production-networking-layer-keychain-authentication-and-sign-in-with-apple": [
+   {
+    "q": "Where should an access token be stored?",
+    "options": [
+     "In UserDefaults",
+     "In the source code",
+     "In the Keychain"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which failed request is worth retrying automatically?",
+    "options": [
+     "A 404 not found",
+     "A 400 bad request",
+     "A 503 server error"
+    ],
+    "answer": 2,
+    "explain": "Use a growing delay, and never auto-retry a payment without an idempotency key."
+   },
+   {
+    "q": "Why use an actor to refresh a token?",
+    "options": [
+     "So many callers share one refresh instead of making ten",
+     "To make the token longer",
+     "To hide the token"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "swiftdata-relationships-migrations-background-work-and-cloudkit": [
+   {
+    "q": "What does deleteRule .cascade do?",
+    "options": [
+     "Refuses to delete the parent",
+     "Keeps the related objects and clears the link",
+     "Deletes the related objects when the parent is deleted"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you import thousands of rows without freezing the screen?",
+    "options": [
+     "Use a ModelActor with its own context",
+     "Use the main context in a loop",
+     "Use a bigger phone"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which is a rule for syncing a model with iCloud?",
+    "options": [
+     "No property may have a default",
+     "Relationships must be optional",
+     "Every property must be unique"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "core-location-mapkit-notifications-and-background-tasks": [
+   {
+    "q": "When should you ask for location permission?",
+    "options": [
+     "On every launch",
+     "Never",
+     "When the feature is first needed, with a clear reason"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where does the APNs key belong?",
+    "options": [
+     "Only on your server",
+     "Inside the app",
+     "In the app icon"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Can you rely on a background task running at an exact time?",
+    "options": [
+     "Yes, always",
+     "Only on Wi-Fi",
+     "No, the system decides when or whether it runs"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "storekit-2-vision-avfoundation-and-healthkit-overview": [
+   {
+    "q": "When is a StoreKit 2 purchase treated as real?",
+    "options": [
+     "As soon as the button is tapped",
+     "When the app restarts",
+     "When the verification is .verified"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How can you test purchases without real money?",
+    "options": [
+     "You cannot",
+     "A StoreKit configuration file in Xcode",
+     "Use a friend's card"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How many times must a checked continuation be resumed?",
+    "options": [
+     "Never",
+     "Twice",
+     "Exactly once"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "modular-ios-architecture-swift-packages-clean-architecture-and-performance": [
+   {
+    "q": "In Clean Architecture, which layer should not import SwiftUI or SwiftData?",
+    "options": [
+     "Presentation",
+     "Domain",
+     "The app icon"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a composition root?",
+    "options": [
+     "A kind of package",
+     "The root view",
+     "The one place where real objects are created and injected"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do before optimising performance?",
+    "options": [
+     "Rewrite everything",
+     "Add more caches",
+     "Measure with Instruments"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "ios-ci-cd-fastlane-github-actions-xcode-cloud-and-release-engineering": [
+   {
+    "q": "What should CI do on every pull request?",
+    "options": [
+     "Publish to the App Store",
+     "Delete old branches",
+     "Build the app and run the tests on a clean machine"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a feature flag?",
+    "options": [
+     "A kind of crash report",
+     "An App Store badge",
+     "A switch that turns code on or off without a new release"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where should signing keys and API keys be kept in CI?",
+    "options": [
+     "In the README",
+     "In a public folder",
+     "In the CI secrets, never in the repository"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "senior-ios-developer-interview-preparation-and-system-design": [
+   {
+    "q": "In an offline-first app, what is the source of truth for the screen?",
+    "options": [
+     "The local database",
+     "A global variable",
+     "The server only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What makes a system design answer strong?",
+    "options": [
+     "Naming the trade-offs of your choices",
+     "Saying there is one right answer",
+     "Listing as many tools as possible"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which portfolio is stronger?",
+    "options": [
+     "Only screenshots",
+     "Ten unfinished projects",
+     "Three or four finished, well explained projects"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
  "ios-development-swift-swiftui-course": {
   "what-is-ios-development-xcode-and-your-first-app": [
    {

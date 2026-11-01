@@ -1,7 +1,7 @@
 // Role and technology roadmaps (Full Stack, Frontend, SQL Developer, React, Docker ...), built from reusable topic
 // modules so every roadmap shows the stack end to end and the best places to learn each step.
 // Safe to re-run: roadmaps that already exist (same slug) are left alone, so admin edits are never overwritten.
-//   node scripts/seedTechRoadmaps.js [--replace]
+//   node scripts/seedTechRoadmaps.js [--replace] [--only=ios-developer,swift,swiftui]
 // Learning links are well-known official or long-standing free sites. Run `node scripts/checkRoadmapLinks.js`
 // now and then to find links that have moved.
 import 'dotenv/config';
@@ -353,6 +353,46 @@ mod('publishing', 'Mobile', 'Testing and publishing an app',
   ['Read the store policies before you build, not after.'],
   [R('Google Play Console help', 'https://support.google.com/googleplay/android-developer/'), R('App Store Connect help', 'https://developer.apple.com/help/app-store-connect/')]);
 
+// -- iOS (split into steps so the roadmap shows the full path from first app to release)
+mod('swift-language', 'Mobile', 'Swift language fundamentals',
+  'Learn Swift on its own before building screens: constants and variables, types, optionals, functions and closures, structs, classes, enums, protocols and error handling. Swift is strict on purpose, so most mistakes show up before the app runs.',
+  ['let and var', 'Optionals', 'Closures', 'Structs, classes and enums', 'Protocols', 'Error handling'],
+  ['Prefer let and structs. Learn optionals well, because they are in every API.'],
+  [R('The Swift Programming Language (book)', 'https://docs.swift.org/swift-book/', 'docs'), R('Swift: Getting started', 'https://www.swift.org/getting-started/')],
+  [L('Free beginner iOS course on this site', '/learn/ios-development-swift-swiftui-course')]);
+mod('swiftui-apps', 'Mobile', 'Xcode and SwiftUI: build your first apps',
+  'Install Xcode and build screens with SwiftUI: views and modifiers, stacks, state and bindings, lists, navigation, forms and animation. You need a Mac to build native iPhone apps.',
+  ['Xcode and the Simulator', 'SwiftUI views', 'State and bindings', 'Lists and navigation', 'Forms and animation'],
+  ['Build a small app after each topic. Follow Apple\u2019s own tutorials first, they are well written.'],
+  [R('Develop in Swift tutorials', 'https://developer.apple.com/tutorials/app-dev-training/'), R('SwiftUI tutorials (Apple)', 'https://developer.apple.com/tutorials/swiftui'), R('100 Days of SwiftUI', 'https://www.hackingwithswift.com/100/swiftui', 'course'), R('Stanford CS193p', 'https://cs193p.sites.stanford.edu/', 'course')],
+  [L('Free beginner iOS course on this site', '/learn/ios-development-swift-swiftui-course')]);
+mod('ios-data-networking', 'Mobile', 'Networking, async/await and saving data',
+  'Call REST APIs with URLSession and Codable, write async code with async/await, and keep data on the phone with SwiftData (or Core Data in older projects). Store secrets in the Keychain.',
+  ['URLSession and Codable', 'async/await', 'SwiftData', 'Core Data basics', 'Keychain'],
+  ['Read the real JSON of an API before writing your model. Never put a private API key inside the app.'],
+  [R('SwiftData documentation', 'https://developer.apple.com/documentation/swiftdata'), R('URLSession documentation', 'https://developer.apple.com/documentation/foundation/urlsession'), R('Concurrency in The Swift Programming Language', 'https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/')]);
+mod('ios-architecture-testing', 'Mobile', 'Architecture and testing',
+  'Keep code clean as the app grows: MVVM with the Observable macro, dependency injection through protocols, and tests with Swift Testing, XCTest and XCUITest. Know MVC, Clean Architecture, VIPER and the Coordinator and Repository patterns by name.',
+  ['MVVM', 'Dependency injection', 'Swift Testing and XCTest', 'XCUITest', 'Clean Architecture'],
+  ['Do not over-build. Add structure when a screen has real logic or needs tests.'],
+  [R('Swift Testing documentation', 'https://developer.apple.com/documentation/testing'), R('XCTest documentation', 'https://developer.apple.com/documentation/xctest')]);
+mod('ios-advanced', 'Mobile', 'Advanced Swift and UIKit',
+  'Go beyond the basics: generics, task groups, actors and Sendable, memory and retain cycles, Combine, advanced SwiftUI, deep links, and the UIKit that older code bases still use, including Auto Layout and mixing UIKit with SwiftUI.',
+  ['Generics', 'Swift concurrency in depth', 'ARC and memory', 'Combine', 'UIKit and Auto Layout', 'Deep links'],
+  ['Learn to find leaks with Instruments. Build one small app in UIKit to understand view controllers.'],
+  [R('Apple developer videos (WWDC)', 'https://developer.apple.com/videos/', 'video'), R('Swift documentation', 'https://www.swift.org/documentation/')],
+  [L('Free advanced iOS course on this site', '/learn/advanced-ios-development-course')]);
+mod('ios-frameworks', 'Mobile', 'Apple frameworks for real features',
+  'Add device features with Apple\u2019s frameworks: Core Location and MapKit, push and local notifications, StoreKit for in-app purchases, Vision, AVFoundation, HealthKit and widgets. Each one comes with privacy rules and usage descriptions.',
+  ['Core Location and MapKit', 'Notifications', 'StoreKit 2', 'Vision', 'AVFoundation', 'HealthKit'],
+  ['Ask for permissions when a feature is needed, and always handle \u201cno\u201d.'],
+  [R('Apple developer documentation', 'https://developer.apple.com/documentation/'), R('App Store Review Guidelines', 'https://developer.apple.com/app-store/review/guidelines/')]);
+mod('ios-release-cicd', 'Mobile', 'Release: TestFlight, App Store and CI/CD',
+  'Ship the app: signing, TestFlight beta testing, App Store Connect, review and privacy information, then automate builds and tests with Xcode Cloud, GitHub Actions, Bitrise or Fastlane, and release safely with phased rollout.',
+  ['App Store Connect', 'TestFlight', 'Code signing', 'Fastlane', 'Xcode Cloud', 'CI/CD'],
+  ['Read the App Review Guidelines before you build, not after. Fees and rules change, so check Apple\u2019s site.'],
+  [R('App Store Connect help', 'https://developer.apple.com/help/app-store-connect/'), R('TestFlight overview', 'https://developer.apple.com/testflight/'), R('fastlane docs', 'https://docs.fastlane.tools/')]);
+
 // -- security
 mod('security-fundamentals', 'Security', 'Security fundamentals',
   'Learn the core ideas: confidentiality, integrity and availability, threats and risks, encryption, authentication, least privilege, and how attacks usually unfold.',
@@ -423,7 +463,7 @@ role('cyber-security-analyst', 'Cyber Security Analyst', 'CS', INFRA, ['cybersec
 role('android-developer', 'Android Developer', 'AN', FRONT, ['android', 'kotlin developer', 'mobile developer', 'android app developer'], ['android', 'kotlin', 'mobile'],
   ['cs-basics', 'git', 'kotlin', 'android-ui', 'rest-api', 'publishing', 'hired'], 'Kotlin, Jetpack Compose, local data, APIs and publishing on the Play Store.');
 role('ios-developer', 'iOS Developer', 'IOS', FRONT, ['ios', 'swift developer', 'iphone developer', 'apple developer'], ['ios', 'swift', 'swiftui', 'mobile'],
-  ['cs-basics', 'git', 'swift-ios', 'rest-api', 'publishing', 'hired'], 'Swift, SwiftUI, APIs and publishing on the App Store.');
+  ['cs-basics', 'git', 'swift-language', 'swiftui-apps', 'ios-data-networking', 'ios-architecture-testing', 'ios-advanced', 'ios-frameworks', 'ios-release-cicd', 'hired'], 'Swift, SwiftUI, networking, SwiftData, architecture, testing, advanced Swift and UIKit, Apple frameworks, and releasing on the App Store.');
 role('flutter-developer', 'Flutter Developer', 'FL', FRONT, ['flutter', 'dart developer', 'cross platform mobile developer', 'mobile app developer', 'react native developer'], ['flutter', 'dart', 'react native', 'mobile'],
   ['cs-basics', 'git', 'flutter', 'rest-api', 'publishing', 'hired'], 'Build Android and iOS apps from one codebase with Flutter, with a pointer to React Native.');
 
@@ -447,6 +487,8 @@ tech('linux', 'Linux', 'LX', ['linux administration', 'bash', 'shell scripting',
 tech('machine-learning', 'Machine Learning', 'ML', ['ml', 'ai', 'artificial intelligence', 'deep learning', 'scikit-learn'], ['machine learning', 'ai'], ['python-data', 'statistics', 'ml-basics', 'deep-learning'], 'Data skills, statistics, machine learning and deep learning.');
 tech('power-bi', 'Power BI', 'PB', ['powerbi', 'power bi developer', 'dax', 'tableau'], ['power bi', 'bi', 'dashboards'], ['excel', 'sql-basics', 'dataviz-bi', 'data-warehouse'], 'Spreadsheets, SQL, dashboards and data modelling.');
 tech('flutter', 'Flutter', 'FL', ['flutter app', 'dart'], ['flutter', 'dart'], ['git', 'flutter', 'rest-api', 'publishing'], 'Flutter and Dart, calling APIs, then testing and publishing.');
+tech('swift', 'Swift', 'SW', ['swift language', 'swift programming', 'learn swift', 'swift developer'], ['swift', 'ios'], ['cs-basics', 'git', 'swift-language', 'ios-advanced', 'ios-architecture-testing'], 'The Swift language, then advanced Swift, architecture and testing.');
+tech('swiftui', 'SwiftUI', 'SU', ['swift ui', 'swiftui developer', 'swiftui tutorial', 'xcode'], ['swiftui', 'swift', 'ios'], ['swift-language', 'swiftui-apps', 'ios-data-networking', 'ios-architecture-testing', 'ios-release-cicd'], 'Swift, SwiftUI screens, data and networking, testing and releasing an app.');
 tech('html-css', 'HTML and CSS', 'HC', ['html', 'css', 'html5', 'css3', 'web design', 'tailwind', 'responsive design'], ['html', 'css', 'web design'], ['internet', 'html', 'css', 'perf-a11y'], 'The foundations of every web page: structure, style, accessibility and speed.');
 
 const shortName = (n) => n.replace(/ Developer$| Engineer$/, '');
@@ -481,10 +523,14 @@ const build = (d, order) => {
 };
 
 const replace = process.argv.includes('--replace');
+// --only=slug1,slug2 limits the run to those roadmaps (without the -roadmap suffix), so --replace does not touch the others.
+const onlyArg = process.argv.find((a) => a.startsWith('--only='));
+const only = onlyArg ? new Set(onlyArg.slice(7).split(',').map((x) => x.trim()).filter(Boolean)) : null;
 await connectDB();
 let n = 0;
 for (const d of defs) {
   const r = build(d, n++);
+  if (only && !only.has(d.slug) && !only.has(r.slug)) continue;
   const exists = await Roadmap.exists({ slug: r.slug });
   if (exists && !replace) { console.log(`skip   ${r.slug} (already exists)`); continue; }
   await Roadmap.findOneAndUpdate({ slug: r.slug }, { ...r, published: true, modifiedAt: new Date() }, { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true });

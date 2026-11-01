@@ -1024,5 +1024,119 @@
    "CI/CD names: Xcode Cloud, GitHub Actions, Bitrise, Fastlane. Instruments finds slow code and leaks.",
    "UIKit still common: `UIHostingController` shows a SwiftUI view inside it. Build 3 to 4 published projects."
   ]
+ },
+ "advanced-ios-development-course": {
+  "swift-generics-protocol-oriented-programming-and-property-wrappers": [
+   "Generic = a placeholder type: `func largest<T: Comparable>(in: [T]) -> T?`. A constraint says what T can do.",
+   "`associatedtype` in a protocol = a placeholder the conforming type fills in (a Repository of some Item).",
+   "`some P` = one hidden type known at build time (fast). `any P` = a box for any type, decided at run time.",
+   "Protocol extension = free default behaviour. List a method in the protocol itself if types must be able to replace it.",
+   "Property wrapper = reusable get/set rules (@State, @Binding, own @Clamped). `$x` is the projected value.",
+   "Key path `\\Expense.amount` refers to a property: `map(\\.amount)`."
+  ],
+  "advanced-swift-concurrency-taskgroup-asyncstream-sendable": [
+   "`async let` = fixed number of calls. `withTaskGroup` = a list of any length. Results come in finish order, so key by id.",
+   "Cancellation is cooperative: `Task.checkCancellation()`, `Task.isCancelled`. Many Apple APIs check for you.",
+   "Search as you type: keep the Task, cancel it on each change, short sleep, check isCancelled.",
+   "`AsyncStream` makes events into a sequence for `for await`. Use `onTermination` to clean up.",
+   "Sendable = safe to pass between tasks. Structs of simple values, actors; classes must be final with immutable properties.",
+   "Actors are reentrant: state may change across an `await`. Avoid `@unchecked Sendable` as a quick fix."
+  ],
+  "swift-memory-management-arc-retain-cycles-and-instruments": [
+   "ARC counts strong references to class instances. At zero the object is freed and `deinit` runs. Structs are copied.",
+   "Retain cycle = two objects (or an object and its closure) holding each other strongly. Never freed = leak.",
+   "`weak` = not counted, becomes nil, so an optional var. `unowned` = not counted, never nil, crashes if gone.",
+   "Closure stored by self: `[weak self] in guard let self else { return }`. A closure used once (map) is safe.",
+   "Delegates should be weak. Tasks and Combine sinks that use self can also cause cycles.",
+   "Find leaks: `deinit` prints, Debug Memory Graph (purple marks), Instruments Leaks and Allocations."
+  ],
+  "combine-publishers-and-async-sequences-in-ios": [
+   "Publisher makes values over time. Operator changes them (map, filter, debounce). Subscriber receives them (sink).",
+   "`sink` returns an AnyCancellable. Store it (`store(in: &cancellables)`) or the pipe stops.",
+   "`debounce` waits for a pause. `removeDuplicates`, `filter`, `CombineLatest` for forms.",
+   "`@Published` properties are publishers: use `$title`. `assign(to: &$isValid)` feeds a published property.",
+   "`receive(on: DispatchQueue.main)` before touching the UI. `eraseToAnyPublisher()` hides the long type.",
+   "One answer later: async/await. Many values over time: Combine. Follow the code base you work in."
+  ],
+  "advanced-swiftui-custom-modifiers-layout-matchedgeometry-charts": [
+   "`ViewModifier` + a `View` extension = one reusable style (`.card()`).",
+   "`@ViewBuilder var content: Content` lets your own container accept views in braces.",
+   "`Layout` protocol (iOS 16+): `sizeThatFits` and `placeSubviews`. Try stacks and Grid first.",
+   "`matchedGeometryEffect(id:in:)` with `@Namespace` animates one element between states.",
+   "Charts: `Chart(data) { BarMark(x: .value(...), y: .value(...)) }`.",
+   "Performance: cheap bodies, stable ids, lazy containers, small views, measure with Instruments."
+  ],
+  "swiftui-navigationpath-router-tabview-and-deep-links": [
+   "`NavigationStack(path: $path)` makes the stack data. Append to push, remove to pop, empty it to go home.",
+   "One `Route: Hashable` enum lists every destination. `navigationDestination(for:)` switches on it.",
+   "A small `@Observable` Router shared with `.environment(router)` is the SwiftUI version of Coordinator.",
+   "`TabView` with a NavigationStack in each tab. Selection is a value, so a link can switch tabs.",
+   "Deep links: URL scheme (any app can claim it) or Universal Links (https, Associated Domains, a file on your site). Arrive in `.onOpenURL`.",
+   "Treat every link as untrusted input. Check scheme, host and id. Put ids, not big objects, in routes."
+  ],
+  "uikit-for-swiftui-developers-interop-auto-layout-and-diffable-data-sources": [
+   "Life cycle: viewDidLoad (once), viewWillAppear (every time), viewDidAppear, viewWillDisappear.",
+   "Auto Layout = constraints. In code set `translatesAutoresizingMaskIntoConstraints = false`, then `NSLayoutConstraint.activate`.",
+   "Table view: `dequeueReusableCell` reuses cells. Configure the whole cell each time.",
+   "Diffable data source: apply a snapshot, UIKit works out inserts, deletes and moves.",
+   "SwiftUI in UIKit: `UIHostingController`. UIKit in SwiftUI: `UIViewRepresentable` with a Coordinator.",
+   "Delegates weak, UI on the main thread. `UIView.animate` for simple changes, `CABasicAnimation` for layers."
+  ],
+  "production-networking-layer-keychain-authentication-and-sign-in-with-apple": [
+   "Describe each call as an `Endpoint` value. One `APIClient` sends them all, so view models never build URLs.",
+   "Retry only what can succeed (5xx, timeouts), with backoff (2 s, 4 s). Never auto-retry payments without an idempotency key.",
+   "A `TokenStore` actor shares one refresh task, so ten calls cause one refresh.",
+   "Secrets belong in the Keychain (`SecItemAdd`, `SecItemCopyMatching`), never in UserDefaults or code.",
+   "Face ID: `LAContext.evaluatePolicy`, plus the Face ID usage description. Allow passcode fallback.",
+   "Sign in with Apple and in-app account deletion may be required by App Review. Read the current rules. Never log tokens."
+  ],
+  "swiftdata-relationships-migrations-background-work-and-cloudkit": [
+   "`@Relationship(deleteRule:inverse:)`: cascade deletes children, nullify clears the link, deny blocks the delete.",
+   "`FetchDescriptor` with predicate, sort and `fetchLimit` for fetching outside views.",
+   "Migration: freeze each shipped model in a `VersionedSchema`, plan the steps in a `SchemaMigrationPlan`. Never edit a shipped version.",
+   "Test migrations with real data from the old app version.",
+   "`@ModelActor` gives an actor with its own context for big imports. Do not pass model objects between actors.",
+   "iCloud sync: properties need defaults or optional, relationships optional, no unique constraints. Check Apple docs."
+  ],
+  "core-location-mapkit-notifications-and-background-tasks": [
+   "Every private feature needs a usage description. Ask when needed, handle \"no\", ask for the least access.",
+   "Core Location: `CLLocationManager`, `requestWhenInUseAuthorization()`, `requestLocation()` for one fix.",
+   "SwiftUI `Map` with `Marker` and `UserAnnotation` (iOS 17). `MKLocalSearch` finds places.",
+   "Local notification: `UNUserNotificationCenter`, content plus trigger plus request. Same identifier replaces the old one.",
+   "Push: app registers, gets a device token, sends it to your server, server asks APNs. The APNs key stays on the server.",
+   "Background tasks: you ask the system, it decides when. The app must work if none ran."
+  ],
+  "storekit-2-vision-avfoundation-and-healthkit-overview": [
+   "StoreKit 2: `Product.products(for:)`, `product.purchase()`. Only a `.verified` result counts. Then `transaction.finish()`.",
+   "`Transaction.currentEntitlements` at launch, `Transaction.updates` for later changes. Offer Restore Purchases.",
+   "Test with a StoreKit configuration file, then a Sandbox account.",
+   "Vision runs on the device (text, faces, barcodes). Wrap completion handlers with `withCheckedThrowingContinuation`, resume exactly once.",
+   "AVFoundation: AVPlayer, AVAudioSession, AVCaptureSession (camera needs a usage description).",
+   "HealthKit: capability, usage description, ask per data type, strict rules on how data may be used."
+  ],
+  "modular-ios-architecture-swift-packages-clean-architecture-and-performance": [
+   "Local Swift packages split an app: faster builds, clear dependencies, parallel work. Mark shared things `public`.",
+   "Layers point inward: Presentation, Domain (rules, use cases, protocols), Data (implementations).",
+   "Domain imports no SwiftUI or SwiftData, so it is easy to test.",
+   "Composition root: one place creates real objects and injects them (`AppEnvironment.live()` and `.preview()`).",
+   "Do not modularise a small app on day one. Split when a real problem appears.",
+   "Measure first: Time Profiler, Allocations, Hangs. Keep launch light, downsample images, avoid AnyView."
+  ],
+  "ios-ci-cd-fastlane-github-actions-xcode-cloud-and-release-engineering": [
+   "CI: clean checkout, build, test, report on the pull request. Underneath it is `xcodebuild test`.",
+   "GitHub Actions needs a macOS runner (check pricing). Keep keys in Secrets.",
+   "Fastlane lanes: `run_tests`, `build_app`, `upload_to_testflight`. Use an App Store Connect API key.",
+   "Signing is the hard part: automatic signing, or `fastlane match` for teams.",
+   "Xcode Cloud (Apple), Bitrise, self-hosted Macs: all run xcodebuild.",
+   "Release safely: TestFlight, phased release, feature flags, crash reporting, a practised hotfix path."
+  ],
+  "senior-ios-developer-interview-preparation-and-system-design": [
+   "Answer in your own words with an example from your own project. Name the trade-offs.",
+   "Know: struct vs class, ARC, optionals, protocols, escaping closures, generics, actors, MainActor, state tools.",
+   "System design steps: clarify, local-first, sync queue, conflicts, server API, auth, push, error states, testing and rollout.",
+   "Offline-first: the local database is the source of truth, changes go in a queue, sync later with retries.",
+   "Take-home: small working version first, handle loading, empty and error states, write a README.",
+   "Three or four finished projects with a README, one hard decision explained, tests and CI."
+  ]
  }
 }
