@@ -4,7 +4,8 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { invalidateMenu } from '../../utils/menu'
 import { MENU_ICONS } from '../../utils/menuIcons'
-import { LuEye, LuEyeOff, LuArrowUp, LuArrowDown, LuPencil, LuTrash2, LuCheck, LuX, LuRotateCcw } from 'react-icons/lu'
+import { LuArrowUp, LuArrowDown, LuPencil, LuTrash2, LuCheck, LuX, LuRotateCcw } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const LOCATIONS = [
   { id: 'header', label: 'Top menu', hint: 'The navigation bar at the top of every public page (and the mobile menu).' },
@@ -136,9 +137,7 @@ const AdminMenus = () => {
                   <p className='text-sm text-slate-800 truncate'>{item.icon && MENU_ICONS[item.icon] && React.createElement(MENU_ICONS[item.icon], { className: 'inline size-3.5 mr-1.5 -mt-0.5 text-brand-600' })}{item.label} {!item.visible && <span className='text-xs text-amber-600'>(hidden)</span>}</p>
                   <p className='text-xs text-slate-400 truncate'>{item.url}{item.parent ? ` · under ${parentName(item.parent) || 'a link'}` : ''}{item.newTab ? ' · new tab' : ''}{item.key ? ' · built-in' : ''}</p>
                 </div>
-                <button onClick={() => toggle(item)} className='p-2 rounded-md hover:bg-slate-100' title={item.visible ? 'Hide from visitors' : 'Show to visitors'}>
-                  {item.visible ? <LuEye className='size-4 text-slate-600' /> : <LuEyeOff className='size-4 text-amber-600' />}
-                </button>
+                <PublishSwitch on={item.visible} labelOn='Shown' labelOff='Hidden' name={item.label} onChange={() => toggle(item)} />
                 <button onClick={() => move(i, -1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move up'><LuArrowUp className='size-4 text-slate-500' /></button>
                 <button onClick={() => move(i, 1)} className='p-2 rounded-md hover:bg-slate-100 disabled:opacity-30' title='Move down'><LuArrowDown className='size-4 text-slate-500' /></button>
                 <button onClick={() => setEditing({ id: item._id, label: item.label, url: item.url, newTab: item.newTab, parent: item.parent || '', icon: item.icon || '', description: item.description || '' })} className='p-2 rounded-md hover:bg-slate-100' title='Edit'><LuPencil className='size-4 text-slate-600' /></button>

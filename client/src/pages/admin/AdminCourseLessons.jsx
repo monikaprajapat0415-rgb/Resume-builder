@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPlus, LuPencil, LuTrash2, LuArrowUp, LuArrowDown, LuExternalLink, LuArrowLeft } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminCourseLessons = () => {
   const { id } = useParams()
@@ -87,9 +88,7 @@ const AdminCourseLessons = () => {
               </div>
               <input value={l.section || ''} onChange={(e) => setSection(i, e.target.value)} list='lesson-sections' placeholder='Section (optional)' aria-label={`Section for ${l.title}`}
                 className='w-44 px-2.5 py-1.5 border border-slate-200 rounded-md text-xs focus:outline-none focus:ring-1 focus:ring-brand-300' />
-              <button type='button' onClick={() => togglePublish(l)} className={`text-xs font-medium px-2.5 py-1 rounded-full ${l.published ? 'bg-brand-100 text-brand-700' : 'bg-slate-100 text-slate-500'}`} title='Click to switch between published and draft'>
-                {l.published ? 'Published' : 'Draft'}
-              </button>
+              <PublishSwitch on={l.published} name={l.title} onChange={() => togglePublish(l)} />
               <div className='flex items-center'>
                 <Link to={`/admin/learn/lessons/${l._id}/edit`} className='p-2 rounded hover:bg-slate-100' title='Edit'><LuPencil className='size-4 text-slate-500' /></Link>
                 {l.published && course.published && <a href={`/learn/${course.slug}/${l.slug}`} target='_blank' rel='noopener noreferrer' className='p-2 rounded hover:bg-slate-100' title='View live'><LuExternalLink className='size-4 text-slate-500' /></a>}

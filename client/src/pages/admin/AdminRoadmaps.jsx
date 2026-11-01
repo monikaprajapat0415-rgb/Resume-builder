@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminRoadmaps = () => {
   const { token } = useSelector((s) => s.auth)
@@ -18,6 +19,14 @@ const AdminRoadmaps = () => {
       .catch((e) => toast.error(e.response?.data?.message || 'Could not load roadmaps.'))
       .finally(() => setLoading(false))
   }, [])
+
+  const setPublished = async (r, published) => {
+    try {
+      await api.put(`/api/admin/roadmaps/${r._id}`, { published }, auth)
+      setRows((prev) => prev.map((x) => (x._id === r._id ? { ...x, published } : x)))
+      toast.success(published ? 'Roadmap published.' : 'Roadmap unpublished.')
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not change this roadmap.') }
+  }
 
   const remove = async (r) => {
     if (!window.confirm(`Delete the roadmap "${r.title}"? This can't be undone.`)) return
@@ -45,7 +54,7 @@ const AdminRoadmaps = () => {
                 <p className='font-medium text-slate-800 truncate'>{r.title}</p>
                 <p className='text-xs text-slate-400'>{r.audience || 'No group'} · {r.stepCount} steps · /roadmaps/{r.slug}</p>
               </div>
-              <span className={`text-xs px-2.5 py-1 rounded-full ${r.published ? 'bg-green-50 text-green-700' : 'bg-slate-100 text-slate-500'}`}>{r.published ? 'Published' : 'Draft'}</span>
+              <PublishSwitch on={r.published} name={r.title} onChange={(v) => setPublished(r, v)} />
               {r.published && <a href={`/roadmaps/${r.slug}`} target='_blank' rel='noreferrer' className='p-2 text-slate-400 hover:text-brand-600' aria-label='View'><LuExternalLink className='size-4' /></a>}
               <button onClick={() => navigate(`/admin/roadmaps/${r._id}/edit`)} className='p-2 text-slate-400 hover:text-brand-600' aria-label='Edit'><LuPencil className='size-4' /></button>
               <button onClick={() => remove(r)} className='p-2 text-slate-400 hover:text-red-600' aria-label='Delete'><LuTrash2 className='size-4' /></button>

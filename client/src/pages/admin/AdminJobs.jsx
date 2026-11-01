@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { LuPlay, LuTrash2, LuRefreshCw, LuPlus, LuCircleAlert, LuCircleCheck } from 'react-icons/lu'
 import api from '../../configs/api'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const TYPES = [
   ['greenhouse', 'Greenhouse', 'Board name from boards.greenhouse.io/<name>', true],
@@ -86,7 +87,7 @@ const AdminJobs = () => {
                   {s.lastStatus === 'error' && <p className='text-xs text-red-600 max-w-xs'>{s.lastError}</p>}
                 </td>
                 <td className='px-4 py-3'>
-                  <input type='checkbox' checked={s.enabled} aria-label={`Enable ${s.company || s.label}`} onChange={(e) => call('t' + s._id, () => api.patch(`/api/admin/job-sources/${s._id}`, { enabled: e.target.checked }, headers))} />
+                  <PublishSwitch on={s.enabled} labelOn='On' labelOff='Off' name={s.company || s.label} onChange={(v) => call('t' + s._id, () => api.patch(`/api/admin/job-sources/${s._id}`, { enabled: v }, headers))} />
                 </td>
                 <td className='px-4 py-3'>
                   <div className='flex justify-end gap-1'>

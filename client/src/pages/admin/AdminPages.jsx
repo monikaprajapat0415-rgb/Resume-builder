@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPencil, LuTrash2, LuExternalLink, LuPlus } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminPages = () => {
   const { token } = useSelector(state => state.auth)
@@ -15,6 +16,14 @@ const AdminPages = () => {
   useEffect(() => { load() }, [])
 
   const urlOf = (p) => (p.system ? `/${p.slug}` : `/p/${p.slug}`)
+
+  const setPublished = async (p, published) => {
+    try {
+      await api.put(`/api/admin/pages/${p._id}`, { published }, headers)
+      setPages((prev) => prev.map((x) => (x._id === p._id ? { ...x, published } : x)))
+      toast.success(published ? 'Page published.' : 'Page unpublished. Its address now shows not found.')
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not change this page.') }
+  }
 
   const remove = async (p) => {
     if (!window.confirm(`Delete the page "${p.title}"? Its address will stop working.`)) return
@@ -40,6 +49,7 @@ const AdminPages = () => {
               </p>
               <p className='text-xs text-slate-400'>{urlOf(p)}</p>
             </div>
+            {p.system ? <span className='text-xs text-slate-400 w-[6.5rem] text-right shrink-0' title='Built-in pages always stay live'>Always live</span> : <PublishSwitch on={p.published} name={p.title} onChange={(v) => setPublished(p, v)} />}
             <a href={urlOf(p)} target='_blank' rel='noreferrer' className='p-2 rounded-md hover:bg-slate-100' title='View page'><LuExternalLink className='size-4 text-slate-600' /></a>
             <Link to={`/admin/pages/${p._id}/edit`} className='p-2 rounded-md hover:bg-slate-100' title='Edit'><LuPencil className='size-4 text-slate-600' /></Link>
             {!p.system && <button onClick={() => remove(p)} className='p-2 rounded-md hover:bg-slate-100' title='Delete'><LuTrash2 className='size-4 text-red-500' /></button>}
