@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink, LuListOrdered, LuUpload } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminCourses = () => {
   const { token } = useSelector((s) => s.auth)
@@ -45,6 +46,14 @@ const AdminCourses = () => {
       .finally(() => setLoading(false))
   }, [])
 
+  const setPublished = async (c, published) => {
+    try {
+      await api.put(`/api/admin/learn/courses/${c._id}`, { published }, auth)
+      setCourses((prev) => prev.map((x) => (x._id === c._id ? { ...x, published } : x)))
+      toast.success(published ? 'Course published.' : 'Course unpublished. Its lessons are hidden too.')
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not change this course.') }
+  }
+
   const remove = async (c) => {
     if (!window.confirm(`Delete the course "${c.title}" and its ${c.lessonCount} lesson(s)? This can't be undone.`)) return
     try {
@@ -83,9 +92,8 @@ const AdminCourses = () => {
                   <Link to={`/admin/learn/${c._id}`} className='font-semibold text-slate-800 hover:text-brand-700'>{c.title}</Link>
                   <p className='text-xs text-slate-500 mt-0.5'>/learn/{c.slug} · {c.level}{c.topic ? ` · ${c.topic}` : ''} · {c.publishedLessons}/{c.lessonCount} lessons published</p>
                 </div>
-                <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${live ? 'bg-brand-100 text-brand-700' : c.published ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-500'}`}>
-                  {live ? 'Live' : c.published ? 'Published, no lessons yet' : 'Draft'}
-                </span>
+                {c.published && !live && <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 text-amber-700'>No published lessons yet</span>}
+                <PublishSwitch on={c.published} name={c.title} onChange={(v) => setPublished(c, v)} />
                 <div className='flex items-center gap-1'>
                   <Link to={`/admin/learn/${c._id}`} className='inline-flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-md border border-slate-200 hover:bg-slate-50'><LuListOrdered className='size-3.5' />Lessons</Link>
                   <Link to={`/admin/learn/${c._id}/edit`} className='p-2 rounded hover:bg-slate-100' title='Edit course'><LuPencil className='size-4 text-slate-500' /></Link>

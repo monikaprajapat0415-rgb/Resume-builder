@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { analyzePost } from '../../utils/seoAnalyze'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminBlogList = () => {
   const { token } = useSelector(state => state.auth)
@@ -38,6 +39,14 @@ const AdminBlogList = () => {
     (!q || p.title.toLowerCase().includes(q.toLowerCase())) &&
     (status === 'all' || (status === 'published') === p.published) &&
     (!cat || p.category === cat))
+
+  const setPublished = async (post, published) => {
+    try {
+      await api.put(`/api/admin/blogs/${post._id}`, { published }, { headers: { Authorization: token } })
+      setPosts((prev) => prev.map((p) => (p._id === post._id ? { ...p, published } : p)))
+      toast.success(published ? 'Published. It is now visible and in the sitemap.' : 'Unpublished. It is no longer visible to visitors.')
+    } catch (error) { toast.error(error.response?.data?.message || 'Could not change this post.') }
+  }
 
   const remove = async (id, title) => {
     const confirmed = window.confirm(`Delete "${title}"? This can't be undone.`)
@@ -100,9 +109,7 @@ const AdminBlogList = () => {
                   <td className='px-4 py-3 text-slate-800 max-w-sm truncate'>{post.title}</td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{nameOf(post.category)}</td>
                   <td className='px-4 py-3'>
-                    <span className={`px-2 py-0.5 rounded-full text-xs ${post.published ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
-                      {post.published ? 'Published' : 'Draft'}
-                    </span>
+                    <PublishSwitch on={post.published} name={post.title} onChange={(v) => setPublished(post, v)} />
                   </td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{new Date(post.date).toLocaleDateString()}</td>
                   <td className='px-4 py-3 whitespace-nowrap'>

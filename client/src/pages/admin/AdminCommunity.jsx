@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuCheck, LuX, LuTrash2, LuPencil, LuPlus, LuFlag } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300'
 const TABS = [['answers', 'Answers'], ['salaries', 'Salary reports'], ['reviews', 'Company reviews'], ['questions', 'Interview questions']]
@@ -94,6 +95,13 @@ const Questions = ({ auth }) => {
       toast.success('Saved.'); setForm(null); load()
     } catch (err) { toast.error(err.response?.data?.message || 'Could not save.') }
   }
+  const setPublished = async (q, published) => {
+    try {
+      await api.put(`/api/admin/community/questions/${q._id}`, { published }, auth)
+      setRows((prev) => prev.map((x) => (x._id === q._id ? { ...x, published } : x)))
+      toast.success(published ? 'Question published.' : 'Question hidden. Its page now shows not found.')
+    } catch (err) { toast.error(err.response?.data?.message || 'Could not change this question.') }
+  }
   const del = async (q) => {
     if (!window.confirm(`Delete "${q.question}" and all answers shared on it?`)) return
     try { await api.delete(`/api/admin/community/questions/${q._id}`, auth); toast.success('Deleted.'); load() } catch (err) { toast.error(err.response?.data?.message || 'Failed.') }
@@ -125,7 +133,8 @@ const Questions = ({ auth }) => {
         <div className='divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
           {rows.map((q) => (
             <div key={q._id} className='flex items-center gap-3 px-4 py-3'>
-              <div className='min-w-0 flex-1'><p className='text-sm text-slate-800 truncate'>{q.question} {!q.published && <span className='text-xs text-amber-600'>(draft)</span>}</p><p className='text-xs text-slate-400'>{q.category} · {q.level} · {q.answerCount} answers · {q.views} views</p></div>
+              <div className='min-w-0 flex-1'><p className='text-sm text-slate-800 truncate'>{q.question}</p><p className='text-xs text-slate-400'>{q.category} · {q.level} · {q.answerCount} answers · {q.views} views</p></div>
+              <PublishSwitch on={q.published} name={q.question} onChange={(v) => setPublished(q, v)} />
               <button onClick={() => open(q)} className='p-2 hover:bg-slate-100 rounded-md' title='Edit'><LuPencil className='size-4 text-slate-600' /></button>
               <button onClick={() => del(q)} className='p-2 hover:bg-slate-100 rounded-md' title='Delete'><LuTrash2 className='size-4 text-red-500' /></button>
             </div>

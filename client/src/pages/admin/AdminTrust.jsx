@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { invalidateHomeTrust } from '../../utils/homeTrust'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300 focus:border-brand-400'
 const EMPTY_REVIEW = { name: '', role: '', company: '', location: '', quote: '', rating: 5, reviewerType: 'job seeker', logoUrl: '', permission: false, proof: '', published: false, order: 0 }
@@ -150,7 +151,7 @@ const AdminTrust = () => {
               {it.kind === 'client' && it.url && <p className='text-xs text-slate-400 mt-1 truncate'>{it.url}</p>}
             </div>
             <div className='flex gap-2 text-xs'>
-              <button type='button' onClick={() => togglePublish(it)} className='px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>{it.published ? 'Hide' : 'Show'}</button>
+              <PublishSwitch on={it.published} labelOn='Shown' labelOff='Hidden' name={it.name} onChange={() => togglePublish(it)} />
               <button type='button' onClick={() => setForm({ ...it })} className='px-3 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>Edit</button>
               <button type='button' onClick={() => remove(it)} className='px-3 py-1.5 border border-red-200 text-red-600 rounded-md hover:bg-red-50'>Delete</button>
             </div>

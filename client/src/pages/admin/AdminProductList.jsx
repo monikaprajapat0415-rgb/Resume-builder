@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { formatPrice } from '../../utils/inlineText'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink, LuStar } from 'react-icons/lu'
+import PublishSwitch from '../../components/admin/PublishSwitch'
 
 const AdminProductList = () => {
   const { token } = useSelector(state => state.auth)
@@ -75,9 +76,7 @@ const AdminProductList = () => {
                   </td>
                   <td className='px-4 py-3 text-slate-600 whitespace-nowrap'>{p.price > 0 ? formatPrice(p.price, p.currency) : 'Free'}</td>
                   <td className='px-4 py-3'>
-                    <button onClick={() => patch(p, { published: !p.published })} title='Click to toggle' className={`px-2 py-0.5 rounded-full text-xs ${p.published ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
-                      {p.published ? 'Published' : 'Draft'}
-                    </button>
+                    <PublishSwitch on={p.published} name={p.title} onChange={(v) => patch(p, { published: v })} />
                   </td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{p.views || 0} / {p.clicks || 0}</td>
                   <td className='px-4 py-3 text-right'>
