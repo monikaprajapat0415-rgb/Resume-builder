@@ -93,12 +93,12 @@
 .hand, .hand * { font-family: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive; }
 
 
-/* One shared page frame: header, Back row and every page use it, so left and right edges line up everywhere. */
+/* One shared page frame (full width): header, Back row and every page use it, so left and right edges line up everywhere. */
 @utility site-w {
   width: 100%;
-  max-width: var(--container-page);
+  /* full width: the page uses the whole screen, only a small gutter at each side */
   margin-inline: auto;
   padding-inline: 1rem;
   @media (min-width: 640px) { padding-inline: 1.5rem; }
-  @media (min-width: 1024px) { padding-inline: 2rem; }
+  @media (min-width: 1280px) { padding-inline: 2.5rem; }
 }
