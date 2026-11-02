@@ -15,6 +15,7 @@ import { useToolSettings } from '../../utils/toolSettings';
 import { hiddenToolPaths } from '../../content/toolsHub';
 import { useI18n } from '../../i18n/I18nProvider';
 import CountrySelect from '../../i18n/CountrySelect';
+import FullscreenButton from '../FullscreenButton';
 
 // Dropdown row: optional icon tile, label and one-line description.
 const SubLabel = ({ c, dark, compact }) => {
@@ -103,7 +104,10 @@ export default function NavBar() {
                     </button>
                   </div>
                   {/* Country and language: right under the Login / Dashboard buttons (on small screens it is inside the menu) */}
-                  <CountrySelect className={`${wide ? 'hidden 2xl:flex' : 'hidden xl:flex'} justify-end`} />
+                  <div className={`${wide ? 'hidden 2xl:flex' : 'hidden xl:flex'} items-center justify-end gap-2`}>
+                    <FullscreenButton className="!inline-flex" />
+                    <CountrySelect />
+                  </div>
                 </div>
 
                 <button onClick={() => setMenuOpen(prev => !prev)} className={`${wide ? '2xl:hidden' : 'xl:hidden'} active:scale-90 transition`} >
@@ -130,7 +134,7 @@ export default function NavBar() {
                 ) : (
                     <MenuLink key={item._id} item={item} className="text-white" onNavigate={() => setMenuOpen(false)} />
                 ))}
-                <div className="w-72 max-w-full bg-white rounded-xl p-3 text-slate-800 text-sm"><p className="text-xs text-slate-500 mb-2">Country and language</p><CountrySelect className="[&>div]:w-full" /></div>
+                <div className="w-72 max-w-full bg-white rounded-xl p-3 text-slate-800 text-sm"><p className="text-xs text-slate-500 mb-2">Country and language</p><CountrySelect className="[&>div]:w-full" /><FullscreenButton className="!inline-flex mt-3" /></div>
                 <Link
                     to="/app?state=login"
                     className="text-white"

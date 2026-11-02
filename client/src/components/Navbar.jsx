@@ -4,6 +4,7 @@ import Logo from './Logo';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { logout } from '../app/features/authSlice';
+import FullscreenButton from './FullscreenButton';
 const Navbar = () => {
     const {user} = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Navbar = () => {
     }
   return (
     <div className='shadow bg-white'>
-        <nav className='flex items-center justify-between max-w-7xl mx-auto py-3.5 px-4 text-slate-800 transition-all'>
+        <nav className='site-w flex items-center justify-between py-3.5 text-slate-800 transition-all'>
         <Link to="/">
         <Logo className='h-11 w-auto' />
         </Link>
@@ -28,6 +29,7 @@ const Navbar = () => {
             <Link to='/learn' className='font-medium hover:text-brand-600 transition'>Learn</Link>
             <Link to='/jobs' className='font-medium hover:text-brand-600 transition'>Jobs</Link>
             <Link to='/blog' className='font-medium hover:text-brand-600 transition max-sm:hidden'>Blog</Link>
+            <FullscreenButton />
             <p className='max-md:hidden'>Hi, {user?.name}</p>
             <button className='bg-white hover:bg-slate-50 border border-gray-300 px-7 py-1.5 rounded-full active:scale-95 transition-all' onClick={handleLogout}>
                 Logout

@@ -5,7 +5,7 @@ import { LuCircleCheck, LuCircleAlert, LuX, LuUndo2 } from 'react-icons/lu'
 // The resume is a normal resume from here on, so everything can be edited.
 export default function AtsFixNotice({ applied = [], needsYou = [], onUndo, onClose }) {
   return (
-    <div className='max-w-7xl mx-auto px-4 pb-4 print:hidden' data-no-i18n>
+    <div className='site-w pb-4 print:hidden' data-no-i18n>
       <section aria-label='ATS fixes applied' className='relative rounded-xl border border-green-200 bg-green-50/60 p-4 sm:p-5'>
         <button type='button' onClick={onClose} aria-label='Close this notice' className='absolute top-3 right-3 text-slate-400 hover:text-slate-700'><LuX className='size-5' /></button>
         <p className='font-semibold text-slate-800 pr-8'>We applied the ATS fixes. Please read through and edit anything you like.</p>
