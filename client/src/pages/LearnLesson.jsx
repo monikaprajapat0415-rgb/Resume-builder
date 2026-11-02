@@ -14,7 +14,7 @@ import ReadingOptions, { useReadingPrefs } from '../components/ReadingOptions'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
 import { useCourseProgress, countDone } from '../utils/learnProgress'
-import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu, LuCheck, LuBookmark, LuBookmarkCheck, LuAward } from 'react-icons/lu'
+import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu, LuCheck, LuBookmark, LuBookmarkCheck, LuAward, LuPanelLeftClose, LuPanelLeftOpen } from 'react-icons/lu'
 
 // Download through the same API client the page uses for its data, so the request always reaches the API
 // (a plain relative link can land on a host that only serves the web app and saves index.html instead).
@@ -80,6 +80,9 @@ const LearnLesson = () => {
   const { visit } = progress
   const [result, setResult] = useState({ key: '', data: null, state: 'loading' })
   const [menuOpen, setMenuOpen] = useState(false)
+  // Desktop: the reader can fold the whole lesson list away to the left for more room. Remembered on this device.
+  const [listHidden, setListHidden] = useState(() => { try { return localStorage.getItem('prime_learn_list_hidden') === '1' } catch { return false } })
+  const toggleList = () => setListHidden((v) => { const n = !v; try { localStorage.setItem('prime_learn_list_hidden', n ? '1' : '0') } catch { /* private mode: it just will not be remembered */ } return n })
   const [active, setActive] = useState('')
   useEffect(() => { if (result.state === 'ok' && result.key === key) visit(lessonSlug) }, [result, key, lessonSlug, visit])
 
@@ -146,9 +149,13 @@ const LearnLesson = () => {
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/learn/${course.slug}/${lesson.slug}`} canonical={seo.canonical} robots={seo.robots}
         image={seo.image} imageAlt={seo.imageAlt} type='article' article={seo.article} structuredData={data.jsonLd} />
       <NavBar />
-      <div className='site-w py-8 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem] lg:gap-8 xl:gap-12'>
-        <aside className='lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto mb-6 lg:mb-0'>
-          <Link to={`/learn/${course.slug}`} className='block font-semibold text-slate-800 hover:text-brand-700 mb-2 px-2'>{course.title}</Link>
+      <div className={`site-w py-8 lg:grid lg:gap-8 xl:gap-12 ${listHidden ? 'lg:grid-cols-[minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_15rem]' : 'lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem]'}`}>
+        <aside id='lesson-list' className={`${listHidden ? 'lg:hidden' : ''} lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto mb-6 lg:mb-0`}>
+          <div className='flex items-start justify-between gap-2 mb-2'>
+            <Link to={`/learn/${course.slug}`} className='block font-semibold text-slate-800 hover:text-brand-700 px-2'>{course.title}</Link>
+            <button type='button' onClick={toggleList} aria-controls='lesson-list' aria-label='Hide the lesson list' title='Hide the lesson list' data-testid='hide-list'
+              className='hidden lg:inline-flex shrink-0 rounded-lg border border-slate-200 bg-white p-1.5 text-slate-600 hover:bg-slate-50'><LuPanelLeftClose className='size-4' aria-hidden='true' /></button>
+          </div>
           <button type='button' onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}
             className='lg:hidden w-full flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600'>
             <span className='inline-flex items-center gap-2'><LuMenu className='size-4' />All lessons ({data.position}/{data.total})</span>
@@ -176,6 +183,10 @@ const LearnLesson = () => {
             <span className='mx-1.5 text-slate-300'>·</span>Updated <time dateTime={new Date(lesson.modifiedAt).toISOString()}>{fmtDate(lesson.modifiedAt)}</time>
           </p>
           <div className='flex flex-wrap items-center gap-2' data-no-i18n>
+            {listHidden && (
+              <button type='button' onClick={toggleList} aria-controls='lesson-list' data-testid='show-list'
+                className='hidden lg:inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 hover:bg-slate-50'><LuPanelLeftOpen className='size-4' aria-hidden='true' />Show lesson list</button>
+            )}
             <button type='button' onClick={() => progress.toggleMark(lesson.slug)} aria-pressed={isMarked}
               className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm ${isMarked ? 'border-amber-300 bg-amber-50 text-amber-800' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'}`}>
               {isMarked ? <LuBookmarkCheck className='size-4' aria-hidden='true' /> : <LuBookmark className='size-4' aria-hidden='true' />}{isMarked ? 'Saved' : 'Save'}
