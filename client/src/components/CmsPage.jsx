@@ -25,14 +25,14 @@ const CmsPage = ({ slug, fallback, seoPath, onMissing }) => {
   const { page } = state
   const updated = page.updatedAt ? new Date(page.updatedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : null
   return (
-    <section className='bg-gray-50 py-14 px-4 min-h-[60vh]'>
+    <section className='bg-gray-50 py-14 min-h-[60vh]'><div className='site-w'>
       <SEO title={page.title} description={page.description || undefined} path={seoPath || `/p/${page.slug}`} />
-      <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-2'>
+      <div className='w-full bg-white shadow-lg rounded-2xl p-8 space-y-2'>
         <h1 className='text-3xl font-bold text-center'>{page.title}</h1>
         {updated && <p className='text-gray-500 text-sm text-center mb-4'>Last updated: {updated}</p>}
         <BlockRenderer blocks={page.content || []} variant='page' />
       </div>
-    </section>
+    </div></section>
   )
 }
 

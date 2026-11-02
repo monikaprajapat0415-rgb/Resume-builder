@@ -124,6 +124,10 @@
         {
           "q": "What counts as the value of benefits?",
           "a": "Only count benefits you would otherwise pay for yourself, such as health cover, meals or transport. Leave out anything you would not use."
+        },
+        {
+          "q": "Can I ask for more money after an offer?",
+          "a": "Often you can ask, politely and with reasons. Many employers expect some discussion, but not all will change the offer, and rules differ by country, company and role. Decide beforehand what matters to you (pay, start date, holiday, remote days, training), ask for it once in writing, and be ready to accept the answer. This page gives a short checklist and a message you can adapt. It does not promise any result."
         }
       ]
     },
@@ -191,6 +195,74 @@
         {
           "q": "Can I use this for interview preparation?",
           "a": "Yes. It includes starter versions of common coding exercises. Always try writing the solution yourself first, then compare it with the model answers in the interview questions bank."
+        }
+      ]
+    },
+    {
+      "slug": "timed-interview-round",
+      "path": "/products/timed-interview-round",
+      "flag": "timedRoundTool",
+      "name": "Timed Interview Round",
+      "title": "Free Timed Interview Practice Round",
+      "description": "Practise interview questions against a countdown. Pick a topic, answer in your own words, reveal the model answer and rate yourself. Free account, no AI, nothing is saved.",
+      "h1": "Free timed interview practice round",
+      "intro": "Real interviews have a clock. Choose a topic, a level, how many questions and how long you get for each one. Answer in your own words or aloud before the time runs out, then read the model answer and rate yourself. Questions come from our interview question bank, so there is no AI and no daily limit.",
+      "needsLogin": true,
+      "ai": false,
+      "steps": [
+        "Choose a topic, a level, the number of questions and the time for each answer.",
+        "Answer before the timer ends, in notes or aloud. When it ends the model answer opens.",
+        "Rate yourself, finish the round and open the questions you want to review."
+      ],
+      "note": "Your notes stay on this screen and are not saved or sent. The rating is your own judgement, not a score from us. Model answers are one good way to answer, not the only one, and we cannot know what any particular employer will ask.",
+      "faqs": [
+        {
+          "q": "Does this use AI?",
+          "a": "No. Questions and model answers come from our interview question bank. You judge your own answer by comparing it with the model answer."
+        },
+        {
+          "q": "Are these the questions I will be asked?",
+          "a": "We cannot know what any employer will ask. The bank covers common, current topics, and the practice helps you explain things clearly under time pressure."
+        },
+        {
+          "q": "Is anything saved?",
+          "a": "No. Your notes and ratings exist only on the page while you use it. Close the page and they are gone."
+        },
+        {
+          "q": "Where can I get written feedback on my answer?",
+          "a": "The Mock Interview Practice tool gives written feedback against a model answer, using AI and a daily limit."
+        }
+      ]
+    },
+    {
+      "slug": "swift-code-reader",
+      "path": "/products/swift-code-reader",
+      "flag": "swiftReaderTool",
+      "name": "Swift Code Reader",
+      "title": "Free Swift Code Reading Practice: Predict the Output",
+      "description": "Read short Swift snippets and predict what they print. Practise optionals, structs and classes, closures, defer, errors and more, with a clear explanation for each answer. Free account.",
+      "h1": "Swift code reading practice: predict the output",
+      "intro": "Reading code is a skill that interviews test. Each question shows a short Swift snippet. Pick what it prints, then read why. Topics include let and var, optionals, structs versus classes, closures, collections, defer and error handling. Real Swift cannot run in a browser, so this tool never runs code: you can confirm any answer in Xcode or a Swift Playground.",
+      "needsLogin": true,
+      "ai": false,
+      "steps": [
+        "Read the snippet and decide what it prints before you look at the choices.",
+        "Pick an answer and read the explanation, whether you were right or wrong.",
+        "Finish the set, then try a new one. Run any snippet in Xcode to confirm."
+      ],
+      "note": "The snippets are short and use only the Swift standard library. Each answer was worked out by hand, not by running the code here. If you think an answer is wrong, run it in Xcode and tell us through the contact page.",
+      "faqs": [
+        {
+          "q": "Why does the tool not run my Swift code?",
+          "a": "Swift needs Apple's compiler and tools, which do not run in a web browser. To keep the tool honest, it asks you to predict the output and explains each answer instead of pretending to run code."
+        },
+        {
+          "q": "Where can I learn Swift from the start?",
+          "a": "Our free iOS development course teaches Swift and SwiftUI step by step, and the advanced course goes further."
+        },
+        {
+          "q": "Do I need a Mac?",
+          "a": "Not for this tool. To build real iPhone apps you need a Mac with Xcode."
         }
       ]
     }

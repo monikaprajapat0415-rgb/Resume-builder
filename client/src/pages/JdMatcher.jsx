@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import pdfToText from 'react-pdftotext'
@@ -7,6 +7,8 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import { matchResumeToJd } from '../utils/jdMatch'
+import { suggestLearning } from '../utils/learnSuggest'
+import api from '../configs/api'
 import { ToolGate } from './tools/parts'
 import { trackEvent } from '../components/Analytics'
 
@@ -31,6 +33,14 @@ const JdMatcher = () => {
   const [result, setResult] = useState(null)
   const [busy, setBusy] = useState(false)
   const out = useRef(null)
+  const [catalog, setCatalog] = useState(null)
+  // published lessons and roadmaps on this site, used only to suggest where to learn a missing skill
+  useEffect(() => {
+    let on = true
+    Promise.all([api.get('/api/learn').then((r) => r.data.courses || []).catch(() => []), api.get('/api/roadmaps').then((r) => r.data.roadmaps || []).catch(() => [])]).then(([courses, roadmaps]) => on && setCatalog({ courses, roadmaps }))
+    return () => { on = false }
+  }, [])
+  const learn = result && catalog ? suggestLearning(result.missing, catalog.courses, catalog.roadmaps) : null
 
   const onFile = async (e) => {
     const f = e.target.files?.[0]; e.target.value = ''
@@ -68,14 +78,14 @@ const JdMatcher = () => {
       <NavBar />
       <main>
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
-          <div className='max-w-3xl mx-auto px-4 pt-14 pb-8 text-center'>
+          <div className='site-w pt-14 pb-8 text-center'>
             <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuLock className='size-3.5' />Free account. Runs in your browser.</span>
             <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>Resume Job Description Matcher</h1>
             <p className='text-slate-600 mt-4 max-w-xl mx-auto'>See how well your resume matches a specific job: which keywords you already use, which are weak, and which are missing.</p>
           </div>
         </section>
 
-        <section className='max-w-5xl mx-auto px-4 pb-10'>
+        <section className='site-w pb-10'>
           <ToolGate path='/resume-job-description-matcher'>
           <form onSubmit={run} className='grid md:grid-cols-2 gap-5'>
             <div className='bg-white border border-slate-200 rounded-2xl p-4 shadow-sm'>
@@ -114,6 +124,21 @@ const JdMatcher = () => {
                 <div><h2 className='text-sm font-semibold text-red-800 mb-2'>Missing</h2><div className='flex flex-wrap gap-1.5'>{result.missing.length ? result.missing.map((t) => chip(t, 'bg-red-50 text-red-800 border-red-200')) : <p className='text-xs text-slate-500'>Nothing missing.</p>}</div></div>
               </div>
 
+              {learn && (learn.courses.length > 0 || learn.roadmaps.length > 0) && (
+                <div className='mt-6 rounded-xl border border-brand-200 bg-brand-50/50 p-4' data-testid='jd-learn'>
+                  <h2 className='text-sm font-semibold text-slate-800'>Learn the gaps</h2>
+                  <p className='text-xs text-slate-600 mt-1'>Free lessons and roadmaps on this site that mention some of your missing terms. Learning a topic is a good step, but add it to your resume only once it is true for you.</p>
+                  <ul className='mt-3 grid sm:grid-cols-2 gap-2'>
+                    {learn.courses.map((c) => (
+                      <li key={c.slug}><Link to={`/learn/${c.slug}`} className='block rounded-lg border border-slate-200 bg-white p-3 hover:border-brand-300'><span className='text-sm font-medium text-slate-800'>{c.title}</span><span className='block text-xs text-slate-500 mt-0.5'>Course{c.level ? `, ${c.level}` : ''}. Covers: {c.terms.slice(0, 4).join(', ')}</span></Link></li>
+                    ))}
+                    {learn.roadmaps.map((r) => (
+                      <li key={r.slug}><Link to={`/roadmaps/${r.slug}`} className='block rounded-lg border border-slate-200 bg-white p-3 hover:border-brand-300'><span className='text-sm font-medium text-slate-800'>{r.title}</span><span className='block text-xs text-slate-500 mt-0.5'>Roadmap. Mentions: {r.terms.slice(0, 4).join(', ')}</span></Link></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <div className='mt-6 rounded-xl bg-slate-50 border border-slate-200 p-4 text-sm text-slate-700'>
                 <p className='font-medium text-slate-800'>What to do next</p>
                 <ul className='list-disc pl-5 mt-1.5 space-y-1'>
@@ -132,7 +157,7 @@ const JdMatcher = () => {
           </ToolGate>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-8'>
+        <section className='site-w py-8'>
           <h2 className='text-2xl font-semibold text-slate-800'>How to tailor your resume to a job description</h2>
           <ol className='list-decimal pl-5 mt-4 space-y-3 text-slate-700'>
             <li><strong>Read the job post for what the employer repeats.</strong> Skills, tools and responsibilities that appear several times are the ones that matter most.</li>
@@ -144,7 +169,7 @@ const JdMatcher = () => {
           <p className='text-sm text-slate-600 mt-4'>Want the longer guide? Read our <Link className='text-brand-700 underline' to='/blog/how-to-tailor-your-resume-to-a-job-description'>step-by-step article on tailoring your resume</Link>, or browse <Link className='text-brand-700 underline' to='/templates'>ATS-friendly templates</Link>.</p>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 pb-14'>
+        <section className='site-w pb-14'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>Frequently asked questions</h2>
           <div className='mt-6 divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white'>
             {FAQS.map(([q, a]) => (

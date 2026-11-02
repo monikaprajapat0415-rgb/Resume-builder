@@ -3,13 +3,13 @@ import CmsPage from '../components/CmsPage'
 
 function StaticPrivacyPolicy() {
   return (
-    <section className="bg-gray-50 py-14 px-4">
+    <section className="bg-gray-50 py-14"><div className="site-w">
       <SEO
         title="Privacy Policy"
         description="Read Prime Resume AI's Privacy Policy to learn how we collect, use, and protect your information when you use our resume builder."
         path="/privacy-policy"
       />
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-6">
+      <div className="w-full bg-white shadow-lg rounded-2xl p-8 space-y-6">
 
         <h1 className="text-3xl font-bold text-center">
           Privacy Policy
@@ -107,7 +107,7 @@ function StaticPrivacyPolicy() {
         </div>
 
       </div>
-    </section>
+    </div></section>
   );
 }
 

@@ -51,7 +51,7 @@ const ProductsIndex = () => {
       />
       <NavBar />
       <header className='bg-gradient-to-b from-brand-50 to-white border-b border-slate-100'>
-        <div className='max-w-page xl:px-10 mx-auto px-4 pt-12 pb-10 text-center'>
+        <div className='site-w pt-12 pb-10 text-center'>
           <p className='text-sm font-medium text-brand-700'>Free to use</p>
           <h1 className='text-3xl sm:text-5xl font-bold text-slate-800 mt-2'>Tools for your job search</h1>
           <p className='text-slate-600 mt-4 max-w-2xl mx-auto'>Build a resume, check it, write the cover letter, practise the interview and compare offers. Pick a tool and start. Nothing here promises a job, and the AI tools only use the facts you give them.</p>
@@ -67,7 +67,7 @@ const ProductsIndex = () => {
         </div>
       </header>
 
-      <section className='max-w-page xl:px-10 mx-auto px-4 py-12'>
+      <section className='site-w py-12'>
         {shown.length === 0 && <p className='text-center text-slate-500'>No tool matches that search. Try another word.</p>}
         {(q.trim() || grp) ? (
           <ul className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>{shown.map((t) => <li key={t.id}><ToolCard tool={t} /></li>)}</ul>

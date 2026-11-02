@@ -14,16 +14,17 @@ import { MENU_ICONS } from '../../utils/menuIcons';
 import { useToolSettings } from '../../utils/toolSettings';
 import { hiddenToolPaths } from '../../content/toolsHub';
 import { useI18n } from '../../i18n/I18nProvider';
+import CountrySelect from '../../i18n/CountrySelect';
 
 // Dropdown row: optional icon tile, label and one-line description.
-const SubLabel = ({ c, dark }) => {
+const SubLabel = ({ c, dark, compact }) => {
     const Icon = MENU_ICONS[c.icon];
     return (
-        <span className="flex items-start gap-3">
+        <span className={`flex gap-3 ${compact ? "items-center" : "items-start"}`}>
             {Icon && <span className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg ${dark ? 'bg-white/15 text-white' : 'bg-brand-50 text-brand-600'}`}><Icon className="size-5" aria-hidden="true" /></span>}
             <span className="min-w-0 flex-1">
                 <span className="block font-medium break-words">{c.label}</span>
-                {c.description && <span className={`block text-xs font-normal whitespace-normal ${dark ? 'text-white/70' : 'text-slate-500'}`}>{c.description}</span>}
+                {c.description && !compact && <span className={`block text-xs font-normal whitespace-normal ${dark ? 'text-white/70' : 'text-slate-500'}`}>{c.description}</span>}
             </span>
         </span>
     );
@@ -54,7 +55,7 @@ export default function NavBar() {
     return (
         <>
 
-            <nav className="z-50 flex items-center justify-between w-full py-4 px-4 sm:px-6 lg:px-8 2xl:px-24 text-sm">
+            <nav className="site-w z-50 flex items-center justify-between gap-4 py-4 text-sm">
                 <a href="/" className="flex items-center gap-2">
                     <Logo className='h-11 w-auto' />
                 </a>
@@ -69,10 +70,10 @@ export default function NavBar() {
                                 {item.label}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                             </button>
-                            <div className={`absolute start-0 top-full pt-2 z-50 ${item.children.length > 6 ? 'w-[44rem]' : 'w-72'} max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
-                                <ul className={`rounded-xl border border-slate-200 bg-white shadow-lg py-2 ${item.children.length > 6 ? 'grid grid-cols-2 gap-x-1 px-2' : ''}`}>
+                            <div className={`absolute start-0 top-full pt-2 z-50 ${item.children.length > 8 ? 'w-[44rem]' : 'w-72'} max-w-[calc(100vw-2rem)] ${openId === item._id ? 'block' : 'hidden group-hover:block group-focus-within:block'}`}>
+                                <ul className={`rounded-xl border border-slate-200 bg-white shadow-lg py-2 ${item.children.length > 8 ? 'grid grid-cols-2 gap-x-1 px-2' : ''}`}>
                                     {item.children.map((c) => (
-                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-normal break-words"><SubLabel c={c} /></MenuLink></li>
+                                        <li key={c._id}><MenuLink item={c} onNavigate={() => setOpenId(null)} className="block px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-brand-600 whitespace-normal break-words"><SubLabel c={c} compact /></MenuLink></li>
                                     ))}
                                 </ul>
                             </div>
@@ -82,7 +83,8 @@ export default function NavBar() {
                     ))}
                 </div>
 
-                <div className="flex gap-2 shrink-0 whitespace-nowrap ml-3">
+                <div className="flex flex-col items-end gap-2 shrink-0 whitespace-nowrap ml-3">
+                  <div className="flex gap-2">
                     <Link to='/app?state=register' className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-6 py-2 bg-brand-500 hover:bg-brand-700 active:scale-95 transition-all rounded-full text-white`}
                         hidden={user}>
                         Get started
@@ -99,7 +101,9 @@ export default function NavBar() {
                     <button onClick={() => { dispatch(logout()); navigate('/'); }} className={`${wide ? 'hidden 2xl:block' : 'hidden xl:block'} px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900`} hidden={!user}>
                         Logout
                     </button>
-
+                  </div>
+                  {/* Country and language: right under the Login / Dashboard buttons (on small screens it is inside the menu) */}
+                  <CountrySelect className={`${wide ? 'hidden 2xl:flex' : 'hidden xl:flex'} justify-end`} />
                 </div>
 
                 <button onClick={() => setMenuOpen(prev => !prev)} className={`${wide ? '2xl:hidden' : 'xl:hidden'} active:scale-90 transition`} >
@@ -126,6 +130,7 @@ export default function NavBar() {
                 ) : (
                     <MenuLink key={item._id} item={item} className="text-white" onNavigate={() => setMenuOpen(false)} />
                 ))}
+                <div className="w-72 max-w-full bg-white rounded-xl p-3 text-slate-800 text-sm"><p className="text-xs text-slate-500 mb-2">Country and language</p><CountrySelect className="[&>div]:w-full" /></div>
                 <Link
                     to="/app?state=login"
                     className="text-white"

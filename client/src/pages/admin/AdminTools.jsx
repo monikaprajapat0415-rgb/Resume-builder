@@ -6,6 +6,9 @@ import api from '../../configs/api'
 import { invalidateToolSettings } from '../../utils/toolSettings'
 import CAREER from '../../content/careerTools.json'
 
+const EXTRAS = [
+  { flag: 'planTool', name: 'Roadmap study plan', where: 'The "Make my study plan" box on every roadmap page (/roadmaps/...). Runs in the browser, nothing is stored.' },
+]
 const USE_KEY = { coverLetterTool: 'career-cover-letter', bulletTool: 'career-bullets', linkedinTool: 'career-linkedin', interviewTool: 'career-mock-interview' }
 
 const Switch = ({ on, busy, onChange, label }) => (
@@ -90,6 +93,25 @@ const AdminTools = () => {
           </fieldset>
         </div>
         <p className='text-xs text-slate-400 mt-4'>The paid 8K option is set under Paid plan.</p>
+      </section>
+
+      <section className='bg-white rounded-xl border border-slate-200 p-5 mt-6'>
+        <h2 className='font-semibold text-slate-800'>Extra features inside other pages</h2>
+        <p className='text-sm text-slate-600 mt-1'>Small features that live on pages you already have. Switching one off removes it from the page. The page itself stays.</p>
+        <ul className='mt-4 divide-y divide-slate-100'>
+          {EXTRAS.map((x) => {
+            const isOn = data.settings[x.flag] !== false
+            return (
+              <li key={x.flag} className='flex items-start justify-between gap-4 py-3'>
+                <div className='min-w-0'>
+                  <p className='font-medium text-slate-800 flex flex-wrap items-center gap-2'>{x.name}<span className={`text-xs font-medium rounded-full px-2.5 py-0.5 ${isOn ? 'bg-green-100 text-green-700' : 'bg-slate-200 text-slate-600'}`}>{isOn ? 'Visible' : 'Hidden'}</span></p>
+                  <p className='text-xs text-slate-500 mt-0.5'>{x.where}</p>
+                </div>
+                <Switch on={isOn} busy={busy} onChange={(v) => save({ [x.flag]: v })} label={`Show ${x.name} to visitors`} />
+              </li>
+            )
+          })}
+        </ul>
       </section>
 
       <section className='bg-white rounded-xl border border-slate-200 p-5 mt-6'>

@@ -49,7 +49,7 @@ const LearnIndex = () => {
     <div>
       <SEO title='Free Step-by-Step Tech Tutorials' description={DESC} keywords='tutorials, learn programming, free courses, web development tutorials' path='/learn' structuredData={structuredData} />
       <NavBar />
-      <section className='max-w-page xl:px-10 mx-auto px-4 py-16'>
+      <section className='site-w py-16'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <span>Learn</span>
         </nav>

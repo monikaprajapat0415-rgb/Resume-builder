@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import api from '../../configs/api'
 import NavBar from './NavBar'
-import CountryBar from '../../i18n/CountryBar'
 import { useSiteContent } from '../../utils/siteContent'
 import HeroDemo from './HeroDemo'
 
@@ -30,7 +29,6 @@ const Hero = () => {
     <>
       <div className="pb-12 md:pb-20">
         <NavBar />
-        <CountryBar />
         <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black">
           <div className="float-slow absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-brand-300 blur-[100px] opacity-30"></div>
           <div className="float-slower absolute top-60 -z-10 right-1/4 size-60 sm:size-80 bg-emerald-200 blur-[110px] opacity-30"></div>

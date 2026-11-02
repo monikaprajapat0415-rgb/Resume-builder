@@ -97,7 +97,31 @@ const migrateProducts2 = async () => {
     products2Done = true;
 };
 
-const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER, PRODUCTS2_MARKER];
+
+// One-time simplification of the header menu (marker below): Home, Resume, Tools, Learn, Jobs, Blog with short dropdowns.
+// Old links are HIDDEN, not deleted, so the admin can switch any of them back on in Admin > Menus. A label is only
+// renamed if it still has its old default text, and links the admin added themselves are left alone.
+const SIMPLE_MARKER = 'migrated-simple-menu-v1';
+const SIMPLE_HIDE = ['h-features', 'h-testimonials', 'h-templates', 'h-cv', 'h-contact', 'h-jobs-interview', 'h-learn-roles', 'h-learn-tech', 'h-learn-career',
+    'h-products-builder', 'h-products-cv', 'h-products-ats', 'h-products-jd', 'h-products-linkedin', 'h-products-offer', 'h-products-questions'];
+const SIMPLE_RENAME = [['h-builder', 'Builder', 'Resume'], ['h-products', 'Products', 'Tools'], ['h-learn-roadmaps', 'All roadmaps', 'Roadmaps'],
+    ['h-builder-app', 'AI Resume builder & CV maker', 'Resume builder'], ['h-builder-examples', 'Examples of 100/100 CV and resume', 'Examples'],
+    ['h-products-playground', 'React and Angular playground', 'Code playground'], ['h-products-converter', 'Image to PDF, Word and text', 'Image to PDF, Word, text']];
+let simpleDone = false;
+const migrateSimpleMenu = async () => {
+    if (simpleDone) return;
+    if (!(await MenuItem.exists({ key: SIMPLE_MARKER }))) {
+        await ensureDefaults(DEFAULT_MENU.filter((d) => d.location === 'header').map((d) => d.key));
+        await MenuItem.updateMany({ key: { $in: SIMPLE_HIDE } }, { $set: { visible: false } });
+        await Promise.all(SIMPLE_RENAME.map(([key, from, to]) => MenuItem.updateOne({ key, label: from }, { $set: { label: to } })));
+        const headerDefaults = DEFAULT_MENU.filter((d) => d.location === 'header');
+        await MenuItem.bulkWrite(headerDefaults.map((d) => ({ updateOne: { filter: { key: d.key }, update: { $set: { order: d.order } } } })));
+        await MenuItem.updateOne({ key: SIMPLE_MARKER }, { $setOnInsert: { key: SIMPLE_MARKER, location: 'footer_legal', label: 'marker', url: '/', visible: false, order: 9999 } }, { upsert: true });
+    }
+    simpleDone = true;
+};
+
+const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER, PRODUCTS2_MARKER, SIMPLE_MARKER];
 const group = (items) => {
     items = items.filter((i) => !HIDDEN.includes(i.key));
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
@@ -116,6 +140,7 @@ export const getMenu = async (req, res) => {
         await migrateBuilder();
         await migrateProductsMenu();
         await migrateProducts2();
+        await migrateSimpleMenu();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab parent icon description');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -135,6 +160,7 @@ export const getMenuAdmin = async (req, res) => {
         await migrateBuilder();
         await migrateProductsMenu();
         await migrateProducts2();
+        await migrateSimpleMenu();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {

@@ -6,8 +6,8 @@
 /* The app's main colour. Defaults to the same values as Tailwind green; an admin can change it
    from Admin > Appearance, which overrides these variables at runtime (see utils/theme.js). */
 @theme {
-  /* page-level width for list pages (Learn, Blog, Roadmaps...): wide screens use their space; text pages stay narrower */
-  --container-page: 96rem;
+  /* ONE page width for the whole site (header, Back row, page content). Use the .site-w class below. */
+  --container-page: 80rem;
   --color-brand-50: oklch(98.2% 0.018 155.826);
   --color-brand-100: oklch(96.2% 0.044 156.743);
   --color-brand-200: oklch(92.5% 0.084 155.995);
@@ -91,3 +91,14 @@
 
 /* Handwritten notes card (LessonNotes). The global `*` font rule reaches every element, so the font is set on the children too. */
 .hand, .hand * { font-family: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive; }
+
+
+/* One shared page frame: header, Back row and every page use it, so left and right edges line up everywhere. */
+@utility site-w {
+  width: 100%;
+  max-width: var(--container-page);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { padding-inline: 1.5rem; }
+  @media (min-width: 1024px) { padding-inline: 2rem; }
+}

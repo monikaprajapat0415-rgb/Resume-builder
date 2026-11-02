@@ -23,7 +23,7 @@ const HireLanding = () => (
     <SEO title='Hire Workers or Find Work Worldwide' description='Workers anywhere can mark themselves available for office, factory, trade and daily wage work. Contact details stay private until the worker accepts.' keywords='hire workers worldwide, hire electrician, factory workers, daily wage workers, skilled labour, hire staff abroad, available to work' path='/hire' canonical='https://primeresumeai.com/hire'
       structuredData={{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQS.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }} />
     <NavBar />
-    <section className='max-w-7xl mx-auto px-4 py-14'>
+    <section className='site-w py-14'>
       <div className='text-center max-w-2xl mx-auto'>
         <h1 className='text-4xl font-semibold text-slate-800'>Hire workers. Get found for work.</h1>
         <p className='text-slate-500 mt-4'>Office staff, factory workers, skilled trades and daily wage workers, in any country. Say you are available and approved employers reach out, or find workers ready to start. Contact details stay private until the worker says yes.</p>

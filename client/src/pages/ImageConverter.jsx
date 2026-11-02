@@ -108,13 +108,13 @@ const ImageConverter = () => {
       <SEO title={C.title} description={C.description} keywords={C.keywords} path={C.path} structuredData={structured} />
       <NavBar />
       <main>
-        <section className='max-w-4xl mx-auto px-4 pt-14 pb-8 text-center'>
+        <section className='site-w pt-14 pb-8 text-center'>
           <span className='inline-block text-xs font-medium text-brand-700 bg-brand-50 border border-brand-200 rounded-full px-3 py-1'>Free tool · runs in your browser</span>
           <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>{C.h1}</h1>
           <p className='text-slate-600 mt-4 max-w-2xl mx-auto'>{C.intro}</p>
         </section>
 
-        <section className='max-w-4xl mx-auto px-4 pb-10' aria-label='Image converter tool'>
+        <section className='site-w pb-10' aria-label='Image converter tool'>
           <ToolGate path={C.path}>
           <div className='rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm'>
             <div onDragOver={(e) => { e.preventDefault(); setDrag(true) }} onDragLeave={() => setDrag(false)} onDrop={(e) => { e.preventDefault(); setDrag(false); add(e.dataTransfer.files) }}
@@ -201,7 +201,7 @@ const ImageConverter = () => {
           </ToolGate>
         </section>
 
-        <section className='max-w-4xl mx-auto px-4 py-8'>
+        <section className='site-w py-8'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>How it works</h2>
           <ol className='grid sm:grid-cols-2 gap-4 mt-6'>
             {C.how.map((t, i) => (
@@ -213,7 +213,7 @@ const ImageConverter = () => {
           </ol>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-6'>
+        <section className='site-w py-6'>
           <div className='rounded-2xl border border-slate-200 bg-white p-6 md:p-8'>
             <h2 className='text-xl font-semibold text-slate-800'>What to expect</h2>
             <p className='text-sm text-slate-700 mt-3'>{C.honest}</p>
@@ -230,7 +230,7 @@ const ImageConverter = () => {
           </div>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-10'>
+        <section className='site-w py-10'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>Frequently asked questions</h2>
           <div className='mt-6 divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white'>
             {C.faqs.map((f) => (

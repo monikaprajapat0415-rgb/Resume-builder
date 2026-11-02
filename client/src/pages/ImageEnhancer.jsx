@@ -188,14 +188,14 @@ const ImageEnhancer = () => {
       <main>
         {hidden && isAdmin && <p className='bg-amber-100 text-amber-900 text-sm text-center px-4 py-2' role='status'>This tool is hidden from visitors. You can see and try it because you are an admin. <Link to='/admin/tools' className='underline font-medium'>Show it</Link></p>}
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
-          <div className='max-w-3xl mx-auto px-4 pt-12 pb-8 text-center'>
+          <div className='site-w pt-12 pb-8 text-center'>
             <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuShieldCheck className='size-3.5' />Not saved on our servers</span>
             <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>{C.h1}</h1>
             <p className='text-slate-600 mt-4 max-w-2xl mx-auto'>{C.intro}</p>
           </div>
         </section>
 
-        <section className='max-w-4xl mx-auto px-4 pb-10' aria-label='Image enhancer tool'>
+        <section className='site-w pb-10' aria-label='Image enhancer tool'>
           <div className='rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-sm'>
             {!file && (
               <div onDragOver={(e) => { e.preventDefault(); setDrag(true) }} onDragLeave={() => setDrag(false)} onDrop={onDrop}
@@ -265,7 +265,7 @@ const ImageEnhancer = () => {
           <p className='text-xs text-slate-500 mt-3 text-center'>{C.privacy}</p>
         </section>
 
-        <section className='max-w-4xl mx-auto px-4 py-8'>
+        <section className='site-w py-8'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>How it works</h2>
           <ol className='grid sm:grid-cols-2 gap-4 mt-6'>
             {C.how.map((t, i) => (
@@ -277,7 +277,7 @@ const ImageEnhancer = () => {
           </ol>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-6'>
+        <section className='site-w py-6'>
           <div className='rounded-2xl border border-slate-200 bg-white p-6 md:p-8'>
             <h2 className='text-xl font-semibold text-slate-800'>What to expect</h2>
             <p className='text-sm text-slate-700 mt-3'>{C.honest}</p>
@@ -294,7 +294,7 @@ const ImageEnhancer = () => {
           </div>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-10'>
+        <section className='site-w py-10'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>Frequently asked questions</h2>
           <div className='mt-6 divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white'>
             {C.faqs.map((f) => (

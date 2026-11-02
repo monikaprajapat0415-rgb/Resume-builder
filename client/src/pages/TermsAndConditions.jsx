@@ -3,13 +3,13 @@ import CmsPage from '../components/CmsPage'
 
 function StaticTermsAndConditions() {
   return (
-    <section className="bg-gray-50 py-14 px-4">
+    <section className="bg-gray-50 py-14"><div className="site-w">
       <SEO
         title="Terms & Conditions"
         description="Read the Terms & Conditions for using Prime Resume AI's resume builder platform."
         path="/terms-and-conditions"
       />
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-6">
+      <div className="w-full bg-white shadow-lg rounded-2xl p-8 space-y-6">
 
         <h1 className="text-3xl font-bold text-center">
           Terms & Conditions
@@ -93,7 +93,7 @@ function StaticTermsAndConditions() {
         </div>
 
       </div>
-    </section>
+    </div></section>
   );
 }
 

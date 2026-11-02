@@ -44,7 +44,7 @@ const TemplateLanding = () => {
         structuredData={structuredData}
       />
       <NavBar />
-      <section className='max-w-7xl mx-auto px-4 py-14'>
+      <section className='site-w py-14'>
         <Link to='/templates' className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition mb-8'>
           <LuArrowLeft className='size-4' />All templates
         </Link>
