@@ -241,7 +241,7 @@ const CareerTool = ({ slug }) => {
       <SEO title={tool.title} description={tool.description} path={tool.path} structuredData={structured} />
       <NavBar />
       <header className='bg-gradient-to-b from-brand-50 to-white border-b border-slate-100'>
-        <div className='max-w-page xl:px-10 mx-auto px-4 pt-8 pb-8'>
+        <div className='site-w pt-8 pb-8'>
           <div className='flex items-start gap-4'>
             {hub && <IconTile tool={hub} size='size-14' icon='size-6' />}
             <div className='min-w-0'>
@@ -261,7 +261,7 @@ const CareerTool = ({ slug }) => {
         </div>
       </header>
 
-      <main className='max-w-page xl:px-10 mx-auto px-4 py-10'>
+      <main className='site-w py-10'>
         <section aria-label={tool.name}>
           {!signedIn ? (
             <div className='rounded-2xl border border-brand-200 bg-brand-50/50 p-8 max-w-2xl mx-auto text-center'>

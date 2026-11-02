@@ -73,16 +73,9 @@ const pretty = (slug) => {
 };
 const label = (seg) => LABELS[seg] || pretty(seg);
 
-// The Back button / breadcrumb row lines up with the page below it: wide list and lesson pages use more of a big screen.
-const WIDE = 'max-w-page xl:px-10'
-export function navWidth(pathname) {
-  const p = pathname.replace(/\/+$/, '') || '/'
-  if (/^\/learn\/[^/]+\/(?!certificate$)[^/]+$/.test(p)) return 'max-w-[1680px] xl:px-10'
-  if (/^\/learn\/[^/]+$/.test(p)) return WIDE
-  if (/^\/jobs\/(interview-questions|salaries|company-reviews)/.test(p)) return WIDE
-  if (/^\/(learn|blog|roadmaps|products|templates|examples)$/.test(p)) return WIDE
-  if (p === '/jobs') return 'max-w-7xl md:px-10'
-  return 'max-w-7xl md:px-10'
+// The Back button / breadcrumb row uses the same one page width (.site-w) as the header and every page.
+export function navWidth() {
+  return 'site-w'
 }
 
 export function trailFor(pathname) {
@@ -142,7 +135,7 @@ export default function PageNav({ className = '' }) {
   if (hidden) return null;
 
   return (
-    <div className={`${navWidth(pathname)} mx-auto px-4 sm:px-6 pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>
+    <div className={`${navWidth(pathname)} pt-2 pb-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm print:hidden ${className}`} data-pagenav>
       {jsonLd && <Helmet><script type="application/ld+json">{JSON.stringify(jsonLd)}</script></Helmet>}
       <button
         type="button"

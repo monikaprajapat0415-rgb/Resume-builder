@@ -70,7 +70,7 @@ const RoadmapIndex = () => {
     <div>
       <SEO title='Developer and Career Roadmaps' description={DESC} keywords='developer roadmap, full stack developer roadmap, sql developer roadmap, frontend roadmap, career path' path='/roadmaps' canonical={`${SITE}/roadmaps`} robots={filtered ? 'noindex, follow' : undefined} structuredData={structuredData} />
       <NavBar />
-      <section className='max-w-page xl:px-10 mx-auto px-4 py-12'>
+      <section className='site-w py-12'>
         <div className='text-center max-w-2xl mx-auto mb-12'>
           <h1 className='text-4xl font-semibold text-slate-800'>Roadmaps for jobs and technologies</h1>
           <p className='text-slate-500 mt-3'>Search a job title or a technology. Each roadmap shows the whole stack end to end, the steps in order, and the best places to learn each one. Tick off steps as you go.</p>

@@ -127,7 +127,7 @@ const RoadmapView = () => {
     <div>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/roadmaps/${r.slug}`} canonical={seo.canonical} robots={seo.robots} image={seo.image} imageAlt={seo.imageAlt} structuredData={data.jsonLd} />
       <NavBar />
-      <section className='max-w-7xl mx-auto px-4 py-8'>
+      <section className='site-w py-8'>
         <h1 className='text-3xl sm:text-4xl font-bold text-slate-900 leading-tight'>{r.title}</h1>
         <p className='text-slate-600 mt-3 max-w-3xl'>{r.description}</p>
 

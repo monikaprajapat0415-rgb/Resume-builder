@@ -89,7 +89,7 @@ const ProductDetail = () => {
         structuredData={structuredData}
       />
       <NavBar />
-      <article className='max-w-6xl mx-auto px-4 py-12'>
+      <article className='site-w py-12'>
         <Link to='/products' className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition mb-8'>
           <LuArrowLeft className='size-4' /> All products
         </Link>

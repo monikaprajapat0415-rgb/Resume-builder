@@ -14,7 +14,7 @@ const TABS = [
 export const Shell = ({ active, crumbs = [], children }) => (
   <div>
     <NavBar />
-    <section className='max-w-page xl:px-10 mx-auto px-4 py-8'>
+    <section className='site-w py-8'>
       <nav aria-label='Section' className='flex flex-wrap gap-2 mb-6'>
         {TABS.map((t) => (
           <Link key={t.id} to={t.to} aria-current={active === t.id ? 'page' : undefined}

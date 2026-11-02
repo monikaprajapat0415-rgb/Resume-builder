@@ -60,7 +60,7 @@ const BlogIndex = () => {
     <div>
       <SEO title={title} description={description} keywords='resume tips, resume writing advice, career blog, ATS resume tips' path={path} structuredData={loading ? undefined : structuredData} />
       <NavBar />
-      <section className='max-w-page xl:px-10 mx-auto px-4 py-16'>
+      <section className='site-w py-16'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › {active ? <><Link to='/blog' className='hover:text-slate-600'>Blog</Link> › <span>{heading}</span></> : <span>Blog</span>}
         </nav>

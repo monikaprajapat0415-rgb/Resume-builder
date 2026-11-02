@@ -48,8 +48,8 @@ export default function ContactUs({ embedded = false }) {
     )}
     {/* <NavBar /> */}
        <div id='contact-us' className='flex flex-col items-center my-10 scroll-mt-12'>
-    <section className="py-14 px-4">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 bg-white shadow-lg rounded-2xl p-8">
+    <section className="w-full py-14"><div className="site-w">
+      <div className="w-full grid md:grid-cols-2 gap-10 bg-white shadow-lg rounded-2xl p-8">
         
         {/* LEFT: Info */}
         <div className="space-y-6">
@@ -134,7 +134,7 @@ export default function ContactUs({ embedded = false }) {
           </button>
         </form>
       </div>
-    </section>
+    </div></section>
     </div>
     </>
   );

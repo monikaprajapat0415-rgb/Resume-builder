@@ -63,7 +63,7 @@ const Jobs = ({ landing = false }) => {
       <SEO title='Jobs for Office, Factory & Skilled Workers' description={DESC} keywords='jobs worldwide, factory jobs, daily wage jobs, electrician jobs, jobs in India, jobs in USA, jobs UK, jobs Canada, jobs Australia, jobs UAE, remote jobs' path='/jobs'
         robots={filtered || page > 1 || category || country ? 'noindex, follow' : undefined} canonical='https://primeresumeai.com/jobs' />}
       <NavBar />
-      <section className='max-w-7xl mx-auto px-4 py-12'>
+      <section className='site-w py-12'>
         <nav aria-label='Breadcrumb' className='text-sm text-slate-500 mb-6'><Link to='/' className='hover:text-slate-600'>Home</Link> › {landing && page_?.content ? <><Link to='/jobs' className='hover:text-slate-600'>Jobs</Link> › <span>{page_.content.h1}</span></> : <span>Jobs</span>}</nav>
         <div className='text-center max-w-2xl mx-auto mb-8'>
           <h1 className='text-3xl sm:text-4xl font-semibold text-slate-800'>{landing ? (page_?.content?.h1 || 'Jobs') : 'Jobs for Office, Factory & Skilled Workers'}</h1>

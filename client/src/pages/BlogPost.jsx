@@ -187,7 +187,7 @@ const BlogPost = () => {
       </article>
 
       {post.related.length > 0 && (
-        <section className='max-w-4xl mx-auto px-4 pb-16' aria-labelledby='related'>
+        <section className='site-w pb-16' aria-labelledby='related'>
           <h2 id='related' className='text-lg font-semibold text-slate-800 mb-4'>Related articles</h2>
           <div className='grid sm:grid-cols-3 gap-4'>
             {post.related.map((r) => (

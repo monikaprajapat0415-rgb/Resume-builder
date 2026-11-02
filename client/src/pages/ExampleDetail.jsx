@@ -50,7 +50,7 @@ const ExampleDetail = () => {
       <div>
         <SEO title='Example not found' description='This example could not be found.' noindex path={`/examples/${slug}`} />
         <NavBar />
-        <section className='max-w-3xl mx-auto px-4 py-20 text-center'>
+        <section className='site-w py-20 text-center'>
           <h1 className='text-2xl font-semibold text-slate-800'>We could not find that example</h1>
           <p className='mt-3 text-slate-500'>It may have moved. <Link to='/examples' className='text-brand-600 underline'>See all resume and CV examples</Link>.</p>
         </section>
@@ -71,7 +71,7 @@ const ExampleDetail = () => {
       {e ? <SEO title={e.title} description={e.metaDescription} keywords={`${e.role.toLowerCase()} ${typeName} example, ${e.role.toLowerCase()} ${typeName} sample, ats friendly ${typeName}`} path={`/examples/${e.slug}`} type='article' structuredData={structuredData} />
         : <SEO title='Resume and CV examples' description='Resume and CV examples that pass every automatic ATS check.' path={`/examples/${slug}`} />}
       <NavBar />
-      <section className='max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12'>
+      <section className='site-w py-8 sm:py-12'>
         {state.status === 'loading' && <p className='text-slate-400'>Loading…</p>}
         {state.status === 'error' && <p className='text-slate-500'>This example could not be loaded. Please refresh the page.</p>}
         {e && (

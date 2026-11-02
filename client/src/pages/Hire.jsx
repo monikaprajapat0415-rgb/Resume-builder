@@ -22,9 +22,9 @@ const Hire = () => {
   const [tab, setTab] = useState('talent')
   useEffect(() => { api.get('/api/employers/me', auth).then(({ data }) => setEmp(data.employer)).catch(() => { setEmp(null); toast.error('Could not load your company.') }) }, [])
 
-  if (emp === undefined) return <div className='max-w-7xl mx-auto px-4 py-16 text-center text-slate-400'>Loading…</div>
+  if (emp === undefined) return <div className='site-w py-16 text-center text-slate-400'>Loading…</div>
   return (
-    <div className='max-w-7xl mx-auto px-4 py-8'>
+    <div className='site-w py-8'>
       <SEO title='Hire talent' description='Find available candidates and post jobs.' noindex />
       {(!emp || emp.status === 'rejected') && <CompanyForm key={emp?.id || 'new'} emp={emp} auth={auth} defaults={{ contactName: user?.name || '' }} onSaved={setEmp} />}
       {emp?.status === 'pending' && <Waiting emp={emp} auth={auth} onSaved={setEmp} />}

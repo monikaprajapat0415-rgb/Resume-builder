@@ -58,7 +58,7 @@ const CvLanding = () => {
       <NavBar />
       <main>
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
-          <div className='max-w-3xl mx-auto px-4 pt-14 pb-12 text-center'>
+          <div className='site-w pt-14 pb-12 text-center'>
             <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuShieldCheck className='size-3.5' />Only your facts, never invented ones</span>
             <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>AI CV Builder</h1>
             <p className='text-slate-600 mt-4 max-w-xl mx-auto'>Tell us the job you want and your background. We write an ATS-friendly CV tailored to that job, ready to edit and download.</p>
@@ -69,7 +69,7 @@ const CvLanding = () => {
           </div>
         </section>
 
-        <section className='max-w-7xl mx-auto px-4 py-10'>
+        <section className='site-w py-10'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>How it works</h2>
           <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8'>
             {STEPS.map(([Icon, t, d], i) => (
@@ -83,7 +83,7 @@ const CvLanding = () => {
           </div>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-6'>
+        <section className='site-w py-6'>
           <div className='rounded-2xl border border-slate-200 bg-white p-6 md:p-8'>
             <h2 className='text-xl font-semibold text-slate-800 flex items-center gap-2'><LuFileCheck2 className='size-5 text-brand-600' />Built for applicant tracking systems</h2>
             <ul className='mt-4 space-y-2 text-sm text-slate-700 list-disc pl-5'>
@@ -95,7 +95,7 @@ const CvLanding = () => {
           </div>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-10'>
+        <section className='site-w py-10'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>Frequently asked questions</h2>
           <div className='mt-6 divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white'>
             {FAQS.map(([q, a]) => (

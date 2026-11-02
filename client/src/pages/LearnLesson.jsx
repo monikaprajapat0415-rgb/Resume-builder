@@ -146,7 +146,7 @@ const LearnLesson = () => {
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/learn/${course.slug}/${lesson.slug}`} canonical={seo.canonical} robots={seo.robots}
         image={seo.image} imageAlt={seo.imageAlt} type='article' article={seo.article} structuredData={data.jsonLd} />
       <NavBar />
-      <div className='max-w-[1680px] mx-auto px-4 sm:px-6 xl:px-10 py-8 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem] lg:gap-8 xl:gap-12'>
+      <div className='site-w py-8 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] xl:grid-cols-[17rem_minmax(0,1fr)_15rem] lg:gap-8 xl:gap-12'>
         <aside className='lg:sticky lg:top-4 lg:self-start lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto mb-6 lg:mb-0'>
           <Link to={`/learn/${course.slug}`} className='block font-semibold text-slate-800 hover:text-brand-700 mb-2 px-2'>{course.title}</Link>
           <button type='button' onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}

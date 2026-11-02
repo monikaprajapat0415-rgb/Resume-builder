@@ -123,13 +123,13 @@ const AtsChecker = () => {
       />
       <NavBar />
       <main className='bg-gradient-to-b from-brand-50/60 to-white'>
-        <div className='max-w-3xl mx-auto px-4 pt-14 pb-10 text-center'>
+        <div className='site-w pt-14 pb-10 text-center'>
           <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuZap className='size-3.5' /> 5 free checks per account</span>
           <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>Free ATS Resume Checker</h1>
           <p className='text-slate-600 mt-4 max-w-xl mx-auto'>Drop your resume and see how an Applicant Tracking System reads it: your score, what is hurting it, and exactly how to fix it.</p>
         </div>
 
-        <div className='max-w-3xl mx-auto px-4 pb-16'>
+        <div className='site-w pb-16'>
           {/* Not signed in */}
           {!authLoading && !user && (
             <div className='bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center'>
@@ -254,7 +254,7 @@ const AtsChecker = () => {
           </div>
         </div>
 
-        <section className='max-w-4xl mx-auto px-4 pb-20'>
+        <section className='site-w pb-20'>
           <h2 className='text-xl font-semibold text-slate-800 text-center'>What the ATS checker looks at</h2>
           <div className='grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 text-sm'>
             {[['Readability', 'Can software read your file, or is it an image, table or icon-heavy layout?'], ['Sections & structure', 'Clear Experience, Education and Skills headings, plus dates.'], ['Keywords', 'The skills recruiters search for, and which ones you are missing.'], ['Content & impact', 'Action verbs and measurable results that make bullets stand out.']].map(([t, d]) => (

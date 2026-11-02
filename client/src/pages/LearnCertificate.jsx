@@ -43,7 +43,7 @@ const LearnCertificate = () => {
     <div>
       <SEO title={`${course.title} certificate`} description='Your course completion certificate.' path={`/learn/${course.slug}/certificate`} noindex />
       <div className='print:hidden'><NavBar /></div>
-      <section className='max-w-3xl mx-auto px-4 py-10'>
+      <section className='site-w py-10'>
         <div className='print:hidden'>
           <Link to={`/learn/${course.slug}`} className='text-sm text-brand-700 hover:underline'>← {course.title}</Link>
           <h1 className='text-2xl font-bold text-slate-800 mt-3'>Your certificate</h1>

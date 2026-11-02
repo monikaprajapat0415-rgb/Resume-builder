@@ -78,14 +78,14 @@ const JdMatcher = () => {
       <NavBar />
       <main>
         <section className='bg-gradient-to-b from-brand-50/60 to-white'>
-          <div className='max-w-3xl mx-auto px-4 pt-14 pb-8 text-center'>
+          <div className='site-w pt-14 pb-8 text-center'>
             <span className='inline-flex items-center gap-1.5 text-xs font-medium text-brand-700 bg-brand-100 rounded-full px-3 py-1'><LuLock className='size-3.5' />Free account. Runs in your browser.</span>
             <h1 className='text-3xl md:text-5xl font-semibold text-slate-800 mt-4 leading-tight'>Resume Job Description Matcher</h1>
             <p className='text-slate-600 mt-4 max-w-xl mx-auto'>See how well your resume matches a specific job: which keywords you already use, which are weak, and which are missing.</p>
           </div>
         </section>
 
-        <section className='max-w-5xl mx-auto px-4 pb-10'>
+        <section className='site-w pb-10'>
           <ToolGate path='/resume-job-description-matcher'>
           <form onSubmit={run} className='grid md:grid-cols-2 gap-5'>
             <div className='bg-white border border-slate-200 rounded-2xl p-4 shadow-sm'>
@@ -157,7 +157,7 @@ const JdMatcher = () => {
           </ToolGate>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 py-8'>
+        <section className='site-w py-8'>
           <h2 className='text-2xl font-semibold text-slate-800'>How to tailor your resume to a job description</h2>
           <ol className='list-decimal pl-5 mt-4 space-y-3 text-slate-700'>
             <li><strong>Read the job post for what the employer repeats.</strong> Skills, tools and responsibilities that appear several times are the ones that matter most.</li>
@@ -169,7 +169,7 @@ const JdMatcher = () => {
           <p className='text-sm text-slate-600 mt-4'>Want the longer guide? Read our <Link className='text-brand-700 underline' to='/blog/how-to-tailor-your-resume-to-a-job-description'>step-by-step article on tailoring your resume</Link>, or browse <Link className='text-brand-700 underline' to='/templates'>ATS-friendly templates</Link>.</p>
         </section>
 
-        <section className='max-w-3xl mx-auto px-4 pb-14'>
+        <section className='site-w pb-14'>
           <h2 className='text-2xl font-semibold text-slate-800 text-center'>Frequently asked questions</h2>
           <div className='mt-6 divide-y divide-slate-200 border border-slate-200 rounded-xl bg-white'>
             {FAQS.map(([q, a]) => (

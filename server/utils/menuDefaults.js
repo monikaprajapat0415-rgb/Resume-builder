@@ -5,44 +5,33 @@ export const MENU_LOCATIONS = ['header', 'footer_product', 'footer_resources', '
 // Icons the admin can pick for a sub-menu link (client/src/utils/menuIcons.js draws them).
 export const MENU_ICONS = ['sparkles', 'file-text', 'award', 'briefcase', 'graduation-cap', 'route', 'users', 'search', 'star', 'shield-check', 'layout', 'book-open', 'wand', 'circle-check', 'lightbulb', 'trending-up', 'mail', 'list-checks', 'linkedin', 'scale', 'message-square', 'file-check', 'target', 'zoom-in', 'file-image', 'code'];
 
-export const DEFAULT_MENU = [
+const RAW_MENU = [
     { key: 'h-home', location: 'header', label: 'Home', url: '/' },
-    { key: 'h-features', location: 'header', label: 'Features', url: '/features' },
-    { key: 'h-testimonials', location: 'header', label: 'Testimonials', url: '/#testimonials' },
-    { key: 'h-builder', location: 'header', label: 'Builder', url: '/app' },
-    { key: 'h-templates', location: 'header', label: 'Templates', url: '/templates' },
-    { key: 'h-cv', location: 'header', label: 'CV Builder', url: '/cv-builder' },
-    { key: 'h-products', location: 'header', label: 'Products', url: '/products' },
-    { key: 'h-blog', location: 'header', label: 'Blog', url: '/blog' },
+    { key: 'h-builder', location: 'header', label: 'Resume', url: '/app' },
+    { key: 'h-products', location: 'header', label: 'Tools', url: '/products' },
     { key: 'h-learn', location: 'header', label: 'Learn', url: '/learn' },
     { key: 'h-jobs', location: 'header', label: 'Jobs', url: '/jobs' },
+    { key: 'h-blog', location: 'header', label: 'Blog', url: '/blog' },
     // sub-menus: `parentKey` is the key of the top-level item they drop down from
+    { key: 'h-builder-app', location: 'header', label: 'Resume builder', url: '/app', icon: 'sparkles', description: 'Build, edit and download an ATS-friendly resume', parentKey: 'h-builder' },
+    { key: 'h-builder-cv', location: 'header', label: 'CV builder', url: '/cv-builder', icon: 'file-text', description: 'A tailored CV from your real details', parentKey: 'h-builder' },
+    { key: 'h-builder-templates', location: 'header', label: 'Templates', url: '/templates', icon: 'layout', description: 'ATS-friendly designs to start from', parentKey: 'h-builder' },
+    { key: 'h-builder-examples', location: 'header', label: 'Examples', url: '/examples', icon: 'award', description: 'Sample resumes and CVs that pass the automatic ATS checks', parentKey: 'h-builder' },
+    { key: 'h-builder-ats', location: 'header', label: 'ATS checker', url: '/features/ats-checker', icon: 'file-check', description: 'Upload a resume and get a score with fixes', parentKey: 'h-builder' },
+    { key: 'h-builder-match', location: 'header', label: 'Job match', url: '/resume-job-description-matcher', icon: 'target', description: 'See which job keywords your resume lacks', parentKey: 'h-builder' },
+    { key: 'h-products-all', location: 'header', label: 'All free tools', url: '/products', icon: 'layout', description: 'Every tool in one place, with search', parentKey: 'h-products' },
+    { key: 'h-products-bullets', location: 'header', label: 'Resume bullet improver', url: '/products/resume-bullet-improver', icon: 'list-checks', description: 'Make weak resume lines clear and strong', parentKey: 'h-products' },
+    { key: 'h-products-cover', location: 'header', label: 'Cover letter generator', url: '/products/cover-letter-generator', icon: 'mail', description: 'A short, honest draft for any job advert', parentKey: 'h-products' },
+    { key: 'h-products-mock', location: 'header', label: 'Mock interview practice', url: '/products/mock-interview-practice', icon: 'message-square', description: 'Answer real questions and get feedback', parentKey: 'h-products' },
+    { key: 'h-products-playground', location: 'header', label: 'Code playground', url: '/products/code-playground', icon: 'code', description: 'Write React or Angular and see it run', parentKey: 'h-products' },
+    { key: 'h-products-enhancer', location: 'header', label: 'Image enhancer', url: '/products/image-enhancer', icon: 'zoom-in', description: 'Sharpen photos and enlarge them to 4K or 8K', parentKey: 'h-products' },
+    { key: 'h-products-converter', location: 'header', label: 'Image to PDF, Word, text', url: '/products/image-converter', icon: 'file-image', description: 'Pictures to one PDF, Word or text file', parentKey: 'h-products' },
     { key: 'h-learn-tutorials', location: 'header', label: 'Tutorials', url: '/learn', parentKey: 'h-learn' },
-    { key: 'h-learn-roadmaps', location: 'header', label: 'All roadmaps', url: '/roadmaps', parentKey: 'h-learn' },
-    { key: 'h-learn-roles', location: 'header', label: 'Role roadmaps', url: '/roadmaps?kind=role', parentKey: 'h-learn' },
-    { key: 'h-learn-tech', location: 'header', label: 'Technology roadmaps', url: '/roadmaps?kind=technology', parentKey: 'h-learn' },
-    { key: 'h-learn-career', location: 'header', label: 'Career paths', url: '/roadmaps?kind=career', parentKey: 'h-learn' },
+    { key: 'h-learn-roadmaps', location: 'header', label: 'Roadmaps', url: '/roadmaps', parentKey: 'h-learn' },
+    { key: 'h-learn-interview', location: 'header', label: 'Interview questions', url: '/jobs/interview-questions', parentKey: 'h-learn' },
     { key: 'h-jobs-browse', location: 'header', label: 'Browse jobs', url: '/jobs', parentKey: 'h-jobs' },
-    { key: 'h-jobs-interview', location: 'header', label: 'Interview questions', url: '/jobs/interview-questions', parentKey: 'h-jobs' },
     { key: 'h-jobs-salaries', location: 'header', label: 'Salaries', url: '/jobs/salaries', parentKey: 'h-jobs' },
     { key: 'h-jobs-reviews', location: 'header', label: 'Company reviews', url: '/jobs/company-reviews', parentKey: 'h-jobs' },
-    { key: 'h-builder-app', location: 'header', label: 'AI Resume builder & CV maker', url: '/app', icon: 'sparkles', description: 'Build, edit and download an ATS-friendly resume or CV', parentKey: 'h-builder' },
-    { key: 'h-builder-examples', location: 'header', label: 'Examples of 100/100 CV and resume', url: '/examples', icon: 'award', description: 'Real samples that pass every automatic ATS check', parentKey: 'h-builder' },
-    { key: 'h-products-all', location: 'header', label: 'All free tools', url: '/products', icon: 'layout', description: 'Every tool in one place, with search', parentKey: 'h-products' },
-    { key: 'h-products-builder', location: 'header', label: 'Resume builder', url: '/app', icon: 'file-text', description: 'Build and download an ATS-friendly resume', parentKey: 'h-products' },
-    { key: 'h-products-cv', location: 'header', label: 'AI CV builder', url: '/cv-builder', icon: 'sparkles', description: 'A tailored CV from your real details', parentKey: 'h-products' },
-    { key: 'h-products-ats', location: 'header', label: 'ATS resume checker', url: '/features/ats-checker', icon: 'file-check', description: 'Upload a resume and get a score with fixes', parentKey: 'h-products' },
-    { key: 'h-products-bullets', location: 'header', label: 'Resume bullet improver', url: '/products/resume-bullet-improver', icon: 'list-checks', description: 'Make weak resume lines clear and strong', parentKey: 'h-products' },
-    { key: 'h-products-jd', location: 'header', label: 'Job description matcher', url: '/resume-job-description-matcher', icon: 'target', description: 'See which job keywords your resume lacks', parentKey: 'h-products' },
-    { key: 'h-products-cover', location: 'header', label: 'Cover letter generator', url: '/products/cover-letter-generator', icon: 'mail', description: 'A short, honest draft for any job advert', parentKey: 'h-products' },
-    { key: 'h-products-playground', location: 'header', label: 'React and Angular playground', url: '/products/code-playground', icon: 'code', description: 'Write code on the left, see it run on the right', parentKey: 'h-products' },
-    { key: 'h-products-linkedin', location: 'header', label: 'LinkedIn headline and About', url: '/products/linkedin-headline-about-generator', icon: 'linkedin', description: 'Headline options and an About section', parentKey: 'h-products' },
-    { key: 'h-products-offer', location: 'header', label: 'Job offer comparison', url: '/products/job-offer-comparison', icon: 'scale', description: 'Compare two job offers side by side', parentKey: 'h-products' },
-    { key: 'h-products-mock', location: 'header', label: 'Mock interview practice', url: '/products/mock-interview-practice', icon: 'message-square', description: 'Answer real questions and get feedback', parentKey: 'h-products' },
-    { key: 'h-products-questions', location: 'header', label: 'Interview questions bank', url: '/jobs/interview-questions', icon: 'book-open', description: 'Questions with model answers', parentKey: 'h-products' },
-    { key: 'h-products-enhancer', location: 'header', label: 'Image enhancer', url: '/products/image-enhancer', icon: 'zoom-in', description: 'Sharpen photos and enlarge them to 4K or 8K', parentKey: 'h-products' },
-    { key: 'h-products-converter', location: 'header', label: 'Image to PDF, Word and text', url: '/products/image-converter', icon: 'file-image', description: 'Pictures to one PDF, Word or text file', parentKey: 'h-products' },
-    { key: 'h-contact', location: 'header', label: 'Contact Us', url: '/#contact-us' },
 
     { key: 'fp-home', location: 'footer_product', label: 'Home', url: '/' },
     { key: 'fp-support', location: 'footer_product', label: 'Support', url: '/' },
@@ -68,3 +57,18 @@ export const DEFAULT_MENU = [
     { key: 'fl-privacy', location: 'footer_legal', label: 'Privacy', url: '/privacy-policy' },
     { key: 'fl-terms', location: 'footer_legal', label: 'Terms', url: '/terms-and-conditions' },
 ].map((item, i) => ({ ...item, order: i }));
+
+
+// Explicit order so the header always reads Home, Resume, Tools, Learn, Jobs, Blog and every dropdown keeps its own order.
+// (Footer items keep the order they were listed in.)
+export const DEFAULT_MENU = (() => {
+    const tops = RAW_MENU.filter((d) => d.location === 'header' && !d.parentKey);
+    const topOrder = Object.fromEntries(tops.map((d, i) => [d.key, i + 1]));
+    const seen = {};
+    return RAW_MENU.map((d, i) => {
+        if (d.location !== 'header') return { ...d, order: 100 + i };
+        if (!d.parentKey) return { ...d, order: topOrder[d.key] };
+        seen[d.parentKey] = (seen[d.parentKey] || 0) + 1;
+        return { ...d, order: topOrder[d.parentKey] + 0.01 * seen[d.parentKey] };
+    });
+})();
