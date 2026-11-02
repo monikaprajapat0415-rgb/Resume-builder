@@ -76,6 +76,30 @@ const OfferComparer = () => {
           </>
         )}
       </section>
+
+      <details className='mt-6 rounded-2xl border border-slate-200 bg-white p-5 group' data-testid='offer-negotiate'>
+        <summary className='cursor-pointer list-none flex items-center justify-between gap-3 text-lg font-semibold text-slate-800'>Before you ask for more<span className='text-slate-400 group-open:rotate-45 transition'>+</span></summary>
+        <p className='text-sm text-slate-600 mt-3'>You can often ask, but not every employer will change an offer, and customs differ by country and company. Nothing here promises a result.</p>
+        <ol className='list-decimal pl-5 mt-3 space-y-1.5 text-sm text-slate-700'>
+          <li><strong>Decide what matters.</strong> Pay is one part. Start date, holiday, remote days, training budget and notice period can matter just as much.</li>
+          <li><strong>Know your reasons.</strong> Point to your real skills and results, and to what similar roles pay in your area. Use sources you can name, and do not invent figures.</li>
+          <li><strong>Ask once, in writing, kindly.</strong> A short message is easier to answer well than a long one.</li>
+          <li><strong>Be ready for any answer.</strong> Decide your lowest acceptable offer before you ask, and do not accept or refuse in the heat of the moment. It is fine to ask for a day to think.</li>
+          <li><strong>Get the final terms in writing</strong> before you give notice at your current job.</li>
+        </ol>
+        <p className='text-sm font-medium text-slate-800 mt-4'>A message you can adapt</p>
+        <pre className='mt-1.5 whitespace-pre-wrap rounded-lg bg-slate-50 border border-slate-200 p-3 text-sm text-slate-700 font-sans'>{`Hello [name],
+
+Thank you for the offer. I am excited about the role and the team.
+
+Before I decide, I would like to ask whether there is room to discuss [pay / start date / remote days / training]. Based on [your skills and results, or a source you can name], I was hoping for [your request].
+
+I understand if this is not possible, and I would be glad to talk it through.
+
+Thank you again,
+[your name]`}</pre>
+        <button type='button' className='mt-2 text-xs text-brand-700 hover:underline' onClick={() => navigator.clipboard?.writeText('Hello [name],\n\nThank you for the offer. I am excited about the role and the team.\n\nBefore I decide, I would like to ask whether there is room to discuss [pay / start date / remote days / training]. Based on [your skills and results, or a source you can name], I was hoping for [your request].\n\nI understand if this is not possible, and I would be glad to talk it through.\n\nThank you again,\n[your name]')}>Copy the message</button>
+      </details>
     </div>
   )
 }

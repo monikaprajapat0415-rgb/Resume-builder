@@ -21,6 +21,8 @@ const LABELS = {
   products: 'Products',
   'linkedin-headline-about-generator': 'LinkedIn Headline Writer',
   'code-playground': 'Code Playground',
+  'timed-interview-round': 'Timed Interview Round',
+  'swift-code-reader': 'Swift Code Reader',
   templates: 'Templates',
   examples: 'Examples',
   'nurse-cv-example': 'Nurse CV Example',

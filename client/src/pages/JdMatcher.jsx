@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import pdfToText from 'react-pdftotext'
@@ -7,6 +7,8 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import { matchResumeToJd } from '../utils/jdMatch'
+import { suggestLearning } from '../utils/learnSuggest'
+import api from '../configs/api'
 import { ToolGate } from './tools/parts'
 import { trackEvent } from '../components/Analytics'
 
@@ -31,6 +33,14 @@ const JdMatcher = () => {
   const [result, setResult] = useState(null)
   const [busy, setBusy] = useState(false)
   const out = useRef(null)
+  const [catalog, setCatalog] = useState(null)
+  // published lessons and roadmaps on this site, used only to suggest where to learn a missing skill
+  useEffect(() => {
+    let on = true
+    Promise.all([api.get('/api/learn').then((r) => r.data.courses || []).catch(() => []), api.get('/api/roadmaps').then((r) => r.data.roadmaps || []).catch(() => [])]).then(([courses, roadmaps]) => on && setCatalog({ courses, roadmaps }))
+    return () => { on = false }
+  }, [])
+  const learn = result && catalog ? suggestLearning(result.missing, catalog.courses, catalog.roadmaps) : null
 
   const onFile = async (e) => {
     const f = e.target.files?.[0]; e.target.value = ''
@@ -113,6 +123,21 @@ const JdMatcher = () => {
                 <div><h2 className='text-sm font-semibold text-amber-800 mb-2'>Weak (used once)</h2><div className='flex flex-wrap gap-1.5'>{result.weak.length ? result.weak.map((t) => chip(t, 'bg-amber-50 text-amber-800 border-amber-200')) : <p className='text-xs text-slate-500'>None.</p>}</div></div>
                 <div><h2 className='text-sm font-semibold text-red-800 mb-2'>Missing</h2><div className='flex flex-wrap gap-1.5'>{result.missing.length ? result.missing.map((t) => chip(t, 'bg-red-50 text-red-800 border-red-200')) : <p className='text-xs text-slate-500'>Nothing missing.</p>}</div></div>
               </div>
+
+              {learn && (learn.courses.length > 0 || learn.roadmaps.length > 0) && (
+                <div className='mt-6 rounded-xl border border-brand-200 bg-brand-50/50 p-4' data-testid='jd-learn'>
+                  <h2 className='text-sm font-semibold text-slate-800'>Learn the gaps</h2>
+                  <p className='text-xs text-slate-600 mt-1'>Free lessons and roadmaps on this site that mention some of your missing terms. Learning a topic is a good step, but add it to your resume only once it is true for you.</p>
+                  <ul className='mt-3 grid sm:grid-cols-2 gap-2'>
+                    {learn.courses.map((c) => (
+                      <li key={c.slug}><Link to={`/learn/${c.slug}`} className='block rounded-lg border border-slate-200 bg-white p-3 hover:border-brand-300'><span className='text-sm font-medium text-slate-800'>{c.title}</span><span className='block text-xs text-slate-500 mt-0.5'>Course{c.level ? `, ${c.level}` : ''}. Covers: {c.terms.slice(0, 4).join(', ')}</span></Link></li>
+                    ))}
+                    {learn.roadmaps.map((r) => (
+                      <li key={r.slug}><Link to={`/roadmaps/${r.slug}`} className='block rounded-lg border border-slate-200 bg-white p-3 hover:border-brand-300'><span className='text-sm font-medium text-slate-800'>{r.title}</span><span className='block text-xs text-slate-500 mt-0.5'>Roadmap. Mentions: {r.terms.slice(0, 4).join(', ')}</span></Link></li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className='mt-6 rounded-xl bg-slate-50 border border-slate-200 p-4 text-sm text-slate-700'>
                 <p className='font-medium text-slate-800'>What to do next</p>

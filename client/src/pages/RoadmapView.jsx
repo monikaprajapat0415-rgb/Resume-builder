@@ -5,6 +5,8 @@ import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
 import api from '../configs/api'
+import RoadmapPlan from '../components/RoadmapPlan'
+import { useToolSettings } from '../utils/toolSettings'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { LuBookOpen, LuCheck, LuClock, LuLayers, LuLightbulb, LuSparkles, LuUserRound } from 'react-icons/lu'
 
@@ -25,6 +27,7 @@ const RoadmapView = () => {
   const { user, token } = useSelector((s) => s.auth)
   const [data, setData] = useState(null)
   const [state, setState] = useState('loading')
+  const tools = useToolSettings()
   const [mine, setMine] = useState({ steps: [], skills: [] })
   const [fit, setFit] = useState(null)          // what the profile shows: { hasData, steps: [{matched,status}], ... }
   const [showFit, setShowFit] = useState(true)
@@ -147,6 +150,8 @@ const RoadmapView = () => {
             <li className='flex items-center gap-2'><span className='size-4 rounded border-2 border-slate-900 bg-yellow-300' />To do</li>
           </ul>
         </div>
+
+        {tools.planTool !== false && r.steps.length > 0 && <RoadmapPlan roadmap={r} doneSteps={mine.steps} />}
 
         {r.stack?.length > 0 && (
           <section className='mt-8 rounded-lg border-2 border-slate-900 bg-white p-4 sm:p-5' aria-labelledby='stack-h'>

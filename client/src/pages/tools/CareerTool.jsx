@@ -11,6 +11,9 @@ import { useToolSettings } from '../../utils/toolSettings'
 import C from '../../content/careerTools.json'
 import OfferComparer from './OfferComparer'
 const Playground = lazy(() => import('./Playground'))
+const TimedRound = lazy(() => import('./TimedRound'))
+const SwiftReader = lazy(() => import('./SwiftReader'))
+const LAZY_VIEWS = { 'code-playground': Playground, 'timed-interview-round': TimedRound, 'swift-code-reader': SwiftReader }
 import { TOOLS, visibleTools, toolByPath } from '../../content/toolsHub'
 import { IconTile, Badges, ToolCard } from './parts'
 
@@ -275,7 +278,7 @@ const CareerTool = ({ slug }) => {
               {View && status && status.limit != null && (
                 <p className='text-xs text-slate-500 mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1'><span className={`size-2 rounded-full ${status.remaining > 0 ? 'bg-brand-500' : 'bg-amber-500'}`} />{status.remaining} of {status.limit} free uses left today, shared by the AI tools</p>
               )}
-              {View ? <View token={token} /> : slug === 'code-playground' ? <Suspense fallback={<p className='text-slate-400 py-16 text-center'>Loading the editor…</p>}><Playground /></Suspense> : <OfferComparer />}
+              {View ? <View token={token} /> : LAZY_VIEWS[slug] ? <Suspense fallback={<p className='text-slate-400 py-16 text-center'>Loading…</p>}>{React.createElement(LAZY_VIEWS[slug])}</Suspense> : <OfferComparer />}
             </>
           )}
         </section>

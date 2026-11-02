@@ -1,4 +1,4 @@
-import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage, LuCode } from 'react-icons/lu'
+import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage, LuCode, LuTimer, LuFileCode } from 'react-icons/lu'
 
 // The free tools shown on /products. One list so the hub, the tool pages ("More tools") and the menus agree.
 // `flag` is the Admin > Free tools switch (tools without one are core and always shown). Taglines are plain and honest.
@@ -21,6 +21,8 @@ export const TOOLS = [
   { id: 'offer', name: 'Job offer comparison', tagline: 'Put two offers side by side: yearly total, benefits, costs and notice.', path: '/products/job-offer-comparison', group: 'jobs', icon: LuScale, access: 'Free account', flag: 'offerTool' },
   { id: 'mock', name: 'Mock interview practice', tagline: 'Answer a real question and get feedback against a model answer.', path: '/products/mock-interview-practice', group: 'interview', icon: LuMessageSquare, access: 'Free account', ai: true, flag: 'interviewTool' },
   { id: 'playground', name: 'React and Angular code playground', tagline: 'Write code on the left and see it run on the right. Starter interview exercises included.', path: '/products/code-playground', group: 'dev', icon: LuCode, access: 'Free account', flag: 'playgroundTool' },
+  { id: 'timed', name: 'Timed interview round', tagline: 'Answer random questions against a countdown, then compare with the model answer.', path: '/products/timed-interview-round', group: 'interview', icon: LuTimer, access: 'Free account', flag: 'timedRoundTool' },
+  { id: 'swiftreader', name: 'Swift code reader', tagline: 'Read short Swift snippets and predict what they print, with explanations.', path: '/products/swift-code-reader', group: 'dev', icon: LuFileCode, access: 'Free account', flag: 'swiftReaderTool' },
   { id: 'questions', name: 'Interview questions bank', tagline: 'Questions with model answers for freshers and experienced people.', path: '/jobs/interview-questions', group: 'interview', icon: LuBookOpen, access: 'No sign-in' },
   { id: 'enhancer', name: 'Image enhancer', tagline: 'Sharpen soft photos and enlarge them to 2K, 4K or 8K.', path: '/products/image-enhancer', group: 'files', icon: LuZoomIn, access: 'Free account', flag: 'imageEnhancer' },
   { id: 'converter', name: 'Image to PDF, Word and text', tagline: 'Combine pictures into one file, with OCR. Runs on your device.', path: '/products/image-converter', group: 'files', icon: LuFileImage, access: 'Free account' },
