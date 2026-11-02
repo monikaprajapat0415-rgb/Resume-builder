@@ -375,13 +375,13 @@ const ResumeBuilder = () => {
         description="Build a job-winning resume with AI. Generate, edit, and download ATS-friendly resumes instantly. No design skills needed. Fast, smart, and free."
         noindex
       />
-      <div className='max-w-7xl mx-auto px-4 py-6'>
+      <div className='site-w py-6'>
         <Link to={'/app'} className='inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700 transition-all'>
           <LuArrowLeft className='size-4' />Back to Deshboard
         </Link>
       </div>
       {fixNotice && <AtsFixNotice applied={fixNotice.applied} needsYou={fixNotice.needsYou} onUndo={fixNotice.snapshot ? undoAtsFix : undefined} onClose={() => setFixNotice(null)} />}
-      <div className='max-w-7xl mx-auto px-4 pb-8'>
+      <div className='site-w pb-8'>
         <div className='grid lg:grid-cols-12 gap-8'>
           {/* Left panel -- form */}
           <div className='relative lg:col-span-5 rounded-lg overflow-hidden'>

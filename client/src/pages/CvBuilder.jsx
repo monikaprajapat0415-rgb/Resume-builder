@@ -378,7 +378,7 @@ const CvBuilder = () => {
   ]
 
   return (
-    <div className='max-w-7xl mx-auto px-4 py-6'>
+    <div className='site-w py-6'>
       <SEO title='CV Builder' description='Build an ATS-friendly CV with AI.' path={`/app/cv/${cvId}`} noindex />
       <div className='flex flex-wrap items-center gap-3 mb-5'>
         <Link to='/app?tab=cvs' className='inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900'><LuArrowLeft className='size-4' />My CVs</Link>
