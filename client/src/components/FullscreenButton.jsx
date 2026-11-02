@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 // One button to fill the whole screen (the browser's own full-screen mode). Press Esc or the button again to leave.
-// Hidden where the browser cannot do it (for example iPhone Safari).
+// Only shown in the Learn section (/learn, course and lesson pages), hidden everywhere else and where the browser cannot do it (for example iPhone Safari).
 export default function FullscreenButton({ className = '' }) {
+  const { pathname } = useLocation()
   const [on, setOn] = useState(false)
   const ok = typeof document !== 'undefined' && !!document.fullscreenEnabled
   useEffect(() => {
@@ -11,7 +13,7 @@ export default function FullscreenButton({ className = '' }) {
     h()
     return () => document.removeEventListener('fullscreenchange', h)
   }, [])
-  if (!ok) return null
+  if (!ok || !/^\/learn(\/|$)/.test(pathname)) return null
   const toggle = () => {
     try {
       if (document.fullscreenElement) document.exitFullscreen()
