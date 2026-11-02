@@ -96,7 +96,7 @@ const BlogPost = () => {
         structuredData={post.jsonLd}
       />
       <NavBar />
-      <article className='max-w-2xl mx-auto px-4 pt-3 pb-12'>
+      <article className='site-w pt-3 pb-12'>
         <Crumbs post={post} />
 
         {post.categoryName && (

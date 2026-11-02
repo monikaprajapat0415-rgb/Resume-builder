@@ -7,6 +7,7 @@
 import { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import FullscreenButton from './FullscreenButton';
 
 const SITE_URL = 'https://primeresumeai.com';
 
@@ -162,6 +163,7 @@ export default function PageNav({ className = '' }) {
           </ol>
         </nav>
       )}
+      <FullscreenButton className="ms-auto" />
     </div>
   );
 }
