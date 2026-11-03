@@ -3,7 +3,7 @@ import { SITE_NAME, siteUrl } from '../utils/blogSeo.js';
 import { getToolSettings } from './toolSettingsController.js';
 import { merged } from './siteContentController.js';
 import { sendShell } from './blogSeoController.js';
-import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage, contactPage, privacyPage, termsPage, imageEnhancerPage, imageConverterPage, careerToolPage, careerData, flags } from '../utils/staticPages.js';
+import { homePage, featuresPage, atsCheckerPage, cvBuilderPage, matcherPage, templatesIndexPage, templatePage, hirePage, contactPage, privacyPage, termsPage, imageEnhancerPage, imageConverterPage, productsIndexPage, careerToolPage, careerData, flags } from '../utils/staticPages.js';
 
 // Server-rendered HTML for the public pages that live in the client code (see utils/staticPages.js).
 // Each handler falls through (next) when the client has not been built here or anything fails, so the site still works.
@@ -40,6 +40,7 @@ export const renderTerms = send(() => termsPage());
 export const renderHire = send(() => hirePage());
 export const renderImageConverter = send(() => imageConverterPage());
 export const renderImageEnhancer = send(() => imageEnhancerPage());
+export const renderProductsIndex = send(() => productsIndexPage());
 export const renderCareerTool = send((req) => careerToolPage(req.path.replace(/\/+$/, '').split('/').pop()));
 // Old /tools URLs (never indexed for long) go to the new place.
 export const redirectOldTools = (req, res, next) => {
