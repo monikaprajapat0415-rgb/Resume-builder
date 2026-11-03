@@ -188,7 +188,7 @@ export const templatePage = (slug) => {
     if (!t) return null;
     const others = data().templates.filter((x) => x.slug !== slug).slice(0, 6);
     return page({
-        path: `/templates/${t.slug}`, title: `${t.name} — Free & ATS-Friendly`,
+        path: `/templates/${t.slug}`, title: `${t.name} — Free`,
         description: t.metaDescription || shortDescription(t.description), keywords: t.keywords,
         body: `<nav aria-label="Breadcrumb">${a('/', 'Home')} › ${a('/templates', 'Templates')} › ${esc(t.name)}</nav>
 <h1>${esc(t.name)}</h1>
@@ -307,6 +307,35 @@ export const careerData = () => (CAREER ||= JSON.parse(fs.readFileSync(path.join
 export const careerToolPaths = () => careerData().tools.map((t) => t.path);
 export const hiddenCareerPaths = (settings) => careerData().tools.filter((t) => settings?.[t.flag] === false).map((t) => t.path);
 const toolOn = (t) => flags.tools?.[t.flag] !== false;
+
+// /products: the free tools hub (the shop products listed below the tools in the browser come from the database and are not repeated here).
+// Title and description match client/src/pages/ProductsIndex.jsx.
+export const productsIndexPage = () => {
+    const core = [
+        ['/app', 'Resume builder', 'Pick a template, fill it in and download an ATS-friendly resume.'],
+        ['/cv-builder', 'AI CV builder', 'A tailored CV written from your real details and a job description.'],
+        ['/features/ats-checker', 'ATS resume checker', 'Upload a PDF or Word resume and get a score with fixes.'],
+        ['/resume-job-description-matcher', 'Job description matcher', 'See which keywords from a job advert your resume has and lacks.'],
+        ['/jobs/interview-questions', 'Interview questions bank', 'Questions with model answers for freshers and experienced people.'],
+        ['/products/image-converter', 'Image to PDF, Word and text', 'Combine pictures into one file, with OCR. Runs on your device.'],
+        ...(flags.imageEnhancer ? [['/products/image-enhancer', 'Image enhancer', 'Sharpen soft photos and enlarge them to 2K, 4K or 8K.']] : []),
+    ];
+    const career = careerData().tools.filter(toolOn).map((t) => [t.path, t.name, t.description]);
+    const all = [...core, ...career];
+    return page({
+        path: '/products', title: 'Free Career Tools and Products',
+        description: 'Free tools for your job search: resume builder, ATS checker, cover letters, interview practice, offer comparison and image tools.',
+        keywords: 'free resume tools, ATS checker, cover letter generator, mock interview practice, job offer comparison',
+        body: `<h1>Free career tools</h1>
+<p>Tools for your job search. Each one needs a free account to use; this page and every tool page are open to read. The AI tools use your own words and never invent experience, and results are suggestions you should check.</p>
+<ul>${all.map(([h, n, d]) => `<li>${a(h, n)}: ${esc(d)}</li>`).join('')}</ul>
+<p>${a('/templates', 'Resume templates')} · ${a('/examples', 'Resume and CV examples')} · ${a('/learn', 'Free tutorials')} · ${a('/roadmaps', 'Career roadmaps')}</p>`,
+        jsonLd: [crumbs([['Home', '/'], ['Products', '/products']]), {
+            '@context': 'https://schema.org', '@type': 'ItemList', name: 'Free career tools',
+            itemListElement: all.map(([h, n], i) => ({ '@type': 'ListItem', position: i + 1, url: `${siteUrl()}${h}`, name: n })),
+        }],
+    });
+};
 
 export const careerToolPage = (slug) => {
     const c = careerData().tools.find((t) => t.slug === slug);

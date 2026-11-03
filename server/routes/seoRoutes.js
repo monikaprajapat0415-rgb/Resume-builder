@@ -4,7 +4,7 @@ import { renderQuestionsIndex, renderQuestion, renderSalariesIndex, renderSalary
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
 import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
-import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderContact, renderPrivacy, renderTerms, renderImageEnhancer, renderImageConverter, renderCareerTool, redirectOldTools } from '../controllers/staticSeoController.js';
+import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderContact, renderPrivacy, renderTerms, renderImageEnhancer, renderImageConverter, renderCareerTool, renderProductsIndex, redirectOldTools } from '../controllers/staticSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
@@ -59,6 +59,7 @@ seoRouter.get('/hire', renderHire);
 seoRouter.get('/contact-us', renderContact);
 seoRouter.get('/privacy-policy', renderPrivacy);
 seoRouter.get('/terms-and-conditions', renderTerms);
+seoRouter.get('/products', renderProductsIndex);
 seoRouter.get('/products/image-enhancer', renderImageEnhancer);
 seoRouter.get('/products/image-converter', renderImageConverter);
 seoRouter.get(['/products/cover-letter-generator', '/products/resume-bullet-improver', '/products/mock-interview-practice', '/products/job-offer-comparison', '/products/linkedin-headline-about-generator', '/products/code-playground', '/products/timed-interview-round', '/products/swift-code-reader'], renderCareerTool);

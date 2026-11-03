@@ -37,7 +37,7 @@ const TemplateLanding = () => {
   return (
     <div>
       <SEO
-        title={`${template.name} — Free & ATS-Friendly`}
+        title={`${template.name} — Free`}
         description={template.metaDescription || shortDescription(template.description)}
         keywords={template.keywords}
         path={`/templates/${template.slug}`}
