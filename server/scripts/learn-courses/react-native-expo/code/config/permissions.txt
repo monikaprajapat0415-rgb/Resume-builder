@@ -1,0 +1,18 @@
+// app.json: texts shown to the user when the app asks for permission
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose photos for your journal.",
+          "cameraPermission": "Take photos for your journal."
+        }
+      ],
+      [
+        "expo-notifications",
+        { "color": "#3b5bdb" }
+      ]
+    ]
+  }
+}

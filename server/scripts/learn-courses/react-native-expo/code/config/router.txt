@@ -1,0 +1,19 @@
+// package.json
+{
+  "main": "expo-router/entry"
+}
+
+// app.json  (add the scheme and the plugin)
+{
+  "expo": {
+    "scheme": "myapp",
+    "plugins": ["expo-router"]
+  }
+}
+
+// File layout for expo-router: every file in app/ is a screen
+app/
+  _layout.tsx      navigation container (Stack or Tabs)
+  index.tsx        route "/"
+  quiz.tsx         route "/quiz"
+  [id].tsx         dynamic route "/123"

@@ -1,0 +1,7 @@
+// app/build.gradle.kts  -> dependencies { ... }
+// A new "Empty Activity" project already has Compose, Material 3 and the activity library.
+// Projects 2 to 4 need these extra lines:
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")   // viewModel() in Compose
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")     // collectAsStateWithLifecycle()
+implementation("androidx.navigation:navigation-compose:2.8.5")           // project 4 only
+implementation("androidx.compose.material:material-icons-core")          // Add and Delete icons (version comes from the Compose BOM)

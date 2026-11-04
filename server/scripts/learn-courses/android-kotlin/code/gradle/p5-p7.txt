@@ -1,0 +1,16 @@
+// Top of app/build.gradle.kts  -> plugins { ... }  (add the KSP plugin; match its version to your Kotlin version)
+id("com.google.devtools.ksp") version "2.0.21-1.0.28"
+// (In the project-level build file, or in settings, declare the same plugin with "apply false" if Android Studio asks.)
+
+// app/build.gradle.kts  -> dependencies { ... }
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+implementation("androidx.room:room-runtime:2.6.1")
+implementation("androidx.room:room-ktx:2.6.1")
+ksp("androidx.room:room-compiler:2.6.1")                                   // generates the database code at build time
+
+// Project 6 only (weather):
+implementation("com.squareup.retrofit2:retrofit:2.11.0")
+implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+// and in the plugins block: id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"

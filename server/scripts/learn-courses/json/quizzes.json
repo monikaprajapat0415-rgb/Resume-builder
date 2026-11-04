@@ -1,4 +1,486 @@
 {
+ "android-development-kotlin-course": {
+  "what-is-android-development-and-your-first-app": [
+   {
+    "q": "What is a composable function?",
+    "options": [
+     "A function marked @Composable that describes part of the screen",
+     "A file that holds images",
+     "A function that only runs in the background"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does Gradle do?",
+    "options": [
+     "Stores user data",
+     "Draws the screen",
+     "Builds the app and downloads the libraries it needs"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which Android Studio template does this course start from?",
+    "options": [
+     "Wear OS watch face",
+     "Game project",
+     "Empty Activity with Compose"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "kotlin-basics-variables-types-functions-and-control-flow": [
+   {
+    "q": "What is the difference between val and var?",
+    "options": [
+     "val is for numbers only",
+     "val cannot be reassigned, var can",
+     "They are identical"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does \"Total: ${a + b}\" do?",
+    "options": [
+     "Prints the characters as written",
+     "Causes an error",
+     "Puts the result of a + b into the text"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What are named arguments for?",
+    "options": [
+     "Declaring variables",
+     "Making calls easy to read, e.g. greet(name = \"Ravi\")",
+     "Making code run faster"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "kotlin-classes-collections-null-safety-and-lambdas": [
+   {
+    "q": "What does a data class generate for you?",
+    "options": [
+     "toString, equals, hashCode and copy",
+     "A database table",
+     "A screen"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does ?: do in name ?: \"Guest\"?",
+    "options": [
+     "Compares two strings",
+     "Uses \"Guest\" when name is null",
+     "Makes name null"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does filter return?",
+    "options": [
+     "A new list with the items that pass the test",
+     "A single number",
+     "The same list changed in place"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "jetpack-compose-basics-state-and-project-1-tip-calculator": [
+   {
+    "q": "What is recomposition?",
+    "options": [
+     "Compose running a composable again because its state changed",
+     "Restarting the phone",
+     "Rebuilding the whole app"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is remember needed with mutableStateOf?",
+    "options": [
+     "It makes it a string",
+     "It keeps the value between recompositions",
+     "It saves it to the database"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which keeps a typed value through rotation?",
+    "options": [
+     "Modifier.padding",
+     "val",
+     "rememberSaveable"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-2-todo-list-viewmodel-lazycolumn-and-state-hoisting": [
+   {
+    "q": "Why use a ViewModel for screen state?",
+    "options": [
+     "It draws the UI",
+     "It survives rotation and holds logic",
+     "It replaces Gradle"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is state hoisting?",
+    "options": [
+     "Moving files to another folder",
+     "Hiding the status bar",
+     "Passing state down and events up instead of owning state in a small composable"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why give LazyColumn items a key?",
+    "options": [
+     "To make rows bigger",
+     "To sort the rows",
+     "So Compose can track which row is which when the list changes"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-3-unit-converter-dropdown-menus-and-validation": [
+   {
+    "q": "Why convert through a base unit?",
+    "options": [
+     "It avoids using Kotlin",
+     "It is required by Android",
+     "It needs only two formulas per unit instead of one for each pair"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should the app do when the typed text is not a number?",
+    "options": [
+     "Show nothing or a message, never crash",
+     "Crash with an error",
+     "Use the last result"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should the menu open/closed flag live?",
+    "options": [
+     "In the manifest",
+     "In local remember state of the picker",
+     "In the database"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-4-quiz-app-navigation-compose-and-multiple-screens": [
+   {
+    "q": "What does NavHost do?",
+    "options": [
+     "Shows the current destination and lists the routes",
+     "Runs tests",
+     "Downloads images"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does popUpTo do when navigating?",
+    "options": [
+     "Removes screens from the back stack",
+     "Plays a sound",
+     "Opens a pop-up window"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How should you pass a big object to another screen?",
+    "options": [
+     "Use a global variable",
+     "Put the whole object in the route",
+     "Pass an id and load the object on the next screen"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-5-notes-app-room-database-dao-and-flow": [
+   {
+    "q": "What is a DAO in Room?",
+    "options": [
+     "A screen",
+     "A Gradle plugin",
+     "An interface with the functions that read and write the database"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why return Flow from a DAO query?",
+    "options": [
+     "It encrypts the data",
+     "The screen gets a new list whenever the table changes",
+     "It makes the query faster to write"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What must you do after adding a column to an entity in a released app?",
+    "options": [
+     "Delete the DAO",
+     "Raise the version and add a migration",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-6-weather-app-retrofit-coroutines-and-api-calls": [
+   {
+    "q": "What does a suspend function allow?",
+    "options": [
+     "Pausing without blocking a thread",
+     "Running only on the main thread",
+     "Skipping errors"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why use a sealed UiState with Loading, Success and Error?",
+    "options": [
+     "It saves data",
+     "The compiler checks that every state is handled",
+     "It makes network calls faster"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why should an API key not be placed in the app?",
+    "options": [
+     "Kotlin forbids strings",
+     "Keys are too long",
+     "Anyone can extract it from the APK"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-7-expense-tracker-room-sql-totals-and-money": [
+   {
+    "q": "Why store money as whole cents?",
+    "options": [
+     "Room only supports Long",
+     "Cents use less memory than text",
+     "Floating point cannot store many decimals exactly"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which SQL does the database use to total by category?",
+    "options": [
+     "SELECT * only",
+     "DROP TABLE",
+     "SUM with GROUP BY"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why is the total a Flow?",
+    "options": [
+     "It avoids the database",
+     "It updates the moment an expense is added or removed",
+     "Flow makes it a string"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-8-posts-reader-coil-images-search-and-pull-to-refresh": [
+   {
+    "q": "What does Coil do?",
+    "options": [
+     "Loads, caches and shows images in Compose",
+     "Stores settings",
+     "Navigates between screens"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should the search filter live?",
+    "options": [
+     "In the ViewModel",
+     "In the manifest",
+     "In the image loader"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is produceState good for?",
+    "options": [
+     "A small one-off load inside a composable",
+     "Drawing icons",
+     "Signing the app"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-9-habit-tracker-datastore-workmanager-and-notifications": [
+   {
+    "q": "When is DataStore a better fit than Room?",
+    "options": [
+     "For millions of rows",
+     "For small settings or simple data",
+     "For drawing UI"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why are WorkManager reminders not exact?",
+    "options": [
+     "Notifications ignore time",
+     "Kotlin rounds time",
+     "Android may delay periodic work to save battery"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What must the app do on Android 13 and newer to show notifications?",
+    "options": [
+     "Restart the phone",
+     "Ask for the POST_NOTIFICATIONS permission",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-10-recipe-book-capstone-hilt-room-retrofit-navigation": [
+   {
+    "q": "What does Hilt do?",
+    "options": [
+     "Tests the UI",
+     "Creates and provides the objects your classes need",
+     "Draws the bottom bar"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a repository?",
+    "options": [
+     "A screen layout",
+     "A Git folder",
+     "One place that gives the app its data from network and database"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why can favourites open without internet?",
+    "options": [
+     "Their details are saved in Room",
+     "Retrofit works offline",
+     "Coil downloads them again"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "testing-and-performance-for-android-apps": [
+   {
+    "q": "Where do local unit tests run?",
+    "options": [
+     "Only on a device",
+     "Only in Play Console",
+     "On your computer's JVM, with no phone"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why does a ViewModel test need a main dispatcher rule?",
+    "options": [
+     "viewModelScope uses the main thread, which a local test does not have",
+     "To draw the UI",
+     "To speed up Gradle"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which keeps an app smooth?",
+    "options": [
+     "Do heavy work inside composables",
+     "Never block the main thread",
+     "Load full-size photos for thumbnails"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "release-your-android-app-signing-r8-play-store-and-interview-prep": [
+   {
+    "q": "Which file format does Google Play require for new apps?",
+    "options": [
+     "AAB (Android App Bundle)",
+     "EXE",
+     "ZIP"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does R8 do in a release build?",
+    "options": [
+     "Creates the icon",
+     "Removes unused code and shrinks the app",
+     "Adds ads"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What must go up with every Play Store upload?",
+    "options": [
+     "The keystore password",
+     "The package name",
+     "versionCode"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
  "workplace-english-course": {
   "workplace-english-tone-and-politeness": [
    {
@@ -3981,6 +4463,488 @@
      "Only in memory"
     ],
     "answer": 0,
+    "explain": ""
+   }
+  ]
+ },
+ "react-native-development-expo-course": {
+  "what-is-react-native-expo-setup-and-your-first-app": [
+   {
+    "q": "What does React Native draw on the phone?",
+    "options": [
+     "Only images",
+     "Real native views",
+     "A web page in a hidden browser"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is Expo Go?",
+    "options": [
+     "A code editor",
+     "A database",
+     "An app that runs your project on your phone during development"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is Fast Refresh?",
+    "options": [
+     "The app updates on the phone when you save a file",
+     "A way to clear storage",
+     "An ad network"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "javascript-and-typescript-essentials-for-react-native": [
+   {
+    "q": "Which keyword should you use by default for a value that is never reassigned?",
+    "options": [
+     "let always",
+     "var",
+     "const"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does map return?",
+    "options": [
+     "A new array",
+     "A number",
+     "The same array changed"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does await do?",
+    "options": [
+     "Pauses an async function until a promise is ready",
+     "Runs code twice",
+     "Deletes the promise"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "core-components-styling-state-and-project-1-tip-calculator": [
+   {
+    "q": "Where must all visible text be placed?",
+    "options": [
+     "Directly inside a View",
+     "In app.json",
+     "Inside a Text component"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the default flex direction in React Native?",
+    "options": [
+     "row",
+     "diagonal",
+     "column"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How should you update state?",
+    "options": [
+     "Call the setter with a new value",
+     "Edit node_modules",
+     "Change the variable directly"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-2-todo-list-flatlist-useeffect-and-asyncstorage": [
+   {
+    "q": "When does useEffect with an empty array run?",
+    "options": [
+     "Once after the first render",
+     "Never",
+     "On every render"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why not push into the existing state array?",
+    "options": [
+     "Arrays cannot grow",
+     "React may not notice the change; a new array triggers a redraw",
+     "It is slower"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is AsyncStorage best for?",
+    "options": [
+     "Passwords",
+     "Large relational data",
+     "Small data kept on the phone"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-3-quiz-app-with-expo-router-navigation": [
+   {
+    "q": "In Expo Router, what makes a route?",
+    "options": [
+     "A line in package.json",
+     "A component named Route",
+     "A file inside the app folder"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does router.replace do compared with push?",
+    "options": [
+     "Reloads the data",
+     "Closes the app",
+     "Swaps the current screen instead of stacking a new one"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What type are route params?",
+    "options": [
+     "Objects",
+     "Booleans only",
+     "Strings"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-4-weather-app-fetch-api-loading-and-error-states": [
+   {
+    "q": "Why check res.ok after fetch?",
+    "options": [
+     "It sets the cache",
+     "fetch does not throw on HTTP errors like 404",
+     "It speeds up the call"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a union type for state help with?",
+    "options": [
+     "Making requests faster",
+     "Making impossible states impossible and handling each case",
+     "Hiding the spinner"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why should a secret API key stay out of the app?",
+    "options": [
+     "Expo bans keys",
+     "Keys cannot be strings",
+     "Anything in the app can be extracted"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-5-expense-tracker-usereducer-context-and-money": [
+   {
+    "q": "What does a reducer return?",
+    "options": [
+     "A promise always",
+     "The next state",
+     "A component"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why store money as cents?",
+    "options": [
+     "Phones cannot show decimals",
+     "Whole numbers are exact",
+     "It makes lists shorter"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does useMemo do?",
+    "options": [
+     "Saves data to disk",
+     "Caches a calculated value until its inputs change",
+     "Opens a new screen"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-6-notes-app-with-expo-sqlite-and-search": [
+   {
+    "q": "Why use ? placeholders in SQL?",
+    "options": [
+     "They make queries shorter",
+     "Values are sent separately, which blocks SQL injection",
+     "SQLite requires comments"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "When is SQLite a better choice than AsyncStorage?",
+    "options": [
+     "Storing a token",
+     "A single on/off setting",
+     "Many rows, searching and sorting"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What do you need if you add a column to a released app?",
+    "options": [
+     "A migration",
+     "A new phone",
+     "Nothing"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-7-recipe-browser-with-tanstack-query": [
+   {
+    "q": "What is a query key?",
+    "options": [
+     "A file name",
+     "A password",
+     "The identity of the data, such as [\"meals\", term]"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What happens when you repeat a search that is cached and fresh?",
+    "options": [
+     "The app crashes",
+     "It always waits for the server",
+     "The cached data shows immediately"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does enabled: !!id do?",
+    "options": [
+     "Turns on dark mode",
+     "Runs the query only when the id exists",
+     "Deletes the id"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-8-photo-journal-camera-image-picker-and-file-system": [
+   {
+    "q": "What should the app do if the user denies camera permission?",
+    "options": [
+     "Explain and keep working",
+     "Ask again in a loop",
+     "Crash"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why copy a picked photo into the app's folder?",
+    "options": [
+     "To make it larger",
+     "The picker address is temporary",
+     "To change its colour"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where do iOS permission messages come from?",
+    "options": [
+     "Texts you write in app.json",
+     "Apple writes them for you",
+     "The user"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-9-habit-tracker-streaks-and-local-notifications": [
+   {
+    "q": "Why store completed days as text keys like 2026-11-04?",
+    "options": [
+     "Notifications need them",
+     "They avoid time-zone bugs",
+     "They are shorter than numbers"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a local notification?",
+    "options": [
+     "One the app schedules on the phone, without a server",
+     "An email",
+     "One sent from a server only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why pass the date into the streak function?",
+    "options": [
+     "It is required by JavaScript",
+     "It saves memory",
+     "It makes the function easy to test"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-10-shop-app-zustand-cart-tabs-and-product-list": [
+   {
+    "q": "What does a Zustand selector do?",
+    "options": [
+     "Subscribes a component to one part of the store",
+     "Draws tabs",
+     "Deletes the store"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why derive the cart total with a function over the lines?",
+    "options": [
+     "It is required by Expo",
+     "It cannot go out of date",
+     "It saves storage"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the demo checkout do in this app?",
+    "options": [
+     "Charges a card",
+     "Clears the cart; no real payment",
+     "Sends an email"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "forms-validation-secure-storage-and-api-authentication": [
+   {
+    "q": "Where should a login token be stored?",
+    "options": [
+     "In the source code",
+     "AsyncStorage",
+     "expo-secure-store"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Is client-side validation enough?",
+    "options": [
+     "Only for passwords",
+     "Yes, always",
+     "No, the server must validate too"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How does a protected group of screens work in Expo Router?",
+    "options": [
+     "The router blocks it automatically",
+     "A layout redirects to login when there is no token",
+     "Screens hide themselves"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "testing-and-performance-for-react-native-apps": [
+   {
+    "q": "Which tests are the fastest and easiest to write?",
+    "options": [
+     "Tests of plain functions",
+     "Tests of the camera",
+     "Tests that need a physical device"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which list component should you use for a long list?",
+    "options": [
+     "ScrollView with every item",
+     "FlatList",
+     "Text"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where should you judge app speed?",
+    "options": [
+     "In a development build on an emulator",
+     "In a release build on a real phone",
+     "In the browser"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "build-and-publish-with-eas-and-react-native-interview-prep": [
+   {
+    "q": "What does EAS Build do?",
+    "options": [
+     "Writes your code",
+     "Hosts your database",
+     "Builds signed app files in the cloud"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What can an EAS update change?",
+    "options": [
+     "JavaScript and assets, not native code",
+     "Only the app icon in the store",
+     "Anything including native libraries"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What format does Google Play need for production?",
+    "options": [
+     "APK only",
+     "AAB",
+     "ZIP"
+    ],
+    "answer": 1,
     "explain": ""
    }
   ]

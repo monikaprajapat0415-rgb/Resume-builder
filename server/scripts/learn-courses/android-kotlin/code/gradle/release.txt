@@ -1,0 +1,18 @@
+// app/build.gradle.kts  -> android { ... }
+signingConfigs {
+    create("release") {
+        // Read secrets from gradle.properties or the environment. Never commit the keystore or passwords.
+        storeFile = file(providers.gradleProperty("RELEASE_STORE_FILE").get())
+        storePassword = providers.gradleProperty("RELEASE_STORE_PASSWORD").get()
+        keyAlias = providers.gradleProperty("RELEASE_KEY_ALIAS").get()
+        keyPassword = providers.gradleProperty("RELEASE_KEY_PASSWORD").get()
+    }
+}
+buildTypes {
+    release {
+        isMinifyEnabled = true          // R8 shrinks and obfuscates the code
+        isShrinkResources = true        // removes unused resources
+        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        signingConfig = signingConfigs.getByName("release")
+    }
+}

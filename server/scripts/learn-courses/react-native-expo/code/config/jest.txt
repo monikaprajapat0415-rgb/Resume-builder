@@ -1,0 +1,11 @@
+npx expo install jest-expo jest @types/jest --dev
+npm install --save-dev @testing-library/react-native
+
+// package.json
+{
+  "scripts": { "test": "jest" },
+  "jest": { "preset": "jest-expo" }
+}
+
+// run
+npm test
