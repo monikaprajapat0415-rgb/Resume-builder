@@ -1,0 +1,2 @@
+<!-- Add this line inside <manifest>, above <application>. It is only asked at run time on Android 13 and newer. -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />

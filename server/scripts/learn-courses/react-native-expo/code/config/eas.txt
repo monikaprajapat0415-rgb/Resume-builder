@@ -1,0 +1,17 @@
+npm install -g eas-cli
+eas login
+eas build:configure
+
+# test builds you can share
+eas build --platform android --profile preview     # APK for testers
+eas build --platform ios --profile preview         # needs an Apple Developer account
+
+# store builds
+eas build --platform android --profile production  # AAB for Google Play
+eas build --platform ios --profile production
+eas submit --platform android
+eas submit --platform ios
+
+# send a small JavaScript-only fix to installed apps
+npx expo install expo-updates
+eas update --branch production --message "Fix typo"

@@ -1,0 +1,7 @@
+# Install libraries with expo install so versions match your Expo SDK
+npx expo install @react-native-async-storage/async-storage   # projects 2, 5, 8, 9
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar   # projects 3, 7, 10
+npx expo install expo-sqlite                                  # project 6
+npx expo install expo-image-picker expo-file-system           # project 8
+npx expo install expo-notifications                           # project 9
+npm install @tanstack/react-query zustand                     # projects 7, 10

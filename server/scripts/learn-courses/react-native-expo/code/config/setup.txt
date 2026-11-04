@@ -1,0 +1,5 @@
+# Create the project (Node.js LTS must be installed)
+npx create-expo-app@latest my-app --template blank-typescript
+cd my-app
+npx expo start
+# press a for Android emulator, i for iOS simulator (macOS), or scan the QR code with the Expo Go app
