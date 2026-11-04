@@ -17,7 +17,9 @@ class SavingsAccount(owner: String, balance: Double, private val rate: Double) :
     override fun describe() = "${super.describe()} (interest rate ${rate * 100}%)"
 }
 
-interface Shape { fun area(): Double }
+interface Shape {
+    fun area(): Double
+}
 class Square(private val side: Double) : Shape {
     override fun area() = side * side
 }

@@ -479,6 +479,870 @@
     "answer": 2,
     "explain": ""
    }
+  ],
+  "kotlin-oop-in-depth-classes-interfaces-sealed-generics-and-solid": [
+   {
+    "q": "Why use a sealed class for screen state?",
+    "options": [
+     "The compiler checks that every case is handled in a when",
+     "It stores data on disk",
+     "It makes the app faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the S in SOLID stand for?",
+    "options": [
+     "Storage",
+     "Speed",
+     "Single responsibility: one reason to change"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does an interface give you?",
+    "options": [
+     "A contract that different classes can implement",
+     "A layout",
+     "A database"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "advanced-kotlin-scope-functions-extensions-coroutines-and-flow": [
+   {
+    "q": "What does a suspend function do?",
+    "options": [
+     "It stops the app",
+     "It runs only at night",
+     "It can pause without blocking the thread"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a Flow?",
+    "options": [
+     "A layout",
+     "A stream of values that arrive over time",
+     "A single number"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does an extension function do?",
+    "options": [
+     "Creates a database",
+     "Adds a function to an existing class without changing it",
+     "Deletes a class"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "android-fundamentals-activities-fragments-services-intents-and-permissions": [
+   {
+    "q": "What is an explicit intent?",
+    "options": [
+     "One that asks the user a question",
+     "One that stores data",
+     "One that names the exact component to start"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When should you ask for a dangerous permission?",
+    "options": [
+     "Never",
+     "When the feature needs it, with a reason",
+     "On the very first launch for all permissions"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the manifest declare?",
+    "options": [
+     "Components, permissions and app details",
+     "The database rows",
+     "The button colours"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "jetpack-compose-in-depth-layouts-theming-side-effects-and-animation": [
+   {
+    "q": "What is LaunchedEffect for?",
+    "options": [
+     "Running a suspend side effect tied to composition",
+     "Installing the app",
+     "Drawing a button"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does state hoisting mean?",
+    "options": [
+     "Saving state to disk",
+     "Deleting state",
+     "Moving state up to the caller so the composable is stateless"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use a Material theme?",
+    "options": [
+     "To make the APK smaller",
+     "Consistent colours, type and shapes across the app",
+     "To run faster"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "traditional-android-ui-xml-layouts-recyclerview-and-viewbinding": [
+   {
+    "q": "What does ViewBinding replace?",
+    "options": [
+     "Gradle",
+     "The manifest",
+     "findViewById calls"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why does RecyclerView recycle views?",
+    "options": [
+     "To reuse row views and save memory",
+     "To load images",
+     "To delete data"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does DiffUtil do?",
+    "options": [
+     "Sorts users",
+     "Finds what changed between two lists",
+     "Draws the divider"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "android-architecture-mvvm-mvi-clean-architecture-and-modularization": [
+   {
+    "q": "What is the ViewModel's job?",
+    "options": [
+     "Draw the buttons",
+     "Hold screen state and survive rotation",
+     "Store files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does MVI add compared to MVVM?",
+    "options": [
+     "A database",
+     "One state object and explicit intents or events",
+     "A new language"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does dependency injection help with?",
+    "options": [
+     "Encrypting data",
+     "Providing dependencies so classes are easy to test and swap",
+     "Making the screen bigger"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "jetpack-libraries-room-relations-paging-camerax-and-offline-first": [
+   {
+    "q": "What does an offline-first app do?",
+    "options": [
+     "Reads from the local database and syncs with the network",
+     "Needs the internet for every screen",
+     "Never saves data"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is Paging for?",
+    "options": [
+     "Drawing a pager",
+     "Loading long lists in pages as the user scrolls",
+     "Printing pages"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a Room @Relation describe?",
+    "options": [
+     "A colour",
+     "A permission",
+     "A link between tables loaded together"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "networking-in-depth-okhttp-interceptors-jwt-oauth-and-pagination": [
+   {
+    "q": "What is an interceptor?",
+    "options": [
+     "Code that sees every request or response",
+     "A screen",
+     "A database"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should a JWT be stored on the device?",
+    "options": [
+     "In plain text in a file",
+     "In the app name",
+     "In encrypted storage"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why paginate an API?",
+    "options": [
+     "To avoid downloading huge lists at once",
+     "To hide errors",
+     "To change colours"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "firebase-for-android-auth-firestore-storage-push-and-analytics": [
+   {
+    "q": "What protects Firestore data?",
+    "options": [
+     "Security rules",
+     "The package name",
+     "The app icon"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does google-services.json hold?",
+    "options": [
+     "Your password",
+     "Your Firebase project settings for the app",
+     "The app code"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What sends a push to a device?",
+    "options": [
+     "A server or Cloud Function using the device token",
+     "The app by itself",
+     "The keyboard"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "android-security-keystore-biometrics-r8-and-owasp-mobile": [
+   {
+    "q": "What is the Android Keystore for?",
+    "options": [
+     "Running apps",
+     "Keeping cryptographic keys in protected storage",
+     "Storing photos"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does BiometricPrompt tell your app?",
+    "options": [
+     "Success or failure, not the biometric data",
+     "The user's name",
+     "The fingerprint image"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why must the server validate again?",
+    "options": [
+     "The app is encrypted",
+     "The app can be modified by an attacker",
+     "Servers are faster"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "background-work-and-device-features-camera-location-maps-sensors-payments": [
+   {
+    "q": "When is WorkManager the right choice?",
+    "options": [
+     "Reliable deferrable work that must still run later",
+     "Drawing text",
+     "Updating a button"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should a payment flow never do?",
+    "options": [
+     "Use a provider",
+     "Confirm on a server",
+     "Store or handle raw card numbers in your app"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What must you do with a sensor listener?",
+    "options": [
+     "Leave it on",
+     "Rename it",
+     "Unregister it when not needed"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "ai-and-machine-learning-in-android-gemini-ml-kit-and-tensorflow-lite": [
+   {
+    "q": "Where should an AI API key live?",
+    "options": [
+     "On your server, not in the app",
+     "In the app name",
+     "In strings.xml"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is an advantage of on-device ML Kit?",
+    "options": [
+     "It needs a server",
+     "It is always larger",
+     "It works without a network"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a good habit with AI answers?",
+    "options": [
+     "Tell users they can be wrong",
+     "Never test them",
+     "Hide that AI is used"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "testing-debugging-and-performance-in-depth-for-android": [
+   {
+    "q": "What do unit tests run on?",
+    "options": [
+     "The JVM, without a device",
+     "Only a phone",
+     "Only a watch"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is Logcat?",
+    "options": [
+     "A database",
+     "A layout",
+     "The log viewer for your running app"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use baseline profiles?",
+    "options": [
+     "To change colours",
+     "To speed up startup",
+     "To add ads"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "git-gradle-ci-cd-and-play-store-release-in-depth": [
+   {
+    "q": "What does CI do?",
+    "options": [
+     "Draws screens",
+     "Builds and tests code automatically on each change",
+     "Edits photos"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which key signs your release?",
+    "options": [
+     "The debug key only",
+     "Your upload or signing key",
+     "None"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why use version catalogs?",
+    "options": [
+     "Make images smaller",
+     "Run tests",
+     "Keep dependency versions in one place"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "enterprise-android-multi-module-websockets-i18n-and-other-form-factors": [
+   {
+    "q": "What is a benefit of multi-module projects?",
+    "options": [
+     "Fewer files always",
+     "Faster builds and clearer boundaries",
+     "No Gradle"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What do you need for translations?",
+    "options": [
+     "Hard-coded text",
+     "Strings in resource files per language",
+     "Images only"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a WebSocket give you?",
+    "options": [
+     "A one-time file",
+     "A long-lived two-way connection",
+     "A database"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-11-calculator-app-expression-parser-and-compose-keypad": [
+   {
+    "q": "What does the parser calculate first in 2+3*4?",
+    "options": [
+     "3*4",
+     "2+3",
+     "4 only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does evaluate return for bad input?",
+    "options": [
+     "null",
+     "Zero",
+     "A crash"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why keep Calculator free of Android imports?",
+    "options": [
+     "So it can be unit tested easily",
+     "So it is hidden",
+     "So it is slower"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-12-e-commerce-app-products-cart-and-demo-checkout": [
+   {
+    "q": "Why store prices as cents?",
+    "options": [
+     "Room requires it",
+     "They look nicer",
+     "Integers avoid rounding errors"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why keep the cart in Room?",
+    "options": [
+     "It survives closing the app",
+     "It is faster to type",
+     "It is required by Retrofit"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where should payment be confirmed?",
+    "options": [
+     "On your server with a provider",
+     "Only in the app",
+     "In the cart"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-13-real-time-chat-app-firebase-auth-firestore-and-push": [
+   {
+    "q": "What does callbackFlow do here?",
+    "options": [
+     "Signs users in",
+     "Turns a snapshot listener into a Flow",
+     "Sends push messages"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What do the security rules enforce?",
+    "options": [
+     "Anyone may edit",
+     "Only signed-in users read, and senders use their own id",
+     "Nothing"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Who sends a push notification?",
+    "options": [
+     "A server or Cloud Function",
+     "The receiving app",
+     "The keyboard"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-14-fitness-tracker-step-sensor-room-history-and-canvas-chart": [
+   {
+    "q": "Why is a baseline needed?",
+    "options": [
+     "The sensor is broken",
+     "The sensor gives steps since boot",
+     "Room needs it"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which permission does the step counter need?",
+    "options": [
+     "INTERNET only",
+     "ACTIVITY_RECOGNITION",
+     "CAMERA"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What draws the bar chart?",
+    "options": [
+     "A service",
+     "A Compose Canvas",
+     "A database"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-15-food-delivery-app-cart-order-tracking-and-google-maps": [
+   {
+    "q": "Why model order status as an enum?",
+    "options": [
+     "Known values with labels, checked by the compiler",
+     "Less memory",
+     "Faster network"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where would real courier positions come from?",
+    "options": [
+     "Your server, pushed to the app",
+     "A constant",
+     "The Maps library alone"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How do you keep a Maps key out of git?",
+    "options": [
+     "Paste it in code",
+     "local.properties and the Secrets plugin",
+     "Email it"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-16-music-player-media3-exoplayer-and-background-playback": [
+   {
+    "q": "Why does the player live in a service?",
+    "options": [
+     "So music keeps playing after the screen closes",
+     "To look nicer",
+     "To use less code"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What connects the screen to the session?",
+    "options": [
+     "A MediaController",
+     "An Intent filter",
+     "A Room DAO"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which music may you stream?",
+    "options": [
+     "Only paid songs",
+     "Audio you have the right to use",
+     "Anything online"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-17-qr-code-scanner-camerax-and-ml-kit-barcode-scanning": [
+   {
+    "q": "What must the analyzer do after each frame?",
+    "options": [
+     "Delete the file",
+     "Restart the phone",
+     "Close the ImageProxy"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should the app do with a scanned link?",
+    "options": [
+     "Show it and open only after a tap",
+     "Open it at once",
+     "Ignore it"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What shows the camera in Compose?",
+    "options": [
+     "A PreviewView inside AndroidView",
+     "A Text",
+     "A Room query"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-18-banking-app-secure-login-biometrics-and-encrypted-token": [
+   {
+    "q": "What does the app store after login?",
+    "options": [
+     "The card number",
+     "An encrypted token, not the password",
+     "The password"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why is an IV stored with the data?",
+    "options": [
+     "To speed up the network",
+     "AES-GCM needs it to decrypt",
+     "To hide the key"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does FLAG_SECURE do?",
+    "options": [
+     "Locks the SIM",
+     "Blocks screenshots and recents previews",
+     "Encrypts the disk"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-19-ai-chatbot-app-streaming-replies-history-and-safe-api-design": [
+   {
+    "q": "Why use a fake AiService?",
+    "options": [
+     "To build and test without a key or server",
+     "To hide errors",
+     "To save money on screens"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What happens when the user presses Stop?",
+    "options": [
+     "The app closes",
+     "History is deleted",
+     "The job is cancelled and the partial text is kept"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why send only recent history?",
+    "options": [
+     "The model has no memory and long requests cost more",
+     "Room limits it",
+     "Retrofit requires it"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-20-video-streaming-app-media3-exoplayer-hls-and-playlist": [
+   {
+    "q": "What is HLS?",
+    "options": [
+     "An adaptive streaming format using .m3u8 playlists",
+     "A database",
+     "A layout"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why release the player on dispose?",
+    "options": [
+     "It signs the app",
+     "It deletes the video",
+     "It frees decoders and memory"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What puts PlayerView in Compose?",
+    "options": [
+     "Room",
+     "LazyColumn",
+     "AndroidView"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-21-job-portal-app-search-filters-resume-upload-and-backend": [
+   {
+    "q": "Why does OpenDocument need no storage permission?",
+    "options": [
+     "The system picker grants access only to the chosen file",
+     "It uses the internet",
+     "It is a bug"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why validate the resume on the server too?",
+    "options": [
+     "The app can be bypassed",
+     "Retrofit asks for it",
+     "Servers are slower"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is shown from the filter and full list?",
+    "options": [
+     "Nothing",
+     "A derived list computed from both",
+     "A separate stored copy"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "android-developer-interview-questions-kotlin-compose-architecture-and-system-design": [
+   {
+    "q": "What is a good way to answer an interview question?",
+    "options": [
+     "Say you do not know",
+     "Explain the idea, give an example, mention a trade-off",
+     "Recite a definition only"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does remember do in Compose?",
+    "options": [
+     "Saves to disk",
+     "Keeps a value across recompositions",
+     "Starts a service"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a good first step in system design?",
+    "options": [
+     "Write code at once",
+     "Pick a database",
+     "Clarify requirements and constraints"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
   ]
  },
  "workplace-english-course": {
