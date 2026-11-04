@@ -1,0 +1,72 @@
+// ---- Project 11 Calculator: no extra libraries. Test dependency:
+testImplementation("junit:junit:4.13.2")
+
+// ---- Project 12 E-commerce
+plugins { id("com.google.devtools.ksp"); kotlin("plugin.serialization") }
+implementation("com.squareup.retrofit2:retrofit:2.11.0")
+implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+implementation("androidx.room:room-runtime:2.6.1")
+implementation("androidx.room:room-ktx:2.6.1")
+ksp("androidx.room:room-compiler:2.6.1")
+implementation("io.coil-kt:coil-compose:2.7.0")
+implementation("androidx.compose.material:material-icons-extended")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+
+// ---- Project 13 Chat (Firebase)
+// project-level plugins: id("com.google.gms.google-services")
+implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+implementation("com.google.firebase:firebase-auth")
+implementation("com.google.firebase:firebase-firestore")
+implementation("com.google.firebase:firebase-messaging")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
+// Also put google-services.json (from your Firebase console) in the app folder.
+
+// ---- Project 14 Fitness
+implementation("androidx.room:room-runtime:2.6.1")
+implementation("androidx.room:room-ktx:2.6.1")
+ksp("androidx.room:room-compiler:2.6.1")
+// No library for the sensor: it is part of Android.
+
+// ---- Project 15 Food delivery
+implementation("com.google.maps.android:maps-compose:6.2.1")
+implementation("com.google.android.gms:play-services-maps:19.0.0")
+// Manifest, inside <application>:
+// <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_KEY"/>
+// Keep the key out of public git: read it from local.properties with the Secrets Gradle Plugin.
+
+// ---- Project 16 Music player
+implementation("androidx.media3:media3-exoplayer:1.5.0")
+implementation("androidx.media3:media3-session:1.5.0")
+implementation("androidx.media3:media3-ui:1.5.0")
+
+// ---- Project 17 QR scanner
+implementation("androidx.camera:camera-core:1.4.1")
+implementation("androidx.camera:camera-camera2:1.4.1")
+implementation("androidx.camera:camera-lifecycle:1.4.1")
+implementation("androidx.camera:camera-view:1.4.1")
+implementation("com.google.mlkit:barcode-scanning:17.3.0")
+
+// ---- Project 18 Banking
+implementation("androidx.biometric:biometric:1.1.0")
+implementation("com.squareup.retrofit2:retrofit:2.11.0")
+implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+// ---- Project 19 AI chatbot
+implementation("androidx.room:room-runtime:2.6.1")
+implementation("androidx.room:room-ktx:2.6.1")
+ksp("androidx.room:room-compiler:2.6.1")
+implementation("com.squareup.okhttp3:okhttp:4.12.0")
+implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+
+// ---- Project 20 Video streaming
+implementation("androidx.media3:media3-exoplayer:1.5.0")
+implementation("androidx.media3:media3-exoplayer-hls:1.5.0")
+implementation("androidx.media3:media3-ui:1.5.0")
+
+// ---- Project 21 Job portal
+implementation("com.squareup.retrofit2:retrofit:2.11.0")
+implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
