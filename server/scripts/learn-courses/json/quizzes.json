@@ -3561,6 +3561,198 @@
     "answer": 2,
     "explain": ""
    }
+  ],
+  "ios-accessibility-voiceover-dynamic-type-and-inclusive-design": [
+   {
+    "q": "What does an accessibilityLabel give an icon-only button?",
+    "options": [
+     "A bigger tap area",
+     "A new colour",
+     "A spoken description for VoiceOver"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you make text scale with the user's setting?",
+    "options": [
+     "Use lineLimit(1)",
+     "Use text styles or @ScaledMetric",
+     "Use a fixed font size"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why not rely on colour alone?",
+    "options": [
+     "Some people cannot tell colours apart",
+     "It breaks dark mode",
+     "Colours are slow"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "ios-localization-string-catalogs-plurals-formatting-and-right-to-left": [
+   {
+    "q": "What file type is a String Catalog?",
+    "options": [
+     ".plist only",
+     ".xcstrings",
+     ".json only"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why not join sentence pieces with +?",
+    "options": [
+     "Word order differs between languages",
+     "Swift forbids it",
+     "It is slower"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should layouts use for right-to-left support?",
+    "options": [
+     "fixed offsets",
+     "left and right",
+     "leading and trailing"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "ios-widgets-and-app-intents-widgetkit-timelines-siri-and-shortcuts": [
+   {
+    "q": "What does a widget show?",
+    "options": [
+     "Entries from a timeline you provide",
+     "A live running app",
+     "Only the last screenshot"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why does a widget need an App Group?",
+    "options": [
+     "The app and widget are separate processes",
+     "To use Siri",
+     "To save battery"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does an App Intent describe?",
+    "options": [
+     "A screen layout",
+     "A database table",
+     "An action Siri, Shortcuts and widgets can run"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "app-store-privacy-and-review-privacy-manifests-guidelines-and-common-rejections": [
+   {
+    "q": "What must every sensitive permission have?",
+    "options": [
+     "A marketing banner",
+     "A server key",
+     "A clear usage description in Info.plist"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you give reviewers if the app needs a login?",
+    "options": [
+     "Your own password",
+     "Nothing",
+     "A working demo account"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do after a rejection?",
+    "options": [
+     "Delete the app",
+     "Resubmit the same build",
+     "Fix the quoted guideline and resubmit"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "core-data-in-depth-for-ios-stacks-contexts-fetch-requests-and-migration": [
+   {
+    "q": "Are managed object contexts thread-safe?",
+    "options": [
+     "Yes, always",
+     "Only the main one",
+     "No, use each on its own queue"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a lightweight migration?",
+    "options": [
+     "A faster fetch",
+     "Deleting the store",
+     "Automatic conversion for simple model changes"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you move an object between contexts?",
+    "options": [
+     "Pass its object ID and fetch it again",
+     "Copy the database",
+     "Pass the object"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "ios-interview-questions-and-answers-swift-swiftui-concurrency-and-architecture": [
+   {
+    "q": "What does weak do?",
+    "options": [
+     "Copies the object",
+     "Becomes nil when the object is freed",
+     "Keeps the object alive"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a good way to end an interview answer?",
+    "options": [
+     "Say nothing",
+     "Stop once it is complete",
+     "Keep talking"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which is a value type?",
+    "options": [
+     "struct",
+     "class",
+     "actor"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
   ]
  },
  "ios-development-swift-swiftui-course": {
@@ -4041,6 +4233,422 @@
      "UIHostingController"
     ],
     "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-2-calculator-app-expression-parser-and-swiftui-keypad": [
+   {
+    "q": "What does the parser calculate first in 2+3*4?",
+    "options": [
+     "4 only",
+     "2+3",
+     "3*4"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does evaluate return for bad input?",
+    "options": [
+     "nil",
+     "A crash",
+     "Zero"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why keep Calculator free of SwiftUI imports?",
+    "options": [
+     "So it looks nicer",
+     "So tests can call it directly",
+     "So it runs slower"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-3-to-do-app-with-swiftdata-search-filters-and-tests": [
+   {
+    "q": "What does @Query do?",
+    "options": [
+     "Fetches models and keeps the list updated",
+     "Draws a button",
+     "Deletes old data"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why use an in-memory ModelConfiguration in tests?",
+    "options": [
+     "It is required by Xcode",
+     "Each test starts empty and leaves nothing on disk",
+     "It makes the app faster for users"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why must delete(at:) use the filtered list?",
+    "options": [
+     "SwiftData requires it",
+     "The swipe positions refer to the shown list",
+     "To sort the items"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-4-habit-tracker-streaks-userdefaults-and-date-logic-tests": [
+   {
+    "q": "Why store days as text like 2026-11-10?",
+    "options": [
+     "It saves disk space only",
+     "Text is required by Codable",
+     "A day has no time of day to confuse equality"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use Calendar to get yesterday?",
+    "options": [
+     "It is shorter code only",
+     "Days can have 23 or 25 hours",
+     "Dates cannot be subtracted"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why do the streak functions take today and calendar parameters?",
+    "options": [
+     "Tests can use fixed values",
+     "They make the app slower",
+     "To avoid Codable"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-5-quiz-app-game-state-with-observable-and-swift-testing": [
+   {
+    "q": "What does private(set) do?",
+    "options": [
+     "Others can read the property but only the class can change it",
+     "Makes it constant",
+     "Hides the property completely"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why does choose ignore a second tap?",
+    "options": [
+     "It prevents scoring twice",
+     "It saves memory",
+     "Buttons cannot be tapped twice"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the view show when current is nil?",
+    "options": [
+     "A crash",
+     "The finished screen",
+     "The first question"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-6-recipe-book-app-search-themealdb-api-and-navigationstack": [
+   {
+    "q": "Why is meals optional in RecipeResponse?",
+    "options": [
+     "Optionals are faster",
+     "The service sends null when nothing matches",
+     "Codable needs it"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the debounce do?",
+    "options": [
+     "Waits until the user pauses typing before searching",
+     "Makes the request faster",
+     "Caches the images"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why do the tests use a fake service?",
+    "options": [
+     "The real service is private",
+     "Fake services are faster to write only",
+     "Tests should not depend on a network"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-7-shopping-app-products-cart-in-cents-and-demo-checkout": [
+   {
+    "q": "Why keep prices in cents?",
+    "options": [
+     "Integers add exactly",
+     "Cents look nicer",
+     "The API requires it"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Where must payment be confirmed?",
+    "options": [
+     "In UserDefaults",
+     "Only in the cart view",
+     "On your server with a payment provider"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the Cart tab badge show?",
+    "options": [
+     "The item count calculated from the lines",
+     "The product count",
+     "A fixed number"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-8-fitness-tracker-healthkit-steps-and-swift-charts": [
+   {
+    "q": "Why does the app use a protocol for the health service?",
+    "options": [
+     "Protocols make the chart faster",
+     "The Simulator has no step data and tests need fakes",
+     "HealthKit requires it"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Can the app know if the user denied read access?",
+    "options": [
+     "Only on iPad",
+     "No, iOS hides it for privacy",
+     "Yes, always"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does RuleMark draw here?",
+    "options": [
+     "The axis",
+     "The goal line",
+     "A bar"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-9-music-player-avplayer-now-playing-and-background-audio": [
+   {
+    "q": "What lets audio keep playing when the screen locks?",
+    "options": [
+     "A bigger slider",
+     "The playback audio session and the Audio background mode",
+     "Using Combine"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why does the slider use a separate dragPosition?",
+    "options": [
+     "To format time",
+     "So it does not jump back while the user drags",
+     "To save memory"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What fills the lock screen title?",
+    "options": [
+     "AsyncImage",
+     "Charts",
+     "MPNowPlayingInfoCenter"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-10-qr-code-scanner-visionkit-datascanner-and-safe-links": [
+   {
+    "q": "What does a Coordinator do?",
+    "options": [
+     "Draws the camera",
+     "Receives UIKit delegate callbacks for SwiftUI",
+     "Stores the result"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should the app do with a scanned link?",
+    "options": [
+     "Ignore it",
+     "Open it at once",
+     "Show it and open only after a tap"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which URL schemes count as links in the classifier?",
+    "options": [
+     "Only tel",
+     "Every scheme",
+     "http and https"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-11-ai-chatbot-app-streaming-replies-history-and-a-safe-backend": [
+   {
+    "q": "Where should the AI key live?",
+    "options": [
+     "On your server, not in the app",
+     "In UserDefaults",
+     "In the app bundle"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does Stop do?",
+    "options": [
+     "Deletes the history",
+     "Closes the app",
+     "Cancels the task and keeps the partial text"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why send only recent messages?",
+    "options": [
+     "SwiftUI limits it",
+     "The model has no memory and long requests cost more",
+     "Codable requires it"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-12-video-streaming-app-avkit-hls-and-lifecycle-safe-playback": [
+   {
+    "q": "What is HLS?",
+    "options": [
+     "A database",
+     "An adaptive streaming format with an .m3u8 playlist",
+     "A layout"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why remove the item when the screen disappears?",
+    "options": [
+     "It changes quality",
+     "It frees network connections and decoders",
+     "It saves the video"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does the status publisher report?",
+    "options": [
+     "Whether the item is ready or failed",
+     "The video title",
+     "The screen size"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-13-job-portal-app-search-filters-resume-upload-and-multipart": [
+   {
+    "q": "Why does fileImporter need no storage permission?",
+    "options": [
+     "It uses the internet",
+     "It is a bug",
+     "The picker gives access only to the chosen file"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why validate the resume on the server too?",
+    "options": [
+     "Codable asks for it",
+     "Servers are faster",
+     "The app can be bypassed"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is shown from the job list and the filter?",
+    "options": [
+     "A separate stored copy",
+     "Nothing",
+     "A derived list computed from both"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "swift-for-android-developers-kotlin-vs-swift-compose-vs-swiftui": [
+   {
+    "q": "Which Swift type is closest to a Kotlin sealed class?",
+    "options": [
+     "A typealias",
+     "A plain struct",
+     "An enum with associated values"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which SwiftUI wrapper is like remember { mutableStateOf() }?",
+    "options": [
+     "@AppStorage",
+     "@State",
+     "@Binding"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How are coroutines and suspend functions written in Swift?",
+    "options": [
+     "Threads only",
+     "async/await and Task",
+     "Callbacks only"
+    ],
+    "answer": 1,
     "explain": ""
    }
   ]

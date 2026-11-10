@@ -2,8 +2,8 @@
   "course": {
     "title": "Advanced iOS Development: Concurrency, Architecture, Security and Release",
     "slug": "advanced-ios-development-course",
-    "summary": "Free advanced iOS course in 14 lessons: Swift concurrency, ARC, Combine, UIKit, secure networking, SwiftData, StoreKit, modular architecture, CI/CD and interviews.",
-    "description": "Free advanced iOS course: 14 lessons on Swift concurrency, ARC, UIKit, Keychain, SwiftData migrations, StoreKit 2, Swift packages, CI/CD and interviews.",
+    "summary": "Advanced iOS in 20 lessons: Swift concurrency, ARC, Combine, UIKit, secure networking, SwiftData, Core Data, accessibility, localization, widgets, App Store review, CI/CD and interview questions.",
+    "description": "Free advanced iOS course: 20 lessons on concurrency, ARC, accessibility, localization, widgets, App Intents, privacy, Core Data, CI/CD and interview questions.",
     "level": "Advanced",
     "topic": "Mobile development",
     "badge": "IOS",
@@ -16,13 +16,17 @@
       "swiftdata",
       "storekit",
       "ci/cd",
-      "architecture"
+      "architecture",
+      "accessibility",
+      "localization",
+      "widgets",
+      "core data"
     ],
     "order": 41,
     "published": true,
     "minWords": 600,
     "metaTitle": "Advanced iOS Development Course",
-    "keywords": "advanced ios development, swift concurrency, arc retain cycle, combine, uikit interop, keychain, swiftdata migration, storekit 2, fastlane, ios architecture, senior ios interview"
+    "keywords": "ios interview questions and answers, ios accessibility, ios localization, widgetkit, app intents, core data, advanced ios development, swift concurrency, arc retain cycle, combine, uikit interop, keychain, swiftdata migration, storekit 2, fastlane, ios architecture, senior ios interview"
   },
   "lessons": [
     {
@@ -2912,6 +2916,1102 @@
       ]
     },
     {
+      "section": "Quality, Platform and Compliance",
+      "slug": "ios-accessibility-voiceover-dynamic-type-and-inclusive-design",
+      "title": "iOS Accessibility: VoiceOver, Dynamic Type and Inclusive Design",
+      "metaTitle": "iOS Accessibility: VoiceOver and Type",
+      "description": "Make SwiftUI apps usable for everyone with VoiceOver labels and traits, Dynamic Type, contrast, Reduce Motion, grouped elements and the Accessibility Inspector.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Accessibility means that people with different abilities can use your app: someone who cannot see the screen, someone who needs larger text, someone who cannot tap small buttons, or someone who is sensitive to motion. It is also useful to everyone. Big text helps in bright sunlight, and captions help on a noisy train. In many countries accessibility is also a legal requirement for some kinds of apps, and app reviewers and interviewers notice when it is missing."
+        },
+        {
+          "type": "paragraph",
+          "text": "Apple's frameworks do a lot of this for you. A standard `Button`, `Toggle`, `List` or `Text` already works with VoiceOver, the built-in screen reader. Your job is to fill the gaps: images with no description, custom controls, and layouts that break when the text gets large."
+        },
+        {
+          "type": "heading",
+          "text": "VoiceOver: labels, values, hints and traits"
+        },
+        {
+          "type": "paragraph",
+          "text": "VoiceOver reads what is under the user's finger. For text it reads the text. For an icon-only button it needs a **label**, or it will read something unhelpful such as the symbol's file name. A **value** reports the current state, such as \"50 percent\". A **hint** explains what happens, such as \"Double tap to delete the task\", and should be short and used only when the label is not enough. **Traits** describe what the element is, such as a button, a header or a selected item."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "struct TaskRow: View {\n    let title: String\n    @Binding var isDone: Bool\n\n    var body: some View {\n        HStack {\n            Button {\n                isDone.toggle()\n            } label: {\n                Image(systemName: isDone ? \"checkmark.circle.fill\" : \"circle\")\n            }\n            .accessibilityLabel(isDone ? \"Completed\" : \"Not completed\")\n            .accessibilityHint(\"Double tap to change\")\n\n            Text(title)\n        }\n        // Read the whole row as one item instead of two.\n        .accessibilityElement(children: .combine)\n    }\n}\n\nstruct Header: View {\n    var body: some View {\n        Text(\"Today\")\n            .font(.title)\n            .accessibilityAddTraits(.isHeader)   // lets VoiceOver users jump between headings\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "Decorative images should be hidden with `.accessibilityHidden(true)`, so VoiceOver does not announce them. Images that carry meaning, such as a chart, need a label that gives the meaning, not the appearance: \"Steps for the last seven days, rising\", not \"bar chart\". `accessibilityElement(children: .combine)` merges the children of a row into one element, which saves the user many swipes."
+        },
+        {
+          "type": "heading",
+          "text": "Dynamic Type: let the user choose the text size"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Settings, people can make text much larger, and some choose the largest accessibility sizes. If your app uses the built-in text styles, such as `.body`, `.headline` and `.title`, the text scales automatically. If you set a fixed point size with `.font(.system(size: 14))`, it does not. Prefer styles. When you need a custom size, use `@ScaledMetric` so spacing and icons grow with the text."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "struct Badge: View {\n    @ScaledMetric(relativeTo: .body) private var size = 28   // grows with Dynamic Type\n    @Environment(\\.dynamicTypeSize) private var typeSize\n\n    var body: some View {\n        let layout = typeSize.isAccessibilitySize\n            ? AnyLayout(VStackLayout(alignment: .leading))   // stack vertically at huge sizes\n            : AnyLayout(HStackLayout())\n\n        layout {\n            Image(systemName: \"star.fill\")\n                .frame(width: size, height: size)\n            Text(\"Favourite\")\n                .font(.body)\n        }\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The example switches from a row to a column at the accessibility sizes, using `AnyLayout`. A row that fits at the normal size can push text off the screen at the largest size. Never truncate important text to a single line with `.lineLimit(1)` unless you are sure it still makes sense."
+        },
+        {
+          "type": "heading",
+          "text": "Colour, contrast and motion"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Do not rely on colour alone.** In the quiz project, the right answer shows a check mark as well as green, because some people cannot tell red from green.",
+            "**Contrast**: text needs enough difference from its background. WCAG, the common web guideline, suggests a ratio of at least 4.5 to 1 for normal text. System colours such as `.primary` and `.secondary` adapt to light and dark mode and to the Increase Contrast setting.",
+            "**Reduce Motion**: some users feel ill from large animations. Read `@Environment(\\.accessibilityReduceMotion)` and use a simple fade or no animation when it is on.",
+            "**Touch targets**: make tappable things at least about 44 by 44 points, which is Apple's design guidance.",
+            "**Captions and transcripts**: video and audio need captions or a text alternative."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Testing accessibility"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run the app in the Simulator, open **Xcode > Open Developer Tool > Accessibility Inspector**, point it at your app and run the audit. It lists missing labels and small targets.",
+            "Turn on **VoiceOver** on a real iPhone (Settings > Accessibility) and use the app with your eyes closed for two minutes. Nothing teaches faster.",
+            "Preview several text sizes in Xcode with `.environment(\\.dynamicTypeSize, .accessibility3)` on your previews.",
+            "Turn on Bold Text, Increase Contrast and Reduce Motion in Settings and check the screens.",
+            "Newer Xcode versions can run an accessibility audit in UI tests. Check the current documentation for the exact call."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Apple renames and changes APIs and review rules often. The code and rules here come from our reading of the documentation and were not compiled or tested in Xcode, so check the current Apple documentation for your Xcode version before you rely on a detail."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Take one screen of your app and run the Accessibility Inspector audit. Fix every item it reports.",
+            "Switch to the largest accessibility text size. Find one layout that breaks and fix it with `@ScaledMetric` or `AnyLayout`.",
+            "Add an accessibility label to every icon-only button and test with VoiceOver on a real device."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Every icon-only button has a label.",
+            "No screen is broken at the largest text size.",
+            "Colour is never the only way to tell states apart."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Accessibility checks",
+        "nodes": [
+          {
+            "id": "ui",
+            "label": "Your screen",
+            "sub": "standard controls",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "vo",
+            "label": "VoiceOver",
+            "sub": "labels, values, traits",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "dt",
+            "label": "Dynamic Type",
+            "sub": "text scales",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "aud",
+            "label": "Audit",
+            "sub": "Inspector + real device",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Standard SwiftUI controls already have much accessibility built in.",
+            "on": [
+              "ui"
+            ]
+          },
+          {
+            "say": "You add labels, values and traits where the default is not enough.",
+            "flow": [
+              "ui>vo:describe"
+            ]
+          },
+          {
+            "say": "Using text styles and ScaledMetric keeps layouts working at large sizes.",
+            "flow": [
+              "vo>dt:text size"
+            ]
+          },
+          {
+            "say": "You verify with the Accessibility Inspector and with VoiceOver on a real phone.",
+            "flow": [
+              "dt>aud:test"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Do I need to add accessibility to every view?",
+          "a": "No. Standard controls work already. Add labels to icon-only controls, group rows, mark headings, and check large text and contrast."
+        },
+        {
+          "q": "What is the quickest test?",
+          "a": "Turn on VoiceOver on a real iPhone and try to finish a task with the screen curtain on. You will find the gaps in minutes."
+        },
+        {
+          "q": "Does accessibility matter for the App Store?",
+          "a": "Apple encourages it and shows accessibility features in the listing. Some organisations and countries also require it, and it improves the experience for everyone."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does an accessibilityLabel give an icon-only button?",
+          "options": [
+            "A bigger tap area",
+            "A new colour",
+            "A spoken description for VoiceOver"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How do you make text scale with the user's setting?",
+          "options": [
+            "Use lineLimit(1)",
+            "Use text styles or @ScaledMetric",
+            "Use a fixed font size"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why not rely on colour alone?",
+          "options": [
+            "Some people cannot tell colours apart",
+            "It breaks dark mode",
+            "Colours are slow"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Quality, Platform and Compliance",
+      "slug": "ios-localization-string-catalogs-plurals-formatting-and-right-to-left",
+      "title": "iOS Localization: String Catalogs, Plurals, Formatting and Right-to-Left",
+      "metaTitle": "iOS Localization: String Catalogs",
+      "description": "Translate an iOS app with String Catalogs, plurals, number, date and currency formats, right-to-left layouts and pseudolanguages, and test each language.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An app in English reaches only part of the world. India alone has many languages, and a Hindi, Tamil or Marathi version can reach people your competitors ignore. **Localization** means preparing the app so that text, numbers, dates, currencies and layout all adapt to the user's language and region. **Internationalisation**, the step before it, means writing the code so that nothing is fixed to one language."
+        },
+        {
+          "type": "paragraph",
+          "text": "The most common mistake is to write text straight into the code and join pieces with `+`. That makes a translator's job impossible, because word order differs between languages. The fix is to keep every user-visible sentence whole, give it a key, and keep the translations in a catalog."
+        },
+        {
+          "type": "heading",
+          "text": "String Catalogs"
+        },
+        {
+          "type": "paragraph",
+          "text": "Since Xcode 15, the recommended file is a **String Catalog**, with the extension `.xcstrings`. You add one to the project, add the languages in the project settings, and Xcode collects the strings it finds in your code. Each string shows its translations and a state such as \"New\", \"Needs review\" or \"Translated\", so you can see what is missing. A SwiftUI `Text(\"Welcome\")` is localised automatically, because the text is treated as a key. For code that is not a view, use `String(localized:)`."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "import SwiftUI\n\nstruct Welcome: View {\n    let name: String\n    let unread: Int\n\n    var body: some View {\n        VStack(alignment: .leading, spacing: 8) {\n            // Whole sentence with a placeholder. Never build it with + .\n            Text(\"Welcome back, \\(name)\")\n\n            // The catalog stores a separate form for \"one\", \"other\", and more if the language needs them.\n            Text(\"You have \\(unread) unread messages\")\n\n            // For strings outside a Text:\n            Text(String(localized: \"Save\", comment: \"Button that saves the form\"))\n        }\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The `comment` argument is a note for the translator. A word such as \"Save\" can be a verb on a button or a noun in a game, and the translator cannot know which unless you say. Good comments are the cheapest quality improvement in localization."
+        },
+        {
+          "type": "heading",
+          "text": "Plurals"
+        },
+        {
+          "type": "paragraph",
+          "text": "English has two plural forms, one and other. Some languages have more: Arabic has six, and Russian and Polish have several. In a String Catalog you right-click a string and choose **Vary by Plural**. Xcode then lets you type one translation for each form the language needs. Never write code such as `count == 1 ? \"item\" : \"items\"`, because it is correct only for English."
+        },
+        {
+          "type": "heading",
+          "text": "Numbers, dates and currency"
+        },
+        {
+          "type": "paragraph",
+          "text": "Do not format these by hand. Use the formatters that follow the user's settings, so a number such as 1,234,567.89 appears as 12,34,567.89 for an Indian user and as 1.234.567,89 for a German user. Dates change order and month names too."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "let price = 1499.5\nlet when = Date.now\n\n// Follows the user's region automatically.\nlet money = price.formatted(.currency(code: \"INR\"))\nlet number = 1234567.89.formatted(.number)\nlet day = when.formatted(date: .long, time: .omitted)\n\n// To test a specific language and region without changing the phone:\nlet hindi = Locale(identifier: \"hi_IN\")\nlet text = price.formatted(.currency(code: \"INR\").locale(hindi))"
+        },
+        {
+          "type": "paragraph",
+          "text": "The currency code says which currency the amount is in. The locale decides how it is written. Mixing the two up is a common bug: a price in dollars is still dollars when a user in India looks at it, but it is written the way an Indian reader expects."
+        },
+        {
+          "type": "heading",
+          "text": "Right-to-left languages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Arabic, Hebrew and Urdu are written from right to left. SwiftUI flips the layout for you when you use `leading` and `trailing` instead of `left` and `right`. Use `.padding(.leading)` and `HStack`, not fixed left and right values. Images with a direction, such as an arrow that means \"next\", may need `.flipsForRightToLeftLayoutDirection(true)`. Check your screens with the right-to-left pseudolanguage in the scheme options."
+        },
+        {
+          "type": "heading",
+          "text": "Testing languages"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "In Xcode, edit the scheme, open Run > Options and set **App Language** to another language, or to a pseudolanguage such as Double-Length Pseudolanguage and Right-to-Left Pseudolanguage.",
+            "Double-length text shows where translated text overflows. It is the quickest way to find truncation.",
+            "Preview several languages with `.environment(\\.locale, Locale(identifier: \"ar\"))` in your previews.",
+            "Ask a native speaker to review the translations in context. Machine translation is a starting point, not the finish.",
+            "Localize your App Store listing too: the name, subtitle, description and screenshots can all differ by language."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Apple renames and changes APIs and review rules often. The code and rules here come from our reading of the documentation and were not compiled or tested in Xcode, so check the current Apple documentation for your Xcode version before you rely on a detail."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a String Catalog, add Hindi, and translate five screens of strings.",
+            "Replace one hand-made plural with a catalog plural.",
+            "Run the app with the double-length and right-to-left pseudolanguages and fix what breaks."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "No user-visible sentence is built by joining pieces.",
+            "Dates, numbers and currencies use formatters.",
+            "Layouts use leading and trailing, and survive double-length text."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Keys, catalog, formats",
+        "nodes": [
+          {
+            "id": "key",
+            "label": "Whole sentence key",
+            "sub": "with placeholders",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "cat",
+            "label": "String Catalog",
+            "sub": "one entry per language",
+            "col": 1,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "fmt",
+            "label": "Formatters",
+            "sub": "numbers, dates, currency",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "lang",
+            "label": "User language",
+            "sub": "layout follows",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The app uses whole sentences as keys, with placeholders for values.",
+            "on": [
+              "key"
+            ]
+          },
+          {
+            "say": "The String Catalog holds a translation per language, including plural forms.",
+            "flow": [
+              "key>cat:collect"
+            ]
+          },
+          {
+            "say": "System formatters write numbers, dates and money the way the user expects.",
+            "flow": [
+              "cat>fmt:values"
+            ]
+          },
+          {
+            "say": "The text, formats and layout direction all follow the user's language and region.",
+            "flow": [
+              "fmt>lang:adapt"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between localization and internationalisation?",
+          "a": "Internationalisation prepares the code so nothing is tied to one language. Localization adds the actual translations and regional formats."
+        },
+        {
+          "q": "Why not join strings with +?",
+          "a": "Word order differs between languages, so a translator needs the whole sentence with placeholders to translate it correctly."
+        },
+        {
+          "q": "Should I use machine translation?",
+          "a": "It is a useful first draft, but have a native speaker review it, especially for buttons, legal text and anything sensitive."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "What file type is a String Catalog?",
+          "options": [
+            ".plist only",
+            ".xcstrings",
+            ".json only"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why not join sentence pieces with +?",
+          "options": [
+            "Word order differs between languages",
+            "Swift forbids it",
+            "It is slower"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What should layouts use for right-to-left support?",
+          "options": [
+            "fixed offsets",
+            "left and right",
+            "leading and trailing"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Quality, Platform and Compliance",
+      "slug": "ios-widgets-and-app-intents-widgetkit-timelines-siri-and-shortcuts",
+      "title": "iOS Widgets and App Intents: WidgetKit, Timelines, Siri and Shortcuts",
+      "metaTitle": "iOS Widgets and App Intents with WidgetKit",
+      "description": "Add a Home Screen widget with WidgetKit timelines and an App Group, and expose actions to Siri, Shortcuts and interactive widgets with App Intents.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A widget puts a small piece of your app on the Home Screen, the Lock Screen or the Today view. A habit app can show today's streak, a weather app the temperature, a shop app the order status. Widgets bring users back to the app, and they are a common feature in apps that feel well made."
+        },
+        {
+          "type": "paragraph",
+          "text": "A widget is **not a small running app**. It is a snapshot. The system asks your widget for a *timeline*, a list of entries with dates, and shows each entry at its time. Your widget cannot run code continuously, so you plan ahead: you hand the system everything it needs to draw the next hours."
+        },
+        {
+          "type": "heading",
+          "text": "The parts of a widget"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**A widget extension**: a separate target you add with File > New > Target > Widget Extension.",
+            "**A TimelineEntry**: a struct with a `date` and the data to show.",
+            "**A TimelineProvider**: answers three questions. `placeholder` is a generic look while loading, `getSnapshot` is the preview in the widget gallery, and `getTimeline` returns the entries and when to ask again.",
+            "**A view**: SwiftUI, with the same views and modifiers you already know.",
+            "**An App Group**: a shared container so the app and widget can read the same data."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "import WidgetKit\nimport SwiftUI\n\nstruct StreakEntry: TimelineEntry {\n    let date: Date\n    let streak: Int\n}\n\nstruct StreakProvider: TimelineProvider {\n    func placeholder(in context: Context) -> StreakEntry {\n        StreakEntry(date: .now, streak: 7)\n    }\n\n    func getSnapshot(in context: Context, completion: @escaping (StreakEntry) -> Void) {\n        completion(StreakEntry(date: .now, streak: current()))\n    }\n\n    func getTimeline(in context: Context, completion: @escaping (Timeline<StreakEntry>) -> Void) {\n        let entry = StreakEntry(date: .now, streak: current())\n        // Ask the system to refresh after midnight, when the streak can change.\n        let tomorrow = Calendar.current.startOfDay(for: .now).addingTimeInterval(86_400 + 60)\n        completion(Timeline(entries: [entry], policy: .after(tomorrow)))\n    }\n\n    // Reads the value the app saved in the shared App Group container.\n    private func current() -> Int {\n        UserDefaults(suiteName: \"group.com.example.habits\")?.integer(forKey: \"streak\") ?? 0\n    }\n}\n\nstruct StreakWidgetView: View {\n    let entry: StreakEntry\n\n    var body: some View {\n        VStack {\n            Text(\"\\(entry.streak)\").font(.largeTitle.bold())\n            Text(\"day streak\").font(.caption)\n        }\n        .containerBackground(.fill.tertiary, for: .widget)\n    }\n}\n\nstruct StreakWidget: Widget {\n    var body: some WidgetConfiguration {\n        StaticConfiguration(kind: \"StreakWidget\", provider: StreakProvider()) { entry in\n            StreakWidgetView(entry: entry)\n        }\n        .configurationDisplayName(\"Streak\")\n        .description(\"Shows your current habit streak.\")\n        .supportedFamilies([.systemSmall, .systemMedium])\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The group name `group.com.example.habits` is an example. You create the real one in Signing & Capabilities by adding the App Groups capability to **both** the app and the widget extension. When the app changes the data, it saves it into the shared container and calls `WidgetCenter.shared.reloadAllTimelines()` so the widget refreshes sooner than its normal schedule."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "import WidgetKit\n\nfunc saveStreak(_ value: Int) {\n    UserDefaults(suiteName: \"group.com.example.habits\")?.set(value, forKey: \"streak\")\n    WidgetCenter.shared.reloadAllTimelines()\n}"
+        },
+        {
+          "type": "heading",
+          "text": "Refresh limits"
+        },
+        {
+          "type": "paragraph",
+          "text": "The system gives each widget a limited budget of refreshes per day, so you cannot update every second. Use a timeline with several entries when you know the future, such as a countdown or a schedule, and use `reloadTimelines` only when the data really changed. A widget that tries to show live data constantly will simply show stale data, and users will think it is broken."
+        },
+        {
+          "type": "heading",
+          "text": "App Intents: actions for Siri, Shortcuts and widgets"
+        },
+        {
+          "type": "paragraph",
+          "text": "An **App Intent** describes something your app can do, in a form the system understands. Once you define one, it can appear in the Shortcuts app, be spoken to Siri, appear in Spotlight and, since iOS 17, run from a button in a widget without opening the app. The code is a struct with a title, optional parameters and a `perform` function."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "import AppIntents\n\nstruct MarkHabitDoneIntent: AppIntent {\n    static var title: LocalizedStringResource = \"Mark habit done\"\n    static var description = IntentDescription(\"Marks a habit as done for today.\")\n\n    @Parameter(title: \"Habit name\")\n    var habitName: String\n\n    func perform() async throws -> some IntentResult & ProvidesDialog {\n        // Call the same code your app uses. Keep the logic in one place.\n        let found = HabitStorage.shared.markDone(named: habitName)\n        return .result(dialog: found ? \"Done. Keep going!\" : \"I could not find that habit.\")\n    }\n}\n\nstruct HabitShortcuts: AppShortcutsProvider {\n    static var appShortcuts: [AppShortcut] {\n        AppShortcut(\n            intent: MarkHabitDoneIntent(),\n            phrases: [\"Mark a habit done in \\(.applicationName)\"],\n            shortTitle: \"Mark done\",\n            systemImageName: \"checkmark.circle\"\n        )\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "`HabitStorage` is the same storage object your app uses. This is the key design rule: put the real work in a shared function or package, and let the screen, the widget and the intent all call it. If each has its own copy of the logic, they will drift apart."
+        },
+        {
+          "type": "paragraph",
+          "text": "Design widgets for a glance. People look at a widget for about a second, so show one number, one status or one next action, not a miniature of the whole app. Support the sizes that make sense, test in light and dark mode, and give the widget a tap target that opens the right screen in the app with `widgetURL`. A widget that opens the app on the home screen instead of the relevant detail feels careless."
+        },
+        {
+          "type": "paragraph",
+          "text": "Widgets must also respect privacy. They can appear on the Lock Screen, where other people can see them. Do not show private details such as a message text or a balance there unless the user chooses to. The `redacted` and `privacySensitive` modifiers let you hide content when the device is locked."
+        },
+        {
+          "type": "note",
+          "text": "Apple renames and changes APIs and review rules often. The code and rules here come from our reading of the documentation and were not compiled or tested in Xcode, so check the current Apple documentation for your Xcode version before you rely on a detail."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add a widget extension to the Habit tracker project and show the best streak.",
+            "Create an App Group, share the streak value and reload the widget when a habit is ticked.",
+            "Add an App Intent and run it from the Shortcuts app."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The widget shows real data from the app.",
+            "The widget refreshes after a change in the app.",
+            "The intent and the screen use the same function."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "App, widget and intent share data",
+        "nodes": [
+          {
+            "id": "app",
+            "label": "Your app",
+            "sub": "saves the value",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "grp",
+            "label": "App Group",
+            "sub": "shared storage",
+            "col": 1,
+            "row": 0,
+            "kind": "store"
+          },
+          {
+            "id": "wid",
+            "label": "Widget timeline",
+            "sub": "entries with dates",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sys",
+            "label": "Home Screen / Siri",
+            "sub": "shows or runs it",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The app saves a value and asks widgets to reload.",
+            "on": [
+              "app"
+            ]
+          },
+          {
+            "say": "The value lives in an App Group container that both targets can read.",
+            "flow": [
+              "app>grp:save"
+            ]
+          },
+          {
+            "say": "The widget provider reads it and returns a timeline of entries.",
+            "flow": [
+              "grp>wid:read"
+            ]
+          },
+          {
+            "say": "The system draws the entries on the Home Screen, and App Intents run from Siri and Shortcuts.",
+            "flow": [
+              "wid>sys:timeline"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Can a widget run code all the time?",
+          "a": "No. It shows entries from a timeline that you provide, and refreshes are limited by the system. Plan the timeline ahead."
+        },
+        {
+          "q": "Why do I need an App Group?",
+          "a": "The app and the widget are separate processes and cannot see each other's files. An App Group gives them a shared container."
+        },
+        {
+          "q": "What are App Intents used for?",
+          "a": "They describe actions that Siri, Shortcuts, Spotlight and interactive widgets can run. They make your app useful outside its own screens."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does a widget show?",
+          "options": [
+            "Entries from a timeline you provide",
+            "A live running app",
+            "Only the last screenshot"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why does a widget need an App Group?",
+          "options": [
+            "The app and widget are separate processes",
+            "To use Siri",
+            "To save battery"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does an App Intent describe?",
+          "options": [
+            "A screen layout",
+            "A database table",
+            "An action Siri, Shortcuts and widgets can run"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Quality, Platform and Compliance",
+      "slug": "app-store-privacy-and-review-privacy-manifests-guidelines-and-common-rejections",
+      "title": "App Store Privacy and Review: Privacy Manifests, Guidelines and Common Rejections",
+      "metaTitle": "App Store Privacy and Review Guidelines",
+      "description": "Prepare an iOS app for App Store review: privacy manifests, privacy labels, permission texts, account deletion, purchase rules and common rejections.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Apps are reviewed by people and by automated checks before they appear in the App Store. A rejection usually costs one to a few days, and some rejections come from the same small mistakes again and again. This lesson lists what reviewers look for, so you can fix it before you submit. It also covers **privacy**, which Apple treats as a core promise to its users and checks more closely every year."
+        },
+        {
+          "type": "note",
+          "text": "Apple changes its App Store Review Guidelines, privacy requirements and deadlines regularly. This lesson is a checklist built from our reading of the guidelines and was not tested against a real submission. Before you submit, read the current App Store Review Guidelines and the current App Store Connect help pages."
+        },
+        {
+          "type": "heading",
+          "text": "Privacy information you must provide"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**App Privacy details (privacy labels)**: in App Store Connect you list what data the app and its libraries collect, whether it is linked to the user, and whether it is used for tracking. These appear on your listing. They must be accurate, including data collected by third-party SDKs such as analytics and ads.",
+            "**Privacy policy URL**: a public page that says what you collect and why, how users can ask for deletion, and how to contact you. Apps need one, and apps that handle account or health data must be especially clear.",
+            "**Privacy manifest (PrivacyInfo.xcprivacy)**: a file in your app, and in the SDKs you include, that declares the data types collected and the reasons for using certain system APIs. Apple has required manifests for specific commonly used SDKs and for apps that use specific APIs. Check which of your dependencies provide one.",
+            "**Required reason APIs**: some system APIs, such as file timestamps, system boot time, disk space and UserDefaults, can be used to fingerprint a device. When your app or a library uses them, you must declare an approved reason in the manifest.",
+            "**App Tracking Transparency**: if you track users across other companies' apps and sites, you must ask with the ATT prompt and explain why. If you do not track, do not show the prompt, and do not claim tracking in the label."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Permission texts"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every sensitive permission needs a **usage description** in Info.plist, such as `NSCameraUsageDescription` or `NSHealthShareUsageDescription`. The text must say in plain words why your app needs it. \"We need the camera\" is weak. \"The camera scans QR codes. Pictures are not saved or sent anywhere\" is strong. Missing or vague texts cause rejections, and a missing key crashes the app when it asks. Ask for a permission only at the moment the feature needs it, after explaining it on your own screen."
+        },
+        {
+          "type": "heading",
+          "text": "Rules that surprise first-time submitters"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Account deletion**: if users can create an account inside the app, they must also be able to start deleting that account inside the app. A link to a website form alone is not enough under the guidelines at the time of writing.",
+            "**Sign in with Apple**: apps that offer other third-party social logins have been required to offer an equivalent privacy-focused option such as Sign in with Apple. The exact rule has changed over time, so read the current guideline.",
+            "**In-app purchase**: digital goods and features inside the app, such as premium content or subscriptions, generally must use Apple's In-App Purchase. Physical goods and services consumed outside the app, such as a taxi ride, do not. There are specific exceptions and regional rules, so read section 3.1 of the guidelines.",
+            "**Demo account**: if the app needs a login, give the reviewer a working demo account in App Store Connect, with sample data. A reviewer who cannot get in will reject the app.",
+            "**Completeness**: no placeholder text, empty screens, broken links or \"coming soon\" features. The reviewer opens every tab.",
+            "**Accurate metadata**: screenshots must show the real app. Do not mention other platforms or use another company's trademarks in the name.",
+            "**Minimum functionality**: an app that only wraps a website, or is a thin copy of another app, is at risk of rejection under the design guidelines.",
+            "**User-generated content**: if users can post, you need filtering, a way to report content, a way to block abusive users and a way to contact you.",
+            "**AI features**: be clear when content is generated by AI, and follow the rules for user-generated content and for sending personal data to third parties."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A pre-submission checklist"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Build the release configuration and test it on a real device, not only the Simulator. Some bugs appear only in release builds.",
+            "Check that every usage description exists and is specific.",
+            "Check the privacy manifest and that App Privacy answers match what the app and every SDK really do.",
+            "Test with no network, a slow network and a fresh install. The reviewer often starts from a clean device.",
+            "Open every screen and button. Remove or hide unfinished features.",
+            "Check Dynamic Type, Dark Mode and the smallest supported iPhone.",
+            "Fill in the review notes: how to log in, how to reach hidden features, and any hardware needed.",
+            "Use TestFlight for a final round with real testers before you submit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "If you are rejected"
+        },
+        {
+          "type": "paragraph",
+          "text": "A rejection is a conversation. Read the message carefully: it quotes a guideline number. Fix exactly that issue, reply in Resolution Center if you need to explain something, and resubmit. If you believe the reviewer made a mistake, you can reply politely with evidence or request an appeal. Do not resubmit the same build without changes, and do not argue emotionally. Most rejections are resolved in one or two rounds."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a one-page privacy summary for an app you built: what it collects, why, where it is stored, and how a user deletes it.",
+            "List every third-party SDK and check whether it needs a privacy manifest.",
+            "Rewrite every usage description in your app so a stranger understands why it is needed."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your privacy labels match the app's real behaviour.",
+            "Every permission has a clear usage text.",
+            "A reviewer could sign in with your demo account and reach every feature."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "From build to approval",
+        "nodes": [
+          {
+            "id": "build",
+            "label": "Release build",
+            "sub": "tested on a device",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "priv",
+            "label": "Privacy items",
+            "sub": "labels, manifest, texts",
+            "col": 1,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "rev",
+            "label": "App Review",
+            "sub": "people and checks",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "live",
+            "label": "On the Store",
+            "sub": "or fix and resubmit",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You build the release version and test it on a real device.",
+            "on": [
+              "build"
+            ]
+          },
+          {
+            "say": "You prepare privacy labels, the manifest, permission texts and a demo account.",
+            "flow": [
+              "build>priv:prepare"
+            ]
+          },
+          {
+            "say": "Reviewers open every screen and check the guidelines.",
+            "flow": [
+              "priv>rev:submit"
+            ]
+          },
+          {
+            "say": "If approved the app goes live. If rejected, fix the quoted guideline and resubmit.",
+            "flow": [
+              "rev>live:result"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How long does App Review take?",
+          "a": "It is often a day or two, but it varies. Plan extra time for a first submission, and do not schedule a launch for the same day."
+        },
+        {
+          "q": "Do I need a privacy policy if I collect nothing?",
+          "a": "A policy URL is still required for the listing. Say plainly what you do and do not collect."
+        },
+        {
+          "q": "What is the most common reason for rejection?",
+          "a": "Crashes and bugs, incomplete features, missing demo accounts and unclear permission or privacy information are among the most frequent. Testing the release build on a device prevents many of them."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "What must every sensitive permission have?",
+          "options": [
+            "A marketing banner",
+            "A server key",
+            "A clear usage description in Info.plist"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you give reviewers if the app needs a login?",
+          "options": [
+            "Your own password",
+            "Nothing",
+            "A working demo account"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What should you do after a rejection?",
+          "options": [
+            "Delete the app",
+            "Resubmit the same build",
+            "Fix the quoted guideline and resubmit"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Quality, Platform and Compliance",
+      "slug": "core-data-in-depth-for-ios-stacks-contexts-fetch-requests-and-migration",
+      "title": "Core Data in Depth for iOS: Stacks, Contexts, Fetch Requests and Migration",
+      "metaTitle": "Core Data in Depth: Contexts and Migration",
+      "description": "Learn Core Data for older and larger iOS projects: the container, contexts, fetch requests, background saves, migration and when SwiftData is better.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "SwiftData is the modern way to store data in an iOS app, but Core Data is still everywhere. It has been part of iOS for many years, and a large share of the apps you will work on in a job were built with it. You will read Core Data code in existing projects, and interviewers still ask about it. This lesson teaches the ideas you need to read it, fix it and decide when to migrate to SwiftData."
+        },
+        {
+          "type": "note",
+          "text": "Core Data details change between iOS versions. The code below is from our reading of the documentation and was not compiled or tested here. Compare it with the current Apple documentation, and test migrations on copies of real data before shipping."
+        },
+        {
+          "type": "heading",
+          "text": "The four main objects"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**NSManagedObjectModel**: describes your entities, their attributes and relationships. You usually design it visually in an `.xcdatamodeld` file in Xcode.",
+            "**NSPersistentStoreCoordinator**: connects the model to the actual store on disk, usually a SQLite database.",
+            "**NSManagedObjectContext**: a scratchpad. You fetch objects into a context, change them, and then save the context to write the changes. Contexts are **not thread-safe**.",
+            "**NSPersistentContainer**: bundles the three above into one object, so you rarely build them by hand."
+          ]
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "import CoreData\n\nfinal class PersistenceController {\n    static let shared = PersistenceController()\n\n    let container: NSPersistentContainer\n\n    init(inMemory: Bool = false) {\n        container = NSPersistentContainer(name: \"Model\")   // matches Model.xcdatamodeld\n        if inMemory {\n            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: \"/dev/null\")\n        }\n        container.loadPersistentStores { _, error in\n            if let error { fatalError(\"Could not load the store: \\(error)\") }\n        }\n        container.viewContext.automaticallyMergesChangesFromParent = true\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "`viewContext` is the context tied to the main thread, which your UI reads. The `inMemory` option is the Core Data version of the in-memory store trick from the To-Do project: tests use a store that disappears afterwards. In a real app, handle a load failure with a clear message instead of `fatalError`."
+        },
+        {
+          "type": "heading",
+          "text": "Create, fetch, update and delete"
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "// Assume an entity named TodoTask with attributes title (String) and isDone (Bool).\nfunc addTask(title: String, in context: NSManagedObjectContext) throws {\n    let task = TodoTask(context: context)\n    task.title = title\n    task.isDone = false\n    try context.save()\n}\n\nfunc openTasks(in context: NSManagedObjectContext) throws -> [TodoTask] {\n    let request = TodoTask.fetchRequest()\n    request.predicate = NSPredicate(format: \"isDone == NO\")\n    request.sortDescriptors = [NSSortDescriptor(key: \"title\", ascending: true)]\n    request.fetchBatchSize = 50\n    return try context.fetch(request)\n}\n\nfunc delete(_ task: TodoTask, in context: NSManagedObjectContext) throws {\n    context.delete(task)\n    try context.save()\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **predicate** filters, and a **sort descriptor** orders. The `fetchBatchSize` tells Core Data to load objects in batches as you read them, which saves memory on large lists. In SwiftUI, the `@FetchRequest` property wrapper does the same job as SwiftData's `@Query`: it fetches and keeps the list updated."
+        },
+        {
+          "type": "heading",
+          "text": "Background work"
+        },
+        {
+          "type": "paragraph",
+          "text": "Never do heavy work on the main context, because it freezes the screen. Use a **background context**. `container.performBackgroundTask` gives you a fresh context on its own queue. Objects from one context must never be used in another. Pass `NSManagedObjectID` values between contexts and fetch the object again in the other one."
+        },
+        {
+          "type": "code",
+          "lang": "swift",
+          "text": "func importTasks(_ titles: [String], container: NSPersistentContainer) async throws {\n    try await container.performBackgroundTask { context in\n        for title in titles {\n            let task = TodoTask(context: context)\n            task.title = title\n            task.isDone = false\n        }\n        try context.save()   // viewContext picks this up through automaticallyMergesChangesFromParent\n    }\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "In a modern codebase, a `@MainActor` repository class that owns `viewContext`, and a background context for imports, keeps the threading rules in one place. The Core Data multithreading debugging flag, `-com.apple.CoreData.ConcurrencyDebug 1`, in the scheme arguments, makes the app crash early when you touch a context from the wrong queue. That is much better than a rare, random crash in production."
+        },
+        {
+          "type": "heading",
+          "text": "Migration"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you change the model, old data must be converted. **Lightweight migration** handles simple changes automatically: adding an attribute with a default or optional value, renaming with a renaming identifier, or adding an entity. It is on by default for the persistent container when you create a new model version. More complex changes need a **mapping model** or custom code. The safe process is always the same: add a new model version, never edit an old one that shipped, test the upgrade from every older version you released, and keep a copy of real-looking data for those tests."
+        },
+        {
+          "type": "heading",
+          "text": "Core Data or SwiftData?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**New project, iOS 17 and later**: SwiftData is usually simpler and works naturally with SwiftUI.",
+            "**Existing Core Data app**: do not rewrite it only because SwiftData exists. Migrate when there is a clear benefit, in small steps, and test migration carefully.",
+            "**Older iOS versions or needs SwiftData does not yet cover**: Core Data is mature and fully documented. Check the current SwiftData documentation for gaps such as shared databases, complex migrations and CloudKit sharing."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a Core Data project with an entity, fetch it with `@FetchRequest` and add a delete action.",
+            "Write a test that uses an in-memory container and checks a fetch with a predicate.",
+            "Add the concurrency debug flag to your scheme and trigger the crash on purpose by using `viewContext` from a background task."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Contexts are only used on their own queue.",
+            "A background import does not freeze the UI.",
+            "Every shipped model version stays in the project for migration."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Core Data stack",
+        "nodes": [
+          {
+            "id": "mom",
+            "label": "Model",
+            "sub": "entities in .xcdatamodeld",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "con",
+            "label": "Container",
+            "sub": "loads the stack",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "ctx",
+            "label": "Contexts",
+            "sub": "view + background",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "db",
+            "label": "SQLite store",
+            "sub": "saved on disk",
+            "col": 3,
+            "row": 0,
+            "kind": "store"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The model describes entities, attributes and relationships.",
+            "on": [
+              "mom"
+            ]
+          },
+          {
+            "say": "NSPersistentContainer builds the coordinator and loads the store.",
+            "flow": [
+              "mom>con:load"
+            ]
+          },
+          {
+            "say": "You work in contexts: the view context for the UI, background contexts for heavy work.",
+            "flow": [
+              "con>ctx:contexts"
+            ]
+          },
+          {
+            "say": "Saving a context writes the changes to the SQLite store.",
+            "flow": [
+              "ctx>db:save"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Core Data a database?",
+          "a": "It is an object graph and persistence framework. It usually stores data in SQLite, but you work with objects, not SQL."
+        },
+        {
+          "q": "Why must I not share objects between contexts?",
+          "a": "Contexts are not thread-safe. Pass the object ID and fetch it again in the other context."
+        },
+        {
+          "q": "Should I migrate to SwiftData now?",
+          "a": "Only when there is a clear benefit. For a working app, a careful gradual move is safer than a full rewrite."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "Are managed object contexts thread-safe?",
+          "options": [
+            "Yes, always",
+            "Only the main one",
+            "No, use each on its own queue"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is a lightweight migration?",
+          "options": [
+            "A faster fetch",
+            "Deleting the store",
+            "Automatic conversion for simple model changes"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How do you move an object between contexts?",
+          "options": [
+            "Pass its object ID and fetch it again",
+            "Copy the database",
+            "Pass the object"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
+    },
+    {
       "section": "Architecture, Delivery and Career",
       "slug": "modular-ios-architecture-swift-packages-clean-architecture-and-performance",
       "title": "Modular iOS Architecture: Swift Packages, Clean Architecture and Performance",
@@ -3774,6 +4874,345 @@
         "Offline-first: the local database is the source of truth, changes go in a queue, sync later with retries.",
         "Take-home: small working version first, handle loading, empty and error states, write a README.",
         "Three or four finished projects with a README, one hard decision explained, tests and CI."
+      ]
+    },
+    {
+      "section": "Career",
+      "slug": "ios-interview-questions-and-answers-swift-swiftui-concurrency-and-architecture",
+      "title": "iOS Interview Questions and Answers: Swift, SwiftUI, Concurrency and Architecture",
+      "metaTitle": "iOS Interview Questions and Answers",
+      "description": "Practise iOS interview questions with short model answers on Swift, memory, concurrency, SwiftUI, architecture, data, security, testing and release.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This lesson is a question bank for iOS interviews, from junior to senior level. Each answer is short on purpose, so you can learn the idea and then say it in your own words. In a real interview, an answer that is clear and honest beats a memorised one. If you do not know something, say what you do know and how you would find out. Good interviewers care more about how you think than about whether you recall every name."
+        },
+        {
+          "type": "note",
+          "text": "The answers are written from our reading of Swift and Apple's documentation and may be out of date for the newest Xcode and iOS versions. We list a starter set, not the only questions you may be asked. Verify details that matter before you repeat them, and practise by building the projects in this and the beginner course."
+        },
+        {
+          "type": "heading",
+          "text": "How to answer well"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Define the idea in one sentence.** For example, \"ARC frees an object when nothing strongly refers to it.\"",
+            "**Give a small example.** A short piece of code or a real situation from your project shows you have used it.",
+            "**Name a trade-off or a pitfall.** This is what separates a junior from a senior answer.",
+            "**Stop.** Do not keep talking after the answer is complete. Let the interviewer ask more."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Swift language"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is the difference between a struct and a class?** A struct is a value type and is copied on assignment. A class is a reference type and is shared. Structs have no inheritance. Prefer structs for simple data and use classes when you need shared identity or inheritance.",
+            "**What does copy-on-write mean?** Collections such as Array share their storage until one copy is changed. Only then is the storage actually copied, so copying an array is cheap until you mutate it.",
+            "**What is an optional?** An enum with two cases, some value or none (nil). It makes missing values explicit, and the compiler forces you to handle them.",
+            "**What is the difference between if let and guard let?** `if let` unwraps for use inside its own block. `guard let` unwraps for use in the rest of the scope and must exit if the value is nil. Guard keeps the main path unindented.",
+            "**What does force unwrapping do and when is it acceptable?** `!` crashes if the value is nil. It is acceptable only when nil would be a programmer error, for example an outlet that must exist. Prefer safe unwrapping.",
+            "**What is a protocol? What is protocol-oriented programming?** A protocol lists requirements that types can adopt. Protocol-oriented programming favours composing behaviour with protocols and extensions, instead of deep class hierarchies.",
+            "**What is the difference between a protocol with associated types and a plain protocol?** Associated types make a protocol generic over some type, such as the element type of a collection. A protocol with them cannot be used as a plain type in the same way, and you use generics or `some` and `any`.",
+            "**What is the difference between `some` and `any`?** `some Protocol` means one specific hidden type, chosen by the implementation, so the compiler knows it. `any Protocol` is an existential box that can hold different types at run time, with some cost.",
+            "**What are generics and why use them?** They let you write one function or type that works with many types while staying type-safe, for example a `Stack<Element>`.",
+            "**What is a closure, and what does it capture?** A function that can be passed around. It captures the variables it uses from the surrounding scope, which can create retain cycles if it captures `self` strongly.",
+            "**What is the difference between @escaping and non-escaping closures?** A non-escaping closure runs before the function returns. An escaping closure can be stored and called later, so the compiler is stricter about capturing `self`.",
+            "**What is the difference between map, flatMap, compactMap and filter?** `map` transforms each item. `compactMap` transforms and drops nils. `flatMap` transforms to sequences and flattens one level. `filter` keeps items that pass a test.",
+            "**What are property wrappers?** Types marked `@propertyWrapper` that add behaviour to a property, such as `@State`, `@AppStorage` and `@Published`.",
+            "**What is the difference between `let` and `var`, and between `static` and `class` members?** `let` cannot be reassigned. `static` members belong to the type. `class` members also belong to the type but can be overridden by subclasses.",
+            "**What does `Codable` do?** It combines `Encodable` and `Decodable`, so a type can convert to and from formats such as JSON, with `CodingKeys` for renaming."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Memory management"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is ARC?** Automatic Reference Counting. The compiler adds retain and release calls, and an object is freed when its strong count reaches zero. It is not garbage collection, so cycles are not found automatically.",
+            "**What is a retain cycle and how do you fix it?** Two objects, or an object and a closure, hold each other strongly, so neither is freed. Break the cycle with `weak` or `unowned` on one side, for example `[weak self]` in a closure.",
+            "**What is the difference between weak and unowned?** `weak` is optional and becomes nil when the object is freed. `unowned` is not optional and crashes if you use it after the object is gone, so use it only when the lifetime is guaranteed.",
+            "**Do value types need memory management?** They are copied, so they have no shared reference cycles. But a struct can contain a reference to a class, and that reference still counts.",
+            "**How do you find a memory leak?** Use the Memory Graph Debugger and Instruments Leaks, and add a `deinit` log to check that objects are freed when a screen closes."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Concurrency"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is async/await?** A way to write asynchronous code that reads like synchronous code. `await` marks a point where the function may pause and let other work run.",
+            "**What is a Task?** A unit of asynchronous work. `Task { }` starts one from synchronous code and inherits the current actor and priority. Tasks can be cancelled.",
+            "**What is structured concurrency?** Child tasks, such as `async let` and task groups, live inside a parent scope and cannot outlive it, so cancellation and errors flow correctly.",
+            "**What is an actor?** A reference type that protects its mutable state by allowing one task at a time to access it. You call its methods with `await`.",
+            "**What is @MainActor?** It marks code that must run on the main thread. UI updates belong there. Views and view models that touch UI state are usually main-actor isolated.",
+            "**What does Sendable mean?** A type that is safe to pass across concurrency boundaries, such as value types of Sendable members or actors. The compiler checks it, more strictly in Swift 6 mode.",
+            "**What is the difference between GCD and Swift concurrency?** GCD uses queues and closures. Swift concurrency uses async functions, tasks and actors with compiler checks. New code usually prefers Swift concurrency, but GCD is still common in existing code.",
+            "**What is a data race and how do you avoid it?** Two threads access the same memory at once and at least one writes. Avoid with actors, immutable value types, serial queues or locks.",
+            "**How does cancellation work?** It is cooperative. Cancelling a task sets a flag. Long work should check `Task.isCancelled` or call `try Task.checkCancellation()`, and awaited system calls usually throw when cancelled.",
+            "**When do you use Combine and when async/await?** Async/await for one-time asynchronous results. Combine or AsyncSequence for streams of values over time, such as debounced search text, when you want operators like `debounce` and `combineLatest`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "SwiftUI"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is the difference between @State, @Binding, @StateObject, @ObservedObject and @Observable?** `@State` is state owned by a view. `@Binding` is a two-way reference to state owned elsewhere. `@StateObject` and `@ObservedObject` are for older ObservableObject classes, owned and not owned by the view. `@Observable` is the newer macro that tracks which properties a view reads.",
+            "**Why are SwiftUI views structs?** They are cheap descriptions of the screen that SwiftUI creates and compares often. The state that must survive lives in property wrappers, not in the struct itself.",
+            "**Why does the order of modifiers matter?** Each modifier returns a new view that wraps the previous one. `.padding().background(.red)` colours the padding, while `.background(.red).padding()` does not.",
+            "**What triggers a view to redraw?** A change to state that the view's body reads. With `@Observable`, only views that read the changed property update.",
+            "**What is the difference between LazyVStack and VStack, and List and ScrollView?** `VStack` creates all children at once. `LazyVStack` creates them as needed. `List` gives rows, selection and swipe actions with efficient reuse. `ScrollView` is a plain container.",
+            "**What does `id` do in ForEach?** It identifies each item, so SwiftUI can tell which rows were added, moved or removed. Unstable ids cause lost state and wrong animations.",
+            "**How do you share data across many views?** Pass it down with initialisers or bindings, or put it in the environment with `.environment` for data many views need.",
+            "**What is the difference between `.task` and `.onAppear`?** `.task` starts an async task when the view appears and cancels it when the view disappears. `.onAppear` runs a synchronous closure and does not cancel anything.",
+            "**How do you integrate UIKit with SwiftUI?** Wrap a UIKit view with `UIViewRepresentable` or a view controller with `UIViewControllerRepresentable`, and use a Coordinator for delegate callbacks. For the other direction, use `UIHostingController`.",
+            "**How do you handle navigation in a large app?** Use `NavigationStack` with a path of value types and `navigationDestination`. Keep the path in a router object so deep links and tests can set it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Architecture and design"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is MVVM and why use it?** Model, View, ViewModel. The view model holds screen state and logic and exposes it to the view. It keeps logic out of views and makes it testable.",
+            "**What is dependency injection?** Giving an object what it needs instead of letting it create it. It lets you replace a real service with a fake in tests.",
+            "**What is Clean Architecture?** A layered design where business rules do not depend on UI or frameworks. Dependencies point inwards, using protocols at the boundaries.",
+            "**How do you split an app into modules?** With local Swift packages for features and shared code. It speeds builds, enforces boundaries and lets teams work in parallel.",
+            "**What is a repository?** An object that hides where data comes from, the network, a database or a cache, behind one interface.",
+            "**What is a singleton and what are its problems?** A single shared instance. It is convenient, but it hides dependencies and makes tests hard. Prefer injecting the object.",
+            "**How would you design an offline-first app?** Read from a local database, show it at once, sync with the server in the background, and keep a queue of changes made offline. Plan for conflicts.",
+            "**How do you design a feed with paging?** Load a page at a time, keep a cursor from the server, show a footer spinner, cache pages, handle errors per page and avoid loading the same item twice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Data and networking"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**SwiftData, Core Data, Realm or SQLite?** SwiftData for new iOS 17+ apps. Core Data for older versions and existing apps. SQLite libraries when you want SQL control. Choose by minimum iOS version, team knowledge and migration needs.",
+            "**How do you do a database migration safely?** Add a new model version, never edit a shipped one, test upgrades from every old version with realistic data, and have a backup plan.",
+            "**How does URLSession handle a request, and how do you cancel it?** `URLSession.shared.data(for:)` is async and throws on failure. Cancel the task and the request is cancelled. Check the HTTP status as well, because a 404 is not a thrown error.",
+            "**How do you handle authentication tokens?** Keep access tokens short-lived, store tokens in the Keychain, refresh on 401 once, serialise refreshes so many requests do not refresh together, and log out if the refresh fails.",
+            "**How do you cache images?** With the URL cache and an image cache in memory and on disk, keyed by URL. `AsyncImage` has limited control, so many apps use a library or their own cache for lists.",
+            "**What is certificate pinning?** The app accepts only a known certificate or public key for a server. It protects against some attacks but can lock users out if you rotate certificates without planning."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Security and privacy"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Where do you store secrets and tokens?** The Keychain. Not UserDefaults and not in source code. Secrets inside an app can be extracted, so keep real API secrets on a server.",
+            "**What does the Data Protection attribute do?** It encrypts files and ties access to the device lock state, for example complete protection while locked.",
+            "**How does Face ID work in an app?** The app calls LocalAuthentication and gets success or failure. It never sees biometric data. Add `NSFaceIDUsageDescription`.",
+            "**What is App Transport Security?** A system rule that requires HTTPS connections by default. Exceptions should be rare and narrow.",
+            "**What are the main privacy rules for the App Store?** Accurate privacy labels, usage descriptions for every permission, a privacy manifest where required, and tracking only with consent."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Testing and quality"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is the testing pyramid?** Many fast unit tests, fewer integration tests, and a few UI tests. UI tests are slower and more fragile.",
+            "**How do you test code that calls the network?** Put the network behind a protocol and use a fake in tests, or use a URLProtocol stub. Tests should not depend on a real server.",
+            "**What is XCTest and what is Swift Testing?** XCTest is the long-standing framework. Swift Testing is the newer one with `@Test` and `#expect`, and it can run alongside XCTest.",
+            "**How do you test date-dependent code?** Pass the date and calendar in as parameters with defaults, so tests use fixed values.",
+            "**What is Instruments used for?** Profiling: Time Profiler for CPU, Allocations and Leaks for memory, and the SwiftUI and animation tools for rendering.",
+            "**How do you improve app launch time?** Do less before the first frame, load things lazily, avoid heavy work in `init` and at launch, reduce dynamic libraries, and measure with Instruments and MetricKit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Release and process"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**What is TestFlight?** Apple's beta testing service. Internal testers get builds quickly. External testers need a short beta review.",
+            "**How do you handle app signing?** Certificates and provisioning profiles prove who built the app. Automatic signing handles most cases. CI often uses a tool such as fastlane match or Xcode Cloud to manage them.",
+            "**How would you do staged rollouts?** Use phased release in App Store Connect, feature flags and remote configuration, and watch crash and metric dashboards before going to everyone.",
+            "**How do you handle a crash that only happens in production?** Read the crash reports in Xcode Organizer or a crash tool, symbolicate them, reproduce with the same OS and data, add logging, fix and release a patch, and add a test.",
+            "**What does your code review look for?** Correctness, readability, tests, naming, error handling, memory, concurrency safety, accessibility and whether the change is small enough to review."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "System design questions to practise"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Design an Instagram-like feed with images, paging, offline support and caching.",
+            "Design a chat app with delivery status, retries, push notifications and offline queue.",
+            "Design a ride or food-delivery app with live location and order tracking.",
+            "Design a notes app with sync across devices and conflict handling.",
+            "Design an analytics layer that batches events, survives crashes and respects privacy.",
+            "For each: clarify requirements, sketch the screens, choose data models, define the API, decide the caching and offline rules, think about errors, security and testing, then talk about scaling and trade-offs."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "This is a starter bank of about sixty questions. Interview rounds often include a coding task, so also practise small problems in Swift on arrays, strings and dictionaries, and be ready to build a screen live. A few hundred questions exist online, but if you can explain these clearly and show projects such as the ones in this course, you are well prepared for most junior and mid-level rounds."
+        },
+        {
+          "type": "paragraph",
+          "text": "To rehearse with real code, build the projects in the [iOS App Development with Swift and SwiftUI course](/learn/ios-development-swift-swiftui-course). Use our [resume templates](/templates) and the [ATS checker](/features/ats-checker) to turn them into clear lines on your resume, and look at the [career roadmaps](/roadmaps) for the skills each role asks for."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Pick 20 questions. Answer each out loud in under 30 seconds and record yourself.",
+            "Explain ARC and retain cycles using a closure from one of your own projects.",
+            "Choose one system design question and sketch the screens and data flow on paper."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can explain value versus reference types, ARC, async/await and @State without notes.",
+            "You have one project you can walk through in five minutes.",
+            "You can name a trade-off for every design choice you describe."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Prepare, answer, show",
+        "nodes": [
+          {
+            "id": "study",
+            "label": "Study the ideas",
+            "sub": "one sentence each",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "ex",
+            "label": "Add an example",
+            "sub": "from your projects",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "trade",
+            "label": "Name a trade-off",
+            "sub": "shows depth",
+            "col": 2,
+            "row": 0,
+            "kind": "check"
+          },
+          {
+            "id": "job",
+            "label": "Interview",
+            "sub": "calm and clear",
+            "col": 3,
+            "row": 0,
+            "kind": "out"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Learn each idea well enough to say it in one sentence.",
+            "on": [
+              "study"
+            ]
+          },
+          {
+            "say": "Tie it to a real example from a project you built.",
+            "flow": [
+              "study>ex:example"
+            ]
+          },
+          {
+            "say": "Mention one pitfall or trade-off. This is what senior answers have.",
+            "flow": [
+              "ex>trade:depth"
+            ]
+          },
+          {
+            "say": "In the interview, answer clearly, stop, and let the interviewer ask more.",
+            "flow": [
+              "trade>job:answer"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "How many questions do I need to learn?",
+          "a": "Quality matters more than quantity. If you can explain the core ideas and show projects, you can handle new questions by reasoning."
+        },
+        {
+          "q": "What if I do not know an answer?",
+          "a": "Say what you do know, explain how you would find out, and stay calm. Honest reasoning is better than a confident wrong answer."
+        },
+        {
+          "q": "Do I need to memorise code?",
+          "a": "No, but you should be able to write small pieces, such as a model, a SwiftUI view with state, or an async function, without help."
+        }
+      ],
+      "readTime": "14 min read",
+      "published": true,
+      "quiz": [
+        {
+          "q": "What does weak do?",
+          "options": [
+            "Copies the object",
+            "Becomes nil when the object is freed",
+            "Keeps the object alive"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a good way to end an interview answer?",
+          "options": [
+            "Say nothing",
+            "Stop once it is complete",
+            "Keep talking"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which is a value type?",
+          "options": [
+            "struct",
+            "class",
+            "actor"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
       ]
     }
   ],

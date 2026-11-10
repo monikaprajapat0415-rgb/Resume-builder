@@ -71,4 +71,34 @@ export const quizzes = {
     Q('What makes a system design answer strong?', ['Naming the trade-offs of your choices', 'Listing as many tools as possible', 'Saying there is one right answer'], 0),
     Q('Which portfolio is stronger?', ['Three or four finished, well explained projects', 'Ten unfinished projects', 'Only screenshots'], 0),
   ],
+  'ios-accessibility-voiceover-dynamic-type-and-inclusive-design': [
+    Q('What does an accessibilityLabel give an icon-only button?', ['A spoken description for VoiceOver', 'A new colour', 'A bigger tap area'], 0),
+    Q('How do you make text scale with the user\'s setting?', ['Use text styles or @ScaledMetric', 'Use a fixed font size', 'Use lineLimit(1)'], 0),
+    Q('Why not rely on colour alone?', ['Some people cannot tell colours apart', 'Colours are slow', 'It breaks dark mode'], 0),
+  ],
+  'ios-localization-string-catalogs-plurals-formatting-and-right-to-left': [
+    Q('What file type is a String Catalog?', ['.xcstrings', '.plist only', '.json only'], 0),
+    Q('Why not join sentence pieces with +?', ['Word order differs between languages', 'It is slower', 'Swift forbids it'], 0),
+    Q('What should layouts use for right-to-left support?', ['leading and trailing', 'left and right', 'fixed offsets'], 0),
+  ],
+  'ios-widgets-and-app-intents-widgetkit-timelines-siri-and-shortcuts': [
+    Q('What does a widget show?', ['Entries from a timeline you provide', 'A live running app', 'Only the last screenshot'], 0),
+    Q('Why does a widget need an App Group?', ['The app and widget are separate processes', 'To use Siri', 'To save battery'], 0),
+    Q('What does an App Intent describe?', ['An action Siri, Shortcuts and widgets can run', 'A screen layout', 'A database table'], 0),
+  ],
+  'app-store-privacy-and-review-privacy-manifests-guidelines-and-common-rejections': [
+    Q('What must every sensitive permission have?', ['A clear usage description in Info.plist', 'A marketing banner', 'A server key'], 0),
+    Q('What should you give reviewers if the app needs a login?', ['A working demo account', 'Nothing', 'Your own password'], 0),
+    Q('What should you do after a rejection?', ['Fix the quoted guideline and resubmit', 'Resubmit the same build', 'Delete the app'], 0),
+  ],
+  'core-data-in-depth-for-ios-stacks-contexts-fetch-requests-and-migration': [
+    Q('Are managed object contexts thread-safe?', ['No, use each on its own queue', 'Yes, always', 'Only the main one'], 0),
+    Q('What is a lightweight migration?', ['Automatic conversion for simple model changes', 'Deleting the store', 'A faster fetch'], 0),
+    Q('How do you move an object between contexts?', ['Pass its object ID and fetch it again', 'Pass the object', 'Copy the database'], 0),
+  ],
+  'ios-interview-questions-and-answers-swift-swiftui-concurrency-and-architecture': [
+    Q('What does weak do?', ['Becomes nil when the object is freed', 'Keeps the object alive', 'Copies the object'], 0),
+    Q('What is a good way to end an interview answer?', ['Stop once it is complete', 'Keep talking', 'Say nothing'], 0),
+    Q('Which is a value type?', ['struct', 'class', 'actor'], 0),
+  ],
 };
