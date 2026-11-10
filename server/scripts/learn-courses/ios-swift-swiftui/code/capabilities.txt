@@ -1,0 +1,17 @@
+Info.plist keys and capabilities used by projects 8 to 10
+(In Xcode: select the project, pick the app target, then Info and Signing & Capabilities.)
+
+Project 8, Fitness (StepTracker)
+  Capability:   HealthKit
+  Info.plist:   Privacy - Health Share Usage Description
+                "Steps are read to show your daily progress. They never leave your phone."
+
+Project 9, Music (MusicPlayer)
+  Capability:   Background Modes, tick "Audio, AirPlay, and Picture in Picture"
+
+Project 10, QR scanner (QRScanner)
+  Info.plist:   Privacy - Camera Usage Description
+                "The camera is used to scan QR codes. Pictures are not saved or sent anywhere."
+  Needs a real iPhone (the Simulator has no camera).
+
+The other projects need no special capability.
