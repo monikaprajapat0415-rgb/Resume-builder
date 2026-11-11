@@ -6413,6 +6413,230 @@
     "answer": 2,
     "explain": ""
    }
+  ],
+  "javascript-basics-variables-data-types-and-operators": [
+   {
+    "q": "Which keyword should you use by default for a value that will not change?",
+    "options": [
+     "const",
+     "let",
+     "var"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does 5 === \"5\" give?",
+    "options": [
+     "false",
+     "An error",
+     "true"
+    ],
+    "answer": 0,
+    "explain": "Strict equality also compares the type."
+   },
+   {
+    "q": "Which of these values is falsy?",
+    "options": [
+     "0",
+     "\"hello\"",
+     "[]"
+    ],
+    "answer": 0,
+    "explain": "An empty array is truthy."
+   }
+  ],
+  "javascript-conditions-and-loops-if-switch-for-while": [
+   {
+    "q": "What happens in a switch case with no break or return?",
+    "options": [
+     "It repeats the case",
+     "It falls through into the next case",
+     "It stops the program"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which loop is best for the values of an array?",
+    "options": [
+     "for...in",
+     "for...of",
+     "while(true)"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does continue do inside a loop?",
+    "options": [
+     "Skips the rest of this round and goes to the next",
+     "Restarts the program",
+     "Ends the loop"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "javascript-functions-arrays-objects-and-array-methods": [
+   {
+    "q": "Which method makes a new array by changing every item?",
+    "options": [
+     "some",
+     "find",
+     "map"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why copy an array before calling sort when you need the original?",
+    "options": [
+     "sort deletes items",
+     "sort changes the original array",
+     "sort is slow"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does reduce do?",
+    "options": [
+     "Reverses the array",
+     "Removes duplicates",
+     "Combines all items into one value"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "javascript-error-handling-and-json-try-catch-throw-and-parse": [
+   {
+    "q": "When does the finally block run?",
+    "options": [
+     "Only when there is no error",
+     "Only after an error",
+     "Whether or not there was an error"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why wrap JSON.parse in try/catch when the text comes from outside?",
+    "options": [
+     "It is very slow",
+     "It changes the text",
+     "It throws a SyntaxError for invalid JSON"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which of these does JSON.stringify drop?",
+    "options": [
+     "Numbers",
+     "Strings",
+     "undefined values and functions"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "commonjs-vs-es-modules-require-import-and-export": [
+   {
+    "q": "Which file ending always means CommonJS?",
+    "options": [
+     ".mjs",
+     ".cjs",
+     ".json"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What replaces __dirname in an ES module?",
+    "options": [
+     "process.cwd only",
+     "It still exists",
+     "path.dirname(fileURLToPath(import.meta.url))"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which system supports top-level await?",
+    "options": [
+     "ES modules",
+     "Neither",
+     "CommonJS"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "linux-server-basics-for-node-developers-commands-permissions-and-ssh": [
+   {
+    "q": "What does chmod 600 file do?",
+    "options": [
+     "Everyone can read it",
+     "It deletes the file",
+     "Only the owner can read and write it"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why is rm dangerous?",
+    "options": [
+     "It needs a password",
+     "There is no recycle bin, so the file is gone",
+     "It is slow"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What must you do before you enable a firewall on a remote server?",
+    "options": [
+     "Restart the server",
+     "Allow SSH first",
+     "Close port 22"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "node-js-and-express-interview-questions-and-answers": [
+   {
+    "q": "What is the best way to use these sample answers?",
+    "options": [
+     "Memorise them word for word",
+     "Skip them",
+     "Say them in your own words with an example from your project"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do when you do not know an answer?",
+    "options": [
+     "Change the subject",
+     "Guess confidently",
+     "Say so and explain how you would find out"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which question asks who you are versus what you may do?",
+    "options": [
+     "Authentication versus authorization",
+     "PUT versus PATCH",
+     "SQL versus NoSQL"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
   ]
  },
  "phone-job-search-trades-course": {

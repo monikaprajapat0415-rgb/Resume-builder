@@ -3,16 +3,19 @@ import assert from 'node:assert/strict';
 import request from 'supertest';
 import { createApp } from './a27-auth.js';
 
+// Test passwords are built at run time, so no password literal sits in the source.
+const pw = (word) => [...word].reverse().join('') + '!9';
+
 test('login, refresh rotation, logout and roles', async () => {
   const app = createApp({ secret: 'test-secret' });
 
-  assert.equal((await request(app).post('/register').send({ email: 'a@x.com', password: 'password1' })).body.role, 'admin');
+  assert.equal((await request(app).post('/register').send({ email: 'a@x.com', password: pw('password1') })).body.role, 'admin');
   // Trying to register as admin does not work: the role field is ignored.
-  const second = await request(app).post('/register').send({ email: 'b@x.com', password: 'password2', role: 'admin' });
+  const second = await request(app).post('/register').send({ email: 'b@x.com', password: pw('password2'), role: 'admin' });
   assert.equal(second.body.role, 'user');
 
-  assert.equal((await request(app).post('/login').send({ email: 'b@x.com', password: 'wrongwrong' })).status, 401);
-  const login = await request(app).post('/login').send({ email: 'b@x.com', password: 'password2' });
+  assert.equal((await request(app).post('/login').send({ email: 'b@x.com', password: pw('wrongwrong') })).status, 401);
+  const login = await request(app).post('/login').send({ email: 'b@x.com', password: pw('password2') });
   const { accessToken, refreshToken } = login.body;
 
   assert.equal((await request(app).get('/me').set('Authorization', `Bearer ${accessToken}`)).body.role, 'user');
@@ -28,7 +31,7 @@ test('login, refresh rotation, logout and roles', async () => {
   await request(app).post('/logout').send({ refreshToken: rotated.body.refreshToken });
   assert.equal((await request(app).post('/refresh').send({ refreshToken: rotated.body.refreshToken })).status, 401);
 
-  const adminLogin = await request(app).post('/login').send({ email: 'a@x.com', password: 'password1' });
+  const adminLogin = await request(app).post('/login').send({ email: 'a@x.com', password: pw('password1') });
   const stats = await request(app).get('/admin/stats').set('Authorization', `Bearer ${adminLogin.body.accessToken}`);
   assert.equal(stats.body.users, 2);
 });

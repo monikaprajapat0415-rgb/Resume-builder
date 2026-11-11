@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import crypto from 'node:crypto';
 
 // Session-based login: the browser holds only a random id in a cookie. The data stays on the server.
-export function createApp({ cookieSecret }) {
+export function createApp({ cookieSecret, demoPassword }) {
   const app = express();
   app.use(express.json());
   app.use(cookieParser(cookieSecret));          // signed cookies can be checked for tampering
@@ -11,7 +11,7 @@ export function createApp({ cookieSecret }) {
   const sessions = new Map();                    // sessionId -> { user, createdAt }  (use Redis in production)
 
   app.post('/login', (req, res) => {
-    if (req.body?.password !== 'letmein') return res.status(401).json({ error: 'Wrong login' });
+    if (req.body?.password !== demoPassword) return res.status(401).json({ error: 'Wrong login' });
     const id = crypto.randomBytes(32).toString('base64url');
     sessions.set(id, { user: req.body.name, createdAt: Date.now() });
     res.cookie('sid', id, {
