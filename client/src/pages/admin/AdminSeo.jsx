@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
-import { LuRefreshCw, LuCopy, LuExternalLink, LuChevronDown, LuCircleCheck, LuTriangleAlert } from 'react-icons/lu'
+import { LuRefreshCw, LuCopy, LuExternalLink, LuChevronDown, LuCircleCheck, LuTriangleAlert, LuWandSparkles, LuUndo2 } from 'react-icons/lu'
 import api from '../../configs/api'
 
 const tone = {
@@ -51,6 +51,97 @@ const PagesCheck = ({ headers }) => {
               </tbody>
             </table>
           </div>
+        </>
+      )}
+    </Card>
+  )
+}
+
+
+const FIELD_NAME = { metaTitle: 'SEO title', description: 'Meta description', coverAlt: 'Cover alt text' }
+
+// Fixes that can be made from the post's own text. Worked out and applied on the server;
+// the browser only says which ones to apply. Article text is never changed, and Undo puts
+// the old values back (only where nobody edited the field since).
+const FixesCard = ({ fixes, headers, onDone }) => {
+  const [busy, setBusy] = useState(false)
+  const [confirm, setConfirm] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [last, setLast] = useState(null)
+
+  const apply = async (body, label) => {
+    setBusy(true)
+    try {
+      const { data } = await api.post('/api/admin/seo-audit/apply', body, { headers })
+      setLast(data.applied ? { changes: data.changes, label } : null)
+      toast.success(data.applied ? `Applied ${data.applied} ${data.applied === 1 ? 'fix' : 'fixes'} in ${data.posts} ${data.posts === 1 ? 'post' : 'posts'}.` : 'Nothing needed changing.')
+      setConfirm(false)
+      onDone()
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not apply the fixes.') }
+    setBusy(false)
+  }
+  const undo = async () => {
+    setBusy(true)
+    try {
+      const { data } = await api.post('/api/admin/seo-audit/undo', { changes: last.changes }, { headers })
+      toast.success(`Restored ${data.restored} ${data.restored === 1 ? 'value' : 'values'}.${data.skipped ? ` ${data.skipped} left as they are because they were edited since.` : ''}`)
+      setLast(null)
+      onDone()
+    } catch (e) { toast.error(e.response?.data?.message || 'Could not undo.') }
+    setBusy(false)
+  }
+
+  const btn = 'inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md disabled:opacity-60'
+  return (
+    <Card title='Suggested fixes' className='border-brand-200' right={fixes.total > 0 && (
+      confirm ? (
+        <span className='flex items-center gap-2'>
+          <span className='text-xs text-slate-600'>Change {fixes.total} {fixes.total === 1 ? 'field' : 'fields'} in {fixes.posts.length} {fixes.posts.length === 1 ? 'post' : 'posts'}?</span>
+          <button onClick={() => apply({}, 'all')} disabled={busy} className={`${btn} bg-brand-600 text-white hover:bg-brand-700`}>{busy ? 'Applying…' : 'Yes, apply all'}</button>
+          <button onClick={() => setConfirm(false)} disabled={busy} className={`${btn} border border-slate-200 hover:bg-slate-50`}>Cancel</button>
+        </span>
+      ) : (
+        <button onClick={() => setConfirm(true)} disabled={busy} className={`${btn} bg-brand-600 text-white hover:bg-brand-700`}><LuWandSparkles className='size-3.5' /> Apply all fixes ({fixes.total})</button>
+      )
+    )}>
+      {last && (
+        <div className='mb-3 flex items-center justify-between gap-3 rounded-md bg-green-50 border border-green-200 px-3 py-2 text-xs text-green-800'>
+          <span>Applied {last.changes.length} {last.changes.length === 1 ? 'change' : 'changes'}. Check a post, then re-run the audit.</span>
+          <button onClick={undo} disabled={busy} className='inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-green-300 bg-white hover:bg-green-100 disabled:opacity-60'><LuUndo2 className='size-3.5' /> Undo</button>
+        </div>
+      )}
+      {fixes.total === 0 ? (
+        <p className='text-sm text-slate-500'>No automatic fixes are available right now. What is left (focus keyword, FAQ, sources, key takeaways, links, category, URL) needs your own words, see &quot;Fix these first&quot;.</p>
+      ) : (
+        <>
+          <p className='text-sm text-slate-600'>
+            {fixes.byKey.map((k) => `${k.count} × ${k.label.toLowerCase()}`).join(' · ')}.
+          </p>
+          <p className='text-xs text-slate-400 mt-1'>Only the SEO title, meta description and cover alt text can change, and only from text already in the post. The article, the URL and the &quot;updated&quot; date are never touched. You can undo straight after.</p>
+          <button onClick={() => setOpen(!open)} aria-expanded={open} className='mt-3 text-xs text-brand-700 hover:underline inline-flex items-center gap-1'>
+            <LuChevronDown className={`size-3.5 transition ${open ? 'rotate-180' : ''}`} /> {open ? 'Hide' : 'Review'} the changes
+          </button>
+          {open && (
+            <ul className='mt-3 divide-y divide-slate-100'>
+              {fixes.posts.map((p) => (
+                <li key={p._id} className='py-3'>
+                  <div className='flex items-center justify-between gap-3 mb-2'>
+                    <Link to={`/admin/blogs/${p._id}/edit`} className='text-sm font-medium text-slate-800 hover:text-brand-700 truncate'>{p.title}</Link>
+                    <button onClick={() => apply({ postIds: [p._id] }, p.title)} disabled={busy} className={`${btn} border border-slate-200 hover:bg-slate-50 shrink-0`}>Apply to this post</button>
+                  </div>
+                  <ul className='space-y-2'>
+                    {p.fixes.map((f) => (
+                      <li key={f.field} className='text-xs'>
+                        <p className='text-slate-500'>{FIELD_NAME[f.field]} <span className='text-slate-400'>· {f.label}</span></p>
+                        {f.before && <p className='text-red-700/80 line-through break-words'>{f.before}</p>}
+                        <p className='text-green-700 break-words'>{f.after}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          )}
         </>
       )}
     </Card>
@@ -142,6 +233,8 @@ const AdminSeo = () => {
           </button>
         ))}
       </div>
+
+      {data.fixes && <FixesCard fixes={data.fixes} headers={{ Authorization: token }} onDone={load} />}
 
       <PagesCheck headers={{ Authorization: token }} />
 

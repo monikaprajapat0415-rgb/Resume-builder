@@ -11,7 +11,7 @@ import {
   adminInbox, adminInboxBulk,
 } from '../controllers/communityController.js';
 import { getAllProductsAdmin, getProductByIdAdmin, createProduct, updateProduct, deleteProduct } from '../controllers/productController.js';
-import { getStats, getSeoAudit, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
+import { getStats, getSeoAudit, applySeoFixes, undoSeoFixes, getUsers, setUserRole, deleteUser, adjustAtsCredits, setAtsDisabled, getCategories, createCategory, updateCategory, deleteCategory, uploadImage } from '../controllers/adminController.js';
 import { getFeedbackAdmin, updateFeedbackAdmin, deleteFeedbackAdmin } from '../controllers/feedbackController.js';
 import { getSources, createSource, updateSource, deleteSource, runSource, runAll, seedSources } from '../controllers/jobController.js';
 import { hiringStats, adminEmployers, reviewEmployer, adminEmployerJobs, reviewJob } from '../controllers/employerController.js';
@@ -49,6 +49,8 @@ adminRouter.post('/ai-status/test', async (req, res) => res.json({ results: awai
 adminRouter.get('/stats', getStats)
 adminRouter.get('/visits', getVisits);
 adminRouter.get('/seo-audit', getSeoAudit);
+adminRouter.post('/seo-audit/apply', applySeoFixes);
+adminRouter.post('/seo-audit/undo', undoSeoFixes);
 adminRouter.get('/seo-pages', getSeoPagesAudit);
 
 adminRouter.get('/blogs', getAllBlogsAdmin);

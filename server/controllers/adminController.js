@@ -18,6 +18,8 @@ import { emailKey } from "../utils/emailKey.js";
 import imagekit from "../configs/imageKit.js";
 import { slugify } from "../utils/slugify.js";
 import { auditBlogs } from "../utils/seoAudit.js";
+import { fixSummary, proposeFixes, FIXABLE_FIELDS } from "../utils/seoFixes.js";
+import mongoose from "mongoose";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -25,7 +27,54 @@ const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export const getSeoAudit = async (req, res) => {
     try {
         const posts = await Blog.find({}).lean();
-        return res.status(200).json(auditBlogs(posts));
+        return res.status(200).json({ ...auditBlogs(posts), fixes: fixSummary(posts) });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// POST /api/admin/seo-audit/apply { postIds?: [], keys?: [] }
+// Fixes are worked out again here from the stored post, never taken from the browser.
+// Only meta title, meta description and cover alt text can change; the article text is never touched.
+export const applySeoFixes = async (req, res) => {
+    try {
+        const ids = Array.isArray(req.body?.postIds) ? req.body.postIds.map(String) : null;
+        const keys = Array.isArray(req.body?.keys) ? req.body.keys.map(String) : null;
+        const posts = await Blog.find({}).lean();
+        const changes = [];
+        for (const p of posts) {
+            if (p.published === false) continue;
+            if (ids && !ids.includes(String(p._id))) continue;
+            const set = {};
+            for (const f of proposeFixes(p)) {
+                if (keys && !keys.includes(f.key)) continue;
+                if (!FIXABLE_FIELDS.includes(f.field)) continue;
+                set[f.field] = f.after;
+                changes.push({ postId: String(p._id), title: p.title, field: f.field, before: f.before, after: f.after });
+            }
+            // timestamps off: a metadata fix is not a content update, so "modified" dates stay true
+            if (Object.keys(set).length) await Blog.updateOne({ _id: p._id }, { $set: set }, { timestamps: false });
+        }
+        return res.status(200).json({ applied: changes.length, posts: new Set(changes.map((c) => c.postId)).size, changes });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// POST /api/admin/seo-audit/undo { changes: [{ postId, field, before, after }] }
+// Puts the old value back, but only where the field still holds the value we wrote,
+// so later edits made by hand are never overwritten.
+export const undoSeoFixes = async (req, res) => {
+    try {
+        const list = Array.isArray(req.body?.changes) ? req.body.changes.slice(0, 2000) : [];
+        let restored = 0, skipped = 0;
+        for (const c of list) {
+            const ok = FIXABLE_FIELDS.includes(c?.field) && mongoose.isValidObjectId(c?.postId) && typeof c.before === 'string' && typeof c.after === 'string' && c.before.length <= 600;
+            if (!ok) { skipped++; continue; }
+            const r = await Blog.updateOne({ _id: c.postId, [c.field]: c.after }, { $set: { [c.field]: c.before } }, { timestamps: false });
+            if (r.modifiedCount) restored++; else skipped++;
+        }
+        return res.status(200).json({ restored, skipped });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
