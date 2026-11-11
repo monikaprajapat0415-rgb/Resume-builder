@@ -1,0 +1,26 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/app
+      REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET}       # comes from your shell or a .env file, never written here
+    depends_on:
+      - mongo
+      - redis
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo-data:/data/db           # keeps the data when the container is replaced
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
