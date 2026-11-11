@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Products API", "version": "1.0.0", "description": "A small API used to learn OpenAPI." },
+  "servers": [{ "url": "http://localhost:3000" }],
+  "paths": {
+    "/api/v1/products": {
+      "get": {
+        "summary": "List products",
+        "parameters": [
+          { "name": "page", "in": "query", "schema": { "type": "integer", "minimum": 1, "default": 1 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 50, "default": 10 } },
+          { "name": "category", "in": "query", "schema": { "type": "string", "enum": ["books", "games", "tools"] } }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of products",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ProductPage" } } }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a product",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/NewProduct" } } }
+        },
+        "responses": {
+          "201": { "description": "Created", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Product" } } } },
+          "409": { "description": "A product with this name already exists" },
+          "422": { "description": "Invalid input" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "price": { "type": "number" },
+          "category": { "type": "string" }
+        }
+      },
+      "NewProduct": {
+        "type": "object",
+        "required": ["name", "price"],
+        "properties": {
+          "name": { "type": "string" },
+          "price": { "type": "number", "minimum": 0 },
+          "category": { "type": "string" }
+        }
+      },
+      "ProductPage": {
+        "type": "object",
+        "properties": {
+          "data": { "type": "array", "items": { "$ref": "#/components/schemas/Product" } },
+          "meta": { "type": "object", "properties": { "page": { "type": "integer" }, "total": { "type": "integer" } } }
+        }
+      }
+    }
+  }
+}

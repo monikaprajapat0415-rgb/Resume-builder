@@ -5133,6 +5133,1510 @@
     "answer": 1,
     "explain": ""
    }
+  ],
+  "javascript-essentials-for-node-destructuring-closures-promises-and-the-event-loop": [
+   {
+    "q": "What does spread do in { ...user, age: 30 }?",
+    "options": [
+     "Changes the original user object",
+     "Deletes the age from user",
+     "Copies the properties into a new object, leaving user unchanged"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a closure?",
+    "options": [
+     "A function that remembers the variables around where it was created",
+     "A function that cannot be called",
+     "A way to close a file"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why must you not block the event loop in a handler?",
+    "options": [
+     "Node refuses to start",
+     "Every other user waits until it finishes",
+     "It deletes the cache"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "node-core-modules-eventemitter-streams-buffers-os-and-process": [
+   {
+    "q": "Why use pipeline instead of .pipe()?",
+    "options": [
+     "It makes files smaller",
+     "It passes errors along and cleans up all streams",
+     "It is the only way to read files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What happens if an EventEmitter emits error and nothing listens?",
+    "options": [
+     "The error is ignored",
+     "The event is queued for later",
+     "Node throws and the process can crash"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a Buffer?",
+    "options": [
+     "A fixed block of raw bytes",
+     "A web page cache",
+     "A type of loop"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "scaling-node-worker-threads-child-processes-and-the-cluster-module": [
+   {
+    "q": "Which tool fits a heavy JavaScript calculation?",
+    "options": [
+     "A worker thread",
+     "A longer timeout",
+     "The cluster module"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why use execFile with an argument array instead of exec with a built string?",
+    "options": [
+     "It uses less memory",
+     "It is always faster",
+     "User input cannot inject extra shell commands"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why does an in-memory session break when you run several copies of a server?",
+    "options": [
+     "Sessions are not allowed in cluster mode",
+     "Each copy has its own memory",
+     "The port changes"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "express-project-structure-mvc-static-files-and-app-settings": [
+   {
+    "q": "What does the controller do in the structure shown?",
+    "options": [
+     "Starts the server",
+     "Reads the request, calls the store and decides the response",
+     "Saves the data to disk"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why keep app.js and server.js separate?",
+    "options": [
+     "It makes routes faster",
+     "Express requires it",
+     "Tests can import the app without opening a port"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How does Express recognise an error handler?",
+    "options": [
+     "It is the first middleware",
+     "Its name contains error",
+     "It has four parameters"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "rest-api-design-status-codes-versioning-pagination-filtering-sorting-search": [
+   {
+    "q": "Which status code means the user is logged in but not allowed?",
+    "options": [
+     "404",
+     "401",
+     "403"
+    ],
+    "answer": 2,
+    "explain": "401 means not authenticated, 403 means not allowed."
+   },
+   {
+    "q": "Why set a maximum limit on a list endpoint?",
+    "options": [
+     "It makes JSON smaller",
+     "HTTP requires it",
+     "A client could ask for a huge number of rows at once"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When do you need a new API version such as /v2?",
+    "options": [
+     "Every month",
+     "Whenever you add a field",
+     "When you must rename or remove something clients already use"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "document-your-api-openapi-swagger-ui-and-postman": [
+   {
+    "q": "What is an OpenAPI file?",
+    "options": [
+     "A database backup",
+     "A front-end framework",
+     "A machine-readable description of your API"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does Swagger UI do with the file?",
+    "options": [
+     "Draws interactive docs where you can try each endpoint",
+     "Encrypts the API",
+     "Deploys the server"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why document the error responses too?",
+    "options": [
+     "Postman requires it",
+     "Client developers need to know what can go wrong",
+     "It makes the file longer"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "file-uploads-in-express-with-multer-validation-and-cloud-storage": [
+   {
+    "q": "Why check the first bytes of an uploaded file?",
+    "options": [
+     "It makes the upload faster",
+     "Multer cannot read the extension",
+     "The name and Content-Type come from the client and can be faked"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why create your own random file name?",
+    "options": [
+     "A user-supplied name can contain a path such as ../../ that escapes your folder",
+     "Random names are shorter",
+     "Browsers require it"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the storage driver idea give you?",
+    "options": [
+     "No size limits",
+     "You can switch from disk to cloud storage by changing one piece",
+     "Faster uploads"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "calling-third-party-apis-and-webhooks-timeouts-retries-and-signatures": [
+   {
+    "q": "Which failure should you retry?",
+    "options": [
+     "A 503 reply or a network timeout",
+     "A 404 reply",
+     "A 400 reply"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why does a webhook signature check need the raw body?",
+    "options": [
+     "The raw body is smaller",
+     "JSON is not allowed in webhooks",
+     "The hash is calculated over the exact bytes that were sent"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use timingSafeEqual to compare signatures?",
+    "options": [
+     "A normal comparison can leak information through timing",
+     "It is easier to read",
+     "It ignores case"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "mongodb-relationships-populate-indexes-and-sql-versus-nosql": [
+   {
+    "q": "When should you reference instead of embed?",
+    "options": [
+     "When the related data is large, shared or grows without limit",
+     "When the data is tiny and always read together",
+     "Never"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does populate do?",
+    "options": [
+     "Deletes old documents",
+     "Creates an index",
+     "Replaces a stored id with the referenced document using another query"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "An index on { author: 1, createdAt: -1 } helps a query on which field alone?",
+    "options": [
+     "Both equally",
+     "author",
+     "createdAt"
+    ],
+    "answer": 1,
+    "explain": "A compound index is used from the left."
+   }
+  ],
+  "mongodb-aggregation-pipelines-and-transactions-in-node": [
+   {
+    "q": "Which stage keeps only matching documents, like find?",
+    "options": [
+     "$match",
+     "$group",
+     "$project"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why store money as whole numbers of cents?",
+    "options": [
+     "MongoDB does not allow decimals",
+     "Decimal fractions cannot always be stored exactly as floating-point numbers",
+     "Cents are shorter to type"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What do MongoDB transactions need?",
+    "options": [
+     "A replica set, such as MongoDB Atlas",
+     "A text index",
+     "A second database"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "validate-requests-with-zod-and-meet-prisma-with-postgresql": [
+   {
+    "q": "Why validate on the server even if the front end validates?",
+    "options": [
+     "Anyone can call the API without your front end",
+     "Browsers cannot validate",
+     "The server is faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which status code fits well-formed data that breaks your rules?",
+    "options": [
+     "200",
+     "304",
+     "422"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a Prisma migration?",
+    "options": [
+     "A versioned script that changes the database structure step by step",
+     "A copy of the data",
+     "A type of query"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "access-and-refresh-tokens-logout-and-role-based-access-control": [
+   {
+    "q": "Why is the access token short-lived?",
+    "options": [
+     "Browsers delete long tokens",
+     "Short tokens are faster to sign",
+     "If it leaks, the damage ends quickly"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is refresh token rotation?",
+    "options": [
+     "Sending the token in a cookie",
+     "Changing the JWT secret daily",
+     "Each use returns a new refresh token and cancels the old one"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where must a user role come from?",
+    "options": [
+     "Your database, set by your server",
+     "A cookie the client can edit",
+     "The request body"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "forgot-password-email-verification-and-otp-login-with-nodemailer": [
+   {
+    "q": "Why show the same message whether or not the email exists?",
+    "options": [
+     "So attackers cannot discover which emails have accounts",
+     "It saves a database query",
+     "Email providers require it"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why store only a hash of the reset token?",
+    "options": [
+     "Nodemailer needs a hash",
+     "A leaked database cannot be used to reset accounts",
+     "Hashes are shorter"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What limits make a six-digit OTP safe enough?",
+    "options": [
+     "A longer font",
+     "Short expiry, one use and a limit on wrong tries",
+     "Sending it twice"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "cookies-sessions-and-sign-in-with-google-oauth": [
+   {
+    "q": "What does the httpOnly cookie flag do?",
+    "options": [
+     "Makes it last longer",
+     "Encrypts the cookie",
+     "Hides the cookie from JavaScript on the page"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What must your server do with a Google ID token?",
+    "options": [
+     "Just decode it",
+     "Store it as the password",
+     "Verify its signature, audience, expiry and email_verified"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is an advantage of sessions over JWT?",
+    "options": [
+     "They need no storage at all",
+     "Logging out is easy because you delete the server record",
+     "They work without cookies"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "web-attacks-xss-csrf-nosql-injection-sanitisation-and-brute-force": [
+   {
+    "q": "What is the main defence against XSS?",
+    "options": [
+     "Escape output so user text is not treated as code",
+     "Turn off cookies",
+     "Use longer passwords"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How does a double-submit CSRF token stop another site?",
+    "options": [
+     "It encrypts the request",
+     "The other site can send the cookie but cannot read it to copy it into a header",
+     "It blocks all POST requests"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How can { \"password\": { \"$ne\": null } } break a login?",
+    "options": [
+     "It resets the password",
+     "It crashes MongoDB",
+     "The query asks for a password that is not null, so it matches"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "production-security-secrets-https-jwt-best-practices-helmet-and-audits": [
+   {
+    "q": "You committed a secret to Git by mistake. What first?",
+    "options": [
+     "Change it at the provider, because Git keeps history",
+     "Delete the file only",
+     "Rename the repository"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Is a JWT encrypted?",
+    "options": [
+     "Only with HS256",
+     "No, it is signed but anyone can read it",
+     "Yes, always"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does npm audit check?",
+    "options": [
+     "Your code style",
+     "Installed packages for known vulnerabilities",
+     "Your server uptime"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "clean-architecture-in-express-repository-service-dependency-injection-and-solid": [
+   {
+    "q": "What does the service layer contain?",
+    "options": [
+     "Express routes",
+     "SQL queries",
+     "The business rules, with no HTTP or database details"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is dependency injection in this lesson?",
+    "options": [
+     "Installing packages",
+     "Passing what a class needs, such as a repository, as an argument",
+     "A special framework"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "When should you add more layers?",
+    "options": [
+     "Always, from the first route",
+     "When you feel the pain they solve, such as rules scattered in handlers",
+     "Never"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "error-handling-and-logging-in-express-winston-morgan-and-request-ids": [
+   {
+    "q": "What should the client see for a 500 server error?",
+    "options": [
+     "A generic safe message, with the details in the log",
+     "The full stack trace",
+     "The database query"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is a request id used for?",
+    "options": [
+     "Authentication",
+     "Finding every log line that belongs to one request",
+     "Caching"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why write logs as JSON?",
+    "options": [
+     "JSON is shorter than text",
+     "Log tools can search and graph structured lines easily",
+     "Winston cannot write anything else"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "caching-in-node-memory-cache-redis-and-cache-aside": [
+   {
+    "q": "What is the first step in cache-aside?",
+    "options": [
+     "Write to the database",
+     "Look in the cache, and only on a miss load from the database",
+     "Delete the cache"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why can two servers not share an in-memory cache?",
+    "options": [
+     "Each process has its own memory",
+     "Ports are different",
+     "Memory caches are read only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What should you do to a cache entry when the record is updated?",
+    "options": [
+     "Leave it until restart",
+     "Delete or refresh it",
+     "Double its TTL"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "background-jobs-in-node-queues-retries-cron-and-bullmq": [
+   {
+    "q": "Why use a job queue for sending 500 emails?",
+    "options": [
+     "Emails are not allowed in routes",
+     "The web request can reply at once while a worker does the slow work",
+     "Queues are free"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does idempotent mean for a job?",
+    "options": [
+     "It runs only at night",
+     "It never fails",
+     "Running it twice has the same result as once"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where does BullMQ keep its jobs?",
+    "options": [
+     "In Redis",
+     "In the browser",
+     "In a text file"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "real-time-apps-with-websockets-and-socket-io-rooms-auth-and-notifications": [
+   {
+    "q": "Where should a Socket.IO connection be authenticated?",
+    "options": [
+     "In a middleware that verifies the JWT when it connects",
+     "In every message",
+     "Not at all"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is a room used for here?",
+    "options": [
+     "Hashing passwords",
+     "Sending to one user on all their devices",
+     "Storing files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why do sockets break across two servers without an adapter?",
+    "options": [
+     "Sockets only work on port 80",
+     "A socket lives on one process, so events must be shared",
+     "WebSockets need HTTP/3"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "payment-integration-basics-server-side-prices-webhooks-and-idempotency": [
+   {
+    "q": "Who decides the price of an order?",
+    "options": [
+     "The server, from its own catalogue",
+     "The browser",
+     "The payment page URL"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "When does an order become paid?",
+    "options": [
+     "When the cart is full",
+     "When a verified webhook from the provider says so",
+     "When the user returns to the success page"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why remember webhook event ids?",
+    "options": [
+     "To save memory",
+     "To sort orders",
+     "Providers can resend an event, and it must be applied once"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "scaling-node-apps-microservices-load-balancing-and-health-checks": [
+   {
+    "q": "What does stateless mean for a server copy?",
+    "options": [
+     "It has no database",
+     "No important data lives only in its own memory",
+     "It never restarts"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a health check let a load balancer do?",
+    "options": [
+     "Compress responses",
+     "Stop sending traffic to a broken copy",
+     "Encrypt traffic"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you try before splitting into microservices?",
+    "options": [
+     "Measure and fix slow queries, indexes and caching",
+     "Rewrite in another language",
+     "Buy more domains"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "node-performance-memory-leaks-and-blocking-the-event-loop": [
+   {
+    "q": "What is a memory leak in Node?",
+    "options": [
+     "Memory used by a server",
+     "Memory you no longer need but still refer to, so it is never freed",
+     "A crashed process"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a common fix for a growing cache?",
+    "options": [
+     "A maximum size and an expiry",
+     "A bigger server",
+     "More listeners"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is readFileSync in a request handler a problem?",
+    "options": [
+     "It blocks every other request while it runs",
+     "It is not in Node",
+     "It cannot read text files"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "debugging-node-apps-breakpoints-inspect-and-reading-stack-traces": [
+   {
+    "q": "Which part of a stack trace should you read first?",
+    "options": [
+     "The error message and type, then the first line in your own file",
+     "The last line",
+     "The node_modules lines"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a breakpoint do?",
+    "options": [
+     "Deletes the line",
+     "Pauses the program on that line so you can inspect variables",
+     "Stops the server for good"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why must the --inspect port never be public?",
+    "options": [
+     "Anyone who connects can run code in your process",
+     "It exposes the logs only",
+     "It slows the server"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "testing-node-apis-jest-mocha-chai-supertest-and-mocking": [
+   {
+    "q": "What is the difference between a stub and a mock?",
+    "options": [
+     "A mock also records how it was called",
+     "A stub is slower",
+     "They are the same"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why does Supertest not need the server to listen on a port?",
+    "options": [
+     "It does not send real requests",
+     "It sends the request straight into the Express app",
+     "It uses a hidden port"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why pass the payment gateway as an argument?",
+    "options": [
+     "A test can replace it with a fake",
+     "It is required by Jest",
+     "It makes charges free"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "deploy-node-to-a-vps-nginx-reverse-proxy-pm2-dns-and-lets-encrypt": [
+   {
+    "q": "What does nginx do in front of Node?",
+    "options": [
+     "Stores the database",
+     "Compiles JavaScript",
+     "Handles HTTPS and forwards requests to the app"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the difference between pm2 reload and pm2 restart?",
+    "options": [
+     "Reload deletes the app",
+     "Reload restarts copies one at a time to avoid downtime",
+     "There is none"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a DNS A record do?",
+    "options": [
+     "Encrypts traffic",
+     "Points a domain name at a server IP address",
+     "Starts PM2"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "docker-for-node-developers-dockerfile-compose-and-small-images": [
+   {
+    "q": "What is the difference between an image and a container?",
+    "options": [
+     "An image is a running process",
+     "A container is a running instance of an image",
+     "They are the same"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why copy package.json before the rest of the code in a Dockerfile?",
+    "options": [
+     "It is required by Node",
+     "It hides the code",
+     "Docker can reuse the cached layer of installed packages"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where should database files live in Compose?",
+    "options": [
+     "In a volume",
+     "In the image",
+     "Inside the container only"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "ci-cd-with-github-actions-monitoring-backups-and-zero-downtime-releases": [
+   {
+    "q": "What does CI do?",
+    "options": [
+     "Buys a server",
+     "Runs checks and tests automatically on every change",
+     "Writes the code"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why test a backup restore?",
+    "options": [
+     "An untested backup may not work when you need it",
+     "It speeds up the database",
+     "Restores are free"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the 3-2-1 backup idea suggest?",
+    "options": [
+     "Three servers a day",
+     "Three copies, two storage types, one in another place",
+     "One copy only"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "typescript-prisma-redis-postgresql-and-aws-the-wider-node-stack": [
+   {
+    "q": "Why is Zod still used with TypeScript?",
+    "options": [
+     "Zod replaces the compiler",
+     "TypeScript cannot run",
+     "Types exist only at compile time and do not check real requests"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which AWS service stores files?",
+    "options": [
+     "IAM",
+     "S3",
+     "RDS"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How should you list tools on a resume?",
+    "options": [
+     "Alphabetically, all of them",
+     "Every tool you have heard of",
+     "Only those you used in a real project and can explain"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-1-crud-rest-api-for-users-with-validation-and-paging": [
+   {
+    "q": "Which status code fits a duplicate email?",
+    "options": [
+     "204",
+     "409",
+     "422"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the difference between PUT and PATCH?",
+    "options": [
+     "There is none",
+     "PUT is for reading",
+     "PUT replaces the whole item, PATCH changes only the fields sent"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the Location header on 201 hold?",
+    "options": [
+     "The URL of the new item",
+     "The server name",
+     "The user password"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-2-authentication-system-with-jwt-refresh-and-password-reset": [
+   {
+    "q": "Why does login give the same message for a wrong email and a wrong password?",
+    "options": [
+     "It stops attackers learning which emails exist",
+     "bcrypt requires it",
+     "It is shorter"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What happens when a used refresh token is presented again?",
+    "options": [
+     "It is refused and the user must log in again",
+     "It is extended",
+     "It works once more"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is bcrypt slow on purpose?",
+    "options": [
+     "To block the event loop",
+     "To use more disk",
+     "Every password guess costs an attacker time"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-3-blog-api-with-categories-comments-and-roles": [
+   {
+    "q": "Why check ownership as well as the role?",
+    "options": [
+     "A role says what kind of user, ownership says whose data",
+     "It is faster",
+     "Roles are not reliable"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the public API return for a draft?",
+    "options": [
+     "200 with the draft",
+     "403",
+     "404"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Who can publish a post?",
+    "options": [
+     "Any author",
+     "Only an admin",
+     "Any reader"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-4-e-commerce-backend-with-cart-orders-and-stock": [
+   {
+    "q": "Where does the checkout price come from?",
+    "options": [
+     "The cart in the browser",
+     "The URL",
+     "The server’s own product data"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "When is stock reduced?",
+    "options": [
+     "When the item enters the cart",
+     "Only after the payment works",
+     "Before the charge"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why is the payment provider passed into createApp?",
+    "options": [
+     "Express requires it",
+     "A test can use a fake provider",
+     "To reduce prices"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-5-employee-management-system-with-attendance-and-permissions": [
+   {
+    "q": "What is scoping in this project?",
+    "options": [
+     "Using a smaller database",
+     "The same URL returns different rows depending on the role",
+     "Hiding buttons in the front end"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does soft delete do?",
+    "options": [
+     "Removes the record forever",
+     "Marks the record inactive and keeps the history",
+     "Moves it to the cloud"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Where should the attendance date come from?",
+    "options": [
+     "The server clock in a fixed time zone",
+     "The client",
+     "The employee name"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-6-real-time-chat-application-with-socket-io": [
+   {
+    "q": "How does the server know who sent a message?",
+    "options": [
+     "From the verified token on the socket",
+     "From a field in the message",
+     "From the message text"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "When is a user shown offline?",
+    "options": [
+     "After one minute",
+     "When any tab closes",
+     "When their last socket closes"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why load history over REST?",
+    "options": [
+     "It avoids tokens",
+     "Sockets cannot send text",
+     "HTTP is easy to page, cache and secure like the rest of the API"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "project-7-hotel-booking-system-with-availability-and-cancellations": [
+   {
+    "q": "When do two stays overlap?",
+    "options": [
+     "They have the same room number",
+     "Each one starts before the other ends",
+     "They share the check-out day"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Can a guest arrive on another guest’s check-out day?",
+    "options": [
+     "Yes, the check-out day is free",
+     "No, never",
+     "Only for suites"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a failed payment do to the reservation?",
+    "options": [
+     "Marks it payment_failed so the room is not blocked",
+     "Confirms it anyway",
+     "Deletes the room"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "project-8-file-upload-and-storage-api-with-quotas-and-cloud-drivers": [
+   {
+    "q": "Why return 404 for another user’s file?",
+    "options": [
+     "It is faster",
+     "The file is deleted",
+     "A 403 would reveal that the file exists"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does the storage quota prevent?",
+    "options": [
+     "Login failures",
+     "Slow downloads",
+     "One account filling your disk or cloud bill"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a weakness of trusting the declared file type?",
+    "options": [
+     "A client can lie about it",
+     "It uses more memory",
+     "It is too strict"
+    ],
+    "answer": 0,
+    "explain": "Lesson 22 shows checking the first bytes instead."
+   }
+  ],
+  "project-9-saas-subscription-backend-with-plans-limits-and-billing-webhooks": [
+   {
+    "q": "What activates a paid plan?",
+    "options": [
+     "A field in the subscribe request",
+     "A verified billing webhook",
+     "The user returning from checkout"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is an entitlement check?",
+    "options": [
+     "A server check that the plan allows the requested feature or amount",
+     "A refund rule",
+     "A discount code"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why remember billing event ids?",
+    "options": [
+     "To reduce prices",
+     "A repeated event must not be applied twice",
+     "To sort invoices"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "project-10-microservices-app-with-gateway-events-and-health-checks": [
+   {
+    "q": "Why should services not read each other’s databases?",
+    "options": [
+     "Databases cannot connect",
+     "It couples them so changing one breaks the others",
+     "It is slower"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "When should you publish an event instead of calling a service?",
+    "options": [
+     "Never",
+     "When you need the data now",
+     "When you do not need an answer"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the gateway’s role?",
+    "options": [
+     "It sends notifications",
+     "It stores user data",
+     "The only public door that checks the token and forwards requests"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "javascript-basics-variables-data-types-and-operators": [
+   {
+    "q": "Which keyword should you use by default for a value that will not change?",
+    "options": [
+     "const",
+     "let",
+     "var"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does 5 === \"5\" give?",
+    "options": [
+     "false",
+     "An error",
+     "true"
+    ],
+    "answer": 0,
+    "explain": "Strict equality also compares the type."
+   },
+   {
+    "q": "Which of these values is falsy?",
+    "options": [
+     "0",
+     "\"hello\"",
+     "[]"
+    ],
+    "answer": 0,
+    "explain": "An empty array is truthy."
+   }
+  ],
+  "javascript-conditions-and-loops-if-switch-for-while": [
+   {
+    "q": "What happens in a switch case with no break or return?",
+    "options": [
+     "It repeats the case",
+     "It falls through into the next case",
+     "It stops the program"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which loop is best for the values of an array?",
+    "options": [
+     "for...in",
+     "for...of",
+     "while(true)"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does continue do inside a loop?",
+    "options": [
+     "Skips the rest of this round and goes to the next",
+     "Restarts the program",
+     "Ends the loop"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "javascript-functions-arrays-objects-and-array-methods": [
+   {
+    "q": "Which method makes a new array by changing every item?",
+    "options": [
+     "some",
+     "find",
+     "map"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why copy an array before calling sort when you need the original?",
+    "options": [
+     "sort deletes items",
+     "sort changes the original array",
+     "sort is slow"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does reduce do?",
+    "options": [
+     "Reverses the array",
+     "Removes duplicates",
+     "Combines all items into one value"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "javascript-error-handling-and-json-try-catch-throw-and-parse": [
+   {
+    "q": "When does the finally block run?",
+    "options": [
+     "Only when there is no error",
+     "Only after an error",
+     "Whether or not there was an error"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why wrap JSON.parse in try/catch when the text comes from outside?",
+    "options": [
+     "It is very slow",
+     "It changes the text",
+     "It throws a SyntaxError for invalid JSON"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which of these does JSON.stringify drop?",
+    "options": [
+     "Numbers",
+     "Strings",
+     "undefined values and functions"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "commonjs-vs-es-modules-require-import-and-export": [
+   {
+    "q": "Which file ending always means CommonJS?",
+    "options": [
+     ".mjs",
+     ".cjs",
+     ".json"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What replaces __dirname in an ES module?",
+    "options": [
+     "process.cwd only",
+     "It still exists",
+     "path.dirname(fileURLToPath(import.meta.url))"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which system supports top-level await?",
+    "options": [
+     "ES modules",
+     "Neither",
+     "CommonJS"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "linux-server-basics-for-node-developers-commands-permissions-and-ssh": [
+   {
+    "q": "What does chmod 600 file do?",
+    "options": [
+     "Everyone can read it",
+     "It deletes the file",
+     "Only the owner can read and write it"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why is rm dangerous?",
+    "options": [
+     "It needs a password",
+     "There is no recycle bin, so the file is gone",
+     "It is slow"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What must you do before you enable a firewall on a remote server?",
+    "options": [
+     "Restart the server",
+     "Allow SSH first",
+     "Close port 22"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "node-js-and-express-interview-questions-and-answers": [
+   {
+    "q": "What is the best way to use these sample answers?",
+    "options": [
+     "Memorise them word for word",
+     "Skip them",
+     "Say them in your own words with an example from your project"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What should you do when you do not know an answer?",
+    "options": [
+     "Change the subject",
+     "Guess confidently",
+     "Say so and explain how you would find out"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which question asks who you are versus what you may do?",
+    "options": [
+     "Authentication versus authorization",
+     "PUT versus PATCH",
+     "SQL versus NoSQL"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
   ]
  },
  "phone-job-search-trades-course": {
