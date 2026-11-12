@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import LessonTranslations from '../../components/admin/LessonTranslations'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -267,6 +268,7 @@ const AdminLessonEditor = () => {
           <button type='button' onClick={() => navigate(`/admin/learn/${courseId}`)} className='px-5 py-2.5 border border-slate-200 rounded-full text-sm hover:bg-slate-50 transition'>Cancel</button>
         </div>
       </form>
+      {isEdit && <LessonTranslations lessonId={lessonId} auth={auth} />}
     </div>
   )
 }

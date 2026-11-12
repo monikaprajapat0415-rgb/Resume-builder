@@ -1,3 +1,4 @@
+import { listTranslations, getTranslation, saveTranslation, deleteTranslation, draftTranslation } from '../controllers/lessonTranslationController.js';
 import { auditAdmin } from '../utils/adminAudit.js';
 import { bulkAction } from '../controllers/bulkController.js';
 import { getActivity } from '../controllers/activityController.js';
@@ -102,6 +103,11 @@ adminRouter.post('/learn/courses/:id/lessons', createLesson);
 adminRouter.put('/learn/courses/:id/reorder', reorderLessons);
 adminRouter.get('/learn/lessons/:id', getLessonAdmin);
 adminRouter.put('/learn/lessons/:id', updateLesson);
+adminRouter.get('/learn/lessons/:id/translations', listTranslations);
+adminRouter.get('/learn/lessons/:id/translations/:lang', getTranslation);
+adminRouter.put('/learn/lessons/:id/translations/:lang', saveTranslation);
+adminRouter.delete('/learn/lessons/:id/translations/:lang', deleteTranslation);
+adminRouter.post('/learn/lessons/:id/translations/:lang/draft', draftTranslation);
 adminRouter.delete('/learn/lessons/:id', deleteLesson);
 adminRouter.post('/learn/lessons/:id/download', receiveZip, uploadLessonDownload);
 adminRouter.delete('/learn/lessons/:id/download', removeLessonDownload);
