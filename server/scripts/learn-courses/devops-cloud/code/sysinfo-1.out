@@ -1,0 +1,12 @@
+Host:    vm
+Kernel:  Linux 6.18.44-fc-v378
+Uptime:  up 4 minutes
+
+Memory (MB):
+               total        used        free      shared  buff/cache   available
+Mem:            8022         484        7545          16         211        7538
+
+Disk usage of / :
+  34% used
+  WARNING: more than 1% full
+exit code: 1

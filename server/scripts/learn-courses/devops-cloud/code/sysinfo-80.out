@@ -1,0 +1,12 @@
+Host:    vm
+Kernel:  Linux 6.18.44-fc-v378
+Uptime:  up 4 minutes
+
+Memory (MB):
+               total        used        free      shared  buff/cache   available
+Mem:            8022         483        7546          16         211        7539
+
+Disk usage of / :
+  34% used
+  OK (below 80%)
+exit code: 0

@@ -1,0 +1,13 @@
+Lines by level:
+      4 INFO
+      3 ERROR
+      1 WARN
+
+Errors by service:
+      2 api
+      1 worker
+
+Most common error text:
+      1 email failed: connection refused
+      1 GET /jobs/99 500 database timeout
+      1 GET /jobs/12 500 database timeout
