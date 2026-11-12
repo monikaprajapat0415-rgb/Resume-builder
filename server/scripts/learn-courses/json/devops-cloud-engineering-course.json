@@ -2840,6 +2840,23 @@
         },
         {
           "type": "heading",
+          "text": "Network configuration on Linux"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before you can troubleshoot, you need to see how a Linux machine is set up. These commands only read information, so they are safe to try. They were not run for this course on a real server, and the output differs on every machine."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "ip addr                    # interfaces and their IP addresses (older systems: ifconfig)\nip route                   # the routing table, including the default gateway\nhostname -I                # just the addresses\ncat /etc/resolv.conf       # which DNS servers this machine asks\ncat /etc/hosts             # fixed name-to-address entries, checked before DNS\nhostnamectl                # the machine name"
+        },
+        {
+          "type": "paragraph",
+          "text": "To make a static address permanent you edit the network configuration of your distribution: Ubuntu uses Netplan files in `/etc/netplan/`, Red Hat style systems use NetworkManager (`nmcli`). In the cloud you almost never edit this by hand, because the provider’s DHCP gives the machine its address, so change addresses in the cloud console or in code instead. A wrong network change on a remote server can cut your own connection, so keep a second way in, such as the provider’s console."
+        },
+        {
+          "type": "heading",
           "text": "A troubleshooting method"
         },
         {
@@ -2974,7 +2991,7 @@
           "a": "Use automatic renewal: Certbot or another ACME client, or a managed certificate from your cloud provider. Add a monitoring alert for the expiry date as a second safety net."
         }
       ],
-      "readTime": "7 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -3068,6 +3085,45 @@
             "`git restore file` throws away changes to a file that you have not committed. `git reset --soft HEAD~1` undoes the last commit but keeps the changes ready to commit again. `git reset --hard` destroys uncommitted work, so think before you use it.",
             "`git revert <commit>` makes a new commit that undoes an old one. Use revert, not reset, to undo something that is already shared, because it keeps the history honest."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "A quick refresher on the everyday commands"
+        },
+        {
+          "type": "list",
+          "items": [
+            "`git init` starts a repository and `git clone <url>` copies an existing one.",
+            "`git add` stages changes, `git commit -m \"message\"` records them.",
+            "`git fetch` downloads new work without changing your files. `git pull` is fetch plus merge. `git push` uploads your commits.",
+            "`git status`, `git log --oneline` and `git diff` show where you are."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Merge conflicts"
+        },
+        {
+          "type": "paragraph",
+          "text": "A conflict happens when two branches changed the same lines. Git cannot choose, so it stops and marks the file. You will see markers like these:"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "<<<<<<< HEAD\ntimeout = 30\n=======\ntimeout = 60\n>>>>>>> feature/slow-api"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Open the file and decide what the final text should be: one side, the other, or a mix.",
+            "Delete the three marker lines so only the final text remains.",
+            "Run `git add <file>`, then `git commit` (or `git rebase --continue` during a rebase).",
+            "Run the tests before you push. A conflict that is fixed wrongly still compiles."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "`git merge --abort` or `git rebase --abort` takes you safely back to before you started. Small, short-lived branches are the best cure, because they conflict less."
         },
         {
           "type": "heading",
@@ -3205,7 +3261,7 @@
           "a": "Treat it as leaked: revoke or rotate the secret straight away, then remove it from the code. Deleting the file in a later commit does not remove it from history."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "6 min read",
       "published": true,
       "quiz": [
         {

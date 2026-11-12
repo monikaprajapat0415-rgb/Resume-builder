@@ -22,6 +22,17 @@ git push --force-with-lease -u origin feature/health-endpoint`),
     P("`--force-with-lease` is a safer force push: it refuses if someone else pushed to your branch in the meantime. You need a force push after a rebase, because history changed."),
     H("Stash, reset and revert"),
     L("`git stash` puts your unfinished changes on a shelf so you can switch branches with a clean folder. `git stash pop` brings them back, and `git stash list` shows the shelf.", "`git restore file` throws away changes to a file that you have not committed. `git reset --soft HEAD~1` undoes the last commit but keeps the changes ready to commit again. `git reset --hard` destroys uncommitted work, so think before you use it.", "`git revert <commit>` makes a new commit that undoes an old one. Use revert, not reset, to undo something that is already shared, because it keeps the history honest."),
+    H("A quick refresher on the everyday commands"),
+    L("`git init` starts a repository and `git clone <url>` copies an existing one.", "`git add` stages changes, `git commit -m \"message\"` records them.", "`git fetch` downloads new work without changing your files. `git pull` is fetch plus merge. `git push` uploads your commits.", "`git status`, `git log --oneline` and `git diff` show where you are."),
+    H("Merge conflicts"),
+    P("A conflict happens when two branches changed the same lines. Git cannot choose, so it stops and marks the file. You will see markers like these:"),
+    C('text', `<<<<<<< HEAD
+timeout = 30
+=======
+timeout = 60
+>>>>>>> feature/slow-api`),
+    O("Open the file and decide what the final text should be: one side, the other, or a mix.", "Delete the three marker lines so only the final text remains.", "Run `git add <file>`, then `git commit` (or `git rebase --continue` during a rebase).", "Run the tests before you push. A conflict that is fixed wrongly still compiles."),
+    P("`git merge --abort` or `git rebase --abort` takes you safely back to before you started. Small, short-lived branches are the best cure, because they conflict less."),
     H("Cherry-pick"),
     P("`git cherry-pick <commit>` copies one commit onto the branch you are on. DevOps teams use it when a fix made on `main` must also go onto a release branch, without taking all the other changes. Prefer small, focused commits, because cherry-picking a commit that mixes five things is painful."),
     H("Tags and releases"),
