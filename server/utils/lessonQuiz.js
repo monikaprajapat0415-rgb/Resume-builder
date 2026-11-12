@@ -11,7 +11,7 @@ export const cleanQuiz = (input) => {
     if (input === null || input === undefined || input === '') return undefined;
     if (!Array.isArray(input)) fail('must be a list of questions.');
     if (input.length === 0) return undefined;
-    if (input.length > 8) fail('use 8 questions or fewer.');
+    if (input.length > 10) fail('use 10 questions or fewer.');
     return input.map((item, i) => {
         const n = i + 1;
         const q = str(item?.q, 300);

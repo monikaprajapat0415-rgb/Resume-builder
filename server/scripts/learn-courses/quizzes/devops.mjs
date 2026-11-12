@@ -1,6 +1,7 @@
+import { more } from './data/devops-more.mjs';
 const Q = (q, options, answer = 0, explain = '') => ({ q, options, answer, explain });
 export const course = 'devops-cloud-engineering-course';
-export const quizzes = {
+const base = {
   'what-is-devops-and-why-companies-use-it': [
     Q('Which best describes DevOps?', ['A set of practices and tools that help people build, test, release and run software together in small safe steps', 'A single tool that deploys websites', 'A job title that only operations staff hold'], 0),
     Q('In the DevOps lifecycle, what happens after Monitor?', ['What you learn feeds back into the next Plan', 'The project ends', 'The code is deleted'], 0),
@@ -82,3 +83,4 @@ export const quizzes = {
     Q('Who is responsible for making sure your storage bucket is not public?', ['You, the customer', 'Only the provider', 'Nobody'], 0),
   ],
 };
+export const quizzes = Object.fromEntries(Object.entries(base).map(([k, v]) => [k, [...v, ...(more[k] || [])]]));

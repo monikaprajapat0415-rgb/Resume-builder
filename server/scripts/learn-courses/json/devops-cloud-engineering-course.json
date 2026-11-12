@@ -38,6 +38,22 @@
           "text": "Picture a restaurant where the cooks and the waiters never talk to each other. The cooks make food and push it through a window. The waiters carry it out and hear all the complaints. When a dish comes back, nobody agrees whose fault it was. Software companies used to work in a very similar way. One group, the developers, wrote the code. A different group, operations, ran the servers. Developers wanted to ship new features quickly. Operations wanted nothing to change, because every change could break the site. The two goals pulled in opposite directions, and releases were slow, stressful and often happened late at night."
         },
         {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Software teams need to ship changes often, because users expect new features and quick fixes. Without a shared way of working, every release is slow and risky, and the people who build the software and the people who run it blame each other when something breaks. DevOps solves this by giving both groups the same goals, the same tools and an automatic path from a change to the live site."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think of a food truck. One person cooks, takes the orders, serves the food and cleans up, so if the line is slow they fix the slow part at once. A big restaurant with separate teams can have the opposite problem: the kitchen blames the dining room and the dining room blames the kitchen. DevOps tries to make a software team behave more like the food truck crew, even when the team is large: everyone is responsible for the whole journey from order to plate."
+        },
+        {
           "type": "paragraph",
           "text": "DevOps is the name for a different way of working. The word joins two words: development and operations. It is not one tool and it is not one job title. It is a set of habits, practices and tools that help people build, test, release and run software together, in small safe steps, so that changes reach users quickly and do not break things. Some companies have people with the title DevOps Engineer, and this course will teach the skills those people use. But the idea is bigger than a title: the people who build a system also care about how it runs."
         },
@@ -131,15 +147,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Write down the last three times software you use broke or changed. For each one, guess which step of the lifecycle failed: plan, code, build, test, release, deploy, operate or monitor.",
-            "In your own words, write two sentences: what is DevOps, and why is it not just a tool?",
-            "Pick one thing you do by hand often (for example copying files or restarting a program) and write the steps. You will automate something like it in the Linux lessons."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  A[Plan] --> B[Code] --> C[Build] --> D[Test]\n  D --> E[Release] --> F[Deploy] --> G[Operate] --> H[Monitor]\n  H --> A"
         },
         {
           "type": "heading",
@@ -152,6 +169,94 @@
             "You can explain the difference between DevOps and Agile in one or two sentences.",
             "You can give two reasons a company would move from big rare releases to small frequent ones."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Online shops, banks, streaming services and government websites all release changes through automatic pipelines. A typical team merges small changes many times a week, a robot tests every change, and monitoring watches the live system. When something fails, the team reads the logs and graphs, fixes it, and writes down what they learned. The details differ by company and by rules, for example a bank may add manual approvals, but the loop is the same."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Treating DevOps as a tool purchase.** Buying a pipeline product does not change how people work. Start with the habits: small changes, tests, shared ownership.",
+            "**Automating a broken process.** If your manual release is confusing, a script will only make the confusion faster. Simplify first, then automate.",
+            "**Blaming people after a failure.** Ask what in the system allowed the mistake, and fix the system: add a test, a check or a safer default.",
+            "**Trying to change everything at once.** Pick one painful step, such as manual testing or deployment, automate it, and learn from it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep changes small and release often.",
+            "Put everything in version control: code, settings and documents.",
+            "Automate any task you repeat more than twice.",
+            "Measure how long releases take and how often they fail, then improve one number at a time.",
+            "Hold blameless reviews and share what you learn."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is DevOps?** A way of working and a set of tools that help development and operations teams build, test, release and run software together in small, safe steps.",
+            "**Why was DevOps introduced?** Separate teams with opposite goals made releases slow and risky. DevOps joins them with shared goals and automation.",
+            "**What are the stages of the DevOps lifecycle?** Plan, code, build, test, release, deploy, operate and monitor. Monitoring feeds the next plan.",
+            "**What does a DevOps engineer do?** Builds and maintains pipelines, infrastructure and monitoring, and helps developers ship safely.",
+            "**How is DevOps different from Agile?** Agile is about how to plan and build in short cycles. DevOps is about how to release and run what was built.",
+            "**What is a blameless review?** A review after a failure that looks for weaknesses in the system, not for a person to blame.",
+            "**Name two benefits of small, frequent releases.** Each change is easy to understand and easy to undo, and users get fixes sooner.",
+            "**Is DevOps only for large companies?** No. Even a one-person project benefits from version control, tests and an automatic deploy.",
+            "**What does shift left mean?** Doing checks such as testing and security earlier in the process, where problems are cheaper to fix.",
+            "**Which skills should a beginner learn first?** Linux, networking, Git and scripting. Almost every other DevOps tool sits on top of them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write the eight lifecycle steps and one real example of each for a website you use. Hint: Think of what a team does to add a login button.",
+            "Describe a time something you use broke, and which step of the loop probably failed. Hint: Was it testing, deployment or monitoring?",
+            "List five things you do by hand that a script could do. Hint: Look at your daily computer tasks.",
+            "Explain DevOps to a friend in three sentences, without any tool names. Hint: Use the food truck idea.",
+            "Choose a tiny app and sketch the pipeline you would build for it. Hint: Git, a test, a build, a deploy."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Map a release"
+        },
+        {
+          "type": "paragraph",
+          "text": "Pick any small project you know, even a personal website. Draw the path of one change from your keyboard to the live site on paper, mark each manual step in red, and circle the first one you would automate. Write two sentences on why you chose it."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -231,7 +336,7 @@
           "a": "No. It changes how they work together and automates repeating tasks. Testing, security and operations skills are still needed, often inside the same team."
         }
       ],
-      "readTime": "6 min read",
+      "readTime": "10 min read",
       "published": true,
       "quiz": [
         {
@@ -263,6 +368,76 @@
           ],
           "answer": 2,
           "explain": ""
+        },
+        {
+          "q": "Why was DevOps introduced?",
+          "options": [
+            "Separate development and operations teams slowed releases and blamed each other",
+            "Computers became too fast",
+            "Programming languages were banned"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does a DevOps engineer mainly do?",
+          "options": [
+            "Builds and improves the path from code to a running, monitored service",
+            "Only writes marketing text",
+            "Only repairs office printers"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which is a DevOps principle?",
+          "options": [
+            "Release once a year",
+            "Automate repeatable work",
+            "Keep problems secret"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is the benefit of small, frequent releases?",
+          "options": [
+            "They need no testing",
+            "They hide bugs",
+            "Each change is easier to test and to roll back"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How do Agile and DevOps relate?",
+          "options": [
+            "They are the same word",
+            "Agile focuses on how teams plan and build; DevOps extends the flow to release and running",
+            "DevOps replaces coding"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a feedback loop?",
+          "options": [
+            "A broken network cable",
+            "Information from running software flowing back into planning",
+            "A type of database"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which shows a DevOps culture?",
+          "options": [
+            "Ops owns everything alone",
+            "Nobody owns failures",
+            "Dev and ops share responsibility for the service"
+          ],
+          "answer": 2,
+          "explain": ""
         }
       ]
     },
@@ -276,6 +451,22 @@
         {
           "type": "paragraph",
           "text": "DevOps comes with a lot of short names. They are easy to mix up, and job descriptions use them freely. This lesson gives each one a plain meaning and shows how they connect, so that when you read a job post or an article you know what is being asked. We will use one small running example: a team that keeps a website in Git and wants every change to reach the live site safely."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Releasing software by hand is slow and easy to get wrong, and finding a bug late or a security hole at the end is expensive. CI, CD, DevSecOps and GitOps give teams automatic checks and a repeatable path to production, and SRE gives them a way to decide how reliable the service must be."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Picture an airport. Before every flight, a checklist runs: fuel, engines, doors, weather. The checklist is the same every time, and a flight does not leave until all items pass. A pipeline is that checklist for software. DevSecOps adds security screening early in the process, not at the gate. SRE is the control tower that watches all flights and sets safety targets."
         },
         {
           "type": "heading",
@@ -351,15 +542,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Draw the path of one change from commit to live site on paper. Mark where tests run, where a person approves and where monitoring sits.",
-            "Write one sentence for each term (CI, continuous delivery, continuous deployment, DevSecOps, GitOps, SRE) without looking at the lesson.",
-            "Decide which of delivery or deployment a hospital booking system and a personal blog would use, and why."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  G[Git push] --> CI[CI: build and test]\n  CI --> S[Security scans]\n  S --> CD[CD: release]\n  CD --> P[Production]\n  P --> M[Monitoring and SRE targets]\n  M -->|lessons| G"
         },
         {
           "type": "heading",
@@ -372,6 +564,94 @@
             "You can say what shift left means.",
             "You can explain in one sentence why GitOps uses pull requests for production changes."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most product teams use a CI service so every pull request is built and tested. Many use continuous delivery with an approval step for production, and some use continuous deployment for low-risk systems. Teams that run Kubernetes often use GitOps tools to keep the cluster in line with a Git repository. Larger companies have SRE teams who define service level objectives and run on-call rotations."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Pipeline is red but nobody fixes it.** A broken pipeline that is ignored is worse than none. Make fixing it the first priority and keep the checks fast.",
+            "**Tests that sometimes pass and sometimes fail.** Flaky tests teach people to ignore failures. Find the cause, such as timing or shared data, or remove the test until it is reliable.",
+            "**Security scans that block everything.** Start by reporting, then block only on serious findings, and fix the noise as you go.",
+            "**Secrets in the repository.** Move them to the CI secret store and rotate any key that was ever committed."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Run the pipeline on every pull request.",
+            "Keep the pipeline fast so people do not skip it.",
+            "Make the same artifact move through every stage, do not rebuild it for production.",
+            "Store secrets outside Git.",
+            "Pick reliability targets from user needs, and track them."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is continuous integration?** Adding work to the shared project often, and building and testing every change automatically.",
+            "**Continuous delivery vs continuous deployment?** Delivery makes every passing change ready to release, and a person chooses when. Deployment releases it automatically.",
+            "**What is DevSecOps?** Building security checks into every step of the pipeline instead of only at the end.",
+            "**What is GitOps?** Keeping the desired state of a system in Git, and using a tool to make the real system match it.",
+            "**What is an SRE?** An engineer who runs services using software, with clear reliability targets and error budgets.",
+            "**What is an error budget?** The amount of failure a service is allowed under its target. When it is used up, work shifts from features to stability.",
+            "**What is an SLO?** A reliability target, for example that 99.9 percent of requests succeed over a month.",
+            "**What does shift left mean?** Moving checks earlier in the process.",
+            "**Why do GitOps changes use pull requests?** They give review, a history and an easy way back by reverting a commit.",
+            "**What makes a good pipeline?** Fast, reliable, repeatable, with clear failures and no secrets in the code."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Draw a pipeline for a small website: three checks and one deploy step. Hint: Linting, tests, build, deploy.",
+            "Write one SLO for a service you know, in a sentence. Hint: Choose a percentage and a time window.",
+            "Explain delivery vs deployment to someone with an example. Hint: A bank app and a personal blog.",
+            "List three security checks that could run in a pipeline. Hint: Think of code, packages and containers.",
+            "Rewrite a manual release you know as a list of automatic steps. Hint: Each manual step becomes a pipeline step."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Pipeline on paper"
+        },
+        {
+          "type": "paragraph",
+          "text": "Choose any project. Write the stages of its pipeline as a numbered list: what triggers it, what each stage does, what makes it fail and who is told. Add one security check and one approval point, then explain why you put them there."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -451,7 +731,7 @@
           "a": "They overlap. DevOps is a broad set of practices. SRE is a specific way of running services with reliability targets, error budgets and a software approach to operations."
         }
       ],
-      "readTime": "4 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -483,6 +763,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "What does continuous integration do?",
+          "options": [
+            "Deploys without any tests",
+            "Merges changes often and runs automatic checks on each one",
+            "Deletes old branches"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is the main idea of SRE?",
+          "options": [
+            "Remove all monitoring",
+            "Never release changes",
+            "Treat operations as a software problem with measurable reliability targets"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does an SLO describe?",
+          "options": [
+            "A server password",
+            "A type of firewall",
+            "A target level of service, such as 99.9 percent of requests succeed"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is an error budget?",
+          "options": [
+            "The amount of unreliability allowed before you slow releases",
+            "A list of typos",
+            "Money paid to cloud providers"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why keep desired state in Git for GitOps?",
+          "options": [
+            "Changes are reviewed, versioned and can be rolled back",
+            "It makes files smaller",
+            "Git runs the servers"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which is a DevSecOps check?",
+          "options": [
+            "Scanning dependencies for known vulnerabilities in the pipeline",
+            "Disabling logins",
+            "Sharing passwords in chat"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What stops a bad change from reaching users in CI/CD?",
+          "options": [
+            "Failing automated tests blocking the pipeline",
+            "More meetings",
+            "A faster computer"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -496,6 +846,22 @@
         {
           "type": "paragraph",
           "text": "The DevOps tool list looks frightening: hundreds of logos on one poster. The secret is that tools are grouped by the job they do, and each group has a few common choices. You do not need to learn all of them. You need to understand the jobs, learn one tool for each, and know that the others do something similar. This lesson gives you that map, shows how the parts connect in a typical system, and describes what a DevOps engineer actually does in a working week."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A huge list of tools makes beginners feel lost. A map of jobs and a clear picture of how the parts connect lets you learn one tool for each job and understand the rest by comparison. It also shows you what employers mean by a DevOps or cloud role."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "A kitchen has many tools: knives, ovens, mixers. A cook does not learn every brand. They learn the jobs: cutting, baking, mixing. Then any kitchen is familiar. DevOps tools are the same, and the jobs are version control, build, test, deploy, run and watch."
         },
         {
           "type": "heading",
@@ -596,15 +962,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Make a table with the eight tool jobs above. For each job write the tool you plan to learn first and one alternative.",
-            "Choose a small application of your own (even a static page or a tiny Node app) to use as your project through the whole course.",
-            "Block out study time in your calendar for the next four weeks, and write what you will finish each week."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  Dev[Developer] --> Git[(Git repository)]\n  Git --> CI[CI pipeline]\n  CI --> Reg[(Image registry)]\n  Reg --> Plat[Cloud platform]\n  Plat --> LB[Load balancer]\n  LB --> Users((Users))\n  Plat --> Mon[Monitoring]\n  IaC[Infrastructure as Code] --> Plat"
         },
         {
           "type": "heading",
@@ -617,6 +984,94 @@
             "You can describe the path of a change from Git to users in about eight steps.",
             "You have chosen the application you will use as your running project."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "In real companies the exact tools differ, but the shape is the same: code in Git, a pipeline, containers or virtual machines in a cloud, infrastructure described in code, and dashboards and alerts. Engineers are asked to keep this system running, make it faster to change, keep it safe and keep the cost under control."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Learning ten tools at once.** Pick one tool per job and use it on a real project before you add another.",
+            "**Only watching tutorials.** Build something. Your own app through the whole pipeline is the best teacher.",
+            "**Skipping the basics.** Linux, networking and Git cause most beginner problems. Spend real time on them first.",
+            "**Spending money by accident in the cloud.** Set a budget alert on day one and delete practice resources."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use one real application as your running project.",
+            "Write down what you did so you can repeat it.",
+            "Learn the idea behind each tool, not only the commands.",
+            "Keep your accounts safe with strong passwords and multi-factor authentication.",
+            "Check the official documentation for current details."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Name a tool for each of these jobs: version control, CI/CD, containers, IaC, monitoring.** Git, GitHub Actions or Jenkins, Docker, Terraform, Prometheus with Grafana.",
+            "**What does a DevOps engineer do?** Builds and runs pipelines and infrastructure, supports developers and keeps services reliable and secure.",
+            "**What is a container registry?** A store for container images that pipelines push to and platforms pull from.",
+            "**What is Infrastructure as Code?** Describing servers and cloud services in files so they can be created the same way every time.",
+            "**Why use a load balancer?** To spread traffic over several copies and skip copies that fail.",
+            "**What is the difference between a DevOps engineer and an SRE?** They overlap. SRE focuses on reliability targets and treating operations as a software problem.",
+            "**What is a platform engineer?** Someone who builds the internal tools and platform that other developers use to ship.",
+            "**Which cloud should a beginner learn first?** One of AWS, Azure or Google Cloud. The ideas transfer between them.",
+            "**Why start with Linux?** Most servers and containers run Linux.",
+            "**How do you stay current?** Read official docs and release notes and build small projects."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a table of eight jobs and the tool you will learn for each. Hint: Use the tool map in the lesson.",
+            "Pick a running project and write what it does in one sentence. Hint: A to-do app is fine.",
+            "Draw your own version of the architecture diagram for that project. Hint: Start with Git on the left and users on the right.",
+            "Find three DevOps job posts and list the tools they ask for most. Hint: Look for repeats.",
+            "Write a four-week study plan with weekly goals. Hint: Linux, networking, Git, cloud basics."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: My learning plan"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create a one-page plan: your running project, the tool you chose for each job, your weekly hours and what you will finish by the end of month one. Keep it in a Git repository as a README file so that it is also your first commit."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -696,7 +1151,7 @@
           "a": "Yes for many topics. Linux, Git, Docker, scripts and many tools run on your own computer. Cloud providers offer free tiers or trial credits, but the terms change, so read them and set a spending alert before you create anything."
         }
       ],
-      "readTime": "4 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -728,6 +1183,76 @@
           ],
           "answer": 0,
           "explain": ""
+        },
+        {
+          "q": "Which tool type is Prometheus?",
+          "options": [
+            "Code editor",
+            "Version control",
+            "Monitoring"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which tool type is Docker?",
+          "options": [
+            "Spreadsheets",
+            "Email",
+            "Containers"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does a typical pipeline start from?",
+          "options": [
+            "A change pushed to a Git repository",
+            "A phone call",
+            "A printed document"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is the difference between a DevOps and an SRE role?",
+          "options": [
+            "They are unrelated to software",
+            "They overlap; SRE leans on reliability targets and incident work",
+            "SREs never write code"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which skill is most useful across all DevOps tools?",
+          "options": [
+            "Memorising logos",
+            "Understanding Linux and networking",
+            "Typing very fast"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why draw an architecture diagram?",
+          "options": [
+            "It speeds up the CPU",
+            "It shows how parts connect so teams can discuss and spot risks",
+            "It replaces testing"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which is Infrastructure as Code?",
+          "options": [
+            "Writing paper plans",
+            "Buying hardware in a shop",
+            "Describing servers and networks in files that tools apply"
+          ],
+          "answer": 2,
+          "explain": ""
         }
       ]
     },
@@ -741,6 +1266,22 @@
         {
           "type": "paragraph",
           "text": "Almost every server you will meet in DevOps runs Linux. Cloud virtual machines, containers, build servers and most websites sit on it. That is why this course starts with Linux before any cloud or container tool: if you are comfortable in a Linux terminal, everything later is easier. You do not have to love it. You only need to be able to move around, read files, change things carefully and understand error messages."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Servers, containers, build machines and most cloud services run Linux. If you can move around a Linux terminal and read its messages, you can fix problems on all of them. Without it, every other DevOps tool feels like magic that you cannot debug."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think of the terminal as a text message chat with your computer. You type a short request, and it answers. A graphical desktop is like pointing at things, which is fine for you but not possible over a network connection to a server in another country. Typing is how you give clear, repeatable instructions that a script can also follow."
         },
         {
           "type": "heading",
@@ -857,16 +1398,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Set up a practice Linux machine (WSL, a virtual machine or a cloud server).",
-            "Run the practice commands above and check each result with `ls` and `cat`.",
-            "Use `man ls` to find the option that sorts files by size, and try it.",
-            "Use `find` to list all `.conf` files under `/etc`, then use `grep -r` to find which one mentions `localhost`."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart TD\n  You[You type a command] --> Shell[Shell: Bash]\n  Shell --> Prog[Program, for example ls]\n  Prog --> Kernel[Linux kernel]\n  Kernel --> HW[(Disk, memory, network)]\n  HW --> Kernel --> Prog --> Shell --> Out[Output on screen]"
         },
         {
           "type": "heading",
@@ -879,6 +1420,98 @@
             "You can create, copy, move, read and delete a file without looking up the commands.",
             "You can say what `/etc` and `/var/log` are for."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Almost every company that runs web services has Linux servers. DevOps engineers log in with SSH, read logs, edit configuration, install packages and run scripts. Containers are Linux processes, so Docker and Kubernetes skills depend on Linux knowledge. Ubuntu is common for learning and in startups, and Red Hat style systems such as Rocky Linux or Amazon Linux are common in larger companies."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**command not found.** The program is not installed or not on your PATH. Check the spelling, then install it with apt or dnf.",
+            "**Permission denied.** You lack the right on that file or folder. Check with `ls -l` and `id`, and use `sudo` only if the task needs it.",
+            "**No such file or directory.** The path is wrong. Use `pwd` and `ls`, and press Tab to complete names.",
+            "**Deleted the wrong files with rm.** There is no undo. Use `ls` first with the same pattern, avoid `rm -rf` with wildcards and keep backups."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Practise on a throwaway machine, not a production server.",
+            "Use Tab completion and the up arrow for history.",
+            "Read the manual with `man` and `--help` before you guess.",
+            "Prefer relative short commands you understand to pasted one-liners you do not.",
+            "Keep notes of commands that worked."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is Linux?** An open source operating system kernel, usually used inside a distribution that adds tools and a package manager.",
+            "**What is a distribution?** A bundle of the kernel, tools and package manager, such as Ubuntu or Rocky Linux.",
+            "**What is the difference between a shell and a terminal?** The terminal is the window. The shell is the program that reads and runs your commands.",
+            "**Which command shows your current folder?** `pwd`.",
+            "**What does `ls -la` show?** All files, including hidden ones, with details.",
+            "**What is `/etc` used for?** Configuration files.",
+            "**Where are logs usually kept?** In `/var/log`, and in the journal on systemd systems.",
+            "**What does the pipe `|` do?** Sends the output of one command into another.",
+            "**How do you copy a folder?** `cp -r source destination`.",
+            "**How do you find a file by name?** `find /path -name \"name\"`."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: `rm -r` and `rm -rf` delete folders and everything inside them with no undo. Run these exercises only inside the practice folder you create, and never as the root user."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make the folders `lab/logs` in one command and create three empty files in `lab`. Hint: `mkdir -p` and `touch`.",
+            "Write a line into a file, then add a second line without erasing the first. Hint: One arrow replaces, two arrows add.",
+            "Find all `.conf` files under `/etc`. Hint: `find` with `-name`.",
+            "Show the last 3 lines of a long file and follow it as it grows. Hint: `tail -n` and `tail -f`.",
+            "Count how many files are in a folder using a pipe. Hint: `ls` and `wc -l`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Practice server notebook"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create a folder called `notebook`. Inside, make `commands.txt` and add ten commands you learned, each with a one-line note. Make a `logs` folder, copy the file into it, rename the copy and search it with `grep`. Finish by listing the structure with `ls -R`."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -958,7 +1591,7 @@
           "a": "No. The shell does not use a recycle bin. Take care with rm, and for important folders keep backups or use a version control system."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "9 min read",
       "published": true,
       "quiz": [
         {
@@ -990,6 +1623,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "Which command shows your current directory?",
+          "options": [
+            "pwd",
+            "echo",
+            "cat"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does ls -l show?",
+          "options": [
+            "Only folder names",
+            "A long list with permissions, owner, size and date",
+            "Running processes"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a Linux distribution?",
+          "options": [
+            "A type of keyboard",
+            "A packaged system: kernel plus tools, such as Ubuntu",
+            "A cloud region"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which command searches inside files for text?",
+          "options": [
+            "grep",
+            "mkdir",
+            "touch"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does cd .. do?",
+          "options": [
+            "Moves up one directory",
+            "Shows the date",
+            "Deletes the folder"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does the pipe symbol | do?",
+          "options": [
+            "Sends the output of one command into another",
+            "Closes the terminal",
+            "Copies files"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which command prints a file’s contents?",
+          "options": [
+            "cat",
+            "cd",
+            "chmod"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -1003,6 +1706,22 @@
         {
           "type": "paragraph",
           "text": "Linux was built for many people to share one machine, so every file has an owner and a set of rules about who may read, change or run it. These rules are the first line of defence on a server. They also cause a large share of the beginner errors you will see, such as Permission denied. If you understand them once, you will fix those errors in seconds, and you will stop reaching for the dangerous shortcut of giving every file full access."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A server is shared by many people and programs. Permissions decide who may read, change or run each file, so one mistake or one attacker cannot damage everything. They are also the cause of most Permission denied errors, so understanding them saves a lot of time."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think of an office building. Everyone has a key card. Staff can open the shared kitchen, only the finance team can open the finance room, and only the manager can open the safe. Linux files work the same way: owner, group and everyone else each get their own set of keys: read, write and execute."
         },
         {
           "type": "heading",
@@ -1105,16 +1824,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Run the permission demo script and match each number to its letters.",
-            "Create a file and use `chmod` to make it readable only by you. Check with `ls -l`.",
-            "Create a second user on your practice machine, then try to read your private file as that user and note the error.",
-            "Make a folder shared by a group: create the group, add two users, set the folder group and use mode 770."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  F[File: report.txt] --> O[Owner: rw-]\n  F --> G[Group: r--]\n  F --> X[Others: r--]\n  O --> M[Mode 644]\n  G --> M\n  X --> M"
         },
         {
           "type": "heading",
@@ -1127,6 +1846,99 @@
             "You can explain why chmod 777 is a bad fix.",
             "You can add a user to a group without removing their other groups."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Web servers read site files but must not be able to change them. Applications run as their own users with the smallest rights they need. SSH keys must be mode 600 or SSH refuses them. Teams use groups so that members of one project can share a folder without sharing it with the whole company."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Permission denied when running a script.** The file lacks the execute right. Fix it with `chmod +x script.sh`.",
+            "**SSH says the key is too open.** Run `chmod 600 ~/.ssh/id_ed25519`.",
+            "**Fixing everything with chmod 777.** This gives everyone full control. Find which user needs which right and grant only that.",
+            "**Group change does not work.** A user must log out and back in after being added to a group.",
+            "**The web server cannot read files.** Check the owner and the x right on every parent folder."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Give the least rights that let the task work.",
+            "Use groups to share, not world-writable folders.",
+            "Keep private keys at 600.",
+            "Use sudo for single commands, not a root shell.",
+            "Do not run applications as root."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What do r, w and x mean?** Read, write and execute. On a folder, x means you may enter it.",
+            "**What does 755 mean?** Owner can read, write and execute. Group and others can read and execute.",
+            "**How do you change the owner of a file?** `chown user:group file`, usually with sudo.",
+            "**What is the difference between a user and a group?** A group is a named set of users that share rights.",
+            "**How do you add a user to a group safely?** `usermod -aG group user`. The -a keeps the other groups.",
+            "**What is sudo?** Runs one command with administrator rights, if you are allowed.",
+            "**Which file lists users?** `/etc/passwd`. Password hashes are in `/etc/shadow`.",
+            "**What is the rule of least privilege?** Give only the access needed to do the job.",
+            "**What does chmod 600 mean?** Only the owner can read and write.",
+            "**Why is root login over SSH discouraged?** Root can do anything, so attackers target it. Use a normal user plus sudo."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: `chmod -R` and `chown -R` change everything inside a folder. A wrong path, for example `/` instead of your practice folder, can break the system. Always check the path with `pwd` first, and practise on a throwaway machine."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a file and set it to 640. Predict who can do what, then check with `stat`. Hint: Owner 6, group 4, others 0.",
+            "Make a script executable and run it. Hint: `chmod +x` then `./script.sh`.",
+            "Create a group `team` and a shared folder for it with mode 770. Hint: `groupadd`, `chgrp`, `chmod`.",
+            "Try to read a private file as another user and write down the exact error. Hint: `su - otheruser` or `sudo -u`.",
+            "Convert 750, 640 and 700 into letters. Hint: Add 4, 2, 1 for each digit."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Shared project folder"
+        },
+        {
+          "type": "paragraph",
+          "text": "On a practice machine create two users and one group. Make a folder that the group can write to but others cannot even list. Prove it by creating a file as each user, and write a short README saying which commands you used."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -1206,7 +2018,7 @@
           "a": "No. Use sudo only for the commands that need it. Running programs as root makes mistakes and attacks much more damaging."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "9 min read",
       "published": true,
       "quiz": [
         {
@@ -1238,6 +2050,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "What do the three permission groups stand for?",
+          "options": [
+            "Owner, group and others",
+            "Root, admin and guest",
+            "Read, write and run"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does chmod +x script.sh do?",
+          "options": [
+            "Renames it",
+            "Makes the file executable",
+            "Deletes the file"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is sudo for?",
+          "options": [
+            "Opening a browser",
+            "Running a command with administrator rights",
+            "Listing files"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does chown do?",
+          "options": [
+            "Changes the owner of a file",
+            "Moves the file",
+            "Changes the file size"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which command shows which groups you belong to?",
+          "options": [
+            "ls",
+            "groups",
+            "df"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does permission 755 on a script mean?",
+          "options": [
+            "Owner full access; others read and run",
+            "Nobody can run it",
+            "Everyone can write"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why avoid working as root all the time?",
+          "options": [
+            "Root is slower",
+            "A mistake can damage the whole system",
+            "Root cannot use the network"
+          ],
+          "answer": 1,
+          "explain": ""
         }
       ]
     },
@@ -1251,6 +2133,22 @@
         {
           "type": "paragraph",
           "text": "When a server is slow or a site is down, the first questions are always the same. What is running? Is the disk full? Is memory used up? Is something using all the processor? This lesson teaches the commands that answer those questions, and then puts them together into a short script you can reuse. You will also learn how to install and update software with the package manager, which is how almost everything gets onto a Linux server."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a server is slow or down, you need to find out quickly whether the processor, memory, disk or a single program is the cause. Package managers are how software gets onto the machine, so you must install and update safely."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "A computer is like a kitchen at lunch time. The processor is the number of cooks, memory is the counter space, disk is the pantry and each process is an order being cooked. If the counter is full or the pantry is empty or one order hogs all the cooks, everything slows down. Your commands are the way you walk around the kitchen and see which one it is."
         },
         {
           "type": "heading",
@@ -1353,16 +2251,35 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Linux troubleshooting checklist"
         },
         {
           "type": "olist",
           "items": [
-            "Run `ps aux`, `top` and `free -m` on your practice machine and write down what is using the most memory.",
-            "Install `htop` with your package manager, run it and quit with `q`.",
-            "Copy the script, run it with different limits, and check its exit code with `echo $?`.",
-            "Use `du -sh * | sort -h` in your home folder to find the biggest item."
+            "What changed? A new deployment, a package update, a full disk?",
+            "Is the machine up and reachable? Try SSH and `uptime`.",
+            "Is a resource full? Check `df -h`, `free -m` and `top`.",
+            "Is the service running? `systemctl status name` and `journalctl -u name`.",
+            "Can it be reached? Check the port with the health script and the firewall.",
+            "Read the log lines just before the first error, not only the last one."
           ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Change one thing at a time and write down what you tried. Most problems are found by this simple order, not by clever guessing."
+        },
+        {
+          "type": "heading",
+          "text": "Architecture diagram"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart TD\n  S[Server is slow] --> D{Disk full?}\n  D -->|yes| D1[Find big files with du, clean up]\n  D -->|no| M{Memory low?}\n  M -->|yes| M1[Find the heavy process with top]\n  M -->|no| C{CPU busy?}\n  C -->|yes| C1[Identify the process, restart or fix]\n  C -->|no| N[Check network and logs]"
         },
         {
           "type": "heading",
@@ -1375,6 +2292,99 @@
             "You can install and remove a package on your system.",
             "You can explain what the available column of free -m tells you."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "DevOps engineers use these commands daily on servers and inside containers. Monitoring tools automate the same checks and send alerts. Teams script routine checks, like the system report in this lesson, and run them from cron or a pipeline."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Disk is 100 percent full.** Find big folders with `du -sh * | sort -h`, rotate or delete old logs, and add monitoring.",
+            "**Could not get lock on /var/lib/dpkg.** Another package command is running. Wait for it. Do not delete lock files unless you are sure nothing is running.",
+            "**Unable to locate package.** Run `sudo apt update` first, or check the package name.",
+            "**Process will not stop.** Try `kill PID`, wait, then `kill -9 PID` as a last resort.",
+            "**Out of memory kills.** Look at `dmesg` and the journal for OOM messages and find the process that grew."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Run `apt update` before `apt install`.",
+            "Install only from trusted repositories.",
+            "Check disk and memory before and after big changes.",
+            "Alert before disks are completely full.",
+            "Keep scripts safe to run twice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is a process?** A running program with a process ID (PID).",
+            "**How do you list processes?** `ps aux` or `top`.",
+            "**What is the difference between kill and kill -9?** kill asks politely. kill -9 forces the process to stop.",
+            "**How do you check disk usage?** `df -h` for disks and `du -sh` for folders.",
+            "**What does the available column in free mean?** Memory that can be used by programs without swapping.",
+            "**What is swap?** Disk space used as slow extra memory.",
+            "**apt vs dnf?** Package tools for Debian/Ubuntu and for the Red Hat family.",
+            "**What is load average?** The average number of processes waiting for CPU over 1, 5 and 15 minutes.",
+            "**A server is slow. Where do you start?** Check CPU, memory and disk, then logs and recent changes.",
+            "**Why do scripts return exit codes?** So other tools know if the script succeeded."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: `kill -9`, `rm` and package removal commands change a live system. Use a practice machine, and never kill a process on a production server unless you know what it does."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Find which process uses the most memory. Hint: `ps aux --sort=-%mem | head`.",
+            "Install and remove a small package such as `tree`. Hint: `apt install` and `apt remove`.",
+            "Fill a temporary file with data and watch `df -h` change, then delete it. Hint: `fallocate -l 100M`.",
+            "Run the system report script with different limits and read the exit code. Hint: `echo $?`.",
+            "Start a `sleep 300` in the background, find its PID and stop it. Hint: `&`, `ps`, `kill`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Health report on a schedule"
+        },
+        {
+          "type": "paragraph",
+          "text": "Take the system report script, add a line that prints the top three memory users, and run it from cron every hour, writing to a log file. Check the log after two hours and describe what you see."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -1454,7 +2464,7 @@
           "a": "It stops the process at once, without letting it save or clean up. Try a normal kill first and use -9 only when the program does not respond."
         }
       ],
-      "readTime": "6 min read",
+      "readTime": "10 min read",
       "published": true,
       "quiz": [
         {
@@ -1486,6 +2496,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "Which command lists running processes?",
+          "options": [
+            "df -h",
+            "apt update",
+            "ps aux"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which command installs a package on Ubuntu?",
+          "options": [
+            "sudo yum erase",
+            "git clone",
+            "sudo apt install"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does free -h show?",
+          "options": [
+            "Memory use",
+            "Network speed",
+            "Disk use"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does kill without -9 do?",
+          "options": [
+            "Reboots the machine",
+            "Deletes the program",
+            "Asks a process to stop politely"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does apt update do?",
+          "options": [
+            "Refreshes the package list",
+            "Upgrades every package at once",
+            "Removes old files"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does top show?",
+          "options": [
+            "A file tree",
+            "The git log",
+            "Live process and resource use"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "A disk shows 100 percent used. What is a safe first step?",
+          "options": [
+            "Reboot and hope",
+            "Find what is using the space with du, then clean what is safe",
+            "Delete the system folder"
+          ],
+          "answer": 1,
+          "explain": ""
         }
       ]
     },
@@ -1499,6 +2579,22 @@
         {
           "type": "paragraph",
           "text": "A web server, a database or your Node application should start by itself when the machine boots, restart if it crashes, and run without anyone logged in. On modern Linux, a program called systemd looks after that. In this lesson you will learn how to control services, how to log in to a remote server safely with SSH keys, how to schedule repeating jobs with cron, and where to read the logs when something goes wrong. These four skills are what turn a Linux machine into a server you can trust."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Real applications must start at boot, restart after a crash and run when nobody is logged in. SSH lets you reach servers safely, cron runs repeating jobs, and logs tell you what happened when something goes wrong."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "A service is like a shop that opens by itself every morning and a manager (systemd) who reopens it if the door jams. SSH is the key to the staff entrance, and the key is a card that only you hold. Cron is an alarm clock that rings tasks. Logs are the shop diary you read when something odd happened overnight."
         },
         {
           "type": "note",
@@ -1602,16 +2698,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Install nginx on a practice machine and practise start, stop, enable and status.",
-            "Write a unit file for a tiny script or Node app, load it and read its logs with `journalctl -u`.",
-            "Create an SSH key pair, put the public key on a practice server and log in without a password.",
-            "Add a cron job that appends the date to a file every minute, check it, then remove it."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  Boot[Machine boots] --> SD[systemd]\n  SD --> Svc[Your service]\n  Svc -->|crash| SD\n  SD -->|restart| Svc\n  Svc --> J[(journal logs)]\n  Cron[cron] --> Job[Scheduled script]\n  Me[You via SSH key] --> Server[(Server)]"
         },
         {
           "type": "heading",
@@ -1624,6 +2720,99 @@
             "You can log in with your key and not your password.",
             "Your cron job leaves lines in its log file."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every production Linux application runs under a service manager. Teams log in with SSH keys, often through a bastion host, run backups and checks with cron or timers, and ship logs to a central system. Containers replace some of this, but the same ideas apply inside them."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Failed to start: code=exited, status=203/EXEC.** The ExecStart path is wrong or the file is not executable. Use full paths.",
+            "**Service starts and stops immediately.** Read `journalctl -u name -e` for the error, often a missing environment file or port in use.",
+            "**SSH: Permission denied (publickey).** The public key is not in `~/.ssh/authorized_keys` on the server, or file modes are wrong.",
+            "**Cron job does nothing.** Use full paths, check the time fields and send output to a log.",
+            "**Locked out after changing sshd_config.** Keep a second session open while testing and use the provider console as a way back in."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Run services as a normal user.",
+            "Use key-based SSH and turn off password login after testing.",
+            "Keep secrets in a protected EnvironmentFile.",
+            "Log to the journal or to a rotated file.",
+            "Make cron jobs safe to run twice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is systemd?** The init system that starts and supervises services on most modern Linux distributions.",
+            "**start vs enable?** start runs now. enable starts at boot.",
+            "**How do you see a service log?** `journalctl -u name`, add `-f` to follow.",
+            "**How does SSH key login work?** The server checks that you hold the private key matching the public key it has stored.",
+            "**How do you set up key login?** `ssh-keygen` then `ssh-copy-id user@host`.",
+            "**What are the five cron fields?** Minute, hour, day of month, month, day of week.",
+            "**Why use full paths in cron?** Cron has a small environment, so commands may not be found.",
+            "**What is a unit file?** A file that tells systemd how to run a service.",
+            "**How do you disable root SSH login?** Set `PermitRootLogin no` in `sshd_config` and reload ssh.",
+            "**What does logrotate do?** Compresses and removes old logs so disks do not fill up."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: Editing `/etc/ssh/sshd_config` or a firewall on a remote server can lock you out. Keep a second session open and know how to reach the provider console. These configuration examples were not run on a live server for this course."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Install nginx and practise start, stop, enable and status. Hint: `systemctl` commands.",
+            "Write a unit for a tiny script that prints a line every few seconds. Hint: Use a `while` loop and `sleep`.",
+            "Create an SSH key and add it to a practice server. Hint: `ssh-keygen`, `ssh-copy-id`.",
+            "Add a cron job that logs the date every minute, then remove it. Hint: `crontab -e`.",
+            "Find the last five failed login attempts. Hint: `/var/log/auth.log` or `journalctl -u ssh`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Run your app as a service"
+        },
+        {
+          "type": "paragraph",
+          "text": "Take a small Node or Python web app. Write a unit file, load it, enable it, kill the process to prove it restarts, and read its logs with journalctl. Document each command in a README."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -1703,7 +2892,7 @@
           "a": "Yes. The public key is meant to be shared. Never share the private key (the file without .pub)."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "9 min read",
       "published": true,
       "quiz": [
         {
@@ -1735,6 +2924,76 @@
           ],
           "answer": 0,
           "explain": ""
+        },
+        {
+          "q": "Which command checks a service?",
+          "options": [
+            "systemctl status nginx",
+            "ls nginx",
+            "cd nginx"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does systemctl enable do?",
+          "options": [
+            "Deletes it",
+            "Starts it once only",
+            "Starts the service at boot"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Where do most system logs live?",
+          "options": [
+            "/home",
+            "/bin",
+            "/var/log"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is a more secure way to use SSH?",
+          "options": [
+            "Key-based login with password login off",
+            "Using port 22 only",
+            "Sharing one password"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does the cron line 0 2 * * * mean?",
+          "options": [
+            "Run once a year",
+            "Run every day at 02:00",
+            "Run every 2 minutes"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which command reads recent systemd logs of a service?",
+          "options": [
+            "journalctl -u name",
+            "cat /bin/name",
+            "grep -r name"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why should cron jobs write to a log?",
+          "options": [
+            "So you can see whether they ran and what failed",
+            "To make them faster",
+            "Cron needs it to start"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -1748,6 +3007,22 @@
         {
           "type": "paragraph",
           "text": "A script is a text file of commands. When you notice that you are typing the same five commands every day, that is a script waiting to be written. Scripts are the glue of DevOps: they back up folders, check that services are alive, prepare servers and run inside pipelines. Bash is the shell on almost every Linux server, so a small amount of Bash goes a long way. This lesson teaches the pieces you need and gives you three working scripts."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Servers need the same small jobs again and again: backups, checks, clean-ups. A script does them the same way every time, and can run when you are asleep. Scripts are also the glue of pipelines."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Writing a recipe down means anyone can cook the dish the same way. A script is a recipe for the computer. If you do not write it down, every cook does it a little differently and sometimes forgets the salt."
         },
         {
           "type": "heading",
@@ -1874,16 +3149,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Type the backup script, run it on a folder of test files, and check that old backups are removed.",
-            "Run the log script on your own application log, then change it to also show the most active hour.",
-            "Use the health check against your own site or a local server, and print its exit code with `echo $?`.",
-            "Write a script of your own that automates something you do by hand every day."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  T[Trigger: cron or pipeline] --> S[Script starts]\n  S --> W[Does the work]\n  W --> E{Exit code}\n  E -->|0| OK[Success: continue]\n  E -->|not 0| F[Fail: stop and alert]"
         },
         {
           "type": "heading",
@@ -1896,6 +3171,99 @@
             "`bash -n` reports no syntax errors for each script.",
             "You restored a backup into a different folder and the files match."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Teams use Bash for backups, health checks, deployment helpers, log clean-up and pipeline steps. Larger logic moves to Python, but Bash stays the fastest way to join Linux commands."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Script works by hand but not in cron.** Use full paths and set the PATH. Redirect output to a log to see errors.",
+            "**unbound variable.** A variable name is misspelled or unset. `set -u` helped you find it.",
+            "**Spaces in file names break the script.** Quote every variable: `\"$FILE\"`.",
+            "**Syntax error near unexpected token.** Check missing `then`, `fi` or `done`, and run `bash -n script.sh`.",
+            "**Permission denied.** `chmod +x script.sh`, and check the first line points at bash."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Start with `set -euo pipefail`.",
+            "Quote variables.",
+            "Print clear messages and use exit codes.",
+            "Never put passwords in scripts.",
+            "Test on copies and make scripts safe to run twice."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is a shebang?** The first line that tells the system which program runs the file, for example `#!/usr/bin/env bash`.",
+            "**What does `set -e` do?** Stops the script on the first failed command.",
+            "**How do you read the exit code?** With `$?` right after the command.",
+            "**What does `$1` mean?** The first argument passed to the script.",
+            "**How do you make a variable with a default?** `${VAR:-default}`.",
+            "**`&&` vs `||`?** `&&` runs the next command if the first succeeded. `||` runs it if the first failed.",
+            "**How do you loop over files?** `for f in *.log; do ...; done`.",
+            "**How do you debug a script?** `bash -x script.sh` shows each command as it runs.",
+            "**Why quote variables?** To stop spaces and special characters from splitting the value.",
+            "**Bash or Python?** Bash for short Linux glue, Python for larger logic and data."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: Scripts that delete files, such as backup clean-up, can destroy data if a variable is empty or wrong. Test with `echo` in front of dangerous commands first and keep `set -u` on."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write a script that greets a name given as an argument and stops with a message if none is given. Hint: `${1:?message}`.",
+            "Write a loop that prints each `.log` file and its line count. Hint: `for`, `wc -l`.",
+            "Change the backup script to keep five backups. Hint: The third argument.",
+            "Write a script that returns exit 1 if a folder does not exist. Hint: `[ -d \"$DIR\" ]`.",
+            "Extend the log script to print the busiest minute. Hint: `awk` and `cut`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Nightly maintenance script"
+        },
+        {
+          "type": "paragraph",
+          "text": "Combine backup, log summary and a health check into one script that runs every night from cron and writes to a log. Test it by breaking each part on purpose and confirming the exit code changes."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -1975,7 +3343,7 @@
           "a": "Cron runs with a minimal environment and a short PATH. Use full paths to commands and files and redirect output to a log file to see the error."
         }
       ],
-      "readTime": "7 min read",
+      "readTime": "10 min read",
       "published": true,
       "quiz": [
         {
@@ -2007,6 +3375,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "What does the first line #!/bin/bash do?",
+          "options": [
+            "Installs bash",
+            "Comments out the script",
+            "Tells the system to run the script with bash"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does set -e do?",
+          "options": [
+            "Stops the script when a command fails",
+            "Prints every variable",
+            "Makes it faster"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "How do you read the first argument?",
+          "options": [
+            "$$",
+            "$#",
+            "$1"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does $? hold?",
+          "options": [
+            "The current user",
+            "The script name",
+            "The exit status of the last command"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why quote variables such as \"$name\"?",
+          "options": [
+            "To make text blue",
+            "It is required for numbers",
+            "To handle spaces and empty values safely"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What exit code means success?",
+          "options": [
+            "0",
+            "255",
+            "1"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does a for loop do?",
+          "options": [
+            "Repeats commands for each item",
+            "Stops the script",
+            "Defines a variable"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -2020,6 +3458,22 @@
         {
           "type": "paragraph",
           "text": "Every cloud service, container and website you will work with depends on a network. When a deployment fails with connection refused or timed out, you need to know where to look. Networking looks like a wall of strange letters at first, but the ideas are simple, and you can learn the useful part in a few lessons. This first one gives you the map: how data travels, what the layer models mean and what an IP address is."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every cloud service, container and website talks over a network. When a deployment cannot connect, you need to know which layer to check. Without the basics, errors like timed out or connection refused are just noise."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sending a letter has layers too. You write the letter (application), put it in an envelope with an address (network), the post office picks a truck (transport and link), and the road carries it (physical). If the letter is late, you check where it stopped. Network layers let you do the same with data."
         },
         {
           "type": "heading",
@@ -2133,15 +3587,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Find your computer’s private IP (`hostname -I` on Linux, `ipconfig` on Windows) and decide which private range it belongs to.",
-            "Search for \"what is my IP\" in a browser and compare the public address with your private one.",
-            "Write the five steps of opening a web page from memory, and name the layer of each."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart TD\n  A[Application: HTTP, DNS, SSH] --> T[Transport: TCP or UDP and ports]\n  T --> I[Internet: IP address and routing]\n  I --> L[Link: Wi-Fi or Ethernet]\n  L --> P[Physical signal]"
         },
         {
           "type": "heading",
@@ -2154,6 +3609,95 @@
             "You can name what each of the four TCP/IP layers does.",
             "You can say which step failed if a page shows a certificate warning."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Engineers design cloud networks with private ranges, route traffic through gateways, and choose which ports are open. When an app cannot reach a database they walk through the layers: name, address, port, firewall, then application."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Connection timed out.** Packets are being dropped, often by a firewall or a wrong route. Check security rules and routes.",
+            "**Connection refused.** The machine is reachable but nothing listens on that port, or it listens only on 127.0.0.1.",
+            "**Name or service not known.** DNS cannot resolve the name. Check spelling and the DNS server.",
+            "**Two networks cannot connect.** Their private ranges overlap. Plan non-overlapping ranges before you build.",
+            "**Works by IP but not by name.** This is a DNS problem, not a connection problem."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Plan private ranges before creating networks.",
+            "Troubleshoot from the bottom up, one layer at a time.",
+            "Document your address plan.",
+            "Use private addresses for internal services.",
+            "Learn the common ports by heart."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Name the layers of the TCP/IP model.** Link, internet, transport and application.",
+            "**At which layer do routers work?** The network layer, using IP addresses.",
+            "**What is an IP address?** A number that identifies a device on a network.",
+            "**IPv4 vs IPv6?** IPv4 has 32-bit addresses and is running out. IPv6 has 128-bit addresses and a huge space.",
+            "**What is a private IP address?** An address for internal use, such as 10.x.x.x or 192.168.x.x, not routable on the internet.",
+            "**What is a MAC address?** The hardware address of a network card, used inside a local network.",
+            "**What happens when you open a website?** DNS lookup, TCP connection, TLS handshake, HTTP request, response.",
+            "**What is a packet?** A small piece of data with source and destination addresses.",
+            "**Switch vs router?** A switch joins devices in one network. A router joins different networks.",
+            "**What is a default gateway?** The router a device uses to reach other networks."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Find your private IP and say which private range it belongs to. Hint: `hostname -I`.",
+            "Write the five steps of opening a web page and the layer of each. Hint: DNS, TCP, TLS, HTTP, response.",
+            "Check which route your machine uses to reach the internet. Hint: `ip route`.",
+            "Explain public vs private IP to a friend with a street example. Hint: House number inside an estate vs the estate address.",
+            "List three problems that show up as timeouts. Hint: Firewall, route, host down."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Home network map"
+        },
+        {
+          "type": "paragraph",
+          "text": "Draw your home or office network: devices, private addresses, the router and the public address. Mark where NAT happens and which layer each device works at."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -2233,7 +3777,7 @@
           "a": "IPv6 adoption keeps growing, and many networks use both. IPv4 is still widespread, so you must understand it, and you should learn IPv6 basics too."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -2265,6 +3809,76 @@
           ],
           "answer": 0,
           "explain": ""
+        },
+        {
+          "q": "Which layer do routers use to forward packets?",
+          "options": [
+            "Application layer",
+            "Network layer, with IP addresses",
+            "Physical layer only"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which is a private address?",
+          "options": [
+            "203.0.113.5",
+            "192.168.1.20",
+            "8.8.8.8"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a MAC address?",
+          "options": [
+            "The hardware address of a network card",
+            "A password",
+            "A web address"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is the default gateway?",
+          "options": [
+            "The DNS name of a server",
+            "A firewall rule",
+            "The router a device uses to reach other networks"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Connection refused usually means what?",
+          "options": [
+            "DNS is down",
+            "The machine answered but nothing listens on that port",
+            "The cable is cut"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which command shows your IP addresses on Ubuntu?",
+          "options": [
+            "ip addr",
+            "df -h",
+            "chmod"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "IPv6 addresses are how long?",
+          "options": [
+            "32 bits",
+            "8 bits",
+            "128 bits"
+          ],
+          "answer": 2,
+          "explain": ""
         }
       ]
     },
@@ -2278,6 +3892,22 @@
         {
           "type": "paragraph",
           "text": "When you build a cloud network, the first thing it asks is a range such as 10.0.0.0/16, and then a range for each subnet inside it. People find subnetting scary because of the binary maths in old textbooks. You can do the practical part with one idea and one small table, and you can check every answer with a short Python script. By the end of this lesson you will be able to read /24, size a network and split it into parts."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every cloud network starts with address ranges. If you choose them badly, networks cannot be joined later, or you run out of addresses. Subnetting lets you separate public and private parts and apply different rules to each."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Imagine a block of flats with 256 doors numbered 0 to 255. You decide to give floors of 64 doors to different groups: floor one for offices, floor two for shops. That is subnetting: one big range split into smaller labelled parts."
         },
         {
           "type": "heading",
@@ -2385,15 +4015,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Run the script on three networks of your choice (for example 172.16.0.0/20 and 10.1.0.0/22) and write down the number of usable hosts.",
-            "Plan a network: 10.0.0.0/16 with a public and a private subnet in two availability zones, using /24 subnets. List the four ranges.",
-            "Predict, then check, how many addresses a /27 has."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart TD\n  VPC[10.0.0.0/16 whole network] --> A[10.0.1.0/24 public subnet]\n  VPC --> B[10.0.2.0/24 private app subnet]\n  VPC --> C[10.0.3.0/24 private database subnet]"
         },
         {
           "type": "heading",
@@ -2406,6 +4037,94 @@
             "You can explain why usable hosts are two fewer than the total.",
             "Your four subnet ranges do not overlap."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cloud engineers split a /16 network into /24 subnets for web, application and database tiers in each availability zone. Firewalls and routes are applied per subnet. Overlapping ranges are a common cause of failed VPN and peering projects."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Ran out of addresses.** The subnet was too small. Resize or add subnets, and remember providers reserve a few addresses.",
+            "**Overlapping ranges.** Choose non-overlapping ranges for every network you may connect.",
+            "**Wrong mask in a config.** Check the slash number matches the plan.",
+            "**Counting usable hosts wrongly.** Subtract the network and broadcast addresses, and the provider reserved ones."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Plan ranges on paper first.",
+            "Leave room to grow.",
+            "Do not reuse ranges across networks that may connect.",
+            "Use /24 or larger subnets for most tiers.",
+            "Verify with a tool like the Python script."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is a subnet?** A smaller network carved out of a larger one.",
+            "**What does /24 mean?** The first 24 bits are the network, leaving 8 bits (256 addresses) for hosts.",
+            "**How many hosts in a /26?** 64 addresses, 62 usable.",
+            "**Why subtract 2?** The network and broadcast addresses are not given to devices.",
+            "**What is CIDR?** Notation that writes a network as address plus slash number.",
+            "**Why do cloud providers reserve addresses?** For their own services such as the router and DNS.",
+            "**How to split a /24 into four?** Make four /26 subnets.",
+            "**Why avoid overlapping ranges?** Two overlapping networks cannot be joined.",
+            "**What is the netmask for /16?** 255.255.0.0.",
+            "**Which range is private?** 10.0.0.0/8, 172.16.0.0/12 or 192.168.0.0/16."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run the script on 172.16.0.0/20 and write down the usable hosts. Hint: `python3 subnet.py 172.16.0.0/20`.",
+            "Plan a /16 with two /24 subnets in each of two zones. Hint: Four /24 blocks that do not overlap.",
+            "Predict the number of addresses in /27, then check. Hint: 2 to the power of 5.",
+            "Which of 10.0.1.5 and 10.0.2.5 is inside 10.0.1.0/24? Hint: Look at the third number.",
+            "Split 192.168.10.0/24 into /28 subnets and count them. Hint: 16 subnets."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Address plan"
+        },
+        {
+          "type": "paragraph",
+          "text": "Make an address plan table for a small company with offices in two cities and a cloud network. No ranges may overlap. Check every range with the script."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -2485,7 +4204,7 @@
           "a": "Understanding binary helps, but for daily DevOps work the table of sizes and a tool such as Python’s ipaddress module are enough."
         }
       ],
-      "readTime": "6 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -2517,6 +4236,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "How many addresses are in a /24?",
+          "options": [
+            "1024",
+            "256",
+            "24"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "How many usable host addresses in a /26 in a normal network?",
+          "options": [
+            "62",
+            "64",
+            "60 less"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is the netmask for /16?",
+          "options": [
+            "255.255.255.0",
+            "255.0.0.0",
+            "255.255.0.0"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why avoid overlapping ranges between networks?",
+          "options": [
+            "They cannot be connected cleanly",
+            "They cost more",
+            "They slow the CPU"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Which address is inside 10.0.1.0/24?",
+          "options": [
+            "10.1.1.77",
+            "10.0.1.77",
+            "10.0.2.77"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does CIDR notation look like?",
+          "options": [
+            "10.0.0.0:16",
+            "10/0/0/0",
+            "10.0.0.0/16"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which is a private range?",
+          "options": [
+            "172.16.0.0/12",
+            "100.0.0.0/4",
+            "1.0.0.0/8"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -2530,6 +4319,22 @@
         {
           "type": "paragraph",
           "text": "In the last two lessons you learned addresses and networks. Now come the services that make a network usable for people: DNS turns names into addresses, DHCP hands out addresses automatically, HTTP and HTTPS carry web pages, and TCP, UDP and ports decide which program on a machine receives which data. Each one shows up in daily DevOps work, especially when something fails and you must find out why."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "People use names, computers use numbers. DNS and DHCP make networks easy to use, HTTP carries the web, and ports let many programs share one machine. Most real outages show up as a DNS, port or HTTP status problem."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "DNS is the phone book: you look up a name and get a number. DHCP is a hotel reception that hands you a room number when you arrive. A port is a door number inside the building, so the pizza arrives at the right flat."
         },
         {
           "type": "heading",
@@ -2623,16 +4428,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Use `curl -I` on three sites and write down each status code and the `server` header, if shown.",
-            "Run `curl -v https://example.com` and find the steps of the TLS handshake and the request in the output.",
-            "Install `dnsutils` (Debian and Ubuntu) or `bind-utils` (Red Hat family), run `dig` on a domain and read the A record and TTL.",
-            "Start a small local web server, find its port with `ss -tlnp` and connect to it with `curl`."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "sequenceDiagram\n  participant B as Browser\n  participant D as DNS\n  participant S as Web server\n  B->>D: Address of example.com?\n  D-->>B: 203.0.113.10\n  B->>S: TCP connect on port 443\n  B->>S: GET /\n  S-->>B: 200 OK and the page"
         },
         {
           "type": "heading",
@@ -2645,6 +4450,95 @@
             "You can say why a DNS change is not seen at once.",
             "You can match each of the ports above to its service."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Teams manage DNS records for domains, load balancers and email, and use TTLs when moving a service. They read HTTP status codes in monitoring and logs, and check ports when services cannot connect."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**I changed DNS but still see the old site.** Caching. Wait for the TTL or flush local caches, and lower the TTL before planned changes.",
+            "**502 Bad Gateway.** The proxy could not get a good answer from the app. Check that the app is running and healthy.",
+            "**504 Gateway Timeout.** The app answered too slowly. Check load, database and timeouts.",
+            "**Address already in use.** Another program holds the port. Find it with `ss -tlnp`.",
+            "**Service reachable locally but not from outside.** It listens on 127.0.0.1 or a firewall blocks the port."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Lower TTL before moves.",
+            "Use health endpoints returning 200.",
+            "Do not expose databases to the internet.",
+            "Use HTTPS everywhere.",
+            "Know the common ports."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What does DNS do?** Translates names to IP addresses.",
+            "**What is a CNAME?** An alias from one name to another.",
+            "**What is TTL?** How long an answer may be cached.",
+            "**What does DHCP do?** Gives devices addresses and settings automatically.",
+            "**GET vs POST?** GET reads data. POST sends data to create something.",
+            "**What does 404 mean?** The page was not found.",
+            "**What does 502 mean?** Bad gateway: the proxy got a bad answer from the app behind it.",
+            "**TCP vs UDP?** TCP is reliable and ordered. UDP is fast with no guarantee.",
+            "**Which port is SSH?** 22.",
+            "**What is a port?** A number that identifies a program on a machine."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Run `curl -I` on three sites and note the status. Hint: Look at the first line.",
+            "Find what is listening on your machine. Hint: `ss -tlnp`.",
+            "Start a web server on port 8000 and open it with curl. Hint: `python3 -m http.server 8000`.",
+            "Look up an A record and its TTL. Hint: `dig` or `nslookup`.",
+            "Explain why 127.0.0.1 is not reachable from another machine. Hint: It is the loopback address."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Website detective"
+        },
+        {
+          "type": "paragraph",
+          "text": "Pick a public site. Record its DNS A record, TTL, HTTP status, server header and TLS certificate expiry using command-line tools. Present the findings as a one-page table."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -2724,7 +4618,7 @@
           "a": "DNS questions and answers are small, so a fast UDP message is enough. DNS falls back to TCP for large answers."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -2756,6 +4650,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "What does an A record hold?",
+          "options": [
+            "An IPv4 address for a name",
+            "A file path",
+            "A mail password"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does HTTP status 404 mean?",
+          "options": [
+            "Server crashed",
+            "Not found",
+            "Success"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which port does HTTPS use by default?",
+          "options": [
+            "80",
+            "22",
+            "443"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which protocol is reliable and ordered?",
+          "options": [
+            "TCP",
+            "UDP",
+            "ICMP only"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What does DHCP do?",
+          "options": [
+            "Encrypts web traffic",
+            "Hands out IP addresses and settings automatically",
+            "Stores web pages"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why can DNS changes appear slowly?",
+          "options": [
+            "Answers are cached until the TTL ends",
+            "Browsers block them",
+            "The internet is paused"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "A service reachable locally but not remotely may be listening on what?",
+          "options": [
+            "127.0.0.1 only",
+            "Port 443",
+            "0.0.0.0"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -2769,6 +4733,22 @@
         {
           "type": "paragraph",
           "text": "This lesson joins the pieces that sit between a visitor and your application: the firewall that decides what may pass, NAT that lets private machines reach the internet, VPNs that connect networks safely, load balancers and reverse proxies that share the work, TLS that encrypts it, and the CDN that puts copies near the visitor. Then it ends with a simple method for finding network problems. Every cloud lesson later uses these ideas under different names."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Between your users and your app sit many network parts that protect it and share the work. If you do not understand them, you cannot secure a service or find why traffic is blocked."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Think of a stadium. Security guards check tickets at the gate (firewall). The ticket office hides the real seat numbers and sells tickets through one window (NAT). Staff guide people to the least crowded entrance (load balancer). A tunnel for players only (VPN). The CDN is like selling snacks at stands near every seat instead of one kitchen."
         },
         {
           "type": "heading",
@@ -2890,16 +4870,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "On a practice machine, start a simple web server (for example `python3 -m http.server 8000`) and test it with the health script, then stop it and test again.",
-            "Draw the path of a request from a visitor to a private application server through a CDN, a load balancer and a firewall.",
-            "Look at the certificate of a site you use and find its expiry date.",
-            "Write the six troubleshooting steps on a card and use them the next time something does not connect."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  U((Users)) --> CDN[CDN]\n  CDN --> FW[Firewall]\n  FW --> LB[Load balancer]\n  LB --> A1[App copy 1]\n  LB --> A2[App copy 2]\n  A1 --> DB[(Database in private subnet)]\n  A2 --> DB"
         },
         {
           "type": "heading",
@@ -2912,6 +4892,99 @@
             "You can say the difference between a reverse proxy and a load balancer.",
             "Your health check shows the three different results when you test OK, 404 and a stopped server."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Production systems sit behind a load balancer with HTTPS, private application servers, a NAT gateway for outbound traffic and strict firewall rules. Engineers use VPNs for admin access and CDNs for speed and protection."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Locked out after enabling ufw.** Allow SSH before enabling. Use the provider console to recover.",
+            "**Port open locally but blocked from outside.** Check the cloud security group and network ACL too.",
+            "**Certificate expired.** Set up automatic renewal and an expiry alert.",
+            "**Load balancer marks all targets unhealthy.** The health check path or port is wrong, or the app is down.",
+            "**Cannot reach the internet from a private server.** Add a NAT gateway and a route to it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Deny by default and open only needed ports.",
+            "Automate certificate renewal.",
+            "Put databases in private subnets.",
+            "Use health checks that test the real app.",
+            "Log and monitor blocked traffic."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is a firewall?** A set of rules that allows or blocks traffic.",
+            "**What is NAT?** Lets private addresses share a public address by translating them.",
+            "**What is a VPN?** An encrypted tunnel across the internet joining devices or networks.",
+            "**Reverse proxy vs load balancer?** A reverse proxy forwards to servers. A load balancer spreads traffic and checks health.",
+            "**Layer 4 vs layer 7 balancing?** Layer 4 uses addresses and ports. Layer 7 reads the HTTP request.",
+            "**What does TLS do?** Encrypts the connection and proves who the server is.",
+            "**What is Let’s Encrypt?** A free certificate authority with automatic issuing.",
+            "**What is a CDN?** A network of servers that caches content near users.",
+            "**How do you troubleshoot a connection?** Name, reachability, port, listening service, firewalls, application.",
+            "**Why can a failed ping be misleading?** Many systems block ping on purpose."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: Changing firewall rules on a remote server can lock you out. The `ufw` commands here were not run on a live server for this course. Test on a practice machine and keep a second way in."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Test a local web server with the health script, then stop it and test again. Hint: `python3 -m http.server`.",
+            "Check the expiry date of a site certificate. Hint: `curl -vI` or `openssl s_client`.",
+            "Draw a request path through CDN, firewall and load balancer. Hint: Use the diagram.",
+            "Write a ufw plan that allows only SSH, HTTP and HTTPS. Hint: Default deny incoming.",
+            "Explain NAT to a friend with the stadium example. Hint: One window sells to many."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Secure small web server"
+        },
+        {
+          "type": "paragraph",
+          "text": "On a practice Ubuntu machine, install nginx, allow only ports 22, 80 and 443 with ufw, and test each rule from another machine. Record the commands and what you saw."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -2991,7 +5064,7 @@
           "a": "Use automatic renewal: Certbot or another ACME client, or a managed certificate from your cloud provider. Add a monitoring alert for the expiry date as a second safety net."
         }
       ],
-      "readTime": "8 min read",
+      "readTime": "11 min read",
       "published": true,
       "quiz": [
         {
@@ -3023,6 +5096,76 @@
           ],
           "answer": 2,
           "explain": ""
+        },
+        {
+          "q": "What does a firewall do?",
+          "options": [
+            "Stores web pages",
+            "Resolves names",
+            "Allows or blocks traffic by rules"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does NAT do?",
+          "options": [
+            "Encrypts disks",
+            "Counts users",
+            "Lets many private devices share a public address"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does a load balancer do?",
+          "options": [
+            "Backs up data",
+            "Spreads traffic across healthy servers",
+            "Writes code"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does TLS provide?",
+          "options": [
+            "More storage",
+            "Encryption and proof of the server identity",
+            "Faster disks"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you do before enabling ufw on a remote server?",
+          "options": [
+            "Reboot",
+            "Allow SSH first",
+            "Delete all rules"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why can ping fail although a site works?",
+          "options": [
+            "Ping is always right",
+            "Websites do not use IP",
+            "Many systems block ping on purpose"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Where should a database normally live?",
+          "options": [
+            "On a public CDN",
+            "In a private subnet",
+            "Open to the whole internet"
+          ],
+          "answer": 1,
+          "explain": ""
         }
       ]
     },
@@ -3036,6 +5179,22 @@
         {
           "type": "paragraph",
           "text": "If you already know the basic Git commands, this lesson shows how teams use them to ship software safely. If you are new to Git, first read the free [Git and GitHub course](/learn/git-and-github-course) on this site, then come back, because this lesson assumes you can commit, branch and push. In DevOps, Git is not just where code lives. Pipelines start from it, releases are marked in it, and in GitOps even the live system is described in it. A few habits make that smooth."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every pipeline starts from Git, and teams share one project. Good habits stop people overwriting each other, keep history clean, and make releases and rollbacks easy."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Imagine a team writing one big book. Each writer works on their own copy of a chapter, then the editor merges the chapters. If two writers changed the same sentence, the editor decides which version stays. Git is the system that tracks all copies, edits and decisions."
         },
         {
           "type": "heading",
@@ -3160,16 +5319,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Create a practice repository, make a feature branch, commit twice and rebase it on a newer `main`.",
-            "Use `git stash` to switch branches in the middle of a change and come back.",
-            "Make a commit with a mistake, push it to a branch and fix it with `git revert`.",
-            "Create a tag `v0.1.0` and write one sentence on how you would roll back to it."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "gitGraph\n  commit id: \"start\"\n  branch feature\n  checkout feature\n  commit id: \"add /health\"\n  commit id: \"tests\"\n  checkout main\n  merge feature\n  commit id: \"release v1.0\" tag: \"v1.0\""
         },
         {
           "type": "heading",
@@ -3182,6 +5341,95 @@
             "You can explain when to use revert and when to use reset.",
             "You can name the strategy your own team or project uses, and why."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most companies use a pull request flow with required reviews and passing tests. Releases are marked with tags, and hotfixes are cherry-picked onto release branches. Git history is also the audit trail for GitOps."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Merge conflict.** Open the file, choose the final text, remove the markers, `git add` and commit.",
+            "**Rejected push (non-fast-forward).** Pull or fetch and rebase first, then push again.",
+            "**Committed a secret.** Rotate the secret at once. Deleting the file does not remove it from history.",
+            "**Detached HEAD.** Create a branch with `git switch -c name` to keep your work.",
+            "**Lost commits after reset.** `git reflog` can find them for a while."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Short-lived branches and small pull requests.",
+            "Clear commit messages.",
+            "Rebase private branches, never shared history.",
+            "Protect `main` with required checks.",
+            "Tag releases."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Merge vs rebase?** Merge joins histories with a merge commit. Rebase replays your commits on top of another branch for a straight history.",
+            "**What is a pull request?** A request to merge a branch, with review and checks.",
+            "**revert vs reset?** Revert adds a commit that undoes an old one. Reset moves the branch back.",
+            "**What is cherry-pick?** Copying one commit onto another branch.",
+            "**What is git stash?** Shelving unfinished changes.",
+            "**What is a tag?** A fixed name for a commit, often a release.",
+            "**What is trunk-based development?** Everyone merges small changes into main often.",
+            "**What is Git flow?** A model with develop, release and hotfix branches.",
+            "**How do you resolve a conflict?** Edit the file, remove markers, add and commit.",
+            "**What is `--force-with-lease`?** A safer force push that stops if someone else pushed."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a branch, two commits and rebase it on main. Hint: `git rebase main`.",
+            "Create a conflict on purpose and fix it. Hint: Edit the same line on two branches.",
+            "Undo a pushed commit with revert. Hint: `git revert hash`.",
+            "Tag a version and list tags. Hint: `git tag -a`.",
+            "Use stash to switch branches mid-change. Hint: `git stash` and `git stash pop`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Team workflow rehearsal"
+        },
+        {
+          "type": "paragraph",
+          "text": "With a friend or two accounts, create a repository, protect `main`, make a pull request, review it, and merge. Record the steps and tag a release."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -3261,7 +5509,7 @@
           "a": "Treat it as leaked: revoke or rotate the secret straight away, then remove it from the code. Deleting the file in a later commit does not remove it from history."
         }
       ],
-      "readTime": "6 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -3293,6 +5541,76 @@
           ],
           "answer": 0,
           "explain": ""
+        },
+        {
+          "q": "What does git rebase do?",
+          "options": [
+            "Uploads to a server",
+            "Replays your commits on top of another branch",
+            "Deletes the branch"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a safe way to undo a pushed commit?",
+          "options": [
+            "git revert",
+            "Delete the repository",
+            "git reset --hard then force push"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why use pull requests?",
+          "options": [
+            "To hide history",
+            "To review and test changes before merging",
+            "To make Git faster"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a tag?",
+          "options": [
+            "A remote server",
+            "A fixed name for a commit, such as a release",
+            "A type of branch that moves"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you do after committing a secret?",
+          "options": [
+            "Ignore it",
+            "Rotate the secret immediately",
+            "Delete the file and carry on"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does git stash do?",
+          "options": [
+            "Shelves unfinished changes temporarily",
+            "Pushes to main",
+            "Deletes changes forever"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why protect the main branch?",
+          "options": [
+            "To stop all changes",
+            "To require reviews and passing checks before merging",
+            "To hide the code"
+          ],
+          "answer": 1,
+          "explain": ""
         }
       ]
     },
@@ -3306,6 +5624,22 @@
         {
           "type": "paragraph",
           "text": "GitHub Actions is the automation service built into GitHub. When something happens in your repository, for example a push or a pull request, it starts a virtual machine, checks out your code and runs the steps you describe in a YAML file. It is a very good first CI tool, because it needs no server of your own, and the ideas you learn here (triggers, jobs, steps, secrets, artifacts) carry over to Jenkins, GitLab CI and the others. In this lesson you build a pipeline for a small Node project."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Running tests by hand is slow and people forget. A pipeline runs the same checks on every change, so mistakes are caught in minutes. GitHub Actions needs no server of your own."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "It is like a robot assistant at a factory gate who inspects every product before it leaves. You write the inspection list once, and the robot follows it every time without getting tired."
         },
         {
           "type": "heading",
@@ -3414,16 +5748,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Create a repository with the sample project and the workflow, and get a green run.",
-            "Add a failing test on a branch, open a pull request and confirm the check blocks it, with branch protection on.",
-            "Add a third Node version to the matrix.",
-            "Add a step that prints `node --version` and find it in the log."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  P[Push or pull request] --> R[Runner starts]\n  R --> C[Checkout code]\n  C --> I[npm ci]\n  I --> T[npm test]\n  T --> B[npm run build]\n  B --> U[Upload artifact]\n  T -->|fail| X[Red check, merge blocked]"
         },
         {
           "type": "heading",
@@ -3436,6 +5770,95 @@
             "A pull request with a failing test cannot be merged when branch protection is on.",
             "You can say what `npm ci` does differently from `npm install`."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Teams run tests, linters and builds on every pull request, publish images and deploy from tagged releases. Branch protection blocks merges until checks pass."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Workflow does not start.** The file is not in `.github/workflows/` or has YAML errors.",
+            "**npm ci fails.** Commit `package-lock.json` and keep it in sync with package.json.",
+            "**Secret is empty.** Secrets are not passed to workflows from forks. Check the name and where it is defined.",
+            "**Works locally, fails in CI.** Different Node version or missing environment variables.",
+            "**YAML indentation errors.** Use two spaces and a YAML linter."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Pin action versions.",
+            "Cache dependencies.",
+            "Keep jobs short.",
+            "Store secrets in repository settings.",
+            "Require checks before merging."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is a workflow?** A YAML file that defines automation in a repository.",
+            "**What is a runner?** The machine that runs a job.",
+            "**Job vs step?** A job runs on a runner and contains steps. A step is one command or action.",
+            "**What does `on` do?** Defines the events that trigger the workflow.",
+            "**What is a matrix?** Runs a job with several values, such as Node versions.",
+            "**What is an artifact?** A file saved from a run.",
+            "**How do you use secrets?** Store in settings and read as `secrets.NAME`.",
+            "**Why `npm ci`?** Repeatable installs from the lock file.",
+            "**What is branch protection?** Rules that require checks and reviews before merging.",
+            "**How do you run a workflow manually?** Add `workflow_dispatch`."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create the workflow and get a green run. Hint: Copy the ci.yml and push.",
+            "Break a test on purpose and watch the check fail. Hint: Change an expected value.",
+            "Add Node 24 to the matrix. Hint: Edit the list.",
+            "Add a step that prints the Node version. Hint: `run: node --version`.",
+            "Turn on branch protection requiring the check. Hint: Repository settings, branches."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: CI for my project"
+        },
+        {
+          "type": "paragraph",
+          "text": "Add a pipeline to your own project that lints, tests and builds. Add a status badge to the README and require the check on pull requests."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -3515,7 +5938,7 @@
           "a": "Yes. Add workflow_dispatch to the on section and a Run workflow button appears in the Actions tab."
         }
       ],
-      "readTime": "6 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -3547,6 +5970,76 @@
           ],
           "answer": 2,
           "explain": ""
+        },
+        {
+          "q": "Where do workflow files live?",
+          "options": [
+            "docs/",
+            ".github/workflows/",
+            "src/"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is a runner?",
+          "options": [
+            "A type of branch",
+            "A secret",
+            "The machine that runs a job"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why use npm ci in a pipeline?",
+          "options": [
+            "It skips tests",
+            "It is shorter to type",
+            "Repeatable installs from the lock file"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How do you read a secret in a workflow?",
+          "options": [
+            "env.PASSWORD in the file",
+            "secrets.NAME",
+            "Write it in the YAML"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does a matrix do?",
+          "options": [
+            "Draws a diagram",
+            "Runs a job with several values, such as Node versions",
+            "Merges branches"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which event runs a workflow on pull requests?",
+          "options": [
+            "on: pull_request",
+            "on: sleep",
+            "on: print"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why pin action versions?",
+          "options": [
+            "So an unexpected update does not break or compromise builds",
+            "It makes YAML shorter",
+            "It is required by Git"
+          ],
+          "answer": 0,
+          "explain": ""
         }
       ]
     },
@@ -3560,6 +6053,22 @@
         {
           "type": "paragraph",
           "text": "Before cloud computing, a company that wanted a website bought servers, put them in a room, connected cables, installed software and hired people to look after the machines. If the website became popular, the servers ran out of power, and ordering new ones took weeks. If it did not, the servers sat idle and the money was wasted. Cloud computing changes this: you rent computing power, storage and services over the internet from a provider, create them in minutes, and stop paying when you delete them."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Buying and running servers takes weeks and money up front. The cloud lets teams create what they need in minutes, pay for what they use and grow or shrink quickly."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "Owning servers is like owning a car: you pay for it, insure it, repair it, even when it sits in the garage. Cloud is like using taxis or car sharing: you pay for the trips, and the company looks after the cars."
         },
         {
           "type": "heading",
@@ -3635,15 +6144,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "List five cloud services you already use in daily life and say whether each is IaaS, PaaS or SaaS.",
-            "Explain to a friend, without technical words, why a company would rent servers instead of buying them.",
-            "Choose a small website idea and write which model (IaaS, PaaS or functions) you would try first and why."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart LR\n  A[IaaS: virtual machines] --> B[PaaS: platform for your code]\n  B --> C[Functions: run code on demand]\n  C --> D[SaaS: finished software]\n  A -. more control, more work .-> A\n  D -. less control, less work .-> D"
         },
         {
           "type": "heading",
@@ -3656,6 +6166,99 @@
             "You can say the difference between hybrid and multi-cloud.",
             "You can say how a container differs from a virtual machine in one sentence."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Companies host websites and apps, store data, run analytics and train models in the cloud. They combine managed services with their own code and often use containers."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Unexpected bill.** Set budget alerts and delete unused resources.",
+            "**Resource not found.** You are in the wrong region.",
+            "**Cannot connect to a VM.** Security group or key pair issue.",
+            "**Service quota exceeded.** Request a limit increase.",
+            "**Public data leak.** Check storage permissions and turn on blocking of public access."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Turn on MFA for the root account.",
+            "Set billing alerts first.",
+            "Tag resources.",
+            "Delete practice resources.",
+            "Learn one provider well."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**What is cloud computing?** Renting computing resources over the internet and paying for use.",
+            "**IaaS vs PaaS vs SaaS?** You manage more with IaaS, less with PaaS, nothing but your data with SaaS.",
+            "**What is hybrid cloud?** A mix of private systems and public cloud.",
+            "**What is multi-cloud?** Using more than one public provider.",
+            "**What is virtualization?** Dividing one physical machine into several virtual ones.",
+            "**VM vs container?** A VM has its own OS. Containers share the host kernel.",
+            "**What is serverless?** Running code without managing servers; the provider scales it.",
+            "**What is elasticity?** Automatic growing and shrinking with demand.",
+            "**Is cloud always cheaper?** No, it depends on the workload and management.",
+            "**What is a hypervisor?** Software that creates and runs virtual machines."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: Cloud resources can create charges. Before any exercise that creates resources, set a budget alert, use the free tier terms you have read, and delete what you created when you finish."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "List five services you use and label them IaaS, PaaS or SaaS. Hint: Think Gmail, Netflix.",
+            "Describe a pay-per-use workload and a steady workload. Hint: A holiday sale vs a payroll system.",
+            "Explain VM vs container with an apartment example. Hint: Separate houses vs shared building.",
+            "Write the pros and cons of public vs private cloud. Hint: Cost, control, effort.",
+            "Choose a model for a small blog and say why. Hint: PaaS or static hosting."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Cloud decision note"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write a one-page note recommending IaaS, PaaS or functions for a small project of your choice, with cost, control and effort compared."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -3735,7 +6338,7 @@
           "a": "Most teams do not. It adds cost and complexity. Consider it when you have a clear reason such as legal rules, a specific service or a business agreement."
         }
       ],
-      "readTime": "4 min read",
+      "readTime": "7 min read",
       "published": true,
       "quiz": [
         {
@@ -3767,6 +6370,76 @@
           ],
           "answer": 1,
           "explain": ""
+        },
+        {
+          "q": "Which model gives you the most control?",
+          "options": [
+            "PaaS only",
+            "SaaS",
+            "IaaS"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which is an example of SaaS?",
+          "options": [
+            "A network cable",
+            "A hosted email service",
+            "A raw virtual machine"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is elasticity?",
+          "options": [
+            "A password rule",
+            "A cable type",
+            "Growing and shrinking resources with demand"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What is a hybrid cloud?",
+          "options": [
+            "Private systems plus public cloud",
+            "A laptop",
+            "Two public clouds only"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is a hypervisor?",
+          "options": [
+            "A database",
+            "Software that runs virtual machines",
+            "A web browser"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What should you set first in a new cloud account?",
+          "options": [
+            "MFA and a billing alert",
+            "Ten large servers",
+            "A public bucket"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is serverless?",
+          "options": [
+            "No computers at all",
+            "A free plan",
+            "Running code while the provider manages servers and scaling"
+          ],
+          "answer": 2,
+          "explain": ""
         }
       ]
     },
@@ -3780,6 +6453,22 @@
         {
           "type": "paragraph",
           "text": "Cloud providers sell reliability, but they do not give it automatically. You get it by building your system in the right way across the right places, and you pay for it. This lesson explains the vocabulary that every cloud course and interview uses: regions and zones, scaling, high availability, fault tolerance and disaster recovery, how cloud prices work, and the shared responsibility model that says who is in charge of security. The words are the same in AWS, Azure and Google Cloud, although the product names differ."
+        },
+        {
+          "type": "heading",
+          "text": "Why do we need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Apps fail: servers break, data centres lose power. Regions, zones, backups and good design keep services running and under budget, and the shared responsibility model tells you what you must secure yourself."
+        },
+        {
+          "type": "heading",
+          "text": "A real-life example"
+        },
+        {
+          "type": "paragraph",
+          "text": "A chain of shops keeps stock in more than one warehouse, in different towns. If one floods, the other still delivers. Regions and zones are the warehouses, and the insurance plan (backups, disaster recovery) is the plan for the day something big goes wrong."
         },
         {
           "type": "heading",
@@ -3862,16 +6551,16 @@
         },
         {
           "type": "heading",
-          "text": "Your task"
+          "text": "Architecture diagram"
         },
         {
-          "type": "olist",
-          "items": [
-            "Pick a cloud provider and find the list of its regions. Note which is nearest to you, and how many zones it has.",
-            "Draw a web application that survives the loss of one zone: load balancer, two app servers, a database with a standby.",
-            "Write an RPO and RTO for a service you know, and say which DR strategy would fit.",
-            "Find the current free tier terms for one provider, and write down what would still cost money."
-          ]
+          "type": "paragraph",
+          "text": "Here is the idea as a simple picture. You can use the same diagram in your own notes."
+        },
+        {
+          "type": "code",
+          "lang": "mermaid",
+          "text": "flowchart TB\n  subgraph Region\n    subgraph ZA[Zone A]\n      A1[App copy 1]\n    end\n    subgraph ZB[Zone B]\n      A2[App copy 2]\n    end\n    LB[Load balancer] --> A1\n    LB --> A2\n    A1 --> DB[(Primary DB)]\n    DB --> SB[(Standby DB)]\n  end\n  DB --> BK[(Backups in another region)]"
         },
         {
           "type": "heading",
@@ -3884,6 +6573,99 @@
             "You can explain RPO and RTO with an example.",
             "You can name three things that are always the customer’s responsibility in the cloud."
           ]
+        },
+        {
+          "type": "heading",
+          "text": "How companies use it"
+        },
+        {
+          "type": "paragraph",
+          "text": "Production systems run in at least two zones, keep backups in another region and track recovery targets. FinOps teams watch bills, use commitments for steady loads and spot capacity for flexible jobs."
+        },
+        {
+          "type": "heading",
+          "text": "Common errors and how to fix them"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Everything in one zone.** One failure takes the app down. Spread over at least two zones.",
+            "**Backups never tested.** Practice restores and time them.",
+            "**Surprise data transfer cost.** Check pricing of traffic leaving the provider and between regions.",
+            "**Wrong region for data rules.** Choose regions that meet legal needs.",
+            "**Public storage bucket.** It is your responsibility under shared responsibility."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Best practices"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Design for failure.",
+            "Test restores.",
+            "Tag resources by project.",
+            "Set budgets and alerts.",
+            "Define RPO and RTO for each service."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Interview questions with simple answers"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**Region vs availability zone?** A region is a geographic area. A zone is a separate data centre inside it.",
+            "**What is high availability?** Staying up despite failures by removing single points of failure.",
+            "**HA vs fault tolerance?** Fault tolerance has no visible interruption and costs more.",
+            "**What is RPO?** How much data you can lose, measured as time.",
+            "**What is RTO?** How long you can be down.",
+            "**Name DR strategies.** Backup and restore, pilot light, warm standby, active-active.",
+            "**What is shared responsibility?** The provider secures the cloud; you secure what you put in it.",
+            "**Vertical vs horizontal scaling?** Bigger machine vs more machines.",
+            "**On-demand vs reserved?** Pay as you go vs commit for a discount.",
+            "**What are spot instances?** Spare capacity at a discount that can be taken back."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: Multi-zone and multi-region designs cost more. Do not leave practice copies running, and delete resources after the exercise to avoid charges."
+        },
+        {
+          "type": "heading",
+          "text": "Practical exercises"
+        },
+        {
+          "type": "paragraph",
+          "text": "Try each one yourself before you look at the hint. Struggling for a few minutes is how the skill sticks."
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Find your provider’s nearest region and its zone count. Hint: The provider region page.",
+            "Draw a two-zone web app. Hint: Use the diagram.",
+            "Write an RPO and RTO for a shop website. Hint: Orders per hour.",
+            "List three bill surprises and how to prevent each. Hint: Idle disks, data transfer, logs.",
+            "Name three things that are always your responsibility. Hint: Data, accounts, public settings."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mini project: Resilience plan"
+        },
+        {
+          "type": "paragraph",
+          "text": "Write a two-page plan for a small web app: zones, backups, RPO and RTO, a restore test schedule and a monthly cost estimate method."
+        },
+        {
+          "type": "heading",
+          "text": "Knowledge test"
+        },
+        {
+          "type": "paragraph",
+          "text": "Answer the ten questions in the quiz at the end of this lesson. You pass with 60 percent. If an answer is wrong, read the explanation, then reread the part of the lesson it points to."
         }
       ],
       "animation": {
@@ -3963,7 +6745,7 @@
           "a": "You are. The provider secures the platform, but how you configure your own resources and permissions is your responsibility under the shared responsibility model."
         }
       ],
-      "readTime": "5 min read",
+      "readTime": "8 min read",
       "published": true,
       "quiz": [
         {
@@ -3992,6 +6774,76 @@
             "Only the provider",
             "Nobody",
             "You, the customer"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What does RTO mean?",
+          "options": [
+            "How much data you can lose",
+            "How many users you have",
+            "How long you can be down"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Why spread an app over two zones?",
+          "options": [
+            "It is always cheaper",
+            "One zone failing does not take the app down",
+            "It removes the need for backups"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does shared responsibility mean?",
+          "options": [
+            "The provider secures the cloud; you secure what you put in it",
+            "You do everything",
+            "The provider does everything"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why test restores?",
+          "options": [
+            "It speeds up the app",
+            "Backups are free",
+            "A backup you cannot restore is not a real backup"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What are spot instances?",
+          "options": [
+            "Reserved servers for three years",
+            "Free servers",
+            "Spare capacity at a discount that can be taken back"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "What can cause a surprise cloud bill?",
+          "options": [
+            "Reading documentation",
+            "Idle resources and data transfer",
+            "Using tags"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which disaster recovery style is cheapest but slowest?",
+          "options": [
+            "Active-active",
+            "Warm standby",
+            "Backup and restore"
           ],
           "answer": 2,
           "explain": ""

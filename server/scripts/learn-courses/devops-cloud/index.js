@@ -4,6 +4,12 @@ import { lessons as p2 } from './part2.js';
 import { lessons as p3 } from './part3.js';
 import { lessons as p4 } from './part4.js';
 import { lessons as p5 } from './part5.js';
+import { addExtras } from './extras-kit.js';
+import { E1 } from './extras1.js';
+import { E2 } from './extras2.js';
+import { E3 } from './extras3.js';
+import { E4 } from './extras4.js';
+const EXTRAS = { ...E1, ...E2, ...E3, ...E4 };
 
 export const course = {
   title: 'DevOps and Cloud Engineering: Complete Course from Beginner to Advanced',
@@ -20,4 +26,4 @@ export const course = {
   metaTitle: 'DevOps and Cloud Engineering Course',
   keywords: 'devops course for beginners, cloud engineering course, learn devops free, linux for devops, devops roadmap, ci cd tutorial, github actions tutorial',
 };
-export const lessons = finish([...p1, ...p2, ...p3, ...p4, ...p5]);
+export const lessons = finish([...p1, ...p2, ...p3, ...p4, ...p5].map((l) => addExtras(l, EXTRAS[l.slug])));

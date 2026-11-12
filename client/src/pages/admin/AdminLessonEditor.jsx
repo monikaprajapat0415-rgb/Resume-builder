@@ -241,7 +241,7 @@ const AdminLessonEditor = () => {
 
         <div className='bg-white rounded-xl border border-slate-200 p-5 space-y-3'>
           <h2 className='text-sm font-semibold text-slate-800'>Quiz <span className='text-slate-400 font-normal'>(optional practice questions shown at the end of the lesson; 60% or more marks the lesson done for the reader)</span></h2>
-          <p className='text-xs text-slate-500'>Write it as JSON, a list of questions. Each has <code>q</code>, <code>options</code> (2 to 5), <code>answer</code> (the position of the right option, starting at 0) and an optional <code>explain</code>. Up to 8 questions. Leave it empty for no quiz. The server checks it when you save.</p>
+          <p className='text-xs text-slate-500'>Write it as JSON, a list of questions. Each has <code>q</code>, <code>options</code> (2 to 5), <code>answer</code> (the position of the right option, starting at 0) and an optional <code>explain</code>. Up to 10 questions. Leave it empty for no quiz. The server checks it when you save.</p>
           <textarea value={quizText} onChange={(e) => setQuizText(e.target.value)} rows={8} spellCheck={false} className={`${input} font-mono text-xs`} placeholder='Paste the quiz JSON here' />
           <div className='flex flex-wrap items-center gap-3'>
             <button type='button' onClick={() => setQuizText(JSON.stringify(QUIZ_EXAMPLE, null, 2))} className='text-xs px-2.5 py-1.5 border border-slate-200 rounded-md hover:bg-slate-50'>Insert an example</button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import { renderInline } from '../utils/inlineText'
 
 // Code sample with a language label and a copy button (tutorial lessons).
@@ -18,6 +18,27 @@ const CodeBlock = ({ lang, text }) => {
   )
 }
 
+// Mermaid diagram written as a code block with language "mermaid". The library (large) is loaded only
+// when a lesson has one. While it loads, or if the diagram has an error, the plain text is shown instead.
+const MermaidBlock = ({ text }) => {
+  const id = 'mmd' + useId().replace(/[^a-zA-Z0-9]/g, '')
+  const [svg, setSvg] = useState('')
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    let live = true
+    setSvg(''); setFailed(false)
+    import('mermaid').then(async ({ default: mermaid }) => {
+      mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: 'neutral', fontFamily: 'inherit' })
+      if (!(await mermaid.parse(text, { suppressErrors: true }))) { if (live) setFailed(true); return }
+      const out = await mermaid.render(id, text)
+      if (live) setSvg(out.svg)
+    }).catch(() => { document.getElementById('d' + id)?.remove(); if (live) setFailed(true) })
+    return () => { live = false }
+  }, [text, id])
+  if (failed || !svg) return <CodeBlock lang='mermaid' text={text} />
+  return <figure className='my-5 overflow-x-auto rounded-lg border border-slate-200 bg-white p-4 text-center' role='img' aria-label='Diagram' data-no-i18n dangerouslySetInnerHTML={{ __html: svg }} />
+}
+
 // Renders the heading / paragraph / list blocks used by blog posts and product
 // descriptions. Paragraphs and list items support [text](url) links and **bold**.
 const BlockRenderer = ({ blocks = [], variant = 'article' }) => (
@@ -26,6 +47,7 @@ const BlockRenderer = ({ blocks = [], variant = 'article' }) => (
       if (block.type === 'heading') {
         return <h2 key={i} id={block.id} className={variant === 'page' ? 'text-xl font-semibold mt-6 mb-2' : 'text-2xl font-semibold text-slate-800 mt-10 mb-3 scroll-mt-24'}>{block.text}</h2>
       }
+      if (block.type === 'code' && block.lang === 'mermaid') return <MermaidBlock key={i} text={block.text || ''} />
       if (block.type === 'code') return <CodeBlock key={i} lang={block.lang} text={block.text || ''} />
       if (block.type === 'note') {
         return (
