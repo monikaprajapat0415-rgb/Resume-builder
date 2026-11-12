@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useI18n } from '../i18n/I18nProvider'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
 import Footer from '../components/home/Footer'
@@ -84,11 +85,16 @@ const LearnLesson = () => {
   const [listHidden, setListHidden] = useState(() => { try { return localStorage.getItem('prime_learn_list_hidden') === '1' } catch { return false } })
   const toggleList = () => setListHidden((v) => { const n = !v; try { localStorage.setItem('prime_learn_list_hidden', n ? '1' : '0') } catch { /* private mode: it just will not be remembered */ } return n })
   const [active, setActive] = useState('')
+  // The lesson follows the country and language dropdown. The reader can still ask for the English original.
+  const { lang } = useI18n()
+  const [showEn, setShowEn] = useState(false)
+  const want = showEn ? 'en' : lang
+  useEffect(() => { setShowEn(false) }, [lang])
   useEffect(() => { if (result.state === 'ok' && result.key === key) visit(lessonSlug) }, [result, key, lessonSlug, visit])
 
   useEffect(() => {
     let live = true
-    api.get(`/api/learn/${courseSlug}/${lessonSlug}`)
+    api.get(`/api/learn/${courseSlug}/${lessonSlug}${want !== 'en' ? `?lang=${want}` : ''}`)
       .then(({ data: d }) => {
         if (!live) return
         setResult(d.seo ? { key, data: d, state: 'ok' } : { key, data: null, state: 'error' })
@@ -97,7 +103,7 @@ const LearnLesson = () => {
       })
       .catch((e) => { if (live) setResult({ key, data: null, state: e.response?.status === 404 ? 'missing' : 'error' }) })
     return () => { live = false }
-  }, [courseSlug, lessonSlug, key])
+  }, [courseSlug, lessonSlug, key, want])
 
   // Keep showing the previous lesson (menu included) while the next one loads.
   const fresh = result.key === key
@@ -195,9 +201,21 @@ const LearnLesson = () => {
           </div>
           </div>
 
+          {lang !== 'en' && (
+            <div role='note' className='mt-4 rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900'>
+              {data.translation && !showEn ? (<>
+                <p className='font-medium'>This lesson is translated from English.</p>
+                <p className='mt-0.5 text-sky-800'>{data.translation.status === 'machine' ? 'Machine translation, not yet checked by a person. Commands and code stay in English.' : 'Checked by a person. Commands and code stay in English.'}</p>
+                <button type='button' onClick={() => setShowEn(true)} className='mt-2 underline underline-offset-2 hover:text-sky-950'>Show the English original</button>
+              </>) : showEn ? (
+                data.languages?.includes(lang) && <button type='button' onClick={() => setShowEn(false)} className='underline underline-offset-2 hover:text-sky-950'>Show the translation</button>
+              ) : <p>This lesson is not translated into your language yet, so it is shown in English.</p>}
+            </div>
+          )}
+
           {lesson.animation && <div className='mt-6'><LessonAnimation key={lesson.slug} animation={lesson.animation} /></div>}
 
-          <div className='mt-6 lesson-text' style={{ '--ls': `${reading.prefs.size}px` }}><BlockRenderer blocks={lesson.content} /></div>
+          <div className='mt-6 lesson-text' lang={data.translation ? lang : undefined} style={{ '--ls': `${reading.prefs.size}px` }}><BlockRenderer blocks={lesson.content} /></div>
 
           {lesson.download && (
             <aside aria-label='Solution download' className='mt-10 rounded-xl border border-brand-200 bg-brand-50/50 p-5 flex flex-wrap items-center justify-between gap-4'>

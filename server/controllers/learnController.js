@@ -7,6 +7,7 @@ import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks } from "../utils/blogSeo.js";
 import { downloadPath, isZip, safeName, saveUpload, removeUpload } from "../utils/learnFiles.js";
 import { cleanAnimation } from "../utils/lessonAnimation.js";
+import { LESSON_LANGS, publishedLangs } from "../utils/lessonTranslate.js";
 import { cleanCourseFields, cleanLessonFields, courseCard, courseView, lessonView } from "../utils/learnSeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -22,7 +23,7 @@ export const loadCourseView = async (slug) => {
     return courseView(course, lessons);
 };
 
-export const loadLessonView = async (courseSlug, lessonSlug, { count = false } = {}) => {
+export const loadLessonView = async (courseSlug, lessonSlug, { count = false, lang = '' } = {}) => {
     const course = await Course.findOne({ slug: courseSlug, published: true });
     if (!course) return null;
     const lessons = await Lesson.find({ course: course._id, published: true }).select(`${LESSON_LIST_FIELDS} _id`).sort(byOrder);
@@ -31,7 +32,17 @@ export const loadLessonView = async (courseSlug, lessonSlug, { count = false } =
         ? await Lesson.findOneAndUpdate(q, { $inc: { views: 1 } }, { returnDocument: 'after', timestamps: false })
         : await Lesson.findOne(q);
     if (!lesson) return null;
-    return lessonView(course, lesson, lessons);
+    const v = lessonView(course, lesson, lessons);
+    // Reader language: use a published translation when there is one. SEO data, canonical and the
+    // server-rendered page stay English, so search engines still see one original.
+    const languages = publishedLangs(lesson);
+    const t = lang && lang !== 'en' && LESSON_LANGS[lang] ? lesson.translations?.[lang] : null;
+    if (t && t.published) {
+        const base = typeof lesson.toObject === 'function' ? lesson.toObject() : lesson;
+        const vt = lessonView(course, { ...base, title: t.title || base.title, description: t.description || base.description, content: t.content || base.content, faqs: t.faqs || base.faqs, quiz: t.quiz || base.quiz, notes: t.notes || base.notes }, lessons);
+        return { ...vt, seo: v.seo, jsonLd: v.jsonLd, breadcrumbs: v.breadcrumbs, translation: { lang, status: t.status || 'reviewed' }, languages };
+    }
+    return { ...v, translation: null, languages };
 };
 
 export const listPublishedCourses = async () => {
@@ -64,7 +75,7 @@ export const getCourse = async (req, res) => {
 // GET /api/learn/:course/:lesson
 export const getLesson = async (req, res) => {
     try {
-        const v = await loadLessonView(req.params.course, req.params.lesson, { count: true });
+        const v = await loadLessonView(req.params.course, req.params.lesson, { count: true, lang: String(req.query.lang || '').slice(0, 5) });
         if (!v) return res.status(404).json({ message: 'Lesson not found' });
         return res.status(200).json(v);
     } catch (e) { return res.status(500).json({ message: e.message }); }

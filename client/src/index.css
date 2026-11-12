@@ -42,6 +42,9 @@
 .lesson-text h2 { font-size: calc(var(--ls, 16px) * 1.5); }
 .lesson-text aside { font-size: calc(var(--ls, 16px) * 0.875); }
 .lesson-text pre { font-size: calc(var(--ls, 16px) * 0.8125); }
+/* code stays left-to-right even when a lesson is shown in Arabic */
+.lesson-text pre, .lesson-text code { direction: ltr; unicode-bidi: isolate; }
+.lesson-text pre { text-align: left; }
 
 /* ---- Home page motion. Everything here is switched off for people who ask for less motion. ---- */
 @media (prefers-reduced-motion: no-preference) {

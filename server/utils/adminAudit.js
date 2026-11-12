@@ -11,6 +11,7 @@ const LABELS = [
     [/^\/seo-audit\/undo$/, 'Undid SEO fixes'],
     [/^\/bulk$/, 'Bulk action'],
     [/^\/blogs/, 'Blog post'],
+    [/^\/learn\/lessons\/[^/]+\/translations/, 'Lesson translation'],
     [/^\/learn\/courses\/[^/]+\/lessons/, 'Course lesson'],
     [/^\/learn\/lessons/, 'Course lesson'],
     [/^\/learn\/courses/, 'Course'],
