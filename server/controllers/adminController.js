@@ -9,6 +9,8 @@ import InterviewAnswer from "../models/InterviewAnswer.js";
 import SalaryReport from "../models/SalaryReport.js";
 import CompanyReview from "../models/CompanyReview.js";
 import InterviewQuestion from "../models/InterviewQuestion.js";
+import Lesson from "../models/Lesson.js";
+import PlanEvent from "../models/PlanEvent.js";
 import Roadmap from "../models/Roadmap.js";
 import Employer from "../models/Employer.js";
 import Job from "../models/Job.js";
@@ -18,6 +20,8 @@ import { emailKey } from "../utils/emailKey.js";
 import imagekit from "../configs/imageKit.js";
 import { slugify } from "../utils/slugify.js";
 import { auditBlogs } from "../utils/seoAudit.js";
+import { fixSummary, proposeFixes, FIXABLE_FIELDS } from "../utils/seoFixes.js";
+import mongoose from "mongoose";
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -25,7 +29,54 @@ const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 export const getSeoAudit = async (req, res) => {
     try {
         const posts = await Blog.find({}).lean();
-        return res.status(200).json(auditBlogs(posts));
+        return res.status(200).json({ ...auditBlogs(posts), fixes: fixSummary(posts) });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// POST /api/admin/seo-audit/apply { postIds?: [], keys?: [] }
+// Fixes are worked out again here from the stored post, never taken from the browser.
+// Only meta title, meta description and cover alt text can change; the article text is never touched.
+export const applySeoFixes = async (req, res) => {
+    try {
+        const ids = Array.isArray(req.body?.postIds) ? req.body.postIds.map(String) : null;
+        const keys = Array.isArray(req.body?.keys) ? req.body.keys.map(String) : null;
+        const posts = await Blog.find({}).lean();
+        const changes = [];
+        for (const p of posts) {
+            if (p.published === false) continue;
+            if (ids && !ids.includes(String(p._id))) continue;
+            const set = {};
+            for (const f of proposeFixes(p)) {
+                if (keys && !keys.includes(f.key)) continue;
+                if (!FIXABLE_FIELDS.includes(f.field)) continue;
+                set[f.field] = f.after;
+                changes.push({ postId: String(p._id), title: p.title, field: f.field, before: f.before, after: f.after });
+            }
+            // timestamps off: a metadata fix is not a content update, so "modified" dates stay true
+            if (Object.keys(set).length) await Blog.updateOne({ _id: p._id }, { $set: set }, { timestamps: false });
+        }
+        return res.status(200).json({ applied: changes.length, posts: new Set(changes.map((c) => c.postId)).size, changes });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+// POST /api/admin/seo-audit/undo { changes: [{ postId, field, before, after }] }
+// Puts the old value back, but only where the field still holds the value we wrote,
+// so later edits made by hand are never overwritten.
+export const undoSeoFixes = async (req, res) => {
+    try {
+        const list = Array.isArray(req.body?.changes) ? req.body.changes.slice(0, 2000) : [];
+        let restored = 0, skipped = 0;
+        for (const c of list) {
+            const ok = FIXABLE_FIELDS.includes(c?.field) && mongoose.isValidObjectId(c?.postId) && typeof c.before === 'string' && typeof c.after === 'string' && c.before.length <= 600;
+            if (!ok) { skipped++; continue; }
+            const r = await Blog.updateOne({ _id: c.postId, [c.field]: c.after }, { $set: { [c.field]: c.before } }, { timestamps: false });
+            if (r.modifiedCount) restored++; else skipped++;
+        }
+        return res.status(200).json({ restored, skipped });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -43,7 +94,7 @@ export const getStats = async (req, res) => {
         const [
             totalUsers, verifiedUsers, adminUsers, newUsers7d, recentSignups, totalResumes,
             blogs, products, topPosts, topProducts, recentUsers, unreadMessages, totalMessages,
-            pAnswers, pSalaries, pReviews, rAnswers, rSalaries, rReviews, pEmployers, pJobs, questions, roadmaps, liveJobs,
+            pAnswers, pSalaries, pReviews, rAnswers, rSalaries, rReviews, pEmployers, pJobs, questions, roadmaps, liveJobs, draftLessons, draftQuestions, unmatchedPayments,
         ] = await Promise.all([
             User.countDocuments({}),
             User.countDocuments({ isVerified: true }),
@@ -62,6 +113,7 @@ export const getStats = async (req, res) => {
             InterviewAnswer.countDocuments({ 'reports.0': { $exists: true } }), SalaryReport.countDocuments({ 'reports.0': { $exists: true } }), CompanyReview.countDocuments({ 'reports.0': { $exists: true } }),
             Employer.countDocuments({ status: 'pending' }), Job.countDocuments({ sourceType: 'employer', reviewStatus: 'pending' }),
             InterviewQuestion.countDocuments({ published: true }), Roadmap.countDocuments({ published: true }), Job.countDocuments({ active: true }),
+            Lesson.countDocuments({ published: false }), InterviewQuestion.countDocuments({ published: false }), PlanEvent.countDocuments({ status: 'unmatched' }),
         ]);
 
         // 14 day buckets ending today, so days with no sign-ups still show as empty bars.
@@ -74,7 +126,9 @@ export const getStats = async (req, res) => {
             signupsByDay.push({ date: d, count: counts[d] || 0 });
         }
 
-        const audit = auditBlogs(await Blog.find({}).lean());
+        const allPosts = await Blog.find({}).lean();
+        const audit = auditBlogs(allPosts);
+        const fixTotal = fixSummary(allPosts).total;
         const seoSummary = { avgScore: audit.summary.avgScore, poor: audit.summary.poor, fair: audit.summary.fair, good: audit.summary.good,
             worst: audit.posts.filter((p) => p.published).slice(0, 3).map((p) => ({ _id: p._id, title: p.title, score: p.score })) };
         const sum = (rows, f) => rows.reduce((n, r) => n + (r[f] || 0), 0);
@@ -88,7 +142,9 @@ export const getStats = async (req, res) => {
             },
             messages: { unread: unreadMessages, total: totalMessages },
             moderation: { answers: pAnswers, salaries: pSalaries, reviews: pReviews, reported: rAnswers + rSalaries + rReviews, employers: pEmployers, jobs: pJobs },
-            content: { questions, roadmaps, liveJobs },
+            content: { questions, roadmaps, liveJobs, draftLessons, draftQuestions },
+            payments: { unmatched: unmatchedPayments },
+            seoFixes: fixTotal,
             seo: seoSummary,
             signupsByDay, topPosts, topProducts, recentUsers,
         });

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
-import { LuPlus, LuInbox, LuSearch, LuFileText, LuCircleCheck, LuTriangleAlert, LuShieldCheck, LuHandshake } from 'react-icons/lu'
+import { LuPlus, LuInbox, LuSearch, LuFileText, LuCircleCheck, LuTriangleAlert, LuShieldCheck, LuHandshake, LuCrown, LuGraduationCap } from 'react-icons/lu'
 
 const Stat = ({ label, value, sub }) => (
   <div className='bg-white rounded-xl border border-slate-200 p-4'>
@@ -49,6 +49,10 @@ const AdminOverview = () => {
     mod.employers > 0 && { to: '/admin/hiring', icon: LuHandshake, text: `${mod.employers} ${mod.employers === 1 ? 'employer' : 'employers'} waiting for approval` },
     mod.jobs > 0 && { to: '/admin/hiring', icon: LuHandshake, text: `${mod.jobs} employer ${mod.jobs === 1 ? 'job' : 'jobs'} waiting for review` },
     stats.messages?.unread > 0 && { to: '/admin/messages', icon: LuInbox, text: `${stats.messages.unread} unread ${stats.messages.unread === 1 ? 'message' : 'messages'}` },
+    stats.payments?.unmatched > 0 && { to: '/admin/plan', icon: LuCrown, text: `${stats.payments.unmatched} ${stats.payments.unmatched === 1 ? 'payment' : 'payments'} received with no matching account` },
+    stats.seoFixes > 0 && { to: '/admin/seo', icon: LuSearch, text: `${stats.seoFixes} SEO ${stats.seoFixes === 1 ? 'fix is' : 'fixes are'} ready to apply` },
+    stats.content?.draftLessons > 0 && { to: '/admin/learn', icon: LuGraduationCap, text: `${stats.content.draftLessons} unpublished course ${stats.content.draftLessons === 1 ? 'lesson' : 'lessons'}` },
+    stats.content?.draftQuestions > 0 && { to: '/admin/community', icon: LuShieldCheck, text: `${stats.content.draftQuestions} unpublished interview ${stats.content.draftQuestions === 1 ? 'question' : 'questions'}` },
     seo.poor > 0 && { to: '/admin/seo', icon: LuSearch, text: `${seo.poor} ${seo.poor === 1 ? 'post has' : 'posts have'} a poor SEO score` },
     stats.blogs.drafts > 0 && { to: '/admin/blogs', icon: LuFileText, text: `${stats.blogs.drafts} unpublished ${stats.blogs.drafts === 1 ? 'draft' : 'drafts'}` },
   ].filter(Boolean)

@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPlus, LuPencil, LuTrash2, LuArrowUp, LuArrowDown, LuExternalLink, LuArrowLeft } from 'react-icons/lu'
 import PublishSwitch from '../../components/admin/PublishSwitch'
+import BulkBar, { useSelection, SelectAll } from '../../components/admin/BulkBar'
 
 const AdminCourseLessons = () => {
   const { id } = useParams()
@@ -16,6 +17,9 @@ const AdminCourseLessons = () => {
   const [dirty, setDirty] = useState(false)
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
+  const sel = useSelection()
+  const [find, setFind] = useState('')
+  const [state, setState] = useState('all')
 
   const load = () => api.get(`/api/admin/learn/courses/${id}/lessons`, auth)
     .then(({ data }) => { setCourse(data.course); setLessons(data.lessons); setDirty(false) })
@@ -57,6 +61,7 @@ const AdminCourseLessons = () => {
   }
 
   if (loading) return <p className='text-slate-400'>Loading…</p>
+  const visible = (l) => (!find || l.title.toLowerCase().includes(find.toLowerCase())) && (state === 'all' || (state === 'published') === l.published)
   const sections = [...new Set(lessons.map((l) => l.section).filter(Boolean))]
 
   return (
@@ -71,12 +76,25 @@ const AdminCourseLessons = () => {
       </div>
       <p className='text-sm text-slate-500 mb-5 max-w-2xl'>Lessons appear in this order, one after another. Use the arrows to reorder and type a chapter name in "Section" to group lessons in the course menu (lessons with the same section name sit together). Click <strong>Save order</strong> when done. Drafts are never shown to visitors.</p>
 
+      {lessons.length > 0 && (
+        <div className='flex flex-wrap items-center gap-2 mb-3'>
+          <label className='flex items-center gap-1.5 text-xs text-slate-500'><SelectAll shownIds={lessons.filter(visible).map((l) => l._id)} sel={sel} /> All shown</label>
+          <input value={find} onChange={(e) => setFind(e.target.value)} placeholder='Search lessons…' aria-label='Search lessons' className='px-3 py-1.5 border border-slate-200 rounded-md text-sm bg-white' />
+          <select value={state} onChange={(e) => setState(e.target.value)} aria-label='Filter by status' className='px-3 py-1.5 border border-slate-200 rounded-md text-sm bg-white'>
+            <option value='all'>All statuses</option><option value='published'>Published</option><option value='draft'>Drafts</option>
+          </select>
+          <span className='text-xs text-slate-400'>{lessons.filter(visible).length} of {lessons.length} shown. Reordering uses the full list, so clear the filters first.</span>
+        </div>
+      )}
+      <BulkBar resource='lessons' sel={sel} auth={auth} actions={['publish', 'unpublish']} noun='lesson' onDone={load} />
+
       {lessons.length === 0 ? (
         <div className='rounded-lg border border-dashed border-slate-200 p-10 text-center text-slate-500 bg-white'>No lessons yet. Add the first one.</div>
       ) : (
         <div className='bg-white rounded-xl border border-slate-200 divide-y divide-slate-100'>
-          {lessons.map((l, i) => (
+          {lessons.map((l, i) => (visible(l) &&
             <div key={l._id} className='flex items-center gap-3 px-4 py-3 flex-wrap'>
+              <input type='checkbox' aria-label={`Select ${l.title}`} checked={sel.has(l._id)} onChange={() => sel.toggle(l._id)} />
               <span className='text-xs text-slate-400 w-6'>{i + 1}.</span>
               <div className='flex flex-col'>
                 <button type='button' onClick={() => move(i, -1)} disabled={i === 0} className='p-0.5 rounded hover:bg-slate-100 disabled:opacity-30' title='Move up'><LuArrowUp className='size-3.5' /></button>

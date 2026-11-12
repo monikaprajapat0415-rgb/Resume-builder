@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link, useLocation } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench } from 'react-icons/lu'
+import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -36,6 +36,7 @@ const groups = [
     { to: '/admin/menus', label: 'Menus', icon: LuMenu },
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },
+    { to: '/admin/activity', label: 'Activity log', icon: LuHistory },
   ] },
 ]
 

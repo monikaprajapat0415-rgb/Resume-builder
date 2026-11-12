@@ -42,7 +42,7 @@ await connectDB();
 // We sit behind nginx (one hop). Without this every visitor looks like 127.0.0.1, so per-IP
 // rate limits would be shared by ALL users. nginx must send X-Forwarded-For.
 app.set('trust proxy', 1);
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '10mb', verify: (req, res, buf) => { if (req.originalUrl.startsWith('/api/plan/webhook')) req.rawBody = buf; } })); // webhook signatures need the exact bytes
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // 1. PLACE THE CODE HERE (Before Routes)
