@@ -9,6 +9,54 @@ const Field = ({ label, hint, children }) => (
   <label className='block'><span className='block text-xs font-medium text-slate-600 mb-1'>{label}</span>{children}{hint && <span className='block text-xs text-slate-400 mt-1'>{hint}</span>}</label>
 )
 
+
+// Automatic switch-on from a payment provider. Separate component so it has its own hooks.
+const WebhookPanel = ({ headers }) => {
+  const [d, setD] = useState(null)
+  const [fix, setFix] = useState({})
+  const load = () => api.get('/api/admin/plan/events', headers).then(({ data }) => setD(data)).catch(() => toast.error('Could not load payment events.'))
+  useEffect(() => { load() // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  const retry = async (ev) => {
+    try { await api.post(`/api/admin/plan/events/${ev._id}/retry`, { email: fix[ev._id] || ev.email }, headers); toast.success('Plan switched on.'); load() }
+    catch (e) { toast.error(e.response?.data?.message || 'Could not match this payment.') }
+  }
+  if (!d) return null
+  return (
+    <div className='mt-6 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600'>
+      <p className='font-medium text-slate-800'>Automatic switch-on (payment webhook)</p>
+      <p className={`mt-1 ${d.secretSet ? 'text-green-700' : 'text-amber-700'}`}>{d.secretSet ? 'Ready: a secret is set on the server.' : 'Not active: set PLAN_WEBHOOK_SECRET in the server environment (a long random string), restart, then paste this address and the same secret into your payment provider.'}</p>
+      <p className='mt-2 text-xs text-slate-500'>Webhook address</p>
+      <code className='block rounded bg-slate-50 px-2 py-1 text-xs break-all'>{d.url}</code>
+      <ul className='list-disc ml-5 mt-2 space-y-1 text-xs text-slate-500'>
+        <li>Every notice must carry a valid signature (HMAC-SHA256 of the body, in the <code>x-signature</code> header). Anything else is refused.</li>
+        <li>The person is matched by the email on the payment, so they must pay with the email they sign in with. A payment with no matching account is kept below for you.</li>
+        <li>The same notice can never grant twice. Days come from the notice; if it has none, the plan's billing period above is used (month 30 days, year 365, one-off lifetime).</li>
+        <li>Two formats are understood: our own simple JSON ({'{'}id, type: "payment.succeeded", email, amount, currency, days{'}'}) and Razorpay's payment.captured (put <code>days</code> in the payment notes). Other providers need an adapter. Until this is tested with your provider's test mode, keep switching people on by hand when a payment does not show up here.</li>
+      </ul>
+      <p className='font-medium text-slate-800 mt-4 mb-1'>Recent payment notices</p>
+      {d.events.length === 0 ? <p className='text-xs text-slate-400'>None yet.</p> : (
+        <div className='divide-y divide-slate-100'>
+          {d.events.map((ev) => (
+            <div key={ev._id} className='py-2 flex flex-wrap items-center gap-2 text-xs'>
+              <span className={`px-2 py-0.5 rounded-full ${ev.status === 'granted' ? 'bg-green-100 text-green-800' : 'bg-amber-100 text-amber-800'}`}>{ev.status}</span>
+              <span className='text-slate-700'>{ev.email || 'no email'}</span>
+              <span className='text-slate-400'>{ev.provider} · {ev.amount} {ev.currency} · {new Date(ev.at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false })}</span>
+              {ev.note && <span className='text-slate-400'>{ev.note}</span>}
+              {ev.status !== 'granted' && (
+                <span className='ml-auto flex items-center gap-1'>
+                  <input aria-label='Email of the account' placeholder='account email' defaultValue={ev.email} onChange={(e) => setFix({ ...fix, [ev._id]: e.target.value })} className='px-2 py-1 border border-slate-200 rounded text-xs' />
+                  <button type='button' onClick={() => retry(ev)} className='px-3 py-1 rounded-full bg-brand-600 text-white'>Switch on</button>
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 const AdminPlan = () => {
   const { token } = useSelector((s) => s.auth)
   const headers = { headers: { Authorization: token } }
@@ -99,6 +147,7 @@ const AdminPlan = () => {
         </ol>
         <p className='mt-2 text-xs text-slate-500'>Switching it on by hand keeps things safe and simple. Automatic switching on payment can be added later once you pick a payment provider.</p>
       </div>
+      <WebhookPanel headers={headers} />
     </div>
   )
 }

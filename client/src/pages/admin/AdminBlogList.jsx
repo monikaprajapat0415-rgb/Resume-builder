@@ -6,6 +6,7 @@ import api from '../../configs/api'
 import { analyzePost } from '../../utils/seoAnalyze'
 import { LuPlus, LuPencil, LuTrash2, LuExternalLink } from 'react-icons/lu'
 import PublishSwitch from '../../components/admin/PublishSwitch'
+import BulkBar, { useSelection, SelectAll } from '../../components/admin/BulkBar'
 
 const AdminBlogList = () => {
   const { token } = useSelector(state => state.auth)
@@ -16,6 +17,7 @@ const AdminBlogList = () => {
   const [q, setQ] = useState('')
   const [status, setStatus] = useState('all')
   const [cat, setCat] = useState('')
+  const sel = useSelection()
 
   const load = async () => {
     try {
@@ -81,7 +83,10 @@ const AdminBlogList = () => {
           <option value=''>All categories</option>
           {categories.map((c) => <option key={c._id} value={c.slug}>{c.name}</option>)}
         </select>
+        <span className='self-center text-xs text-slate-400'>{shown.length} of {posts.length} shown</span>
       </div>
+
+      <BulkBar resource='blogs' sel={sel} auth={{ headers: { Authorization: token } }} noun='post' onDone={load} />
 
       {loading ? (
         <p className='text-slate-400'>Loading…</p>
@@ -94,6 +99,7 @@ const AdminBlogList = () => {
           <table className='w-full text-sm'>
             <thead className='bg-slate-50 text-slate-500 text-left'>
               <tr>
+                <th className='px-4 py-3 w-8'><SelectAll shownIds={shown.map((p) => p._id)} sel={sel} /></th>
                 <th className='px-4 py-3 font-medium'>Title</th>
                 <th className='px-4 py-3 font-medium'>Category</th>
                 <th className='px-4 py-3 font-medium'>Status</th>
@@ -106,6 +112,7 @@ const AdminBlogList = () => {
             <tbody>
               {shown.map((post) => (
                 <tr key={post._id} className='border-t border-slate-100'>
+                  <td className='px-4 py-3'><input type='checkbox' aria-label={`Select ${post.title}`} checked={sel.has(post._id)} onChange={() => sel.toggle(post._id)} /></td>
                   <td className='px-4 py-3 text-slate-800 max-w-sm truncate'>{post.title}</td>
                   <td className='px-4 py-3 text-slate-500 whitespace-nowrap'>{nameOf(post.category)}</td>
                   <td className='px-4 py-3'>

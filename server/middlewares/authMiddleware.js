@@ -36,6 +36,7 @@ export const isAdmin = async (req, res, next) => {
         if (!user || user.role !== 'admin') {
             return res.status(403).json({ message: 'Admin access required' });
         }
+        req.adminUser = user; // used by the admin audit log
         next();
     } catch (error) {
         return res.status(500).json({ message: error.message });

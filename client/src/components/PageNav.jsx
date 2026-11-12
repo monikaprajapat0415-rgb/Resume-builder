@@ -46,13 +46,14 @@ const LABELS = {
   'open-to-work': 'Open to Work',
   admin: 'Admin',
   'site-content': 'Site Content',
+  activity: 'Activity log',
 };
 
 // Real pages, so a crumb only becomes a link when it goes somewhere that exists.
 const LINKABLE = [
   /^\/$/, /^\/contact-us$/, /^\/blog$/, /^\/jobs$/, /^\/roadmaps$/, /^\/hire$/, /^\/learn$/, /^\/learn\/[^/]+$/,
   /^\/features$/, /^\/products$/, /^\/templates$/, /^\/examples$/, /^\/app$/, /^\/admin$/,
-  /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|trust|plan|tools|appearance|users|seo|blogs|learn)$/,
+  /^\/admin\/(community|inbox|roadmaps|products|categories|menus|messages|feedback|jobs|hiring|pages|site-content|trust|plan|tools|appearance|users|seo|blogs|learn|activity)$/,
   /^\/admin\/learn\/[^/]+$/,
 ];
 

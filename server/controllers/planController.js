@@ -1,5 +1,8 @@
 import PlanSettings from "../models/PlanSettings.js";
 import User from "../models/User.js";
+import PlanEvent from "../models/PlanEvent.js";
+import { verifySignature, parseEvent, defaultDays } from "../utils/planWebhook.js";
+import { logAdmin } from "../utils/adminAudit.js";
 
 export const GATES = {
     ai_writing: 'AI writing help (summary and bullet points)',
@@ -99,4 +102,71 @@ export const adminSetUserPlan = async (req, res) => {
         await user.save();
         return res.status(200).json({ planUntil: user.planUntil });
     } catch (e) { return res.status(400).json({ message: e.message }); }
+};
+
+
+// ---------- Payment webhook ----------
+const grantTo = (user, { days, lifetime }) => {
+    if (lifetime) user.planUntil = new Date('2999-12-31');
+    else {
+        const from = user.planUntil && user.planUntil > new Date() ? user.planUntil : new Date();
+        user.planUntil = new Date(from.getTime() + days * 86400000);
+    }
+};
+
+// Finds the user by email and grants the plan. Returns the new event status.
+const settle = async (ev, settings) => {
+    const lifetime = ev.lifetime || (!ev.days && defaultDays(settings.period) === 0);
+    const days = ev.days > 0 ? Math.min(3650, Math.floor(ev.days)) : defaultDays(settings.period);
+    const user = ev.email ? await User.findOne({ email: ev.email }) : null;
+    if (!user) return { status: 'unmatched', note: ev.email ? 'No account with this email yet.' : 'The notice has no email.' };
+    grantTo(user, { days, lifetime });
+    await user.save();
+    return { status: 'granted', userId: String(user._id), days: lifetime ? 0 : days, lifetime, note: lifetime ? 'Lifetime access' : `${days} days` };
+};
+
+export const webhookStatus = () => ({ secretSet: Boolean(process.env.PLAN_WEBHOOK_SECRET) });
+
+// POST /api/plan/webhook - public, signed. The signature is checked on the raw bytes first.
+// A payment provider needs a 2xx to stop retrying, so anything we cannot act on (wrong event
+// type, unknown email) is stored and answered 200; only a bad signature is refused.
+export const planWebhook = async (req, res) => {
+    try {
+        const secret = process.env.PLAN_WEBHOOK_SECRET;
+        if (!secret) return res.status(503).json({ message: 'Webhook is not configured.' });
+        if (!verifySignature(req.rawBody, req.get('x-signature') || req.get('x-razorpay-signature'), secret)) return res.status(401).json({ message: 'Bad signature.' });
+        const ev = parseEvent(req.body);
+        if (!ev) return res.status(200).json({ ok: true, ignored: true });
+        if (await PlanEvent.findOne({ eventId: ev.eventId }).lean()) return res.status(200).json({ ok: true, duplicate: true });
+        const settings = await getPlanSettings();
+        const r = await settle(ev, settings);
+        try {
+            await PlanEvent.create({ eventId: ev.eventId, provider: ev.provider, email: ev.email, amount: ev.amount, currency: ev.currency, days: r.days || 0, lifetime: Boolean(r.lifetime), status: r.status, userId: r.userId || '', note: r.note });
+        } catch (e) { if (e.code === 11000) return res.status(200).json({ ok: true, duplicate: true }); throw e; } // two copies arrived together
+        await logAdmin({ admin: null, action: r.status === 'granted' ? 'Payment webhook granted the plan' : 'Payment webhook: no matching account', path: '/api/plan/webhook', meta: { email: ev.email, provider: ev.provider, note: r.note } });
+        return res.status(200).json({ ok: true, status: r.status });
+    } catch (e) { return res.status(500).json({ message: 'Could not process.' }); }
+};
+
+// GET /api/admin/plan/events
+export const adminPlanEvents = async (req, res) => {
+    try {
+        const events = await PlanEvent.find({}).sort({ at: -1 }).limit(50).lean();
+        return res.status(200).json({ events, ...webhookStatus(), url: `${req.protocol}://${req.get('host')}/api/plan/webhook` });
+    } catch (e) { return res.status(500).json({ message: e.message }); }
+};
+
+// POST /api/admin/plan/events/:id/retry - for a payment whose email had no account at the time
+export const adminRetryPlanEvent = async (req, res) => {
+    try {
+        const ev = await PlanEvent.findById(req.params.id);
+        if (!ev) return res.status(404).json({ message: 'Not found' });
+        if (ev.status === 'granted') return res.status(409).json({ message: 'Already granted.' });
+        const email = String(req.body?.email || ev.email).trim().toLowerCase();
+        const r = await settle({ email, days: ev.days, lifetime: ev.lifetime }, await getPlanSettings());
+        if (r.status !== 'granted') return res.status(404).json({ message: r.note });
+        Object.assign(ev, { status: 'granted', email, userId: r.userId, days: r.days, lifetime: r.lifetime, note: `${r.note} (matched by admin)` });
+        await ev.save();
+        return res.status(200).json({ event: ev });
+    } catch (e) { return res.status(500).json({ message: e.message }); }
 };

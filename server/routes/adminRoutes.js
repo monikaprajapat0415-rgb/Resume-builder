@@ -1,3 +1,6 @@
+import { auditAdmin } from '../utils/adminAudit.js';
+import { bulkAction } from '../controllers/bulkController.js';
+import { getActivity } from '../controllers/activityController.js';
 import { getVisits } from '../controllers/visitController.js';
 import express from 'express';
 import multer from 'multer';
@@ -41,12 +44,15 @@ const receiveZip = (req, res, next) => zipUpload.single('file')(req, res, (err) 
 
 // Every route below requires a logged-in admin.
 adminRouter.use(protect, isAdmin);
+adminRouter.use(auditAdmin); // records every change an admin makes (Admin > Activity log)
 
 // AI providers: live state of the fallback chain, and a one-click test of every key/model.
 adminRouter.get('/ai-status', (req, res) => res.json({ providers: defaultRouter().status() }));
 adminRouter.post('/ai-status/test', async (req, res) => res.json({ results: await defaultRouter().probe() }));
 
 adminRouter.get('/stats', getStats)
+adminRouter.get('/activity', getActivity);
+adminRouter.post('/bulk', bulkAction);
 adminRouter.get('/visits', getVisits);
 adminRouter.get('/seo-audit', getSeoAudit);
 adminRouter.post('/seo-audit/apply', applySeoFixes);
@@ -151,12 +157,14 @@ adminRouter.post('/trust', adminCreateTrust);
 adminRouter.put('/trust/:id', adminUpdateTrust);
 adminRouter.delete('/trust/:id', adminDeleteTrust);
 
-import { adminGetPlan, adminSavePlan, adminSetUserPlan } from '../controllers/planController.js';
+import { adminGetPlan, adminSavePlan, adminSetUserPlan, adminPlanEvents, adminRetryPlanEvent } from '../controllers/planController.js';
 import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
 adminRouter.get('/tools', adminGetTools);
 adminRouter.put('/tools', adminSaveTools);
 adminRouter.get('/plan', adminGetPlan);
 adminRouter.put('/plan', adminSavePlan);
+adminRouter.get('/plan/events', adminPlanEvents);
+adminRouter.post('/plan/events/:id/retry', adminRetryPlanEvent);
 adminRouter.post('/users/:id/plan', adminSetUserPlan);
 adminRouter.get('/users', getUsers);
 adminRouter.patch('/users/:id/role', setUserRole);

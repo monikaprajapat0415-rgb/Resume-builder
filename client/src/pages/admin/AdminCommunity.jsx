@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuCheck, LuX, LuTrash2, LuPencil, LuPlus, LuFlag } from 'react-icons/lu'
 import PublishSwitch from '../../components/admin/PublishSwitch'
+import BulkBar, { useSelection, SelectAll } from '../../components/admin/BulkBar'
 
 const input = 'w-full px-3 py-2 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300'
 const TABS = [['answers', 'Answers'], ['salaries', 'Salary reports'], ['reviews', 'Company reviews'], ['questions', 'Interview questions']]
@@ -83,8 +84,14 @@ const EMPTY = { question: '', category: 'General', level: 'both', modelAnswer: '
 const Questions = ({ auth }) => {
   const [rows, setRows] = useState(null)
   const [form, setForm] = useState(null)   // null = list, object = editor
+  const sel = useSelection()
+  const [find, setFind] = useState('')
+  const [cat, setCat] = useState('')
+  const [state, setState] = useState('all')
   const load = () => api.get('/api/admin/community/questions', auth).then(({ data }) => setRows(data.questions)).catch((e) => toast.error(e.response?.data?.message || 'Could not load.'))
   useEffect(() => { load() }, [])
+  const cats = [...new Set((rows || []).map((q) => q.category).filter(Boolean))].sort()
+  const shown = (rows || []).filter((q) => (!find || q.question.toLowerCase().includes(find.toLowerCase())) && (!cat || q.category === cat) && (state === 'all' || (state === 'published') === q.published))
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.type === 'checkbox' ? e.target.checked : e.target.value })
   const open = (q) => setForm(q ? { ...q, tips: (q.tips || []).join('\n'), tags: (q.tags || []).join(', ') } : { ...EMPTY })
   const save = async (e) => {
@@ -129,10 +136,23 @@ const Questions = ({ auth }) => {
   return (
     <div>
       <button onClick={() => open(null)} className='inline-flex items-center gap-2 px-4 py-2 bg-brand-600 text-white rounded-full text-sm mb-4'><LuPlus className='size-4' />New question</button>
-      {rows === null ? <p className='text-slate-400'>Loading…</p> : (
+            {rows === null ? <p className='text-slate-400'>Loading…</p> : (<>
+        <div className='flex flex-wrap items-center gap-2 mb-3'>
+          <label className='flex items-center gap-1.5 text-xs text-slate-500'><SelectAll shownIds={shown.map((q) => q._id)} sel={sel} /> All shown</label>
+          <input value={find} onChange={(e) => setFind(e.target.value)} placeholder='Search questions…' aria-label='Search questions' className='px-3 py-1.5 border border-slate-200 rounded-md text-sm bg-white' />
+          <select value={cat} onChange={(e) => setCat(e.target.value)} aria-label='Filter by category' className='px-3 py-1.5 border border-slate-200 rounded-md text-sm bg-white max-w-[14rem]'>
+            <option value=''>All categories</option>{cats.map((c) => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <select value={state} onChange={(e) => setState(e.target.value)} aria-label='Filter by status' className='px-3 py-1.5 border border-slate-200 rounded-md text-sm bg-white'>
+            <option value='all'>All statuses</option><option value='published'>Published</option><option value='draft'>Drafts</option>
+          </select>
+          <span className='text-xs text-slate-400'>{shown.length} of {rows.length} shown</span>
+        </div>
+        <BulkBar resource='questions' sel={sel} auth={auth} noun='question' onDone={load} />
         <div className='divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
-          {rows.map((q) => (
+          {shown.map((q) => (
             <div key={q._id} className='flex items-center gap-3 px-4 py-3'>
+              <input type='checkbox' aria-label={`Select ${q.question}`} checked={sel.has(q._id)} onChange={() => sel.toggle(q._id)} />
               <div className='min-w-0 flex-1'><p className='text-sm text-slate-800 truncate'>{q.question}</p><p className='text-xs text-slate-400'>{q.category} · {q.level} · {q.answerCount} answers · {q.views} views</p></div>
               <PublishSwitch on={q.published} name={q.question} onChange={(v) => setPublished(q, v)} />
               <button onClick={() => open(q)} className='p-2 hover:bg-slate-100 rounded-md' title='Edit'><LuPencil className='size-4 text-slate-600' /></button>
@@ -140,7 +160,7 @@ const Questions = ({ auth }) => {
             </div>
           ))}
         </div>
-      )}
+      </>)}
     </div>
   )
 }

@@ -9,6 +9,8 @@ import InterviewAnswer from "../models/InterviewAnswer.js";
 import SalaryReport from "../models/SalaryReport.js";
 import CompanyReview from "../models/CompanyReview.js";
 import InterviewQuestion from "../models/InterviewQuestion.js";
+import Lesson from "../models/Lesson.js";
+import PlanEvent from "../models/PlanEvent.js";
 import Roadmap from "../models/Roadmap.js";
 import Employer from "../models/Employer.js";
 import Job from "../models/Job.js";
@@ -92,7 +94,7 @@ export const getStats = async (req, res) => {
         const [
             totalUsers, verifiedUsers, adminUsers, newUsers7d, recentSignups, totalResumes,
             blogs, products, topPosts, topProducts, recentUsers, unreadMessages, totalMessages,
-            pAnswers, pSalaries, pReviews, rAnswers, rSalaries, rReviews, pEmployers, pJobs, questions, roadmaps, liveJobs,
+            pAnswers, pSalaries, pReviews, rAnswers, rSalaries, rReviews, pEmployers, pJobs, questions, roadmaps, liveJobs, draftLessons, draftQuestions, unmatchedPayments,
         ] = await Promise.all([
             User.countDocuments({}),
             User.countDocuments({ isVerified: true }),
@@ -111,6 +113,7 @@ export const getStats = async (req, res) => {
             InterviewAnswer.countDocuments({ 'reports.0': { $exists: true } }), SalaryReport.countDocuments({ 'reports.0': { $exists: true } }), CompanyReview.countDocuments({ 'reports.0': { $exists: true } }),
             Employer.countDocuments({ status: 'pending' }), Job.countDocuments({ sourceType: 'employer', reviewStatus: 'pending' }),
             InterviewQuestion.countDocuments({ published: true }), Roadmap.countDocuments({ published: true }), Job.countDocuments({ active: true }),
+            Lesson.countDocuments({ published: false }), InterviewQuestion.countDocuments({ published: false }), PlanEvent.countDocuments({ status: 'unmatched' }),
         ]);
 
         // 14 day buckets ending today, so days with no sign-ups still show as empty bars.
@@ -123,7 +126,9 @@ export const getStats = async (req, res) => {
             signupsByDay.push({ date: d, count: counts[d] || 0 });
         }
 
-        const audit = auditBlogs(await Blog.find({}).lean());
+        const allPosts = await Blog.find({}).lean();
+        const audit = auditBlogs(allPosts);
+        const fixTotal = fixSummary(allPosts).total;
         const seoSummary = { avgScore: audit.summary.avgScore, poor: audit.summary.poor, fair: audit.summary.fair, good: audit.summary.good,
             worst: audit.posts.filter((p) => p.published).slice(0, 3).map((p) => ({ _id: p._id, title: p.title, score: p.score })) };
         const sum = (rows, f) => rows.reduce((n, r) => n + (r[f] || 0), 0);
@@ -137,7 +142,9 @@ export const getStats = async (req, res) => {
             },
             messages: { unread: unreadMessages, total: totalMessages },
             moderation: { answers: pAnswers, salaries: pSalaries, reviews: pReviews, reported: rAnswers + rSalaries + rReviews, employers: pEmployers, jobs: pJobs },
-            content: { questions, roadmaps, liveJobs },
+            content: { questions, roadmaps, liveJobs, draftLessons, draftQuestions },
+            payments: { unmatched: unmatchedPayments },
+            seoFixes: fixTotal,
             seo: seoSummary,
             signupsByDay, topPosts, topProducts, recentUsers,
         });
