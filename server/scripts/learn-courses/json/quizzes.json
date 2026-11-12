@@ -1345,6 +1345,520 @@
    }
   ]
  },
+ "devops-cloud-engineering-course": {
+  "what-is-devops-and-why-companies-use-it": [
+   {
+    "q": "Which best describes DevOps?",
+    "options": [
+     "A set of practices and tools that help people build, test, release and run software together in small safe steps",
+     "A job title that only operations staff hold",
+     "A single tool that deploys websites"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "In the DevOps lifecycle, what happens after Monitor?",
+    "options": [
+     "What you learn feeds back into the next Plan",
+     "The project ends",
+     "The code is deleted"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a blameless review ask?",
+    "options": [
+     "Which person should be punished",
+     "Whether the team should be smaller",
+     "What in the system allowed the mistake"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "ci-cd-devsecops-gitops-and-sre-explained": [
+   {
+    "q": "What is the difference between continuous delivery and continuous deployment?",
+    "options": [
+     "Delivery means testing only and deployment means coding only",
+     "There is no difference",
+     "Delivery leaves the final release to a person; deployment sends passing changes live automatically"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does shift left mean in DevSecOps?",
+    "options": [
+     "Writing code from the left side of the screen",
+     "Moving servers to another country",
+     "Moving security checks earlier in the process"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "In GitOps, how do you change production?",
+    "options": [
+     "Log in to a server and edit files by hand",
+     "Open a pull request, get it reviewed and merge it, and a tool applies it",
+     "Email the operations team"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "devops-tools-architecture-and-engineer-roles": [
+   {
+    "q": "Which tool group is Terraform part of?",
+    "options": [
+     "Monitoring",
+     "Infrastructure as Code",
+     "Version control"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the best project for learning DevOps across the whole course?",
+    "options": [
+     "One real application improved step by step: Git, pipeline, container, cloud, Terraform, monitoring",
+     "Reading tool names only",
+     "Ten unrelated tutorials"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is it fine to learn one CI tool first?",
+    "options": [
+     "The ideas such as triggers, jobs, steps and secrets carry over to other CI tools",
+     "Employers only use one CI tool",
+     "All CI tools are identical in every detail"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "linux-basics-distributions-terminal-and-commands": [
+   {
+    "q": "What is the kernel?",
+    "options": [
+     "The core part of the system that talks to hardware, memory and processes",
+     "A text editor",
+     "A web browser"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which command follows new lines added to a log file?",
+    "options": [
+     "head -n 1",
+     "mkdir",
+     "tail -f"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where do configuration files normally live on Linux?",
+    "options": [
+     "/home/logs",
+     "/etc",
+     "/tmp"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "linux-permissions-users-and-groups": [
+   {
+    "q": "What does a permission of 644 mean?",
+    "options": [
+     "Owner can read and write; group and others can only read",
+     "Only the owner can read",
+     "Everyone can do everything"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why is chmod 777 a poor fix for Permission denied?",
+    "options": [
+     "It gives everyone full control instead of fixing who needs which right",
+     "It only works on folders",
+     "It deletes the file"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why use usermod -aG instead of usermod -G to add a group?",
+    "options": [
+     "It deletes the user’s files",
+     "The -a keeps the user’s other groups",
+     "It makes the user an administrator"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "linux-processes-packages-disks-memory-and-monitoring": [
+   {
+    "q": "Which command shows how full each disk is?",
+    "options": [
+     "ps aux",
+     "kill -9",
+     "df -h"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which column of free -m is the better number to watch?",
+    "options": [
+     "shared",
+     "available",
+     "free"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a script exit code other than 0 tell tools such as a pipeline?",
+    "options": [
+     "The script succeeded",
+     "Something went wrong",
+     "The disk is empty"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "linux-services-systemd-ssh-cron-and-logs": [
+   {
+    "q": "What is the difference between systemctl start and systemctl enable?",
+    "options": [
+     "Start installs it and enable removes it",
+     "They are the same",
+     "Start runs the service now; enable makes it start at every boot"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which cron schedule runs a job every five minutes?",
+    "options": [
+     "5 * * * *",
+     "0 5 * * *",
+     "*/5 * * * *"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which SSH key must never be shared?",
+    "options": [
+     "The private key",
+     "Neither can be shared",
+     "The public key"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "bash-scripting-for-devops": [
+   {
+    "q": "What does set -e do in a Bash script?",
+    "options": [
+     "Prints every command",
+     "Stops the script when a command fails",
+     "Deletes temporary files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why should you quote variables, as in \"$NAME\"?",
+    "options": [
+     "So file names with spaces do not break the script",
+     "To make the script faster",
+     "Quotes are required for numbers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why check that a backup can be restored?",
+    "options": [
+     "Restoring deletes the backup",
+     "A backup that has never been restored is only a hope",
+     "It makes the file smaller"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "networking-basics-osi-tcp-ip-and-ip-addresses": [
+   {
+    "q": "Which OSI layer do routers work at?",
+    "options": [
+     "Network (layer 3)",
+     "Application (layer 7)",
+     "Physical (layer 1)"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which address range is private?",
+    "options": [
+     "8.8.8.0 to 8.8.8.255",
+     "192.168.0.0 to 192.168.255.255",
+     "Any address that starts with 203"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A browser shows a certificate warning. Which step of opening a page failed?",
+    "options": [
+     "The TLS step",
+     "The DNS step",
+     "The user typed too fast"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "subnetting-and-cidr-made-simple": [
+   {
+    "q": "How many addresses does a /24 network have?",
+    "options": [
+     "24",
+     "256",
+     "65,536"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "A /24 is split into four equal subnets. What size is each?",
+    "options": [
+     "/25",
+     "/28",
+     "/26"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why are usable hosts two fewer than the total in a normal network?",
+    "options": [
+     "The router uses two",
+     "The first is the network address and the last is the broadcast address",
+     "Two are always broken"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "dns-dhcp-http-tcp-udp-and-ports": [
+   {
+    "q": "What does a 502 status code usually point to?",
+    "options": [
+     "A problem behind the proxy or load balancer",
+     "The page was not found",
+     "The user is not logged in"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why can a DNS change take time to be seen everywhere?",
+    "options": [
+     "Old answers stay cached until the TTL runs out",
+     "DNS only updates on Sundays",
+     "Browsers do not use DNS"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which port is HTTPS by default?",
+    "options": [
+     "22",
+     "443",
+     "3306"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "firewalls-nat-vpn-load-balancers-tls-and-troubleshooting": [
+   {
+    "q": "What is the safest default firewall approach?",
+    "options": [
+     "Turn the firewall off",
+     "Block everything and open only what is needed",
+     "Open everything and block what is dangerous"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does NAT let many private machines do?",
+    "options": [
+     "Share one public address to reach the internet",
+     "Avoid using ports",
+     "Skip DNS"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "In which order should you troubleshoot a connection problem?",
+    "options": [
+     "Application logs first, then guess",
+     "Reboot everything first",
+     "Name, reachability, port, listening service, firewalls, application"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "git-workflows-for-devops-teams": [
+   {
+    "q": "Which command safely undoes a commit that is already shared?",
+    "options": [
+     "git reset --hard",
+     "git stash",
+     "git revert"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is the golden rule of rebase?",
+    "options": [
+     "Rebase only on Fridays",
+     "Always rebase main",
+     "Never rebase commits that others have already pulled"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a Git tag commonly used for?",
+    "options": [
+     "Marking a release such as v1.4.0",
+     "Storing passwords",
+     "Deleting a branch"
+    ],
+    "answer": 0,
+    "explain": ""
+   }
+  ],
+  "github-actions-ci-pipeline-for-beginners": [
+   {
+    "q": "Where are GitHub Actions workflow files stored?",
+    "options": [
+     "/etc/workflows/",
+     ".github/workflows/",
+     "src/actions/"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why use npm ci in a pipeline?",
+    "options": [
+     "It skips installing packages",
+     "It is the only way to run tests",
+     "It installs exactly what the lock file says, so builds are repeatable"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you make a pipeline check a real gate for merging?",
+    "options": [
+     "Rename the workflow",
+     "Remove the tests",
+     "Add a branch protection rule that requires the check to pass"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ],
+  "cloud-computing-fundamentals-iaas-paas-saas": [
+   {
+    "q": "Which model gives you virtual machines that you manage from the operating system up?",
+    "options": [
+     "IaaS",
+     "SaaS",
+     "PaaS"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is hybrid cloud?",
+    "options": [
+     "A mix of private systems and public cloud, joined together",
+     "A cloud with no servers",
+     "Using only two public providers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How is a container different from a virtual machine?",
+    "options": [
+     "Containers are always slower",
+     "Containers share the host kernel; a VM has its own operating system",
+     "A VM shares the host kernel"
+    ],
+    "answer": 1,
+    "explain": ""
+   }
+  ],
+  "cloud-reliability-regions-pricing-and-shared-responsibility": [
+   {
+    "q": "What is an availability zone?",
+    "options": [
+     "A type of virtual machine",
+     "One or more separate data centres inside a region",
+     "A country"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does RPO mean?",
+    "options": [
+     "How long you can be down",
+     "How many regions you use",
+     "How much data you can afford to lose, measured as time"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Who is responsible for making sure your storage bucket is not public?",
+    "options": [
+     "Only the provider",
+     "Nobody",
+     "You, the customer"
+    ],
+    "answer": 2,
+    "explain": ""
+   }
+  ]
+ },
  "workplace-english-course": {
   "workplace-english-tone-and-politeness": [
    {

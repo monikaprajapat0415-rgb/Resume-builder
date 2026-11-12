@@ -1,0 +1,4 @@
+644  -rw-r--r--  notes.txt
+755  -rwxr-xr-x  run.sh
+600  -rw-------  secret.key
+770  drwxrwx---  shared

@@ -1,0 +1,8 @@
+2026-03-01 10:00:01 INFO  api  GET /health 200
+2026-03-01 10:00:05 INFO  api  GET /jobs 200
+2026-03-01 10:00:09 ERROR api  GET /jobs/99 500 database timeout
+2026-03-01 10:01:13 WARN  api  GET /jobs 200 slow response 1800ms
+2026-03-01 10:02:44 ERROR worker  email failed: connection refused
+2026-03-01 10:03:02 INFO  api  POST /login 200
+2026-03-01 10:03:30 ERROR api  GET /jobs/12 500 database timeout
+2026-03-01 10:04:00 INFO  api  GET /health 200

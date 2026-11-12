@@ -1,0 +1,12 @@
+Network:      192.168.1.0/26
+Netmask:      255.255.255.192
+Broadcast:    192.168.1.63
+Addresses:    64
+Usable hosts: 62  (192.168.1.1 to 192.168.1.62)
+Private:      True
+
+Split into /28 subnets:
+  192.168.1.0/28
+  192.168.1.16/28
+  192.168.1.32/28
+  192.168.1.48/28
