@@ -1376,6 +1376,76 @@
     ],
     "answer": 2,
     "explain": ""
+   },
+   {
+    "q": "Why was DevOps introduced?",
+    "options": [
+     "Separate development and operations teams slowed releases and blamed each other",
+     "Computers became too fast",
+     "Programming languages were banned"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a DevOps engineer mainly do?",
+    "options": [
+     "Builds and improves the path from code to a running, monitored service",
+     "Only writes marketing text",
+     "Only repairs office printers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which is a DevOps principle?",
+    "options": [
+     "Release once a year",
+     "Automate repeatable work",
+     "Keep problems secret"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the benefit of small, frequent releases?",
+    "options": [
+     "They need no testing",
+     "They hide bugs",
+     "Each change is easier to test and to roll back"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do Agile and DevOps relate?",
+    "options": [
+     "They are the same word",
+     "Agile focuses on how teams plan and build; DevOps extends the flow to release and running",
+     "DevOps replaces coding"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a feedback loop?",
+    "options": [
+     "A broken network cable",
+     "Information from running software flowing back into planning",
+     "A type of database"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which shows a DevOps culture?",
+    "options": [
+     "Ops owns everything alone",
+     "Nobody owns failures",
+     "Dev and ops share responsibility for the service"
+    ],
+    "answer": 2,
+    "explain": ""
    }
   ],
   "ci-cd-devsecops-gitops-and-sre-explained": [
@@ -1407,6 +1477,76 @@
      "Email the operations team"
     ],
     "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does continuous integration do?",
+    "options": [
+     "Deploys without any tests",
+     "Merges changes often and runs automatic checks on each one",
+     "Deletes old branches"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is the main idea of SRE?",
+    "options": [
+     "Remove all monitoring",
+     "Never release changes",
+     "Treat operations as a software problem with measurable reliability targets"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does an SLO describe?",
+    "options": [
+     "A server password",
+     "A type of firewall",
+     "A target level of service, such as 99.9 percent of requests succeed"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is an error budget?",
+    "options": [
+     "The amount of unreliability allowed before you slow releases",
+     "A list of typos",
+     "Money paid to cloud providers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why keep desired state in Git for GitOps?",
+    "options": [
+     "Changes are reviewed, versioned and can be rolled back",
+     "It makes files smaller",
+     "Git runs the servers"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which is a DevSecOps check?",
+    "options": [
+     "Scanning dependencies for known vulnerabilities in the pipeline",
+     "Disabling logins",
+     "Sharing passwords in chat"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What stops a bad change from reaching users in CI/CD?",
+    "options": [
+     "Failing automated tests blocking the pipeline",
+     "More meetings",
+     "A faster computer"
+    ],
+    "answer": 0,
     "explain": ""
    }
   ],
@@ -1440,6 +1580,76 @@
     ],
     "answer": 0,
     "explain": ""
+   },
+   {
+    "q": "Which tool type is Prometheus?",
+    "options": [
+     "Code editor",
+     "Version control",
+     "Monitoring"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which tool type is Docker?",
+    "options": [
+     "Spreadsheets",
+     "Email",
+     "Containers"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does a typical pipeline start from?",
+    "options": [
+     "A change pushed to a Git repository",
+     "A phone call",
+     "A printed document"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is the difference between a DevOps and an SRE role?",
+    "options": [
+     "They are unrelated to software",
+     "They overlap; SRE leans on reliability targets and incident work",
+     "SREs never write code"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which skill is most useful across all DevOps tools?",
+    "options": [
+     "Memorising logos",
+     "Understanding Linux and networking",
+     "Typing very fast"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why draw an architecture diagram?",
+    "options": [
+     "It speeds up the CPU",
+     "It shows how parts connect so teams can discuss and spot risks",
+     "It replaces testing"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which is Infrastructure as Code?",
+    "options": [
+     "Writing paper plans",
+     "Buying hardware in a shop",
+     "Describing servers and networks in files that tools apply"
+    ],
+    "answer": 2,
+    "explain": ""
    }
   ],
   "linux-basics-distributions-terminal-and-commands": [
@@ -1472,6 +1682,76 @@
     ],
     "answer": 1,
     "explain": ""
+   },
+   {
+    "q": "Which command shows your current directory?",
+    "options": [
+     "pwd",
+     "echo",
+     "cat"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does ls -l show?",
+    "options": [
+     "Only folder names",
+     "A long list with permissions, owner, size and date",
+     "Running processes"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a Linux distribution?",
+    "options": [
+     "A type of keyboard",
+     "A packaged system: kernel plus tools, such as Ubuntu",
+     "A cloud region"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which command searches inside files for text?",
+    "options": [
+     "grep",
+     "mkdir",
+     "touch"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does cd .. do?",
+    "options": [
+     "Moves up one directory",
+     "Shows the date",
+     "Deletes the folder"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the pipe symbol | do?",
+    "options": [
+     "Sends the output of one command into another",
+     "Closes the terminal",
+     "Copies files"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which command prints a file’s contents?",
+    "options": [
+     "cat",
+     "cd",
+     "chmod"
+    ],
+    "answer": 0,
+    "explain": ""
    }
   ],
   "linux-permissions-users-and-groups": [
@@ -1501,6 +1781,76 @@
      "It deletes the user’s files",
      "The -a keeps the user’s other groups",
      "It makes the user an administrator"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What do the three permission groups stand for?",
+    "options": [
+     "Owner, group and others",
+     "Root, admin and guest",
+     "Read, write and run"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does chmod +x script.sh do?",
+    "options": [
+     "Renames it",
+     "Makes the file executable",
+     "Deletes the file"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is sudo for?",
+    "options": [
+     "Opening a browser",
+     "Running a command with administrator rights",
+     "Listing files"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does chown do?",
+    "options": [
+     "Changes the owner of a file",
+     "Moves the file",
+     "Changes the file size"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which command shows which groups you belong to?",
+    "options": [
+     "ls",
+     "groups",
+     "df"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does permission 755 on a script mean?",
+    "options": [
+     "Owner full access; others read and run",
+     "Nobody can run it",
+     "Everyone can write"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why avoid working as root all the time?",
+    "options": [
+     "Root is slower",
+     "A mistake can damage the whole system",
+     "Root cannot use the network"
     ],
     "answer": 1,
     "explain": ""
@@ -1536,6 +1886,76 @@
     ],
     "answer": 1,
     "explain": ""
+   },
+   {
+    "q": "Which command lists running processes?",
+    "options": [
+     "df -h",
+     "apt update",
+     "ps aux"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which command installs a package on Ubuntu?",
+    "options": [
+     "sudo yum erase",
+     "git clone",
+     "sudo apt install"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does free -h show?",
+    "options": [
+     "Memory use",
+     "Network speed",
+     "Disk use"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does kill without -9 do?",
+    "options": [
+     "Reboots the machine",
+     "Deletes the program",
+     "Asks a process to stop politely"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does apt update do?",
+    "options": [
+     "Refreshes the package list",
+     "Upgrades every package at once",
+     "Removes old files"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does top show?",
+    "options": [
+     "A file tree",
+     "The git log",
+     "Live process and resource use"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "A disk shows 100 percent used. What is a safe first step?",
+    "options": [
+     "Reboot and hope",
+     "Find what is using the space with du, then clean what is safe",
+     "Delete the system folder"
+    ],
+    "answer": 1,
+    "explain": ""
    }
   ],
   "linux-services-systemd-ssh-cron-and-logs": [
@@ -1565,6 +1985,76 @@
      "The private key",
      "Neither can be shared",
      "The public key"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which command checks a service?",
+    "options": [
+     "systemctl status nginx",
+     "ls nginx",
+     "cd nginx"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does systemctl enable do?",
+    "options": [
+     "Deletes it",
+     "Starts it once only",
+     "Starts the service at boot"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where do most system logs live?",
+    "options": [
+     "/home",
+     "/bin",
+     "/var/log"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a more secure way to use SSH?",
+    "options": [
+     "Key-based login with password login off",
+     "Using port 22 only",
+     "Sharing one password"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does the cron line 0 2 * * * mean?",
+    "options": [
+     "Run once a year",
+     "Run every day at 02:00",
+     "Run every 2 minutes"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which command reads recent systemd logs of a service?",
+    "options": [
+     "journalctl -u name",
+     "cat /bin/name",
+     "grep -r name"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why should cron jobs write to a log?",
+    "options": [
+     "So you can see whether they ran and what failed",
+     "To make them faster",
+     "Cron needs it to start"
     ],
     "answer": 0,
     "explain": ""
@@ -1600,6 +2090,76 @@
     ],
     "answer": 1,
     "explain": ""
+   },
+   {
+    "q": "What does the first line #!/bin/bash do?",
+    "options": [
+     "Installs bash",
+     "Comments out the script",
+     "Tells the system to run the script with bash"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does set -e do?",
+    "options": [
+     "Stops the script when a command fails",
+     "Prints every variable",
+     "Makes it faster"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "How do you read the first argument?",
+    "options": [
+     "$$",
+     "$#",
+     "$1"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does $? hold?",
+    "options": [
+     "The current user",
+     "The script name",
+     "The exit status of the last command"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why quote variables such as \"$name\"?",
+    "options": [
+     "To make text blue",
+     "It is required for numbers",
+     "To handle spaces and empty values safely"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What exit code means success?",
+    "options": [
+     "0",
+     "255",
+     "1"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does a for loop do?",
+    "options": [
+     "Repeats commands for each item",
+     "Stops the script",
+     "Defines a variable"
+    ],
+    "answer": 0,
+    "explain": ""
    }
   ],
   "networking-basics-osi-tcp-ip-and-ip-addresses": [
@@ -1631,6 +2191,76 @@
      "The user typed too fast"
     ],
     "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which layer do routers use to forward packets?",
+    "options": [
+     "Application layer",
+     "Network layer, with IP addresses",
+     "Physical layer only"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which is a private address?",
+    "options": [
+     "203.0.113.5",
+     "192.168.1.20",
+     "8.8.8.8"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a MAC address?",
+    "options": [
+     "The hardware address of a network card",
+     "A password",
+     "A web address"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is the default gateway?",
+    "options": [
+     "The DNS name of a server",
+     "A firewall rule",
+     "The router a device uses to reach other networks"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Connection refused usually means what?",
+    "options": [
+     "DNS is down",
+     "The machine answered but nothing listens on that port",
+     "The cable is cut"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which command shows your IP addresses on Ubuntu?",
+    "options": [
+     "ip addr",
+     "df -h",
+     "chmod"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "IPv6 addresses are how long?",
+    "options": [
+     "32 bits",
+     "8 bits",
+     "128 bits"
+    ],
+    "answer": 2,
     "explain": ""
    }
   ],
@@ -1664,6 +2294,76 @@
     ],
     "answer": 1,
     "explain": ""
+   },
+   {
+    "q": "How many addresses are in a /24?",
+    "options": [
+     "1024",
+     "256",
+     "24"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "How many usable host addresses in a /26 in a normal network?",
+    "options": [
+     "62",
+     "64",
+     "60 less"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is the netmask for /16?",
+    "options": [
+     "255.255.255.0",
+     "255.0.0.0",
+     "255.255.0.0"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why avoid overlapping ranges between networks?",
+    "options": [
+     "They cannot be connected cleanly",
+     "They cost more",
+     "They slow the CPU"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Which address is inside 10.0.1.0/24?",
+    "options": [
+     "10.1.1.77",
+     "10.0.1.77",
+     "10.0.2.77"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does CIDR notation look like?",
+    "options": [
+     "10.0.0.0:16",
+     "10/0/0/0",
+     "10.0.0.0/16"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which is a private range?",
+    "options": [
+     "172.16.0.0/12",
+     "100.0.0.0/4",
+     "1.0.0.0/8"
+    ],
+    "answer": 0,
+    "explain": ""
    }
   ],
   "dns-dhcp-http-tcp-udp-and-ports": [
@@ -1695,6 +2395,76 @@
      "3306"
     ],
     "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does an A record hold?",
+    "options": [
+     "An IPv4 address for a name",
+     "A file path",
+     "A mail password"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does HTTP status 404 mean?",
+    "options": [
+     "Server crashed",
+     "Not found",
+     "Success"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which port does HTTPS use by default?",
+    "options": [
+     "80",
+     "22",
+     "443"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which protocol is reliable and ordered?",
+    "options": [
+     "TCP",
+     "UDP",
+     "ICMP only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does DHCP do?",
+    "options": [
+     "Encrypts web traffic",
+     "Hands out IP addresses and settings automatically",
+     "Stores web pages"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why can DNS changes appear slowly?",
+    "options": [
+     "Answers are cached until the TTL ends",
+     "Browsers block them",
+     "The internet is paused"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "A service reachable locally but not remotely may be listening on what?",
+    "options": [
+     "127.0.0.1 only",
+     "Port 443",
+     "0.0.0.0"
+    ],
+    "answer": 0,
     "explain": ""
    }
   ],
@@ -1728,6 +2498,76 @@
     ],
     "answer": 2,
     "explain": ""
+   },
+   {
+    "q": "What does a firewall do?",
+    "options": [
+     "Stores web pages",
+     "Resolves names",
+     "Allows or blocks traffic by rules"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does NAT do?",
+    "options": [
+     "Encrypts disks",
+     "Counts users",
+     "Lets many private devices share a public address"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does a load balancer do?",
+    "options": [
+     "Backs up data",
+     "Spreads traffic across healthy servers",
+     "Writes code"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does TLS provide?",
+    "options": [
+     "More storage",
+     "Encryption and proof of the server identity",
+     "Faster disks"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you do before enabling ufw on a remote server?",
+    "options": [
+     "Reboot",
+     "Allow SSH first",
+     "Delete all rules"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Why can ping fail although a site works?",
+    "options": [
+     "Ping is always right",
+     "Websites do not use IP",
+     "Many systems block ping on purpose"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Where should a database normally live?",
+    "options": [
+     "On a public CDN",
+     "In a private subnet",
+     "Open to the whole internet"
+    ],
+    "answer": 1,
+    "explain": ""
    }
   ],
   "git-workflows-for-devops-teams": [
@@ -1759,6 +2599,76 @@
      "Deleting a branch"
     ],
     "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What does git rebase do?",
+    "options": [
+     "Uploads to a server",
+     "Replays your commits on top of another branch",
+     "Deletes the branch"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a safe way to undo a pushed commit?",
+    "options": [
+     "git revert",
+     "Delete the repository",
+     "git reset --hard then force push"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why use pull requests?",
+    "options": [
+     "To hide history",
+     "To review and test changes before merging",
+     "To make Git faster"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a tag?",
+    "options": [
+     "A remote server",
+     "A fixed name for a commit, such as a release",
+     "A type of branch that moves"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you do after committing a secret?",
+    "options": [
+     "Ignore it",
+     "Rotate the secret immediately",
+     "Delete the file and carry on"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does git stash do?",
+    "options": [
+     "Shelves unfinished changes temporarily",
+     "Pushes to main",
+     "Deletes changes forever"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why protect the main branch?",
+    "options": [
+     "To stop all changes",
+     "To require reviews and passing checks before merging",
+     "To hide the code"
+    ],
+    "answer": 1,
     "explain": ""
    }
   ],
@@ -1792,6 +2702,76 @@
     ],
     "answer": 2,
     "explain": ""
+   },
+   {
+    "q": "Where do workflow files live?",
+    "options": [
+     "docs/",
+     ".github/workflows/",
+     "src/"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is a runner?",
+    "options": [
+     "A type of branch",
+     "A secret",
+     "The machine that runs a job"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why use npm ci in a pipeline?",
+    "options": [
+     "It skips tests",
+     "It is shorter to type",
+     "Repeatable installs from the lock file"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "How do you read a secret in a workflow?",
+    "options": [
+     "env.PASSWORD in the file",
+     "secrets.NAME",
+     "Write it in the YAML"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does a matrix do?",
+    "options": [
+     "Draws a diagram",
+     "Runs a job with several values, such as Node versions",
+     "Merges branches"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which event runs a workflow on pull requests?",
+    "options": [
+     "on: pull_request",
+     "on: sleep",
+     "on: print"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why pin action versions?",
+    "options": [
+     "So an unexpected update does not break or compromise builds",
+     "It makes YAML shorter",
+     "It is required by Git"
+    ],
+    "answer": 0,
+    "explain": ""
    }
   ],
   "cloud-computing-fundamentals-iaas-paas-saas": [
@@ -1824,6 +2804,76 @@
     ],
     "answer": 1,
     "explain": ""
+   },
+   {
+    "q": "Which model gives you the most control?",
+    "options": [
+     "PaaS only",
+     "SaaS",
+     "IaaS"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Which is an example of SaaS?",
+    "options": [
+     "A network cable",
+     "A hosted email service",
+     "A raw virtual machine"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What is elasticity?",
+    "options": [
+     "A password rule",
+     "A cable type",
+     "Growing and shrinking resources with demand"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What is a hybrid cloud?",
+    "options": [
+     "Private systems plus public cloud",
+     "A laptop",
+     "Two public clouds only"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is a hypervisor?",
+    "options": [
+     "A database",
+     "Software that runs virtual machines",
+     "A web browser"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What should you set first in a new cloud account?",
+    "options": [
+     "MFA and a billing alert",
+     "Ten large servers",
+     "A public bucket"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "What is serverless?",
+    "options": [
+     "No computers at all",
+     "A free plan",
+     "Running code while the provider manages servers and scaling"
+    ],
+    "answer": 2,
+    "explain": ""
    }
   ],
   "cloud-reliability-regions-pricing-and-shared-responsibility": [
@@ -1853,6 +2903,76 @@
      "Only the provider",
      "Nobody",
      "You, the customer"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What does RTO mean?",
+    "options": [
+     "How much data you can lose",
+     "How many users you have",
+     "How long you can be down"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "Why spread an app over two zones?",
+    "options": [
+     "It is always cheaper",
+     "One zone failing does not take the app down",
+     "It removes the need for backups"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "What does shared responsibility mean?",
+    "options": [
+     "The provider secures the cloud; you secure what you put in it",
+     "You do everything",
+     "The provider does everything"
+    ],
+    "answer": 0,
+    "explain": ""
+   },
+   {
+    "q": "Why test restores?",
+    "options": [
+     "It speeds up the app",
+     "Backups are free",
+     "A backup you cannot restore is not a real backup"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What are spot instances?",
+    "options": [
+     "Reserved servers for three years",
+     "Free servers",
+     "Spare capacity at a discount that can be taken back"
+    ],
+    "answer": 2,
+    "explain": ""
+   },
+   {
+    "q": "What can cause a surprise cloud bill?",
+    "options": [
+     "Reading documentation",
+     "Idle resources and data transfer",
+     "Using tags"
+    ],
+    "answer": 1,
+    "explain": ""
+   },
+   {
+    "q": "Which disaster recovery style is cheapest but slowest?",
+    "options": [
+     "Active-active",
+     "Warm standby",
+     "Backup and restore"
     ],
     "answer": 2,
     "explain": ""

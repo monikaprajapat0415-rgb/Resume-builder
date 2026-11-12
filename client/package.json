@@ -23,6 +23,7 @@
     "html2canvas": "^1.4.1",
     "html2canvas-pro": "^1.5.12",
     "jspdf": "^2.5.2",
+    "mermaid": "^12.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-helmet-async": "^3.0.0",

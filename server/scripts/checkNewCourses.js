@@ -36,7 +36,7 @@ for (const k of keys) {
         }
       }
     } catch (e) { err(`${l.slug}: ${e.message}`); }
-    if (!l.content.some((b) => b.type === 'heading' && b.text === 'Your task')) err(`${l.slug}: no task`);
+    if (!l.content.some((b) => b.type === 'heading' && (b.text === 'Your task' || b.text === 'Practical exercises'))) err(`${l.slug}: no task`);
     for (const b of l.content) if (b.type === 'paragraph' && /\b(guarantee[sd]?|100% (job|placement))\b/i.test(b.text.replace(/not a guarantee/gi, ''))) err(`${l.slug}: guarantee wording`);
   }
   console.log(`  ${total} prose words, avg ${Math.round(total / lessons.length)}`);
