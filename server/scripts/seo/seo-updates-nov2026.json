@@ -1,0 +1,86 @@
+{
+  "note": "Titles and descriptions for pages that Search Console showed at positions 8-30 (28 days to 10 Nov 2026). Only text that matches what each lesson teaches. 'overwrite' false means: fill the field only when it is empty in the database, so edits made in Admin are never replaced.",
+  "lessons": {
+    "claude-api-tool-use": {
+      "claude-vision-pdf-documents": {
+        "metaTitle": "Claude Vision: Read PDFs and Images"
+      },
+      "set-up-claude-api-key-node": {
+        "metaTitle": "Set Up the Claude API Key in Node.js"
+      },
+      "claude-error-handling-retries": {
+        "metaTitle": "Claude API Errors, Retries and Timeouts"
+      },
+      "prompt-caching-and-batch-processing": {
+        "metaTitle": "Claude Prompt Caching and Batch API"
+      },
+      "stream-claude-responses": {
+        "metaTitle": "Stream Claude Responses in Node and Angular"
+      },
+      "claude-messages-api-explained": {
+        "metaTitle": "Claude Messages API: System Prompts, Chat"
+      },
+      "what-is-anthropic-and-claude": {
+        "metaTitle": "What Is Claude? Anthropic and Claude API"
+      }
+    },
+    "workplace-english-course": {
+      "email-structure-subject-greeting-closing": {
+        "overwrite": true,
+        "metaTitle": "Business Email Greetings and Closings",
+        "description": "Business email greetings and closings with examples: subject line, polite opening, short body, sign-off and signature. Sample emails included.",
+        "addFaqs": [
+          {
+            "q": "What are good greetings and closings for a business email?",
+            "a": "For a greeting, use Dear Mr Sharma when you know the name, Dear Hiring Manager when you do not, and Hello Priya or Hi Priya for a friendly, neutral tone. For a closing, Kind regards is neutral and safe, Best regards is friendlier, and Yours sincerely is formal when you used the person's name."
+          }
+        ]
+      },
+      "chat-messages-teams-whatsapp-etiquette": {
+        "overwrite": true,
+        "metaTitle": "Business Chat Etiquette Tips for Work",
+        "description": "Business chat etiquette for Teams, Slack and WhatsApp: write clear messages, use emojis sensibly, respect working hours and time zones, and know when to call.",
+        "addFaqs": [
+          {
+            "q": "What is business chat etiquette?",
+            "a": "It is a set of simple habits for work chat: put your question in the first message, keep messages short and polite, reply even with a quick thanks, use emojis only where they fit, respect working hours and time zones, keep private matters out of group chats, and move to email or a call when the topic needs it."
+          }
+        ]
+      }
+    },
+    "angular-tutorial": {
+      "angular-for-loops": {
+        "metaTitle": "Angular @for Loops with track Explained"
+      },
+      "angular-if-else": {
+        "metaTitle": "Angular @if, @else and @switch Explained"
+      },
+      "angular-ci-cd-github-actions": {
+        "metaTitle": "Angular CI/CD with GitHub Actions"
+      },
+      "test-angular-components": {
+        "metaTitle": "Test Angular Components with Vitest"
+      },
+      "angular-ssr-hydration": {
+        "metaTitle": "Angular SSR and Hydration Explained"
+      },
+      "angular-cli-new-update-multiple-apps": {
+        "metaTitle": "Angular CLI Guide: ng new and ng update"
+      }
+    }
+  },
+  "courses": {
+    "nodejs-express-course": {
+      "overwrite": true,
+      "description": "Free Node.js and Express course for beginners and students: 62 lessons and 10 projects on REST, MongoDB, JWT, security, testing, Docker and deployment."
+    },
+    "git-and-github-course": {
+      "overwrite": true,
+      "description": "Free Git and GitHub course for beginners and students: 10 lessons with terminal sessions on commits, branches, merge conflicts and pull requests."
+    },
+    "sql-for-beginners": {
+      "overwrite": true,
+      "description": "Free SQL course for beginners and students: 15 lessons in simple English with a practice database: joins, grouping, window functions, interview practice."
+    }
+  }
+}
