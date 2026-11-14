@@ -121,7 +121,9 @@ export const lessonView = (course, lesson, lessons) => {
     const published = l.createdAt || Date.now();
     const modified = l.modifiedAt || l.updatedAt || published;
     const image = absUrl(c.coverImage) || `${siteUrl()}/og-image.png`;
-    const fullTitleBase = l.metaTitle || `${l.title} - ${c.title}`;
+    // No SEO title set: use the lesson title with the course name only if the result stays short. Long ones are cut off in search results, so the lesson title alone is used.
+    const withCourse = `${l.title} - ${c.title}`;
+    const fullTitleBase = l.metaTitle || (withCourse.length <= 40 ? withCourse : l.title);
     const seo = {
         title: fullTitleBase, fullTitle: seoTitle(fullTitleBase), description, keywords: l.keywords || (c.tags || []).join(', '),
         canonical: url, robots: l.noindex || c.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1',
@@ -183,6 +185,7 @@ export const lessonHtml = (v) => `
   <div itemprop="articleBody">${blocksToHtml(v.lesson.content)}</div>
   ${v.lesson.download ? `<p><a href="${escapeHtml(v.lesson.download.url)}" rel="nofollow">Download the solution (${escapeHtml(v.lesson.download.name)})</a></p>` : ''}
   ${v.lesson.faqs.length ? `<section><h2>Frequently asked questions</h2>${v.lesson.faqs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${inlineHtml(f.a)}</p>`).join('')}</section>` : ''}
+  ${v.interviewQuestions?.length ? `<section><h2>Practise with interview questions</h2><ul>${v.interviewQuestions.map((q) => `<li><a href="/jobs/interview-questions/${escapeHtml(q.slug)}">${escapeHtml(q.question)}</a></li>`).join('')}</ul></section>` : ''}
   <nav aria-label="Lesson navigation">${v.prev ? `<a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(v.prev.slug)}" rel="prev">← ${escapeHtml(v.prev.title)}</a> ` : ''}${v.next ? `<a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(v.next.slug)}" rel="next">${escapeHtml(v.next.title)} →</a>` : ''}</nav>
   <aside><h2>${escapeHtml(v.course.title)} - all lessons</h2>${v.sections.map((s) => `${s.title ? `<h3>${escapeHtml(s.title)}</h3>` : ''}<ul>${s.lessons.map((l) => `<li><a href="/learn/${escapeHtml(v.course.slug)}/${escapeHtml(l.slug)}">${escapeHtml(l.title)}</a></li>`).join('')}</ul>`).join('')}</aside>
 </article>`;

@@ -17,7 +17,7 @@ const Features = () => {
             <LuZap width={14}/>
             <span>Simple process</span>
         </div>
-        <Title title='Buid your resume' desciption='Our stremlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.'/>
+        <Title title='Build your resume' desciption='Our streamlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.'/>
 
             <div className="flex flex-col md:flex-row items-center justify-center xl:-mt-10">
                 <img className="float-slower max-w-2xl w-full md:max-w-[40%] lg:max-w-2xl xl:-ml-32" src={featuresImg} width="720" height="726" loading="lazy" decoding="async" alt="Prime Resume AI dashboard showing resume templates and editing tools" />
