@@ -108,7 +108,7 @@ const LearnCourse = () => {
                       <Link to={`/learn/${course.slug}/${l.slug}`} className='flex items-start gap-3 px-5 py-3 hover:bg-brand-50/50 transition group'>
                         <span className='text-xs text-slate-400 w-6 pt-0.5 shrink-0'>{progress.done.includes(l.slug) ? <LuCheck className='size-4 text-brand-600' aria-label='Completed' /> : `${n}.`}</span>
                         <span>
-                          <span className='block text-sm font-medium text-slate-800 group-hover:text-brand-700'>{l.title}</span>
+                          <span className='block text-sm font-medium text-slate-800 group-hover:text-brand-700'>{l.title}</span>{' '}
                           {l.description && <span className='block text-xs text-slate-500 mt-0.5 line-clamp-1'>{stripInline(l.description)}</span>}
                         </span>
                       </Link>

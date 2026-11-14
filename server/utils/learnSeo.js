@@ -121,7 +121,9 @@ export const lessonView = (course, lesson, lessons) => {
     const published = l.createdAt || Date.now();
     const modified = l.modifiedAt || l.updatedAt || published;
     const image = absUrl(c.coverImage) || `${siteUrl()}/og-image.png`;
-    const fullTitleBase = l.metaTitle || `${l.title} - ${c.title}`;
+    // No SEO title set: use the lesson title with the course name only if the result stays short. Long ones are cut off in search results, so the lesson title alone is used.
+    const withCourse = `${l.title} - ${c.title}`;
+    const fullTitleBase = l.metaTitle || (withCourse.length <= 40 ? withCourse : l.title);
     const seo = {
         title: fullTitleBase, fullTitle: seoTitle(fullTitleBase), description, keywords: l.keywords || (c.tags || []).join(', '),
         canonical: url, robots: l.noindex || c.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1',
