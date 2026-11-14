@@ -143,7 +143,7 @@ const LearnLesson = () => {
     )
   }
 
-  const { lesson, course, sections, prev, next, toc, seo } = data
+  const { lesson, course, sections, prev, next, toc, seo, interviewQuestions = [] } = data
   const allSlugs = sections.flatMap((sec) => sec.lessons.map((l) => l.slug))
   const doneCount = countDone(progress.done, allSlugs)
   const isDone = progress.done.includes(lesson.slug)
@@ -248,6 +248,17 @@ const LearnLesson = () => {
 
           {lesson.notes && <LessonNotes key={`notes:${course.slug}/${lesson.slug}`} notes={lesson.notes} />}
           {lesson.quiz && <LessonQuiz key={`quiz:${course.slug}/${lesson.slug}`} quiz={lesson.quiz} alreadyDone={isDone} onPass={() => progress.toggleDone(lesson.slug)} />}
+          {interviewQuestions.length > 0 && (
+            <section className='mt-10 rounded-xl border border-slate-200 p-5' aria-labelledby='lesson-iq'>
+              <h2 id='lesson-iq' className='text-lg font-semibold text-slate-900'>Practise with interview questions</h2>
+              <ul className='mt-3 space-y-2'>
+                {interviewQuestions.map((q) => (
+                  <li key={q.slug}><Link to={`/jobs/interview-questions/${q.slug}`} className='text-brand-700 hover:underline'>{q.question}</Link></li>
+                ))}
+              </ul>
+              <Link to='/jobs/interview-questions' className='inline-block mt-3 text-sm text-slate-600 hover:text-brand-700'>See all interview questions</Link>
+            </section>
+          )}
 
           <LessonFeedback key={`${course.slug}/${lesson.slug}`} courseSlug={course.slug} lessonSlug={lesson.slug} />
 

@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
 import LessonFeedback from "../models/LessonFeedback.js";
+import InterviewQuestion from "../models/InterviewQuestion.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks } from "../utils/blogSeo.js";
 import { downloadPath, isZip, safeName, saveUpload, removeUpload } from "../utils/learnFiles.js";
@@ -23,6 +24,17 @@ export const loadCourseView = async (slug) => {
     return courseView(course, lessons);
 };
 
+// Published interview questions that Admin linked to this course or lesson (Admin > Interview questions > "Course to link" and "Lesson to link").
+// Questions linked to this very lesson come first, then others from the same course. Shown on the lesson page and in its server-rendered HTML as plain links.
+const interviewLinks = async (courseSlug, lessonSlug) => {
+    try {
+        const qs = await InterviewQuestion.find({ published: true, learnCourse: courseSlug }).sort({ order: 1 }).select('question slug level learnLesson').lean();
+        const mine = qs.filter((q) => q.learnLesson === lessonSlug);
+        const rest = qs.filter((q) => q.learnLesson !== lessonSlug);
+        return [...mine, ...rest].slice(0, 5).map((q) => ({ question: q.question, slug: q.slug, level: q.level }));
+    } catch { return []; }
+};
+
 export const loadLessonView = async (courseSlug, lessonSlug, { count = false, lang = '' } = {}) => {
     const course = await Course.findOne({ slug: courseSlug, published: true });
     if (!course) return null;
@@ -33,6 +45,7 @@ export const loadLessonView = async (courseSlug, lessonSlug, { count = false, la
         : await Lesson.findOne(q);
     if (!lesson) return null;
     const v = lessonView(course, lesson, lessons);
+    const interviewQuestions = await interviewLinks(courseSlug, lessonSlug);
     // Reader language: use a published translation when there is one. SEO data, canonical and the
     // server-rendered page stay English, so search engines still see one original.
     const languages = publishedLangs(lesson);
@@ -40,9 +53,9 @@ export const loadLessonView = async (courseSlug, lessonSlug, { count = false, la
     if (t && t.published) {
         const base = typeof lesson.toObject === 'function' ? lesson.toObject() : lesson;
         const vt = lessonView(course, { ...base, title: t.title || base.title, description: t.description || base.description, content: t.content || base.content, faqs: t.faqs || base.faqs, quiz: t.quiz || base.quiz, notes: t.notes || base.notes }, lessons);
-        return { ...vt, seo: v.seo, jsonLd: v.jsonLd, breadcrumbs: v.breadcrumbs, translation: { lang, status: t.status || 'reviewed' }, languages };
+        return { ...vt, interviewQuestions, seo: v.seo, jsonLd: v.jsonLd, breadcrumbs: v.breadcrumbs, translation: { lang, status: t.status || 'reviewed' }, languages };
     }
-    return { ...v, translation: null, languages };
+    return { ...v, interviewQuestions, translation: null, languages };
 };
 
 export const listPublishedCourses = async () => {
