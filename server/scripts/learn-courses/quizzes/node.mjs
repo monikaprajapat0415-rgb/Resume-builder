@@ -276,4 +276,39 @@ export const quizzes = {
     Q('When should you publish an event instead of calling a service?', ['When you do not need an answer', 'When you need the data now', 'Never'], 0),
     Q('What is the gateway’s role?', ['The only public door that checks the token and forwards requests', 'It stores user data', 'It sends notifications'], 0),
   ],
+  'javascript-basics-variables-data-types-and-operators': [
+    Q('Which keyword should you use by default for a value that will not change?', ['const', 'var', 'let'], 0),
+    Q('What does 5 === "5" give?', ['false', 'true', 'An error'], 0, 'Strict equality also compares the type.'),
+    Q('Which of these values is falsy?', ['0', '"hello"', '[]'], 0, 'An empty array is truthy.'),
+  ],
+  'javascript-conditions-and-loops-if-switch-for-while': [
+    Q('What happens in a switch case with no break or return?', ['It falls through into the next case', 'It stops the program', 'It repeats the case'], 0),
+    Q('Which loop is best for the values of an array?', ['for...of', 'for...in', 'while(true)'], 0),
+    Q('What does continue do inside a loop?', ['Skips the rest of this round and goes to the next', 'Ends the loop', 'Restarts the program'], 0),
+  ],
+  'javascript-functions-arrays-objects-and-array-methods': [
+    Q('Which method makes a new array by changing every item?', ['map', 'find', 'some'], 0),
+    Q('Why copy an array before calling sort when you need the original?', ['sort changes the original array', 'sort is slow', 'sort deletes items'], 0),
+    Q('What does reduce do?', ['Combines all items into one value', 'Removes duplicates', 'Reverses the array'], 0),
+  ],
+  'javascript-error-handling-and-json-try-catch-throw-and-parse': [
+    Q('When does the finally block run?', ['Whether or not there was an error', 'Only after an error', 'Only when there is no error'], 0),
+    Q('Why wrap JSON.parse in try/catch when the text comes from outside?', ['It throws a SyntaxError for invalid JSON', 'It is very slow', 'It changes the text'], 0),
+    Q('Which of these does JSON.stringify drop?', ['undefined values and functions', 'Strings', 'Numbers'], 0),
+  ],
+  'commonjs-vs-es-modules-require-import-and-export': [
+    Q('Which file ending always means CommonJS?', ['.cjs', '.mjs', '.json'], 0),
+    Q('What replaces __dirname in an ES module?', ['path.dirname(fileURLToPath(import.meta.url))', 'process.cwd only', 'It still exists'], 0),
+    Q('Which system supports top-level await?', ['ES modules', 'CommonJS', 'Neither'], 0),
+  ],
+  'linux-server-basics-for-node-developers-commands-permissions-and-ssh': [
+    Q('What does chmod 600 file do?', ['Only the owner can read and write it', 'Everyone can read it', 'It deletes the file'], 0),
+    Q('Why is rm dangerous?', ['There is no recycle bin, so the file is gone', 'It is slow', 'It needs a password'], 0),
+    Q('What must you do before you enable a firewall on a remote server?', ['Allow SSH first', 'Close port 22', 'Restart the server'], 0),
+  ],
+  'node-js-and-express-interview-questions-and-answers': [
+    Q('What is the best way to use these sample answers?', ['Say them in your own words with an example from your project', 'Memorise them word for word', 'Skip them'], 0),
+    Q('What should you do when you do not know an answer?', ['Say so and explain how you would find out', 'Guess confidently', 'Change the subject'], 0),
+    Q('Which question asks who you are versus what you may do?', ['Authentication versus authorization', 'PUT versus PATCH', 'SQL versus NoSQL'], 0),
+  ],
 };
