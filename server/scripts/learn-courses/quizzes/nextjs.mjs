@@ -36,7 +36,7 @@ export const quizzes = {
     Q('What does a folder that starts with an underscore do?', ['It is private and never becomes a route', 'It becomes a page', 'It is deleted at build'], 0),
     Q('Two groups both contain an about page. What happens?', ['Both mean /about, so the build gives an error', 'Next.js merges them', 'The first one wins silently'], 0),
   ],
-  'link-useRouter-usepathname-and-usesearchparams': [
+  'link-userouter-usepathname-and-usesearchparams': [
     Q('Why use Link instead of a plain a tag for links inside your site?', ['It moves between pages without a full reload and can prefetch', 'It makes the text bigger', 'It is required by HTML'], 0),
     Q('Which hook tells you the current path, such as /about?', ['usePathname', 'useSearchParams', 'useState'], 0),
     Q('A file that uses useRouter must start with which line?', ['use client', 'use server', 'use router'], 0),
