@@ -1,0 +1,9 @@
+npx create-next-app@latest my-app --ts --tailwind --eslint --app --no-src-dir --import-alias "@/*" --use-npm
+...
+Success! Created my-app
+
+my-app/
+  app/            layout.tsx, page.tsx, globals.css, favicon.ico
+  public/         static files such as images
+  AGENTS.md  README.md  eslint.config.mjs  next-env.d.ts
+  next.config.ts  package.json  tsconfig.json

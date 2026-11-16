@@ -1,0 +1,3341 @@
+{
+  "course": {
+    "title": "Next.js Course: Beginner to Advanced with Examples",
+    "slug": "nextjs-course",
+    "summary": "Learn Next.js step by step in simple English: how it works, the App Router, routing, layouts, Server and Client Components, data fetching and more, with code that was built and run.",
+    "description": "Free Next.js course for beginners in simple English: rendering, App Router, routing, layouts and components, with tested examples. More modules follow.",
+    "level": "Beginner to Advanced",
+    "topic": "Front end and full stack",
+    "badge": "NX",
+    "tags": [
+      "nextjs",
+      "react",
+      "app router",
+      "server components",
+      "routing",
+      "typescript",
+      "tailwind",
+      "full stack"
+    ],
+    "order": 45,
+    "published": false,
+    "minWords": 600,
+    "metaTitle": "Next.js Course for Beginners",
+    "keywords": "next js course for beginners, learn next js, next js tutorial, next js app router tutorial, next js server components, next js routing, next js for react developers"
+  },
+  "lessons": [
+    {
+      "section": "Next.js Introduction",
+      "slug": "what-is-nextjs-and-why-use-it",
+      "title": "What Is Next.js and Why Use It?",
+      "metaTitle": "What Is Next.js? Simple Guide for Beginners",
+      "description": "Learn what Next.js is, which problems it solves, how it differs from plain React, and why many teams use it to build fast, search-friendly websites.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Imagine you want to build a house. React is like a very good box of bricks. It gives you strong pieces, but you still have to decide where the walls go, how people walk from room to room, where the pipes run and how the house is delivered. Next.js is like a house plan with the plumbing, the doors and the street address already worked out. You still build your own rooms, but a lot of the boring decisions are made for you. That is the simplest way to understand Next.js."
+        },
+        {
+          "type": "paragraph",
+          "text": "Next.js is a framework built on top of React. React is a library for building the parts of a screen, such as buttons, forms and lists. A framework is bigger: it also decides how files are organised, how pages are found, how data is loaded and how the finished site is sent to the browser. Next.js is made by a company called Vercel and is free and open source."
+        },
+        {
+          "type": "heading",
+          "text": "What problems does Next.js solve?"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you build a website with plain React, you quickly meet the same questions again and again. Next.js gives a ready answer to each one."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**How do users move between pages?** Plain React needs an extra library for routing. Next.js turns your folders into pages automatically. You will see this in the routing lessons.",
+            "**How does Google read my page?** A plain React app often sends an almost empty page and builds the content in the browser. Some search engines and social media previews handle this badly. Next.js can send the finished HTML, so the content is there from the first byte.",
+            "**How do I load data safely?** Next.js lets a component read from a database or a private API on the server, so secret keys never reach the browser.",
+            "**How do I make pages fast?** Next.js can build pages ahead of time, split code into small pieces and optimise images and fonts for you.",
+            "**Where does my back end live?** You can write small API endpoints inside the same project, so a simple site needs only one codebase."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Next.js and React: what is the difference?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every Next.js page is written with React. If you know components, props and state, you already know most of what you will write. The difference is everything around the components."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**React alone:** you choose a router, a build tool, a way to fetch data and a way to deploy. You get freedom, but also a lot of setup and many decisions.",
+            "**Next.js:** one install gives you routing, a build tool, server rendering, image tools and an API layer. You get less freedom, but you start working faster and most Next.js projects look alike, so it is easy to join a new team."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If React is new to you, take the React course on this site first, or at least read the React basics lessons. You will understand Next.js much more easily. This course does not repeat what a component or a hook is. It builds on it."
+        },
+        {
+          "type": "heading",
+          "text": "Main features, in plain words"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**File-based routing.** Create a folder and a file, get a URL.",
+            "**Server Components.** Components that run on the server and send only the result to the browser.",
+            "**Different ways of rendering.** Build a page ahead of time, build it on each request, or mix both. The next lesson explains these.",
+            "**Built-in optimisation.** Images, fonts and scripts are handled for you.",
+            "**Route Handlers and Server Actions.** Small server-side pieces for APIs and forms.",
+            "**TypeScript support.** The project can be set up with TypeScript from the first command."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When is Next.js a good choice?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A marketing site, blog or documentation site that must rank well in search.",
+            "A shop, a job board or a course site with many pages.",
+            "A web app with logins and dashboards, where some pages are public and some are private.",
+            "A project where you want the front end and a small back end in one place."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "When might you not need it?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Not every project needs a framework. A tiny tool that lives behind a login and never needs to be found by search engines may be fine as a plain React app. A very small static page may be fine as plain HTML. And if your team already has a strong separate back end, Next.js can still be used only for the front end. Choose Next.js because a real need points to it, not because it is popular."
+        },
+        {
+          "type": "note",
+          "text": "Next.js changes quickly. This course was written and tested with Next.js 16.4 and React 19. The names of a few files and settings change between versions, so when the official documentation at nextjs.org differs from a lesson, trust the documentation and tell us in the feedback box."
+        },
+        {
+          "type": "heading",
+          "text": "What you need before you start"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Basic HTML and CSS.",
+            "JavaScript with ES6 features such as arrow functions, destructuring and async/await.",
+            "React basics: components, props, state and hooks. Our React course covers them.",
+            "A computer with Node.js 20.9 or newer installed. The next lessons show how."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Write three sentences in your own words: what is Next.js, what is the difference from React, and which problem sounds most useful to you.",
+            "Look at two websites you use often. Guess whether each one needs good search ranking, and whether it could be a plain React app.",
+            "List the React topics you are not sure about. Revise them before lesson 4."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can explain Next.js as a framework built on React.",
+            "You can name at least four problems it solves.",
+            "You can give one case where plain React would be enough."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Library and framework",
+        "nodes": [
+          {
+            "id": "react",
+            "label": "React",
+            "sub": "builds the screen",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "next",
+            "label": "Next.js",
+            "sub": "adds the plan",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "site",
+            "label": "Your site",
+            "sub": "pages and data",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "user",
+            "label": "Visitor",
+            "sub": "browser or Google",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "React gives you components: buttons, forms and lists.",
+            "on": [
+              "react"
+            ]
+          },
+          {
+            "say": "Next.js wraps React and adds routing, server rendering, data loading and image tools.",
+            "flow": [
+              "react>next:wrapped by"
+            ]
+          },
+          {
+            "say": "Together they build your site, page by page.",
+            "flow": [
+              "next>site:builds"
+            ]
+          },
+          {
+            "say": "The visitor, or a search engine, gets a finished page quickly.",
+            "flow": [
+              "site>user:fast page"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is Next.js free?",
+          "a": "Yes. Next.js is open source and free to use. You pay only for hosting if you choose a paid host. You can also run it on your own server."
+        },
+        {
+          "q": "Do I need to know React before Next.js?",
+          "a": "Yes. Every Next.js page is made of React components, so learn components, props, state and hooks first."
+        },
+        {
+          "q": "Is Next.js a front end or a back end tool?",
+          "a": "Both. It builds the pages users see and it can also run server code, such as reading a database or handling a form. Large systems often still keep a separate back end."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "What is Next.js?",
+          "options": [
+            "A replacement for JavaScript",
+            "A database",
+            "A framework built on top of React"
+          ],
+          "answer": 2,
+          "explain": "Next.js adds routing, server rendering, data loading and tools around React."
+        },
+        {
+          "q": "Which problem does Next.js help with compared with a plain React app?",
+          "options": [
+            "It can send finished HTML, which helps search engines and link previews",
+            "It makes browsers faster",
+            "It removes the need for components"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What should you know before learning Next.js?",
+          "options": [
+            "Only HTML",
+            "Python",
+            "React basics such as components, props, state and hooks"
+          ],
+          "answer": 2,
+          "explain": "Every Next.js page is made of React components."
+        }
+      ]
+    },
+    {
+      "section": "Next.js Introduction",
+      "slug": "rendering-explained-csr-ssr-ssg-isr",
+      "title": "Rendering Explained: CSR, SSR, SSG and ISR",
+      "metaTitle": "CSR, SSR, SSG and ISR Explained Simply",
+      "description": "Understand client-side rendering, server-side rendering, static generation and incremental regeneration in Next.js with simple examples and when to use each.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Rendering means turning your React code into the HTML that a person sees. The big question is where and when that happens. Think of a bakery. One bakery bakes the bread only when you order it. Another bakes everything at dawn and just hands it over. A third sends you flour and a recipe and lets you bake at home. All three give you bread, but the speed, the cost and the freshness are different. Rendering in Next.js works the same way."
+        },
+        {
+          "type": "heading",
+          "text": "Client-side rendering (CSR)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With client-side rendering the server sends an almost empty page and some JavaScript. The browser runs that JavaScript and builds the page on the user’s device. This is how a plain React app made with older tools works. It is like being sent flour and a recipe."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Good:** after the first load, moving around the app feels quick, and the server does very little work.",
+            "**Not so good:** the user sees a blank screen or a spinner until the JavaScript has loaded and run. Search engines and link previews may see little content."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "CSR is still very useful for parts of a page that depend on the user, such as a live chart or a form with lots of clicking. Next.js lets you use it for those parts only."
+        },
+        {
+          "type": "heading",
+          "text": "Server-side rendering (SSR)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With server-side rendering, the server builds the full HTML for every request and sends it. The browser shows the content straight away, and then React makes it interactive. This is the bakery that bakes the bread after you order it."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Good:** the page is always fresh and personal, because it is made at request time. The HTML is complete, which is good for search engines.",
+            "**Not so good:** every visit costs the server some work and the user waits for that work. A slow database makes a slow page."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Use SSR when the content changes all the time or depends on who is asking, for example a page that shows the current user’s orders."
+        },
+        {
+          "type": "heading",
+          "text": "Static site generation (SSG)"
+        },
+        {
+          "type": "paragraph",
+          "text": "With static generation, the HTML is built once, at build time, before anyone visits. The finished file can be stored on a fast network of servers around the world and sent in a moment. This is the bakery that bakes everything at dawn."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Good:** very fast and cheap, and it handles a huge number of visitors easily.",
+            "**Not so good:** the page shows what was true at build time. If your content changes, you must build again, unless you use the next idea."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "SSG is perfect for pages that rarely change: a home page, an about page, a blog post or a documentation page."
+        },
+        {
+          "type": "heading",
+          "text": "Incremental static regeneration (ISR)"
+        },
+        {
+          "type": "paragraph",
+          "text": "ISR keeps the speed of static pages but lets them refresh. You tell Next.js how old a page may get. After that time, the next visit still gets the old page quickly, and in the background Next.js builds a new copy for the visits after it. The bakery bakes at dawn but quietly swaps in a fresh loaf every hour."
+        },
+        {
+          "type": "paragraph",
+          "text": "ISR is a good fit for a product page that changes a few times a day or a blog with many posts, where rebuilding the whole site for one edit would be slow. You will see how to control the refresh time in the data fetching module."
+        },
+        {
+          "type": "heading",
+          "text": "A table to remember"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**CSR:** built in the browser. Best for interactive parts.",
+            "**SSR:** built on the server for each request. Best for fresh or personal pages.",
+            "**SSG:** built once at build time. Best for pages that rarely change.",
+            "**ISR:** built at build time and refreshed later. Best for pages that change slowly."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How Next.js 16 describes this today"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the App Router you do not usually pick one of these four names for a whole page. Instead Next.js decides how to prepare each page and each part of a page. A part that does not depend on the request can be built ahead of time. A part that needs fresh data or the user’s cookies is built when the visit happens, and Next.js can stream it into the page. Newer versions call the mix of the two Partial Prerendering. In the route list printed by next build you can see this. A circle means the page was prepared as static content, and a half circle means a static shell with dynamic parts that stream in."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Route (app)\n┌ ○ /\n├ ○ /_not-found\n├ ○ /about\n├ ○ /blog\n├   /blog/[slug]\n│ ├ ◐ /blog/[slug]\n│ ├ ○ /blog/hello-nextjs\n│ └ ○ /blog/routing-basics\n├   /docs/[[...slug]]\n│ └ ◐ /docs/[[...slug]]\n├ ○ /old-page\n├ ○ /pricing\n└   /shop/[...slug]\n  └ ◐ /shop/[...slug]\n\n○  (Static)             prerendered as static content\n◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+        },
+        {
+          "type": "paragraph",
+          "text": "The list above comes from the example app that we build in the next lessons. The routes with a half circle have a part that needs the request, such as the address of the page, so that part is sent when the visit happens. Do not worry if this feels new. You will practise it step by step."
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "For each page, write which rendering style fits best and why: a home page, an about page, a news page that changes every minute, a page that shows the logged-in user’s name, and a blog post.",
+            "Explain ISR to a friend using the bakery or any example of your own.",
+            "Open the home page of any large site. Right-click, choose View page source, and see whether the content is in the HTML or only a few script tags."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can say where and when each style builds the page.",
+            "You can give one good use for CSR, SSR, SSG and ISR.",
+            "You can explain the circle and half circle in the build output."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Four ways to make a page",
+        "nodes": [
+          {
+            "id": "build",
+            "label": "Build time",
+            "sub": "once, ahead",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "server",
+            "label": "Server",
+            "sub": "on each visit",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "cdn",
+            "label": "Fast storage",
+            "sub": "copies of pages",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "browser",
+            "label": "Browser",
+            "sub": "the visitor",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "SSG builds the page once at build time and stores it.",
+            "on": [
+              "build",
+              "cdn"
+            ],
+            "flow": [
+              "build>server:static page"
+            ]
+          },
+          {
+            "say": "SSR builds the page on the server for each visit, so it is always fresh.",
+            "on": [
+              "server"
+            ]
+          },
+          {
+            "say": "ISR sends the stored page and quietly makes a new copy after the set time.",
+            "flow": [
+              "server>cdn:refresh copy"
+            ]
+          },
+          {
+            "say": "CSR sends code and lets the browser build the page.",
+            "flow": [
+              "cdn>browser:send page"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Which rendering style is the best?",
+          "a": "None is best for everything. Use static pages for content that rarely changes, server rendering for fresh or personal content, and client rendering for interactive parts. Next.js lets you mix them in one app."
+        },
+        {
+          "q": "Does Next.js use SSR or SSG by default?",
+          "a": "In the App Router, Next.js prepares what it can ahead of time and builds the rest when the request arrives. The route list from next build shows what happened to each page."
+        },
+        {
+          "q": "Is client-side rendering bad for SEO?",
+          "a": "It can be, because the first HTML has little content. That is why Next.js sends ready HTML by default and uses client rendering only where it is needed."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "When is a page built with static site generation (SSG)?",
+          "options": [
+            "Only in the browser",
+            "On every visit",
+            "At build time, before visitors arrive"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which style builds the page on the server for each request?",
+          "options": [
+            "SSR",
+            "CSR",
+            "SSG"
+          ],
+          "answer": 0,
+          "explain": "Server-side rendering makes fresh HTML for every request."
+        },
+        {
+          "q": "What does ISR add to static pages?",
+          "options": [
+            "It moves rendering to the browser",
+            "A page can be refreshed in the background after a set time",
+            "It turns off caching"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Next.js Introduction",
+      "slug": "nextjs-architecture-app-router-vs-pages-router",
+      "title": "Next.js Architecture: App Router vs Pages Router",
+      "metaTitle": "App Router vs Pages Router in Next.js",
+      "description": "Learn how Next.js is built, the difference between the App Router and the older Pages Router, and why this course uses the modern App Router.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before you create your first project, it helps to see the big picture of how Next.js is built. Think of a restaurant again. The customer sits in the dining room (the browser). The kitchen (the server) cooks the dishes. A waiter (Next.js) takes orders to the kitchen and brings the plates back. In this lesson we look at who does what, and we meet the two systems that Next.js has used to organise pages."
+        },
+        {
+          "type": "heading",
+          "text": "The three parts of a Next.js app"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "**The build step.** When you run the build command, Next.js reads your files, compiles your code with a fast tool called Turbopack, and prepares what it can ahead of time.",
+            "**The server.** When someone visits, a Node.js server (or a platform that behaves like one) answers. It sends the prepared pages and builds the parts that need fresh data.",
+            "**The browser.** It shows the HTML, loads a small amount of JavaScript and makes the interactive parts work. React in the browser takes over buttons, forms and anything with state."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "This split is the main idea of the modern App Router: do as much work as possible on the server, where data and secrets are safe, and send only what the browser really needs."
+        },
+        {
+          "type": "heading",
+          "text": "Two routers, two eras"
+        },
+        {
+          "type": "paragraph",
+          "text": "A router decides which file answers which URL. Next.js has two."
+        },
+        {
+          "type": "heading",
+          "text": "The Pages Router (older)"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Pages Router uses a folder called pages. Every file in it becomes a page. To load data you write special functions such as getServerSideProps or getStaticProps. It is stable and many large sites still use it, so you may meet it at work."
+        },
+        {
+          "type": "heading",
+          "text": "The App Router (modern)"
+        },
+        {
+          "type": "paragraph",
+          "text": "The App Router uses a folder called app. Every folder becomes part of the URL, and a file called page defines what shows there. It adds layouts that stay on screen while you move between pages, loading and error screens, and React Server Components. It is the recommended choice for new projects and it is what create-next-app gives you today."
+        },
+        {
+          "type": "heading",
+          "text": "Differences at a glance"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Folder:** pages for the Pages Router, app for the App Router.",
+            "**Page file:** any file in pages, but a file named page in the App Router.",
+            "**Components:** in the Pages Router every component runs in the browser too. In the App Router components are Server Components unless you mark them otherwise.",
+            "**Data loading:** special functions in the Pages Router, plain async components in the App Router.",
+            "**Layouts:** one shared wrapper file in the Pages Router, and nested layouts for every folder in the App Router.",
+            "**Special screens:** the App Router has loading, error and not-found files for each route."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "You can use both routers in one project while you move an old site step by step. If both define the same URL, the build stops with an error, so keep each URL in one place only."
+        },
+        {
+          "type": "heading",
+          "text": "Which should you learn?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Learn the App Router. It is where the framework is going, new features arrive there first and it gives the best results for search and speed. Spend a little time later reading about the Pages Router, so you can understand an older codebase. Almost everything about React itself stays the same in both."
+        },
+        {
+          "type": "heading",
+          "text": "What else is inside a Next.js app?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Route Handlers:** server endpoints that return JSON or other responses.",
+            "**Server Actions:** functions that run on the server when a form is sent.",
+            "**A request step:** in Next.js 16 the file that used to be called middleware is now called proxy. It runs before a request reaches a page, for example to redirect a visitor.",
+            "**Configuration:** a file called next.config.ts for settings.",
+            "**The public folder:** files such as images that are served as they are."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The word proxy for that request step is new in Next.js 16. You will meet it in the advanced module. If you read older tutorials that say middleware, the idea is the same."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Draw the three parts (build, server, browser) and write one sentence about what each does.",
+            "Write down two reasons the App Router is better for a new project and one reason an old project might still use the Pages Router.",
+            "Search for a tutorial that uses getServerSideProps. Decide which router it uses."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can say which folder each router uses.",
+            "You can describe the three parts of a Next.js app.",
+            "You know why this course teaches the App Router."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Where the work happens",
+        "nodes": [
+          {
+            "id": "files",
+            "label": "Your files",
+            "sub": "the app folder",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "build",
+            "label": "Build step",
+            "sub": "Turbopack",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "server",
+            "label": "Server",
+            "sub": "serves and renders",
+            "col": 2,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "browser",
+            "label": "Browser",
+            "sub": "shows and reacts",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "You write folders and files inside the app folder.",
+            "on": [
+              "files"
+            ]
+          },
+          {
+            "say": "The build step compiles them and prepares what it can ahead of time.",
+            "flow": [
+              "files>build:compile"
+            ]
+          },
+          {
+            "say": "The server answers each visit with prepared pages and fresh parts.",
+            "flow": [
+              "build>server:deploy"
+            ]
+          },
+          {
+            "say": "The browser shows the result and runs only the small interactive pieces.",
+            "flow": [
+              "server>browser:HTML and JS"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is the Pages Router removed?",
+          "a": "No. It is still supported and many sites use it. New projects should start with the App Router."
+        },
+        {
+          "q": "Can I mix the App Router and Pages Router?",
+          "a": "Yes, in one project, for example while you migrate. Each URL must be defined in only one of them."
+        },
+        {
+          "q": "Do I need a separate Node.js server?",
+          "a": "Next.js can run on its own Node.js server with the start command, or on a hosting platform. You do not need Express in front of it for a normal app."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which folder does the App Router use?",
+          "options": [
+            "routes",
+            "app",
+            "pages"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "In the App Router, which file makes a folder reachable as a page?",
+          "options": [
+            "page",
+            "main",
+            "index"
+          ],
+          "answer": 0,
+          "explain": "The file must be named page, followed by the extension."
+        },
+        {
+          "q": "Why does this course teach the App Router?",
+          "options": [
+            "It needs no React",
+            "The Pages Router is deleted",
+            "It is the recommended choice for new projects"
+          ],
+          "answer": 2,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Next.js Introduction",
+      "slug": "create-your-first-nextjs-app-and-folder-structure",
+      "title": "Create Your First Next.js App and Understand the Folders",
+      "metaTitle": "Create Your First Next.js App Step by Step",
+      "description": "Install Node.js, create a Next.js app with create-next-app, understand every folder, run the development server and make a production build.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Time to build something. In this lesson you will install what you need, create a project, look at every file and folder, run it on your computer and make a production build. Go slowly and type the commands yourself. Do not worry if you see more files than you expected. We explain them one by one."
+        },
+        {
+          "type": "heading",
+          "text": "Step 1: Install Node.js"
+        },
+        {
+          "type": "paragraph",
+          "text": "Next.js runs on Node.js, which lets JavaScript run outside the browser. Next.js 16 needs Node.js 20.9 or newer. Check your version by opening a terminal and typing the first command below. If you see a number lower than 20.9 or an error, install the current LTS version from nodejs.org. LTS means long-term support, which is the safe choice."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "node -v\nnpm -v"
+        },
+        {
+          "type": "paragraph",
+          "text": "npm comes with Node.js. It installs packages, which are pieces of code written by other people. You can also use pnpm or yarn if you already prefer them."
+        },
+        {
+          "type": "heading",
+          "text": "Step 2: Create the project"
+        },
+        {
+          "type": "paragraph",
+          "text": "Run the command below in a folder where you keep your projects. The name my-app is the name of the new folder. You can choose another name using lowercase letters and dashes."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npx create-next-app@latest my-app"
+        },
+        {
+          "type": "paragraph",
+          "text": "The tool asks a few questions. If you are not sure, take the recommended answers. They are TypeScript yes, ESLint yes, Tailwind CSS yes and App Router yes. TypeScript adds types that catch mistakes early, ESLint checks your code style and Tailwind is a way to style with small classes. You can also give your answers in the command itself. The lessons in this course use this version, which turns off the optional src folder."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npx create-next-app@latest my-app --ts --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm"
+        },
+        {
+          "type": "note",
+          "text": "The generator is updated often. Your questions or the starting files may look a little different from ours. That is normal. The ideas stay the same."
+        },
+        {
+          "type": "heading",
+          "text": "Step 3: Look at the folders"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "npx create-next-app@latest my-app --ts --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm\n...\nSuccess! Created my-app\n\nmy-app/\n  app/            layout.tsx, page.tsx, globals.css, favicon.ico\n  public/         static files such as images\n  AGENTS.md  README.md  eslint.config.mjs  next-env.d.ts\n  next.config.ts  package.json  tsconfig.json"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**app:** the heart of your site. Every folder inside becomes part of a URL. layout.tsx wraps all pages and page.tsx is the home page. globals.css holds styles for the whole site.",
+            "**public:** files served exactly as they are, such as images and icons. A file public/logo.png is available at /logo.png.",
+            "**next.config.ts:** settings for Next.js. You will rarely touch it at the start.",
+            "**package.json:** lists your packages and the commands you can run.",
+            "**tsconfig.json:** settings for TypeScript. The import alias @/* lets you write imports from the project root, such as @/components/Button.",
+            "**eslint.config.mjs:** rules for ESLint.",
+            "**node_modules:** the downloaded packages. Never edit it and never upload it to Git.",
+            "**AGENTS.md:** a note for AI coding tools. Some versions of the generator add it. You can read it or ignore it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Step 4: Run the development server"
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "cd my-app\nnpm run dev"
+        },
+        {
+          "type": "paragraph",
+          "text": "Open http://localhost:3000 in your browser. You will see the starter page. Now open app/page.tsx, change the text and save. The page updates without a refresh. This is called Fast Refresh, and it is one reason development feels quick. The dev server shows detailed errors and builds pages on demand, so it is slower and bigger than a real release."
+        },
+        {
+          "type": "heading",
+          "text": "Step 5: Make a production build"
+        },
+        {
+          "type": "paragraph",
+          "text": "A production build prepares the site the way real visitors will get it. Run the two commands below. The first one builds and prints a list of your routes. The second one starts the real server on port 3000."
+        },
+        {
+          "type": "code",
+          "lang": "bash",
+          "text": "npm run build\nnpm run start"
+        },
+        {
+          "type": "paragraph",
+          "text": "Always run a build before you deploy, because some mistakes show up only there. For example, a page that reads request data outside the proper place stops the build with a clear message. Read the message. It tells you how to fix it."
+        },
+        {
+          "type": "heading",
+          "text": "The four commands you will use all the time"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**npm run dev:** development server with Fast Refresh.",
+            "**npm run build:** production build and route list.",
+            "**npm run start:** run the production build.",
+            "**npm run lint:** check the code with ESLint, if your project has this script."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Next.js 16 removed the old next lint command. A new project defines its own lint script. If your project has no lint script, run npx eslint . instead."
+        },
+        {
+          "type": "heading",
+          "text": "Your first edit"
+        },
+        {
+          "type": "paragraph",
+          "text": "Replace the content of app/page.tsx with a simple page of your own. The example below is the home page we use in the following lessons. It has a heading, a navigation bar and a small search box. We will explain the pieces later in the course."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import { Suspense } from \"react\";\nimport NavLinks from \"@/components/NavLinks\";\nimport SearchBox from \"@/components/SearchBox\";\n\nexport default function Home() {\n  return (\n    <main className=\"p-6\">\n      <NavLinks />\n      <h1>Welcome</h1>\n      <Suspense fallback={<p>Loading search...</p>}>\n        <SearchBox />\n      </Suspense>\n    </main>\n  );\n}"
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Check your Node.js version and install a newer one if it is lower than 20.9.",
+            "Create the project with create-next-app and start it with npm run dev.",
+            "Change the heading in app/page.tsx and watch the page update.",
+            "Stop the server, run npm run build and write down the route list that you see."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "http://localhost:3000 shows your page.",
+            "npm run build finishes without an error and prints a route list.",
+            "You can say what the app, public and node_modules folders are for."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Create, run, build",
+        "nodes": [
+          {
+            "id": "cmd",
+            "label": "create-next-app",
+            "sub": "makes the folders",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "dev",
+            "label": "npm run dev",
+            "sub": "works on your PC",
+            "col": 1,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "build",
+            "label": "npm run build",
+            "sub": "prepares release",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "start",
+            "label": "npm run start",
+            "sub": "serves real site",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "create-next-app makes a ready project with the app folder and settings.",
+            "on": [
+              "cmd"
+            ]
+          },
+          {
+            "say": "npm run dev starts the development server. Edits show up at once.",
+            "flow": [
+              "cmd>dev:start"
+            ]
+          },
+          {
+            "say": "npm run build prepares the site for real visitors and prints the route list.",
+            "flow": [
+              "dev>build:when ready"
+            ]
+          },
+          {
+            "say": "npm run start serves the built site, the way a real server would.",
+            "flow": [
+              "build>start:serve"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Which Node.js version do I need?",
+          "a": "Next.js 16 needs Node.js 20.9 or newer. Use the current LTS version from nodejs.org."
+        },
+        {
+          "q": "Should I use the src folder?",
+          "a": "It is optional. It keeps your code in src and leaves config files outside. This course does not use it, so the paths in the lessons match your project."
+        },
+        {
+          "q": "Why is npm run dev slower than the real site?",
+          "a": "The dev server builds pages when you ask and adds helpful error tools. A production build is prepared ahead of time and optimised, so it is faster for visitors."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which Node.js version does Next.js 16 need?",
+          "options": [
+            "20.9 or newer",
+            "12",
+            "Any version"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What is the public folder for?",
+          "options": [
+            "Your page components",
+            "Installed packages",
+            "Files served as they are, such as images"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Which command prepares the site for real visitors?",
+          "options": [
+            "npm run build",
+            "npm run dev",
+            "npm install"
+          ],
+          "answer": 0,
+          "explain": "npm run build makes the production build and prints the route list."
+        }
+      ]
+    },
+    {
+      "section": "Routing and Navigation",
+      "slug": "file-based-routing-pages-and-nested-routes",
+      "title": "File-Based Routing: Pages and Nested Routes",
+      "metaTitle": "Next.js File-Based Routing Explained",
+      "description": "Learn how Next.js turns folders into URLs with the App Router, how to create pages and nested routes, and which special files a route folder can hold.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In a plain React app you usually write a list of routes by hand: this path shows that component. In Next.js you do not write that list. The folders in your project are the list. Think of the folders as the streets of a town and the page files as the houses. To add a new house you build it on the right street, and the town map updates itself. This idea is called file-based routing."
+        },
+        {
+          "type": "heading",
+          "text": "The two rules"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "A folder inside the app folder adds one part to the URL. A folder called about gives the path /about.",
+            "A folder is only reachable if it holds a file called page. Without that file the folder is just a folder, even if it has other files in it."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The root of your site is app/page.tsx, which answers the address /. Here is a small about page that lives in app/about/page.tsx."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Button from \"@/components/Button\";\nimport ArticleCard from \"@/components/ArticleCard\";\n\nexport default function AboutPage() {\n  return (\n    <>\n      <h1>About us</h1>\n      <ArticleCard />\n      <Button>Contact us</Button>\n    </>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "That is all it takes. Save the file, open /about and the page is there. The file must have a default export, which is the component that shows the page. The name of the function does not matter. The name of the file does, so it must be page followed by .tsx, .jsx, .ts or .js."
+        },
+        {
+          "type": "note",
+          "text": "This version of the about page also shows a button and a card. Those come from later lessons. For now only the heading matters."
+        },
+        {
+          "type": "heading",
+          "text": "Nested routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "To make a path with two or more parts, put folders inside folders. A page at app/blog/page.tsx answers /blog. A page at app/dashboard/settings/page.tsx answers /dashboard/settings. You can go as deep as you like, but real sites stay shallow so that URLs stay short and readable."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "app/\n  page.tsx               ->  /\n  about/page.tsx         ->  /about\n  blog/page.tsx          ->  /blog\n  dashboard/\n    page.tsx             ->  /dashboard\n    settings/page.tsx    ->  /dashboard/settings"
+        },
+        {
+          "type": "paragraph",
+          "text": "Notice that dashboard has its own page.tsx and also holds a settings folder. A folder can be a page and a parent of other pages at the same time."
+        },
+        {
+          "type": "heading",
+          "text": "A list page with links"
+        },
+        {
+          "type": "paragraph",
+          "text": "Here is a blog list page. It shows two posts and links to each. The Link component comes from next/link and works like an anchor tag, but it moves between pages without reloading the whole site. You will learn it fully in a later lesson."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Link from \"next/link\";\n\nconst posts = [\n  { slug: \"hello-nextjs\", title: \"Hello Next.js\" },\n  { slug: \"routing-basics\", title: \"Routing basics\" },\n];\n\nexport default function BlogPage() {\n  return (\n    <ul>\n      {posts.map((p) => (\n        <li key={p.slug}>\n          <Link href={`/blog/${p.slug}`}>{p.title}</Link>\n        </li>\n      ))}\n    </ul>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The list uses the key prop, like any React list. Each link points to /blog/ followed by the post slug. A slug is the short readable part of a URL, such as hello-nextjs. We will build the page for a single post in the next lesson."
+        },
+        {
+          "type": "heading",
+          "text": "Special files in a route folder"
+        },
+        {
+          "type": "paragraph",
+          "text": "page is one of several file names that Next.js understands. Each one has a job. You will meet them all in this course."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**page:** the content of the route, and what makes it reachable.",
+            "**layout:** a wrapper that stays on screen when you move between pages inside the folder.",
+            "**template:** like a layout, but it is created again on each visit.",
+            "**loading:** a quick screen shown while the page waits for data.",
+            "**error:** a screen shown when something in the route breaks.",
+            "**not-found:** a screen for pages that do not exist.",
+            "**route:** a server endpoint instead of a page. A folder can hold page or route for the same URL, but not both."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Other files can sit next to page"
+        },
+        {
+          "type": "paragraph",
+          "text": "Because only page makes a folder public, you can safely keep other files next to it, such as a component used only by that route, a style file or a test. They are not turned into URLs. This is called colocation. It keeps related files together, so you do not have to search the whole project. If you want to be extra clear that a folder is not a route, you can name it with an underscore, which you will see in the lesson about folder organisation."
+        },
+        {
+          "type": "heading",
+          "text": "Check what you built"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you run npm run build, Next.js prints every route it found. Compare it with your folders. A page that is missing from the list is usually a file with the wrong name, for example Page.tsx with a capital letter or a page without a default export."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "Route (app)\n┌ ○ /\n├ ○ /_not-found\n├ ○ /about\n├ ○ /blog\n├   /blog/[slug]\n│ ├ ◐ /blog/[slug]\n│ ├ ○ /blog/hello-nextjs\n│ └ ○ /blog/routing-basics\n├   /docs/[[...slug]]\n│ └ ◐ /docs/[[...slug]]\n├ ○ /old-page\n├ ○ /pricing\n└   /shop/[...slug]\n  └ ◐ /shop/[...slug]\n\n○  (Static)             prerendered as static content\n◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content"
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create pages for /about, /contact and /services with a different heading on each.",
+            "Create /dashboard and /dashboard/settings. Visit both.",
+            "Add a folder called team without a page file and visit /team. Note what you see, then add a page file and visit again.",
+            "Run npm run build and match every folder you made to a line in the route list."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Each folder with a page file opens at the matching address.",
+            "A folder with no page file shows the not-found page.",
+            "You can name three special files besides page."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Folders become URLs",
+        "nodes": [
+          {
+            "id": "app",
+            "label": "app folder",
+            "sub": "root of routes",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "folder",
+            "label": "about folder",
+            "sub": "adds /about",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "page",
+            "label": "page file",
+            "sub": "the content",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "url",
+            "label": "/about",
+            "sub": "what visitors open",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Every route starts inside the app folder.",
+            "on": [
+              "app"
+            ]
+          },
+          {
+            "say": "A folder named about adds one part to the address.",
+            "flow": [
+              "app>folder:folder name"
+            ]
+          },
+          {
+            "say": "Inside it, a file called page holds what to show.",
+            "flow": [
+              "folder>page:contains"
+            ]
+          },
+          {
+            "say": "Visitors open the address and Next.js shows that page.",
+            "flow": [
+              "page>url:served at"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why must the file be called page?",
+          "a": "Next.js looks for that exact name. It lets you keep other files in the same folder without turning them into public addresses."
+        },
+        {
+          "q": "Do I need to restart the server after adding a page?",
+          "a": "No. In development the new page appears as soon as you save the file."
+        },
+        {
+          "q": "Can I use .js instead of .tsx?",
+          "a": "Yes. page.js, page.jsx, page.ts and page.tsx all work. This course uses TypeScript, the default of create-next-app."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "A folder app/about holds a file page.tsx. What address does it answer?",
+          "options": [
+            "/about",
+            "/app/about",
+            "/page"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "What happens if a folder has no page file?",
+          "options": [
+            "The build stops",
+            "It shows a blank page",
+            "It is not reachable as an address"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Where would you put a page for /dashboard/settings?",
+          "options": [
+            "app/settings-dashboard.tsx",
+            "app/dashboard/settings/page.tsx",
+            "pages/dashboard.tsx"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Routing and Navigation",
+      "slug": "dynamic-routes-catch-all-and-optional-catch-all",
+      "title": "Dynamic Routes, Catch-All and Optional Catch-All",
+      "metaTitle": "Next.js Dynamic and Catch-All Routes",
+      "description": "Build one page that serves many addresses: dynamic segments, several segments in one path, catch-all and optional catch-all routes with tested examples.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A blog may have a thousand posts. You do not want a thousand folders. You want one page that can show any post, depending on the address. This is what a dynamic route does. Think of a hotel with one reception desk for all the rooms. The guest says a room number and the desk gives the right key. The room number is the dynamic part of the address."
+        },
+        {
+          "type": "heading",
+          "text": "A dynamic segment"
+        },
+        {
+          "type": "paragraph",
+          "text": "Wrap a folder name in square brackets. A folder called [slug] matches any single value in that position. The value is handed to your page as a prop called params. In Next.js 16 params is a Promise, so you await it. This is a change from older versions, which you may still see in older tutorials."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export function generateStaticParams() {\n  return [{ slug: \"hello-nextjs\" }, { slug: \"routing-basics\" }];\n}\n\nexport default async function PostPage({ params }: PageProps<\"/blog/[slug]\">) {\n  const { slug } = await params;\n  return <h1>Post: {slug}</h1>;\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**app/blog/[slug]/page.tsx** answers /blog/hello-nextjs and /blog/anything-else.",
+            "**PageProps** is a type that Next.js generates for you. The text inside the brackets must match the folder, so TypeScript knows that slug exists.",
+            "**await params** gives an object, here with the key slug.",
+            "**generateStaticParams** is optional. It tells Next.js which values to build ahead of time. Here two posts are prepared at build time, so they are very fast."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "What happens for an address that is not in the list? We tested it. Next.js built /blog/hello-nextjs and /blog/routing-basics at build time. When we asked for /blog/not-in-list, it still answered with a page, because by default a value that was not prepared is rendered the first time someone asks. If you want such addresses to show a not-found page, check the value in your page and call notFound, which you will learn in lesson 9. Older Next.js versions had a setting called dynamicParams for this, but the official docs say it is not available when Cache Components is turned on, which is the default in a new Next.js 16 project."
+        },
+        {
+          "type": "note",
+          "text": "The build in our lab stopped with an error the first time, because the page read params without a list of known values and the project had Cache Components turned on, which is the default in new Next.js 16 projects. Adding generateStaticParams, or wrapping the part that waits for params in a Suspense boundary, fixes it. The error message tells you both fixes. Read errors slowly: they are very helpful."
+        },
+        {
+          "type": "heading",
+          "text": "Several dynamic segments"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use more than one bracket folder in a path. A path such as app/shop/[category]/[product]/page.tsx matches /shop/shoes/running-shoe. Then params has two keys, category and product, and you read them the same way."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export default async function ProductPage({ params }: PageProps<\"/shop/[category]/[product]\">) {\n  const { category, product } = await params;\n  return <p>{category} / {product}</p>;\n}"
+        },
+        {
+          "type": "heading",
+          "text": "Catch-all routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes you do not know how many parts the address has. A documentation site may have /docs/a, /docs/a/b and /docs/a/b/c. Use three dots inside the brackets: [...slug]. The value is an array of all the remaining parts."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import { Suspense } from \"react\";\n\nasync function Parts({ params }: { params: PageProps<\"/shop/[...slug]\">[\"params\"] }) {\n  const { slug } = await params; // always an array, for example [\"shoes\", \"running\"]\n  return <p>Path parts: {slug.join(\" / \")}</p>;\n}\n\nexport default function ShopPage(props: PageProps<\"/shop/[...slug]\">) {\n  return (\n    <Suspense fallback={<p>Loading...</p>}>\n      <Parts params={props.params} />\n    </Suspense>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We ran this page. The address /shop/shoes/running gave the text Path parts: shoes / running. A catch-all needs at least one part, so /shop alone does not match it."
+        },
+        {
+          "type": "heading",
+          "text": "Optional catch-all routes"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the plain address should also work, use double brackets: [[...slug]]. Now /docs, /docs/a and /docs/a/b all match. For /docs the value is undefined, so the page must handle that."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import { Suspense } from \"react\";\n\nasync function Doc({ params }: { params: PageProps<\"/docs/[[...slug]]\">[\"params\"] }) {\n  const { slug } = await params; // undefined on /docs itself\n  return <p>{slug ? `Doc: ${slug.join(\"/\")}` : \"Docs home\"}</p>;\n}\n\nexport default function DocsPage(props: PageProps<\"/docs/[[...slug]]\">) {\n  return (\n    <Suspense fallback={<p>Loading...</p>}>\n      <Doc params={props.params} />\n    </Suspense>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "In our test /docs showed Docs home and /docs/a/b showed Doc: a/b."
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "GET /                    200\nGET /about               200\nGET /blog/hello-nextjs   200\nGET /blog/not-in-list    200   (not listed in generateStaticParams, rendered when asked)\nGET /shop/shoes/running  200   (Path parts: shoes / running)\nGET /docs                200   (Docs home)\nGET /docs/a/b            200   (Doc: a/b)\nGET /pricing             200   (the (marketing) folder is not part of the URL)\nGET /old-page            307   -> /about\nGET /nope                404   (our not-found.tsx page)\nGET /products/1          200   (title: Notebook, description: A plain paper notebook.)\nGET /dashboard           200   (layout sidebar + Dashboard overview)\nGET /posts/hello-nextjs  200\nGET /posts/zzz           200   (our not-found page, noindex tag added, status still 200 because the response was streamed)\nGET /old-blog/hello-nextjs 308 -> /blog/hello-nextjs   (permanent redirect from next.config.ts)\nGET /shop-multi/shoes/running-shoe 200"
+        },
+        {
+          "type": "heading",
+          "text": "Which one should I use?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**[slug]:** exactly one value. Posts, products, users.",
+            "**[...slug]:** one or more values. Category trees where the address needs at least one part.",
+            "**[[...slug]]:** zero or more values. A documentation home page and all its sub-pages in one file."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Take care with order"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a fixed folder and a dynamic folder could both match, the fixed one wins. A folder called app/blog/new is used for /blog/new, and [slug] answers everything else. This lets you add special pages without breaking the general one."
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make /blog/[slug] and show the slug in a heading. Add generateStaticParams with two slugs.",
+            "Make /shop/[...slug] and show the parts joined with a slash.",
+            "Make /docs/[[...slug]] and check that /docs, /docs/a and /docs/a/b all work.",
+            "Add app/blog/new/page.tsx and see which page answers /blog/new."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Different slugs show different content from one file.",
+            "The catch-all shows the parts as an array.",
+            "/docs works with the optional catch-all but not with the normal one."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "One page, many addresses",
+        "nodes": [
+          {
+            "id": "url",
+            "label": "/blog/my-post",
+            "sub": "what the visitor typed",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "folder",
+            "label": "[slug] folder",
+            "sub": "matches any value",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "params",
+            "label": "params",
+            "sub": "slug = my-post",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "page",
+            "label": "page output",
+            "sub": "Post: my-post",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A visitor opens an address with a changing part.",
+            "on": [
+              "url"
+            ]
+          },
+          {
+            "say": "The folder in square brackets matches that part.",
+            "flow": [
+              "url>folder:match"
+            ]
+          },
+          {
+            "say": "Next.js passes the value to your page as params.",
+            "flow": [
+              "folder>params:value"
+            ]
+          },
+          {
+            "say": "Your page awaits params and draws the right content.",
+            "flow": [
+              "params>page:await"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why do I have to await params?",
+          "a": "In Next.js 16 params and searchParams are Promises, so the framework can prepare the rest of the page while the request details arrive. Older versions gave a plain object."
+        },
+        {
+          "q": "What is generateStaticParams for?",
+          "a": "It lists the values to build ahead of time. Those pages are very fast. Values not in the list are built when first requested, unless you turn that off."
+        },
+        {
+          "q": "What is the difference between [...slug] and [[...slug]]?",
+          "a": "The double bracket also matches the address with no extra parts, so /docs works. The single bracket needs at least one part."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which folder name matches any single value in that position?",
+          "options": [
+            "_slug",
+            "[slug]",
+            "(slug)"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which route also matches /docs with nothing after it?",
+          "options": [
+            "[slug]",
+            "[[...slug]]",
+            "[...slug]"
+          ],
+          "answer": 1,
+          "explain": "The double brackets make the catch-all optional."
+        },
+        {
+          "q": "In Next.js 16, how do you read the params prop?",
+          "options": [
+            "Read it directly as an object",
+            "Await it, because it is a Promise",
+            "Use localStorage"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Routing and Navigation",
+      "slug": "route-groups-private-folders-and-project-organisation",
+      "title": "Route Groups, Private Folders and Project Organisation",
+      "metaTitle": "Next.js Route Groups and Private Folders",
+      "description": "Organise a Next.js project with route groups in parentheses and private folders with an underscore, without changing URLs, and learn tidy folder habits.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As a project grows, the app folder fills up. You might have marketing pages, shop pages, account pages and shared components all mixed together. Next.js gives you two small tools to keep order without changing a single URL: route groups and private folders. Think of them as labelled boxes in a cupboard. The boxes help you find things, but the people who use the room never see the labels."
+        },
+        {
+          "type": "heading",
+          "text": "Route groups: folders in parentheses"
+        },
+        {
+          "type": "paragraph",
+          "text": "A folder whose name is wrapped in round brackets is a route group. The name is only for you. It is not part of the address. So app/(marketing)/pricing/page.tsx answers /pricing, not /marketing/pricing."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Card from \"../../_components/Card\";\n\nexport default function PricingPage() {\n  return <Card title=\"Pricing\">Free while you learn.</Card>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We built this and ran it. The address /pricing worked, and the (marketing) folder was invisible. The build list shows the same thing: the route is just /pricing."
+        },
+        {
+          "type": "heading",
+          "text": "Why use route groups?"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Tidy folders.** Put all marketing pages in (marketing), all account pages in (account), and so on.",
+            "**Different layouts for different parts of the site.** Each group can have its own layout file. The marketing pages can have a big header and footer, while the account pages have a sidebar. You will build this in the layouts lesson.",
+            "**Splitting a big site between teams.** Each team works in its own group."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Two different groups must not contain the same address. If both (marketing)/about and (shop)/about exist, they both mean /about and the build stops with an error. Keep every address in one place."
+        },
+        {
+          "type": "heading",
+          "text": "Private folders: names that begin with an underscore"
+        },
+        {
+          "type": "paragraph",
+          "text": "A folder whose name begins with an underscore, such as _components, is private. It is skipped by the router completely, even if it contains a page file. It is a safe place for helper code that belongs to one part of the app."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export default function Card({ title, children }: { title: string; children: React.ReactNode }) {\n  return (\n    <section className=\"rounded border p-4\">\n      <h2 className=\"font-semibold\">{title}</h2>\n      {children}\n    </section>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The card above lives in app/_components/Card.tsx. The pricing page imports it with a relative path. No address /_components exists. If you would like an address that really starts with an underscore, write %5F instead of the underscore in the folder name, but you will almost never need it."
+        },
+        {
+          "type": "heading",
+          "text": "Colocation: keep files near where they are used"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Next.js a folder is only public when it holds a page or route file. So you are free to put components, styles, tests and helper functions inside route folders. Many teams follow this habit: code used by one route stays next to the route, and code used by many routes goes into shared folders at the top of the project."
+        },
+        {
+          "type": "heading",
+          "text": "A tidy structure for a medium project"
+        },
+        {
+          "type": "code",
+          "lang": "text",
+          "text": "app/\n  (marketing)/\n    layout.tsx\n    page.tsx            ->  /\n    pricing/page.tsx    ->  /pricing\n  (account)/\n    layout.tsx\n    login/page.tsx      ->  /login\n    profile/page.tsx    ->  /profile\n  _components/          (private, not a route)\ncomponents/             (shared across the whole app)\nlib/                    (helpers, database code)\npublic/                 (images and icons)"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is only one good option. You can also use a src folder, or put shared code under app. What matters is that the team agrees and that new files go in an obvious place."
+        },
+        {
+          "type": "heading",
+          "text": "Folder names that people read"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Use lowercase letters and dashes in route folders, for example about-us. URLs are easier to read and share, and capital letters can confuse servers.",
+            "Choose names that match what the visitor expects to see in the address bar.",
+            "Keep addresses short. A deep path such as /a/b/c/d/e is hard to remember."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create a (marketing) group with an about page and a pricing page. Check that the addresses do not include the word marketing.",
+            "Create app/_components with a Card component and use it on the pricing page.",
+            "Try adding the same address in two groups on purpose. Read the error message, then fix it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "/pricing opens even though the folder is (marketing)/pricing.",
+            "The route list from npm run build shows /pricing and not /marketing/pricing.",
+            "You can explain the difference between a group and a private folder."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Folders for you, not for URLs",
+        "nodes": [
+          {
+            "id": "group",
+            "label": "(marketing)",
+            "sub": "group: no URL part",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "page",
+            "label": "pricing/page",
+            "sub": "the page file",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "url",
+            "label": "/pricing",
+            "sub": "the real address",
+            "col": 2,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "private",
+            "label": "_components",
+            "sub": "private: never a route",
+            "col": 3,
+            "row": 0,
+            "kind": "data"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A folder in round brackets is a group. It helps you organise, and it is hidden from the address.",
+            "on": [
+              "group"
+            ]
+          },
+          {
+            "say": "A page inside the group still defines its own address.",
+            "flow": [
+              "group>page:contains"
+            ]
+          },
+          {
+            "say": "A folder that starts with an underscore is private: the router ignores it, so it is safe for helper code.",
+            "on": [
+              "private"
+            ]
+          },
+          {
+            "say": "The visitor sees only /pricing. Neither the group nor the private folder shows up.",
+            "flow": [
+              "page>url:served at"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Does the group name show in the URL?",
+          "a": "No. A folder in round brackets is only for organising your files. The address does not include it."
+        },
+        {
+          "q": "When should I use a private folder?",
+          "a": "When a folder holds helper code that belongs to one part of the app and must never become a route. Because only page and route files make addresses, a private folder is also a clear signal to other developers."
+        },
+        {
+          "q": "Can two route groups hold the same address?",
+          "a": "No. Two files that would produce the same address cause a build error. Keep each address in one group."
+        }
+      ],
+      "readTime": "4 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Does the folder name (marketing) appear in the address?",
+          "options": [
+            "Yes, as /marketing",
+            "No, it is only for organising files",
+            "Only in development"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What does a folder that starts with an underscore do?",
+          "options": [
+            "It becomes a page",
+            "It is deleted at build",
+            "It is private and never becomes a route"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Two groups both contain an about page. What happens?",
+          "options": [
+            "Both mean /about, so the build gives an error",
+            "Next.js merges them",
+            "The first one wins silently"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Routing and Navigation",
+      "slug": "link-useRouter-usepathname-and-usesearchparams",
+      "title": "Navigation: Link, useRouter, usePathname and useSearchParams",
+      "metaTitle": "Next.js Link, useRouter and usePathname",
+      "description": "Move between pages with the Link component and useRouter, highlight the active link with usePathname, read the query string with useSearchParams.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A website without links is a dead end. In this lesson we cover every way to move between pages in the App Router: the Link component for normal links, the useRouter hook for moving from code, usePathname to know where you are, and useSearchParams to read the part of the address after the question mark. Our example is a small navigation bar that we run and test."
+        },
+        {
+          "type": "heading",
+          "text": "The Link component"
+        },
+        {
+          "type": "paragraph",
+          "text": "Link looks like an anchor tag, and in fact it makes one. But it does more. When a visitor clicks it, Next.js loads the new page without reloading the whole site, so the move feels instant. When a Link scrolls into view, Next.js can also prepare the target page in the background, which is called prefetching. This is why you should use Link instead of a plain a tag for links inside your site. For a link to another website, a plain anchor is fine."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Link from \"next/link\";\n\nexport default function Menu() {\n  return (\n    <nav>\n      <Link href=\"/about\">About</Link>\n      <Link href=\"/blog/hello-nextjs\">First post</Link>\n    </nav>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**href** is the target address. It can be a string or an object.",
+            "**Link works in Server Components,** so you can use it on any page without a special line at the top.",
+            "**Do not nest an a tag inside Link.** Link already makes the anchor."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "A client component for the active link"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some navigation tools need to know what is happening in the browser, so they must run there. A file that uses hooks such as usePathname or useRouter needs the line use client at the top. You will learn exactly what that line means in the Server and Client Components lesson. For now, remember: hooks from next/navigation go in a file that starts with the line use client."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport Link from \"next/link\";\nimport { usePathname, useRouter } from \"next/navigation\";\n\nexport default function NavLinks() {\n  const pathname = usePathname();\n  const router = useRouter();\n  const links = [\n    { href: \"/\", label: \"Home\" },\n    { href: \"/about\", label: \"About\" },\n    { href: \"/blog\", label: \"Blog\" },\n  ];\n  return (\n    <nav className=\"flex gap-4\">\n      {links.map((l) => (\n        <Link key={l.href} href={l.href} className={pathname === l.href ? \"font-bold\" : \"\"}>\n          {l.label}\n        </Link>\n      ))}\n      <button onClick={() => router.push(\"/pricing\")}>See pricing</button>\n    </nav>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**usePathname** returns the current path, such as /about. We compare it with each link, and the active one gets a bold class.",
+            "**useRouter** gives you a router object. router.push goes to a new page and adds it to history, so the Back button works. router.replace goes to a new page without adding to history, and router.back goes back. router.refresh asks for fresh data for the current page.",
+            "**Use Link when you can.** Use router.push after an action, for example after a form is saved."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Reading the query string with useSearchParams"
+        },
+        {
+          "type": "paragraph",
+          "text": "A query string is the part after a question mark, such as /?q=hello. The hook useSearchParams gives you a read-only object. You call get with a name and receive the value, or null if it is missing."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport { useSearchParams } from \"next/navigation\";\n\nexport default function SearchBox() {\n  const params = useSearchParams();\n  const q = params.get(\"q\") ?? \"\";\n  return <p>You searched for: {q || \"nothing yet\"}</p>;\n}"
+        },
+        {
+          "type": "note",
+          "text": "A component that reads search params must be wrapped in a Suspense boundary on a page that is prepared ahead of time. Otherwise the build asks you to add one. You can see the home page that does this in lesson 4. It wraps SearchBox in Suspense with a small fallback."
+        },
+        {
+          "type": "paragraph",
+          "text": "In our test the address /?q=hello returned a normal page, and the search box showed the typed word. Without the q part it showed nothing yet."
+        },
+        {
+          "type": "heading",
+          "text": "Changing the query string safely"
+        },
+        {
+          "type": "paragraph",
+          "text": "To build a new address from the current search params, create a URLSearchParams object from the old one, set the value you want and push the result. This keeps other values in place. Never join strings by hand, because special characters such as spaces and ampersands need to be encoded."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport { usePathname, useRouter, useSearchParams } from \"next/navigation\";\n\nexport default function SortButton() {\n  const pathname = usePathname();\n  const router = useRouter();\n  const searchParams = useSearchParams();\n\n  function sortBy(value: string) {\n    const next = new URLSearchParams(searchParams.toString());\n    next.set(\"sort\", value);\n    router.push(`${pathname}?${next.toString()}`);\n  }\n\n  return <button onClick={() => sortBy(\"price\")}>Sort by price</button>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "This button was type-checked in the lab together with the other files in the project, but it was not clicked in a browser."
+        },
+        {
+          "type": "heading",
+          "text": "Server pages can read params without hooks"
+        },
+        {
+          "type": "paragraph",
+          "text": "A page component receives searchParams as a prop, and in Next.js 16 you await it like params. That is the way to read the query string in a Server Component. The hook is only for client components."
+        },
+        {
+          "type": "heading",
+          "text": "Remember"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Link for normal links. It is the best choice for speed and for search engines, because the target is a real anchor tag.",
+            "useRouter for moving after an action.",
+            "usePathname to know the current path.",
+            "useSearchParams to read the query string in a client component."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Build a navigation bar with Home, About and Blog links. Make the active one bold using usePathname.",
+            "Add a button that uses router.push to open /pricing.",
+            "Add a search box component that reads the q parameter. Wrap it in Suspense and visit /?q=test.",
+            "Use router.back in a small Back button on the blog post page."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Clicking a link does not reload the whole page.",
+            "The active link looks different from the others.",
+            "The q value from the address appears on the page."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Four ways to move and read",
+        "nodes": [
+          {
+            "id": "link",
+            "label": "Link",
+            "sub": "click to go",
+            "col": 0,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "router",
+            "label": "useRouter",
+            "sub": "go from code",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "path",
+            "label": "usePathname",
+            "sub": "where am I",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "qs",
+            "label": "useSearchParams",
+            "sub": "read ?q=",
+            "col": 3,
+            "row": 0,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Link makes a fast client-side move and prepares the target page in the background.",
+            "on": [
+              "link"
+            ]
+          },
+          {
+            "say": "useRouter moves from code, for example after a form is saved.",
+            "flow": [
+              "link>router:or"
+            ]
+          },
+          {
+            "say": "usePathname tells you the current path, so you can mark the active link.",
+            "flow": [
+              "router>path:know where"
+            ]
+          },
+          {
+            "say": "useSearchParams reads the query string. Wrap it in Suspense on a prepared page.",
+            "flow": [
+              "path>qs:read query"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Why use Link instead of an a tag?",
+          "a": "Link moves between pages without a full reload and prepares the target page in the background. A plain a tag reloads the whole site."
+        },
+        {
+          "q": "Why does my navigation file need use client?",
+          "a": "Hooks such as usePathname and useRouter need the browser, so the file must be a client component. Link itself can be used in Server Components."
+        },
+        {
+          "q": "What is the difference between push and replace?",
+          "a": "push adds the new page to history, so Back returns to the old one. replace swaps the current history entry, so Back skips it."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Why use Link instead of a plain a tag for links inside your site?",
+          "options": [
+            "It makes the text bigger",
+            "It moves between pages without a full reload and can prefetch",
+            "It is required by HTML"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Which hook tells you the current path, such as /about?",
+          "options": [
+            "usePathname",
+            "useState",
+            "useSearchParams"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "A file that uses useRouter must start with which line?",
+          "options": [
+            "use client",
+            "use server",
+            "use router"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Routing and Navigation",
+      "slug": "redirects-not-found-loading-and-error-pages",
+      "title": "Redirects, Not Found, Loading and Error Pages",
+      "metaTitle": "Next.js Redirect, Not Found, Loading, Error",
+      "description": "Handle every unhappy moment in a Next.js app: redirects, custom 404 pages, loading screens, error boundaries with reset, and a global error page.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A good site does not only work when everything goes well. It also behaves politely when a page moved, when a page does not exist, when data is slow and when something breaks. Next.js gives each of these moments its own special file or function. Think of it as a shop. If an item has moved, a sign points to the new shelf (redirect). If an item does not exist, the assistant says so kindly (not found). While the assistant fetches something from the back room, you see a small please-wait sign (loading). And if the back room is flooded, the shop has a calm message and a way to try again (error)."
+        },
+        {
+          "type": "heading",
+          "text": "Redirects in code"
+        },
+        {
+          "type": "paragraph",
+          "text": "The redirect function from next/navigation sends the visitor to another address. It works in Server Components, Server Actions and Route Handlers. By default the answer is a temporary 307 code. We tested this page."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import { redirect } from \"next/navigation\";\n\nexport default function OldPage() {\n  redirect(\"/about\");\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "When we asked for /old-page, the server answered 307 and pointed to /about. For a permanent move, which search engines should remember, use the permanentRedirect function or the redirects setting in next.config.ts, which gives a 308 code."
+        },
+        {
+          "type": "code",
+          "lang": "ts",
+          "text": "import type { NextConfig } from \"next\";\n\nconst nextConfig: NextConfig = {\n  async redirects() {\n    return [\n      { source: \"/old-blog/:slug\", destination: \"/blog/:slug\", permanent: true },\n    ];\n  },\n};\n\nexport default nextConfig;"
+        },
+        {
+          "type": "note",
+          "text": "If you rename a page that already ranks in search, add a permanent redirect from the old address to the new one. Otherwise visitors and search engines land on a dead end and you lose the ranking."
+        },
+        {
+          "type": "heading",
+          "text": "Not found pages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Call notFound from next/navigation when you cannot find what the address asks for, for example a post that does not exist. Next.js then shows the nearest not-found file. A not-found file in the app folder is the page for the whole site. We tested one, and an unknown address such as /nope returned a 404 and this page."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Link from \"next/link\";\n\nexport default function NotFound() {\n  return (\n    <main>\n      <h1>Page not found</h1>\n      <Link href=\"/\">Go home</Link>\n    </main>\n  );\n}"
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import { notFound } from \"next/navigation\";\n\nconst posts = [\"hello-nextjs\", \"routing-basics\"];\n\nexport function generateStaticParams() {\n  return posts.map((slug) => ({ slug }));\n}\n\nexport default async function PostPage({ params }: PageProps<\"/posts/[slug]\">) {\n  const { slug } = await params;\n  if (!posts.includes(slug)) notFound();\n  return <h1>{slug}</h1>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The call to notFound stops the function, so the lines after it do not run. There is one detail that surprises many people, and we measured it. An address that matches no folder at all, such as /nope, returned the status 404. But an address that matches the [slug] folder and then calls notFound, such as /posts/zzz, showed our not-found page with the status 200. The reason is streaming: with Cache Components, Next.js sends the ready static part of the page first, and that first part starts the response with 200. Next.js protects your search ranking by adding a robots noindex tag to the streamed not-found page, so Google should not index it. The official docs say that some crawlers may still call it a soft 404. If you need a true 404 status, make the check run before the response starts."
+        },
+        {
+          "type": "heading",
+          "text": "Loading pages"
+        },
+        {
+          "type": "paragraph",
+          "text": "A file named loading in a route folder shows while the page, or something under it, waits for its data. Next.js wraps the page in a Suspense boundary for you and shows your loading component until the page is ready. The user sees something at once, and the layout stays in place."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export default function Loading() {\n  return <p>Loading dashboard...</p>;\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Keep loading screens light: a text line or a simple skeleton that has the same shape as the real content.",
+            "A loading file covers the folder it is in and the folders below it.",
+            "For a smaller area, you can wrap only that part in Suspense yourself. You will do this in the data fetching module."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Error pages"
+        },
+        {
+          "type": "paragraph",
+          "text": "A file named error shows when something inside the route throws an error while rendering. It must be a client component, so it starts with use client. It receives the error and a reset function. Calling reset tries to draw the route again, which helps when the error was a short problem such as a lost network connection."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nexport default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {\n  return (\n    <main>\n      <h1>Something went wrong</h1>\n      <button onClick={() => reset()}>Try again</button>\n    </main>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The page is replaced by your error screen, but the layout around it stays working.",
+            "Do not show the raw error message to visitors. In production Next.js hides the details of server errors and gives a digest code, which you can search for in your server logs.",
+            "Place an error file in a folder to protect only that part of the site."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Global error handling"
+        },
+        {
+          "type": "paragraph",
+          "text": "An error file cannot catch an error thrown by the root layout itself, because it sits inside that layout. For that rare case there is a file called global-error in the app folder. It replaces the whole page, so it must include its own html and body tags. Keep it very simple."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nexport default function GlobalError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <h1>Something went seriously wrong</h1>\n        <button onClick={() => reset()}>Try again</button>\n      </body>\n    </html>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The global-error example was type-checked, but we did not force an error in the root layout to see it run."
+        },
+        {
+          "type": "heading",
+          "text": "The order of the special files"
+        },
+        {
+          "type": "paragraph",
+          "text": "In one route folder Next.js nests the special files like layers. The layout is the outer layer. Inside it are the error boundary, then the loading boundary and the not-found boundary, and the page is the innermost part. This order explains why an error file cannot catch errors from the layout beside it."
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Create /old-page that redirects to /about. Check the response code with your browser network tab.",
+            "Add app/not-found.tsx with a link home. Visit an address that does not exist.",
+            "Add loading.tsx to a folder and slow its page down with a wait function. Watch the loading text appear.",
+            "Add error.tsx and throw an error inside a page on purpose. Press the Try again button."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "/old-page ends on /about.",
+            "Unknown addresses show your own not-found page.",
+            "A thrown error shows your error page and the rest of the site still works."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "When things do not go smoothly",
+        "nodes": [
+          {
+            "id": "visit",
+            "label": "Visitor",
+            "sub": "asks for a page",
+            "col": 0,
+            "row": 0,
+            "kind": "user"
+          },
+          {
+            "id": "check",
+            "label": "Next.js",
+            "sub": "looks for a match",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "special",
+            "label": "Special files",
+            "sub": "redirect, 404, loading",
+            "col": 2,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "page",
+            "label": "Right screen",
+            "sub": "kind and clear",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A visitor asks for an address.",
+            "on": [
+              "visit"
+            ]
+          },
+          {
+            "say": "Next.js looks for a matching page.",
+            "flow": [
+              "visit>check:request"
+            ]
+          },
+          {
+            "say": "If it moved, a missing page, slow data or an error shows up, the matching special file is chosen.",
+            "flow": [
+              "check>special:problem?"
+            ]
+          },
+          {
+            "say": "The visitor sees a friendly screen instead of a blank page.",
+            "flow": [
+              "special>page:shown"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "What is the difference between redirect and permanentRedirect?",
+          "a": "redirect is temporary (307). permanentRedirect and the permanent option in next.config.ts are permanent (308), which tells search engines to move the old address to the new one."
+        },
+        {
+          "q": "Why must error.tsx be a client component?",
+          "a": "It needs to handle the reset button, which runs in the browser. So it starts with the line use client."
+        },
+        {
+          "q": "Does not-found give a real 404 status?",
+          "a": "Yes. In our test an unknown address returned status 404 with our own page."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which file shows while a route waits for its data?",
+          "options": [
+            "loading",
+            "template",
+            "error"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why must error.tsx be a client component?",
+          "options": [
+            "It needs the reset button, which runs in the browser",
+            "It runs only at build time",
+            "It uses a database"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "In the lab, what status did an address with no matching folder return?",
+          "options": [
+            "200",
+            "404",
+            "500"
+          ],
+          "answer": 1,
+          "explain": "An address with no matching folder returned 404. A page that calls notFound while streaming can keep status 200."
+        }
+      ]
+    },
+    {
+      "section": "Components and Layouts",
+      "slug": "server-components-vs-client-components-use-client",
+      "title": "Server Components vs Client Components and use client",
+      "metaTitle": "Server vs Client Components in Next.js",
+      "description": "Learn the difference between Server Components and Client Components in Next.js, what use client does, and when to choose each, with a tested example.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This is the most important idea in the App Router, so we will go slowly. Picture a restaurant again. The kitchen is the server and the dining room is the browser. Some work is best done in the kitchen: chopping, cooking, reading the recipe book. Some work must happen at the table: adding salt, pouring your own drink. Next.js lets you choose, component by component, where the work happens. A component that works in the kitchen is a Server Component. A component that works at the table is a Client Component."
+        },
+        {
+          "type": "heading",
+          "text": "Server Components (the default)"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the App Router every component is a Server Component unless you say otherwise. A Server Component runs only on the server. Its code is never sent to the browser. Only the finished result is sent, as ready HTML. This gives you real benefits."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Less JavaScript in the browser.** The code of a Server Component, and the large libraries it uses, stay on the server. Pages load faster.",
+            "**Direct access to data.** A Server Component can be async, so you can write await and read a database or call an API right inside it.",
+            "**Secrets stay safe.** API keys and database passwords used in a Server Component never reach the visitor.",
+            "**Better for search.** The content is in the HTML from the start."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "But a Server Component cannot do some things, because it never runs in the browser. It cannot use state or effects, and it cannot react to clicks."
+        },
+        {
+          "type": "list",
+          "items": [
+            "No useState, useEffect or other hooks that depend on the browser.",
+            "No event handlers such as onClick or onChange.",
+            "No browser-only objects such as window or localStorage."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Client Components"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Client Component is a normal React component, the kind you already know. You make one by putting the line use client at the very top of the file, before the imports. That line says: this file, and what it imports, belongs to the browser side. Client Components can use state, effects and event handlers."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport { useState } from \"react\";\n\nexport default function LikeButton({ start }: { start: number }) {\n  const [likes, setLikes] = useState(start);\n  return <button onClick={() => setLikes(likes + 1)}>Likes: {likes}</button>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "This is a Client Component. It remembers a number in state and adds one on each click. Next.js still prepares its first HTML on the server. After that, React in the browser makes the button work. This step is called hydration."
+        },
+        {
+          "type": "heading",
+          "text": "Using both together"
+        },
+        {
+          "type": "paragraph",
+          "text": "Real pages mix the two. The rule of thumb is simple: keep components on the server by default, and move only the interactive pieces to the client. Here a Server Component draws an article and places the Client Component inside it."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import LikeButton from \"./LikeButton\";\n\n// A Server Component: it can be async and read data directly.\nexport default async function ArticleCard() {\n  const article = { title: \"Server and client together\", likes: 3 };\n  return (\n    <article>\n      <h2>{article.title}</h2>\n      <LikeButton start={article.likes} />\n    </article>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We built this page and ran it. The server drew the heading and the starting number of likes, and the button became interactive in the browser. Notice that ArticleCard did not need the use client line. A Server Component can import and render a Client Component."
+        },
+        {
+          "type": "heading",
+          "text": "What is the boundary?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The line use client creates a boundary. Everything in that file, and every file it imports, is sent to the browser. So place the line as low in the tree as you can. If you put it at the top of a big layout, all of its children get shipped to the browser, and you lose the benefit. Make a small button component client side instead."
+        },
+        {
+          "type": "heading",
+          "text": "Can a Client Component contain a Server Component?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Not by importing it. If a Client Component imports another component, that one becomes part of the client bundle. But a Client Component can receive a Server Component as children. The parent, which is a Server Component, passes it in. This pattern lets you wrap server content in an interactive shell, such as a modal or a tabs component."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "// Modal.tsx  (Client Component)\n\"use client\";\nimport { useState } from \"react\";\n\nexport default function Modal({ children }: { children: React.ReactNode }) {\n  const [open, setOpen] = useState(false);\n  return (\n    <>\n      <button onClick={() => setOpen(true)}>Open</button>\n      {open && <div role=\"dialog\">{children}</div>}\n    </>\n  );\n}\n\n// page.tsx  (Server Component)\nimport Modal from \"./Modal\";\nimport ServerData from \"./ServerData\";\n\nexport default function Page() {\n  return (\n    <Modal>\n      <ServerData />\n    </Modal>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We built this pattern in the lab. The page rendered the Open button, and the server data was part of the page. We did not click the button in a browser. Adjust the names to your own files."
+        },
+        {
+          "type": "heading",
+          "text": "A quick way to choose"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Need state, effects, click handlers or browser APIs?** Use a Client Component.",
+            "**Only showing data, with no interaction?** Use a Server Component.",
+            "**Need a secret key or a database?** Server Component.",
+            "**Using a library that needs the browser?** Wrap it in a small Client Component."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Warning: never put a secret in a file marked use client. Everything in a client file is visible to anyone who opens the browser tools."
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a LikeButton Client Component with useState, as shown.",
+            "Place it inside a Server Component that is async and shows a title.",
+            "Try removing use client from LikeButton. Read the error message that the build gives you.",
+            "Move use client as low as you can in one of your own pages."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The button works and the page title is drawn by the server.",
+            "The error without use client says that useState needs a Client Component.",
+            "You can explain in one sentence why use client should sit low in the tree."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Kitchen and dining room",
+        "nodes": [
+          {
+            "id": "server",
+            "label": "Server Component",
+            "sub": "runs on the server",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "html",
+            "label": "Ready HTML",
+            "sub": "sent to the browser",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "client",
+            "label": "Client Component",
+            "sub": "use client, has state",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "user",
+            "label": "Visitor",
+            "sub": "clicks and types",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "A Server Component runs only on the server. It can read data and keep secrets.",
+            "on": [
+              "server"
+            ]
+          },
+          {
+            "say": "It sends ready HTML, not its own code, to the browser.",
+            "flow": [
+              "server>html:render"
+            ]
+          },
+          {
+            "say": "A Client Component marked use client is sent with its code, so it can react to the visitor.",
+            "flow": [
+              "html>client:hydrate"
+            ]
+          },
+          {
+            "say": "The visitor clicks and types, and only the client parts need to answer.",
+            "flow": [
+              "client>user:interactive"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Are Server Components rendered only once?",
+          "a": "They run on the server for each build or request, depending on how the page is prepared. They do not re-render in the browser when state changes. Client Components re-render in the browser like normal React."
+        },
+        {
+          "q": "Do Client Components also render on the server?",
+          "a": "Yes. Next.js prepares their first HTML on the server, then React in the browser makes them interactive. That is why they still show quickly."
+        },
+        {
+          "q": "Where do I put use client?",
+          "a": "At the very top of the file, before the imports. Put it in the smallest file that needs state, effects or events."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "What can a Server Component do that a Client Component cannot?",
+          "options": [
+            "Use useState",
+            "Handle onClick",
+            "Read a database directly and keep secrets on the server"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "Where does the line use client go?",
+          "options": [
+            "At the very top of the file",
+            "At the bottom",
+            "In next.config.ts"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why place use client as low in the tree as possible?",
+          "options": [
+            "It makes the page load slower on purpose",
+            "Everything in that file and its imports is sent to the browser",
+            "It is a style rule only"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Components and Layouts",
+      "slug": "layouts-templates-and-metadata",
+      "title": "Root Layout, Nested Layouts, Templates and Metadata",
+      "metaTitle": "Next.js Layouts, Templates and Metadata",
+      "description": "Build the root layout and nested layouts in the App Router, learn when to use a template, and set page titles and descriptions with the Metadata API.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Most pages on a website share the same frame: a header at the top, a menu at the side, a footer at the bottom. Writing that frame again on every page would be tiring and easy to get wrong. A layout holds the frame once and puts each page inside it. Think of a picture frame: you can change the picture, but the frame stays."
+        },
+        {
+          "type": "heading",
+          "text": "The root layout"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every Next.js app has a root layout in app/layout.tsx. It is required. It wraps every page of the site, and it must contain the html and body tags, because no other file writes them. It is the right place for things that belong to the whole site: the page language, global styles, fonts and the default title."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import type { Metadata } from \"next\";\nimport \"./globals.css\";\n\nexport const metadata: Metadata = {\n  title: \"My First Next.js App\",\n  description: \"A small site built while learning Next.js.\",\n};\n\nexport default function RootLayout({ children }: LayoutProps<\"/\">) {\n  return (\n    <html lang=\"en\">\n      <body>{children}</body>\n    </html>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**children** is the page, or a deeper layout, that goes inside.",
+            "**LayoutProps** is a type that Next.js generates for you.",
+            "**The lang attribute on html** helps screen readers and search engines. Use the language of your content.",
+            "**metadata** sets the default title and description. We come back to it below."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Our lab version has no custom fonts, because the lab machine could not reach Google Fonts. A create-next-app project loads its fonts with the next/font tool, which downloads them at build time and serves them from your own site."
+        },
+        {
+          "type": "heading",
+          "text": "Nested layouts"
+        },
+        {
+          "type": "paragraph",
+          "text": "A layout file in any route folder wraps that folder and everything below it. The layouts nest, from the outside in: the root layout holds the dashboard layout, and that holds the page. A visitor who moves between /dashboard and /dashboard/settings keeps the same dashboard layout on screen. It does not redraw, and its state is kept."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import Link from \"next/link\";\n\nexport default function DashboardLayout({ children }: LayoutProps<\"/dashboard\">) {\n  return (\n    <div className=\"flex gap-6\">\n      <aside>\n        <Link href=\"/dashboard\">Overview</Link>\n        <br />\n        <Link href=\"/dashboard/settings\">Settings</Link>\n      </aside>\n      <section>{children}</section>\n    </div>\n  );\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We built this and ran it. /dashboard showed the sidebar with the heading Dashboard overview next to it. A different folder that is not under dashboard, such as /about, did not get the sidebar. That is the point of nested layouts: each part of your site can have its own frame."
+        },
+        {
+          "type": "list",
+          "items": [
+            "A layout can fetch data, because it is a Server Component by default.",
+            "A layout does not receive the search parameters, and it does not redraw when you move between its child pages. That is why it is not the right place for something that depends on the current address.",
+            "Route groups from lesson 7 can hold their own layout, so (marketing) and (account) look different without changing any URLs."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Templates"
+        },
+        {
+          "type": "paragraph",
+          "text": "A template looks like a layout. The difference is what happens when the visitor moves between pages inside it. A layout is kept: its state stays and it is not drawn again. A template is created again on each visit, so its state starts fresh and its effects run again. Use a template when you want that fresh start, for example to run an enter animation on each page or to record each page view."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export default function DashboardTemplate({ children }: { children: React.ReactNode }) {\n  // A template is created again on every navigation, so state inside it starts fresh.\n  return <div className=\"fade-in\">{children}</div>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "In practice you will use layouts much more than templates. When both exist in a folder, the order is layout first, then template, then page. Reach for a template only when you have a clear reason."
+        },
+        {
+          "type": "heading",
+          "text": "Metadata: the title and description"
+        },
+        {
+          "type": "paragraph",
+          "text": "The title and the description are the lines people read in search results. Next.js has a Metadata API to set them. Export a metadata object from a layout or page, and Next.js writes the matching tags into the head of the page. The values from a deeper file override those of an outer one."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import type { Metadata } from \"next\";\n\nexport const metadata: Metadata = {\n  title: \"About us\",\n  description: \"Who we are and what we build.\",\n};"
+        },
+        {
+          "type": "paragraph",
+          "text": "The title can also be set with a template that adds your site name to every page. Put this in the root layout, and a page that exports the title About us will show About us | My Site."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export const metadata: Metadata = {\n  title: { default: \"My Site\", template: \"%s | My Site\" },\n  description: \"A small site built while learning Next.js.\",\n};"
+        },
+        {
+          "type": "heading",
+          "text": "Dynamic metadata"
+        },
+        {
+          "type": "paragraph",
+          "text": "For a page that depends on the address, export a function called generateMetadata. It receives the same params as the page and returns the metadata. We tested this on a product page."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import type { Metadata } from \"next\";\n\nconst products: Record<string, { name: string; about: string }> = {\n  \"1\": { name: \"Notebook\", about: \"A plain paper notebook.\" },\n  \"2\": { name: \"Pen\", about: \"A blue ballpoint pen.\" },\n};\n\nexport function generateStaticParams() {\n  return Object.keys(products).map((id) => ({ id }));\n}\n\nexport async function generateMetadata({ params }: PageProps<\"/products/[id]\">): Promise<Metadata> {\n  const { id } = await params;\n  const product = products[id];\n  return {\n    title: product ? product.name : \"Product not found\",\n    description: product?.about,\n  };\n}\n\nexport default async function ProductPage({ params }: PageProps<\"/products/[id]\">) {\n  const { id } = await params;\n  const product = products[id];\n  return <h1>{product ? product.name : \"Unknown product\"}</h1>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The address /products/1 returned the title Notebook and the description A plain paper notebook. For /products/2 the title was Pen. Search engines and link previews read these tags, so every public page should have its own unique title and description. You will go deeper into metadata in the SEO module."
+        },
+        {
+          "type": "note",
+          "text": "A few notes about SEO: keep titles under about 60 characters, descriptions under 160 and make each one unique. Do not stuff words that you hope people search for. Write for the visitor."
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Add a metadata export to your home page and your about page, with different titles and descriptions.",
+            "Create app/dashboard/layout.tsx with a sidebar, and two pages inside it. Move between them and see the sidebar stay.",
+            "Add a template.tsx next to the layout and think about how it differs.",
+            "Create /products/[id] with generateMetadata. View the page source and find the title tag."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "The sidebar stays while the page changes.",
+            "The page source shows a title and a description tag.",
+            "You can explain the difference between a layout and a template in two sentences."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Frames inside frames",
+        "nodes": [
+          {
+            "id": "root",
+            "label": "Root layout",
+            "sub": "html and body",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "nested",
+            "label": "Dashboard layout",
+            "sub": "sidebar stays",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "page",
+            "label": "Page",
+            "sub": "changes inside",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "meta",
+            "label": "Metadata",
+            "sub": "title and description",
+            "col": 3,
+            "row": 0,
+            "kind": "app"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The root layout wraps the whole site and holds the html and body tags.",
+            "on": [
+              "root"
+            ]
+          },
+          {
+            "say": "A layout in a folder wraps that folder. Layouts nest from the outside in.",
+            "flow": [
+              "root>nested:wraps"
+            ]
+          },
+          {
+            "say": "The page changes inside, and the layouts around it are kept.",
+            "flow": [
+              "nested>page:children"
+            ]
+          },
+          {
+            "say": "Each page also sets its own title and description with the Metadata API.",
+            "flow": [
+              "page>meta:export metadata"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Is the root layout required?",
+          "a": "Yes. Every app needs app/layout.tsx with the html and body tags. Next.js creates one for you if it is missing in development."
+        },
+        {
+          "q": "What is the difference between a layout and a template?",
+          "a": "A layout is kept when you move between its pages, so its state stays. A template is created again on every visit, so its state starts fresh."
+        },
+        {
+          "q": "How do I set a different title for each page?",
+          "a": "Export a metadata object, or a generateMetadata function for dynamic pages, from each page. Use the title template in the root layout to add the site name."
+        }
+      ],
+      "readTime": "7 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which tags must the root layout contain?",
+          "options": [
+            "head only",
+            "html and body",
+            "main only"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "What is the difference between a layout and a template?",
+          "options": [
+            "They are the same",
+            "A template wraps the whole site only",
+            "A layout is kept between pages, a template is created again on every visit"
+          ],
+          "answer": 2,
+          "explain": ""
+        },
+        {
+          "q": "How do you set a different title for a dynamic page?",
+          "options": [
+            "Export generateMetadata",
+            "Edit package.json",
+            "Add a title tag in globals.css"
+          ],
+          "answer": 0,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Components and Layouts",
+      "slug": "styling-global-css-modules-tailwind-styled-components",
+      "title": "Styling: Global CSS, CSS Modules, Tailwind and Styled Components",
+      "metaTitle": "Styling in Next.js: CSS, Modules, Tailwind",
+      "description": "Compare four ways to style a Next.js app: global CSS, CSS Modules, Tailwind CSS and styled-components, with a tested CSS Modules example and advice on choosing.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Next.js does not force one way of styling. It supports several, and each has its own strengths. In this lesson we look at four of them: global CSS, CSS Modules, Tailwind CSS and styled-components. Think of clothes. Global CSS is a uniform for everyone. CSS Modules are name-tagged clothes, so nobody takes the wrong one. Tailwind is a wardrobe of small pieces that you combine. Styled-components are clothes that you sew into each component."
+        },
+        {
+          "type": "heading",
+          "text": "1. Global CSS"
+        },
+        {
+          "type": "paragraph",
+          "text": "A global stylesheet applies to the whole site. A create-next-app project already has one at app/globals.css, and the root layout imports it. Put things there that really are global: the base font, page colours, resets and CSS variables."
+        },
+        {
+          "type": "code",
+          "lang": "css",
+          "text": "/* app/globals.css */\n:root {\n  --background: #ffffff;\n  --foreground: #171717;\n}\n\nbody {\n  background: var(--background);\n  color: var(--foreground);\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "You may import a global stylesheet in the root layout. The risk is that a rule written for one page leaks into another, because the class names are shared. That is why big projects use the next options too."
+        },
+        {
+          "type": "heading",
+          "text": "2. CSS Modules"
+        },
+        {
+          "type": "paragraph",
+          "text": "A CSS Module is a CSS file whose name ends in .module.css. Next.js rewrites each class name into a unique one, so a class called primary in one file never clashes with a class called primary in another. You import the file as an object and use its keys."
+        },
+        {
+          "type": "code",
+          "lang": "css",
+          "text": ".primary {\n  background: #1d4ed8;\n  color: white;\n  padding: 0.5rem 1rem;\n  border-radius: 0.375rem;\n}"
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import styles from \"./Button.module.css\";\n\nexport default function Button({ children }: { children: React.ReactNode }) {\n  return <button className={styles.primary}>{children}</button>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "We built a page that used this button, and the production build passed. The class name that arrives in the browser has an extra unique part, so it cannot clash with others. Use CSS Modules when you like writing normal CSS but want it safe by default."
+        },
+        {
+          "type": "heading",
+          "text": "3. Tailwind CSS"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tailwind gives you many small classes such as p-4 for padding, flex for layout and text-lg for a large font. You write them straight in the className. A create-next-app project can set Tailwind up for you, and the globals.css file starts with an import for it."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "export default function Badge({ text }: { text: string }) {\n  return (\n    <span className=\"rounded bg-blue-600 px-2 py-1 text-sm text-white\">\n      {text}\n    </span>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Good:** very fast to write, a consistent set of sizes and colours, and no separate files to name.",
+            "**Not so good:** long class lists can be hard to read, and you must learn the names. Most teams extract repeated pieces into components."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The starter project you made in lesson 4 already used Tailwind classes, and the production build passed with them in the lab. The home page in this course uses a few of them."
+        },
+        {
+          "type": "heading",
+          "text": "4. Styled Components and CSS-in-JS"
+        },
+        {
+          "type": "paragraph",
+          "text": "Libraries such as styled-components let you write CSS inside JavaScript, attached to a component. They are popular in React, but they need extra care in the App Router. They run in the browser, so they only work inside Client Components, and the library needs a small registry setup so that the styles are collected on the server too. Because of this extra work, many new Next.js projects choose Tailwind or CSS Modules instead."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport styled from \"styled-components\";\n\nconst Title = styled.h1`\n  color: #1d4ed8;\n`;\n\nexport default function Heading() {\n  return <Title>Hello</Title>;\n}"
+        },
+        {
+          "type": "note",
+          "text": "We did not install or run styled-components in the lab. The snippet shows the idea only. If you choose this library, follow the setup steps in the Next.js documentation for CSS-in-JS, which change with the versions of Next.js and React."
+        },
+        {
+          "type": "heading",
+          "text": "How to choose"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Starting a new project?** Tailwind is the default of create-next-app and is a good first choice.",
+            "**You like plain CSS?** Use CSS Modules.",
+            "**You maintain an older project with styled-components?** Keep it, but isolate it in Client Components.",
+            "**Always keep a small global file** for variables and resets."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Good habits"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Import global CSS only in the root layout.",
+            "Do not mix too many methods in one project. Two is plenty.",
+            "Check your pages at a phone width of about 390 pixels. A page that scrolls sideways has a layout problem.",
+            "Respect users who prefer less motion. Keep animations small."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Make a Button component with a CSS Module and use it on two pages.",
+            "Make a Badge component with Tailwind classes.",
+            "Open the browser tools and look at the class name that your CSS Module produced.",
+            "Write two sentences on which method you would pick for your next project and why."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Your button looks styled, and the class name in the browser is not just primary.",
+            "You can name one strength and one weakness of each method.",
+            "You know why styled-components needs a Client Component."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Four ways to style",
+        "nodes": [
+          {
+            "id": "global",
+            "label": "Global CSS",
+            "sub": "one file for all",
+            "col": 0,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "module",
+            "label": "CSS Modules",
+            "sub": "safe class names",
+            "col": 1,
+            "row": 0,
+            "kind": "data"
+          },
+          {
+            "id": "tw",
+            "label": "Tailwind",
+            "sub": "small utility classes",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "sc",
+            "label": "styled-components",
+            "sub": "CSS in JS, client only",
+            "col": 3,
+            "row": 0,
+            "kind": "tool"
+          }
+        ],
+        "steps": [
+          {
+            "say": "Global CSS applies to the whole site. Use it for variables and resets.",
+            "on": [
+              "global"
+            ]
+          },
+          {
+            "say": "CSS Modules make every class name unique, so styles cannot clash.",
+            "flow": [
+              "global>module:safer"
+            ]
+          },
+          {
+            "say": "Tailwind lets you build a look from many small classes inside className.",
+            "flow": [
+              "module>tw:or"
+            ]
+          },
+          {
+            "say": "styled-components write CSS in JavaScript and need Client Components and some setup.",
+            "flow": [
+              "tw>sc:or"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Which styling method is the best for Next.js?",
+          "a": "There is no single best. Tailwind is the default of create-next-app, CSS Modules are a safe choice for plain CSS, and CSS-in-JS libraries need extra setup in the App Router."
+        },
+        {
+          "q": "Where do I import global CSS?",
+          "a": "In the root layout, app/layout.tsx. That makes it apply to every page."
+        },
+        {
+          "q": "Can I use Sass?",
+          "a": "Yes. Install the sass package and name your files .scss or .module.scss. Check the Next.js documentation for the current options."
+        }
+      ],
+      "readTime": "5 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "What is the benefit of a CSS Module?",
+          "options": [
+            "Class names become unique, so styles do not clash",
+            "It runs on the server only",
+            "It replaces JavaScript"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Where should global CSS be imported?",
+          "options": [
+            "In the root layout",
+            "In package.json",
+            "In every component"
+          ],
+          "answer": 0,
+          "explain": ""
+        },
+        {
+          "q": "Why does styled-components need extra care in the App Router?",
+          "options": [
+            "It is part of Next.js",
+            "It runs in the browser, so it needs Client Components and some setup",
+            "It cannot be installed"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    },
+    {
+      "section": "Components and Layouts",
+      "slug": "component-composition-and-passing-data",
+      "title": "Component Composition and Passing Data Between Components",
+      "metaTitle": "Component Composition and Props in Next.js",
+      "description": "Build reusable components, pass data with props and children from server to client, know what can be sent between them, and avoid common mistakes in Next.js.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A good component is like a good Lego brick. It does one clear job, it fits with other bricks, and you can use it many times in different models. Building a page by joining small components is called composition. In this lesson we practise it in Next.js, and we learn the one new rule the App Router adds: what can travel from a Server Component to a Client Component."
+        },
+        {
+          "type": "heading",
+          "text": "Reusable components"
+        },
+        {
+          "type": "paragraph",
+          "text": "Put a component in its own file, give it clear props, and use it wherever it is needed. This is plain React, and it works the same way in Next.js. A shared component usually lives in a components folder at the top of the project. A component used by one route only can sit next to that route."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "type CardProps = {\n  title: string;\n  children: React.ReactNode;\n};\n\nexport default function Card({ title, children }: CardProps) {\n  return (\n    <section className=\"rounded border p-4\">\n      <h2 className=\"font-semibold\">{title}</h2>\n      {children}\n    </section>\n  );\n}"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Props** are the inputs. Give each one a clear name and a type.",
+            "**children** is whatever you put between the opening and closing tags. It makes a component a flexible container.",
+            "**One job per component.** If a component is hard to name, it may be doing too much."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Passing data from parent to child"
+        },
+        {
+          "type": "paragraph",
+          "text": "Data moves down the tree through props. A parent gives a value, and the child shows it. In our article example the Server Component ArticleCard passed a starting number to the Client Component LikeButton."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "import LikeButton from \"./LikeButton\";\n\n// A Server Component: it can be async and read data directly.\nexport default async function ArticleCard() {\n  const article = { title: \"Server and client together\", likes: 3 };\n  return (\n    <article>\n      <h2>{article.title}</h2>\n      <LikeButton start={article.likes} />\n    </article>\n  );\n}"
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "\"use client\";\n\nimport { useState } from \"react\";\n\nexport default function LikeButton({ start }: { start: number }) {\n  const [likes, setLikes] = useState(start);\n  return <button onClick={() => setLikes(likes + 1)}>Likes: {likes}</button>;\n}"
+        },
+        {
+          "type": "paragraph",
+          "text": "The parent reads or builds the data on the server and sends only the number to the browser. That is a nice pattern. Fetch the data in a Server Component and pass the small pieces that the interactive part needs."
+        },
+        {
+          "type": "heading",
+          "text": "What can cross from server to client?"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a Server Component passes a prop to a Client Component, the value has to travel from the server to the browser. So it must be something that can be turned into a message. React calls this being serialisable. A few clear rules help."
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Allowed:** strings, numbers, booleans, null, arrays and plain objects, dates, and other Server Components as children.",
+            "**Not allowed:** ordinary functions, class instances and objects that have methods. You cannot send an onClick function from a server file to a client file.",
+            "**An exception:** a Server Action, which you will meet in the forms module, can be passed down because it is a special kind of function."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you break the rule, Next.js shows an error that says functions cannot be passed to Client Components. The fix is to define the function inside the Client Component, or to move the interaction into a small client file."
+        },
+        {
+          "type": "code",
+          "lang": "tsx",
+          "text": "// Wrong: a server page cannot give a plain function to a client button\n// <LikeButton onLike={() => console.log(\"liked\")} />\n\n// Right: the client component owns its own handler\n\"use client\";\nexport default function LikeButton() {\n  function handleClick() {\n    console.log(\"liked\");\n  }\n  return <button onClick={handleClick}>Like</button>;\n}"
+        },
+        {
+          "type": "heading",
+          "text": "Passing data upwards and sideways"
+        },
+        {
+          "type": "paragraph",
+          "text": "Data does not go up from child to parent in React. The child calls a function that the parent gave, and the parent changes its own state. This works between Client Components. Between two Server Components there is no state at all, so you usually fetch the data in a shared parent and pass it down, or you read the same data in both places. In the next module you will see that Next.js remembers repeated fetches during one request, so reading in both places is cheap."
+        },
+        {
+          "type": "heading",
+          "text": "Composition patterns that work well"
+        },
+        {
+          "type": "list",
+          "items": [
+            "**Wrapper with children.** A Client Component wraps server content, as in the modal example in lesson 10.",
+            "**Small client islands.** Keep a big page on the server and sprinkle small interactive parts.",
+            "**Pass slots as props.** A layout component can take props such as header and sidebar that are React nodes.",
+            "**Keep data fetching high.** A page or layout reads the data, and the small components just draw it."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "Mistakes to avoid"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Marking a whole page as use client because one button needs state.",
+            "Passing a huge object to a client component when it needs one field. Everything you pass is sent to the browser.",
+            "Putting a secret into props. Props to a client component become visible in the page.",
+            "Copying props into state without a reason. Use the prop directly."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "The code in this lesson was built and run with Next.js 16.4.6, React 19.3 and Node 22 in the course lab (next build, then next start). The output shown is real. Your version numbers will be newer, so read the official docs when something differs."
+        },
+        {
+          "type": "heading",
+          "text": "Your task"
+        },
+        {
+          "type": "olist",
+          "items": [
+            "Build a Card component with title and children and use it three times on one page.",
+            "Make an async Server Component that holds a fake article object and passes only the title and the likes to a client button.",
+            "Deliberately pass a function from a server page to a client component. Read the error, then fix it.",
+            "Look at your own project and find one big client component that could be split."
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "How to check it worked"
+        },
+        {
+          "type": "list",
+          "items": [
+            "You can use the same Card with different content.",
+            "You can say which kinds of values can go from server to client.",
+            "The error about passing functions makes sense to you."
+          ]
+        }
+      ],
+      "animation": {
+        "title": "Pass small pieces down",
+        "nodes": [
+          {
+            "id": "page",
+            "label": "Server page",
+            "sub": "reads the data",
+            "col": 0,
+            "row": 0,
+            "kind": "app"
+          },
+          {
+            "id": "card",
+            "label": "Card",
+            "sub": "reusable brick",
+            "col": 1,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "btn",
+            "label": "LikeButton",
+            "sub": "client, has state",
+            "col": 2,
+            "row": 0,
+            "kind": "tool"
+          },
+          {
+            "id": "user",
+            "label": "Visitor",
+            "sub": "clicks",
+            "col": 3,
+            "row": 0,
+            "kind": "user"
+          }
+        ],
+        "steps": [
+          {
+            "say": "The server page reads or builds the data.",
+            "on": [
+              "page"
+            ]
+          },
+          {
+            "say": "It passes the parts into a reusable Card through props and children.",
+            "flow": [
+              "page>card:props"
+            ]
+          },
+          {
+            "say": "Only the small value the button needs, here a number, goes on to the Client Component.",
+            "flow": [
+              "card>btn:serialisable"
+            ]
+          },
+          {
+            "say": "The visitor clicks, and the client part updates its own state.",
+            "flow": [
+              "btn>user:interactive"
+            ]
+          }
+        ]
+      },
+      "faqs": [
+        {
+          "q": "Can I pass a function from a Server Component to a Client Component?",
+          "a": "Not a normal function. Props must be values that can be sent as a message. Define the handler inside the Client Component, or use a Server Action for forms."
+        },
+        {
+          "q": "Where should I fetch data, in the parent or in the child?",
+          "a": "Usually in a Server Component high in the tree, and pass the pieces down. Small components then stay simple and easy to reuse."
+        },
+        {
+          "q": "Is it bad to pass a large object as a prop?",
+          "a": "To a Client Component it can be, because everything in props is sent to the browser. Pass only what the component needs."
+        }
+      ],
+      "readTime": "6 min read",
+      "published": false,
+      "quiz": [
+        {
+          "q": "Which value can a Server Component pass to a Client Component as a prop?",
+          "options": [
+            "A string or a number",
+            "A normal function",
+            "A class instance with methods"
+          ],
+          "answer": 0,
+          "explain": "Props must be values that can be sent as a message."
+        },
+        {
+          "q": "What is children in a component?",
+          "options": [
+            "A hook",
+            "Whatever is placed between the opening and closing tags",
+            "A CSS class"
+          ],
+          "answer": 1,
+          "explain": ""
+        },
+        {
+          "q": "Why pass only the needed field of a large object to a client component?",
+          "options": [
+            "Objects are not allowed",
+            "Everything passed in props is sent to the browser",
+            "It makes the code shorter only"
+          ],
+          "answer": 1,
+          "explain": ""
+        }
+      ]
+    }
+  ],
+  "replace": true
+}

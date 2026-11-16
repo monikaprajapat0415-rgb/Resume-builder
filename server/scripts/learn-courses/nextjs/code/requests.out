@@ -1,0 +1,16 @@
+GET /                    200
+GET /about               200
+GET /blog/hello-nextjs   200
+GET /blog/not-in-list    200   (not listed in generateStaticParams, rendered when asked)
+GET /shop/shoes/running  200   (Path parts: shoes / running)
+GET /docs                200   (Docs home)
+GET /docs/a/b            200   (Doc: a/b)
+GET /pricing             200   (the (marketing) folder is not part of the URL)
+GET /old-page            307   -> /about
+GET /nope                404   (our not-found.tsx page)
+GET /products/1          200   (title: Notebook, description: A plain paper notebook.)
+GET /dashboard           200   (layout sidebar + Dashboard overview)
+GET /posts/hello-nextjs  200
+GET /posts/zzz           200   (our not-found page, noindex tag added, status still 200 because the response was streamed)
+GET /old-blog/hello-nextjs 308 -> /blog/hello-nextjs   (permanent redirect from next.config.ts)
+GET /shop-multi/shoes/running-shoe 200
