@@ -58,6 +58,8 @@ export const jobPostingLd = (job) => {
         ld.jobLocationType = 'TELECOMMUTE';
         if (country && country !== 'XX') ld.applicantLocationRequirements = { '@type': 'Country', name: country };
     }
+    // Google requires a place (jobLocation) or a remote job (jobLocationType). A listing with neither is invalid, so we leave the JobPosting data out and keep the page itself.
+    if (!ld.jobLocation && !ld.jobLocationType) return null;
     return ld;
 };
 
@@ -98,7 +100,7 @@ export const jobSeo = (job) => {
         fullTitle: seoTitle(`${job.title} at ${job.company}${where}`),
         description: desc, canonical: `${siteUrl()}/jobs/${job.slug}`, robots: 'index, follow', type: 'website',
         keywords: [job.title, job.company, job.location, 'jobs', 'apply'].filter(Boolean).join(', '),
-        jsonLd: [jobPostingLd(job), breadcrumbLd([{ name: 'Home', url: `${siteUrl()}/` }, { name: 'Jobs', url: `${siteUrl()}/jobs` }, { name: job.title, url: `${siteUrl()}/jobs/${job.slug}` }])],
+        jsonLd: [jobPostingLd(job), breadcrumbLd([{ name: 'Home', url: `${siteUrl()}/` }, { name: 'Jobs', url: `${siteUrl()}/jobs` }, { name: job.title, url: `${siteUrl()}/jobs/${job.slug}` }])].filter(Boolean),
     };
 };
 

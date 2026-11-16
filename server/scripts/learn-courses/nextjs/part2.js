@@ -130,7 +130,7 @@ export const lessons = [
   ]),
 
   // ---------------------------------------------------------------- 8
-  les(S, 'link-useRouter-usepathname-and-usesearchparams', 'Navigation: Link, useRouter, usePathname and useSearchParams', 'Next.js Link, useRouter and usePathname',
+  les(S, 'link-userouter-usepathname-and-usesearchparams', 'Navigation: Link, useRouter, usePathname and useSearchParams', 'Next.js Link, useRouter and usePathname',
     'Move between pages with the Link component and useRouter, highlight the active link with usePathname, read the query string with useSearchParams.', [
     P("A website without links is a dead end. In this lesson we cover every way to move between pages in the App Router: the Link component for normal links, the useRouter hook for moving from code, usePathname to know where you are, and useSearchParams to read the part of the address after the question mark. Our example is a small navigation bar that we run and test."),
     H("The Link component"),
