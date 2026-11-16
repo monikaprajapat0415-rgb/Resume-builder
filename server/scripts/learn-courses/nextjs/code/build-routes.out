@@ -1,0 +1,18 @@
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /blog
+├   /blog/[slug]
+│ ├ ◐ /blog/[slug]
+│ ├ ○ /blog/hello-nextjs
+│ └ ○ /blog/routing-basics
+├   /docs/[[...slug]]
+│ └ ◐ /docs/[[...slug]]
+├ ○ /old-page
+├ ○ /pricing
+└   /shop/[...slug]
+  └ ◐ /shop/[...slug]
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
