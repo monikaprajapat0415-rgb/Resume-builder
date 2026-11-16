@@ -6,6 +6,7 @@ import Analytics from "./components/Analytics";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 // import Login from "./pages/Login";
 const Logout = lazy(() => import("./pages/Logout"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 const Preview = lazy(() => import("./pages/Preview"));
 const ResumeBuilder = lazy(() => import("./pages/ResumeBuilder"));
 const Layouts = lazy(() => import("./pages/Layouts"));
@@ -271,6 +272,7 @@ const App = () => {
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/p/:slug" element={<CustomPage />} />
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
       </Suspense>

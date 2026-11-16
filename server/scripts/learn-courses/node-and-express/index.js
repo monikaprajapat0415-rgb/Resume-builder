@@ -10,12 +10,14 @@ import { lessons as p8 } from './part8.js';
 import { lessons as p9 } from './part9.js';
 import { lessons as p10 } from './part10.js';
 import { lessons as p11 } from './part11.js';
+import { jsBasics, modulesLesson, linuxLesson } from './part12.js';
+import { interviewLesson } from './part13.js';
 
 export const course = {
   title: 'Node.js and Express: Build a Back End API from Scratch',
   slug: 'nodejs-express-course',
-  summary: 'Learn back-end development with Node.js and Express in 55 lessons: core Node, REST, MongoDB, JWT auth, security, caching, queues, testing, Docker, deployment and 10 portfolio projects.',
-  description: 'Free Node.js and Express course with 55 lessons and 10 projects: REST, MongoDB, JWT, security, Redis, queues, Socket.IO, testing, Docker and deployment.',
+  summary: 'Learn back-end development with Node.js and Express in 62 lessons: core Node, REST, MongoDB, JWT auth, security, caching, queues, testing, Docker, deployment and 10 portfolio projects.',
+  description: 'Free Node.js and Express course with 62 lessons and 10 projects: REST, MongoDB, JWT, security, Redis, queues, Socket.IO, testing, Docker and deployment.',
   level: 'Beginner to advanced',
   topic: 'Back end',
   badge: 'JS',
@@ -27,4 +29,8 @@ export const course = {
   keywords: 'node js express course, node js projects for resume, express js tutorial for beginners, node js course, express js tutorial, learn nodejs for beginners, rest api tutorial, node js mongodb, jwt login node, node js backend course',
 };
 
-export const lessons = finish([...p1, ...p2, ...p3, ...p4, ...p5, ...p6, ...p7, ...p8, ...p9, ...p10, ...p11]);
+// The original 55 lessons keep their order. New basics go first, the modules lesson after lesson 2, Linux before the VPS lesson.
+const base = [...p1, ...p2, ...p3, ...p4, ...p5, ...p6, ...p7, ...p8, ...p9, ...p10, ...p11];
+const vps = base.findIndex((l) => l.slug.startsWith('deploy-node-to-a-vps'));
+const ordered = [...jsBasics, ...base.slice(0, 2), modulesLesson, ...base.slice(2, vps), linuxLesson, ...base.slice(vps), interviewLesson];
+export const lessons = finish(ordered);
