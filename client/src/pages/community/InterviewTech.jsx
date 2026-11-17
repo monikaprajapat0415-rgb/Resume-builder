@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import SEO from '../../components/SEO'
 import { Shell, NotFound, input } from '../../components/community/Shell'
+import { QuestionGroups } from '../../components/community/QuestionList'
 import { useCommunity } from './useCommunity'
 
 const LEVEL_CHIPS = [['', 'All levels'], ['fresher', 'Basic (freshers)'], ['experienced', 'Advanced (experienced)']]
@@ -24,9 +25,9 @@ const InterviewTech = () => {
   const { tech } = data
   const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Interview questions', to: '/jobs/interview-questions' }, { name: tech.name }]
   return (
-    <Shell active='questions' crumbs={crumbs}>
+    <Shell active='questions' crumbs={crumbs} inset>
       <SEO title={data.seo.title} description={data.seo.description} keywords={data.seo.keywords} path={`/jobs/interview-questions/tech/${tech.slug}`} canonical={data.seo.canonical} robots={data.seo.robots} structuredData={data.jsonLd} />
-      <h1 className='text-3xl font-semibold text-slate-800'>{tech.name} interview questions and answers</h1>
+      <h1 className='text-3xl sm:text-4xl font-semibold tracking-tight text-slate-800'>{tech.name} interview questions and answers</h1>
       <p className='text-slate-500 mt-3 max-w-2xl'>{tech.blurb} {data.questions.length} questions with a model answer for each. Open a question to read the answer and see how other job seekers answered.</p>
 
       <div className='flex flex-wrap gap-2 mt-5'>
@@ -42,25 +43,10 @@ const InterviewTech = () => {
           {data.categories.map((c) => <option key={c}>{c}</option>)}
         </select>
       </div>
-      {shown.length === 0 && <p className='text-slate-400 mt-8'>No question matches that filter.</p>}
-      <div className='grid lg:grid-cols-2 gap-x-8 items-start'>
-        {cats.map((c) => (
-          <div key={c} className='mt-8'>
-            <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-3'>{c}</h2>
-            <ul className='divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
-              {shown.filter((x) => x.category === c).map((x) => (
-                <li key={x.slug}>
-                  <Link to={`/jobs/interview-questions/${x.slug}`} className='flex items-center justify-between gap-3 px-4 py-3 hover:bg-slate-50'>
-                    <span className='text-slate-800'>{x.question}</span>
-                    <span className='shrink-0 text-xs text-slate-400'>{x.answerCount ? `${x.answerCount} shared answer${x.answerCount > 1 ? 's' : ''}` : x.level === 'both' ? '' : x.level}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <p className='mt-10 text-sm'><Link to='/jobs/interview-questions' className='text-brand-600 hover:underline'>← All technologies</Link></p>
+      <p className='mt-4 text-sm text-slate-400' aria-live='polite'>Showing {shown.length} of {data.questions.length} questions</p>
+      {shown.length === 0 && <p className='text-slate-400 mt-6'>No question matches that filter.</p>}
+      <QuestionGroups questions={shown} cats={cats} />
+      <p className='mt-12 text-sm'><Link to='/jobs/interview-questions' className='text-brand-600 hover:underline'>← All technologies</Link></p>
     </Shell>
   )
 }

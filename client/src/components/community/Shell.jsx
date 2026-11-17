@@ -11,10 +11,11 @@ const TABS = [
 ]
 
 // Page frame for the jobs community pages: header, section tabs, own breadcrumb trail, footer.
-export const Shell = ({ active, crumbs = [], children }) => (
+export const Shell = ({ active, crumbs = [], inset = false, children }) => (
   <div>
     <NavBar />
     <section className='site-w py-8'>
+      <div className={inset ? 'mx-auto max-w-6xl px-1 sm:px-6 lg:px-12' : undefined}>
       <nav aria-label='Section' className='flex flex-wrap gap-2 mb-6'>
         {TABS.map((t) => (
           <Link key={t.id} to={t.to} aria-current={active === t.id ? 'page' : undefined}
@@ -29,6 +30,7 @@ export const Shell = ({ active, crumbs = [], children }) => (
         </nav>
       )}
       {children}
+      </div>
     </section>
     <Footer />
   </div>
