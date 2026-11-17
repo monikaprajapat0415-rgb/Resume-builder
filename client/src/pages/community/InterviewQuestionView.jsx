@@ -1,4 +1,5 @@
 import React from 'react'
+import AdSlot from '../../components/AdSlot'
 import { Link, useParams } from 'react-router-dom'
 import SEO from '../../components/SEO'
 import { Shell, NotFound } from '../../components/community/Shell'
@@ -46,6 +47,8 @@ const InterviewQuestionView = () => {
           </p>
         )}
       </article>
+
+      <AdSlot key={q.slug} type='interview' />
 
       <section className='mt-10' aria-labelledby='shared'>
         <h2 id='shared' className='text-xl font-semibold text-slate-800'>Answers from other job seekers {answers.length > 0 && <span className='text-slate-400 font-normal'>({answers.length})</span>}</h2>

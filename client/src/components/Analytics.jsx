@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import api from '../configs/api'
+import { initConsent } from '../utils/consent'
 
 // Google Analytics 4. Turned on only when VITE_GA_ID (e.g. G-ABC123XYZ) is set at build time.
 const GA_ID = String(import.meta.env.VITE_GA_ID || '').replace(/^["']|["']$/g, '').trim()
@@ -9,8 +10,7 @@ const PRIVATE = /^\/(admin|app|view|logout|forgot-password|reset-password|verify
 let ready = false
 const boot = () => {
   if (ready || !/^G-[A-Z0-9]+$/i.test(GA_ID) || typeof document === 'undefined') return false
-  window.dataLayer = window.dataLayer || []
-  window.gtag = function () { window.dataLayer.push(arguments) }
+  initConsent() // consent defaults must be set before the Google script loads
   window.gtag('js', new Date())
   window.gtag('config', GA_ID, { send_page_view: false }) // page views are sent on every route change below
   const s = document.createElement('script')

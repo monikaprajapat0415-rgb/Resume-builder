@@ -52,6 +52,7 @@ const RAW_MENU = [
     { key: 'fr-reviews', location: 'footer_resources', label: 'Company Reviews', url: '/jobs/company-reviews' },
     { key: 'fr-jobs', location: 'footer_resources', label: 'Jobs', url: '/jobs' },
     { key: 'fr-hire', location: 'footer_resources', label: 'Hire Talent', url: '/hire' },
+    { key: 'fr-about', location: 'footer_resources', label: 'About', url: '/about' },
     { key: 'fr-contact', location: 'footer_resources', label: 'Contact', url: '/contact-us' },
 
     { key: 'fl-privacy', location: 'footer_legal', label: 'Privacy', url: '/privacy-policy' },

@@ -223,6 +223,19 @@ ${faqHtml(data().faqs.hire)}
 });
 
 // ---- Contact, Privacy Policy, Terms. Short server copy so the page has its own canonical in the HTML; React shows the full text.
+export const aboutPage = () => page({
+    path: '/about', title: 'About Prime Resume AI',
+    description: 'Prime Resume AI helps people write better resumes, learn job skills and prepare for interviews. See what we offer and how we keep our content honest.',
+    keywords: 'about prime resume ai, resume builder, free courses, interview questions',
+    body: `<h1>About Prime Resume AI</h1>
+<p>Prime Resume AI is a website for people who are looking for work or learning a new skill. We help you write a resume that is easy for employers and applicant tracking systems to read, learn job skills for free, and practise for interviews.</p>
+<h2>What you can do here</h2>
+${links([['Resume and CV builder', '/app', 'pick a template and download an ATS-friendly resume'], ['ATS checker', '/features/ats-checker', 'see how a resume reads to an applicant tracking system'], ['Free courses', '/learn', 'step-by-step lessons in plain language'], ['Interview questions', '/jobs/interview-questions', 'model answers grouped by technology'], ['Career roadmaps', '/roadmaps', 'the steps for a job or technology, in order'], ['Jobs, salaries and company reviews', '/jobs', 'listings and pages built from what real people share']])}
+<h2>How we keep it honest</h2>
+${ul(['We do not promise a job, an interview or a salary.', 'Sample resumes, messages and numbers in our lessons are made up, and we say so.', 'Salary ranges and company ratings appear only when enough people have shared the same kind of report, and every shared answer, salary and review is read before it is published.'])}
+<p>${a('/contact-us', 'Contact us')} · ${a('/privacy-policy', 'Privacy Policy')} · ${a('/terms-and-conditions', 'Terms and Conditions')}</p>`,
+    jsonLd: [crumbs([['Home', '/'], ['About', '/about']])],
+});
 export const contactPage = () => page({
     path: '/contact-us', title: 'Contact Us',
     description: 'Get in touch with Prime Resume AI for any inquiries or support. We are here to help you create the perfect resume.',
@@ -237,7 +250,8 @@ export const privacyPage = () => page({
     description: "Read Prime Resume AI's Privacy Policy to learn how we collect, use, and protect your information when you use our resume builder.",
     body: `<h1>Privacy Policy</h1>
 <p>This policy explains what information Prime Resume AI collects, how we use it, how we protect it and the choices you have.</p>
-<p>${a('/contact-us', 'Contact us')} · ${a('/terms-and-conditions', 'Terms and Conditions')}</p>`,
+<p>We may show ads from Google AdSense on content pages. Google and its partners may use cookies for this. You can accept or reject non-essential cookies in the cookie banner and change your choice later from the Cookie settings link in the footer.</p>
+<p>${a('/about', 'About us')} · ${a('/contact-us', 'Contact us')} · ${a('/terms-and-conditions', 'Terms and Conditions')}</p>`,
     jsonLd: [crumbs([['Home', '/'], ['Privacy Policy', '/privacy-policy']])],
 });
 export const termsPage = () => page({

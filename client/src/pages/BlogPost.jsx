@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import AdSlot from '../components/AdSlot'
 import { Link, useParams } from 'react-router-dom'
 import SEO from '../components/SEO'
 import NavBar from '../components/home/NavBar'
@@ -139,6 +140,8 @@ const BlogPost = () => {
         <div className='mt-8'>
           <BlockRenderer blocks={post.content} />
         </div>
+
+        <AdSlot key={post.slug} type='blog' />
 
         {post.faqs.length > 0 && (
           <section className='mt-12' aria-labelledby='faq'>

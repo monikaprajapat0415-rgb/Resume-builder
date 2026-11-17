@@ -20,6 +20,7 @@ import { templateSlugs } from './src/content/templateSlugs.js'
 // so GET /api/blogs/sitemap.xml lists them live; only the /learn index is pre-listed here.
 const staticRoutes = [
   '/',
+  '/about',
   '/contact-us',
   '/privacy-policy',
   '/terms-and-conditions',

@@ -1,3 +1,4 @@
+import { adminGetAds, adminSaveAds } from '../controllers/adsController.js';
 import { listTranslations, getTranslation, saveTranslation, deleteTranslation, draftTranslation } from '../controllers/lessonTranslationController.js';
 import { auditAdmin } from '../utils/adminAudit.js';
 import { bulkAction } from '../controllers/bulkController.js';
@@ -165,6 +166,8 @@ adminRouter.delete('/trust/:id', adminDeleteTrust);
 
 import { adminGetPlan, adminSavePlan, adminSetUserPlan, adminPlanEvents, adminRetryPlanEvent } from '../controllers/planController.js';
 import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
+adminRouter.get('/ads', adminGetAds);
+adminRouter.put('/ads', adminSaveAds);
 adminRouter.get('/tools', adminGetTools);
 adminRouter.put('/tools', adminSaveTools);
 adminRouter.get('/plan', adminGetPlan);

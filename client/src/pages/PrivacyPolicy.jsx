@@ -81,6 +81,19 @@ function StaticPrivacyPolicy() {
 
         {/* Section */}
         <div>
+          <h2 className="text-xl font-semibold mb-2">6b. Advertising</h2>
+          <p className="text-gray-600">
+            We may show ads from Google AdSense on content pages such as blog
+            articles, lessons and interview answers. Google and its partners may
+            use cookies or similar technology to show and measure ads. You can
+            accept or reject non-essential cookies in our cookie banner and change
+            your choice at any time with the Cookie settings link in the footer.
+            You can also manage ad personalisation in your Google account's ad settings.
+          </p>
+        </div>
+
+        {/* Section */}
+        <div>
           <h2 className="text-xl font-semibold mb-2">7. Your Rights</h2>
           <p className="text-gray-600">
             You have the right to access, update, or delete your personal data.
