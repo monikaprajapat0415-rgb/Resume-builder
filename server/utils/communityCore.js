@@ -3,7 +3,28 @@ import { slugify } from './slugify.js';
 
 export const SALARY_MIN = 3;   // approved reports needed before a pay range is shown (or a page is indexed)
 export const REVIEW_MIN = 3;   // approved reviews needed before a company page is indexed / rated in structured data
-export const RESERVED_QUESTION_SLUGS = ['fresher', 'experienced'];
+export const RESERVED_QUESTION_SLUGS = ['fresher', 'experienced', 'tech'];
+
+// Technology groups on the interview questions page. A question belongs to the group named by its FIRST tag
+// (Admin > Jobs community > Interview questions > Tags). Names and one-line descriptions for the usual tags are here;
+// any other tag still gets a group, named from the tag itself. Questions with no tag stay in the general list.
+export const TECH_INFO = {
+    angular: { name: 'Angular', blurb: 'Components, templates, signals, routing, forms, RxJS and testing.' },
+    react: { name: 'React', blurb: 'JSX, hooks, state, performance, routing and React 19.' },
+    nodejs: { name: 'Node.js and Express', blurb: 'Modules, async code, Express middleware and REST APIs.' },
+    mern: { name: 'MERN stack', blurb: 'MongoDB, Express, React and Node together: auth, security and scaling.' },
+    python: { name: 'Python', blurb: 'Basics, data types, functions, OOP, files and advanced features.' },
+    sql: { name: 'SQL', blurb: 'Queries, joins, aggregates, subqueries, window functions and indexes.' },
+    devops: { name: 'DevOps', blurb: 'CI/CD, containers, cloud, GitOps, SRE and production scenarios.' },
+};
+export const techKey = (tags) => String((Array.isArray(tags) && tags[0]) || '').trim().toLowerCase();
+export const techSlug = (key) => String(key || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const titleCase = (k) => k.replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+export const techMeta = (key) => {
+    const slug = techSlug(key);
+    const info = TECH_INFO[slug] || {};
+    return { slug, key, name: info.name || titleCase(key), blurb: info.blurb || `${titleCase(key)} interview questions with model answers.` };
+};
 
 export const COUNTRIES = {
     India: 'INR', 'United Kingdom': 'GBP', Canada: 'CAD', Nigeria: 'NGN', Kenya: 'KES', 'South Africa': 'ZAR',

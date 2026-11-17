@@ -150,6 +150,7 @@ export const getBlogSitemapXml = async (req, res) => {
                 entry('/jobs/interview-questions/fresher', Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly'),
                 entry('/jobs/interview-questions/experienced', Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly'),
             ] : []),
+            ...community.techs.map((t) => entry(`/jobs/interview-questions/tech/${t}`, Math.max(...community.questions.map((q) => +new Date(q.at))), 'weekly')),
             ...community.questions.map((q) => entry(`/jobs/interview-questions/${q.slug}`, q.at, 'monthly')),
             ...(community.salaries.length ? [entry('/jobs/salaries', Math.max(...community.salaries.map((x) => +new Date(x.at))), 'weekly')] : []),
             ...community.salaries.map((x) => entry(`/jobs/salaries/${x.slug}`, x.at, 'monthly')),

@@ -1,7 +1,7 @@
 import { loadTemplate } from '../utils/seoShell.js';
 import { SITE_NAME, siteUrl } from '../utils/blogSeo.js';
-import { questionsIndexHtml, questionHtml, salariesIndexHtml, salaryRoleHtml, companiesIndexHtml, companyHtml } from '../utils/communitySeo.js';
-import { loadQuestionsIndex, loadQuestion, loadSalariesIndex, loadSalaryRole, loadCompaniesIndex, loadCompany } from './communityController.js';
+import { questionsIndexHtml, techHtml, questionHtml, salariesIndexHtml, salaryRoleHtml, companiesIndexHtml, companyHtml } from '../utils/communitySeo.js';
+import { loadQuestionsIndex, loadTech, loadQuestion, loadSalariesIndex, loadSalaryRole, loadCompaniesIndex, loadCompany } from './communityController.js';
 import { sendShell } from './blogSeoController.js';
 
 const notFound = (path, back = '/jobs') => ({
@@ -25,12 +25,17 @@ const send = (res, v, body) => sendShell(res, 200, { ...v.seo, body, jsonLd: v.j
 export const renderQuestionsIndex = guard(async (req, res) => {
     const level = req.path.endsWith('/fresher') ? 'fresher' : req.path.endsWith('/experienced') ? 'experienced' : '';
     const v = await loadQuestionsIndex(level);
-    send(res, v, questionsIndexHtml({ questions: v.questions, level }));
+    send(res, v, questionsIndexHtml({ questions: v.questions, level, techs: v.techs }));
+});
+export const renderTech = guard(async (req, res, next) => {
+    const v = await loadTech(String(req.params.tech || '').toLowerCase());
+    if (!v) return sendShell(res, 404, notFound(req.path, '/jobs/interview-questions')) || next();
+    send(res, v, techHtml(v));
 });
 export const renderQuestion = guard(async (req, res, next) => {
     const v = await loadQuestion(req.params.slug);
     if (!v) return sendShell(res, 404, notFound(req.path, '/jobs/interview-questions')) || next();
-    send(res, v, questionHtml({ q: v.question, answers: v.answers, related: v.related }));
+    send(res, v, questionHtml({ q: v.question, answers: v.answers, related: v.related, tech: v.tech }));
 });
 export const renderSalariesIndex = guard(async (req, res) => {
     const v = await loadSalariesIndex();

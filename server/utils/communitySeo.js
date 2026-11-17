@@ -26,24 +26,53 @@ export const LEVEL_PAGES = {
 };
 
 // ---------- interview questions ----------
-export const questionsIndexView = ({ questions, level }) => {
+export const questionsIndexView = ({ questions, level, techs = [] }) => {
     const lp = level ? LEVEL_PAGES[level] : null;
     const path = lp ? lp.path : '/jobs/interview-questions';
     const title = lp ? lp.title : 'Interview Questions and Answers';
     const description = lp ? lp.description : 'Interview questions with model answers for freshers and experienced candidates, in tech and non-tech jobs. Read how others answered and add your own.';
     const crumbs = [{ name: 'Home', url: abs('/') }, { name: 'Jobs', url: abs('/jobs') }, { name: 'Interview questions', url: abs('/jobs/interview-questions') }, ...(lp ? [{ name: lp.name, url: abs(lp.path) }] : [])];
     return {
-        seo: pageSeo({ title, description, path, index: questions.length > 0, keywords: 'interview questions, interview questions and answers, fresher interview questions, experienced interview questions' }),
+        seo: pageSeo({ title, description, path, index: questions.length > 0 || techs.length > 0, keywords: 'interview questions, interview questions and answers, fresher interview questions, experienced interview questions' }),
         jsonLd: [
             { '@context': 'https://schema.org', '@type': 'CollectionPage', name: lp ? lp.h1 : 'Interview questions and answers', url: abs(path), inLanguage: 'en',
-                mainEntity: { '@type': 'ItemList', itemListElement: questions.slice(0, 100).map((q, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/jobs/interview-questions/${q.slug}`), name: q.question })) } },
+                mainEntity: { '@type': 'ItemList', itemListElement: [
+                    ...techs.map((t, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`${TECH_PATH}/${t.slug}`), name: `${t.name} interview questions` })),
+                    ...questions.slice(0, 100).map((q, i) => ({ '@type': 'ListItem', position: techs.length + i + 1, url: abs(`/jobs/interview-questions/${q.slug}`), name: q.question })),
+                ] } },
             breadcrumbLd(crumbs),
         ],
         breadcrumbs: crumbs,
     };
 };
 
-export const questionsIndexHtml = ({ questions, level }) => {
+export const TECH_PATH = '/jobs/interview-questions/tech';
+
+// ---------- one technology ----------
+export const techView = ({ tech, questions }) => {
+    const path = `${TECH_PATH}/${tech.slug}`;
+    const crumbs = [{ name: 'Home', url: abs('/') }, { name: 'Jobs', url: abs('/jobs') }, { name: 'Interview questions', url: abs('/jobs/interview-questions') }, { name: tech.name, url: abs(path) }];
+    return {
+        seo: pageSeo({ title: trim(`${tech.name} Interview Questions`, 42), description: trim(`${questions.length} ${tech.name} interview questions with model answers, from basic to advanced. Read how other job seekers answered and add your own.`, 158), path, index: questions.length > 0, keywords: `${tech.name} interview questions, ${tech.name} interview questions and answers` }),
+        jsonLd: [
+            { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${tech.name} interview questions and answers`, url: abs(path), inLanguage: 'en',
+                mainEntity: { '@type': 'ItemList', itemListElement: questions.slice(0, 200).map((q, i) => ({ '@type': 'ListItem', position: i + 1, url: abs(`/jobs/interview-questions/${q.slug}`), name: q.question })) } },
+            breadcrumbLd(crumbs),
+        ],
+        breadcrumbs: crumbs,
+    };
+};
+export const techHtml = ({ tech, questions }) => {
+    const cats = [...new Set(questions.map((q) => q.category))];
+    return `<section class="ssr-article">
+  ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs', href: '/jobs' }, { name: 'Interview questions', href: '/jobs/interview-questions' }, { name: tech.name }])}
+  <h1>${e(tech.name)} interview questions and answers</h1>
+  <p>${e(tech.blurb)} ${questions.length} questions with a model answer for each. Open one to read the answer and see how other job seekers answered.</p>
+  ${cats.map((c) => `<h2>${e(c)}</h2><ul>${questions.filter((q) => q.category === c).map((q) => `<li><a href="/jobs/interview-questions/${e(q.slug)}">${e(q.question)}</a></li>`).join('')}</ul>`).join('')}
+</section>`;
+};
+
+export const questionsIndexHtml = ({ questions, level, techs = [] }) => {
     const lp = level ? LEVEL_PAGES[level] : null;
     const cats = [...new Set(questions.map((q) => q.category))];
     return `<section class="ssr-article">
@@ -51,12 +80,14 @@ export const questionsIndexHtml = ({ questions, level }) => {
   <h1>${e(lp ? lp.h1 : 'Interview questions and answers')}</h1>
   <p>${e(lp ? lp.description : 'Practise the questions employers really ask. Each has a model answer, and you can read answers from other job seekers or add your own.')}</p>
   <p><a href="/jobs/interview-questions/fresher">Fresher questions</a> · <a href="/jobs/interview-questions/experienced">Experienced questions</a> · <a href="/jobs/salaries">Salaries</a> · <a href="/jobs/company-reviews">Company reviews</a></p>
-  ${cats.map((c) => `<h2>${e(c)}</h2><ul>${questions.filter((q) => q.category === c).map((q) => `<li><a href="/jobs/interview-questions/${e(q.slug)}">${e(q.question)}</a></li>`).join('')}</ul>`).join('')}
+  ${techs.length ? `<h2>Choose a technology</h2><ul>${techs.map((t) => `<li><a href="${TECH_PATH}/${e(t.slug)}">${e(t.name)} interview questions</a> <span class="meta">${t.count} questions</span> ${e(t.blurb)}</li>`).join('')}</ul>` : ''}
+  ${cats.length ? '<h2>General interview questions</h2>' : ''}
+  ${cats.map((c) => `<h3>${e(c)}</h3><ul>${questions.filter((q) => q.category === c).map((q) => `<li><a href="/jobs/interview-questions/${e(q.slug)}">${e(q.question)}</a></li>`).join('')}</ul>`).join('')}
 </section>`;
 };
 
 const authorOrg = { '@type': 'Organization', name: SITE_NAME, url: siteUrl() };
-export const questionView = ({ q, answers, related }) => {
+export const questionView = ({ q, answers, related, tech }) => {
     const path = `/jobs/interview-questions/${q.slug}`;
     const levelName = q.level === 'fresher' ? 'freshers' : q.level === 'experienced' ? 'experienced candidates' : 'freshers and experienced candidates';
     const title = trim(q.question, 42);
@@ -64,7 +95,7 @@ export const questionView = ({ q, answers, related }) => {
     const description = trim(`How to answer "${q.question}" A model answer for ${levelName}, plus answers from other job seekers.`, 145);
     const hasAnswer = Boolean(lead) || answers.length > 0;
     const lp = q.level === 'fresher' ? LEVEL_PAGES.fresher : q.level === 'experienced' ? LEVEL_PAGES.experienced : null;
-    const crumbs = [{ name: 'Home', url: abs('/') }, { name: 'Jobs', url: abs('/jobs') }, { name: 'Interview questions', url: abs('/jobs/interview-questions') }, ...(lp ? [{ name: lp.name, url: abs(lp.path) }] : []), { name: trim(q.question, 60), url: abs(path) }];
+    const crumbs = [{ name: 'Home', url: abs('/') }, { name: 'Jobs', url: abs('/jobs') }, { name: 'Interview questions', url: abs('/jobs/interview-questions') }, ...(tech ? [{ name: tech.name, url: abs(`${TECH_PATH}/${tech.slug}`) }] : lp ? [{ name: lp.name, url: abs(lp.path) }] : []), { name: trim(q.question, 60), url: abs(path) }];
     const question = {
         '@type': 'Question', name: q.question, text: q.question, answerCount: (lead ? 1 : 0) + answers.length,
         ...(q.createdAt ? { dateCreated: new Date(q.createdAt).toISOString() } : {}),
@@ -79,8 +110,8 @@ export const questionView = ({ q, answers, related }) => {
     };
 };
 
-export const questionHtml = ({ q, answers, related }) => `<article class="ssr-article">
-  ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs', href: '/jobs' }, { name: 'Interview questions', href: '/jobs/interview-questions' }, { name: q.question }])}
+export const questionHtml = ({ q, answers, related, tech }) => `<article class="ssr-article">
+  ${crumbHtml([{ name: 'Home', href: '/' }, { name: 'Jobs', href: '/jobs' }, { name: 'Interview questions', href: '/jobs/interview-questions' }, ...(tech ? [{ name: tech.name, href: `${TECH_PATH}/${tech.slug}` }] : []), { name: q.question }])}
   <h1>${e(q.question)}</h1>
   <p class="meta">${e(q.category)} · ${q.level === 'both' ? 'Freshers and experienced' : q.level === 'fresher' ? 'Freshers' : 'Experienced'}</p>
   ${q.modelAnswer ? `<h2>Model answer</h2>${paraHtml(q.modelAnswer)}` : ''}
