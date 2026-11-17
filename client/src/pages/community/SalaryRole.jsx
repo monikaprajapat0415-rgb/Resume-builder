@@ -15,7 +15,7 @@ const SalaryRole = () => {
   if (state !== 'ok') return <Shell active='salaries'><SEO title='Salary page not found' description='No salary reports for this role yet.' noindex /><NotFound what='Salary page' back='/jobs/salaries' backLabel='See all salaries' /></Shell>
   const { title, groups, recent, seo } = data
   return (
-    <Shell active='salaries' crumbs={[{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Salaries', to: '/jobs/salaries' }, { name: `${title} salary` }]}>
+    <Shell active='salaries' inset crumbs={[{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Salaries', to: '/jobs/salaries' }, { name: `${title} salary` }]}>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/salaries/${slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
       <h1 className='text-3xl font-semibold text-slate-800'>{title} salary</h1>
       <p className='text-slate-500 mt-3 max-w-2xl'>Reported by people who do this job. A range needs at least 3 reports in the same country, currency and pay period.</p>
