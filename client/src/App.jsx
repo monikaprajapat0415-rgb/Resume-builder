@@ -3,6 +3,7 @@ import React, { use, useEffect, lazy, Suspense } from "react";
 import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Analytics from "./components/Analytics";
+import ConsentBanner from "./components/ConsentBanner";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 // import Login from "./pages/Login";
 const Logout = lazy(() => import("./pages/Logout"));
@@ -18,6 +19,7 @@ const ResetPassword = lazy(() => import("./pages/ResetPasswordPage"));
 const ForgotPassword = lazy(() => import("./pages/ForgetPassword"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const About = lazy(() => import("./pages/About"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
 const BlogIndex = lazy(() => import("./pages/BlogIndex"));
@@ -70,6 +72,7 @@ const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
 const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminAds = lazy(() => import("./pages/admin/AdminAds"));
 const AdminTools = lazy(() => import("./pages/admin/AdminTools"));
 const AdminPlan = lazy(() => import("./pages/admin/AdminPlan"));
 const AdminActivity = lazy(() => import("./pages/admin/AdminActivity"));
@@ -174,11 +177,13 @@ const App = () => {
     </Helmet>
     <Toaster />
     <Analytics />
+    <ConsentBanner />
       <StandalonePageNav />
       <Suspense fallback={<RouteFallback />}>
       <ReadyMark />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/category/:slug" element={<BlogIndex />} />
@@ -238,6 +243,7 @@ const App = () => {
           <Route path="trust" element={<AdminTrust />} />
           <Route path="plan" element={<AdminPlan />} />
           <Route path="activity" element={<AdminActivity />} />
+          <Route path="ads" element={<AdminAds />} />
           <Route path="tools" element={<AdminTools />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />

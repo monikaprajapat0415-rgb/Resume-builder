@@ -4,7 +4,7 @@ import { renderQuestionsIndex, renderTech, renderQuestion, renderSalariesIndex, 
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
 import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
-import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderContact, renderPrivacy, renderTerms, renderImageEnhancer, renderImageConverter, renderCareerTool, renderProductsIndex, redirectOldTools } from '../controllers/staticSeoController.js';
+import { renderHome, renderFeatures, renderAtsChecker, renderCvBuilder, renderMatcher, renderTemplatesIndex, renderTemplate, renderHire, renderAbout, renderContact, renderPrivacy, renderTerms, renderImageEnhancer, renderImageConverter, renderCareerTool, renderProductsIndex, redirectOldTools } from '../controllers/staticSeoController.js';
 import { getBlogSitemapXml } from '../controllers/blogController.js';
 import { renderPost, renderIndex, rssFeed, llmsTxt, llmsFullTxt } from '../controllers/blogSeoController.js';
 
@@ -57,6 +57,7 @@ seoRouter.get('/resume-job-description-matcher', renderMatcher);
 seoRouter.get('/templates', renderTemplatesIndex);
 seoRouter.get('/templates/:slug', renderTemplate);
 seoRouter.get('/hire', renderHire);
+seoRouter.get('/about', renderAbout);
 seoRouter.get('/contact-us', renderContact);
 seoRouter.get('/privacy-policy', renderPrivacy);
 seoRouter.get('/terms-and-conditions', renderTerms);

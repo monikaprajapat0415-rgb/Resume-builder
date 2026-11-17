@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import AdSlot from '../components/AdSlot'
 import { Link, useParams } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nProvider'
 import SEO from '../components/SEO'
@@ -259,6 +260,8 @@ const LearnLesson = () => {
               <Link to='/jobs/interview-questions' className='inline-block mt-3 text-sm text-slate-600 hover:text-brand-700'>See all interview questions</Link>
             </section>
           )}
+
+          <AdSlot key={`ad-${course.slug}/${lesson.slug}`} type='lesson' />
 
           <LessonFeedback key={`${course.slug}/${lesson.slug}`} courseSlug={course.slug} lessonSlug={lesson.slug} />
 

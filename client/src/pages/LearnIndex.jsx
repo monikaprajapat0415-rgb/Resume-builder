@@ -50,11 +50,12 @@ const LearnIndex = () => {
       <SEO title='Free Step-by-Step Tech Tutorials' description={DESC} keywords='tutorials, learn programming, free courses, web development tutorials' path='/learn' structuredData={structuredData} />
       <NavBar />
       <section className='site-w py-16'>
+      <div className='mx-auto max-w-6xl px-1 sm:px-6 lg:px-12'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <span>Learn</span>
         </nav>
         <div className='text-center max-w-2xl mx-auto mb-12'>
-          <h1 className='text-4xl font-semibold text-slate-800'>Learn new technologies</h1>
+          <h1 className='text-4xl font-semibold tracking-tight text-slate-800'>Learn new technologies</h1>
           <p className='text-slate-500 mt-3'>{DESC}</p>
         </div>
 
@@ -66,7 +67,7 @@ const LearnIndex = () => {
               {topics.length > 1 && <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-4'>{topic}</h2>}
               <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-5'>
                 {courses.filter((c) => (c.topic || 'Tutorials') === topic).map((c) => (
-                  <Link key={c.slug} to={`/learn/${c.slug}`} className='group flex gap-4 rounded-xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-brand-200 transition'>
+                  <Link key={c.slug} to={`/learn/${c.slug}`} className='group flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md hover:border-brand-200 transition'>
                     <CourseBadge course={c} />
                     <div className='min-w-0'>
                       <h3 className='text-lg font-semibold text-slate-800 group-hover:text-brand-600 transition'>{c.title}</h3>
@@ -83,6 +84,7 @@ const LearnIndex = () => {
             </div>
           ))}
         <p className='text-center text-sm text-slate-400 mt-8'>Planning your next career move? See the <Link to='/roadmaps' className='text-brand-600 hover:underline'>career roadmaps</Link>.</p>
+      </div>
       </section>
       <Footer />
     </div>

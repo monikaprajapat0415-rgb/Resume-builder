@@ -11,11 +11,14 @@ const TABS = [
 ]
 
 // Page frame for the jobs community pages: header, section tabs, own breadcrumb trail, footer.
+// Extra side whitespace used by listing pages (inside the wider header width).
+export const INSET = 'mx-auto max-w-6xl px-1 sm:px-6 lg:px-12'
+
 export const Shell = ({ active, crumbs = [], inset = false, children }) => (
   <div>
     <NavBar />
     <section className='site-w py-8'>
-      <div className={inset ? 'mx-auto max-w-6xl px-1 sm:px-6 lg:px-12' : undefined}>
+      <div className={inset ? INSET : undefined}>
       <nav aria-label='Section' className='flex flex-wrap gap-2 mb-6'>
         {TABS.map((t) => (
           <Link key={t.id} to={t.to} aria-current={active === t.id ? 'page' : undefined}

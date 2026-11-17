@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '../Logo';
 import MenuLink from './MenuLink'
 import { useMenu } from '../../utils/menu'
+import { openCookieSettings } from '../../utils/consent'
 
 
 const Footer = () => {
@@ -71,6 +72,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <p className="mt-3 text-center">© {new Date().getFullYear()} Prime Resume AI</p>
+                    <p className="mt-1 text-center"><button type="button" onClick={openCookieSettings} className="underline hover:text-gray-700">Cookie settings</button></p>
                 </div>
             </footer>
         </>

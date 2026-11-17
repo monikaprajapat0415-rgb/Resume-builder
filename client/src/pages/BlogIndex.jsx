@@ -61,11 +61,12 @@ const BlogIndex = () => {
       <SEO title={title} description={description} keywords='resume tips, resume writing advice, career blog, ATS resume tips' path={path} structuredData={loading ? undefined : structuredData} />
       <NavBar />
       <section className='site-w py-16'>
+      <div className='mx-auto max-w-6xl px-1 sm:px-6 lg:px-12'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › {active ? <><Link to='/blog' className='hover:text-slate-600'>Blog</Link> › <span>{heading}</span></> : <span>Blog</span>}
         </nav>
         <div className='text-center max-w-2xl mx-auto mb-12'>
-          <h1 className='text-4xl font-semibold text-slate-800'>{heading}</h1>
+          <h1 className='text-4xl font-semibold tracking-tight text-slate-800'>{heading}</h1>
           <p className='text-slate-500 mt-3'>{description}</p>
         </div>
 
@@ -91,7 +92,7 @@ const BlogIndex = () => {
         ) : (
           <div className='grid sm:grid-cols-2 xl:grid-cols-3 gap-6'>
             {posts.map((post) => (
-              <Link key={post.slug} to={`/blog/${post.slug}`} className='group block rounded-xl border border-slate-200 bg-white overflow-hidden hover:shadow-md hover:border-brand-200 transition'>
+              <Link key={post.slug} to={`/blog/${post.slug}`} className='group block rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-md hover:border-brand-200 transition'>
                 {post.coverImage && <img src={post.coverImage} alt={post.coverAlt || post.title} loading='lazy' width={800} height={420} className='w-full aspect-[1200/630] object-cover' />}
                 <div className='p-6'>
                   <p className='text-xs text-slate-400 mb-2'>
@@ -108,6 +109,7 @@ const BlogIndex = () => {
             ))}
           </div>
         )}
+      </div>
       </section>
       <Footer />
     </div>

@@ -14,7 +14,7 @@ const CompanyView = () => {
   if (state !== 'ok') return <Shell active='reviews'><SEO title='Company not found' description='No reviews for this company yet.' noindex /><NotFound what='Company' back='/jobs/company-reviews' backLabel='See all company reviews' /></Shell>
   const { company, avg, count, reviews, seo } = data
   return (
-    <Shell active='reviews' crumbs={[{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Company reviews', to: '/jobs/company-reviews' }, { name: company }]}>
+    <Shell active='reviews' inset crumbs={[{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Company reviews', to: '/jobs/company-reviews' }, { name: company }]}>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/company-reviews/${slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
       <h1 className='text-3xl font-semibold text-slate-800'>{company} reviews</h1>
       <p className='mt-3 flex items-center gap-3 text-slate-600'><Stars value={avg} size='text-xl' /> <span><strong>{avg.toFixed(1)}</strong> out of 5 from {count} review{count > 1 ? 's' : ''}</span></p>

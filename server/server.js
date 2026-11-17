@@ -24,6 +24,7 @@ import menuRouter from "./routes/menuRoutes.js";
 import publicRouter from "./routes/publicRoutes.js";
 import atsRouter from "./routes/atsRoutes.js";
 import seoRouter from "./routes/seoRoutes.js";
+import { adsTxt } from "./controllers/adsController.js";
 import { promoteAdminOnStartup } from "./utils/adminEmail.js";
 
 
@@ -97,6 +98,7 @@ app.use('/api/menu', menuRouter)
 app.use('/api', publicRouter)
 app.use('/api/admin', adminRouter)
 // Crawler-friendly HTML for /blog pages, RSS and llms.txt (nginx forwards these paths here)
+app.get('/ads.txt', adsTxt)
 app.use('/', seoRouter)
 // Health text for '/' only when the client is not built on this machine (otherwise seoRouter serves the home page).
 app.get('/', (req, res)=> res.send("Server is live..."))
