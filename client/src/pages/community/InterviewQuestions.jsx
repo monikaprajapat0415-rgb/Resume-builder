@@ -4,6 +4,7 @@ import SEO from '../../components/SEO'
 import { Shell, input } from '../../components/community/Shell'
 import { useCommunity } from './useCommunity'
 import { LEVELS } from './levels'
+import { QuestionGroups } from '../../components/community/QuestionList'
 
 const InterviewQuestions = ({ level = '' }) => {
   const lp = LEVELS[level]
@@ -16,9 +17,9 @@ const InterviewQuestions = ({ level = '' }) => {
   const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, lp ? { name: 'Interview questions', to: '/jobs/interview-questions' } : { name: 'Interview questions' }, ...(lp ? [{ name: lp.name }] : [])]
 
   return (
-    <Shell active='questions' crumbs={crumbs}>
+    <Shell active='questions' crumbs={crumbs} inset>
       {state === 'ok' && <SEO title={data.seo.title} description={data.seo.description} keywords={data.seo.keywords} path={lp ? lp.path : '/jobs/interview-questions'} canonical={data.seo.canonical} robots={data.seo.robots} structuredData={data.jsonLd} />}
-      <h1 className='text-3xl font-semibold text-slate-800'>{lp ? lp.h1 : 'Interview questions and answers'}</h1>
+      <h1 className='text-3xl sm:text-4xl font-semibold tracking-tight text-slate-800'>{lp ? lp.h1 : 'Interview questions and answers'}</h1>
       <p className='text-slate-500 mt-3 max-w-2xl'>{lp ? lp.intro : 'Practise the questions employers really ask. Pick a technology below for coding and technical questions, or scroll to the general questions that suit any job. Every question has a model answer. Read how other job seekers answered, and add your own.'}</p>
 
       <div className='flex flex-wrap gap-2 mt-5'>
@@ -31,16 +32,19 @@ const InterviewQuestions = ({ level = '' }) => {
         <section className='mt-8' aria-labelledby='tech-h'>
           <h2 id='tech-h' className='text-xl font-semibold text-slate-800'>Choose a technology</h2>
           <p className='text-sm text-slate-500 mt-1'>Pick a topic to see its questions. Open any question to read the model answer.</p>
-          <ul className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4'>
+          <ul className='grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5'>
             {data.techs.map((t) => (
               <li key={t.slug}>
-                <Link to={`/jobs/interview-questions/tech/${t.slug}`} className='block h-full rounded-xl border border-slate-200 bg-white p-4 hover:border-brand-300 hover:shadow-sm transition'>
-                  <span className='flex items-baseline justify-between gap-2'>
-                    <span className='font-semibold text-slate-800'>{t.name}</span>
-                    <span className='shrink-0 text-xs text-slate-400'>{t.count} question{t.count === 1 ? '' : 's'}</span>
+                <Link to={`/jobs/interview-questions/tech/${t.slug}`} className='group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-brand-300 hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:outline-none transition'>
+                  <span className='flex items-center gap-3'>
+                    <span className='grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-sm font-bold text-brand-700' aria-hidden='true'>{t.name.slice(0, 2)}</span>
+                    <span className='min-w-0'>
+                      <span className='block font-semibold text-slate-800 leading-tight'>{t.name}</span>
+                      <span className='block text-xs text-slate-400 mt-0.5'>{t.count} question{t.count === 1 ? '' : 's'}</span>
+                    </span>
                   </span>
-                  <span className='block text-sm text-slate-500 mt-1.5'>{t.blurb}</span>
-                  <span className='block text-sm text-brand-600 mt-3'>View questions →</span>
+                  <span className='block text-sm text-slate-500 mt-3 flex-1'>{t.blurb}</span>
+                  <span className='block text-sm font-medium text-brand-600 mt-4 group-hover:underline'>View questions →</span>
                 </Link>
               </li>
             ))}
@@ -53,7 +57,7 @@ const InterviewQuestions = ({ level = '' }) => {
       {state === 'ok' && (
         data.questions.length === 0 ? (data.techs?.length ? null : <p className='text-slate-400 mt-10'>Questions are on the way. Check back soon.</p>) : (
           <>
-            <h2 className='text-xl font-semibold text-slate-800 mt-10'>General interview questions</h2>
+            <h2 className='text-xl font-semibold text-slate-800 mt-12'>General interview questions</h2>
             <div className='grid sm:grid-cols-[1fr_auto] gap-3 mt-4'>
               <input value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search questions' aria-label='Search questions' className={input} />
               <select value={cat} onChange={(e) => setCat(e.target.value)} aria-label='Category' className={input}>
@@ -62,23 +66,7 @@ const InterviewQuestions = ({ level = '' }) => {
               </select>
             </div>
             {shown.length === 0 && <p className='text-slate-400 mt-8'>No question matches that search.</p>}
-            <div className='grid lg:grid-cols-2 gap-x-8 items-start'>
-            {cats.map((c) => (
-              <div key={c} className='mt-8'>
-                <h2 className='text-sm font-semibold uppercase tracking-wide text-slate-400 mb-3'>{c}</h2>
-                <ul className='divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
-                  {shown.filter((x) => x.category === c).map((x) => (
-                    <li key={x.slug}>
-                      <Link to={`/jobs/interview-questions/${x.slug}`} className='flex items-center justify-between gap-3 px-4 py-3 hover:bg-slate-50'>
-                        <span className='text-slate-800'>{x.question}</span>
-                        <span className='shrink-0 text-xs text-slate-400'>{x.answerCount ? `${x.answerCount} shared answer${x.answerCount > 1 ? 's' : ''}` : x.level === 'both' ? '' : x.level}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            </div>
+            <QuestionGroups questions={shown} cats={cats} />
           </>
         )
       )}

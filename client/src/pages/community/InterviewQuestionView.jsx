@@ -20,7 +20,7 @@ const InterviewQuestionView = () => {
   const lp = q.level === 'both' ? null : LEVELS[q.level]
   const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Interview questions', to: '/jobs/interview-questions' }, ...(tech ? [{ name: tech.name, to: `/jobs/interview-questions/tech/${tech.slug}` }] : lp ? [{ name: lp.name, to: lp.path }] : []), { name: q.question.length > 50 ? q.question.slice(0, 47) + '…' : q.question }]
   return (
-    <Shell active='questions' crumbs={crumbs}>
+    <Shell active='questions' crumbs={crumbs} inset>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/interview-questions/${q.slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
       <div className='grid lg:grid-cols-[minmax(0,1fr)_400px] gap-x-12 items-start'>
       <div>
