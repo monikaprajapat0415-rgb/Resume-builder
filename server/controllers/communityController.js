@@ -9,10 +9,10 @@ import Lesson from "../models/Lesson.js";
 import { slugify } from "../utils/slugify.js";
 import {
     str, para, richText, hasLink, companySlug, displayNameFor, aggregateSalaries, COUNTRIES, CURRENCIES, PERIODS, SALARY_LEVELS,
-    RESERVED_QUESTION_SLUGS, REVIEW_MIN,
+    RESERVED_QUESTION_SLUGS, REVIEW_MIN, techKey, techMeta,
 } from "../utils/communityCore.js";
 import {
-    questionsIndexView, questionView, salariesIndexView, salaryRoleView, companiesIndexView, companyView,
+    questionsIndexView, techView, questionView, salariesIndexView, salaryRoleView, companiesIndexView, companyView,
 } from "../utils/communitySeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -22,13 +22,43 @@ const AUTO_HIDE_REPORTS = 3;   // this many different users flagging an approved
 // ================= shared loaders (also used by the server-rendered pages) =================
 const levelFilter = (level) => (level === 'fresher' || level === 'experienced' ? { level: { $in: [level, 'both'] } } : {});
 
-export const loadQuestionsIndex = async (level) => {
-    const questions = await InterviewQuestion.find({ published: true, ...levelFilter(level) }).sort({ category: 1, order: 1, createdAt: 1 }).limit(500)
-        .select('question slug category level').lean();
-    const counts = await InterviewAnswer.aggregate([{ $match: { status: 'approved' } }, { $group: { _id: '$question', n: { $sum: 1 } } }]);
+// Technology groups (Angular, React, ...) built from the first tag of every published question.
+export const loadTechs = async (level = '') => {
+    const rows = await InterviewQuestion.aggregate([
+        { $match: { published: true, 'tags.0': { $exists: true } } },
+        { $project: { level: 1, key: { $toLower: { $trim: { input: { $arrayElemAt: ['$tags', 0] } } } } } },
+        { $match: { key: { $ne: '' } } },
+        { $group: { _id: '$key', total: { $sum: 1 }, fresher: { $sum: { $cond: [{ $in: ['$level', ['fresher', 'both']] }, 1, 0] } }, experienced: { $sum: { $cond: [{ $in: ['$level', ['experienced', 'both']] }, 1, 0] } } } },
+    ]);
+    const known = Object.keys(TECH_ORDER);
+    return rows.map((r) => ({ ...techMeta(r._id), count: level === 'fresher' ? r.fresher : level === 'experienced' ? r.experienced : r.total, total: r.total }))
+        .filter((t) => t.slug && t.count > 0)
+        .sort((a, b) => (known.indexOf(a.slug) + 1 || 99) - (known.indexOf(b.slug) + 1 || 99) || b.count - a.count || a.name.localeCompare(b.name));
+};
+const TECH_ORDER = { angular: 1, react: 1, nodejs: 1, mern: 1, python: 1, sql: 1, devops: 1 };
+
+const withAnswerCounts = async (questions) => {
+    const counts = await InterviewAnswer.aggregate([{ $match: { status: 'approved', question: { $in: questions.map((q) => q._id) } } }, { $group: { _id: '$question', n: { $sum: 1 } } }]);
     const byQ = Object.fromEntries(counts.map((c) => [String(c._id), c.n]));
-    const withCounts = questions.map((q) => ({ ...q, answerCount: byQ[String(q._id)] || 0 }));
-    return { questions: withCounts, ...questionsIndexView({ questions, level }) };
+    return questions.map((q) => ({ ...q, answerCount: byQ[String(q._id)] || 0 }));
+};
+
+// First page and the fresher / experienced pages: the technology tiles plus the general (untagged) questions.
+export const loadQuestionsIndex = async (level) => {
+    const [techs, questions] = await Promise.all([
+        loadTechs(level),
+        InterviewQuestion.find({ published: true, 'tags.0': { $exists: false }, ...levelFilter(level) }).sort({ category: 1, order: 1, createdAt: 1 }).limit(500).select('question slug category level').lean(),
+    ]);
+    return { techs, questions: await withAnswerCounts(questions), ...questionsIndexView({ questions, level, techs }) };
+};
+
+// One technology: all its questions (any level), grouped by category on the page.
+export const loadTech = async (slug) => {
+    const tech = (await loadTechs()).find((t) => t.slug === slug);
+    if (!tech) return null;
+    const questions = await InterviewQuestion.find({ published: true, $expr: { $eq: [{ $toLower: { $trim: { input: { $ifNull: [{ $arrayElemAt: ['$tags', 0] }, ''] } } } }, tech.key] } })
+        .sort({ category: 1, order: 1, createdAt: 1 }).limit(1000).select('question slug category level').lean();
+    return { tech, questions: await withAnswerCounts(questions), categories: [...new Set(questions.map((q) => q.category))], ...techView({ tech, questions }) };
 };
 
 // The course or lesson that teaches this topic, only if it exists and is published (so a link is never dead).
@@ -51,7 +81,9 @@ export const loadQuestion = async (slug) => {
     const answers = await InterviewAnswer.find({ question: q._id, status: 'approved' }).sort({ createdAt: -1 }).limit(50).select('body displayName createdAt').lean();
     const related = await InterviewQuestion.find({ published: true, category: q.category, _id: { $ne: q._id } }).sort({ order: 1 }).limit(6).select('question slug').lean();
     const learn = await resolveLearn(q);
-    return { question: { question: q.question, slug: q.slug, category: q.category, level: q.level, modelAnswer: q.modelAnswer, tips: q.tips, tags: q.tags, learn, createdAt: q.createdAt }, answers, ...questionView({ q, answers, related }) };
+    const key = techKey(q.tags);
+    const tech = key ? techMeta(key) : null;
+    return { question: { question: q.question, slug: q.slug, category: q.category, level: q.level, modelAnswer: q.modelAnswer, tips: q.tips, tags: q.tags, learn, createdAt: q.createdAt }, tech: tech && { slug: tech.slug, name: tech.name }, answers, ...questionView({ q, answers, related, tech }) };
 };
 
 const approvedSalaries = (match = {}) => SalaryReport.find({ status: 'approved', ...match }).lean();
@@ -104,10 +136,11 @@ export const loadCompany = async (slug) => {
 
 // Pages that may go in the sitemap (enough content to be worth indexing)
 export const communitySitemapEntries = async () => {
-    const [questions, salaryRows, companyRows] = await Promise.all([
+    const [questions, salaryRows, companyRows, techs] = await Promise.all([
         InterviewQuestion.find({ published: true }).select('slug updatedAt modifiedAt').lean(),
         SalaryReport.find({ status: 'approved' }).select('roleSlug country currency period amount updatedAt').limit(20000).lean(),
         companyStats(),
+        loadTechs(),
     ]);
     const bySlug = new Map();
     for (const r of salaryRows) bySlug.set(r.roleSlug, [...(bySlug.get(r.roleSlug) || []), r]);
@@ -115,6 +148,7 @@ export const communitySitemapEntries = async () => {
         .map(([slug, rows]) => ({ slug, at: rows.reduce((m, r) => Math.max(m, +r.updatedAt), 0) }));
     return {
         questions: questions.map((q) => ({ slug: q.slug, at: q.modifiedAt || q.updatedAt })),
+        techs: techs.map((t) => t.slug),
         salaries, companies: companyRows.filter((c) => c.count >= REVIEW_MIN).map((c) => ({ slug: c.slug, at: c.at })),
     };
 };
@@ -125,8 +159,15 @@ export const getMeta = (req, res) => res.status(200).json({ countries: Object.ke
 export const getQuestions = async (req, res) => {
     try {
         const level = ['fresher', 'experienced'].includes(req.query.level) ? req.query.level : '';
-        const { questions, seo, jsonLd } = await loadQuestionsIndex(level);
-        return res.status(200).json({ questions, categories: [...new Set(questions.map((q) => q.category))], seo, jsonLd });
+        const { questions, techs, seo, jsonLd } = await loadQuestionsIndex(level);
+        return res.status(200).json({ questions, techs, categories: [...new Set(questions.map((q) => q.category))], seo, jsonLd });
+    } catch (e) { return fail(res, e); }
+};
+export const getTech = async (req, res) => {
+    try {
+        const v = await loadTech(String(req.params.tech || '').toLowerCase());
+        if (!v) return res.status(404).json({ message: 'No questions for this technology yet' });
+        return res.status(200).json(v);
     } catch (e) { return fail(res, e); }
 };
 export const getQuestion = async (req, res) => {

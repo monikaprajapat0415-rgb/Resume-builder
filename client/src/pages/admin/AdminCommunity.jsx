@@ -123,7 +123,7 @@ const Questions = ({ auth }) => {
       </div>
       <label className='block text-sm'>Model answer (blank line = new paragraph; helpful, honest, 80+ words)<textarea rows={10} value={form.modelAnswer} onChange={set('modelAnswer')} className={input} /></label>
       <label className='block text-sm'>Tips (one per line)<textarea rows={3} value={form.tips} onChange={set('tips')} className={input} /></label>
-      <label className='block text-sm'>Tags (comma separated)<input value={form.tags} onChange={set('tags')} className={input} /></label>
+      <label className='block text-sm'>Tags (comma separated)<input value={form.tags} onChange={set('tags')} className={input} /><span className='block text-xs text-slate-400 mt-1'>The first tag is the technology group on the interview questions page (for example angular, react, sql). A new first tag creates a new group once a question with it is published. No tag = general question.</span></label>
       <div className='grid sm:grid-cols-2 gap-3'>
         <label className='block text-sm'>Course to link (optional: the slug in /learn/slug)<input value={form.learnCourse || ''} onChange={set('learnCourse')} className={input} placeholder='python-for-beginners-course' /></label>
         <label className='block text-sm'>Lesson to link (optional: the lesson slug)<input value={form.learnLesson || ''} onChange={set('learnLesson')} className={input} placeholder='functions-in-python' /></label>

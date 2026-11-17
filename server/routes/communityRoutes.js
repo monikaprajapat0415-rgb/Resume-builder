@@ -2,7 +2,7 @@ import express from 'express';
 import protect from '../middlewares/authMiddleware.js';
 import { rateLimit } from '../utils/communityCore.js';
 import {
-    getMeta, getQuestions, getQuestion, getSalaries, getSalaryRole, getCompanies, getCompany,
+    getMeta, getQuestions, getTech, getQuestion, getSalaries, getSalaryRole, getCompanies, getCompany,
     addAnswer, addSalary, addReview, reportItem, getMine,
 } from '../controllers/communityController.js';
 
@@ -12,6 +12,7 @@ const flag = rateLimit({ max: 30, windowMs: 60 * 60 * 1000, name: 'community-fla
 
 r.get('/meta', getMeta);
 r.get('/questions', getQuestions);
+r.get('/questions/tech/:tech', getTech);
 r.get('/questions/:slug', getQuestion);
 r.get('/salaries', getSalaries);
 r.get('/salaries/:slug', getSalaryRole);

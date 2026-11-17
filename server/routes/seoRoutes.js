@@ -1,6 +1,6 @@
 import express from 'express';
 import { renderLearnIndex, renderCourse, renderLesson } from '../controllers/learnSeoController.js';
-import { renderQuestionsIndex, renderQuestion, renderSalariesIndex, renderSalaryRole, renderCompaniesIndex, renderCompany } from '../controllers/communitySeoController.js';
+import { renderQuestionsIndex, renderTech, renderQuestion, renderSalariesIndex, renderSalaryRole, renderCompaniesIndex, renderCompany } from '../controllers/communitySeoController.js';
 import { renderRoadmapIndex, renderRoadmap } from '../controllers/roadmapSeoController.js';
 import { renderExamplesIndex, renderExample } from '../controllers/examplesSeoController.js';
 import { renderJobsIndex, renderJob, renderLanding } from '../controllers/jobSeoController.js';
@@ -28,6 +28,7 @@ seoRouter.get('/jobs', renderJobsIndex);
 seoRouter.get('/jobs/interview-questions', renderQuestionsIndex);
 seoRouter.get('/jobs/interview-questions/fresher', renderQuestionsIndex);
 seoRouter.get('/jobs/interview-questions/experienced', renderQuestionsIndex);
+seoRouter.get('/jobs/interview-questions/tech/:tech', renderTech);
 seoRouter.get('/jobs/interview-questions/:slug', renderQuestion);
 seoRouter.get('/jobs/salaries', renderSalariesIndex);
 seoRouter.get('/jobs/salaries/:slug', renderSalaryRole);

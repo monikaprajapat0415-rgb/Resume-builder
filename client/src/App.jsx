@@ -25,6 +25,7 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const AdminRoadmaps = lazy(() => import("./pages/admin/AdminRoadmaps"));
 const AdminRoadmapEditor = lazy(() => import("./pages/admin/AdminRoadmapEditor"));
 const InterviewQuestions = lazy(() => import("./pages/community/InterviewQuestions"));
+const InterviewTech = lazy(() => import("./pages/community/InterviewTech"));
 const InterviewQuestionView = lazy(() => import("./pages/community/InterviewQuestionView"));
 const Salaries = lazy(() => import("./pages/community/Salaries"));
 const SalaryRole = lazy(() => import("./pages/community/SalaryRole"));
@@ -188,6 +189,7 @@ const App = () => {
         <Route path="/jobs/interview-questions" element={<InterviewQuestions />} />
         <Route path="/jobs/interview-questions/fresher" element={<InterviewQuestions level="fresher" />} />
         <Route path="/jobs/interview-questions/experienced" element={<InterviewQuestions level="experienced" />} />
+        <Route path="/jobs/interview-questions/tech/:tech" element={<InterviewTech />} />
         <Route path="/jobs/interview-questions/:slug" element={<InterviewQuestionView />} />
         <Route path="/jobs/salaries" element={<Salaries />} />
         <Route path="/jobs/salaries/:slug" element={<SalaryRole />} />

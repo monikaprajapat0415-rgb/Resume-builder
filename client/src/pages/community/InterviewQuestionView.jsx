@@ -16,9 +16,9 @@ const InterviewQuestionView = () => {
   const { state, data } = useCommunity(`/api/community/questions/${slug}`)
   if (state === 'loading') return <Shell active='questions'><p className='text-slate-400 py-16 text-center'>Loading…</p></Shell>
   if (state !== 'ok') return <Shell active='questions'><SEO title='Question not found' description='This question could not be found.' noindex /><NotFound what='Question' back='/jobs/interview-questions' backLabel='See all interview questions' /></Shell>
-  const { question: q, answers, related, seo } = data
+  const { question: q, answers, related, seo, tech } = data
   const lp = q.level === 'both' ? null : LEVELS[q.level]
-  const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Interview questions', to: '/jobs/interview-questions' }, ...(lp ? [{ name: lp.name, to: lp.path }] : []), { name: q.question.length > 50 ? q.question.slice(0, 47) + '…' : q.question }]
+  const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Interview questions', to: '/jobs/interview-questions' }, ...(tech ? [{ name: tech.name, to: `/jobs/interview-questions/tech/${tech.slug}` }] : lp ? [{ name: lp.name, to: lp.path }] : []), { name: q.question.length > 50 ? q.question.slice(0, 47) + '…' : q.question }]
   return (
     <Shell active='questions' crumbs={crumbs}>
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/interview-questions/${q.slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
@@ -27,6 +27,7 @@ const InterviewQuestionView = () => {
       <article>
         <p className='text-sm text-slate-400'>{q.category} · {q.level === 'both' ? 'Freshers and experienced' : q.level === 'fresher' ? 'Freshers' : 'Experienced'}</p>
         <h1 className='text-3xl font-semibold text-slate-800 mt-1'>{q.question}</h1>
+        {tech && <p className='mt-2 text-sm'><Link to={`/jobs/interview-questions/tech/${tech.slug}`} className='text-brand-600 hover:underline'>← All {tech.name} interview questions</Link></p>}
         {q.modelAnswer && (<><h2 className='text-xl font-semibold text-slate-800 mt-8'>Model answer</h2><Paras text={q.modelAnswer} /></>)}
         {q.tips?.length > 0 && (
           <div className='mt-6 rounded-lg bg-brand-50 border border-brand-100 px-4 py-3'>
