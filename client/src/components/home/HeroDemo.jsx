@@ -53,7 +53,7 @@ const HeroDemo = () => {
         <LuSparkles className="size-4 text-brand-600" /> AI suggestion
       </div>
       <div className="float-slower absolute -right-3 sm:-right-12 bottom-16 z-10 hidden sm:flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1.5 text-xs text-slate-700 shadow-md">
-        <span className="size-2 rounded-full bg-green-500 pulse-ring" /> ATS-friendly
+        <span className="size-2 rounded-full bg-brand-500 pulse-ring" /> ATS-friendly
       </div>
 
       <div ref={card} className="tilt rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-left shadow-xl shadow-brand-900/5 ring-1 ring-black/5">
@@ -79,7 +79,7 @@ const HeroDemo = () => {
         <ul className="mt-4 space-y-1.5 border-t border-slate-100 pt-4">
           {CHECKS.map((c, i) => (
             <li key={c} className={`flex items-center gap-2 text-xs ${i < checks ? 'text-slate-700' : 'text-slate-300'}`}>
-              <span className={`grid size-4 place-items-center rounded-full ${i < checks ? 'bg-green-500 text-white pop-in' : 'bg-slate-100'}`}>{i < checks && <LuCheck className="size-3" />}</span>
+              <span className={`grid size-4 place-items-center rounded-full ${i < checks ? 'bg-brand-500 text-white pop-in' : 'bg-slate-100'}`}>{i < checks && <LuCheck className="size-3" />}</span>
               {c}
             </li>
           ))}

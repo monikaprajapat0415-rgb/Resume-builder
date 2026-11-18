@@ -1,4 +1,5 @@
 import { adminGetAds, adminSaveAds } from '../controllers/adsController.js';
+import { adminGetNudge, adminSaveNudge } from '../controllers/nudgeController.js';
 import { listTranslations, getTranslation, saveTranslation, deleteTranslation, draftTranslation } from '../controllers/lessonTranslationController.js';
 import { auditAdmin } from '../utils/adminAudit.js';
 import { bulkAction } from '../controllers/bulkController.js';
@@ -168,6 +169,8 @@ import { adminGetPlan, adminSavePlan, adminSetUserPlan, adminPlanEvents, adminRe
 import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
 adminRouter.get('/ads', adminGetAds);
 adminRouter.put('/ads', adminSaveAds);
+adminRouter.get('/nudge', adminGetNudge);
+adminRouter.put('/nudge', adminSaveNudge);
 adminRouter.get('/tools', adminGetTools);
 adminRouter.put('/tools', adminSaveTools);
 adminRouter.get('/plan', adminGetPlan);

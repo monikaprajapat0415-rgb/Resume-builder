@@ -17,7 +17,7 @@ const ScrollProgress = () => {
     window.addEventListener('resize', onScroll)
     return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); if (raf) cancelAnimationFrame(raf) }
   }, [])
-  return <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"><div ref={bar} className="progress-bar aurora h-full w-full bg-gradient-to-r from-brand-500 via-emerald-300 to-brand-600" style={{ transform: 'scaleX(0)' }} /></div>
+  return <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]"><div ref={bar} className="progress-bar aurora h-full w-full bg-gradient-to-r from-brand-500 via-brand-300 to-brand-600" style={{ transform: 'scaleX(0)' }} /></div>
 }
 
 export default ScrollProgress

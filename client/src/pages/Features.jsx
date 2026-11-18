@@ -33,7 +33,7 @@ const Features = () => (
       </section>
 
       <section className='site-w pb-6'>
-        <Link to='/features/ats-checker' className='group block rounded-2xl bg-gradient-to-br from-brand-600 to-emerald-700 text-white p-7 md:p-9 hover:shadow-lg transition'>
+        <Link to='/features/ats-checker' className='group block rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white p-7 md:p-9 hover:shadow-lg transition'>
           <div className='flex flex-col md:flex-row md:items-center gap-5'>
             <div className='size-14 shrink-0 rounded-xl bg-white/15 flex items-center justify-center'><LuScanSearch className='size-7' /></div>
             <div className='flex-1'>

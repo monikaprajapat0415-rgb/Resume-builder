@@ -4,6 +4,7 @@ import { Route, Routes, Navigate, useParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Analytics from "./components/Analytics";
 import ConsentBanner from "./components/ConsentBanner";
+import SignupNudge from "./components/SignupNudge";
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 // import Login from "./pages/Login";
 const Logout = lazy(() => import("./pages/Logout"));
@@ -72,6 +73,7 @@ const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
 const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminNudge = lazy(() => import("./pages/admin/AdminNudge"));
 const AdminAds = lazy(() => import("./pages/admin/AdminAds"));
 const AdminTools = lazy(() => import("./pages/admin/AdminTools"));
 const AdminPlan = lazy(() => import("./pages/admin/AdminPlan"));
@@ -178,6 +180,7 @@ const App = () => {
     <Toaster />
     <Analytics />
     <ConsentBanner />
+    <SignupNudge />
       <StandalonePageNav />
       <Suspense fallback={<RouteFallback />}>
       <ReadyMark />
@@ -244,6 +247,7 @@ const App = () => {
           <Route path="plan" element={<AdminPlan />} />
           <Route path="activity" element={<AdminActivity />} />
           <Route path="ads" element={<AdminAds />} />
+          <Route path="nudge" element={<AdminNudge />} />
           <Route path="tools" element={<AdminTools />} />
           <Route path="appearance" element={<AdminAppearance />} />
           <Route path="users" element={<AdminUsers />} />

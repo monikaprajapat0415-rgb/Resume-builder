@@ -8,6 +8,7 @@ import { getHomeTrust, submitUserReview } from '../controllers/trustController.j
 import { contactLimiter, hitLimiter } from '../middlewares/rateLimiter.js';
 import { recordHit } from '../controllers/visitController.js';
 import { publicAdConfig } from '../controllers/adsController.js';
+import { publicNudge, nudgeEvent } from '../controllers/nudgeController.js';
 
 // Public endpoints for the contact form, editable pages and editable site text.
 const publicRouter = express.Router();
@@ -15,6 +16,8 @@ publicRouter.post('/contact', contactLimiter, submitMessage);
 publicRouter.get('/pages/:slug', getPublicPage);
 publicRouter.get('/site-content', getSiteContent);
 publicRouter.get('/ads/config', publicAdConfig);
+publicRouter.get('/nudge/config', publicNudge);
+publicRouter.post('/nudge/event', hitLimiter, nudgeEvent);
 import { getPublicPlan, planWebhook } from '../controllers/planController.js';
 publicRouter.get('/plan', getPublicPlan);
 publicRouter.post('/plan/webhook', planWebhook);
