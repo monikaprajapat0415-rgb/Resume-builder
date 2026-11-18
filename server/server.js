@@ -24,6 +24,7 @@ import menuRouter from "./routes/menuRoutes.js";
 import publicRouter from "./routes/publicRoutes.js";
 import atsRouter from "./routes/atsRoutes.js";
 import seoRouter from "./routes/seoRoutes.js";
+import { startPublishScheduler } from "./utils/publishAt.js";
 import { adsTxt } from "./controllers/adsController.js";
 import { promoteAdminOnStartup } from "./utils/adminEmail.js";
 
@@ -106,5 +107,6 @@ app.get('/', (req, res)=> res.send("Server is live..."))
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
     startJobScheduler();
+    startPublishScheduler();
     startRequestMaintenance();
 })

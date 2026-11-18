@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import PublishAt from '../../components/admin/PublishAt'
 import api from '../../configs/api'
 import { LuCheck, LuX, LuTrash2, LuPencil, LuPlus, LuFlag } from 'react-icons/lu'
 import PublishSwitch from '../../components/admin/PublishSwitch'
@@ -80,7 +81,7 @@ const Moderation = ({ type, auth, onChange }) => {
 }
 
 // ---------- interview questions CRUD ----------
-const EMPTY = { question: '', category: 'General', level: 'both', modelAnswer: '', tips: '', tags: '', learnCourse: '', learnLesson: '', order: 0, published: true }
+const EMPTY = { question: '', category: 'General', level: 'both', modelAnswer: '', tips: '', tags: '', learnCourse: '', learnLesson: '', order: 0, published: true, publishAt: '' }
 const Questions = ({ auth }) => {
   const [rows, setRows] = useState(null)
   const [form, setForm] = useState(null)   // null = list, object = editor
@@ -130,6 +131,7 @@ const Questions = ({ auth }) => {
       </div>
       <p className='text-xs text-slate-500 -mt-1'>The question page shows a "Learn this topic" link. It appears only while that course or lesson is published. Leave both empty for no link.</p>
       <label className='flex items-center gap-2 text-sm'><input type='checkbox' checked={form.published} onChange={set('published')} /> Published (visible and in the sitemap)</label>
+      <PublishAt published={form.published} value={form.publishAt || ''} onChange={(v) => setForm({ ...form, publishAt: v })} previewPath={form._id && form.slug ? `/jobs/interview-questions/${form.slug}` : ''} />
       <div className='flex gap-2'><button className='px-5 py-2 bg-brand-600 text-white rounded-full text-sm'>Save</button><button type='button' onClick={() => setForm(null)} className='px-5 py-2 border border-slate-200 rounded-full text-sm'>Cancel</button></div>
     </form>
   )

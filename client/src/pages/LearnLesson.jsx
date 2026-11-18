@@ -15,6 +15,7 @@ import LessonNotes from '../components/LessonNotes'
 import ReadingOptions, { useReadingPrefs } from '../components/ReadingOptions'
 import { renderInline } from '../utils/inlineText'
 import { dropServerJsonLd, fmtDate } from '../utils/seoDom'
+import { previewConfig, PreviewBanner } from '../utils/preview'
 import { useCourseProgress, countDone } from '../utils/learnProgress'
 import { LuDownload, LuArrowLeft, LuArrowRight, LuChevronRight, LuMenu, LuCheck, LuBookmark, LuBookmarkCheck, LuAward, LuPanelLeftClose, LuPanelLeftOpen } from 'react-icons/lu'
 
@@ -95,7 +96,7 @@ const LearnLesson = () => {
 
   useEffect(() => {
     let live = true
-    api.get(`/api/learn/${courseSlug}/${lessonSlug}${want !== 'en' ? `?lang=${want}` : ''}`)
+    api.get(`/api/learn/${courseSlug}/${lessonSlug}${want !== 'en' ? `?lang=${want}` : ''}`, previewConfig())
       .then(({ data: d }) => {
         if (!live) return
         setResult(d.seo ? { key, data: d, state: 'ok' } : { key, data: null, state: 'error' })
@@ -153,6 +154,7 @@ const LearnLesson = () => {
 
   return (
     <div>
+      <PreviewBanner show={data?.preview} />
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/learn/${course.slug}/${lesson.slug}`} canonical={seo.canonical} robots={seo.robots}
         image={seo.image} imageAlt={seo.imageAlt} type='article' article={seo.article} structuredData={data.jsonLd} />
       <NavBar />

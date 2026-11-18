@@ -13,6 +13,8 @@ import Lesson from "../models/Lesson.js";
 import Job from "../models/Job.js";
 import { slugify } from "../utils/slugify.js";
 import { cleanBlogBlocks, cleanSeoFields, siteUrl, absUrl, listItem } from "../utils/blogSeo.js";
+import { canPreview } from "../utils/preview.js";
+import { cleanPublishAt } from "../utils/publishAt.js";
 import { loadPostView } from "./blogSeoController.js";
 import { liveFilter } from "./jobController.js";
 import { COUNTRY_SLUGS, KIND_SLUGS, kindSlugOf, landingPath } from "../utils/jobLanding.js";
@@ -54,11 +56,13 @@ export const getPublishedBlogs = async (req, res) => {
 // related posts and structured data (JSON-LD) ready to use.
 export const getPublishedBlogBySlug = async (req, res) => {
     try {
-        const post = await loadPostView(req.params.slug, { count: true });
+        const preview = await canPreview(req);
+        const post = await loadPostView(req.params.slug, { count: !preview, preview });
         if (!post) {
             return res.status(404).json({ message: 'Post not found' });
         }
-        return res.status(200).json({ post });
+        if (preview) res.set('Cache-Control', 'no-store');
+        return res.status(200).json({ post, preview });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
@@ -231,6 +235,7 @@ export const createBlog = async (req, res) => {
             category: category || '',
             published: published !== undefined ? published : true,
             ...cleanSeoFields(req.body),
+            ...cleanPublishAt(req.body),
         });
 
         return res.status(201).json({ message: 'Post created', post });
@@ -266,7 +271,7 @@ export const updateBlog = async (req, res) => {
         if (readTime !== undefined) post.readTime = readTime;
         if (category !== undefined) post.category = category;
         if (published !== undefined) post.published = published;
-        Object.assign(post, cleanSeoFields(req.body));
+        Object.assign(post, cleanSeoFields(req.body), cleanPublishAt(req.body));
         post.modifiedAt = new Date();
 
         await post.save();

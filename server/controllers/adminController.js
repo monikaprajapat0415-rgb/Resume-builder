@@ -186,7 +186,7 @@ export const getUsers = async (req, res) => {
 export const setUserRole = async (req, res) => {
     try {
         const { role } = req.body;
-        if (!['admin', 'user'].includes(role)) return res.status(400).json({ message: 'Role must be admin or user' });
+        if (!['admin', 'editor', 'user'].includes(role)) return res.status(400).json({ message: 'Role must be admin, editor or user' });
         if (String(req.params.id) === String(req.userId)) {
             return res.status(400).json({ message: "You can't change your own role" });
         }
@@ -195,7 +195,7 @@ export const setUserRole = async (req, res) => {
         if (role === 'admin' && !user.isVerified) {
             return res.status(400).json({ message: "This user hasn't verified their email yet" });
         }
-        if (user.role === 'admin' && role === 'user' && (await User.countDocuments({ role: 'admin' })) <= 1) {
+        if (user.role === 'admin' && role !== 'admin' && (await User.countDocuments({ role: 'admin' })) <= 1) {
             return res.status(400).json({ message: "Can't remove the last admin" });
         }
         user.role = role;

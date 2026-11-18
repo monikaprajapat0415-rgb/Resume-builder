@@ -23,8 +23,8 @@ export const findRelated = async (post) => {
     return others.map((o) => ({ o, s: score(o) })).sort((a, b) => b.s - a.s || new Date(b.o.date) - new Date(a.o.date)).slice(0, 3).map((x) => x.o);
 };
 
-export const loadPostView = async (slug, { count = false } = {}) => {
-    const q = { slug, published: true };
+export const loadPostView = async (slug, { count = false, preview = false } = {}) => {
+    const q = preview ? { slug } : { slug, published: true };
     const post = count
         ? await Blog.findOneAndUpdate(q, { $inc: { views: 1 } }, { returnDocument: 'after', timestamps: false })
         : await Blog.findOne(q);

@@ -32,6 +32,7 @@ const LessonSchema = new mongoose.Schema({
     faqs: { type: [FaqSchema], default: [] },
     readTime: { type: String, default: '' },
     published: { type: Boolean, default: false },
+    publishAt: { type: Date, default: null }, // scheduled publish time (see utils/publishAt.js)
     views: { type: Number, default: 0 },
     metaTitle: { type: String, default: '' },
     keywords: { type: String, default: '' },

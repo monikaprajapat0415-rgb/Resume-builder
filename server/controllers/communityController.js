@@ -7,6 +7,8 @@ import User from "../models/User.js";
 import Course from "../models/Course.js";
 import Lesson from "../models/Lesson.js";
 import { slugify } from "../utils/slugify.js";
+import { canPreview } from '../utils/preview.js';
+import { cleanPublishAt } from '../utils/publishAt.js';
 import {
     str, para, richText, hasLink, companySlug, displayNameFor, aggregateSalaries, COUNTRIES, CURRENCIES, PERIODS, SALARY_LEVELS,
     RESERVED_QUESTION_SLUGS, REVIEW_MIN, techKey, techMeta,
@@ -16,7 +18,7 @@ import {
 } from "../utils/communitySeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
-const fail = (res, e) => res.status(500).json({ message: e.message });
+const fail = (res, e) => res.status(e.code === 400 ? 400 : 500).json({ message: e.message });
 const AUTO_HIDE_REPORTS = 3;   // this many different users flagging an approved item sends it back to review
 
 // ================= shared loaders (also used by the server-rendered pages) =================
@@ -75,8 +77,8 @@ const resolveLearn = async (q) => {
     } catch { return null; }
 };
 
-export const loadQuestion = async (slug) => {
-    const q = await InterviewQuestion.findOne({ slug, published: true }).lean();
+export const loadQuestion = async (slug, { preview = false } = {}) => {
+    const q = await InterviewQuestion.findOne(preview ? { slug } : { slug, published: true }).lean();
     if (!q) return null;
     const answers = await InterviewAnswer.find({ question: q._id, status: 'approved' }).sort({ createdAt: -1 }).limit(50).select('body displayName createdAt').lean();
     const related = await InterviewQuestion.find({ published: true, category: q.category, _id: { $ne: q._id } }).sort({ order: 1 }).limit(6).select('question slug').lean();
@@ -172,10 +174,12 @@ export const getTech = async (req, res) => {
 };
 export const getQuestion = async (req, res) => {
     try {
-        const v = await loadQuestion(req.params.slug);
+        const preview = await canPreview(req);
+        const v = await loadQuestion(req.params.slug, { preview });
         if (!v) return res.status(404).json({ message: 'Question not found' });
-        InterviewQuestion.updateOne({ slug: req.params.slug }, { $inc: { views: 1 } }).catch(() => {});
-        return res.status(200).json(v);
+        if (!preview) InterviewQuestion.updateOne({ slug: req.params.slug }, { $inc: { views: 1 } }).catch(() => {});
+        else res.set('Cache-Control', 'no-store');
+        return res.status(200).json(preview ? { ...v, preview: true } : v);
     } catch (e) { return fail(res, e); }
 };
 export const getSalaries = async (req, res) => { try { return res.status(200).json(await loadSalariesIndex()); } catch (e) { return fail(res, e); } };
@@ -312,6 +316,7 @@ const cleanQuestion = (b, existing) => {
     if (has('learnLesson')) out.learnLesson = (has('learnCourse') && out.learnCourse === '') ? '' : slugOf(b.learnLesson);
     if (has('order')) out.order = Number.isFinite(Number(b.order)) ? Math.trunc(Number(b.order)) : 0;
     if (has('published')) out.published = Boolean(b.published);
+    Object.assign(out, cleanPublishAt(b));
     return out;
 };
 

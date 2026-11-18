@@ -7,6 +7,7 @@ import Footer from '../components/home/Footer'
 import api from '../configs/api'
 import BlockRenderer from '../components/BlockRenderer'
 import { renderInline } from '../utils/inlineText'
+import { previewConfig, PreviewBanner } from '../utils/preview'
 import { dropServerJsonLd, fmtDate, wasUpdated } from '../utils/seoDom'
 import { LuChevronRight, LuListChecks, LuLink, LuCheck, LuLightbulb } from 'react-icons/lu'
 
@@ -46,13 +47,14 @@ const ShareRow = ({ post }) => {
 const BlogPost = () => {
   const { slug } = useParams()
   const [post, setPost] = useState(null)
+  const [isPreview, setIsPreview] = useState(false)
   const [state, setState] = useState('loading') // loading | ok | missing | error
 
   useEffect(() => {
     let live = true
     setState('loading'); setPost(null)
-    api.get(`/api/blogs/${slug}`)
-      .then(({ data }) => { if (!live) return; if (!data.post?.seo) { setState('error'); return } setPost(data.post); setState('ok') })
+    api.get(`/api/blogs/${slug}`, previewConfig())
+      .then(({ data }) => { if (!live) return; if (!data.post?.seo) { setState('error'); return } setPost(data.post); setIsPreview(Boolean(data.preview)); setState('ok') })
       .catch((e) => { if (live) setState(e.response?.status === 404 ? 'missing' : 'error') })
     return () => { live = false }
   }, [slug])
@@ -83,6 +85,7 @@ const BlogPost = () => {
 
   return (
     <div>
+      <PreviewBanner show={isPreview} />
       <SEO
         title={s.title}
         description={s.description}

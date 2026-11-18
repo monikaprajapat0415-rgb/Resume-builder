@@ -12,6 +12,7 @@ const InterviewQuestionSchema = new mongoose.Schema({
     learnCourse: { type: String, default: '' },              // optional: slug of a course that teaches this topic
     learnLesson: { type: String, default: '' },              // optional: slug of the lesson in that course (blank = link to the course)
     published: { type: Boolean, default: false },
+    publishAt: { type: Date, default: null }, // scheduled publish time (see utils/publishAt.js)
     order: { type: Number, default: 0 },
     views: { type: Number, default: 0 },
     modifiedAt: { type: Date },
