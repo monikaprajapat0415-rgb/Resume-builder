@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
+import useUnsavedWarning from '../../utils/useUnsavedWarning'
 
 const Switch = ({ on, busy, onChange, label }) => (
   <button type='button' role='switch' aria-checked={on} aria-label={label} disabled={busy} onClick={() => onChange(!on)}
@@ -23,11 +24,13 @@ const AdminAds = () => {
   const [s, setS] = useState(null)
   const [busy, setBusy] = useState(false)
   const [form, setForm] = useState({})
+  const isDirty = () => ['publisherId', 'slotBlog', 'slotLessons', 'slotInterview', 'adsTxt'].some((k) => (form[k] || '') !== (s?.[k] || ''))
 
   useEffect(() => {
     api.get('/api/admin/ads', headers).then(({ data }) => { setS(data.settings); setForm(data.settings) }).catch(() => toast.error('Could not load the ad settings.'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  useUnsavedWarning(Boolean(s) && isDirty())
   if (!s) return <p className='text-slate-400'>Loading…</p>
 
   const save = async (patch) => {

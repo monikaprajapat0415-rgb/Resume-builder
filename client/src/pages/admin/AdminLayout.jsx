@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link, useLocation } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench } from 'react-icons/lu'
+import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -33,8 +33,8 @@ const groups = [
     { to: '/admin/trust', label: 'Reviews and clients', icon: LuMessageSquare },
     { to: '/admin/plan', label: 'Paid plan', icon: LuCrown },
     { to: '/admin/tools', label: 'Free tools', icon: LuWrench },
-    { to: '/admin/ads', label: 'Ads and cookies', icon: LuCrown },
-    { to: '/admin/nudge', label: 'Sign-up prompt', icon: LuUsers },
+    { to: '/admin/ads', label: 'Ads and cookies', icon: LuMegaphone },
+    { to: '/admin/nudge', label: 'Sign-up prompt', icon: LuBellRing },
     { to: '/admin/menus', label: 'Menus', icon: LuMenu },
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },
@@ -54,6 +54,11 @@ const AdminLayout = () => {
   const [find, setFind] = useState('')
   const [open, setOpen] = useState(() => readOpen() || { inbox: true, content: true })
   const isAdmin = user?.role === 'admin'
+  useEffect(() => {
+    const k = (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { const el = document.getElementById('admin-find'); if (el && el.offsetParent !== null) { e.preventDefault(); el.focus(); el.select() } } }
+    window.addEventListener('keydown', k)
+    return () => window.removeEventListener('keydown', k)
+  }, [])
 
   // Unread-message badge: refresh on mount, every minute, and whenever the inbox changes.
   useEffect(() => {
@@ -97,7 +102,7 @@ const AdminLayout = () => {
         </div>
         <div className='hidden md:block px-3 pb-2'>
           <label htmlFor='admin-find' className='sr-only'>Find an admin page</label>
-          <input id='admin-find' value={find} onChange={(e) => setFind(e.target.value)} placeholder='Find a page…' className='w-full px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300' />
+          <input id='admin-find' value={find} onChange={(e) => setFind(e.target.value)} placeholder='Find a page… (Ctrl+K)' className='w-full px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300' />
         </div>
         <nav aria-label='Admin sections' className='px-2 pb-2 md:pb-4 flex md:flex-col gap-1 overflow-x-auto'>
           {groups.map((g) => {

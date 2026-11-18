@@ -5,6 +5,7 @@ const VisitDaySchema = new mongoose.Schema({
     day: { type: String, required: true, unique: true }, // YYYY-MM-DD (IST)
     views: { type: Number, default: 0 },
     visitors: { type: Number, default: 0 },
+    engaged: { type: Number, default: 0 }, // visitors who also scrolled, clicked or typed (a rough 'probably a person' count)
 });
 
 export default mongoose.model("VisitDay", VisitDaySchema);

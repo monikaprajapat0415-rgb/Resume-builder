@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import useUnsavedWarning from '../../utils/useUnsavedWarning'
 import api from '../../configs/api'
 import { invalidateSiteContent } from '../../utils/siteContent'
 
@@ -27,6 +28,7 @@ const AdminSiteContent = () => {
   }, [fields])
 
   const dirty = fields?.some((f) => (values[f.key] ?? '') !== (saved[f.key] ?? ''))
+  useUnsavedWarning(Boolean(dirty))
 
   const save = async (e) => {
     e.preventDefault()
