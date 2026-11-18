@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
+import SettingsHistory from '../../components/admin/SettingsHistory'
 import useUnsavedWarning from '../../utils/useUnsavedWarning'
 
 const Switch = ({ on, busy, onChange, label }) => (
@@ -79,6 +80,7 @@ const AdminNudge = () => {
         <p className='mt-3 text-xs text-slate-500'>Clicks mean the visitor pressed the button; they are not proof of a finished sign-up. Compare your new users in Analytics before and after, over at least two weeks. If bounce rate goes up, switch the card off.</p>
         <button type='button' disabled={busy} onClick={() => save({ resetStats: true })} className='mt-3 text-sm text-slate-500 underline hover:text-slate-700'>Reset results</button>
       </section>
+      <SettingsHistory settingsKey='nudge' onRestored={() => window.location.reload()} />
     </div>
   )
 }

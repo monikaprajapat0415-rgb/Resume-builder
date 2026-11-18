@@ -148,7 +148,9 @@ const Questions = ({ auth }) => {
           </select>
           <span className='text-xs text-slate-400'>{shown.length} of {rows.length} shown</span>
         </div>
-        <BulkBar resource='questions' sel={sel} auth={auth} noun='question' onDone={load} />
+        <BulkBar resource='questions' sel={sel} auth={auth} noun='question' onDone={load}
+          setFields={[{ field: 'category', label: 'Category' }, { field: 'level', label: 'Level', options: ['fresher', 'experienced', 'both'] }, { field: 'tag', label: 'Technology (first tag)' }]}
+          suggestions={{ category: cats, tag: [...new Set((rows || []).map((q) => (q.tags || [])[0]).filter(Boolean))].sort() }} />
         <div className='divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white'>
           {shown.map((q) => (
             <div key={q._id} className='flex items-center gap-3 px-4 py-3'>

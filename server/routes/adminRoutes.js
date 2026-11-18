@@ -1,6 +1,9 @@
 import { adminGetAds, adminSaveAds } from '../controllers/adsController.js';
 import { adminGetNudge, adminSaveNudge } from '../controllers/nudgeController.js';
 import { siteHealth } from '../controllers/siteHealthController.js';
+import { listHistory, restoreHistory } from '../controllers/settingsHistoryController.js';
+import { listIssues, createIssue, updateIssue, deleteIssue } from '../controllers/seoIssueController.js';
+import { downloadBackup } from '../controllers/backupController.js';
 import { listTranslations, getTranslation, saveTranslation, deleteTranslation, draftTranslation } from '../controllers/lessonTranslationController.js';
 import { auditAdmin } from '../utils/adminAudit.js';
 import { bulkAction } from '../controllers/bulkController.js';
@@ -171,6 +174,13 @@ import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsContro
 adminRouter.get('/ads', adminGetAds);
 adminRouter.put('/ads', adminSaveAds);
 adminRouter.get('/site-health', siteHealth);
+adminRouter.get('/settings-history', listHistory);
+adminRouter.post('/settings-history/:id/restore', restoreHistory);
+adminRouter.get('/seo-issues', listIssues);
+adminRouter.post('/seo-issues', createIssue);
+adminRouter.put('/seo-issues/:id', updateIssue);
+adminRouter.delete('/seo-issues/:id', deleteIssue);
+adminRouter.get('/backup', downloadBackup);
 adminRouter.get('/nudge', adminGetNudge);
 adminRouter.put('/nudge', adminSaveNudge);
 adminRouter.get('/tools', adminGetTools);

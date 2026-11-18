@@ -1,3 +1,4 @@
+import SettingsHistory from '../../components/admin/SettingsHistory'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
@@ -46,6 +47,7 @@ const AdminSiteContent = () => {
   if (!fields) return <p className='text-slate-400'>Loading…</p>
 
   return (
+    <>
     <form onSubmit={save} className='max-w-2xl'>
       <h1 className='text-2xl font-semibold text-slate-800 mb-1'>Homepage text</h1>
       <p className='text-sm text-slate-500 mb-6'>Change the wording on the homepage and the Contact page. Clearing a field or using “Reset” brings back the original text.</p>
@@ -78,6 +80,8 @@ const AdminSiteContent = () => {
         <a href='/' target='_blank' rel='noreferrer' className='text-sm text-brand-700 hover:underline'>View homepage</a>
       </div>
     </form>
+    <SettingsHistory settingsKey='site' onRestored={() => window.location.reload()} />
+    </>
   )
 }
 

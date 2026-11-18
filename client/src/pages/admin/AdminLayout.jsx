@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link, useLocation } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing } from 'react-icons/lu'
+import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing, LuCircleCheck, LuDownload } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -29,6 +29,7 @@ const groups = [
   ] },
   { id: 'site', title: 'Site and growth', items: [
     { to: '/admin/seo', label: 'SEO & AI visibility', icon: LuSearch },
+    { to: '/admin/seo-issues', label: 'Search Console checklist', icon: LuCircleCheck },
     { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
     { to: '/admin/trust', label: 'Reviews and clients', icon: LuMessageSquare },
     { to: '/admin/plan', label: 'Paid plan', icon: LuCrown },
@@ -39,6 +40,7 @@ const groups = [
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },
     { to: '/admin/activity', label: 'Activity log', icon: LuHistory },
+    { to: '/admin/backup', label: 'Backup', icon: LuDownload },
   ] },
 ]
 

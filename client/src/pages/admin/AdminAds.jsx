@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import api from '../../configs/api'
+import SettingsHistory from '../../components/admin/SettingsHistory'
 import useUnsavedWarning from '../../utils/useUnsavedWarning'
 
 const Switch = ({ on, busy, onChange, label }) => (
@@ -77,6 +78,7 @@ const AdminAds = () => {
         <button type='button' disabled={busy || !dirty} onClick={() => save({ publisherId: form.publisherId, slotBlog: form.slotBlog, slotLessons: form.slotLessons, slotInterview: form.slotInterview, adsTxt: form.adsTxt })}
           className='rounded-md bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50'>Save details</button>
       </section>
+      <SettingsHistory settingsKey='ads' onRestored={() => window.location.reload()} />
     </div>
   )
 }

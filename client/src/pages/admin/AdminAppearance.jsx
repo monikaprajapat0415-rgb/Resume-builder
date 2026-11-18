@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import { LuCheck, LuRotateCcw, LuTriangleAlert } from 'react-icons/lu'
 import api from '../../configs/api'
+import SettingsHistory from '../../components/admin/SettingsHistory'
 import { invalidateSiteContent } from '../../utils/siteContent'
 import { applyTheme, contrastWithWhite, isHex, DEFAULT_PRIMARY, PRESETS } from '../../utils/theme'
 
@@ -137,6 +138,7 @@ const AdminAppearance = () => {
         {dirty && <span className='text-xs text-amber-700'>You have unsaved changes.</span>}
         <Link to='/admin' className='ml-auto text-sm text-slate-500 hover:text-slate-800'>Back to overview</Link>
       </div>
+      <SettingsHistory settingsKey='site' prefix='theme_' onRestored={() => window.location.reload()} />
     </div>
   )
 }
