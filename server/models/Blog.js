@@ -33,6 +33,7 @@ const BlogSchema = new mongoose.Schema({
     // Drafts (published: false) are returned to the admin portal only, never to
     // the public /api/blogs endpoints or the sitemap.
     published: { type: Boolean, default: true },
+    publishAt: { type: Date, default: null }, // scheduled publish time (see utils/publishAt.js)
     views: { type: Number, default: 0 },
 
     // ---- SEO / GEO ----

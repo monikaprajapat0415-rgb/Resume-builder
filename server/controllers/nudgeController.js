@@ -1,4 +1,5 @@
 import SignupNudge from '../models/SignupNudge.js';
+import { recordChange } from '../utils/settingsHistory.js';
 
 // Settings for the small sign-up card. If the settings cannot be read, the card stays hidden.
 const DEFAULTS = { enabled: true, onHome: true, onContent: false, delaySeconds: 20, hideDays: 14, title: 'Save your resume for free', body: 'Create a free account to keep your resume, come back to edit it any time, and download it when it is ready.', button: 'Create free account', shown: 0, clicked: 0, dismissed: 0, statsSince: null };
@@ -34,20 +35,32 @@ export const adminGetNudge = async (req, res) => {
     try { cache = null; return res.status(200).json({ settings: await getNudge() }); } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
+// Shared by the save route and by "restore". Config fields only (the counters are not part of the history).
+const CONFIG = ['enabled', 'onHome', 'onContent', 'delaySeconds', 'hideDays', 'title', 'body', 'button'];
+export const saveNudge = async (b = {}, admin, restoredFrom = false) => {
+    const set = {};
+    for (const k of ['enabled', 'onHome', 'onContent']) if (typeof b[k] === 'boolean') set[k] = b[k];
+    const num = (k, lo, hi, msg) => { if (b[k] === undefined) return null; const n = Number(b[k]); if (!Number.isInteger(n) || n < lo || n > hi) return msg; set[k] = n; return null; };
+    const err = num('delaySeconds', 3, 300, 'Delay must be a whole number of seconds from 3 to 300.') || num('hideDays', 1, 365, 'Hide days must be a whole number from 1 to 365.');
+    if (err) return { error: err };
+    const text = (k, max, label) => { if (b[k] === undefined) return null; const v = String(b[k]).trim(); if (!v || v.length > max || /[<>]/.test(v)) return `${label} is required, up to ${max} characters, no HTML.`; set[k] = v; return null; };
+    const terr = text('title', 70, 'Title') || text('body', 220, 'Text') || text('button', 30, 'Button label');
+    if (terr) return { error: terr };
+    const before = await getNudge();
+    if (b.resetStats === true) Object.assign(set, { shown: 0, clicked: 0, dismissed: 0, statsSince: new Date() });
+    await SignupNudge.updateOne({ key: 'main' }, { $set: set, $setOnInsert: { key: 'main' } }, { upsert: true });
+    cache = null;
+    const after = await getNudge();
+    await recordChange('nudge', admin, before, after, { keys: CONFIG, restoredFrom });
+    return { settings: after };
+};
+export const restoreNudge = (old, admin) => saveNudge(old, admin, true);
+
 // PUT /api/admin/nudge { any setting, or resetStats: true }
 export const adminSaveNudge = async (req, res) => {
     try {
-        const b = req.body || {}, set = {};
-        for (const k of ['enabled', 'onHome', 'onContent']) if (typeof b[k] === 'boolean') set[k] = b[k];
-        const num = (k, lo, hi, msg) => { if (b[k] === undefined) return null; const n = Number(b[k]); if (!Number.isInteger(n) || n < lo || n > hi) return msg; set[k] = n; return null; };
-        const err = num('delaySeconds', 3, 300, 'Delay must be a whole number of seconds from 3 to 300.') || num('hideDays', 1, 365, 'Hide days must be a whole number from 1 to 365.');
-        if (err) return res.status(400).json({ message: err });
-        const text = (k, max, label) => { if (b[k] === undefined) return null; const v = String(b[k]).trim(); if (!v || v.length > max || /[<>]/.test(v)) return `${label} is required, up to ${max} characters, no HTML.`; set[k] = v; return null; };
-        const terr = text('title', 70, 'Title') || text('body', 220, 'Text') || text('button', 30, 'Button label');
-        if (terr) return res.status(400).json({ message: terr });
-        if (b.resetStats === true) Object.assign(set, { shown: 0, clicked: 0, dismissed: 0, statsSince: new Date() });
-        await SignupNudge.updateOne({ key: 'main' }, { $set: set, $setOnInsert: { key: 'main' } }, { upsert: true });
-        cache = null;
-        return res.status(200).json({ message: 'Saved.', settings: await getNudge() });
+        const out = await saveNudge(req.body, req.adminUser);
+        if (out.error) return res.status(400).json({ message: out.error });
+        return res.status(200).json({ message: 'Saved.', settings: out.settings });
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };

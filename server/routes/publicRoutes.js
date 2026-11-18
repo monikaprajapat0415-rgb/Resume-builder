@@ -6,7 +6,7 @@ import protect from '../middlewares/authMiddleware.js';
 import { feedbackLimiter } from '../middlewares/rateLimiter.js';
 import { getHomeTrust, submitUserReview } from '../controllers/trustController.js';
 import { contactLimiter, hitLimiter } from '../middlewares/rateLimiter.js';
-import { recordHit } from '../controllers/visitController.js';
+import { recordHit, recordEngaged } from '../controllers/visitController.js';
 import { publicAdConfig } from '../controllers/adsController.js';
 import { publicNudge, nudgeEvent } from '../controllers/nudgeController.js';
 
@@ -24,4 +24,5 @@ publicRouter.post('/plan/webhook', planWebhook);
 publicRouter.get('/home/trust', getHomeTrust);
 publicRouter.post('/home/trust/review', protect, feedbackLimiter, submitUserReview);
 publicRouter.post('/stats/hit', hitLimiter, recordHit);
+publicRouter.post('/stats/engaged', hitLimiter, recordEngaged);
 export default publicRouter;

@@ -1,5 +1,9 @@
 import { adminGetAds, adminSaveAds } from '../controllers/adsController.js';
 import { adminGetNudge, adminSaveNudge } from '../controllers/nudgeController.js';
+import { siteHealth } from '../controllers/siteHealthController.js';
+import { listHistory, restoreHistory } from '../controllers/settingsHistoryController.js';
+import { listIssues, createIssue, updateIssue, deleteIssue } from '../controllers/seoIssueController.js';
+import { downloadBackup } from '../controllers/backupController.js';
 import { listTranslations, getTranslation, saveTranslation, deleteTranslation, draftTranslation } from '../controllers/lessonTranslationController.js';
 import { auditAdmin } from '../utils/adminAudit.js';
 import { bulkAction } from '../controllers/bulkController.js';
@@ -7,7 +11,7 @@ import { getActivity } from '../controllers/activityController.js';
 import { getVisits } from '../controllers/visitController.js';
 import express from 'express';
 import multer from 'multer';
-import protect, { isAdmin } from '../middlewares/authMiddleware.js';
+import protect, { isAdmin, isStaff } from '../middlewares/authMiddleware.js';
 import { getAllBlogsAdmin, getBlogByIdAdmin, createBlog, updateBlog, deleteBlog } from '../controllers/blogController.js';
 import { getCoursesAdmin, getCourseAdmin, createCourse, updateCourse, deleteCourse, getLessonsAdmin, getLessonAdmin, createLesson, updateLesson, deleteLesson, reorderLessons, importCourse, previewAnimation, uploadLessonDownload, removeLessonDownload } from '../controllers/learnController.js';
 import { getRoadmapsAdmin, getRoadmapAdmin, createRoadmap, updateRoadmap, deleteRoadmap } from '../controllers/roadmapController.js';
@@ -46,7 +50,7 @@ const receiveZip = (req, res, next) => zipUpload.single('file')(req, res, (err) 
 });
 
 // Every route below requires a logged-in admin.
-adminRouter.use(protect, isAdmin);
+adminRouter.use(protect, isStaff);
 adminRouter.use(auditAdmin); // records every change an admin makes (Admin > Activity log)
 
 // AI providers: live state of the fallback chain, and a one-click test of every key/model.
@@ -169,6 +173,14 @@ import { adminGetPlan, adminSavePlan, adminSetUserPlan, adminPlanEvents, adminRe
 import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
 adminRouter.get('/ads', adminGetAds);
 adminRouter.put('/ads', adminSaveAds);
+adminRouter.get('/site-health', siteHealth);
+adminRouter.get('/settings-history', listHistory);
+adminRouter.post('/settings-history/:id/restore', restoreHistory);
+adminRouter.get('/seo-issues', listIssues);
+adminRouter.post('/seo-issues', createIssue);
+adminRouter.put('/seo-issues/:id', updateIssue);
+adminRouter.delete('/seo-issues/:id', deleteIssue);
+adminRouter.get('/backup', downloadBackup);
 adminRouter.get('/nudge', adminGetNudge);
 adminRouter.put('/nudge', adminSaveNudge);
 adminRouter.get('/tools', adminGetTools);

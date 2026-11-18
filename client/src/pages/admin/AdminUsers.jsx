@@ -25,7 +25,9 @@ const AdminUsers = () => {
   }, [search, role, page])
 
   const changeRole = async (u, next) => {
-    const verb = next === 'admin' ? `Make ${u.email} an admin? They will be able to edit all blog posts, products and users.` : `Remove admin access from ${u.email}?`
+    const verb = next === 'admin' ? `Make ${u.email} an admin? They will be able to change everything, including users, settings and ads.`
+      : next === 'editor' ? `Make ${u.email} an editor? They can write and publish blog posts, lessons, roadmaps and interview questions and moderate the inbox. They cannot delete, change settings, users, ads, menus, plans or see backups.`
+      : `Make ${u.email} a regular user (no admin area access)?`
     if (!window.confirm(verb)) return
     try {
       await api.patch(`/api/admin/users/${u._id}/role`, { role: next }, headers)
@@ -84,7 +86,7 @@ const AdminUsers = () => {
       <div className='flex flex-wrap gap-2 mb-4'>
         <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder='Search name or email…' className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white focus:outline-none focus:ring-1 focus:ring-brand-300' />
         <select value={role} onChange={(e) => { setRole(e.target.value); setPage(1) }} className='px-3 py-2 border border-slate-200 rounded-md text-sm bg-white'>
-          <option value=''>All roles</option><option value='admin'>Admins</option><option value='user'>Users</option>
+          <option value=''>All roles</option><option value='admin'>Admins</option><option value='editor'>Editors</option><option value='user'>Users</option>
         </select>
       </div>
 
@@ -130,10 +132,10 @@ const AdminUsers = () => {
                 <td className='px-4 py-3'>
                   {String(u._id) === String(me?._id) ? (
                     <span className='text-xs text-slate-400'>{u.role} (you)</span>
-                  ) : u.role === 'admin' ? (
-                    <button onClick={() => changeRole(u, 'user')} className='px-2.5 py-1 rounded-full text-xs bg-brand-50 text-brand-700 hover:bg-red-50 hover:text-red-600 transition' title='Remove admin'>admin ✕</button>
                   ) : (
-                    <button onClick={() => changeRole(u, 'admin')} className='px-2.5 py-1 rounded-full text-xs border border-slate-200 text-slate-600 hover:bg-slate-50 transition'>Make admin</button>
+                    <select value={u.role} onChange={(e) => e.target.value !== u.role && changeRole(u, e.target.value)} aria-label={`Role for ${u.email}`} className='px-2 py-1 rounded-md border border-slate-200 text-xs bg-white'>
+                      <option value='user'>User</option><option value='editor'>Editor</option><option value='admin'>Admin</option>
+                    </select>
                   )}
                 </td>
                 <td className='px-4 py-3 text-right'>

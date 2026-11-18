@@ -9,6 +9,8 @@ import { cleanBlogBlocks } from "../utils/blogSeo.js";
 import { downloadPath, isZip, safeName, saveUpload, removeUpload } from "../utils/learnFiles.js";
 import { cleanAnimation } from "../utils/lessonAnimation.js";
 import { LESSON_LANGS, publishedLangs } from "../utils/lessonTranslate.js";
+import { canPreview } from "../utils/preview.js";
+import { cleanPublishAt } from "../utils/publishAt.js";
 import { cleanCourseFields, cleanLessonFields, courseCard, courseView, lessonView } from "../utils/learnSeo.js";
 
 const validId = (id) => mongoose.isValidObjectId(id);
@@ -35,11 +37,12 @@ const interviewLinks = async (courseSlug, lessonSlug) => {
     } catch { return []; }
 };
 
-export const loadLessonView = async (courseSlug, lessonSlug, { count = false, lang = '' } = {}) => {
-    const course = await Course.findOne({ slug: courseSlug, published: true });
+export const loadLessonView = async (courseSlug, lessonSlug, { count = false, lang = '', preview = false } = {}) => {
+    const live = preview ? {} : { published: true };
+    const course = await Course.findOne({ slug: courseSlug, ...live });
     if (!course) return null;
-    const lessons = await Lesson.find({ course: course._id, published: true }).select(`${LESSON_LIST_FIELDS} _id`).sort(byOrder);
-    const q = { course: course._id, slug: lessonSlug, published: true };
+    const lessons = await Lesson.find({ course: course._id, ...live }).select(`${LESSON_LIST_FIELDS} _id`).sort(byOrder);
+    const q = { course: course._id, slug: lessonSlug, ...live };
     const lesson = count
         ? await Lesson.findOneAndUpdate(q, { $inc: { views: 1 } }, { returnDocument: 'after', timestamps: false })
         : await Lesson.findOne(q);
@@ -88,9 +91,11 @@ export const getCourse = async (req, res) => {
 // GET /api/learn/:course/:lesson
 export const getLesson = async (req, res) => {
     try {
-        const v = await loadLessonView(req.params.course, req.params.lesson, { count: true, lang: String(req.query.lang || '').slice(0, 5) });
+        const preview = await canPreview(req);
+        const v = await loadLessonView(req.params.course, req.params.lesson, { count: !preview, preview, lang: String(req.query.lang || '').slice(0, 5) });
         if (!v) return res.status(404).json({ message: 'Lesson not found' });
-        return res.status(200).json(v);
+        if (preview) res.set('Cache-Control', 'no-store');
+        return res.status(200).json(preview ? { ...v, preview: true } : v);
     } catch (e) { return res.status(500).json({ message: e.message }); }
 };
 
@@ -204,7 +209,7 @@ export const createLesson = async (req, res) => {
         const last = await Lesson.findOne({ course: course._id }).sort({ order: -1 }).select('order');
         const lesson = await Lesson.create({
             course: course._id, title: String(title).trim().slice(0, 200), slug: finalSlug,
-            order: last ? last.order + 1 : 0, content: cleanBlogBlocks(content), modifiedAt: new Date(), ...cleanLessonFields(req.body),
+            order: last ? last.order + 1 : 0, content: cleanBlogBlocks(content), modifiedAt: new Date(), ...cleanLessonFields(req.body), ...cleanPublishAt(req.body),
         });
         return res.status(201).json({ message: 'Lesson created', lesson });
     } catch (e) { return res.status(400).json({ message: e.message }); }
@@ -228,7 +233,7 @@ export const updateLesson = async (req, res) => {
             lesson.title = String(title).trim().slice(0, 200);
         }
         if (Array.isArray(content)) lesson.content = cleanBlogBlocks(content);
-        Object.assign(lesson, cleanLessonFields(req.body));
+        Object.assign(lesson, cleanLessonFields(req.body), cleanPublishAt(req.body));
         lesson.modifiedAt = new Date();
         await lesson.save();
         return res.status(200).json({ message: 'Lesson updated', lesson });

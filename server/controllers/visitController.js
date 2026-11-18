@@ -48,6 +48,23 @@ export const recordHit = async (req, res) => {
     }
 };
 
+// POST /api/stats/engaged - sent once per page load after the visitor scrolls, clicks or types. Counts each visitor once a day.
+export const recordEngaged = async (req, res) => {
+    try {
+        const ua = String(req.get('user-agent') || '');
+        if (req.get('dnt') === '1' || !ua || BOT.test(ua)) return res.status(204).end();
+        const day = istDay();
+        const salt = `${process.env.JWT_SECRET || 'visits'}|${day}`;
+        const h = crypto.createHmac('sha256', salt).update(`${req.ip}|${ua}`).digest('hex').slice(0, 32);
+        // only a visitor who was already counted today, and only once
+        const r = await VisitorHash.updateOne({ day, h, e: { $ne: true } }, { $set: { e: true } });
+        if (r.modifiedCount > 0) await VisitDay.updateOne({ day }, { $inc: { engaged: 1 } });
+        return res.status(204).end();
+    } catch {
+        return res.status(204).end();
+    }
+};
+
 // GET /api/admin/visits - totals, 14-day series and top pages
 export const getVisits = async (req, res) => {
     try {
@@ -55,7 +72,7 @@ export const getVisits = async (req, res) => {
         const days = Array.from({ length: 30 }, (_, i) => istDay(now - (29 - i) * DAY));
         const rows = await VisitDay.find({ day: { $in: days } }).lean();
         const byDay = Object.fromEntries(rows.map((r) => [r.day, r]));
-        const series = days.map((d) => ({ date: d, views: byDay[d]?.views || 0, visitors: byDay[d]?.visitors || 0 }));
+        const series = days.map((d) => ({ date: d, views: byDay[d]?.views || 0, visitors: byDay[d]?.visitors || 0, engaged: byDay[d]?.engaged || 0 }));
         const sum = (arr, k) => arr.reduce((n, d) => n + d[k], 0);
         const last7 = series.slice(-7);
         const top = await VisitPage.aggregate([
@@ -66,8 +83,8 @@ export const getVisits = async (req, res) => {
         ]);
         return res.status(200).json({
             today: series[29],
-            last7: { views: sum(last7, 'views'), visitors: sum(last7, 'visitors') },
-            last30: { views: sum(series, 'views'), visitors: sum(series, 'visitors') },
+            last7: { views: sum(last7, 'views'), visitors: sum(last7, 'visitors'), engaged: sum(last7, 'engaged') },
+            last30: { views: sum(series, 'views'), visitors: sum(series, 'visitors'), engaged: sum(series, 'engaged') },
             series: series.slice(-14),
             topPages: top.map((t) => ({ path: t._id, views: t.views })),
         });

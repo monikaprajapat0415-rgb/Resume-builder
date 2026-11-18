@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link, useLocation } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench } from 'react-icons/lu'
+import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing, LuCircleCheck, LuDownload } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -29,19 +29,22 @@ const groups = [
   ] },
   { id: 'site', title: 'Site and growth', items: [
     { to: '/admin/seo', label: 'SEO & AI visibility', icon: LuSearch },
+    { to: '/admin/seo-issues', label: 'Search Console checklist', icon: LuCircleCheck },
     { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
     { to: '/admin/trust', label: 'Reviews and clients', icon: LuMessageSquare },
     { to: '/admin/plan', label: 'Paid plan', icon: LuCrown },
     { to: '/admin/tools', label: 'Free tools', icon: LuWrench },
-    { to: '/admin/ads', label: 'Ads and cookies', icon: LuCrown },
-    { to: '/admin/nudge', label: 'Sign-up prompt', icon: LuUsers },
+    { to: '/admin/ads', label: 'Ads and cookies', icon: LuMegaphone },
+    { to: '/admin/nudge', label: 'Sign-up prompt', icon: LuBellRing },
     { to: '/admin/menus', label: 'Menus', icon: LuMenu },
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },
     { to: '/admin/activity', label: 'Activity log', icon: LuHistory },
+    { to: '/admin/backup', label: 'Backup', icon: LuDownload },
   ] },
 ]
 
+const EDITOR_PATHS = ['/admin', '/admin/inbox', '/admin/blogs', '/admin/learn', '/admin/roadmaps', '/admin/categories', '/admin/community', '/admin/feedback']
 const OPEN_KEY = 'admin-nav-open'
 const readOpen = () => { try { return JSON.parse(localStorage.getItem(OPEN_KEY)) || null } catch { return null } }
 const saveOpen = (o) => { try { localStorage.setItem(OPEN_KEY, JSON.stringify(o)) } catch { /* private mode */ } }
@@ -54,6 +57,12 @@ const AdminLayout = () => {
   const [find, setFind] = useState('')
   const [open, setOpen] = useState(() => readOpen() || { inbox: true, content: true })
   const isAdmin = user?.role === 'admin'
+  const isEditor = user?.role === 'editor'
+  useEffect(() => {
+    const k = (e) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { const el = document.getElementById('admin-find'); if (el && el.offsetParent !== null) { e.preventDefault(); el.focus(); el.select() } } }
+    window.addEventListener('keydown', k)
+    return () => window.removeEventListener('keydown', k)
+  }, [])
 
   // Unread-message badge: refresh on mount, every minute, and whenever the inbox changes.
   useEffect(() => {
@@ -68,19 +77,22 @@ const AdminLayout = () => {
 
   // Items waiting for moderation (pending or reported), for the sidebar badge.
   useEffect(() => {
-    if (!isAdmin) return
+    if (!isAdmin && !isEditor) return
     const fetchReview = () => api.get('/api/admin/community/summary', { headers: { Authorization: token } })
       .then(({ data }) => setReview(Object.values(data.pending || {}).reduce((a, b) => a + b, 0) + Object.values(data.reported || {}).reduce((a, b) => a + b, 0))).catch(() => {})
     fetchReview()
     const t = setInterval(fetchReview, 60000)
     window.addEventListener('admin-review-changed', fetchReview)
     return () => { clearInterval(t); window.removeEventListener('admin-review-changed', fetchReview) }
-  }, [isAdmin, token])
+  }, [isAdmin, isEditor, token])
 
   if (loading) return <Loader />
   if (!user) return <Navigate to='/app?state=login' replace />
   // Logged in but not an admin - quietly redirect rather than show a 403 page.
-  if (user.role !== 'admin') return <Navigate to='/app' replace />
+  if (!isAdmin && !isEditor) return <Navigate to='/app' replace />
+  // Editors only get the content screens (the server enforces the same list in utils/staffAccess.js).
+  const mayOpen = (to) => isAdmin || EDITOR_PATHS.some((p) => (p === '/admin' ? to === '/admin' : to === p || to.startsWith(`${p}/`)))
+  if (isEditor && !mayOpen(pathname.replace(/\/$/, '') || '/admin')) return <Navigate to='/admin' replace />
 
   const itemClass = ({ isActive }) =>
     `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm whitespace-nowrap transition ${isActive ? 'bg-brand-50 text-brand-700 font-medium' : 'text-slate-600 hover:bg-slate-100'}`
@@ -97,12 +109,13 @@ const AdminLayout = () => {
         </div>
         <div className='hidden md:block px-3 pb-2'>
           <label htmlFor='admin-find' className='sr-only'>Find an admin page</label>
-          <input id='admin-find' value={find} onChange={(e) => setFind(e.target.value)} placeholder='Find a page…' className='w-full px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300' />
+          <input id='admin-find' value={find} onChange={(e) => setFind(e.target.value)} placeholder='Find a page… (Ctrl+K)' className='w-full px-3 py-1.5 border border-slate-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-brand-300' />
         </div>
         <nav aria-label='Admin sections' className='px-2 pb-2 md:pb-4 flex md:flex-col gap-1 overflow-x-auto'>
           {groups.map((g) => {
             const q = find.trim().toLowerCase()
-            const items = q ? g.items.filter((it) => it.label.toLowerCase().includes(q)) : g.items
+            const allowed = isAdmin ? g.items : g.items.filter((it) => mayOpen(it.to))
+            const items = q ? allowed.filter((it) => it.label.toLowerCase().includes(q)) : allowed
             if (!items.length) return null
             const hasActive = g.items.some((it) => (it.end ? pathname === it.to : pathname.startsWith(it.to)))
             const isOpen = !g.title || Boolean(q) || hasActive || Boolean(open[g.id])

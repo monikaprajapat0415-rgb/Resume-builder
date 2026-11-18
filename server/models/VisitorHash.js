@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 const VisitorHashSchema = new mongoose.Schema({
     day: { type: String, required: true },
     h: { type: String, required: true },
+    e: { type: Boolean, default: false }, // this visitor also scrolled, clicked or typed today
     createdAt: { type: Date, default: Date.now, expires: 60 * 60 * 24 * 2 },
 });
 VisitorHashSchema.index({ day: 1, h: 1 }, { unique: true });

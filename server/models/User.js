@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     authProvider:{type : String, enum:['local', 'google'], default:'local'},
     // 'admin' can access /admin and manage blog posts. New accounts are always
     // 'user'; promote one with `node scripts/makeAdmin.js <email>` on the server.
-    role:{type : String, enum:['user', 'admin'], default:'user'},
+    role:{type : String, enum:['user', 'editor', 'admin'], default:'user'},
     // Google accounts are auto-verified since Google already confirmed the email.
     isVerified:{type : Boolean, default:false},
     verificationToken: {type : String},

@@ -23,6 +23,7 @@ const AdminOverview = () => {
   const { token, user } = useSelector(state => state.auth)
   const [stats, setStats] = useState(null)
   const [visits, setVisits] = useState(null)
+  const [health, setHealth] = useState(null)
 
   useEffect(() => {
     api.get('/api/admin/stats', { headers: { Authorization: token } })
@@ -30,6 +31,9 @@ const AdminOverview = () => {
       .catch((e) => toast.error(e.response?.data?.message || 'Could not load stats.'))
     api.get('/api/admin/visits', { headers: { Authorization: token } })
       .then(({ data }) => setVisits(data))
+      .catch(() => {})
+    api.get('/api/admin/site-health', { headers: { Authorization: token } })
+      .then(({ data }) => setHealth(data))
       .catch(() => {})
   }, [])
 
@@ -77,9 +81,9 @@ const AdminOverview = () => {
           <div className='lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5'>
             <p className='text-sm font-semibold text-slate-800 mb-3'>Visitors</p>
             <div className='grid grid-cols-3 gap-4'>
-              <Stat label='Today' value={visits.today.visitors} sub={`${visits.today.views} page views`} />
-              <Stat label='Last 7 days' value={visits.last7.visitors} sub={`${visits.last7.views} page views`} />
-              <Stat label='Last 30 days' value={visits.last30.visitors} sub={`${visits.last30.views} page views`} />
+              <Stat label='Today' value={visits.today.visitors} sub={`${visits.today.views} page views · ${visits.today.engaged || 0} likely real`} />
+              <Stat label='Last 7 days' value={visits.last7.visitors} sub={`${visits.last7.views} page views · ${visits.last7.engaged || 0} likely real`} />
+              <Stat label='Last 30 days' value={visits.last30.visitors} sub={`${visits.last30.views} page views · ${visits.last30.engaged || 0} likely real`} />
             </div>
             <div className='flex items-end gap-1.5 h-20 mt-4' role='img' aria-label='Daily visitors for the last 14 days'>
               {visits.series.map((d) => (
@@ -88,7 +92,7 @@ const AdminOverview = () => {
                 </div>
               ))}
             </div>
-            <p className='text-[11px] text-slate-400 mt-3'>Counted on our own server, without cookies. Each day counts a visitor once; 7 and 30 day totals add the daily counts. Bots, admin pages and Do Not Track visits are skipped.</p>
+            <p className='text-[11px] text-slate-400 mt-3'>Counted on our own server, without cookies. "Likely real" counts visitors who also scrolled, clicked or typed, which most automated visits never do; it starts from the day this update went live. Each day counts a visitor once; 7 and 30 day totals add the daily counts. Bots, admin pages and Do Not Track visits are skipped.</p>
           </div>
           <div className='bg-white rounded-xl border border-slate-200 p-5 min-w-0'>
             <p className='text-sm font-semibold text-slate-800 mb-3'>Top pages, 7 days</p>
@@ -130,6 +134,29 @@ const AdminOverview = () => {
           {seo.worst?.length > 0 && <p className='text-xs text-slate-500 mt-3 flex items-start gap-1.5'><LuTriangleAlert className='size-3.5 text-amber-500 mt-0.5 shrink-0' /><span className='truncate'>Lowest: {seo.worst[0].title}</span></p>}
         </Link>
       </div>
+
+      {health && (
+        <div className='bg-white rounded-xl border border-slate-200 p-5 mb-4'>
+          <p className='text-sm font-semibold text-slate-800 mb-3'>Site status</p>
+          <div className='grid grid-cols-2 lg:grid-cols-4 gap-3 text-sm'>
+            {[
+              ['Ads', health.ads ? (health.ads.enabled ? 'On' : 'Off') : '–', '/admin/ads', health.ads?.enabled],
+              ['Cookie banner', health.ads ? (health.ads.banner ? 'On' : 'Off') : '–', '/admin/ads', health.ads?.banner],
+              ['Sign-up card', health.nudge ? (health.nudge.enabled ? 'On' : 'Off') : '–', '/admin/nudge', health.nudge?.enabled],
+              ['Open jobs', health.jobs?.open ?? '–', '/admin/jobs', null],
+              ['Closed jobs (pages answer 404)', health.jobs?.closed ?? '–', '/admin/jobs', null],
+              ['Unpublished lessons', health.drafts?.lessons ?? '–', '/admin/learn', null],
+              ['Unpublished questions', health.drafts?.questions ?? '–', '/admin/community', null],
+              ['Unpublished roadmaps', health.drafts?.roadmaps ?? '–', '/admin/roadmaps', null],
+            ].map(([k, v, to, on]) => (
+              <Link key={k} to={to} className='rounded-lg bg-slate-50 px-3 py-2 hover:ring-1 hover:ring-brand-300'>
+                <span className='block text-xs text-slate-500'>{k}</span>
+                <span className={`block font-semibold ${on === true ? 'text-green-700' : 'text-slate-800'}`}>{v}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className='grid grid-cols-2 lg:grid-cols-5 gap-4'>
         <Stat label='Users' value={stats.users.total} sub={`${stats.users.new7d} new this week`} />

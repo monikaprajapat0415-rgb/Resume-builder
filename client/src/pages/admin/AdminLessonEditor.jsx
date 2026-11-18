@@ -3,6 +3,7 @@ import LessonTranslations from '../../components/admin/LessonTranslations'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import PublishAt from '../../components/admin/PublishAt'
 import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
 import LessonAnimation from '../../components/LessonAnimation'
@@ -38,7 +39,7 @@ const AdminLessonEditor = () => {
   const auth = { headers: { Authorization: token } }
   const [course, setCourse] = useState(null)
   const [sections, setSections] = useState([])
-  const [f, setF] = useState({ title: '', slug: '', section: '', description: '', readTime: '', published: false, metaTitle: '', keywords: '', noindex: false })
+  const [f, setF] = useState({ title: '', slug: '', section: '', description: '', readTime: '', published: false, publishAt: '', metaTitle: '', keywords: '', noindex: false })
   const [blocks, setBlocks] = useState([{ type: 'paragraph', text: '' }])
   const [faqs, setFaqs] = useState([])
   const [download, setDownload] = useState(null)
@@ -64,7 +65,7 @@ const AdminLessonEditor = () => {
           const { data } = await api.get(`/api/admin/learn/lessons/${lessonId}`, auth)
           const l = data.lesson
           cid = l.course
-          setF({ title: l.title, slug: l.slug, section: l.section || '', description: l.description || '', readTime: l.readTime || '', published: l.published, metaTitle: l.metaTitle || '', keywords: l.keywords || '', noindex: Boolean(l.noindex) })
+          setF({ title: l.title, slug: l.slug, section: l.section || '', description: l.description || '', readTime: l.readTime || '', published: l.published, publishAt: l.publishAt || '', metaTitle: l.metaTitle || '', keywords: l.keywords || '', noindex: Boolean(l.noindex) })
           setBlocks(l.content?.length ? l.content : [{ type: 'paragraph', text: '' }])
           setFaqs(l.faqs || [])
           setAnimText(l.animation ? JSON.stringify(l.animation, null, 2) : '')
@@ -176,6 +177,7 @@ const AdminLessonEditor = () => {
               <input type='checkbox' checked={f.published} onChange={(e) => set({ published: e.target.checked })} className='rounded border-slate-300' />
               Published <span className='text-slate-400'>(unticked = draft)</span>
             </label>
+            <div className='sm:col-span-2'><PublishAt published={f.published} value={f.publishAt} onChange={(v) => set({ publishAt: v })} previewPath={isEdit && course?.slug && f.slug ? `/learn/${course.slug}/${f.slug}` : ''} /></div>
           </div>
         </div>
 

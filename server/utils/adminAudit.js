@@ -19,6 +19,11 @@ const LABELS = [
     [/^\/plan\/events/, 'Payment event'],
     [/^\/plan$/, 'Paid plan settings'],
     [/^\/tools$/, 'Free tools settings'],
+    [/^\/ads$/, 'Ads and cookies settings'],
+    [/^\/nudge$/, 'Sign-up prompt settings'],
+    [/^\/settings-history\/[^/]+\/restore$/, 'Restored earlier settings'],
+    [/^\/seo-issues/, 'Search Console checklist'],
+    [/^\/backup$/, 'Downloaded a backup'],
     [/^\/inbox\/bulk$/, 'Moderation inbox bulk action'],
     [/^\/community/, 'Community content'],
     [/^\/hiring/, 'Hiring review'],
@@ -39,7 +44,7 @@ export const describe = (method, path) => {
     const hit = LABELS.find(([rx]) => rx.test(path));
     const name = hit ? hit[1] : path.split('/').filter(Boolean)[0] || 'admin';
     // Labels that already read as a sentence are used as they are.
-    if (/^(Changed|Deleted|Applied|Undid|Imported|Bulk|Moderation)/.test(name)) return name;
+    if (/^(Changed|Deleted|Applied|Undid|Imported|Bulk|Moderation|Restored|Downloaded)/.test(name)) return name;
     return `${VERB[method] || method} · ${name}`;
 };
 
@@ -64,7 +69,8 @@ export const logAdmin = async ({ admin, action, method = 'SYSTEM', path = '', me
 
 // Mounted once on the admin router. Records every change that went through (status below 400).
 export const auditAdmin = (req, res, next) => {
-    if (!['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) return next();
+    // changes are logged; so is a backup download (a GET) because it copies the whole site's content
+    if (!['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method) && !(req.method === 'GET' && req.path === '/backup')) return next();
     res.on('finish', () => {
         if (res.statusCode >= 400) return;
         const path = req.path;

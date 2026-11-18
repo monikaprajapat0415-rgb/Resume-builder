@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import api from '../../configs/api'
 import { dropServerJsonLd } from '../../utils/seoDom'
+import { previewConfig } from '../../utils/preview'
 
 // Loads a community endpoint. state: loading | ok | missing | error. `reload` refetches (after a submission).
 export const useCommunity = (url) => {
@@ -8,7 +9,7 @@ export const useCommunity = (url) => {
   const [data, setData] = useState(null)
   const load = useCallback(() => {
     let live = true
-    api.get(url)
+    api.get(url, previewConfig())
       .then(({ data: d }) => { if (live) { setData(d); setState('ok') } })
       .catch((e) => { if (live) setState(e.response?.status === 404 ? 'missing' : 'error') })
     return () => { live = false }

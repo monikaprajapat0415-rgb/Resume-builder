@@ -36,10 +36,19 @@ const countVisit = (pathname) => {
   } catch { /* counting must never break a page */ }
 }
 
+// After the first scroll, click or key press on a page, tell our counter this visitor is probably a person.
+// The server counts it once per visitor per day. Automated browsers are skipped.
+let engagedSent = false
+const watchEngaged = () => {
+  if (engagedSent || typeof window === 'undefined' || navigator.webdriver || navigator.doNotTrack === '1') return
+  const send = () => { engagedSent = true; ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((e) => window.removeEventListener(e, send)); api.post('/api/stats/engaged', {}).catch(() => {}) }
+  ;['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach((e) => window.addEventListener(e, send, { passive: true, once: true }))
+}
+
 const Analytics = () => {
   const { pathname, search } = useLocation()
   useEffect(() => {
-    if (!PRIVATE.test(pathname)) countVisit(pathname)
+    if (!PRIVATE.test(pathname)) { countVisit(pathname); watchEngaged() }
   }, [pathname])
   useEffect(() => {
     if (PRIVATE.test(pathname)) return

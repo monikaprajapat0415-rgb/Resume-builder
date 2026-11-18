@@ -5,6 +5,7 @@ import SEO from '../../components/SEO'
 import { Shell, NotFound } from '../../components/community/Shell'
 import { AnswerForm, ReportButton } from '../../components/community/Forms'
 import { useCommunity, timeAgo } from './useCommunity'
+import { PreviewBanner } from '../../utils/preview'
 import { LEVELS } from './levels'
 
 const Paras = ({ text }) => String(text || '').split(/(```[\w-]*\n[\s\S]*?\n?```)/g).filter((x) => x.trim()).flatMap((x, i) => {
@@ -22,6 +23,7 @@ const InterviewQuestionView = () => {
   const crumbs = [{ name: 'Home', to: '/' }, { name: 'Jobs', to: '/jobs' }, { name: 'Interview questions', to: '/jobs/interview-questions' }, ...(tech ? [{ name: tech.name, to: `/jobs/interview-questions/tech/${tech.slug}` }] : lp ? [{ name: lp.name, to: lp.path }] : []), { name: q.question.length > 50 ? q.question.slice(0, 47) + '…' : q.question }]
   return (
     <Shell active='questions' crumbs={crumbs} inset>
+      <PreviewBanner show={data.preview} />
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/jobs/interview-questions/${q.slug}`} canonical={seo.canonical} robots={seo.robots} structuredData={data.jsonLd} />
       <div className='grid lg:grid-cols-[minmax(0,1fr)_400px] gap-x-12 items-start'>
       <div>

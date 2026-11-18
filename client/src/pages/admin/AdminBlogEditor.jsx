@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
+import PublishAt from '../../components/admin/PublishAt'
 import api from '../../configs/api'
 import BlockEditor from '../../components/admin/BlockEditor'
 import ImageUploader from '../../components/admin/ImageUploader'
@@ -41,6 +42,7 @@ const AdminBlogEditor = () => {
   const [readTime, setReadTime] = useState('')
   const [date, setDate] = useState(todayStr)
   const [published, setPublished] = useState(true)
+  const [publishAt, setPublishAt] = useState('')
   const [category, setCategory] = useState('')
   const [categories, setCategories] = useState([])
   const [blocks, setBlocks] = useState([{ type: 'paragraph', text: '' }])
@@ -79,6 +81,7 @@ const AdminBlogEditor = () => {
         setReadTime(post.readTime || '')
         setDate(post.date ? new Date(post.date).toISOString().slice(0, 10) : todayStr())
         setPublished(post.published !== false)
+        setPublishAt(post.publishAt || '')
         setCategory(post.category || '')
         setMetaTitle(post.metaTitle || '')
         setFocusKeyword(post.focusKeyword || '')
@@ -115,7 +118,7 @@ const AdminBlogEditor = () => {
         .filter((b) => (b.items ? b.items.length > 0 : b.type === 'image' ? b.url : b.text.length > 0))
 
       const payload = {
-        title, slug, description, keywords, excerpt, readTime, date, published, category, content,
+        title, slug, description, keywords, excerpt, readTime, date, published, publishAt: published ? null : (publishAt || null), category, content,
         metaTitle, focusKeyword, coverImage, coverAlt, author, authorBio, canonicalUrl, noindex,
         takeaways: takeaways.map((t) => t.trim()).filter(Boolean),
         faqs: faqs.map((f) => ({ q: f.q.trim(), a: f.a.trim() })).filter((f) => f.q && f.a),
@@ -204,6 +207,7 @@ const AdminBlogEditor = () => {
             <input type='checkbox' checked={published} onChange={(e) => setPublished(e.target.checked)} className='rounded border-slate-300' />
             Published <span className='text-slate-400'>(unpublished posts are saved as drafts and won't appear on the public blog)</span>
           </label>
+          <PublishAt published={published} value={publishAt} onChange={setPublishAt} previewPath={isEdit && slug ? `/blog/${slug}` : ''} />
         </div>
 
         <div className='bg-white rounded-xl border border-slate-200 p-5'>
