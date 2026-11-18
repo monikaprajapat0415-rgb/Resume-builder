@@ -5,11 +5,12 @@ import toast from 'react-hot-toast'
 import api from '../../configs/api'
 import { LuPlus, LuInbox, LuSearch, LuFileText, LuCircleCheck, LuTriangleAlert, LuShieldCheck, LuHandshake, LuCrown, LuGraduationCap } from 'react-icons/lu'
 
-const Stat = ({ label, value, sub }) => (
+const Stat = ({ label, value, sub, warn }) => (
   <div className='bg-white rounded-xl border border-slate-200 p-4'>
     <p className='text-xs text-slate-500'>{label}</p>
     <p className='text-2xl font-semibold text-slate-800 mt-1'>{value}</p>
     {sub && <p className='text-xs text-slate-400 mt-1'>{sub}</p>}
+    {warn && <p className='text-xs text-amber-700 mt-1'>{warn}</p>}
   </div>
 )
 
@@ -81,7 +82,7 @@ const AdminOverview = () => {
           <div className='lg:col-span-2 bg-white rounded-xl border border-slate-200 p-5'>
             <p className='text-sm font-semibold text-slate-800 mb-3'>Visitors</p>
             <div className='grid grid-cols-3 gap-4'>
-              <Stat label='Today' value={visits.today.visitors} sub={`${visits.today.views} page views · ${visits.today.engaged || 0} likely real`} />
+              <Stat label='Today' value={visits.today.visitors} sub={`${visits.today.views} page views · ${visits.today.engaged || 0} likely real`} warn={visits.today.visitors >= 20 && (visits.today.engaged || 0) < visits.today.visitors * 0.1 ? 'Most of today’s visits never scrolled or clicked, so many are probably automated. Read the “likely real” number.' : ''} />
               <Stat label='Last 7 days' value={visits.last7.visitors} sub={`${visits.last7.views} page views · ${visits.last7.engaged || 0} likely real`} />
               <Stat label='Last 30 days' value={visits.last30.visitors} sub={`${visits.last30.views} page views · ${visits.last30.engaged || 0} likely real`} />
             </div>
