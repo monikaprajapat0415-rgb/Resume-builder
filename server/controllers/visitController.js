@@ -8,7 +8,7 @@ const DAY = 864e5;
 export const istDay = (t = Date.now()) => new Date(t + IST).toISOString().slice(0, 10);
 
 const PRIVATE = /^\/(admin|app|view|logout|forgot-password|reset-password|verify-email|api)(\/|$)/;
-const BOT = /bot|crawl|spider|slurp|headless|preview|monitor|uptime|lighthouse|curl|wget|python|axios|node-fetch|go-http|java\/|httpclient|facebookexternalhit|embedly|scrapy/i;
+const BOT = /bot|crawl|spider|slurp|headless|preview|monitor|uptime|lighthouse|curl|wget|python|axios|node-fetch|go-http|java\/|httpclient|facebookexternalhit|embedly|scrapy|googleother|google-extended|externalagent|bytespider|petalbot|ahrefs|semrush|mj12|dotbot|gptbot|claude|perplexity|ccbot|amazonbot|applebot|yandex|baidu|bingpreview|pingdom|statuscake|uptimerobot/i;
 
 // Keeps only a clean path: no query string, no odd characters, a sane length and depth.
 export const cleanPath = (raw) => {
