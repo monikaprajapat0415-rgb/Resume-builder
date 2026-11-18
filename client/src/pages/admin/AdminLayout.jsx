@@ -34,6 +34,7 @@ const groups = [
     { to: '/admin/plan', label: 'Paid plan', icon: LuCrown },
     { to: '/admin/tools', label: 'Free tools', icon: LuWrench },
     { to: '/admin/ads', label: 'Ads and cookies', icon: LuCrown },
+    { to: '/admin/nudge', label: 'Sign-up prompt', icon: LuUsers },
     { to: '/admin/menus', label: 'Menus', icon: LuMenu },
     { to: '/admin/appearance', label: 'Appearance', icon: LuPalette },
     { to: '/admin/users', label: 'Users', icon: LuUsers },
