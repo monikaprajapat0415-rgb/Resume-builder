@@ -6,6 +6,16 @@ import Footer from '../components/home/Footer'
 import { resumeTemplates } from '../content/resumeTemplates'
 import { LuArrowRight } from 'react-icons/lu'
 
+const CHOOSE = [
+  ["graduate-resume-template", "Student or fresher:", "Graduate & Fresher", " puts education and projects first."],
+  ["skilled-trades-resume-template", "Factory, warehouse or trade work:", "Skilled Trades", " uses large, easy-to-read text with your skills and licences near the top."],
+  ["developer-resume-template", "Developer or IT:", "Developer", " lists skills first and puts projects before education."],
+  ["career-change-resume-template", "Changing careers:", "Career Change", " leads with a profile and your transferable skills."],
+  ["executive-resume-template", "Senior roles:", "Executive", " is a formal serif layout for senior and leadership roles."],
+  ["classic-resume-template", "Not sure:", "Classic", ", Minimal and Professional are plain single-column layouts rated Excellent for ATS. Start with one of them."],
+]
+const CHOOSE_NOTE = "Sidebar, Two-Column and the photo version are rated Good or Very good, not Excellent, because some applicant tracking systems can read columns out of order. Photo customs differ by country, so follow the job post."
+
 const TemplatesIndex = () => {
   const structuredData = {
     '@context': 'https://schema.org',
@@ -18,8 +28,8 @@ const TemplatesIndex = () => {
   return (
     <div>
       <SEO
-        title="Free ATS-Friendly Resume Templates"
-        description="Browse 19 free resume templates: classic, modern, sidebar, developer, skilled trades, career change and more. Each shows its ATS rating. Customize online."
+        title={`${resumeTemplates.length} Free ATS-Friendly Resume Templates`}
+        description={`Pick from ${resumeTemplates.length} free resume templates: classic, modern, developer, skilled trades, career change and more. Each shows its ATS rating. Edit online and download.`}
         keywords="resume templates, free resume templates, ATS resume templates, professional resume templates"
         path="/templates"
         structuredData={structuredData}
@@ -53,6 +63,15 @@ const TemplatesIndex = () => {
             </Link>
           ))}
         </div>
+        <section className='max-w-3xl mx-auto mt-14'>
+          <h2 className='text-2xl font-semibold text-slate-800'>How to choose a resume template</h2>
+          <ul className='mt-4 space-y-2 text-slate-600 list-disc ps-5'>
+            {CHOOSE.map(([slug, lead, name, rest]) => (
+              <li key={slug}><strong className='text-slate-800'>{lead}</strong> <Link to={`/templates/${slug}`} className='text-brand-700 underline'>{name}</Link>{rest}</li>
+            ))}
+          </ul>
+          <p className='mt-4 text-sm text-slate-600'>{CHOOSE_NOTE}</p>
+        </section>
         <p className='text-center text-sm text-slate-600 mt-12'>Want to see a finished one first? Browse <Link to='/examples' className='text-brand-700 underline'>resume and CV examples that score 100/100</Link> on every automatic ATS check.</p>
       </section>
       <Footer />

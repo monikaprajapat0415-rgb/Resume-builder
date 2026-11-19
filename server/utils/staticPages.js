@@ -78,7 +78,7 @@ ${links([['Interview questions', '/jobs/interview-questions', 'with short model 
 ${faqHtml(faqs)}`;
     return page({
         path: '/', title: 'Prime Resume AI – Free AI Resume Builder & CV Maker Online',
-        description: 'Create professional resumes in minutes with AI. Choose ATS-friendly templates and download your CV. Free resume builder for freshers and professionals. ',
+        description: 'Free resume builder with ATS-friendly templates, AI writing help and a free ATS resume checker. Make a resume or CV for office, factory, trade and tech jobs.',
         keywords: 'resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume',
         body, jsonLd: faqs.length ? [faqLd(faqs)] : [],
     });
@@ -159,15 +159,28 @@ ${faqHtml(data().faqs.matcher)}
 });
 
 // ---- Templates
+const CHOOSE_TEMPLATE = [
+    ["graduate-resume-template", "Student or fresher:", "Graduate & Fresher", " puts education and projects first."],
+    ["skilled-trades-resume-template", "Factory, warehouse or trade work:", "Skilled Trades", " uses large, easy-to-read text with your skills and licences near the top."],
+    ["developer-resume-template", "Developer or IT:", "Developer", " lists skills first and puts projects before education."],
+    ["career-change-resume-template", "Changing careers:", "Career Change", " leads with a profile and your transferable skills."],
+    ["executive-resume-template", "Senior roles:", "Executive", " is a formal serif layout for senior and leadership roles."],
+    ["classic-resume-template", "Not sure:", "Classic", ", Minimal and Professional are plain single-column layouts rated Excellent for ATS. Start with one of them."],
+];
+const CHOOSE_NOTE = "Sidebar, Two-Column and the photo version are rated Good or Very good, not Excellent, because some applicant tracking systems can read columns out of order. Photo customs differ by country, so follow the job post.";
+
 export const templatesIndexPage = () => {
     const t = data().templates;
     return page({
-        path: '/templates', title: 'Free ATS-Friendly Resume Templates',
-        description: `Browse ${t.length} free resume templates: classic, modern, sidebar, developer, skilled trades, career change and more. Each shows its ATS rating. Customize online.`,
+        path: '/templates', title: `${t.length} Free ATS-Friendly Resume Templates`,
+        description: `Pick from ${t.length} free resume templates: classic, modern, developer, skilled trades, career change and more. Each shows its ATS rating. Edit online and download.`,
         keywords: 'resume templates, free resume templates, ATS resume templates, professional resume templates',
         body: `<h1>Free ATS-Friendly Resume Templates</h1>
 <p>${t.length} resume templates. Each one shows an honest ATS rating and the design choices behind it. Ratings are our own assessment of the design, not a score from any employer's system.</p>
 <ul>${t.map((x) => `<li>${a(`/templates/${x.slug}`, x.name)}: ${esc(x.tagline)} ATS rating: ${esc(x.ats?.rating || '')}.</li>`).join('')}</ul>
+<h2>How to choose a resume template</h2>
+<ul>${CHOOSE_TEMPLATE.map(([slug, lead, name, rest]) => `<li><strong>${esc(lead)}</strong> ${a(`/templates/${slug}`, name)}${esc(rest)}</li>`).join('')}</ul>
+<p>${esc(CHOOSE_NOTE)}</p>
 <p>${a('/app', 'Create my resume')} · ${a('/examples', 'See filled-in examples')}</p>`,
         jsonLd: [crumbs([['Home', '/'], ['Templates', '/templates']]), {
             '@context': 'https://schema.org', '@type': 'ItemList', name: 'Free ATS-friendly resume templates',
