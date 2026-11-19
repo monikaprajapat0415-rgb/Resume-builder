@@ -1,0 +1,31 @@
+{
+  "note": "Step 6 of the impressions work (Nov 19 2026): the four queries seen in Search Console (npm install angular, angularjs installation, angular process flow, phone job tutorial). Titles, descriptions and FAQs only; lesson text is untouched. Compare the 28-day view in 2 to 3 weeks.",
+  "lessons": {
+    "angular-tutorial": {
+      "install-angular-cli": {
+        "overwrite": true,
+        "metaTitle": "Install Angular with npm: Node.js and CLI",
+        "description": "Install Angular the right way: Node.js, then npm install -g @angular/cli. Check your versions, fix common errors and learn why npm install angular is different.",
+        "addFaqs": [
+          { "q": "What is the command to install Angular?", "a": "Install Node.js first, then run npm install -g @angular/cli to install the Angular CLI. After that, ng new my-app creates a new Angular project. You do not install Angular on its own: the CLI sets up the project and its Angular packages for you." },
+          { "q": "Does npm install angular install the modern Angular framework?", "a": "No. The npm package named angular is the old AngularJS (version 1.x). Modern Angular is installed through the Angular CLI with npm install -g @angular/cli and ng new. If a tutorial tells you to run npm install angular, check that it is not about AngularJS." },
+          { "q": "Is AngularJS the same as Angular?", "a": "No. AngularJS is the first version (1.x) and its official support ended on 31 December 2021. Angular (version 2 and later) is a different, rewritten framework, and it is what this course teaches. Use Angular for new projects." }
+        ]
+      },
+      "angular-project-structure": {
+        "overwrite": true,
+        "metaTitle": "Angular Project Structure and App Flow",
+        "description": "See how an Angular app starts: from index.html and main.ts to the root component, with a tour of app.config.ts, angular.json and the src folder.",
+        "addFaqs": [
+          { "q": "How does an Angular app start and run?", "a": "The browser loads index.html, which holds the app-root tag and the compiled scripts. main.ts then calls bootstrapApplication with the root component and the settings from app.config.ts, and Angular draws that component inside app-root. From there the root component shows other components, and if the app uses routing, the router decides which page to display." }
+        ]
+      }
+    }
+  },
+  "courses": {
+    "phone-job-search-trades-course": {
+      "overwrite": true,
+      "description": "Free step-by-step course for skilled trade, factory and daily wage workers. Find and apply for jobs from your phone, avoid scams and know your rights."
+    }
+  }
+}
