@@ -101,8 +101,8 @@
       "path": "/products/job-offer-comparison",
       "flag": "offerTool",
       "name": "Job Offer Comparison Calculator",
-      "title": "Job Offer Comparison Calculator",
-      "description": "Compare two job offers side by side: monthly take-home, yearly total, bonus, benefits, commute cost and notice period. Free with an account.",
+      "title": "Compare Two Job Offers: Free Calculator",
+      "description": "Compare two job offers side by side: take-home pay, yearly total, bonus, benefits, commute cost and notice period. Runs in your browser. Free with an account.",
       "h1": "Job offer comparison calculator",
       "intro": "Enter the numbers from two offers and see them side by side: take-home pay, yearly total, benefits and the cost of getting to work. It runs in your browser, uses no AI and sends nothing anywhere.",
       "needsLogin": true,
@@ -113,6 +113,14 @@
       ],
       "note": "This calculator does not work out tax. Use the take-home figure from the employer or your own estimate. Pay is only one part of a job, so also compare growth, hours and the people you will work with.",
       "faqs": [
+        {
+          "q": "How do I compare two job offers?",
+          "a": "Start with take-home pay (after tax), not the headline salary. Then add a bonus only if it is guaranteed, add the value of benefits you would otherwise pay for, and subtract extra costs such as commuting. Put both offers in the calculator to see the yearly totals side by side, then look at notice period, hours, stability and room to grow."
+        },
+        {
+          "q": "What should I look at besides salary?",
+          "a": "Hours and flexibility, travel time and cost, how secure the job is, how long the notice period is, training, and the people you would work with. Money is only one part of a job, so if the totals are close, choose the offer that fits what matters most to you."
+        },
         {
           "q": "Does it calculate tax for me?",
           "a": "No. Tax rules differ by country and change often, so you enter your own take-home pay. The calculator then adds your bonus and benefits and subtracts your extra costs."
