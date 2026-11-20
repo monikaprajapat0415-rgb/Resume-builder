@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { clearToken } from '../../utils/session';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -14,7 +15,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = '';
       state.user = null;
-      localStorage.removeItem('token');
+      clearToken();
     },
     setLoading: (state, action) => {
       state.loading = action.payload;

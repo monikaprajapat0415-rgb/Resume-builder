@@ -20,7 +20,7 @@ const PublishAt = ({ published, value, onChange, previewPath }) => (
         {value && <span className='block text-xs text-amber-700 mt-1'>Scheduled for {new Date(value).toLocaleString()}. Save to keep it.</span>}
       </label>
     )}
-    {previewPath && <a href={`${previewPath}?preview=1`} target='_blank' rel='noreferrer' className='mt-2 inline-block text-brand-700 hover:underline'>Preview as a reader (opens in a new tab, admins only)</a>}
+    {previewPath && <a href={`${previewPath}?preview=1`} target='_blank' rel='opener' onClick={(e) => { e.preventDefault(); window.open(`${previewPath}?preview=1`) }} className='mt-2 inline-block text-brand-700 hover:underline'>Preview as a reader (opens in a new tab, admins only)</a>}
   </div>
 )
 export default PublishAt

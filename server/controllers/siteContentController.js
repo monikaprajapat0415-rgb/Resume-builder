@@ -36,6 +36,7 @@ const putValues = async (values, admin, restoredFrom = false) => {
         if (!(key in SITE_DEFAULTS)) return { error: `Unknown field: ${key}` };
         const value = String(raw ?? '').trim();
         if (key === 'theme_primary' && value && !/^#[0-9a-f]{6}$/i.test(value)) return { error: 'Colour must look like #16a34a' };
+        if (key === 'session_mode' && value && !['tab', 'remember'].includes(value)) return { error: '"Sign-in lasts" must be tab or remember' };
         if (key.startsWith('feature_') && value && !['true', 'false'].includes(value)) return { error: `"${key}" must be true or false` };
         if (value.length > 400) return { error: `"${key}" is too long (max 400 characters)` };
         if (value === '' || value === SITE_DEFAULTS[key]) ops.push({ deleteOne: { filter: { key } } });
