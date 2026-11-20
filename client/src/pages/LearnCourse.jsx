@@ -8,7 +8,7 @@ import { stripInline } from '../utils/inlineText'
 import { dropServerJsonLd } from '../utils/seoDom'
 import { CourseBadge } from './LearnIndex'
 import { useCourseProgress, countDone } from '../utils/learnProgress'
-import { LuArrowRight, LuBookOpen, LuSignal, LuCheck, LuBookmarkCheck, LuAward } from 'react-icons/lu'
+import { LuArrowRight, LuBookOpen, LuSignal, LuCheck, LuBookmarkCheck, LuAward, LuChevronDown, LuSearch, LuLayers } from 'react-icons/lu'
 
 const NotFound = ({ state }) => (
   <div>
@@ -26,6 +26,105 @@ const NotFound = ({ state }) => (
     <Footer />
   </div>
 )
+
+
+// The lesson list. Long courses (Angular has 84 lessons) are grouped into sections that open and close, with a jump bar,
+// a per-section progress count and a search box. Every lesson link stays in the page (closed sections are only hidden),
+// so search engines and the "view source" HTML still see the full list.
+const CourseOutline = ({ course, sections, starts, done, nextSlug }) => {
+  const nextSection = Math.max(0, sections.findIndex((sec) => sec.lessons.some((l) => l.slug === nextSlug)))
+  const [open, setOpen] = useState(() => new Set([nextSection]))
+  const [q, setQ] = useState('')
+  const term = q.trim().toLowerCase()
+  const match = (l) => !term || `${l.title} ${l.description || ''}`.toLowerCase().includes(term)
+  const shown = sections.map((sec) => sec.lessons.filter(match))
+  const total = shown.reduce((n, l) => n + l.length, 0)
+  const toggle = (i) => setOpen((prev) => { const n = new Set(prev); n.has(i) ? n.delete(i) : n.add(i); return n })
+  const allOpen = open.size === sections.length
+  const jump = (i) => {
+    setOpen((prev) => new Set(prev).add(i))
+    requestAnimationFrame(() => document.getElementById(`sec-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+  }
+
+  return (
+    <div className='mt-12'>
+      <div className='flex flex-wrap items-end justify-between gap-3 mb-4'>
+        <div>
+          <h2 className='text-xl font-semibold text-slate-800'>What you'll learn</h2>
+          <p className='text-sm text-slate-500 mt-0.5'>{sections.length} sections, {sections.reduce((n, sec) => n + sec.lessons.length, 0)} lessons. Open a section to see its lessons.</p>
+        </div>
+        <div className='flex items-center gap-2'>
+          <label className='relative'>
+            <span className='sr-only'>Search lessons</span>
+            <LuSearch className='absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-400' aria-hidden='true' />
+            <input type='search' value={q} onChange={(e) => setQ(e.target.value)} placeholder='Search lessons' className='w-52 sm:w-64 pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-brand-300' />
+          </label>
+          <button type='button' onClick={() => setOpen(allOpen ? new Set() : new Set(sections.map((_, i) => i)))} className='text-sm px-4 py-2 border border-slate-200 rounded-full bg-white hover:bg-slate-50 whitespace-nowrap'>
+            {allOpen ? 'Collapse all' : 'Expand all'}
+          </button>
+        </div>
+      </div>
+
+      {sections.length > 1 && !term && (
+        <nav aria-label='Course sections' className='flex gap-2 overflow-x-auto pb-2 mb-4 -mx-1 px-1'>
+          {sections.map((sec, i) => (
+            <button key={i} type='button' onClick={() => jump(i)} className='shrink-0 inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:text-brand-700'>
+              <LuLayers className='size-3.5' aria-hidden='true' />{sec.title || `Section ${i + 1}`}
+            </button>
+          ))}
+        </nav>
+      )}
+
+      {term && <p className='text-sm text-slate-500 mb-3' role='status'>{total ? `${total} lesson${total === 1 ? '' : 's'} match "${q.trim()}".` : `No lesson matches "${q.trim()}".`}</p>}
+
+      <div className='space-y-3'>
+        {sections.map((sec, si) => {
+          const lessons = shown[si]
+          if (term && !lessons.length) return null
+          const doneN = sec.lessons.filter((l) => done.includes(l.slug)).length
+          const isOpen = term ? true : open.has(si)
+          const pct = sec.lessons.length ? (doneN / sec.lessons.length) * 100 : 0
+          return (
+            <section key={si} id={`sec-${si}`} className='scroll-mt-24 rounded-xl border border-slate-200 bg-white overflow-hidden'>
+              <h3>
+                <button type='button' aria-expanded={isOpen} aria-controls={`sec-body-${si}`} onClick={() => toggle(si)} className='w-full flex items-center gap-3 px-5 py-3.5 text-left hover:bg-slate-50 transition'>
+                  <span className={`size-8 shrink-0 rounded-full grid place-items-center text-xs font-semibold ${doneN === sec.lessons.length && doneN > 0 ? 'bg-brand-600 text-white' : 'bg-brand-50 text-brand-700'}`} data-no-i18n>
+                    {doneN === sec.lessons.length && doneN > 0 ? <LuCheck className='size-4' aria-label='Section complete' /> : si + 1}
+                  </span>
+                  <span className='min-w-0 flex-1'>
+                    <span className='block text-sm font-semibold text-slate-800'>{sec.title || 'Lessons'}</span>
+                    <span className='block text-xs text-slate-500 mt-0.5' data-no-i18n>{sec.lessons.length} lessons{doneN > 0 ? `, ${doneN} done` : ''}</span>
+                  </span>
+                  {doneN > 0 && <span className='hidden sm:block w-24 h-1.5 rounded-full bg-slate-100 overflow-hidden' aria-hidden='true'><span className='block h-full bg-brand-500' style={{ width: `${pct}%` }} /></span>}
+                  <LuChevronDown className={`size-5 shrink-0 text-slate-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden='true' />
+                </button>
+              </h3>
+              <ol id={`sec-body-${si}`} hidden={!isOpen} className='divide-y divide-slate-100 border-t border-slate-100'>
+                {lessons.map((l) => {
+                  const n = starts[si] + sec.lessons.indexOf(l) + 1
+                  const isDone = done.includes(l.slug)
+                  const isNext = l.slug === nextSlug
+                  return (
+                    <li key={l.slug}>
+                      <Link to={`/learn/${course.slug}/${l.slug}`} className={`flex items-start gap-3 px-5 py-3 hover:bg-brand-50/50 transition group ${isNext ? 'bg-brand-50/40' : ''}`}>
+                        <span className='text-xs text-slate-400 w-7 pt-0.5 shrink-0' data-no-i18n>{isDone ? <LuCheck className='size-4 text-brand-600' aria-label='Completed' /> : `${n}.`}</span>
+                        <span className='min-w-0 flex-1'>
+                          <span className='block text-sm font-medium text-slate-800 group-hover:text-brand-700'>{l.title}</span>
+                          {l.description && <span className='block text-xs text-slate-500 mt-0.5 line-clamp-2'>{stripInline(l.description)}</span>}
+                        </span>
+                        {isNext && <span className='shrink-0 text-[11px] font-medium text-brand-700 bg-brand-100 rounded-full px-2 py-0.5' data-no-i18n>{done.length ? 'Up next' : 'Start here'}</span>}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ol>
+            </section>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
 
 const LearnCourse = () => {
   const { course: slug } = useParams()
@@ -61,6 +160,7 @@ const LearnCourse = () => {
       <SEO title={seo.title} description={seo.description} keywords={seo.keywords} path={`/learn/${course.slug}`} canonical={seo.canonical} robots={seo.robots} image={seo.image} imageAlt={seo.imageAlt} structuredData={data.jsonLd} />
       <NavBar />
       <section className='site-w py-14'>
+       <div className='max-w-5xl mx-auto'>
         <nav aria-label='Breadcrumb' className='text-xs text-slate-400 mb-6'>
           <Link to='/' className='hover:text-slate-600'>Home</Link> › <Link to='/learn' className='hover:text-slate-600'>Learn</Link> › <span>{course.title}</span>
         </nav>
@@ -95,30 +195,8 @@ const LearnCourse = () => {
           </div>
         )}
 
-        <h2 className='text-xl font-semibold text-slate-800 mt-12 mb-4'>What you'll learn</h2>
-        <div className='grid lg:grid-cols-2 gap-6 items-start'>
-          {sections.map((s, si) => (
-            <div key={si} className='rounded-xl border border-slate-200 bg-white overflow-hidden'>
-              <h3 className='px-5 py-3 bg-slate-50 text-sm font-semibold text-slate-700 border-b border-slate-200'>{s.title || 'Lessons'}</h3>
-              <ol className='divide-y divide-slate-100'>
-                {s.lessons.map((l, li) => {
-                  const n = starts[si] + li + 1
-                  return (
-                    <li key={l.slug}>
-                      <Link to={`/learn/${course.slug}/${l.slug}`} className='flex items-start gap-3 px-5 py-3 hover:bg-brand-50/50 transition group'>
-                        <span className='text-xs text-slate-400 w-6 pt-0.5 shrink-0'>{progress.done.includes(l.slug) ? <LuCheck className='size-4 text-brand-600' aria-label='Completed' /> : `${n}.`}</span>
-                        <span>
-                          <span className='block text-sm font-medium text-slate-800 group-hover:text-brand-700'>{l.title}</span>{' '}
-                          {l.description && <span className='block text-xs text-slate-500 mt-0.5 line-clamp-1'>{stripInline(l.description)}</span>}
-                        </span>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ol>
-            </div>
-          ))}
-        </div>
+        <CourseOutline course={course} sections={sections} starts={starts} done={progress.done} nextSlug={(resumeTo || nextUp)?.slug} />
+       </div>
       </section>
       <Footer />
     </div>
