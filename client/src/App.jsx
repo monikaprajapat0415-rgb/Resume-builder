@@ -99,6 +99,7 @@ import SEO from "./components/SEO";
 import { Helmet } from "react-helmet-async";
 const AdminAppearance = lazy(() => import("./pages/admin/AdminAppearance"));
 import { useSiteContent, DEFAULT_SITE } from "./utils/siteContent";
+import { getToken, clearToken, enforceMode } from "./utils/session";
 import { applyTheme } from "./utils/theme";
 // Pages load on demand so the first visit downloads only what it needs. While a page's code loads, the server-rendered
 // text that was already in the page (if any) stays visible, so there is no blank flash and search/AI crawlers are unaffected.
@@ -112,10 +113,12 @@ const App = () => {
   // colour saved in this browser by the previous visit is already applied (see index.html).
   const site = useSiteContent();
   useEffect(() => { if (site !== DEFAULT_SITE) applyTheme(site.theme_primary) }, [site]);
+  // 'Sign-in lasts' (Admin > Appearance): when it is 'until the tab closes', a token saved by an earlier visit moves to this tab only.
+  useEffect(() => { if (site !== DEFAULT_SITE) enforceMode(site.session_mode) }, [site]);
 
   const dispatch = useDispatch();
   const getUserData = async () => {
-    const token = localStorage.getItem('token');
+    const token = getToken();
     if (!token) {
       dispatch(setLoading(false));
       return;
@@ -131,7 +134,7 @@ const App = () => {
       // 401/403/404 = the saved token is expired or belongs to a deleted user: drop it.
       // Network errors and timeouts keep the token so a brief outage doesn't log people out.
       if ([401, 403, 404].includes(error.response?.status)) {
-        localStorage.removeItem('token');
+        clearToken();
       }
       console.log("Error fetching user data:", error.message);
     } finally {

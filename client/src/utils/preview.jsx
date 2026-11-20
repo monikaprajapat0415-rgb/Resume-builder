@@ -1,11 +1,12 @@
 import React from 'react'
+import { getToken } from './session'
 
 // Draft preview: an admin opens a public URL with ?preview=1 and the page sends their token so the server
 // can return the unpublished item. Nothing changes for other visitors.
 export const previewConfig = () => {
   try {
     if (new URLSearchParams(window.location.search).get('preview') !== '1') return {}
-    const t = localStorage.getItem('token')
+    const t = getToken()
     return t ? { params: { preview: 1 }, headers: { Authorization: t } } : {}
   } catch { return {} }
 }

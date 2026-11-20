@@ -36,6 +36,7 @@ export const DEFAULT_SITE = {
   contact_address: 'New Delhi, India',
   theme_primary: '#00a63e',
   feature_cover_letter: 'false',
+  session_mode: 'tab',
 }
 
 let cache = null

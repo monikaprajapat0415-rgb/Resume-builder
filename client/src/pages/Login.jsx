@@ -12,6 +12,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { useSiteContent } from '../utils/siteContent';
+import { saveToken } from '../utils/session';
 
 
 
@@ -23,6 +25,7 @@ const googleEnabled = /\.apps\.googleusercontent\.com$/.test(googleClientId) && 
 const Login = () => {
 
     const dispatch = useDispatch();
+    const site = useSiteContent();
 
     const queryParams = new URLSearchParams(window.location.search);
     const urlState = queryParams.get('state');
@@ -51,7 +54,7 @@ const Login = () => {
         try {
             const { data } = await api.post(`/api/users/${state}`, formData)
             dispatch(login(data))
-            localStorage.setItem('token', data.token);
+            saveToken(data.token, site.session_mode);
             toast.success(data.message)
             if (next) navigate(next)
 
@@ -68,7 +71,7 @@ const Login = () => {
                 credential: credentialResponse.credential
             })
             dispatch(login(data))
-            localStorage.setItem('token', data.token);
+            saveToken(data.token, site.session_mode);
             toast.success(data.message)
             if (next) navigate(next)
         } catch (error) {

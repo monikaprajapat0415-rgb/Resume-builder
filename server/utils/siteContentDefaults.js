@@ -41,6 +41,7 @@ export const SITE_FIELDS = [
 
     // Managed from Admin > Appearance, not from the homepage text page.
     { key: 'theme_primary', group: 'Appearance', label: 'Main colour', type: 'color', value: '#00a63e', hidden: true },
+    { key: 'session_mode', group: 'Appearance', label: 'Sign-in lasts', type: 'text', value: 'tab', hidden: true },
     { key: 'feature_cover_letter', group: 'Appearance', label: 'Show the Cover Letter button in the resume builder', type: 'toggle', value: 'false', hidden: true },
 ];
 

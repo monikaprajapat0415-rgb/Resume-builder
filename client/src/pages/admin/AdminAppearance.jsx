@@ -25,6 +25,7 @@ const AdminAppearance = () => {
   const [saved, setSaved] = useState(null)      // values from the server
   const [color, setColor] = useState(DEFAULT_PRIMARY)
   const [coverLetter, setCoverLetter] = useState(false)
+  const [sessionMode, setSessionMode] = useState('tab')
   const [saving, setSaving] = useState(false)
   const savedColor = useRef(DEFAULT_PRIMARY)
 
@@ -33,7 +34,7 @@ const AdminAppearance = () => {
       .then(({ data }) => {
         const c = isHex(data.values.theme_primary) ? data.values.theme_primary.toLowerCase() : DEFAULT_PRIMARY
         savedColor.current = c
-        setSaved(data.values); setColor(c); setCoverLetter(data.values.feature_cover_letter === 'true')
+        setSaved(data.values); setColor(c); setCoverLetter(data.values.feature_cover_letter === 'true'); setSessionMode(data.values.session_mode === 'remember' ? 'remember' : 'tab')
       })
       .catch((e) => { setSaved({}); toast.error(e.response?.data?.message || 'Could not load settings.') })
     // Leaving the page without saving puts the saved colour back.
@@ -44,14 +45,14 @@ const AdminAppearance = () => {
 
   const ratio = isHex(color) ? contrastWithWhite(color) : 0
   const lowContrast = isHex(color) && ratio < 3
-  const dirty = saved && (color !== savedColor.current || coverLetter !== (saved.feature_cover_letter === 'true'))
+  const dirty = saved && (color !== savedColor.current || coverLetter !== (saved.feature_cover_letter === 'true') || sessionMode !== (saved.session_mode === 'remember' ? 'remember' : 'tab'))
 
   const save = async () => {
     if (!isHex(color)) return toast.error('Enter a colour like #2563eb.')
     if (lowContrast) return toast.error('That colour is too light for white button text. Pick a darker one.')
     setSaving(true)
     try {
-      const { data } = await api.put('/api/admin/site-content', { values: { theme_primary: color, feature_cover_letter: String(coverLetter) } }, headers)
+      const { data } = await api.put('/api/admin/site-content', { values: { theme_primary: color, feature_cover_letter: String(coverLetter), session_mode: sessionMode } }, headers)
       savedColor.current = color
       setSaved(data.values); invalidateSiteContent(); applyTheme(color)
       toast.success('Saved. Everyone now sees the new look.')
@@ -128,6 +129,18 @@ const AdminAppearance = () => {
             <span className='block text-xs text-slate-500'>Currently {saved.feature_cover_letter === 'true' ? 'shown' : 'hidden'} for users. Turn it on when you are ready to relaunch it.</span>
           </span>
         </label>
+      </Card>
+
+      <Card title='Sign-in lasts' hint='Decides how long a visitor stays logged in on this browser. Applies to everyone from their next sign-in; people already signed in are moved to the chosen mode when they next open the site.'>
+        <div className='space-y-3' role='radiogroup' aria-label='Sign-in lasts'>
+          {[['tab', 'Until the tab is closed', 'Closing the tab or window logs the person out. A page reload keeps them signed in. A link opened in a new tab asks them to sign in again. Best for shared computers.'],
+            ['remember', 'For 7 days', 'Stays signed in across tabs and after the browser is closed, until the person clicks Log out or 7 days pass.']].map(([v, t, d]) => (
+            <label key={v} className='flex items-start gap-3 cursor-pointer'>
+              <input type='radio' name='session-mode' checked={sessionMode === v} onChange={() => setSessionMode(v)} className='mt-1 size-4' />
+              <span><span className='text-sm text-slate-800'>{t}</span><span className='block text-xs text-slate-500'>{d}</span></span>
+            </label>
+          ))}
+        </div>
       </Card>
 
       <div className='sticky bottom-0 -mx-4 px-4 py-3 md:mx-0 md:px-0 bg-slate-50/90 backdrop-blur flex items-center gap-3'>
