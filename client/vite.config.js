@@ -66,6 +66,9 @@ export default defineConfig({
       hostname: 'https://primeresumeai.com',
       dynamicRoutes: staticRoutes,
       exclude: ['/app', '/app/*', '/view/*', '/logout', '/forgot-password', '/reset-password/*', '/verify-email/*', '/admin', '/admin/*'],
+      // Never let the plugin write its own robots.txt: it replaced client/public/robots.txt (the Disallow rules and the
+      // second Sitemap line) with a 70-byte default on every build.
+      generateRobotsTxt: false,
       changefreq: 'weekly',
       readable: true,
     })],
