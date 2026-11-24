@@ -68,6 +68,7 @@ const ProductsIndex = () => {
       </header>
 
       <section className='site-w py-12'>
+       <div className='max-w-6xl mx-auto'>
         {shown.length === 0 && <p className='text-center text-slate-500'>No tool matches that search. Try another word.</p>}
         {(q.trim() || grp) ? (
           <ul className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>{shown.map((t) => <li key={t.id}><ToolCard tool={t} /></li>)}</ul>
@@ -127,6 +128,7 @@ const ProductsIndex = () => {
         )}
         </div>
         )}
+       </div>
       </section>
       <Footer />
     </div>

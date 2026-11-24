@@ -121,7 +121,22 @@ const migrateSimpleMenu = async () => {
     simpleDone = true;
 };
 
-const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER, PRODUCTS2_MARKER, SIMPLE_MARKER];
+// The footer "About" link (/about) arrives on existing sites once. Without a link the page had no internal links at all.
+// A hidden marker remembers it ran, so an admin who deletes or hides the link afterwards keeps it that way.
+const ABOUT_MARKER = 'migrated-about-v1';
+let aboutDone = false;
+const migrateAbout = async () => {
+    if (aboutDone) return;
+    if (!(await MenuItem.exists({ key: ABOUT_MARKER }))) {
+        await ensureDefaults(['fr-about']);
+        const near = await MenuItem.findOne({ key: 'fr-contact' }).select('order');
+        if (near) await MenuItem.updateOne({ key: 'fr-about' }, { $set: { order: near.order - 0.5 } });
+        await MenuItem.updateOne({ key: ABOUT_MARKER }, { $setOnInsert: { key: ABOUT_MARKER, location: 'footer_legal', label: 'marker', url: '/', visible: false, order: 9999 } }, { upsert: true });
+    }
+    aboutDone = true;
+};
+
+const HIDDEN = [MARKER, BUILDER_MARKER, PRODUCTS_MARKER, PRODUCTS2_MARKER, SIMPLE_MARKER, ABOUT_MARKER];
 const group = (items) => {
     items = items.filter((i) => !HIDDEN.includes(i.key));
     const out = Object.fromEntries(MENU_LOCATIONS.map((l) => [l, []]));
@@ -141,6 +156,7 @@ export const getMenu = async (req, res) => {
         await migrateProductsMenu();
         await migrateProducts2();
         await migrateSimpleMenu();
+        await migrateAbout();
         const items = await MenuItem.find({ visible: true }).sort({ order: 1, createdAt: 1 })
             .select('label url location newTab parent icon description');
         res.set('Cache-Control', 'public, max-age=0, s-maxage=30, must-revalidate');
@@ -161,6 +177,7 @@ export const getMenuAdmin = async (req, res) => {
         await migrateProductsMenu();
         await migrateProducts2();
         await migrateSimpleMenu();
+        await migrateAbout();
         const items = await MenuItem.find({}).sort({ order: 1, createdAt: 1 });
         return res.status(200).json({ menu: group(items) });
     } catch (error) {
