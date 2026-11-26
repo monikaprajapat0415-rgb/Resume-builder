@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, Navigate, NavLink, Link, useLocation } from 'react-router-dom'
 import PageNav from '../../components/PageNav'
 import { useSelector } from 'react-redux'
-import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing, LuCircleCheck, LuDownload } from 'react-icons/lu'
+import { LuHistory, LuArrowLeft, LuLayoutDashboard, LuFileText, LuTags, LuShoppingBag, LuUsers, LuMenu, LuInbox, LuFilePen, LuType, LuSearch, LuPalette, LuGraduationCap, LuMessageSquare, LuBriefcase, LuHandshake, LuRoute, LuUsersRound, LuChevronDown, LuShieldCheck, LuCrown, LuWrench, LuMegaphone, LuBellRing, LuCircleCheck, LuDownload, LuVideo } from 'react-icons/lu'
 import SEO from '../../components/SEO'
 import Loader from '../../components/Loader'
 import api from '../../configs/api'
@@ -32,6 +32,7 @@ const groups = [
     { to: '/admin/seo-issues', label: 'Search Console checklist', icon: LuCircleCheck },
     { to: '/admin/site-content', label: 'Homepage text', icon: LuType },
     { to: '/admin/trust', label: 'Reviews and clients', icon: LuMessageSquare },
+    { to: '/admin/videos', label: 'Videos on pages', icon: LuVideo },
     { to: '/admin/plan', label: 'Paid plan', icon: LuCrown },
     { to: '/admin/tools', label: 'Free tools', icon: LuWrench },
     { to: '/admin/ads', label: 'Ads and cookies', icon: LuMegaphone },

@@ -73,6 +73,7 @@ const AdminPages = lazy(() => import("./pages/admin/AdminPages"));
 const AdminPageEditor = lazy(() => import("./pages/admin/AdminPageEditor"));
 const AdminSiteContent = lazy(() => import("./pages/admin/AdminSiteContent"));
 const AdminTrust = lazy(() => import("./pages/admin/AdminTrust"));
+const AdminVideos = lazy(() => import("./pages/admin/AdminVideos"));
 const AdminSeoIssues = lazy(() => import("./pages/admin/AdminSeoIssues"));
 const AdminBackup = lazy(() => import("./pages/admin/AdminBackup"));
 const AdminNudge = lazy(() => import("./pages/admin/AdminNudge"));
@@ -249,6 +250,7 @@ const App = () => {
           <Route path="pages/:id/edit" element={<AdminPageEditor />} />
           <Route path="site-content" element={<AdminSiteContent />} />
           <Route path="trust" element={<AdminTrust />} />
+          <Route path="videos" element={<AdminVideos />} />
           <Route path="plan" element={<AdminPlan />} />
           <Route path="activity" element={<AdminActivity />} />
           <Route path="ads" element={<AdminAds />} />

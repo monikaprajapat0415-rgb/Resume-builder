@@ -3,6 +3,7 @@ import Logo from '../Logo';
 import MenuLink from './MenuLink'
 import { useMenu } from '../../utils/menu'
 import { openCookieSettings } from '../../utils/consent'
+import PageVideos from '../PageVideos'
 
 
 const Footer = () => {
@@ -22,6 +23,7 @@ const Footer = () => {
                 }
             `}</style>
             
+            <PageVideos />
             <footer className="flex flex-wrap justify-center lg:justify-between overflow-hidden gap-10 md:gap-20 py-16 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500 bg-gradient-to-t from-white via-brand-200/60 to-white mt-40">
                 <div className="flex flex-wrap items-start gap-10 md:gap-[60px] xl:gap-[140px]">
                     <a href="#">

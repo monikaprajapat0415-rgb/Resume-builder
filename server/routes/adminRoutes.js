@@ -32,6 +32,7 @@ import { defaultRouter } from '../utils/aiRouter.js';
 import { getSiteContentAdmin, saveSiteContent } from '../controllers/siteContentController.js';
 import { getSeoPagesAudit } from '../controllers/seoPagesAuditController.js';
 import { adminListTrust, adminCreateTrust, adminUpdateTrust, adminDeleteTrust } from '../controllers/trustController.js';
+import { adminListVideos, adminCreateVideo, adminUpdateVideo, adminDeleteVideo } from '../controllers/videoController.js';
 
 const adminRouter = express.Router();
 
@@ -168,6 +169,12 @@ adminRouter.get('/trust', adminListTrust);
 adminRouter.post('/trust', adminCreateTrust);
 adminRouter.put('/trust/:id', adminUpdateTrust);
 adminRouter.delete('/trust/:id', adminDeleteTrust);
+
+// YouTube videos shown at the bottom of chosen public pages
+adminRouter.get('/videos', adminListVideos);
+adminRouter.post('/videos', adminCreateVideo);
+adminRouter.put('/videos/:id', adminUpdateVideo);
+adminRouter.delete('/videos/:id', adminDeleteVideo);
 
 import { adminGetPlan, adminSavePlan, adminSetUserPlan, adminPlanEvents, adminRetryPlanEvent } from '../controllers/planController.js';
 import { adminGetTools, adminSaveTools } from '../controllers/toolSettingsController.js';
