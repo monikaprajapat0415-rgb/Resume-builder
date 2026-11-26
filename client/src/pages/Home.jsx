@@ -39,7 +39,7 @@ const Home = () => {
    <div className="overflow-x-clip">
     <SEO
   title="Prime Resume AI – Free AI Resume Builder & CV Maker Online"
-  description="Free resume builder with ATS-friendly templates, AI writing help and a free ATS resume checker. Make a resume or CV for office, factory, trade and tech jobs."
+  description="Create professional resumes in minutes with AI. Choose ATS-friendly templates and download your CV. Free resume builder for freshers and professionals. "
   keywords="resume builder, AI resume builder, free resume maker, CV generator, ATS friendly resume"
   path="/"
   structuredData={faq.length ? faqJsonLd(faq) : undefined}

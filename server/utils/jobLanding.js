@@ -58,28 +58,12 @@ export const resolveLanding = (countrySlug, kindSlug) => {
 
 export const landingPath = (country, kindSlug) => `/jobs/in/${slugOfCountry(country.code)}${kindSlug ? `/${kindSlug}` : ''}`;
 
-const fmt = (n) => Number(n).toLocaleString('en-US');
-
-// A description that always ends on a full sentence and fits in 160 characters (no cut-off words).
-const fit = (...parts) => { let out = ''; for (const p of parts.filter(Boolean)) { if ((out ? `${out} ${p}` : p).length > 160) break; out = out ? `${out} ${p}` : p; } return out; };
-export const landingDescription = ({ country, kind }, total) => {
-    const place = country.name;
-    const pay = 'A genuine employer never charges a fee.';
-    if (kind) {
-        const lead = `${kind.noun[0].toUpperCase()}${kind.noun.slice(1)} in ${place}${total > 1 ? `: ${fmt(total)} open` : ''}. Roles for ${kind.who}.`;
-        return fit(lead, 'Apply directly with the employer.', pay);
-    }
-    const lead = total === 1 ? `Browse 1 open job in ${place}: office, factory, skilled trade and daily wage roles.`
-        : `Browse ${total ? `${fmt(total)} open ` : ''}jobs in ${place}: office, factory, skilled trade and daily wage roles.`;
-    return fit(lead, 'Apply directly with the employer.', pay);
-};
-
 export const landingContent = ({ country, kindSlug, kind }, total) => {
     const place = country.name;
     const h1 = kind ? `${kind.label} in ${place}` : `Jobs in ${place}`;
     const intro = kind
-        ? `Find ${kind.noun} in ${place}: roles for ${kind.who}. ${total ? `${fmt(total)} open ${total === 1 ? 'job' : 'jobs'} right now.` : 'New jobs are added often.'} Apply directly with the employer, or list yourself as available and let employers contact you.`
-        : `Find office, factory, skilled trade and daily wage jobs in ${place}. ${total ? `${fmt(total)} open ${total === 1 ? 'job' : 'jobs'} right now.` : 'New jobs are added often.'} Apply directly with the employer, or list yourself as available and let employers contact you.`;
+        ? `Find ${kind.noun} in ${place}: roles for ${kind.who}. ${total ? `${total} open ${total === 1 ? 'job' : 'jobs'} right now.` : 'New jobs are added often.'} Apply directly with the employer, or list yourself as available and let employers contact you.`
+        : `Find office, factory, skilled trade and daily wage jobs in ${place}. ${total ? `${total} open ${total === 1 ? 'job' : 'jobs'} right now.` : 'New jobs are added often.'} Apply directly with the employer, or list yourself as available and let employers contact you.`;
     const tips = [...(kind ? KIND_TIPS[kind.id] : []), ...(COUNTRY_TIPS[country.code] || COUNTRY_TIPS.DEFAULT)];
     const links = [
         ...(kindSlug ? [{ name: `All jobs in ${place}`, path: landingPath(country) }] : []),
@@ -93,8 +77,8 @@ export const landingSeo = (res, content, total, jobs) => {
     const url = `${siteUrl()}${content.path}`;
     const crumbs = [{ name: 'Home', url: `${siteUrl()}/` }, { name: 'Jobs', url: `${siteUrl()}/jobs` }, { name: res.kind ? res.country.name : content.h1, url: `${siteUrl()}${landingPath(res.country)}` }, ...(res.kind ? [{ name: res.kind.label, url }] : [])];
     return {
-        fullTitle: (() => { const t = seoTitle(`${content.h1}${total ? ` (${fmt(total)} open)` : ''}`); return t.length <= 60 ? t : seoTitle(content.h1); })(), // drop the count when the title would be cut off in search results
-        description: landingDescription(res, total),
+        fullTitle: seoTitle(`${content.h1}${total ? ` (${total} open)` : ''}`),
+        description: `${content.intro}`.slice(0, 160),
         canonical: url, robots: total > 0 ? 'index, follow' : 'noindex, follow', type: 'website',
         keywords: [content.h1, `${res.kind ? res.kind.noun : 'jobs'} ${res.country.name}`, 'apply', 'no fee'].join(', '),
         jsonLd: [
