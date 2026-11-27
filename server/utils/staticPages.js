@@ -38,7 +38,7 @@ const MAIN_LINKS_ALL = [
     ['Free ATS resume checker', '/features/ats-checker', 'upload a PDF or Word resume and get a score with fixes'],
     ['AI CV builder', '/cv-builder', 'a tailored, ATS-friendly CV from your real details'],
     ['Resume job description matcher', '/resume-job-description-matcher', 'see which job keywords your resume has and lacks'],
-    ['Resume and CV examples', '/examples', 'ten sample resumes and CVs'],
+    ['Resume and CV examples', '/examples', 'twelve sample resumes and CVs'],
     ['Image enhancer', '/products/image-enhancer', 'sharpen photos and upscale them to 2K, 4K or 8K'],
     ['Free career tools', '/products', 'cover letter, resume bullets, mock interview, offer comparison, LinkedIn text, ATS checker and image tools'],
     ['Jobs', '/jobs', 'open jobs for office, factory and skilled work'],

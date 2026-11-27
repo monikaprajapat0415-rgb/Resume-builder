@@ -45,8 +45,8 @@ const crumbLd = (items) => ({ '@context': 'https://schema.org', '@type': 'Breadc
 const crumbHtml = (items) => `<nav aria-label="Breadcrumb">${items.map((b, i) => (b.href ? `<a href="${esc(b.href)}">${esc(b.name)}</a>` : esc(b.name)) + (i < items.length - 1 ? ' › ' : '')).join('')}</nav>`;
 
 export const EXAMPLES_TITLE = '100/100 ATS Resume and CV Examples';
-export const EXAMPLES_DESC = 'Ten real resume and CV examples for developers, nurses, electricians, teachers and more. Each one passes every automatic ATS check. Copy the format.';
-export const EXAMPLES_HOW = 'Each example was exported as a PDF and run through the same rule-based checks as our free ATS checker: readable text, standard section headings, contact details, bullet points, dates and measurable results. All ten score 100 on every one of those checks. The checker also gives a content and keyword score that depends on the job you are applying for, so use your own job advert and check your finished file.';
+export const EXAMPLES_DESC = 'Twelve real resume and CV examples for developers, nurses, electricians, teachers and more. Each one passes every automatic ATS check. Copy the format.';
+export const EXAMPLES_HOW = 'Each example was exported as a PDF and run through the same rule-based checks as our free ATS checker: readable text, standard section headings, contact details, bullet points, dates and measurable results. All twelve score 100 on every one of those checks. The checker also gives a content and keyword score that depends on the job you are applying for, so use your own job advert and check your finished file.';
 
 export const examplesIndexJsonLd = () => [
     {
