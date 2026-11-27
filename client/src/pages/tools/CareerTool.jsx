@@ -13,7 +13,8 @@ import OfferComparer from './OfferComparer'
 const Playground = lazy(() => import('./Playground'))
 const TimedRound = lazy(() => import('./TimedRound'))
 const SwiftReader = lazy(() => import('./SwiftReader'))
-const LAZY_VIEWS = { 'code-playground': Playground, 'timed-interview-round': TimedRound, 'swift-code-reader': SwiftReader }
+const FileTool = (name) => lazy(() => import('./FileTools').then((m) => ({ default: m[name] })))
+const LAZY_VIEWS = { 'code-playground': Playground, 'timed-interview-round': TimedRound, 'swift-code-reader': SwiftReader, 'merge-pdf': FileTool('MergePdf'), 'split-pdf': FileTool('SplitPdf'), 'reduce-pdf-size': FileTool('ReducePdf'), 'photo-signature-resizer': FileTool('PhotoResizer') }
 import { TOOLS, visibleTools, toolByPath } from '../../content/toolsHub'
 import { IconTile, Badges, ToolCard } from './parts'
 
@@ -263,7 +264,7 @@ const CareerTool = ({ slug }) => {
 
       <main className='site-w py-10'>
         <section aria-label={tool.name}>
-          {!signedIn ? (
+          {!signedIn && tool.needsLogin !== false ? (
             <div className='rounded-2xl border border-brand-200 bg-brand-50/50 p-8 max-w-2xl mx-auto text-center'>
               <span className='mx-auto size-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center'><LuLock className='size-5' aria-hidden /></span>
               <h2 className='font-semibold text-slate-800 text-lg mt-4'>Sign in to use this free tool</h2>

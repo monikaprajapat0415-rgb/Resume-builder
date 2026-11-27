@@ -1,4 +1,4 @@
-import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage, LuCode, LuTimer, LuFileCode } from 'react-icons/lu'
+import { LuFileText, LuSparkles, LuFileCheck, LuTarget, LuListChecks, LuMail, LuLinkedin, LuScale, LuMessageSquare, LuBookOpen, LuZoomIn, LuFileImage, LuCode, LuTimer, LuFileCode, LuCombine, LuScissors, LuFileDown, LuCrop } from 'react-icons/lu'
 
 // The free tools shown on /products. One list so the hub, the tool pages ("More tools") and the menus agree.
 // `flag` is the Admin > Free tools switch (tools without one are core and always shown). Taglines are plain and honest.
@@ -23,6 +23,10 @@ export const TOOLS = [
   { id: 'playground', name: 'React and Angular code playground', tagline: 'Write code on the left and see it run on the right. Starter interview exercises included.', path: '/products/code-playground', group: 'dev', icon: LuCode, access: 'Free account', flag: 'playgroundTool' },
   { id: 'timed', name: 'Timed interview round', tagline: 'Answer random questions against a countdown, then compare with the model answer.', path: '/products/timed-interview-round', group: 'interview', icon: LuTimer, access: 'Free account', flag: 'timedRoundTool' },
   { id: 'swiftreader', name: 'Swift code reader', tagline: 'Read short Swift snippets and predict what they print, with explanations.', path: '/products/swift-code-reader', group: 'dev', icon: LuFileCode, access: 'Free account', flag: 'swiftReaderTool' },
+  { id: 'mergepdf', name: 'Merge PDF', tagline: 'Join several PDF files into one, in the order you choose. Stays on your device.', path: '/products/merge-pdf', group: 'files', icon: LuCombine, access: 'No sign-in', flag: 'mergePdfTool' },
+  { id: 'splitpdf', name: 'Split PDF', tagline: 'Keep or remove chosen pages of a PDF. Stays on your device.', path: '/products/split-pdf', group: 'files', icon: LuScissors, access: 'No sign-in', flag: 'splitPdfTool' },
+  { id: 'reducepdf', name: 'Reduce PDF size', tagline: 'Make a scanned PDF smaller for upload limits. Stays on your device.', path: '/products/reduce-pdf-size', group: 'files', icon: LuFileDown, access: 'No sign-in', flag: 'reducePdfTool' },
+  { id: 'photoresize', name: 'Photo and signature resizer', tagline: 'Set the pixels and KB your form asks for. Stays on your device.', path: '/products/photo-signature-resizer', group: 'files', icon: LuCrop, access: 'No sign-in', flag: 'photoResizerTool' },
   { id: 'questions', name: 'Interview questions bank', tagline: 'Questions with model answers for freshers and experienced people.', path: '/jobs/interview-questions', group: 'interview', icon: LuBookOpen, access: 'No sign-in' },
   { id: 'enhancer', name: 'Image enhancer', tagline: 'Sharpen soft photos and enlarge them to 2K, 4K or 8K.', path: '/products/image-enhancer', group: 'files', icon: LuZoomIn, access: 'Free account', flag: 'imageEnhancer' },
   { id: 'converter', name: 'Image to PDF, Word and text', tagline: 'Combine pictures into one file, with OCR. Runs on your device.', path: '/products/image-converter', group: 'files', icon: LuFileImage, access: 'Free account' },

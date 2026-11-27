@@ -341,7 +341,7 @@ export const productsIndexPage = () => {
         description: 'Free tools for your job search: resume builder, ATS checker, cover letters, interview practice, offer comparison and image tools.',
         keywords: 'free resume tools, ATS checker, cover letter generator, mock interview practice, job offer comparison',
         body: `<h1>Free career tools</h1>
-<p>Tools for your job search. Each one needs a free account to use; this page and every tool page are open to read. The AI tools use your own words and never invent experience, and results are suggestions you should check.</p>
+<p>Tools for your job search. Most need a free account to use; the PDF and photo tools run on your device and need no sign-in. This page and every tool page are open to read. The AI tools use your own words and never invent experience, and results are suggestions you should check.</p>
 <ul>${all.map(([h, n, d]) => `<li>${a(h, n)}: ${esc(d)}</li>`).join('')}</ul>
 <p>${a('/templates', 'Resume templates')} · ${a('/examples', 'Resume and CV examples')} · ${a('/learn', 'Free tutorials')} · ${a('/roadmaps', 'Career roadmaps')}</p>`,
         jsonLd: [crumbs([['Home', '/'], ['Products', '/products']]), {

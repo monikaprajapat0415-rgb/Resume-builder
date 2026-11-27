@@ -2,7 +2,7 @@
 // Keep in sync with `staticRoutes` in client/vite.config.js and client/src/content/templateSlugs.js.
 export const STATIC_ROUTES = [
     '/', '/about', '/contact-us', '/privacy-policy', '/terms-and-conditions', '/blog', '/learn', '/jobs',
-    '/features', '/features/ats-checker', '/cv-builder', '/hire', '/resume-job-description-matcher', '/templates', '/products', '/products/image-enhancer', '/products/image-converter', '/products/cover-letter-generator', '/products/resume-bullet-improver', '/products/mock-interview-practice', '/products/job-offer-comparison', '/products/linkedin-headline-about-generator', '/products/code-playground', '/products/timed-interview-round', '/products/swift-code-reader',
+    '/features', '/features/ats-checker', '/cv-builder', '/hire', '/resume-job-description-matcher', '/templates', '/products', '/products/image-enhancer', '/products/image-converter', '/products/cover-letter-generator', '/products/resume-bullet-improver', '/products/mock-interview-practice', '/products/job-offer-comparison', '/products/linkedin-headline-about-generator', '/products/code-playground', '/products/timed-interview-round', '/products/swift-code-reader', '/products/merge-pdf', '/products/split-pdf', '/products/reduce-pdf-size', '/products/photo-signature-resizer',
     '/templates/classic-resume-template', '/templates/modern-resume-template',
     '/templates/minimal-resume-template', '/templates/resume-template-with-photo',
     '/templates/executive-resume-template', '/templates/compact-resume-template',

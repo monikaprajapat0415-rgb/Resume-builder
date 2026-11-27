@@ -11,6 +11,10 @@ const ToolSettingsSchema = new mongoose.Schema({
     offerTool: { type: Boolean, default: true },         // /tools/job-offer-comparison (no AI, runs in the browser)
     timedRoundTool: { type: Boolean, default: true },    // /products/timed-interview-round
     swiftReaderTool: { type: Boolean, default: true },   // /products/swift-code-reader
+    mergePdfTool: { type: Boolean, default: true },      // /products/merge-pdf (runs in the browser)
+    splitPdfTool: { type: Boolean, default: true },      // /products/split-pdf (runs in the browser)
+    reducePdfTool: { type: Boolean, default: true },     // /products/reduce-pdf-size (runs in the browser)
+    photoResizerTool: { type: Boolean, default: true },  // /products/photo-signature-resizer (runs in the browser)
     planTool: { type: Boolean, default: true },          // 'Make my study plan' box on roadmap pages
     playgroundTool: { type: Boolean, default: true },    // /products/code-playground
     linkedinTool: { type: Boolean, default: true },      // /tools/linkedin-headline-about-generator
