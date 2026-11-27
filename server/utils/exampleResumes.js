@@ -168,6 +168,56 @@ export const EXAMPLES = [
         },
     }),
 
+    resume({
+        slug: 'warehouse-supervisor-resume-example',
+        title: 'Warehouse Supervisor Resume Example',
+        role: 'Warehouse Supervisor', region: 'India', level: 'experienced', templateId: 'leadership',
+        metaDescription: 'A warehouse supervisor resume example for India with team size, stock accuracy and dispatch results that an ATS can read. Free to copy.',
+        intro: 'A warehouse supervisor applying to logistics parks and distribution centres around Mumbai, Pune and Bhiwandi. Hiring managers look for team size, stock accuracy and on-time dispatch, so each of those appears with a number.',
+        why: [
+            'The summary gives years of experience, team size and the type of warehouse in the first two lines, so a recruiter knows the fit at once.',
+            'Each bullet names one result: stock accuracy, dispatch on time, damage, overtime or safety. These are the numbers a warehouse manager checks.',
+            'Systems and methods are written the way job adverts write them, for example warehouse management system, cycle counting, FIFO and 5S.',
+            'The skills line lists only things this person really does on the floor. Plain words help the ATS match them.',
+        ],
+        tips: ['Replace every number with your own. If you do not track a figure, describe the task without a number instead of guessing.', 'Name the software you have really used, such as a warehouse management system or an Excel stock sheet. Do not copy a tool name you have never opened.'],
+        data: {
+            personal_info: { full_name: 'Sanjay Kulkarni', profession: 'Warehouse Supervisor', email: 'sanjay.kulkarni@example.com', phone: '+91 90000 00002', location: 'Pune, India', linkedin: 'linkedin.com/in/sanjay-kulkarni-sample', website: '' },
+            professional_summary: 'Warehouse supervisor with 8 years of experience in third-party logistics and consumer goods warehouses. Leads a team of 18 loaders, pickers and forklift operators across two shifts, and keeps stock accuracy above 99% through weekly cycle counts. Careful with safety, clear with instructions and used to meeting daily dispatch targets.',
+            skills: ['Inbound and outbound operations', 'Inventory control', 'Cycle counting', 'FIFO and FEFO', 'Warehouse management system', 'Forklift and pallet safety', '5S', 'Shift planning', 'Dispatch and e-way bill documents', 'MS Excel', 'Team supervision'],
+            experience: [
+                { company: 'Sahyadri Logistics Park', position: 'Warehouse Supervisor', start_date: '2022-06', end_date: '', is_current: true, description: 'Supervise a team of 18 across two shifts in a 60,000 sq ft warehouse handling about 450 pallets a day.\nRaised stock accuracy from 96% to 99.2% in 9 months by moving to weekly cycle counts.\nIncreased on-time dispatch from 91% to 97% by planning loading slots the evening before.\nReduced product damage claims by 35% after retraining 12 staff on safe pallet handling.\nCut overtime by 20% by matching shift rosters to the daily inbound schedule.' },
+                { company: 'Konkan Distribution Services', position: 'Senior Warehouse Executive', start_date: '2019-04', end_date: '2022-05', is_current: false, description: 'Checked and recorded 25 inbound trucks a day against purchase orders and delivery notes.\nFound and fixed 40 stock mismatches in a year, which helped pass 3 customer audits.\nTrained 8 new loaders in the warehouse management system and safe stacking.\nOrganised the storage area with labels and 5S, which cut picking time by 15%.' },
+            ],
+            project: [],
+            education: [{ institution: 'University of Mumbai', degree: 'Bachelor of Commerce', field: 'Commerce', graduation_date: '2018-05', gpa: '' }],
+        },
+    }),
+    resume({
+        slug: 'nurse-resume-example',
+        title: 'Registered Nurse Resume Example',
+        role: 'Registered Nurse', region: 'United States', level: 'experienced', templateId: 'classic',
+        metaDescription: 'A registered nurse resume example for US hospitals with license, unit, patient ratios and results that an ATS can read. Free to copy.',
+        intro: 'A registered nurse applying to hospital units in the United States. US hospital recruiters check the nursing license, the unit type and patient load first, so this resume states all three near the top. For a UK layout, see the nurse CV example.',
+        why: [
+            'The summary names the license, the unit and the years of experience in plain words, because recruiters filter on those terms.',
+            'Each job gives the unit size and the patient group, so the reader can judge the level of care at a glance.',
+            'Results use real clinical measures such as falls, medication errors and discharge times, never general praise.',
+            'Certifications are listed with their names and years, in a separate section the ATS can find.',
+        ],
+        tips: ['Write your license number only when an application asks for it, not on a resume you post publicly.', 'Use the exact certification names from the issuer, for example Basic Life Support. Employers search for them.'],
+        data: {
+            personal_info: { full_name: 'Maria Santos', profession: 'Registered Nurse', email: 'maria.santos@example.com', phone: '+1 512 555 0147', location: 'Austin, Texas, United States', linkedin: 'linkedin.com/in/maria-santos-sample', website: '' },
+            professional_summary: 'Registered nurse with 6 years of experience on medical-surgical and telemetry units. Cares for 5 to 6 patients per shift, teaches patients and families before discharge, and follows safe medication and infection control practice. Holds an active RN license and current Basic Life Support and Advanced Cardiac Life Support certificates.',
+            skills: ['Patient assessment', 'Medication administration', 'IV therapy', 'Telemetry monitoring', 'Wound care', 'Electronic health records', 'Patient and family education', 'Infection control', 'Care planning', 'Teamwork on a busy unit'],
+            experience: [
+                { company: 'Riverbend Medical Center', position: 'Registered Nurse, Telemetry Unit', start_date: '2022-02', end_date: '', is_current: true, description: 'Care for 5 patients per shift on a 32-bed telemetry unit, watching heart rhythms and reporting changes to physicians.\nCut medication errors on the unit by 25% in one year by leading a bedside double-check routine.\nTaught 120 patients and families about heart medicines and diet before discharge.\nPrecepted 6 new nurses and gave written feedback at the end of each orientation.\nHelped reduce patient falls on the unit by 20% by checking call lights and bed alarms every hour.' },
+                { company: 'Lakeside Community Hospital', position: 'Registered Nurse, Medical-Surgical Unit', start_date: '2019-07', end_date: '2022-01', is_current: false, description: 'Looked after 6 patients per shift on a 28-bed medical-surgical unit, before and after surgery.\nRecorded vital signs and pain scores on time for 98% of checks in a 6-month audit.\nChanged dressings and tracked healing for about 15 patients with surgical wounds each month.\nWorked with doctors, therapists and case managers to plan safe discharges within 2 days of target.' },
+            ],
+            project: [],
+            education: [{ institution: 'University of Texas at Austin', degree: 'Bachelor of Science in Nursing', field: 'Nursing', graduation_date: '2019-05', gpa: '' }],
+        },
+    }),
     cvEx({
         slug: 'nurse-cv-example',
         title: 'Nurse CV Example',

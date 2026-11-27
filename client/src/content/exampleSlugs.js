@@ -8,6 +8,8 @@ export const exampleSlugs = [
   'electrician-resume-example',
   'sales-manager-resume-example',
   'accountant-resume-example',
+  'warehouse-supervisor-resume-example',
+  'nurse-resume-example',
   'nurse-cv-example',
   'production-supervisor-cv-example',
   'teacher-cv-example',
