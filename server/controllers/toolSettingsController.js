@@ -3,8 +3,8 @@ import ToolUsage from '../models/ToolUsage.js';
 
 // Admin on/off switches for the free tools. Everything is ON unless an admin turns it off, and if the settings cannot be
 // read the tool stays ON (a database hiccup must not hide a working tool). Cached for 10 seconds, cleared on save.
-export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer', playgroundTool: 'React and Angular Code Playground', planTool: 'Roadmap study plan', timedRoundTool: 'Timed Interview Round', swiftReaderTool: 'Swift Code Reader' };
-const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, playgroundTool: true, planTool: true, timedRoundTool: true, swiftReaderTool: true, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
+export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer', playgroundTool: 'React and Angular Code Playground', planTool: 'Roadmap study plan', timedRoundTool: 'Timed Interview Round', swiftReaderTool: 'Swift Code Reader', mergePdfTool: 'Merge PDF', splitPdfTool: 'Split PDF', reducePdfTool: 'Reduce PDF Size', photoResizerTool: 'Photo and Signature Resizer' };
+const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, playgroundTool: true, planTool: true, timedRoundTool: true, swiftReaderTool: true, mergePdfTool: true, splitPdfTool: true, reducePdfTool: true, photoResizerTool: true, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
 let cache = null, at = 0;
 export const getToolSettings = async () => {
     if (cache && Date.now() - at < 10000) return cache;
