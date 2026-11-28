@@ -15,6 +15,8 @@ const ToolSettingsSchema = new mongoose.Schema({
     splitPdfTool: { type: Boolean, default: true },      // /products/split-pdf (runs in the browser)
     reducePdfTool: { type: Boolean, default: true },     // /products/reduce-pdf-size (runs in the browser)
     photoResizerTool: { type: Boolean, default: true },  // /products/photo-signature-resizer (runs in the browser)
+    trackerTool: { type: Boolean, default: true },       // the Applications board in the signed-in dashboard
+    trackerMaxPerUser: { type: Number, default: 200, min: 10, max: 2000 }, // jobs one user can keep on the board
     planTool: { type: Boolean, default: true },          // 'Make my study plan' box on roadmap pages
     playgroundTool: { type: Boolean, default: true },    // /products/code-playground
     linkedinTool: { type: Boolean, default: true },      // /tools/linkedin-headline-about-generator

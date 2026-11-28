@@ -7,6 +7,7 @@ import { invalidateToolSettings } from '../../utils/toolSettings'
 import CAREER from '../../content/careerTools.json'
 
 const EXTRAS = [
+  { flag: 'trackerTool', name: 'Job application tracker', where: 'The Applications board for signed-in users at /app/tracker and the "Track my job applications" link in their dashboard. Hiding it keeps saved jobs; they come back when you switch it on.' },
   { flag: 'planTool', name: 'Roadmap study plan', where: 'The "Make my study plan" box on every roadmap page (/roadmaps/...). Runs in the browser, nothing is stored.' },
 ]
 const USE_KEY = { coverLetterTool: 'career-cover-letter', bulletTool: 'career-bullets', linkedinTool: 'career-linkedin', interviewTool: 'career-mock-interview' }
@@ -25,9 +26,10 @@ const AdminTools = () => {
   const [busy, setBusy] = useState(false)
   const [limit, setLimit] = useState('')
   const [cLimit, setCLimit] = useState('')
+  const [tLimit, setTLimit] = useState('')
 
   useEffect(() => {
-    api.get('/api/admin/tools', headers).then(({ data }) => { setData(data); setLimit(String(data.settings.enhancerDailyLimit ?? 10)); setCLimit(String(data.settings.careerDailyLimit ?? 10)) }).catch(() => toast.error('Could not load the tool settings.'))
+    api.get('/api/admin/tools', headers).then(({ data }) => { setData(data); setLimit(String(data.settings.enhancerDailyLimit ?? 10)); setCLimit(String(data.settings.careerDailyLimit ?? 10)); setTLimit(String(data.settings.trackerMaxPerUser ?? 200)) }).catch(() => toast.error('Could not load the tool settings.'))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if (!data) return <p className='text-slate-400'>Loading…</p>
@@ -112,6 +114,14 @@ const AdminTools = () => {
             )
           })}
         </ul>
+        <div className='mt-4 border-t border-slate-200 pt-4'>
+          <label htmlFor='tracker-limit' className='block text-sm font-medium text-slate-800'>Jobs one user can keep on the tracker</label>
+          <p className='text-xs text-slate-500 mt-0.5'>Whole number from 10 to 2000. A user who reaches it must delete a card to add another. Nothing is deleted when you lower it.</p>
+          <div className='mt-2 flex items-center gap-2'>
+            <input id='tracker-limit' type='number' min='10' max='2000' value={tLimit} onChange={(e) => setTLimit(e.target.value)} className='w-24 rounded-lg border border-slate-300 px-3 py-1.5 text-sm' />
+            <button type='button' disabled={busy || String(data.settings.trackerMaxPerUser) === String(tLimit)} onClick={() => save({ trackerMaxPerUser: Number(tLimit) })} className='rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white text-sm px-4 py-1.5'>Save</button>
+          </div>
+        </div>
       </section>
 
       <section className='bg-white rounded-xl border border-slate-200 p-5 mt-6'>
