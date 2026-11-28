@@ -3,14 +3,14 @@ import ToolUsage from '../models/ToolUsage.js';
 
 // Admin on/off switches for the free tools. Everything is ON unless an admin turns it off, and if the settings cannot be
 // read the tool stays ON (a database hiccup must not hide a working tool). Cached for 10 seconds, cleared on save.
-export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer', playgroundTool: 'React and Angular Code Playground', planTool: 'Roadmap study plan', timedRoundTool: 'Timed Interview Round', swiftReaderTool: 'Swift Code Reader', mergePdfTool: 'Merge PDF', splitPdfTool: 'Split PDF', reducePdfTool: 'Reduce PDF Size', photoResizerTool: 'Photo and Signature Resizer' };
-const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, playgroundTool: true, planTool: true, timedRoundTool: true, swiftReaderTool: true, mergePdfTool: true, splitPdfTool: true, reducePdfTool: true, photoResizerTool: true, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
+export const TOOLS = { imageEnhancer: 'Image Enhancer', coverLetterTool: 'Cover Letter Generator', bulletTool: 'Resume Bullet Point Improver', interviewTool: 'Mock Interview Practice', offerTool: 'Job Offer Comparison', linkedinTool: 'LinkedIn Headline and About Writer', playgroundTool: 'React and Angular Code Playground', planTool: 'Roadmap study plan', timedRoundTool: 'Timed Interview Round', swiftReaderTool: 'Swift Code Reader', mergePdfTool: 'Merge PDF', splitPdfTool: 'Split PDF', reducePdfTool: 'Reduce PDF Size', photoResizerTool: 'Photo and Signature Resizer', trackerTool: 'Job application tracker' };
+const DEFAULTS = { imageEnhancer: true, coverLetterTool: true, bulletTool: true, interviewTool: true, offerTool: true, linkedinTool: true, playgroundTool: true, planTool: true, timedRoundTool: true, swiftReaderTool: true, mergePdfTool: true, splitPdfTool: true, reducePdfTool: true, photoResizerTool: true, trackerTool: true, trackerMaxPerUser: 200, enhancerDailyLimit: 10, careerDailyLimit: 10, enhancerMode: 'pro' };
 let cache = null, at = 0;
 export const getToolSettings = async () => {
     if (cache && Date.now() - at < 10000) return cache;
     try {
         const doc = await ToolSettings.findOne({ key: 'main' }).lean();
-        cache = { ...DEFAULTS, ...Object.fromEntries(Object.keys(TOOLS).map((k) => [k, doc?.[k] !== false])), enhancerDailyLimit: Number.isInteger(doc?.enhancerDailyLimit) ? doc.enhancerDailyLimit : DEFAULTS.enhancerDailyLimit, careerDailyLimit: Number.isInteger(doc?.careerDailyLimit) ? doc.careerDailyLimit : DEFAULTS.careerDailyLimit, enhancerMode: doc?.enhancerMode === 'standard' ? 'standard' : 'pro' };
+        cache = { ...DEFAULTS, ...Object.fromEntries(Object.keys(TOOLS).map((k) => [k, doc?.[k] !== false])), enhancerDailyLimit: Number.isInteger(doc?.enhancerDailyLimit) ? doc.enhancerDailyLimit : DEFAULTS.enhancerDailyLimit, careerDailyLimit: Number.isInteger(doc?.careerDailyLimit) ? doc.careerDailyLimit : DEFAULTS.careerDailyLimit, trackerMaxPerUser: Number.isInteger(doc?.trackerMaxPerUser) ? doc.trackerMaxPerUser : DEFAULTS.trackerMaxPerUser, enhancerMode: doc?.enhancerMode === 'standard' ? 'standard' : 'pro' };
     } catch { cache = { ...DEFAULTS }; }
     at = Date.now();
     return cache;
@@ -50,6 +50,11 @@ export const adminSaveTools = async (req, res) => {
             const n = Number(req.body.careerDailyLimit);
             if (!Number.isInteger(n) || n < 1 || n > 200) return res.status(400).json({ message: 'The daily limit for the career tools must be a whole number from 1 to 200.' });
             set.careerDailyLimit = n;
+        }
+        if (req.body?.trackerMaxPerUser !== undefined) {
+            const n = Number(req.body.trackerMaxPerUser);
+            if (!Number.isInteger(n) || n < 10 || n > 2000) return res.status(400).json({ message: 'The number of jobs per user must be a whole number from 10 to 2000.' });
+            set.trackerMaxPerUser = n;
         }
         if (req.body?.enhancerMode !== undefined) {
             if (!['pro', 'standard'].includes(req.body.enhancerMode)) return res.status(400).json({ message: 'The starting mode must be pro or standard.' });

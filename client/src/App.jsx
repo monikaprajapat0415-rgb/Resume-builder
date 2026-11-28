@@ -42,6 +42,7 @@ const LearnIndex = lazy(() => import("./pages/LearnIndex"));
 const Jobs = lazy(() => import("./pages/Jobs"));
 const HireLanding = lazy(() => import("./pages/HireLanding"));
 const OpenToWork = lazy(() => import("./pages/OpenToWork"));
+const Tracker = lazy(() => import("./pages/Tracker"));
 const Hire = lazy(() => import("./pages/Hire"));
 const AdminHiring = lazy(() => import("./pages/admin/AdminHiring"));
 const JobDetail = lazy(() => import("./pages/JobDetail"));
@@ -282,6 +283,7 @@ const App = () => {
           <Route path="builder/:resumeId" element={<ResumeBuilder />} />
           <Route path="cv/:cvId" element={<CvBuilder />} />
           <Route path="open-to-work" element={<OpenToWork />} />
+          <Route path="tracker" element={<Tracker />} />
           <Route path="hire" element={<Hire />} />
         </Route>
         <Route path="view/:resumeId" element={<Preview />} />

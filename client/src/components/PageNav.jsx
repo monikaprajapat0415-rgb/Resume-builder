@@ -48,6 +48,7 @@ const LABELS = {
   builder: 'Resume Builder',
   cv: 'CV Builder',
   'open-to-work': 'Open to Work',
+  'tracker': 'Job Tracker',
   admin: 'Admin',
   'site-content': 'Site Content',
   activity: 'Activity log',
